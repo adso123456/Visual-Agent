@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 
 from openai import OpenAI
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 
 MODEL_NAME = "qwen3-vl-flash"
@@ -19,29 +19,34 @@ def _image_data_url(image_path: Path) -> str:
     return f"data:{mime_type};base64,{encoded}"
 
 
-def _candidate_data_url(image_path: Path, bbox: list[float]) -> str:
+def _marked_candidates_data_url(image_path: Path, candidates: list[dict]) -> str:
     image = Image.open(image_path).convert("RGB")
-    x1, y1, x2, y2 = bbox
-    padding_x = (x2 - x1) * 0.1
-    padding_y = (y2 - y1) * 0.1
-    crop = image.crop(
-        (
-            max(0, x1 - padding_x),
-            max(0, y1 - padding_y),
-            min(image.width, x2 + padding_x),
-            min(image.height, y2 + padding_y),
+    scale = max(1.0, 1024 / max(image.size))
+    if scale > 1:
+        image = image.resize(
+            (round(image.width * scale), round(image.height * scale)),
+            Image.Resampling.LANCZOS,
         )
-    )
-    buffer = io.BytesIO()
-    crop.save(buffer, format="JPEG", quality=90)
-    encoded = base64.b64encode(buffer.getvalue()).decode("ascii")
-    return f"data:image/jpeg;base64,{encoded}"
-
-
-def _marked_image_data_url(image_path: Path, bbox: list[float]) -> str:
-    image = Image.open(image_path).convert("RGB")
     draw = ImageDraw.Draw(image)
-    draw.rectangle(bbox, outline="red", width=max(3, min(image.size) // 200))
+    font = ImageFont.load_default(size=max(20, min(image.size) // 18))
+    colors = ["#ff0000", "#00a000", "#0066ff", "#ff00ff", "#ff8800", "#00aaaa"]
+    line_width = max(3, min(image.size) // 150)
+    for index, candidate in enumerate(candidates):
+        color = colors[index % len(colors)]
+        bbox = [coordinate * scale for coordinate in candidate["bbox"]]
+        candidate_id = candidate["id"]
+        draw.rectangle(bbox, outline=color, width=line_width)
+        text_bbox = draw.textbbox((0, 0), candidate_id, font=font)
+        text_width = text_bbox[2] - text_bbox[0]
+        text_height = text_bbox[3] - text_bbox[1]
+        x1, y1 = bbox[:2]
+        label_x = max(0, int(x1))
+        label_y = max(0, int(y1) - text_height - 4)
+        draw.rectangle(
+            (label_x, label_y, label_x + text_width + 6, label_y + text_height + 4),
+            fill=color,
+        )
+        draw.text((label_x + 3, label_y + 2), candidate_id, fill="white", font=font)
     buffer = io.BytesIO()
     image.save(buffer, format="JPEG", quality=90)
     encoded = base64.b64encode(buffer.getvalue()).decode("ascii")
@@ -112,55 +117,83 @@ def understand_target(image_path: Path, prompt: str) -> dict:
     }
 
 
-def verify_candidate(
+def verify_candidates(
     image_path: Path,
     prompt: str,
     plan: dict,
-    bbox: list[float],
-) -> dict:
-    """结合原图和候选区域，验证候选是否满足用户的完整语义要求。"""
+    candidates: list[dict],
+) -> list[dict]:
+    """在同一完整场景中对所有候选进行相对验证。"""
     result = _json_response(
         [
             {
                 "role": "system",
                 "content": (
-                    "你是候选目标验证器。第一张图是保留完整场景并用红框标出当前候选的原图，"
-                    "第二张图是该红框候选的局部区域。"
-                    "只判断第二张图中的候选自身是否满足用户要求和全部语义约束；第一张图只用于确认该候选"
-                    "与环境或其他对象的关系，不得借用其他对象的行为、装备或属性作为当前候选的证据。"
-                    "只有全部语义约束都能从红框候选自身得到清楚可见证据时 match 才能为 true。"
-                    "如果候选区域只显示局部身体，或任一关键行为、属性或对象关系无法确认，match 必须为 false。"
+                    "你是群组候选目标验证器。图片保留完整场景，多个检测框使用不同颜色和 A/B/C 等字母标识。"
+                    "同时比较所有候选，逐一判断每个候选自身是否满足给定语义约束。必须区分行为、装备、"
+                    "属性和对象关系究竟属于哪个候选，不得借用相邻候选的证据。"
+                    "每个候选的每条约束必须各返回一个 check，顺序和原文必须与输入 constraints 完全一致，"
+                    "不得合并或新增。如果候选区域只显示局部身体，或关键行为、属性、装备归属或对象关系"
+                    "无法确认，对应 status 必须为 uncertain。"
                     "当基础目标是 person 时，只包含手、手臂、腿等局部肢体的检测框不是有效人物实例，"
-                    "即使局部动作看似相关也必须返回 false。"
-                    "只返回 JSON，字段仅为 match 和 reason。"
-                    "match 必须是 true 或 false。reason 必须是中文一句话、只写可见证据且不超过 50 个中文字符。"
+                    "即使局部动作看似相关，各项 status 也必须为 not_satisfied。"
+                    "只返回 JSON，顶层字段仅为 candidates。每个候选只能包含 id、checks；每个 check 只能包含"
+                    "constraint、status、evidence。status 只能是 satisfied、not_satisfied 或 uncertain。"
+                    "satisfied 表示有明确可见证据；not_satisfied 表示有明确反证；uncertain 表示证据不足或归属不清。"
+                    "evidence 使用中文，只写该候选的可见证据。"
                     "不要输出 Markdown、思维过程、备选答案、自我讨论，也不要使用‘首先’‘进一步分析’"
-                    "‘综合判断’‘最终决定’‘可能的其他选择’。证据不足时返回 false，不得凭空补充事实或推断。"
+                    "‘综合判断’‘最终决定’‘可能的其他选择’。不得凭空补充事实或推断。"
                 ),
             },
             {
                 "role": "user",
                 "content": [
-                    {"type": "image_url", "image_url": {"url": _marked_image_data_url(image_path, bbox)}},
-                    {"type": "image_url", "image_url": {"url": _candidate_data_url(image_path, bbox)}},
+                    {
+                        "type": "image_url",
+                        "image_url": {"url": _marked_candidates_data_url(image_path, candidates)},
+                    },
                     {
                         "type": "text",
                         "text": (
                             f"用户原始要求：{prompt}\n目标名称：{plan['label']}\n"
                             f"语义约束：{json.dumps(plan['constraints'], ensure_ascii=False)}\n"
-                            "红框和第二张图片表示同一个当前候选对象。"
+                            f"候选列表：{json.dumps([candidate['id'] for candidate in candidates], ensure_ascii=False)}\n"
+                            "请按候选 ID 分别判断，证据不足或无法确认装备归属时使用 uncertain。"
                         ),
                     },
                 ],
             },
         ]
     )
-    match = result.get("match")
-    reason = result.get("reason")
-    if not isinstance(match, bool):
-        raise RuntimeError(f"Qwen3-VL 返回无效 match：{result}")
-    if not isinstance(reason, str) or not reason.strip():
-        raise RuntimeError(f"Qwen3-VL 返回无效 reason：{result}")
-    if len(reason.strip()) > 50 or "。" in reason.strip()[:-1]:
-        raise RuntimeError(f"Qwen3-VL reason 必须是一句且不超过 50 字：{result}")
-    return {"match": match, "reason": reason.strip()}
+    returned_candidates = result.get("candidates")
+    if not isinstance(returned_candidates, list) or len(returned_candidates) != len(candidates):
+        raise RuntimeError(f"Qwen3-VL candidates 数量与输入不一致：{result}")
+    candidates_by_id = {item.get("id"): item for item in returned_candidates if isinstance(item, dict)}
+    if set(candidates_by_id) != {candidate["id"] for candidate in candidates}:
+        raise RuntimeError(f"Qwen3-VL candidates ID 与输入不一致：{result}")
+
+    normalized_candidates = []
+    for candidate in candidates:
+        candidate_id = candidate["id"]
+        checks = candidates_by_id[candidate_id].get("checks")
+        if not isinstance(checks, list) or len(checks) != len(plan["constraints"]):
+            raise RuntimeError(f"Qwen3-VL checks 数量与 constraints 不一致：{result}")
+        normalized_checks = []
+        for expected_constraint, check in zip(plan["constraints"], checks):
+            if not isinstance(check, dict) or check.get("constraint") != expected_constraint:
+                raise RuntimeError(f"Qwen3-VL check 未对应原始 constraint：{result}")
+            status = check.get("status")
+            if status not in {"satisfied", "not_satisfied", "uncertain"}:
+                raise RuntimeError(f"Qwen3-VL 返回无效 status：{result}")
+            evidence = check.get("evidence")
+            if not isinstance(evidence, str) or not evidence.strip():
+                raise RuntimeError(f"Qwen3-VL 返回无效 evidence：{result}")
+            normalized_checks.append(
+                {
+                    "constraint": expected_constraint,
+                    "status": status,
+                    "evidence": evidence.strip(),
+                }
+            )
+        normalized_candidates.append({"id": candidate_id, "checks": normalized_checks})
+    return normalized_candidates
