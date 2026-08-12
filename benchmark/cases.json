@@ -1,0 +1,142 @@
+[
+  {
+    "id": "core_001",
+    "suite": "core",
+    "image": "images/test_images/test_image.jpg",
+    "prompt": "找到图片里的狗",
+    "expected": {"target_object": "dog", "action": "highlight", "target_count": 1, "target_description": "海滩上的拉布拉多犬", "constraints_semantics": []}
+  },
+  {
+    "id": "core_002",
+    "suite": "core",
+    "image": "images/test_images/test_image.jpg",
+    "prompt": "把图片中的人以外背景变暗",
+    "expected": {"target_object": "person", "action": "dim_background", "target_count": 1, "target_description": "海滩上坐着的女性", "constraints_semantics": []}
+  },
+  {
+    "id": "core_003",
+    "suite": "core",
+    "image": "images/test_images/commons_umbrella.jpg",
+    "prompt": "只给手持雨伞的人描边",
+    "expected": {"target_object": "person", "action": "outline", "target_count": 1, "target_description": "街上手持黑色雨伞的人", "constraints_semantics": ["手持雨伞"]}
+  },
+  {
+    "id": "core_004",
+    "suite": "core",
+    "image": "images/test_images/commons_umbrella.jpg",
+    "prompt": "把手持雨伞的人单独抠出来",
+    "expected": {"target_object": "person", "action": "cutout", "target_count": 1, "target_description": "街上手持黑色雨伞的人", "constraints_semantics": ["手持雨伞"]}
+  },
+  {
+    "id": "core_005",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "找到正在钓鱼的人",
+    "expected": {"target_object": "person", "action": "highlight", "target_count": 1, "target_description": "河边持弯曲鱼竿的男子", "constraints_semantics": ["正在钓鱼"]}
+  },
+  {
+    "id": "core_006",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "把正在钓鱼的人标红",
+    "expected": {"target_object": "person", "action": "highlight", "target_count": 1, "target_description": "河边持弯曲鱼竿的男子", "constraints_semantics": ["正在钓鱼"]}
+  },
+  {
+    "id": "core_007",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "只给正在钓鱼的人描边",
+    "expected": {"target_object": "person", "action": "outline", "target_count": 1, "target_description": "河边持弯曲鱼竿的男子", "constraints_semantics": ["正在钓鱼"]}
+  },
+  {
+    "id": "core_008",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "模糊正在钓鱼的人",
+    "expected": {"target_object": "person", "action": "blur_target", "target_count": 1, "target_description": "河边持弯曲鱼竿的男子", "constraints_semantics": ["正在钓鱼"]}
+  },
+  {
+    "id": "core_009",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "把正在钓鱼的人以外背景变暗",
+    "expected": {"target_object": "person", "action": "dim_background", "target_count": 1, "target_description": "河边持弯曲鱼竿的男子", "constraints_semantics": ["正在钓鱼"]}
+  },
+  {
+    "id": "core_010",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "把正在钓鱼的人单独抠出来",
+    "expected": {"target_object": "person", "action": "cutout", "target_count": 1, "target_description": "河边持弯曲鱼竿的男子", "constraints_semantics": ["正在钓鱼"]}
+  },
+  {
+    "id": "core_011",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_hats.png",
+    "prompt": "模糊戴帽子的人",
+    "expected": {"target_object": "person", "action": "blur_target", "target_count": 2, "target_description": "戴草帽的男子和戴遮阳帽的女孩", "constraints_semantics": ["戴帽子"]}
+  },
+  {
+    "id": "core_012",
+    "suite": "core",
+    "image": "images/test_images/OIP-C.jpg",
+    "prompt": "找到图片中的汽车",
+    "expected": {"target_object": "car", "action": "highlight", "target_count": 0, "target_description": "图片中没有汽车", "constraints_semantics": []}
+  },
+  {
+    "id": "core_013",
+    "suite": "core",
+    "image": "images/test_images/commons_umbrella.jpg",
+    "prompt": "把图片中的狗标红",
+    "expected": {"target_object": "dog", "action": "highlight", "target_count": 0, "target_description": "图片中没有狗", "constraints_semantics": []}
+  },
+  {
+    "id": "core_014",
+    "suite": "core",
+    "image": "images/test_images/test_image.jpg",
+    "prompt": "只给手持雨伞的人描边",
+    "expected": {"target_object": "person", "action": "outline", "target_count": 0, "target_description": "图片中无人持伞", "constraints_semantics": ["手持雨伞"]}
+  },
+  {
+    "id": "core_015",
+    "suite": "core",
+    "image": "images/test_images/test_family_fishing.jpg",
+    "prompt": "模糊图中的儿童",
+    "expected": {"target_object": "person", "action": "blur_target", "target_count": 2, "target_description": "船上的两名儿童", "constraints_semantics": ["儿童"]}
+  },
+  {
+    "id": "challenge_001",
+    "suite": "challenge",
+    "image": "images/test_images/OIP-C.jpg",
+    "prompt": "找到正在钓鱼的人",
+    "expected": {"target_object": "person", "action": "highlight", "target_count": 1, "target_description": "低分辨率图中的红帽钓鱼者；白帽人物证据不足", "constraints_semantics": ["正在钓鱼"], "ground_truth": "positive"}
+  },
+  {
+    "id": "challenge_002",
+    "suite": "challenge",
+    "image": "images/test_images/test_fishing.jpg",
+    "prompt": "找到正在钓鱼的人",
+    "expected": {"target_object": "person", "action": "highlight", "target_count": 1, "target_description": "中央完整人物；左侧仅露出局部肢体", "constraints_semantics": ["正在钓鱼"], "ground_truth": "positive"}
+  },
+  {
+    "id": "challenge_003",
+    "suite": "challenge",
+    "image": "images/test_images/benchmark_fishing_lowlight.png",
+    "prompt": "把正在钓鱼的人标红",
+    "expected": {"target_object": "person", "action": "highlight", "target_count": 1, "target_description": "低光远景中岸边的单个人物", "constraints_semantics": ["正在钓鱼"], "ground_truth": "ambiguous"}
+  },
+  {
+    "id": "challenge_004",
+    "suite": "challenge",
+    "image": "images/test_images/benchmark_fishing_two_people.png",
+    "prompt": "把正在钓鱼的人以外背景变暗",
+    "expected": {"target_object": "person", "action": "dim_background", "target_count": null, "target_description": "老人明确持竿；儿童是否独立钓鱼存在歧义", "constraints_semantics": ["正在钓鱼"], "ground_truth": "ambiguous"}
+  },
+  {
+    "id": "challenge_005",
+    "suite": "challenge",
+    "image": "images/test_images/commons_red_shirts.jpg",
+    "prompt": "只给穿红色衣服的人描边",
+    "expected": {"target_object": "person", "action": "outline", "target_count": null, "target_description": "密集场景中多名穿红衣的人，含遮挡和小目标", "constraints_semantics": ["穿红色衣服"], "ground_truth": "ambiguous"}
+  }
+]

@@ -1,0 +1,770 @@
+[
+  {
+    "id": "core_005",
+    "case_id": "core_005",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "找到正在钓鱼的人",
+    "expected": {
+      "target_object": "person",
+      "action": "highlight",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 21.897,
+    "plan": {
+      "target_object": "person",
+      "label": "正在钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "正在钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          400.36,
+          77.84,
+          497.7,
+          336.44
+        ],
+        "confidence": 0.8313,
+        "reason": "该人物背对镜头站立于河岸，双手持握一根明显弯曲的鱼竿，鱼竿呈抛投姿态，水面可见浮漂，符合钓鱼动作特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_024_mask_A.png",
+          "mask_score": 0.9304,
+          "mask_area_pixels": 12231
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 1.822,
+      "grounding_dino_seconds": 11.749,
+      "group_verification_seconds": 1.927,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.736,
+        "inference_seconds": 0.573,
+        "memory_after_load_mb": 292.8,
+        "peak_memory_mb": 648.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/core_005/result.jpg",
+      "result_json": "benchmark/results/core_005/result.json",
+      "masks": [
+        "benchmark/results/core_005/masks/result_024_mask_A.png"
+      ]
+    }
+  },
+  {
+    "id": "core_006",
+    "case_id": "core_006",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "把正在钓鱼的人标红",
+    "expected": {
+      "target_object": "person",
+      "action": "highlight",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 20.853,
+    "plan": {
+      "target_object": "person",
+      "label": "正在钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "正在钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          400.36,
+          77.84,
+          497.7,
+          336.44
+        ],
+        "confidence": 0.8313,
+        "reason": "该人物背对镜头站立于河岸，双手持握一根明显弯曲的鱼竿，鱼竿呈抛投姿态，水面可见浮漂，符合钓鱼动作特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_025_mask_A.png",
+          "mask_score": 0.9304,
+          "mask_area_pixels": 12231
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 0.744,
+      "grounding_dino_seconds": 11.518,
+      "group_verification_seconds": 1.803,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 6.341,
+        "inference_seconds": 0.371,
+        "memory_after_load_mb": 354.8,
+        "peak_memory_mb": 710.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/core_006/result.jpg",
+      "result_json": "benchmark/results/core_006/result.json",
+      "masks": [
+        "benchmark/results/core_006/masks/result_025_mask_A.png"
+      ]
+    }
+  },
+  {
+    "id": "core_007",
+    "case_id": "core_007",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "只给正在钓鱼的人描边",
+    "expected": {
+      "target_object": "person",
+      "action": "outline",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 18.566,
+    "plan": {
+      "target_object": "person",
+      "label": "正在钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "outline"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "正在钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          400.36,
+          77.84,
+          497.7,
+          336.44
+        ],
+        "confidence": 0.8313,
+        "reason": "该人物背对镜头站立于河岸，双手持握一根明显弯曲的鱼竿，鱼竿呈抛投姿态，水面可见浮漂，符合正在钓鱼的行为特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_026_mask_A.png",
+          "mask_score": 0.9304,
+          "mask_area_pixels": 12231
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 1.437,
+      "grounding_dino_seconds": 9.984,
+      "group_verification_seconds": 1.614,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.145,
+        "inference_seconds": 0.322,
+        "memory_after_load_mb": 354.8,
+        "peak_memory_mb": 710.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/core_007/result.jpg",
+      "result_json": "benchmark/results/core_007/result.json",
+      "masks": [
+        "benchmark/results/core_007/masks/result_026_mask_A.png"
+      ]
+    }
+  },
+  {
+    "id": "core_008",
+    "case_id": "core_008",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "模糊正在钓鱼的人",
+    "expected": {
+      "target_object": "person",
+      "action": "blur_target",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 18.617,
+    "plan": {
+      "target_object": "person",
+      "label": "正在钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "blur_target"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "正在钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          400.36,
+          77.84,
+          497.7,
+          336.44
+        ],
+        "confidence": 0.8313,
+        "reason": "该人物背对镜头站立于河岸，双手持握一根明显弯曲的鱼竿，鱼竿呈抛投姿态；水面可见浮漂，表明其正在进行钓鱼活动。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_027_mask_A.png",
+          "mask_score": 0.9304,
+          "mask_area_pixels": 12231
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 0.984,
+      "grounding_dino_seconds": 10.295,
+      "group_verification_seconds": 1.651,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.127,
+        "inference_seconds": 0.504,
+        "memory_after_load_mb": 354.8,
+        "peak_memory_mb": 710.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/core_008/result.jpg",
+      "result_json": "benchmark/results/core_008/result.json",
+      "masks": [
+        "benchmark/results/core_008/masks/result_027_mask_A.png"
+      ]
+    }
+  },
+  {
+    "id": "core_009",
+    "case_id": "core_009",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "把正在钓鱼的人以外背景变暗",
+    "expected": {
+      "target_object": "person",
+      "action": "dim_background",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 18.183,
+    "plan": {
+      "target_object": "person",
+      "label": "正在钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "dim_background"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "正在钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          400.36,
+          77.84,
+          497.7,
+          336.44
+        ],
+        "confidence": 0.8313,
+        "reason": "该候选区域中的人物背对镜头，手持弯曲的鱼竿，鱼线延伸至水面，水中有浮漂，整体姿态和装备表明其正在进行钓鱼活动。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_028_mask_A.png",
+          "mask_score": 0.9304,
+          "mask_area_pixels": 12231
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 0.871,
+      "grounding_dino_seconds": 9.145,
+      "group_verification_seconds": 1.528,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 6.066,
+        "inference_seconds": 0.505,
+        "memory_after_load_mb": 354.8,
+        "peak_memory_mb": 710.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/core_009/result.jpg",
+      "result_json": "benchmark/results/core_009/result.json",
+      "masks": [
+        "benchmark/results/core_009/masks/result_028_mask_A.png"
+      ]
+    }
+  },
+  {
+    "id": "core_010",
+    "case_id": "core_010",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "把正在钓鱼的人单独抠出来",
+    "expected": {
+      "target_object": "person",
+      "action": "cutout",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 16.904,
+    "plan": {
+      "target_object": "person",
+      "label": "正在钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "cutout"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "正在钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          400.36,
+          77.84,
+          497.7,
+          336.44
+        ],
+        "confidence": 0.8313,
+        "reason": "该候选区域显示一名男子背对镜头站立于河岸，手持弯曲的鱼竿，鱼竿呈抛投姿态，水面有浮漂，符合正在钓鱼的行为特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_029_mask_A.png",
+          "mask_score": 0.9304,
+          "mask_area_pixels": 12231
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 0.919,
+      "grounding_dino_seconds": 8.906,
+      "group_verification_seconds": 1.581,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.081,
+        "inference_seconds": 0.355,
+        "memory_after_load_mb": 354.8,
+        "peak_memory_mb": 710.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/core_010/result.png",
+      "result_json": "benchmark/results/core_010/result.json",
+      "masks": [
+        "benchmark/results/core_010/masks/result_029_mask_A.png"
+      ]
+    }
+  },
+  {
+    "id": "core_011",
+    "case_id": "core_011",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_hats.png",
+    "prompt": "模糊戴帽子的人",
+    "expected": {
+      "target_object": "person",
+      "action": "blur_target",
+      "target_count": 2,
+      "target_description": "戴草帽的男子和戴遮阳帽的女孩",
+      "constraints_semantics": [
+        "戴帽子"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 18.611,
+    "plan": {
+      "target_object": "person",
+      "label": "戴帽子的人",
+      "constraints": [
+        "戴帽子"
+      ],
+      "action": {
+        "type": "blur_target"
+      }
+    },
+    "candidate_count": 2,
+    "targets": [
+      {
+        "id": "A",
+        "label": "戴帽子的人",
+        "text_label": "person",
+        "bbox": [
+          122.68,
+          88.52,
+          290.56,
+          347.96
+        ],
+        "confidence": 0.7329,
+        "reason": "候选A包含一名背对镜头的男性，头上戴着一顶草帽，帽子有明显帽檐和橙色饰带，清晰可见。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_030_mask_A.png",
+          "mask_score": 0.9877,
+          "mask_area_pixels": 27559
+        }
+      },
+      {
+        "id": "B",
+        "label": "戴帽子的人",
+        "text_label": "person",
+        "bbox": [
+          7.79,
+          145.29,
+          127.93,
+          347.25
+        ],
+        "confidence": 0.6757,
+        "reason": "候选B包含一名背对镜头的小女孩，头上戴着一顶灰白波点帽，帽子形状完整、位置明确，清晰可见。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_030_mask_B.png",
+          "mask_score": 0.9832,
+          "mask_area_pixels": 15913
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 0.863,
+      "grounding_dino_seconds": 9.42,
+      "group_verification_seconds": 2.675,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.091,
+        "inference_seconds": 0.514,
+        "memory_after_load_mb": 354.8,
+        "peak_memory_mb": 710.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/core_011/result.jpg",
+      "result_json": "benchmark/results/core_011/result.json",
+      "masks": [
+        "benchmark/results/core_011/masks/result_030_mask_A.png",
+        "benchmark/results/core_011/masks/result_030_mask_B.png"
+      ]
+    }
+  },
+  {
+    "id": "challenge_003",
+    "case_id": "challenge_003",
+    "suite": "challenge",
+    "image": "images/test_images/benchmark_fishing_lowlight.png",
+    "prompt": "把正在钓鱼的人标红",
+    "expected": {
+      "target_object": "person",
+      "action": "highlight",
+      "target_count": 1,
+      "target_description": "低光远景中岸边的单个人物",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ],
+      "ground_truth": "ambiguous"
+    },
+    "status": "success",
+    "cli_total_seconds": 11.628,
+    "plan": {
+      "target_object": "person",
+      "label": "正在钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [],
+    "timings": {
+      "qwen_plan_seconds": 0.742,
+      "grounding_dino_seconds": 9.056,
+      "group_verification_seconds": 1.822,
+      "sam2": null
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": false,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": false,
+    "artifacts": {
+      "result_image": "benchmark/results/challenge_003/result.jpg",
+      "result_json": "benchmark/results/challenge_003/result.json",
+      "masks": []
+    }
+  },
+  {
+    "id": "challenge_004",
+    "case_id": "challenge_004",
+    "suite": "challenge",
+    "image": "images/test_images/benchmark_fishing_two_people.png",
+    "prompt": "把正在钓鱼的人以外背景变暗",
+    "expected": {
+      "target_object": "person",
+      "action": "dim_background",
+      "target_count": null,
+      "target_description": "老人明确持竿；儿童是否独立钓鱼存在歧义",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ],
+      "ground_truth": "ambiguous"
+    },
+    "status": "success",
+    "cli_total_seconds": 19.336,
+    "plan": {
+      "target_object": "person",
+      "label": "正在钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "dim_background"
+      }
+    },
+    "candidate_count": 2,
+    "targets": [
+      {
+        "id": "A",
+        "label": "正在钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          471.6,
+          98.27,
+          544.83,
+          320.23
+        ],
+        "confidence": 0.7082,
+        "reason": "候选A为一位白发男性，身穿蓝色牛仔外套，右手握持一根长鱼竿，鱼竿延伸至水面，姿态为站立垂钓，符合‘正在钓鱼’的视觉特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_032_mask_A.png",
+          "mask_score": 0.9771,
+          "mask_area_pixels": 9129
+        }
+      },
+      {
+        "id": "B",
+        "label": "正在钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          430.95,
+          171.57,
+          485.74,
+          337.7
+        ],
+        "confidence": 0.7098,
+        "reason": "候选B为一名穿蓝色羽绒服、戴条纹帽的儿童，左手握持一根较短鱼竿，鱼竿同样伸向水面，身体朝向水边，呈现钓鱼姿态，符合‘正在钓鱼’的视觉特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_032_mask_B.png",
+          "mask_score": 0.9705,
+          "mask_area_pixels": 5432
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 0.809,
+      "grounding_dino_seconds": 9.793,
+      "group_verification_seconds": 3.071,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.233,
+        "inference_seconds": 0.385,
+        "memory_after_load_mb": 354.8,
+        "peak_memory_mb": 710.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/challenge_004/result.jpg",
+      "result_json": "benchmark/results/challenge_004/result.json",
+      "masks": [
+        "benchmark/results/challenge_004/masks/result_032_mask_A.png",
+        "benchmark/results/challenge_004/masks/result_032_mask_B.png"
+      ]
+    }
+  }
+]

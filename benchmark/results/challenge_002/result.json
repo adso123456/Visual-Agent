@@ -1,0 +1,112 @@
+{
+  "prompt": "找到正在钓鱼的人",
+  "plan": {
+    "target_object": "person",
+    "label": "正在钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ],
+    "action": {
+      "type": "highlight"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        457.35,
+        283.43,
+        989.8,
+        848.91
+      ],
+      "dino_confidence": 0.7678,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该候选区域包含一名男性，他坐在河边岩石上，右手持鱼竿，鱼竿延伸至水面，姿态专注，符合正在钓鱼的特征。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该候选区域包含一名男性，他坐在河边岩石上，右手持鱼竿，鱼竿延伸至水面，姿态专注，符合正在钓鱼的特征。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        0.95,
+        387.55,
+        97.77,
+        570.88
+      ],
+      "dino_confidence": 0.3681,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "该候选区域仅显示部分手臂和手部，未见明显鱼竿或钓鱼动作，无法确认是否在钓鱼。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域仅显示部分手臂和手部，未见明显鱼竿或钓鱼动作，无法确认是否在钓鱼。"
+    },
+    {
+      "id": "C",
+      "text_label": "person",
+      "bbox": [
+        0.64,
+        385.97,
+        97.36,
+        525.08
+      ],
+      "dino_confidence": 0.4242,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "该候选区域仅显示部分手臂和手部，未见明显鱼竿或钓鱼动作，无法确认是否在钓鱼。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域仅显示部分手臂和手部，未见明显鱼竿或钓鱼动作，无法确认是否在钓鱼。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "正在钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        457.35,
+        283.43,
+        989.8,
+        848.91
+      ],
+      "confidence": 0.7678,
+      "reason": "该候选区域包含一名男性，他坐在河边岩石上，右手持鱼竿，鱼竿延伸至水面，姿态专注，符合正在钓鱼的特征。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_022_mask_A.png",
+        "mask_score": 0.9851,
+        "mask_area_pixels": 136314
+      }
+    }
+  ],
+  "timings": {
+    "qwen_plan_seconds": 1.485,
+    "grounding_dino_seconds": 9.369,
+    "group_verification_seconds": 3.269,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.74,
+      "inference_seconds": 0.468,
+      "memory_after_load_mb": 356.8,
+      "peak_memory_mb": 712.8
+    }
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "images/output_images/result_022.jpg"
+  }
+}

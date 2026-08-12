@@ -1,0 +1,1076 @@
+[
+  {
+    "id": "core_001",
+    "case_id": "core_001",
+    "suite": "core",
+    "image": "images/test_images/test_image.jpg",
+    "prompt": "找到图片里的狗",
+    "expected": {
+      "target_object": "dog",
+      "action": "highlight",
+      "target_count": 1,
+      "target_description": "海滩上的拉布拉多犬",
+      "constraints_semantics": []
+    },
+    "status": "success",
+    "cli_total_seconds": 19.398,
+    "plan": {
+      "target_object": "dog",
+      "label": "狗",
+      "constraints": [],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "狗",
+        "text_label": "dog",
+        "bbox": [
+          461.48,
+          581.66,
+          1177.17,
+          1203.13
+        ],
+        "confidence": 0.8197,
+        "reason": "",
+        "segmentation": {
+          "mask_path": "images/output_images/result_013_mask_A.png",
+          "mask_score": 0.9561,
+          "mask_area_pixels": 144314
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 1.546,
+      "grounding_dino_seconds": 11.552,
+      "group_verification_seconds": 0.0,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.634,
+        "inference_seconds": 0.48,
+        "memory_after_load_mb": 292.8,
+        "peak_memory_mb": 648.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/core_001/result.jpg",
+      "result_json": "benchmark/results/core_001/result.json",
+      "masks": [
+        "benchmark/results/core_001/masks/result_013_mask_A.png"
+      ]
+    }
+  },
+  {
+    "id": "core_002",
+    "case_id": "core_002",
+    "suite": "core",
+    "image": "images/test_images/test_image.jpg",
+    "prompt": "把图片中的人以外背景变暗",
+    "expected": {
+      "target_object": "person",
+      "action": "dim_background",
+      "target_count": 1,
+      "target_description": "海滩上坐着的女性",
+      "constraints_semantics": []
+    },
+    "status": "success",
+    "cli_total_seconds": 16.025,
+    "plan": {
+      "target_object": "person",
+      "label": "人",
+      "constraints": [],
+      "action": {
+        "type": "dim_background"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "人",
+        "text_label": "person",
+        "bbox": [
+          924.56,
+          522.52,
+          1493.97,
+          1080.89
+        ],
+        "confidence": 0.759,
+        "reason": "",
+        "segmentation": {
+          "mask_path": "images/output_images/result_014_mask_A.png",
+          "mask_score": 0.9834,
+          "mask_area_pixels": 142649
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 0.667,
+      "grounding_dino_seconds": 9.629,
+      "group_verification_seconds": 0.0,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.161,
+        "inference_seconds": 0.413,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/core_002/result.jpg",
+      "result_json": "benchmark/results/core_002/result.json",
+      "masks": [
+        "benchmark/results/core_002/masks/result_014_mask_A.png"
+      ]
+    }
+  },
+  {
+    "id": "core_003",
+    "case_id": "core_003",
+    "suite": "core",
+    "image": "images/test_images/commons_umbrella.jpg",
+    "prompt": "只给手持雨伞的人描边",
+    "expected": {
+      "target_object": "person",
+      "action": "outline",
+      "target_count": 1,
+      "target_description": "街上手持黑色雨伞的人",
+      "constraints_semantics": [
+        "手持雨伞"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 18.776,
+    "plan": {
+      "target_object": "person",
+      "label": "手持雨伞的人",
+      "constraints": [
+        "手持雨伞"
+      ],
+      "action": {
+        "type": "outline"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "手持雨伞的人",
+        "text_label": "person",
+        "bbox": [
+          667.15,
+          662.65,
+          1003.39,
+          1412.13
+        ],
+        "confidence": 0.6666,
+        "reason": "候选A的右手握着一把黑色雨伞的伞柄，雨伞位于其头部上方，明确显示为手持状态。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_015_mask_A.png",
+          "mask_score": 0.9855,
+          "mask_area_pixels": 140360
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 0.763,
+      "grounding_dino_seconds": 9.825,
+      "group_verification_seconds": 2.218,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.463,
+        "inference_seconds": 0.389,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/core_003/result.jpg",
+      "result_json": "benchmark/results/core_003/result.json",
+      "masks": [
+        "benchmark/results/core_003/masks/result_015_mask_A.png"
+      ]
+    }
+  },
+  {
+    "id": "core_004",
+    "case_id": "core_004",
+    "suite": "core",
+    "image": "images/test_images/commons_umbrella.jpg",
+    "prompt": "把手持雨伞的人单独抠出来",
+    "expected": {
+      "target_object": "person",
+      "action": "cutout",
+      "target_count": 1,
+      "target_description": "街上手持黑色雨伞的人",
+      "constraints_semantics": [
+        "手持雨伞"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 20.81,
+    "plan": {
+      "target_object": "person with umbrella",
+      "label": "手持雨伞的人",
+      "constraints": [
+        "手持雨伞",
+        "人"
+      ],
+      "action": {
+        "type": "cutout"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "手持雨伞的人",
+        "text_label": "person",
+        "bbox": [
+          671.2,
+          657.78,
+          1006.62,
+          1412.28
+        ],
+        "confidence": 0.7444,
+        "reason": "候选A的右手握着一个黑色雨伞的伞柄，雨伞位于其头部上方，明确显示为手持状态。；候选A呈现完整人体背影，可见上身条纹T恤、长裤、凉鞋及手臂、腿部等，符合人的定义。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_016_mask_A.png",
+          "mask_score": 0.9857,
+          "mask_area_pixels": 140400
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 0.948,
+      "grounding_dino_seconds": 10.571,
+      "group_verification_seconds": 2.851,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.885,
+        "inference_seconds": 0.391,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": false,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": false,
+    "artifacts": {
+      "result_image": "benchmark/results/core_004/result.png",
+      "result_json": "benchmark/results/core_004/result.json",
+      "masks": [
+        "benchmark/results/core_004/masks/result_016_mask_A.png"
+      ]
+    }
+  },
+  {
+    "id": "core_005",
+    "case_id": "core_005",
+    "suite": "core",
+    "image": "images/test_images/屏幕截图 2026-08-12 152646.png",
+    "prompt": "找到正在钓鱼的人",
+    "expected": {
+      "target_object": "person",
+      "action": "highlight",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "error",
+    "cli_total_seconds": 18.417,
+    "error_type": "ValueError",
+    "error": "OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152646.png",
+    "traceback": "Traceback (most recent call last):\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\run_benchmark.py\", line 104, in run_case\n    image_output, json_output = run_pipeline(image_path, case[\"prompt\"])\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\pipeline.py\", line 89, in run_pipeline\n    return save_results(image_path, result, Path(\"images/output_images\"))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\renderer.py\", line 28, in save_results\n    raise ValueError(f\"OpenCV 无法读取图片：{image_path}\")\nValueError: OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152646.png\n"
+  },
+  {
+    "id": "core_006",
+    "case_id": "core_006",
+    "suite": "core",
+    "image": "images/test_images/屏幕截图 2026-08-12 152646.png",
+    "prompt": "把正在钓鱼的人标红",
+    "expected": {
+      "target_object": "person",
+      "action": "highlight",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "error",
+    "cli_total_seconds": 19.584,
+    "error_type": "ValueError",
+    "error": "OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152646.png",
+    "traceback": "Traceback (most recent call last):\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\run_benchmark.py\", line 104, in run_case\n    image_output, json_output = run_pipeline(image_path, case[\"prompt\"])\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\pipeline.py\", line 89, in run_pipeline\n    return save_results(image_path, result, Path(\"images/output_images\"))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\renderer.py\", line 28, in save_results\n    raise ValueError(f\"OpenCV 无法读取图片：{image_path}\")\nValueError: OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152646.png\n"
+  },
+  {
+    "id": "core_007",
+    "case_id": "core_007",
+    "suite": "core",
+    "image": "images/test_images/屏幕截图 2026-08-12 152646.png",
+    "prompt": "只给正在钓鱼的人描边",
+    "expected": {
+      "target_object": "person",
+      "action": "outline",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "error",
+    "cli_total_seconds": 19.82,
+    "error_type": "ValueError",
+    "error": "OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152646.png",
+    "traceback": "Traceback (most recent call last):\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\run_benchmark.py\", line 104, in run_case\n    image_output, json_output = run_pipeline(image_path, case[\"prompt\"])\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\pipeline.py\", line 89, in run_pipeline\n    return save_results(image_path, result, Path(\"images/output_images\"))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\renderer.py\", line 28, in save_results\n    raise ValueError(f\"OpenCV 无法读取图片：{image_path}\")\nValueError: OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152646.png\n"
+  },
+  {
+    "id": "core_008",
+    "case_id": "core_008",
+    "suite": "core",
+    "image": "images/test_images/屏幕截图 2026-08-12 152646.png",
+    "prompt": "模糊正在钓鱼的人",
+    "expected": {
+      "target_object": "person",
+      "action": "blur_target",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "error",
+    "cli_total_seconds": 18.919,
+    "error_type": "ValueError",
+    "error": "OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152646.png",
+    "traceback": "Traceback (most recent call last):\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\run_benchmark.py\", line 104, in run_case\n    image_output, json_output = run_pipeline(image_path, case[\"prompt\"])\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\pipeline.py\", line 89, in run_pipeline\n    return save_results(image_path, result, Path(\"images/output_images\"))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\renderer.py\", line 28, in save_results\n    raise ValueError(f\"OpenCV 无法读取图片：{image_path}\")\nValueError: OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152646.png\n"
+  },
+  {
+    "id": "core_009",
+    "case_id": "core_009",
+    "suite": "core",
+    "image": "images/test_images/屏幕截图 2026-08-12 152646.png",
+    "prompt": "把正在钓鱼的人以外背景变暗",
+    "expected": {
+      "target_object": "person",
+      "action": "dim_background",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "error",
+    "cli_total_seconds": 19.178,
+    "error_type": "ValueError",
+    "error": "OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152646.png",
+    "traceback": "Traceback (most recent call last):\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\run_benchmark.py\", line 104, in run_case\n    image_output, json_output = run_pipeline(image_path, case[\"prompt\"])\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\pipeline.py\", line 89, in run_pipeline\n    return save_results(image_path, result, Path(\"images/output_images\"))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\renderer.py\", line 28, in save_results\n    raise ValueError(f\"OpenCV 无法读取图片：{image_path}\")\nValueError: OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152646.png\n"
+  },
+  {
+    "id": "core_010",
+    "case_id": "core_010",
+    "suite": "core",
+    "image": "images/test_images/屏幕截图 2026-08-12 152646.png",
+    "prompt": "把正在钓鱼的人单独抠出来",
+    "expected": {
+      "target_object": "person",
+      "action": "cutout",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "error",
+    "cli_total_seconds": 19.843,
+    "error_type": "ValueError",
+    "error": "OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152646.png",
+    "traceback": "Traceback (most recent call last):\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\run_benchmark.py\", line 104, in run_case\n    image_output, json_output = run_pipeline(image_path, case[\"prompt\"])\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\pipeline.py\", line 89, in run_pipeline\n    return save_results(image_path, result, Path(\"images/output_images\"))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\renderer.py\", line 28, in save_results\n    raise ValueError(f\"OpenCV 无法读取图片：{image_path}\")\nValueError: OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152646.png\n"
+  },
+  {
+    "id": "core_011",
+    "case_id": "core_011",
+    "suite": "core",
+    "image": "images/test_images/屏幕截图 2026-08-12 152630.png",
+    "prompt": "模糊戴帽子的人",
+    "expected": {
+      "target_object": "person",
+      "action": "blur_target",
+      "target_count": 2,
+      "target_description": "戴草帽的男子和戴遮阳帽的女孩",
+      "constraints_semantics": [
+        "戴帽子"
+      ]
+    },
+    "status": "error",
+    "cli_total_seconds": 19.556,
+    "error_type": "ValueError",
+    "error": "OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152630.png",
+    "traceback": "Traceback (most recent call last):\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\run_benchmark.py\", line 104, in run_case\n    image_output, json_output = run_pipeline(image_path, case[\"prompt\"])\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\pipeline.py\", line 89, in run_pipeline\n    return save_results(image_path, result, Path(\"images/output_images\"))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\renderer.py\", line 28, in save_results\n    raise ValueError(f\"OpenCV 无法读取图片：{image_path}\")\nValueError: OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152630.png\n"
+  },
+  {
+    "id": "core_012",
+    "case_id": "core_012",
+    "suite": "core",
+    "image": "images/test_images/OIP-C.jpg",
+    "prompt": "找到图片中的汽车",
+    "expected": {
+      "target_object": "car",
+      "action": "highlight",
+      "target_count": 0,
+      "target_description": "图片中没有汽车",
+      "constraints_semantics": []
+    },
+    "status": "success",
+    "cli_total_seconds": 10.538,
+    "plan": {
+      "target_object": "car",
+      "label": "汽车",
+      "constraints": [],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 0,
+    "targets": [],
+    "timings": {
+      "qwen_plan_seconds": 0.682,
+      "grounding_dino_seconds": 9.842,
+      "group_verification_seconds": 0.0,
+      "sam2": null
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/core_012/result.jpg",
+      "result_json": "benchmark/results/core_012/result.json",
+      "masks": []
+    }
+  },
+  {
+    "id": "core_013",
+    "case_id": "core_013",
+    "suite": "core",
+    "image": "images/test_images/commons_umbrella.jpg",
+    "prompt": "把图片中的狗标红",
+    "expected": {
+      "target_object": "dog",
+      "action": "highlight",
+      "target_count": 0,
+      "target_description": "图片中没有狗",
+      "constraints_semantics": []
+    },
+    "status": "success",
+    "cli_total_seconds": 10.81,
+    "plan": {
+      "target_object": "dog",
+      "label": "狗",
+      "constraints": [],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 0,
+    "targets": [],
+    "timings": {
+      "qwen_plan_seconds": 0.747,
+      "grounding_dino_seconds": 10.019,
+      "group_verification_seconds": 0.0,
+      "sam2": null
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/core_013/result.jpg",
+      "result_json": "benchmark/results/core_013/result.json",
+      "masks": []
+    }
+  },
+  {
+    "id": "core_014",
+    "case_id": "core_014",
+    "suite": "core",
+    "image": "images/test_images/test_image.jpg",
+    "prompt": "只给手持雨伞的人描边",
+    "expected": {
+      "target_object": "person",
+      "action": "outline",
+      "target_count": 0,
+      "target_description": "图片中无人持伞",
+      "constraints_semantics": [
+        "手持雨伞"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 12.44,
+    "plan": {
+      "target_object": "person",
+      "label": "手持雨伞的人",
+      "constraints": [
+        "手持雨伞"
+      ],
+      "action": {
+        "type": "outline"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [],
+    "timings": {
+      "qwen_plan_seconds": 1.05,
+      "grounding_dino_seconds": 9.433,
+      "group_verification_seconds": 1.931,
+      "sam2": null
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/core_014/result.jpg",
+      "result_json": "benchmark/results/core_014/result.json",
+      "masks": []
+    }
+  },
+  {
+    "id": "core_015",
+    "case_id": "core_015",
+    "suite": "core",
+    "image": "images/test_images/test_family_fishing.jpg",
+    "prompt": "模糊图中的儿童",
+    "expected": {
+      "target_object": "person",
+      "action": "blur_target",
+      "target_count": 2,
+      "target_description": "船上的两名儿童",
+      "constraints_semantics": [
+        "儿童"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 17.438,
+    "plan": {
+      "target_object": "child",
+      "label": "儿童",
+      "constraints": [],
+      "action": {
+        "type": "blur_target"
+      }
+    },
+    "candidate_count": 2,
+    "targets": [
+      {
+        "id": "A",
+        "label": "儿童",
+        "text_label": "child",
+        "bbox": [
+          432.55,
+          225.17,
+          534.38,
+          397.31
+        ],
+        "confidence": 0.5546,
+        "reason": "",
+        "segmentation": {
+          "mask_path": "images/output_images/result_020_mask_A.png",
+          "mask_score": 0.9593,
+          "mask_area_pixels": 9458
+        }
+      },
+      {
+        "id": "B",
+        "label": "儿童",
+        "text_label": "child",
+        "bbox": [
+          761.78,
+          262.2,
+          839.69,
+          403.85
+        ],
+        "confidence": 0.522,
+        "reason": "",
+        "segmentation": {
+          "mask_path": "images/output_images/result_020_mask_B.png",
+          "mask_score": 0.8791,
+          "mask_area_pixels": 6567
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 1.035,
+      "grounding_dino_seconds": 10.383,
+      "group_verification_seconds": 0.0,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.464,
+        "inference_seconds": 0.416,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": false,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": false,
+    "artifacts": {
+      "result_image": "benchmark/results/core_015/result.jpg",
+      "result_json": "benchmark/results/core_015/result.json",
+      "masks": [
+        "benchmark/results/core_015/masks/result_020_mask_A.png",
+        "benchmark/results/core_015/masks/result_020_mask_B.png"
+      ]
+    }
+  },
+  {
+    "id": "challenge_001",
+    "case_id": "challenge_001",
+    "suite": "challenge",
+    "image": "images/test_images/OIP-C.jpg",
+    "prompt": "找到正在钓鱼的人",
+    "expected": {
+      "target_object": "person",
+      "action": "highlight",
+      "target_count": 1,
+      "target_description": "低分辨率图中的红帽钓鱼者；白帽人物证据不足",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ],
+      "ground_truth": "positive"
+    },
+    "status": "success",
+    "cli_total_seconds": 19.863,
+    "plan": {
+      "target_object": "person",
+      "label": "正在钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 2,
+    "targets": [
+      {
+        "id": "B",
+        "label": "正在钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          155.37,
+          23.12,
+          205.32,
+          124.4
+        ],
+        "confidence": 0.654,
+        "reason": "该候选区域显示一人站立于岸边，头戴红色帽子，身穿白色上衣，右手高举鱼竿，左手握竿身，鱼竿伸向水面，下方可见绿色渔网部分浸入水中，符合钓鱼的典型行为特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_021_mask_B.png",
+          "mask_score": 0.9391,
+          "mask_area_pixels": 1655
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 0.924,
+      "grounding_dino_seconds": 9.35,
+      "group_verification_seconds": 3.211,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.856,
+        "inference_seconds": 0.497,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/challenge_001/result.jpg",
+      "result_json": "benchmark/results/challenge_001/result.json",
+      "masks": [
+        "benchmark/results/challenge_001/masks/result_021_mask_B.png"
+      ]
+    }
+  },
+  {
+    "id": "challenge_002",
+    "case_id": "challenge_002",
+    "suite": "challenge",
+    "image": "images/test_images/test_fishing.jpg",
+    "prompt": "找到正在钓鱼的人",
+    "expected": {
+      "target_object": "person",
+      "action": "highlight",
+      "target_count": 1,
+      "target_description": "中央完整人物；左侧仅露出局部肢体",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ],
+      "ground_truth": "positive"
+    },
+    "status": "success",
+    "cli_total_seconds": 20.421,
+    "plan": {
+      "target_object": "person",
+      "label": "正在钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 3,
+    "targets": [
+      {
+        "id": "A",
+        "label": "正在钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          457.35,
+          283.43,
+          989.8,
+          848.91
+        ],
+        "confidence": 0.7678,
+        "reason": "该候选区域包含一名男性，他坐在河边岩石上，右手持鱼竿，鱼竿延伸至水面，姿态专注，符合正在钓鱼的特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_022_mask_A.png",
+          "mask_score": 0.9851,
+          "mask_area_pixels": 136314
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 1.485,
+      "grounding_dino_seconds": 9.369,
+      "group_verification_seconds": 3.269,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.74,
+        "inference_seconds": 0.468,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/challenge_002/result.jpg",
+      "result_json": "benchmark/results/challenge_002/result.json",
+      "masks": [
+        "benchmark/results/challenge_002/masks/result_022_mask_A.png"
+      ]
+    }
+  },
+  {
+    "id": "challenge_003",
+    "case_id": "challenge_003",
+    "suite": "challenge",
+    "image": "images/test_images/屏幕截图 2026-08-12 152715.png",
+    "prompt": "把正在钓鱼的人标红",
+    "expected": {
+      "target_object": "person",
+      "action": "highlight",
+      "target_count": 1,
+      "target_description": "低光远景中岸边的单个人物",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ],
+      "ground_truth": "ambiguous"
+    },
+    "status": "error",
+    "cli_total_seconds": 12.905,
+    "error_type": "ValueError",
+    "error": "OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152715.png",
+    "traceback": "Traceback (most recent call last):\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\run_benchmark.py\", line 104, in run_case\n    image_output, json_output = run_pipeline(image_path, case[\"prompt\"])\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\pipeline.py\", line 89, in run_pipeline\n    return save_results(image_path, result, Path(\"images/output_images\"))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\renderer.py\", line 28, in save_results\n    raise ValueError(f\"OpenCV 无法读取图片：{image_path}\")\nValueError: OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152715.png\n"
+  },
+  {
+    "id": "challenge_004",
+    "case_id": "challenge_004",
+    "suite": "challenge",
+    "image": "images/test_images/屏幕截图 2026-08-12 152512.png",
+    "prompt": "把正在钓鱼的人以外背景变暗",
+    "expected": {
+      "target_object": "person",
+      "action": "dim_background",
+      "target_count": null,
+      "target_description": "老人明确持竿；儿童是否独立钓鱼存在歧义",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ],
+      "ground_truth": "ambiguous"
+    },
+    "status": "error",
+    "cli_total_seconds": 19.816,
+    "error_type": "ValueError",
+    "error": "OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152512.png",
+    "traceback": "Traceback (most recent call last):\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\run_benchmark.py\", line 104, in run_case\n    image_output, json_output = run_pipeline(image_path, case[\"prompt\"])\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\pipeline.py\", line 89, in run_pipeline\n    return save_results(image_path, result, Path(\"images/output_images\"))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\renderer.py\", line 28, in save_results\n    raise ValueError(f\"OpenCV 无法读取图片：{image_path}\")\nValueError: OpenCV 无法读取图片：E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\屏幕截图 2026-08-12 152512.png\n"
+  },
+  {
+    "id": "challenge_005",
+    "case_id": "challenge_005",
+    "suite": "challenge",
+    "image": "images/test_images/commons_red_shirts.jpg",
+    "prompt": "只给穿红色衣服的人描边",
+    "expected": {
+      "target_object": "person",
+      "action": "outline",
+      "target_count": null,
+      "target_description": "密集场景中多名穿红衣的人，含遮挡和小目标",
+      "constraints_semantics": [
+        "穿红色衣服"
+      ],
+      "ground_truth": "ambiguous"
+    },
+    "status": "success",
+    "cli_total_seconds": 21.869,
+    "plan": {
+      "target_object": "person",
+      "label": "穿红色衣服的人",
+      "constraints": [
+        "穿红色衣服"
+      ],
+      "action": {
+        "type": "outline"
+      }
+    },
+    "candidate_count": 4,
+    "targets": [
+      {
+        "id": "A",
+        "label": "穿红色衣服的人",
+        "text_label": "person",
+        "bbox": [
+          383.16,
+          105.19,
+          1130.32,
+          861.9
+        ],
+        "confidence": 0.4071,
+        "reason": "该区域包含一位戴彩色羽毛帽、穿红色帽子和红色领子衬衫的男子，其衣着主体为红色；背景中也有穿红色上衣的人群。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_023_mask_A.png",
+          "mask_score": 0.9909,
+          "mask_area_pixels": 327361
+        }
+      },
+      {
+        "id": "B",
+        "label": "穿红色衣服的人",
+        "text_label": "person",
+        "bbox": [
+          1100.33,
+          361.34,
+          1278.31,
+          862.34
+        ],
+        "confidence": 0.3548,
+        "reason": "该区域右侧可见一位穿红色T恤的人，衣物颜色明确为红色。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_023_mask_B.png",
+          "mask_score": 0.9813,
+          "mask_area_pixels": 59502
+        }
+      },
+      {
+        "id": "C",
+        "label": "穿红色衣服的人",
+        "text_label": "person",
+        "bbox": [
+          1.87,
+          329.27,
+          165.4,
+          861.68
+        ],
+        "confidence": 0.3454,
+        "reason": "该区域左侧可见一位穿红色短袖上衣的人，衣物颜色明确为红色。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_023_mask_C.png",
+          "mask_score": 0.9759,
+          "mask_area_pixels": 66221
+        }
+      }
+    ],
+    "timings": {
+      "qwen_plan_seconds": 0.947,
+      "grounding_dino_seconds": 10.157,
+      "group_verification_seconds": 4.8,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.722,
+        "inference_seconds": 0.172,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      }
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/results/challenge_005/result.jpg",
+      "result_json": "benchmark/results/challenge_005/result.json",
+      "masks": [
+        "benchmark/results/challenge_005/masks/result_023_mask_A.png",
+        "benchmark/results/challenge_005/masks/result_023_mask_B.png",
+        "benchmark/results/challenge_005/masks/result_023_mask_C.png"
+      ]
+    }
+  }
+]

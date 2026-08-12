@@ -1,0 +1,78 @@
+{
+  "prompt": "把手持雨伞的人单独抠出来",
+  "plan": {
+    "target_object": "person with umbrella",
+    "label": "手持雨伞的人",
+    "constraints": [
+      "手持雨伞",
+      "人"
+    ],
+    "action": {
+      "type": "cutout"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        671.2,
+        657.78,
+        1006.62,
+        1412.28
+      ],
+      "dino_confidence": 0.7444,
+      "verification_checks": [
+        {
+          "constraint": "手持雨伞",
+          "status": "satisfied",
+          "evidence": "候选A的右手握着一个黑色雨伞的伞柄，雨伞位于其头部上方，明确显示为手持状态。"
+        },
+        {
+          "constraint": "人",
+          "status": "satisfied",
+          "evidence": "候选A呈现完整人体背影，可见上身条纹T恤、长裤、凉鞋及手臂、腿部等，符合人的定义。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "候选A的右手握着一个黑色雨伞的伞柄，雨伞位于其头部上方，明确显示为手持状态。；候选A呈现完整人体背影，可见上身条纹T恤、长裤、凉鞋及手臂、腿部等，符合人的定义。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "手持雨伞的人",
+      "text_label": "person",
+      "bbox": [
+        671.2,
+        657.78,
+        1006.62,
+        1412.28
+      ],
+      "confidence": 0.7444,
+      "reason": "候选A的右手握着一个黑色雨伞的伞柄，雨伞位于其头部上方，明确显示为手持状态。；候选A呈现完整人体背影，可见上身条纹T恤、长裤、凉鞋及手臂、腿部等，符合人的定义。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_016_mask_A.png",
+        "mask_score": 0.9857,
+        "mask_area_pixels": 140400
+      }
+    }
+  ],
+  "timings": {
+    "qwen_plan_seconds": 0.948,
+    "grounding_dino_seconds": 10.571,
+    "group_verification_seconds": 2.851,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.885,
+      "inference_seconds": 0.391,
+      "memory_after_load_mb": 356.8,
+      "peak_memory_mb": 712.8
+    }
+  },
+  "action_result": {
+    "type": "cutout",
+    "image_path": "images/output_images/result_016.png"
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "prompt": "只给正在钓鱼的人描边",
+  "plan": {
+    "target_object": "person",
+    "label": "正在钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ],
+    "action": {
+      "type": "outline"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        400.36,
+        77.84,
+        497.7,
+        336.44
+      ],
+      "dino_confidence": 0.8313,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该人物背对镜头站立于河岸，双手持握一根明显弯曲的鱼竿，鱼竿呈抛投姿态，水面可见浮漂，符合正在钓鱼的行为特征。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该人物背对镜头站立于河岸，双手持握一根明显弯曲的鱼竿，鱼竿呈抛投姿态，水面可见浮漂，符合正在钓鱼的行为特征。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "正在钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        400.36,
+        77.84,
+        497.7,
+        336.44
+      ],
+      "confidence": 0.8313,
+      "reason": "该人物背对镜头站立于河岸，双手持握一根明显弯曲的鱼竿，鱼竿呈抛投姿态，水面可见浮漂，符合正在钓鱼的行为特征。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_026_mask_A.png",
+        "mask_score": 0.9304,
+        "mask_area_pixels": 12231
+      }
+    }
+  ],
+  "timings": {
+    "qwen_plan_seconds": 1.437,
+    "grounding_dino_seconds": 9.984,
+    "group_verification_seconds": 1.614,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.145,
+      "inference_seconds": 0.322,
+      "memory_after_load_mb": 354.8,
+      "peak_memory_mb": 710.8
+    }
+  },
+  "action_result": {
+    "type": "outline",
+    "image_path": "images/output_images/result_026.jpg"
+  }
+}

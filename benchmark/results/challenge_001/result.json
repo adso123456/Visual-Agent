@@ -1,0 +1,92 @@
+{
+  "prompt": "找到正在钓鱼的人",
+  "plan": {
+    "target_object": "person",
+    "label": "正在钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ],
+    "action": {
+      "type": "highlight"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        183.95,
+        60.79,
+        234.64,
+        148.47
+      ],
+      "dino_confidence": 0.6149,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "该候选区域显示一人蹲坐于岸边，穿着白色上衣和黑色裤子，但未见其手持鱼竿或进行明显钓鱼动作；其前方有另一人（B）持竿操作，无法确认A是否在钓鱼。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域显示一人蹲坐于岸边，穿着白色上衣和黑色裤子，但未见其手持鱼竿或进行明显钓鱼动作；其前方有另一人（B）持竿操作，无法确认A是否在钓鱼。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "dino_confidence": 0.654,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该候选区域显示一人站立于岸边，头戴红色帽子，身穿白色上衣，右手高举鱼竿，左手握竿身，鱼竿伸向水面，下方可见绿色渔网部分浸入水中，符合钓鱼的典型行为特征。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该候选区域显示一人站立于岸边，头戴红色帽子，身穿白色上衣，右手高举鱼竿，左手握竿身，鱼竿伸向水面，下方可见绿色渔网部分浸入水中，符合钓鱼的典型行为特征。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "B",
+      "label": "正在钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "confidence": 0.654,
+      "reason": "该候选区域显示一人站立于岸边，头戴红色帽子，身穿白色上衣，右手高举鱼竿，左手握竿身，鱼竿伸向水面，下方可见绿色渔网部分浸入水中，符合钓鱼的典型行为特征。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_021_mask_B.png",
+        "mask_score": 0.9391,
+        "mask_area_pixels": 1655
+      }
+    }
+  ],
+  "timings": {
+    "qwen_plan_seconds": 0.924,
+    "grounding_dino_seconds": 9.35,
+    "group_verification_seconds": 3.211,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.856,
+      "inference_seconds": 0.497,
+      "memory_after_load_mb": 356.8,
+      "peak_memory_mb": 712.8
+    }
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "images/output_images/result_021.jpg"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "prompt": "把正在钓鱼的人以外背景变暗",
+  "plan": {
+    "target_object": "person",
+    "label": "正在钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ],
+    "action": {
+      "type": "dim_background"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        471.6,
+        98.27,
+        544.83,
+        320.23
+      ],
+      "dino_confidence": 0.7082,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "候选A为一位白发男性，身穿蓝色牛仔外套，右手握持一根长鱼竿，鱼竿延伸至水面，姿态为站立垂钓，符合‘正在钓鱼’的视觉特征。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "候选A为一位白发男性，身穿蓝色牛仔外套，右手握持一根长鱼竿，鱼竿延伸至水面，姿态为站立垂钓，符合‘正在钓鱼’的视觉特征。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        430.95,
+        171.57,
+        485.74,
+        337.7
+      ],
+      "dino_confidence": 0.7098,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "候选B为一名穿蓝色羽绒服、戴条纹帽的儿童，左手握持一根较短鱼竿，鱼竿同样伸向水面，身体朝向水边，呈现钓鱼姿态，符合‘正在钓鱼’的视觉特征。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "候选B为一名穿蓝色羽绒服、戴条纹帽的儿童，左手握持一根较短鱼竿，鱼竿同样伸向水面，身体朝向水边，呈现钓鱼姿态，符合‘正在钓鱼’的视觉特征。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "正在钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        471.6,
+        98.27,
+        544.83,
+        320.23
+      ],
+      "confidence": 0.7082,
+      "reason": "候选A为一位白发男性，身穿蓝色牛仔外套，右手握持一根长鱼竿，鱼竿延伸至水面，姿态为站立垂钓，符合‘正在钓鱼’的视觉特征。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_032_mask_A.png",
+        "mask_score": 0.9771,
+        "mask_area_pixels": 9129
+      }
+    },
+    {
+      "id": "B",
+      "label": "正在钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        430.95,
+        171.57,
+        485.74,
+        337.7
+      ],
+      "confidence": 0.7098,
+      "reason": "候选B为一名穿蓝色羽绒服、戴条纹帽的儿童，左手握持一根较短鱼竿，鱼竿同样伸向水面，身体朝向水边，呈现钓鱼姿态，符合‘正在钓鱼’的视觉特征。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_032_mask_B.png",
+        "mask_score": 0.9705,
+        "mask_area_pixels": 5432
+      }
+    }
+  ],
+  "timings": {
+    "qwen_plan_seconds": 0.809,
+    "grounding_dino_seconds": 9.793,
+    "group_verification_seconds": 3.071,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.233,
+      "inference_seconds": 0.385,
+      "memory_after_load_mb": 354.8,
+      "peak_memory_mb": 710.8
+    }
+  },
+  "action_result": {
+    "type": "dim_background",
+    "image_path": "images/output_images/result_032.jpg"
+  }
+}

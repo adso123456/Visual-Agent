@@ -1,0 +1,64 @@
+{
+  "prompt": "把图片中的人以外背景变暗",
+  "plan": {
+    "target_object": "person",
+    "label": "人",
+    "constraints": [],
+    "action": {
+      "type": "dim_background"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        924.56,
+        522.52,
+        1493.97,
+        1080.89
+      ],
+      "dino_confidence": 0.759,
+      "verification_checks": [],
+      "verified": true,
+      "verification_reason": ""
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "人",
+      "text_label": "person",
+      "bbox": [
+        924.56,
+        522.52,
+        1493.97,
+        1080.89
+      ],
+      "confidence": 0.759,
+      "reason": "",
+      "segmentation": {
+        "mask_path": "images/output_images/result_014_mask_A.png",
+        "mask_score": 0.9834,
+        "mask_area_pixels": 142649
+      }
+    }
+  ],
+  "timings": {
+    "qwen_plan_seconds": 0.667,
+    "grounding_dino_seconds": 9.629,
+    "group_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.161,
+      "inference_seconds": 0.413,
+      "memory_after_load_mb": 356.8,
+      "peak_memory_mb": 712.8
+    }
+  },
+  "action_result": {
+    "type": "dim_background",
+    "image_path": "images/output_images/result_014.jpg"
+  }
+}

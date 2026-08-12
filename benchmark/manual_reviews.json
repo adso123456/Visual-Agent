@@ -1,0 +1,22 @@
+[
+  {"id":"core_001","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"唯一狗目标被正确高亮，mask 沿完整犬体，无明显背景泄漏。"},
+  {"id":"core_002","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"唯一女性保持原亮度，狗和海滩背景均变暗。"},
+  {"id":"core_003","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"唯一持伞者被正确选择，红色轮廓仅沿人体实例。"},
+  {"id":"core_004","result":"FAIL","target_selection":true,"segmentation":false,"action":true,"primary_failure_stage":"PLAN","secondary_issues":["SEGMENTATION：人体 mask 未包含作为关系证据的雨伞"],"evidence":"Plan 错误输出 target_object=person with umbrella、constraints=[手持雨伞, 人]；最终人数正确，但透明抠图仅保留人体，完全漏掉雨伞。"},
+  {"id":"core_005","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"清晰钓鱼者被正确高亮，人物 mask 紧致。"},
+  {"id":"core_006","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"同一钓鱼者被正确标红。"},
+  {"id":"core_007","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"轮廓仅作用于钓鱼者人物 mask。"},
+  {"id":"core_008","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"仅钓鱼者人物区域被明显模糊。"},
+  {"id":"core_009","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"钓鱼者保持原亮度，河流与岸边背景变暗。"},
+  {"id":"core_010","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"透明 PNG 只保留钓鱼者人物本体，alpha 与 binary mask 一致。"},
+  {"id":"core_011","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"戴帽男子与女孩两个目标均被选择并分别模糊。"},
+  {"id":"core_012","result":"PASS","target_selection":true,"segmentation":null,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"汽车不存在，targets=[]、SAM 未调用、无新 mask。"},
+  {"id":"core_013","result":"PASS","target_selection":true,"segmentation":null,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"狗不存在，targets=[]、SAM 未调用、无新 mask。"},
+  {"id":"core_014","result":"PASS","target_selection":true,"segmentation":null,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"无人持伞，person candidate 被 verifier 拒绝，无 mask 和错误操作。"},
+  {"id":"core_015","result":"FAIL","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":"PLAN","secondary_issues":[],"evidence":"Plan 使用 target_object=child、constraints=[]，违反当前人物统一使用 person 的规划契约；但两名儿童最终均正确模糊。"},
+  {"id":"challenge_001","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"235×156 低分辨率相邻人物场景只保留红帽钓鱼者，白帽人物被拒绝。"},
+  {"id":"challenge_002","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"中央完整人物被保留，左侧两个局部肢体候选均被拒绝。"},
+  {"id":"challenge_003","result":"AMBIGUOUS","target_selection":null,"segmentation":null,"action":true,"primary_failure_stage":null,"secondary_issues":[],"evidence":"低光远景人物旁有多根架设鱼竿，但无法确认人物当下正在操作；系统保守返回 targets=[]。"},
+  {"id":"challenge_004","result":"AMBIGUOUS","target_selection":null,"segmentation":true,"action":true,"primary_failure_stage":null,"secondary_issues":["VERIFICATION：儿童是否独立钓鱼证据不足，但被判为 satisfied"],"evidence":"老人明确钓鱼；儿童与长竿关系存在歧义。系统将两人均保持明亮，可能存在假阳性。"},
+  {"id":"challenge_005","result":"FAIL","target_selection":false,"segmentation":true,"action":true,"primary_failure_stage":"GROUNDING","secondary_issues":[],"evidence":"密集红衣场景仅产生 4 个 person candidates、保留并描边 3 人，明显漏掉背景多名红衣人物；主要是远处小目标未进入候选。"}
+]

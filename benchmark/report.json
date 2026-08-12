@@ -1,0 +1,456 @@
+{
+  "baseline_sha": "ead6c49912de4e168398386dfb6ce8b1a3d18b44",
+  "dataset": {
+    "core_cases": 15,
+    "challenge_cases": 5,
+    "different_images": 10,
+    "negative_core_cases": 3,
+    "action_coverage_core": {
+      "highlight": 5,
+      "dim_background": 2,
+      "outline": 3,
+      "cutout": 2,
+      "blur_target": 3
+    }
+  },
+  "core": {
+    "passed_cases": 13,
+    "failed_cases": 2,
+    "total_cases": 15,
+    "end_to_end_pass_rate": 0.8667
+  },
+  "metrics": {
+    "target_object_accuracy": 0.8667,
+    "action_accuracy": 1.0,
+    "constraint_semantic_accuracy": 0.8667,
+    "target_selection_exact_match_rate": 1.0,
+    "negative_case_pass_rate": 1.0,
+    "segmentation_visual_pass_rate": 0.9167,
+    "segmentation_cases": 12,
+    "action_visual_pass_rate": 1.0,
+    "runtime_failure_count_formal_ascii_cases": 0,
+    "runtime_failure_count_including_unicode_preflight": 9
+  },
+  "failure_breakdown": {
+    "PLAN": 2,
+    "GROUNDING": 1,
+    "VERIFICATION": 0,
+    "SEGMENTATION": 0,
+    "ACTION": 0,
+    "NEGATIVE_HANDLING": 0,
+    "RUNTIME": 9,
+    "INFRASTRUCTURE": 0
+  },
+  "failures": [
+    {
+      "id": "core_004",
+      "suite": "core",
+      "image": "images/test_images/commons_umbrella.jpg",
+      "prompt": "把手持雨伞的人单独抠出来",
+      "expected": {
+        "target_object": "person",
+        "action": "cutout",
+        "target_count": 1,
+        "target_description": "街上手持黑色雨伞的人",
+        "constraints_semantics": [
+          "手持雨伞"
+        ]
+      },
+      "actual": {
+        "plan": {
+          "target_object": "person with umbrella",
+          "label": "手持雨伞的人",
+          "constraints": [
+            "手持雨伞",
+            "人"
+          ],
+          "action": {
+            "type": "cutout"
+          }
+        },
+        "candidate_count": 1,
+        "target_count": 1
+      },
+      "primary_failure_stage": "PLAN",
+      "secondary_issues": [
+        "SEGMENTATION：人体 mask 未包含作为关系证据的雨伞"
+      ],
+      "evidence": "Plan 错误输出 target_object=person with umbrella、constraints=[手持雨伞, 人]；最终人数正确，但透明抠图仅保留人体，完全漏掉雨伞。"
+    },
+    {
+      "id": "core_015",
+      "suite": "core",
+      "image": "images/test_images/test_family_fishing.jpg",
+      "prompt": "模糊图中的儿童",
+      "expected": {
+        "target_object": "person",
+        "action": "blur_target",
+        "target_count": 2,
+        "target_description": "船上的两名儿童",
+        "constraints_semantics": [
+          "儿童"
+        ]
+      },
+      "actual": {
+        "plan": {
+          "target_object": "child",
+          "label": "儿童",
+          "constraints": [],
+          "action": {
+            "type": "blur_target"
+          }
+        },
+        "candidate_count": 2,
+        "target_count": 2
+      },
+      "primary_failure_stage": "PLAN",
+      "secondary_issues": [],
+      "evidence": "Plan 使用 target_object=child、constraints=[]，违反当前人物统一使用 person 的规划契约；但两名儿童最终均正确模糊。"
+    },
+    {
+      "id": "challenge_005",
+      "suite": "challenge",
+      "image": "images/test_images/commons_red_shirts.jpg",
+      "prompt": "只给穿红色衣服的人描边",
+      "expected": {
+        "target_object": "person",
+        "action": "outline",
+        "target_count": null,
+        "target_description": "密集场景中多名穿红衣的人，含遮挡和小目标",
+        "constraints_semantics": [
+          "穿红色衣服"
+        ],
+        "ground_truth": "ambiguous"
+      },
+      "actual": {
+        "plan": {
+          "target_object": "person",
+          "label": "穿红色衣服的人",
+          "constraints": [
+            "穿红色衣服"
+          ],
+          "action": {
+            "type": "outline"
+          }
+        },
+        "candidate_count": 4,
+        "target_count": 3
+      },
+      "primary_failure_stage": "GROUNDING",
+      "secondary_issues": [],
+      "evidence": "密集红衣场景仅产生 4 个 person candidates、保留并描边 3 人，明显漏掉背景多名红衣人物；主要是远处小目标未进入候选。"
+    }
+  ],
+  "constraint_redundancy": {
+    "found": true,
+    "cases": [
+      "core_004"
+    ],
+    "evidence": "core_004 返回 constraints=[手持雨伞, 人]；同图钓鱼六种 action 均稳定返回 [正在钓鱼]，未出现冗余人。"
+  },
+  "challenge": [
+    {
+      "id": "challenge_001",
+      "result": "PASS",
+      "evidence": "235×156 低分辨率相邻人物场景只保留红帽钓鱼者，白帽人物被拒绝。",
+      "secondary_issues": []
+    },
+    {
+      "id": "challenge_002",
+      "result": "PASS",
+      "evidence": "中央完整人物被保留，左侧两个局部肢体候选均被拒绝。",
+      "secondary_issues": []
+    },
+    {
+      "id": "challenge_003",
+      "result": "AMBIGUOUS",
+      "evidence": "低光远景人物旁有多根架设鱼竿，但无法确认人物当下正在操作；系统保守返回 targets=[]。",
+      "secondary_issues": []
+    },
+    {
+      "id": "challenge_004",
+      "result": "AMBIGUOUS",
+      "evidence": "老人明确钓鱼；儿童与长竿关系存在歧义。系统将两人均保持明亮，可能存在假阳性。",
+      "secondary_issues": [
+        "VERIFICATION：儿童是否独立钓鱼证据不足，但被判为 satisfied"
+      ]
+    },
+    {
+      "id": "challenge_005",
+      "result": "FAIL",
+      "evidence": "密集红衣场景仅产生 4 个 person candidates、保留并描边 3 人，明显漏掉背景多名红衣人物；主要是远处小目标未进入候选。",
+      "secondary_issues": []
+    }
+  ],
+  "repeatability": {
+    "core_006": {
+      "runs": 3,
+      "consistent": true,
+      "signatures": [
+        {
+          "plan": {
+            "target_object": "person",
+            "label": "正在钓鱼的人",
+            "constraints": [
+              "正在钓鱼"
+            ],
+            "action": {
+              "type": "highlight"
+            }
+          },
+          "target_ids": [
+            "A"
+          ],
+          "target_count": 1,
+          "mask_areas": [
+            12231
+          ],
+          "mask_scores": [
+            0.9304
+          ]
+        },
+        {
+          "plan": {
+            "target_object": "person",
+            "label": "正在钓鱼的人",
+            "constraints": [
+              "正在钓鱼"
+            ],
+            "action": {
+              "type": "highlight"
+            }
+          },
+          "target_ids": [
+            "A"
+          ],
+          "target_count": 1,
+          "mask_areas": [
+            12231
+          ],
+          "mask_scores": [
+            0.9304
+          ]
+        },
+        {
+          "plan": {
+            "target_object": "person",
+            "label": "正在钓鱼的人",
+            "constraints": [
+              "正在钓鱼"
+            ],
+            "action": {
+              "type": "highlight"
+            }
+          },
+          "target_ids": [
+            "A"
+          ],
+          "target_count": 1,
+          "mask_areas": [
+            12231
+          ],
+          "mask_scores": [
+            0.9304
+          ]
+        }
+      ]
+    },
+    "core_011": {
+      "runs": 3,
+      "consistent": true,
+      "signatures": [
+        {
+          "plan": {
+            "target_object": "person",
+            "label": "戴帽子的人",
+            "constraints": [
+              "戴帽子"
+            ],
+            "action": {
+              "type": "blur_target"
+            }
+          },
+          "target_ids": [
+            "A",
+            "B"
+          ],
+          "target_count": 2,
+          "mask_areas": [
+            27559,
+            15913
+          ],
+          "mask_scores": [
+            0.9877,
+            0.9832
+          ]
+        },
+        {
+          "plan": {
+            "target_object": "person",
+            "label": "戴帽子的人",
+            "constraints": [
+              "戴帽子"
+            ],
+            "action": {
+              "type": "blur_target"
+            }
+          },
+          "target_ids": [
+            "A",
+            "B"
+          ],
+          "target_count": 2,
+          "mask_areas": [
+            27559,
+            15913
+          ],
+          "mask_scores": [
+            0.9877,
+            0.9832
+          ]
+        },
+        {
+          "plan": {
+            "target_object": "person",
+            "label": "戴帽子的人",
+            "constraints": [
+              "戴帽子"
+            ],
+            "action": {
+              "type": "blur_target"
+            }
+          },
+          "target_ids": [
+            "A",
+            "B"
+          ],
+          "target_count": 2,
+          "mask_areas": [
+            27559,
+            15913
+          ],
+          "mask_scores": [
+            0.9877,
+            0.9832
+          ]
+        }
+      ]
+    },
+    "core_012": {
+      "runs": 3,
+      "consistent": true,
+      "signatures": [
+        {
+          "plan": {
+            "target_object": "car",
+            "label": "汽车",
+            "constraints": [],
+            "action": {
+              "type": "highlight"
+            }
+          },
+          "target_ids": [],
+          "target_count": 0,
+          "mask_areas": [],
+          "mask_scores": []
+        },
+        {
+          "plan": {
+            "target_object": "car",
+            "label": "汽车",
+            "constraints": [],
+            "action": {
+              "type": "highlight"
+            }
+          },
+          "target_ids": [],
+          "target_count": 0,
+          "mask_areas": [],
+          "mask_scores": []
+        },
+        {
+          "plan": {
+            "target_object": "car",
+            "label": "汽车",
+            "constraints": [],
+            "action": {
+              "type": "highlight"
+            }
+          },
+          "target_ids": [],
+          "target_count": 0,
+          "mask_areas": [],
+          "mask_scores": []
+        }
+      ]
+    }
+  },
+  "performance_seconds": {
+    "qwen_plan_seconds": {
+      "count": 20,
+      "min": 0.667,
+      "median": 0.921,
+      "max": 1.822,
+      "p95": 1.56
+    },
+    "grounding_dino_seconds": {
+      "count": 20,
+      "min": 8.906,
+      "median": 9.834,
+      "max": 11.749,
+      "p95": 11.562
+    },
+    "group_verification_seconds": {
+      "count": 20,
+      "min": 0.0,
+      "median": 1.812,
+      "max": 4.8,
+      "p95": 3.346
+    },
+    "sam2_load_seconds": {
+      "count": 16,
+      "min": 5.081,
+      "median": 5.549,
+      "max": 6.341,
+      "p95": 6.135
+    },
+    "sam2_inference_seconds": {
+      "count": 16,
+      "min": 0.172,
+      "median": 0.414,
+      "max": 0.573,
+      "p95": 0.529
+    },
+    "cli_total_seconds": {
+      "count": 20,
+      "min": 10.538,
+      "median": 18.614,
+      "max": 21.897,
+      "p95": 21.87
+    }
+  },
+  "known_runtime_issue": {
+    "windows_unicode_path": {
+      "events": 9,
+      "stage": "RUNTIME",
+      "evidence": "冻结基线 renderer 的 cv2.imread(str(path)) 在本机 Windows 无法读取中文路径；同字节 ASCII 文件名副本全部运行成功。",
+      "raw_record": "benchmark/unicode_path_preflight.json"
+    }
+  },
+  "reliable_capabilities": [
+    "清晰单目标基础实体定位、分割与五种 action",
+    "清晰行为语义在不同 action 句式间保持目标一致",
+    "多目标属性选择并同时生成多个 mask/action",
+    "明显不存在目标时不调用 SAM、不生成 mask",
+    "代表性行为/属性/negative case 三次重复结果完全一致"
+  ],
+  "weak_capabilities": [
+    "Plan 在部分关系+cutout 句式中会生成复合 target_object 和冗余实体 constraint",
+    "儿童类别可能绕过人物统一 person 规划契约",
+    "关系目标 cutout 的人物 mask 不包含关联工具（如雨伞）",
+    "密集、小尺寸、遮挡目标的 Grounding 召回不足",
+    "Windows 中文图片路径会在正式 renderer 阶段失败"
+  ],
+  "blocker": false,
+  "production_code_modified": false
+}

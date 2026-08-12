@@ -1,0 +1,46 @@
+{
+  "prompt": "只给手持雨伞的人描边",
+  "plan": {
+    "target_object": "person",
+    "label": "手持雨伞的人",
+    "constraints": [
+      "手持雨伞"
+    ],
+    "action": {
+      "type": "outline"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        924.56,
+        522.52,
+        1493.97,
+        1080.89
+      ],
+      "dino_confidence": 0.759,
+      "verification_checks": [
+        {
+          "constraint": "手持雨伞",
+          "status": "uncertain",
+          "evidence": "候选A中的人物双手可见，右手持有一小块食物状物体，左手佩戴白色手表，未见雨伞；画面中无雨伞。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "候选A中的人物双手可见，右手持有一小块食物状物体，左手佩戴白色手表，未见雨伞；画面中无雨伞。"
+    }
+  ],
+  "targets": [],
+  "timings": {
+    "qwen_plan_seconds": 1.05,
+    "grounding_dino_seconds": 9.433,
+    "group_verification_seconds": 1.931,
+    "sam2": null
+  },
+  "action_result": {
+    "type": "outline",
+    "image_path": "images/output_images/result_019.jpg"
+  }
+}

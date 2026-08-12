@@ -1,0 +1,110 @@
+{
+  "prompt": "模糊戴帽子的人",
+  "plan": {
+    "target_object": "person",
+    "label": "戴帽子的人",
+    "constraints": [
+      "戴帽子"
+    ],
+    "action": {
+      "type": "blur_target"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        122.68,
+        88.52,
+        290.56,
+        347.96
+      ],
+      "dino_confidence": 0.7329,
+      "verification_checks": [
+        {
+          "constraint": "戴帽子",
+          "status": "satisfied",
+          "evidence": "候选A包含一名背对镜头的男性，头上戴着一顶草帽，帽子有明显帽檐和橙色饰带，清晰可见。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "候选A包含一名背对镜头的男性，头上戴着一顶草帽，帽子有明显帽檐和橙色饰带，清晰可见。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        7.79,
+        145.29,
+        127.93,
+        347.25
+      ],
+      "dino_confidence": 0.6757,
+      "verification_checks": [
+        {
+          "constraint": "戴帽子",
+          "status": "satisfied",
+          "evidence": "候选B包含一名背对镜头的小女孩，头上戴着一顶灰白波点帽子，帽子形状完整且清晰可见。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "候选B包含一名背对镜头的小女孩，头上戴着一顶灰白波点帽子，帽子形状完整且清晰可见。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "戴帽子的人",
+      "text_label": "person",
+      "bbox": [
+        122.68,
+        88.52,
+        290.56,
+        347.96
+      ],
+      "confidence": 0.7329,
+      "reason": "候选A包含一名背对镜头的男性，头上戴着一顶草帽，帽子有明显帽檐和橙色饰带，清晰可见。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_037_mask_A.png",
+        "mask_score": 0.9877,
+        "mask_area_pixels": 27559
+      }
+    },
+    {
+      "id": "B",
+      "label": "戴帽子的人",
+      "text_label": "person",
+      "bbox": [
+        7.79,
+        145.29,
+        127.93,
+        347.25
+      ],
+      "confidence": 0.6757,
+      "reason": "候选B包含一名背对镜头的小女孩，头上戴着一顶灰白波点帽子，帽子形状完整且清晰可见。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_037_mask_B.png",
+        "mask_score": 0.9832,
+        "mask_area_pixels": 15913
+      }
+    }
+  ],
+  "timings": {
+    "qwen_plan_seconds": 0.745,
+    "grounding_dino_seconds": 9.712,
+    "group_verification_seconds": 2.518,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.614,
+      "inference_seconds": 0.414,
+      "memory_after_load_mb": 354.8,
+      "peak_memory_mb": 710.8
+    }
+  },
+  "action_result": {
+    "type": "blur_target",
+    "image_path": "images/output_images/result_037.jpg"
+  }
+}

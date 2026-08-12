@@ -1,0 +1,41 @@
+[
+  {
+    "image_id": "existing_assets",
+    "paths": [
+      "images/test_images/OIP-C.jpg",
+      "images/test_images/test_family_fishing.jpg",
+      "images/test_images/test_fishing.jpg",
+      "images/test_images/test_image.jpg",
+      "images/test_images/屏幕截图 2026-08-12 152512.png",
+      "images/test_images/屏幕截图 2026-08-12 152630.png",
+      "images/test_images/屏幕截图 2026-08-12 152646.png",
+      "images/test_images/屏幕截图 2026-08-12 152715.png",
+      "images/test_images/屏幕截图 2026-08-12 152821.png",
+      "images/test_images/benchmark_fishing_two_people.png",
+      "images/test_images/benchmark_fishing_hats.png",
+      "images/test_images/benchmark_fishing_clear.png",
+      "images/test_images/benchmark_fishing_lowlight.png"
+    ],
+    "source": "existing_project_asset",
+    "license": "unknown_not_asserted",
+    "note": "项目已有并已提交资产；不对未知许可证作推断。benchmark_fishing_*.png 是对应中文文件名资产的字节完全相同 ASCII 路径副本，用于绕开冻结基线 renderer 在 Windows 上无法读取中文路径的问题。"
+  },
+  {
+    "image_id": "commons_umbrella",
+    "path": "images/test_images/commons_umbrella.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:A_man_holding_an_umbrella.jpg",
+    "download": "https://commons.wikimedia.org/wiki/Special:Redirect/file/A%20man%20holding%20an%20umbrella.jpg?width=1024",
+    "author": "Salil Kumar Mukherjee",
+    "license": "CC BY-SA 4.0",
+    "note": "Wikimedia Commons 官方缩略图；文件页明确声明许可证。"
+  },
+  {
+    "image_id": "commons_red_shirts",
+    "path": "images/test_images/commons_red_shirts.jpg",
+    "source": "https://commons.wikimedia.org/wiki/File:Red_shirt_in_Bangkok.JPG",
+    "download": "https://commons.wikimedia.org/wiki/Special:Redirect/file/Red%20shirt%20in%20Bangkok.JPG?width=1280",
+    "author": "K.rol2007 / Charly Monsoon",
+    "license": "CC BY-SA 2.0",
+    "note": "Wikimedia Commons 官方缩略图；文件页明确声明许可证。"
+  }
+]

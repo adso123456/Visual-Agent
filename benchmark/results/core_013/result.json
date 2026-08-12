@@ -1,0 +1,23 @@
+{
+  "prompt": "把图片中的狗标红",
+  "plan": {
+    "target_object": "dog",
+    "label": "狗",
+    "constraints": [],
+    "action": {
+      "type": "highlight"
+    }
+  },
+  "candidates": [],
+  "targets": [],
+  "timings": {
+    "qwen_plan_seconds": 0.747,
+    "grounding_dino_seconds": 10.019,
+    "group_verification_seconds": 0.0,
+    "sam2": null
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "images/output_images/result_018.jpg"
+  }
+}

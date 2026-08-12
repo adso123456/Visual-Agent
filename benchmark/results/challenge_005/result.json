@@ -1,0 +1,168 @@
+{
+  "prompt": "只给穿红色衣服的人描边",
+  "plan": {
+    "target_object": "person",
+    "label": "穿红色衣服的人",
+    "constraints": [
+      "穿红色衣服"
+    ],
+    "action": {
+      "type": "outline"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        383.16,
+        105.19,
+        1130.32,
+        861.9
+      ],
+      "dino_confidence": 0.4071,
+      "verification_checks": [
+        {
+          "constraint": "穿红色衣服",
+          "status": "satisfied",
+          "evidence": "该区域包含一位戴彩色羽毛帽、穿红色帽子和红色领子衬衫的男子，其衣着主体为红色；背景中也有穿红色上衣的人群。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该区域包含一位戴彩色羽毛帽、穿红色帽子和红色领子衬衫的男子，其衣着主体为红色；背景中也有穿红色上衣的人群。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        1100.33,
+        361.34,
+        1278.31,
+        862.34
+      ],
+      "dino_confidence": 0.3548,
+      "verification_checks": [
+        {
+          "constraint": "穿红色衣服",
+          "status": "satisfied",
+          "evidence": "该区域右侧可见一位穿红色T恤的人，衣物颜色明确为红色。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该区域右侧可见一位穿红色T恤的人，衣物颜色明确为红色。"
+    },
+    {
+      "id": "C",
+      "text_label": "person",
+      "bbox": [
+        1.87,
+        329.27,
+        165.4,
+        861.68
+      ],
+      "dino_confidence": 0.3454,
+      "verification_checks": [
+        {
+          "constraint": "穿红色衣服",
+          "status": "satisfied",
+          "evidence": "该区域左侧可见一位穿红色短袖上衣的人，衣物颜色明确为红色。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该区域左侧可见一位穿红色短袖上衣的人，衣物颜色明确为红色。"
+    },
+    {
+      "id": "D",
+      "text_label": "person",
+      "bbox": [
+        933.26,
+        419.05,
+        1131.58,
+        830.5
+      ],
+      "dino_confidence": 0.3309,
+      "verification_checks": [
+        {
+          "constraint": "穿红色衣服",
+          "status": "not_satisfied",
+          "evidence": "该区域主要覆盖一位穿黑灰条纹上衣的男子，其衣物并非红色；仅边缘部分有红色衣物（如背景中他人），但该候选框主体不满足约束。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该区域主要覆盖一位穿黑灰条纹上衣的男子，其衣物并非红色；仅边缘部分有红色衣物（如背景中他人），但该候选框主体不满足约束。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "穿红色衣服的人",
+      "text_label": "person",
+      "bbox": [
+        383.16,
+        105.19,
+        1130.32,
+        861.9
+      ],
+      "confidence": 0.4071,
+      "reason": "该区域包含一位戴彩色羽毛帽、穿红色帽子和红色领子衬衫的男子，其衣着主体为红色；背景中也有穿红色上衣的人群。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_023_mask_A.png",
+        "mask_score": 0.9909,
+        "mask_area_pixels": 327361
+      }
+    },
+    {
+      "id": "B",
+      "label": "穿红色衣服的人",
+      "text_label": "person",
+      "bbox": [
+        1100.33,
+        361.34,
+        1278.31,
+        862.34
+      ],
+      "confidence": 0.3548,
+      "reason": "该区域右侧可见一位穿红色T恤的人，衣物颜色明确为红色。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_023_mask_B.png",
+        "mask_score": 0.9813,
+        "mask_area_pixels": 59502
+      }
+    },
+    {
+      "id": "C",
+      "label": "穿红色衣服的人",
+      "text_label": "person",
+      "bbox": [
+        1.87,
+        329.27,
+        165.4,
+        861.68
+      ],
+      "confidence": 0.3454,
+      "reason": "该区域左侧可见一位穿红色短袖上衣的人，衣物颜色明确为红色。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_023_mask_C.png",
+        "mask_score": 0.9759,
+        "mask_area_pixels": 66221
+      }
+    }
+  ],
+  "timings": {
+    "qwen_plan_seconds": 0.947,
+    "grounding_dino_seconds": 10.157,
+    "group_verification_seconds": 4.8,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.722,
+      "inference_seconds": 0.172,
+      "memory_after_load_mb": 356.8,
+      "peak_memory_mb": 712.8
+    }
+  },
+  "action_result": {
+    "type": "outline",
+    "image_path": "images/output_images/result_023.jpg"
+  }
+}

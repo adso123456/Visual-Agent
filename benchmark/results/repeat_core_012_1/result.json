@@ -1,0 +1,23 @@
+{
+  "prompt": "找到图片中的汽车",
+  "plan": {
+    "target_object": "car",
+    "label": "汽车",
+    "constraints": [],
+    "action": {
+      "type": "highlight"
+    }
+  },
+  "candidates": [],
+  "targets": [],
+  "timings": {
+    "qwen_plan_seconds": 0.942,
+    "grounding_dino_seconds": 10.434,
+    "group_verification_seconds": 0.0,
+    "sam2": null
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "images/output_images/result_039.jpg"
+  }
+}

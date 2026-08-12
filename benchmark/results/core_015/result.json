@@ -1,0 +1,96 @@
+{
+  "prompt": "模糊图中的儿童",
+  "plan": {
+    "target_object": "child",
+    "label": "儿童",
+    "constraints": [],
+    "action": {
+      "type": "blur_target"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "child",
+      "bbox": [
+        432.55,
+        225.17,
+        534.38,
+        397.31
+      ],
+      "dino_confidence": 0.5546,
+      "verification_checks": [],
+      "verified": true,
+      "verification_reason": ""
+    },
+    {
+      "id": "B",
+      "text_label": "child",
+      "bbox": [
+        761.78,
+        262.2,
+        839.69,
+        403.85
+      ],
+      "dino_confidence": 0.522,
+      "verification_checks": [],
+      "verified": true,
+      "verification_reason": ""
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "儿童",
+      "text_label": "child",
+      "bbox": [
+        432.55,
+        225.17,
+        534.38,
+        397.31
+      ],
+      "confidence": 0.5546,
+      "reason": "",
+      "segmentation": {
+        "mask_path": "images/output_images/result_020_mask_A.png",
+        "mask_score": 0.9593,
+        "mask_area_pixels": 9458
+      }
+    },
+    {
+      "id": "B",
+      "label": "儿童",
+      "text_label": "child",
+      "bbox": [
+        761.78,
+        262.2,
+        839.69,
+        403.85
+      ],
+      "confidence": 0.522,
+      "reason": "",
+      "segmentation": {
+        "mask_path": "images/output_images/result_020_mask_B.png",
+        "mask_score": 0.8791,
+        "mask_area_pixels": 6567
+      }
+    }
+  ],
+  "timings": {
+    "qwen_plan_seconds": 1.035,
+    "grounding_dino_seconds": 10.383,
+    "group_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.464,
+      "inference_seconds": 0.416,
+      "memory_after_load_mb": 356.8,
+      "peak_memory_mb": 712.8
+    }
+  },
+  "action_result": {
+    "type": "blur_target",
+    "image_path": "images/output_images/result_020.jpg"
+  }
+}
