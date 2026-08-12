@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.cache/
+outputs/*
+!outputs/.gitkeep
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.pth
+*.pt
+*.safetensors
+
