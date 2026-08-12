@@ -1,0 +1,158 @@
+{
+  "prompt": "找到正在钓鱼的人",
+  "plan": {
+    "target_object": "person",
+    "label": "正在钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ]
+  },
+  "candidates": [
+    {
+      "id": 1,
+      "text_label": "person",
+      "bbox": [
+        516.22,
+        114.65,
+        665.27,
+        396.92
+      ],
+      "dino_confidence": 0.6635,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "satisfied": true,
+          "evidence": "该候选对象手持一根长鱼竿，鱼竿呈斜向伸展姿态，末端延伸至水面附近，符合钓鱼的典型动作与装备特征。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该候选对象手持一根长鱼竿，鱼竿呈斜向伸展姿态，末端延伸至水面附近，符合钓鱼的典型动作与装备特征。"
+    },
+    {
+      "id": 2,
+      "text_label": "person",
+      "bbox": [
+        780.57,
+        129.06,
+        908.34,
+        400.56
+      ],
+      "dino_confidence": 0.6614,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "satisfied": false,
+          "evidence": "红框内候选为一名女性，她站在船中，双手自然垂放或扶着身旁幼儿，未持有鱼竿；持鱼竿的是其左侧的男性，该男性位于红框外，不属于当前候选。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "红框内候选为一名女性，她站在船中，双手自然垂放或扶着身旁幼儿，未持有鱼竿；持鱼竿的是其左侧的男性，该男性位于红框外，不属于当前候选。"
+    },
+    {
+      "id": 3,
+      "text_label": "person",
+      "bbox": [
+        432.05,
+        225.35,
+        532.78,
+        397.32
+      ],
+      "dino_confidence": 0.6279,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "satisfied": false,
+          "evidence": "红框内为一名穿白色连衣裙、戴帽子的小女孩，她站在船上，身体朝向左侧，右手伸向旁边男子的手臂，但未持有鱼竿；鱼竿由其右侧的男性手持，该男性才是实际持竿者。因此，红框内候选对象本身并未执行钓鱼动作。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "红框内为一名穿白色连衣裙、戴帽子的小女孩，她站在船上，身体朝向左侧，右手伸向旁边男子的手臂，但未持有鱼竿；鱼竿由其右侧的男性手持，该男性才是实际持竿者。因此，红框内候选对象本身并未执行钓鱼动作。"
+    },
+    {
+      "id": 4,
+      "text_label": "person",
+      "bbox": [
+        761.09,
+        262.9,
+        837.93,
+        401.17
+      ],
+      "dino_confidence": 0.597,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "satisfied": false,
+          "evidence": "红框内为一名幼童，穿着背带裤、戴草帽，双手抱物，站立于船中，未持有鱼竿或进行任何钓鱼动作；持鱼竿的是其左侧的成年男性，该男性不在红框内。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "红框内为一名幼童，穿着背带裤、戴草帽，双手抱物，站立于船中，未持有鱼竿或进行任何钓鱼动作；持鱼竿的是其左侧的成年男性，该男性不在红框内。"
+    },
+    {
+      "id": 5,
+      "text_label": "person",
+      "bbox": [
+        759.16,
+        534.91,
+        899.61,
+        771.99
+      ],
+      "dino_confidence": 0.3571,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "satisfied": false,
+          "evidence": "红框内为水中的倒影，无法确认其是否在钓鱼；实际正在钓鱼的是船上的男性，但该红框未包含此人，仅截取其倒影，且倒影中无明显鱼竿或钓鱼动作特征。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "红框内为水中的倒影，无法确认其是否在钓鱼；实际正在钓鱼的是船上的男性，但该红框未包含此人，仅截取其倒影，且倒影中无明显鱼竿或钓鱼动作特征。"
+    },
+    {
+      "id": 6,
+      "text_label": "person",
+      "bbox": [
+        515.2,
+        543.54,
+        660.75,
+        795.19
+      ],
+      "dino_confidence": 0.31,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "satisfied": true,
+          "evidence": "红框内为水中倒影，对应上方船中站立的男性；该男性手持长鱼竿，姿态为垂钓，虽倒影模糊但可辨识其持竿动作与人物位置关系，符合‘正在钓鱼’的语义。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "红框内为水中倒影，对应上方船中站立的男性；该男性手持长鱼竿，姿态为垂钓，虽倒影模糊但可辨识其持竿动作与人物位置关系，符合‘正在钓鱼’的语义。"
+    }
+  ],
+  "targets": [
+    {
+      "label": "正在钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        516.22,
+        114.65,
+        665.27,
+        396.92
+      ],
+      "confidence": 0.6635,
+      "reason": "该候选对象手持一根长鱼竿，鱼竿呈斜向伸展姿态，末端延伸至水面附近，符合钓鱼的典型动作与装备特征。"
+    },
+    {
+      "label": "正在钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        515.2,
+        543.54,
+        660.75,
+        795.19
+      ],
+      "confidence": 0.31,
+      "reason": "红框内为水中倒影，对应上方船中站立的男性；该男性手持长鱼竿，姿态为垂钓，虽倒影模糊但可辨识其持竿动作与人物位置关系，符合‘正在钓鱼’的语义。"
+    }
+  ]
+}

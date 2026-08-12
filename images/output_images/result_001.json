@@ -1,0 +1,78 @@
+{
+  "prompt": "找到正在钓鱼的人",
+  "plan": {
+    "target_object": "person",
+    "label": "正在钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ]
+  },
+  "candidates": [
+    {
+      "id": 1,
+      "text_label": "person",
+      "bbox": [
+        183.95,
+        60.79,
+        234.64,
+        148.47
+      ],
+      "dino_confidence": 0.6149,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "satisfied": true,
+          "evidence": "该候选对象手持鱼竿，身体呈蹲姿，鱼竿末端延伸至水面，符合钓鱼的典型动作和姿态。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该候选对象手持鱼竿，身体呈蹲姿，鱼竿末端延伸至水面，符合钓鱼的典型动作和姿态。"
+    },
+    {
+      "id": 2,
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "dino_confidence": 0.654,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "satisfied": true,
+          "evidence": "该候选人物右手高举鱼竿，身体呈钓鱼姿态，鱼竿末端延伸至水面，符合钓鱼动作特征。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该候选人物右手高举鱼竿，身体呈钓鱼姿态，鱼竿末端延伸至水面，符合钓鱼动作特征。"
+    }
+  ],
+  "targets": [
+    {
+      "label": "正在钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        183.95,
+        60.79,
+        234.64,
+        148.47
+      ],
+      "confidence": 0.6149,
+      "reason": "该候选对象手持鱼竿，身体呈蹲姿，鱼竿末端延伸至水面，符合钓鱼的典型动作和姿态。"
+    },
+    {
+      "label": "正在钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "confidence": 0.654,
+      "reason": "该候选人物右手高举鱼竿，身体呈钓鱼姿态，鱼竿末端延伸至水面，符合钓鱼动作特征。"
+    }
+  ]
+}

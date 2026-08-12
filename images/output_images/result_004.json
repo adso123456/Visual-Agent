@@ -1,0 +1,66 @@
+{
+  "prompt": "找到正在钓鱼的人",
+  "plan": {
+    "target_object": "person",
+    "label": "正在钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ]
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        183.95,
+        60.79,
+        234.64,
+        148.47
+      ],
+      "dino_confidence": 0.6149,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "该候选区域包含一名戴白帽、穿白衬衫的人，蹲在岸边，但未见其手持鱼竿或进行明显钓鱼动作；其前方有另一人持竿，无法确认该候选是否为钓鱼者。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域包含一名戴白帽、穿白衬衫的人，蹲在岸边，但未见其手持鱼竿或进行明显钓鱼动作；其前方有另一人持竿，无法确认该候选是否为钓鱼者。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "dino_confidence": 0.654,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该候选区域包含一名戴红帽、穿白衬衫的人，右手高举鱼竿，左手握竿身，身体呈站立姿态面向水面，鱼竿末端延伸至水中，符合钓鱼的典型动作与装备配置。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该候选区域包含一名戴红帽、穿白衬衫的人，右手高举鱼竿，左手握竿身，身体呈站立姿态面向水面，鱼竿末端延伸至水中，符合钓鱼的典型动作与装备配置。"
+    }
+  ],
+  "targets": [
+    {
+      "label": "正在钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "confidence": 0.654,
+      "reason": "该候选区域包含一名戴红帽、穿白衬衫的人，右手高举鱼竿，左手握竿身，身体呈站立姿态面向水面，鱼竿末端延伸至水中，符合钓鱼的典型动作与装备配置。"
+    }
+  ]
+}

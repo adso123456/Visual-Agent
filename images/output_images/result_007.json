@@ -1,0 +1,165 @@
+{
+  "prompt": "找到正在钓鱼的人",
+  "plan": {
+    "target_object": "person",
+    "label": "正在钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ]
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        516.22,
+        114.65,
+        665.27,
+        396.92
+      ],
+      "dino_confidence": 0.6635,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该候选区域包含一名男性，手持一根长鱼竿，鱼竿延伸至水面，姿态为站立持竿，符合正在钓鱼的视觉特征。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该候选区域包含一名男性，手持一根长鱼竿，鱼竿延伸至水面，姿态为站立持竿，符合正在钓鱼的视觉特征。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        780.57,
+        129.06,
+        908.34,
+        400.56
+      ],
+      "dino_confidence": 0.6614,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "not_satisfied",
+          "evidence": "该候选区域为一名女性，双手自然垂放或扶着身旁幼儿，未持有任何钓鱼装备，无钓鱼动作。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域为一名女性，双手自然垂放或扶着身旁幼儿，未持有任何钓鱼装备，无钓鱼动作。"
+    },
+    {
+      "id": "C",
+      "text_label": "person",
+      "bbox": [
+        432.05,
+        225.35,
+        532.78,
+        397.32
+      ],
+      "dino_confidence": 0.6279,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "not_satisfied",
+          "evidence": "该候选区域为一名幼童，站立于船中，双手自然下垂，未持有鱼竿或其他钓鱼工具，无钓鱼行为。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域为一名幼童，站立于船中，双手自然下垂，未持有鱼竿或其他钓鱼工具，无钓鱼行为。"
+    },
+    {
+      "id": "D",
+      "text_label": "person",
+      "bbox": [
+        761.09,
+        262.9,
+        837.93,
+        401.17
+      ],
+      "dino_confidence": 0.597,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "not_satisfied",
+          "evidence": "该候选区域为一名被女性抱在怀中的幼儿，无任何手持物品或动作，不具备钓鱼能力与行为。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域为一名被女性抱在怀中的幼儿，无任何手持物品或动作，不具备钓鱼能力与行为。"
+    },
+    {
+      "id": "E",
+      "text_label": "person",
+      "bbox": [
+        759.16,
+        534.91,
+        899.61,
+        771.99
+      ],
+      "dino_confidence": 0.3571,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "该候选区域为水面上的倒影，无法确认其对应人物是否真实存在、是否持有鱼竿，也无法判断其具体动作，归属不清。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域为水面上的倒影，无法确认其对应人物是否真实存在、是否持有鱼竿，也无法判断其具体动作，归属不清。"
+    },
+    {
+      "id": "F",
+      "text_label": "person",
+      "bbox": [
+        515.2,
+        543.54,
+        660.75,
+        795.19
+      ],
+      "dino_confidence": 0.31,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "该候选区域为水面上的倒影，无法确认其对应人物是否真实存在、是否持有鱼竿，也无法判断其具体动作，归属不清。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域为水面上的倒影，无法确认其对应人物是否真实存在、是否持有鱼竿，也无法判断其具体动作，归属不清。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "正在钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        516.22,
+        114.65,
+        665.27,
+        396.92
+      ],
+      "confidence": 0.6635,
+      "reason": "该候选区域包含一名男性，手持一根长鱼竿，鱼竿延伸至水面，姿态为站立持竿，符合正在钓鱼的视觉特征。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_007_mask_A.png",
+        "mask_score": 0.949,
+        "mask_area_pixels": 22213
+      }
+    }
+  ],
+  "timings": {
+    "qwen_plan_seconds": 1.631,
+    "grounding_dino_seconds": 14.328,
+    "group_verification_seconds": 6.572,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 7.909,
+      "inference_seconds": 0.632,
+      "memory_after_load_mb": 293.2,
+      "peak_memory_mb": 649.2
+    }
+  }
+}

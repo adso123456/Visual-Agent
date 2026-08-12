@@ -1,0 +1,85 @@
+{
+  "prompt": "找到正在钓鱼的人",
+  "plan": {
+    "target_object": "person",
+    "label": "正在钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ]
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        183.95,
+        60.79,
+        234.64,
+        148.47
+      ],
+      "dino_confidence": 0.6149,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "该候选区域显示一人蹲姿，部分身体可见，但未明确显示其手持鱼竿或进行钓鱼动作；其前方有鱼竿和渔网，但无法确认该鱼竿是否由其持有或操作。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域显示一人蹲姿，部分身体可见，但未明确显示其手持鱼竿或进行钓鱼动作；其前方有鱼竿和渔网，但无法确认该鱼竿是否由其持有或操作。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "dino_confidence": 0.654,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该候选区域显示一人站立，右手高举鱼竿，左手持竿身，鱼竿伸向水面，竿尖有明显弯曲，且下方水中有绿色渔网，表明其正在进行钓鱼活动。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该候选区域显示一人站立，右手高举鱼竿，左手持竿身，鱼竿伸向水面，竿尖有明显弯曲，且下方水中有绿色渔网，表明其正在进行钓鱼活动。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "B",
+      "label": "正在钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "confidence": 0.654,
+      "reason": "该候选区域显示一人站立，右手高举鱼竿，左手持竿身，鱼竿伸向水面，竿尖有明显弯曲，且下方水中有绿色渔网，表明其正在进行钓鱼活动。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_006_mask_B.png",
+        "mask_score": 0.9391,
+        "mask_area_pixels": 1655
+      }
+    }
+  ],
+  "timings": {
+    "qwen_plan_seconds": 1.597,
+    "grounding_dino_seconds": 12.567,
+    "group_verification_seconds": 2.747,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 149.053,
+      "inference_seconds": 0.3,
+      "memory_after_load_mb": 292.8,
+      "peak_memory_mb": 648.8
+    }
+  }
+}
