@@ -1,0 +1,92 @@
+{
+  "prompt": "把正在钓鱼的人标红",
+  "plan": {
+    "target_object": "person",
+    "label": "正在钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ],
+    "action": {
+      "type": "highlight"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        183.95,
+        60.79,
+        234.64,
+        148.47
+      ],
+      "dino_confidence": 0.6149,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "该候选区域包含一名戴白帽、穿白衬衫的人，蹲在岸边，但未见其手持鱼竿或进行明确的钓鱼动作；其前方有鱼竿和渔网，但无法确认该人是否为操作者。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域包含一名戴白帽、穿白衬衫的人，蹲在岸边，但未见其手持鱼竿或进行明确的钓鱼动作；其前方有鱼竿和渔网，但无法确认该人是否为操作者。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "dino_confidence": 0.654,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该候选区域包含一名戴红帽、穿白衬衫的人，双手持长鱼竿，鱼竿伸向水面，且身旁有绿色渔网置于水边，符合正在钓鱼的典型行为特征。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该候选区域包含一名戴红帽、穿白衬衫的人，双手持长鱼竿，鱼竿伸向水面，且身旁有绿色渔网置于水边，符合正在钓鱼的典型行为特征。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "B",
+      "label": "正在钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "confidence": 0.654,
+      "reason": "该候选区域包含一名戴红帽、穿白衬衫的人，双手持长鱼竿，鱼竿伸向水面，且身旁有绿色渔网置于水边，符合正在钓鱼的典型行为特征。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_009_mask_B.png",
+        "mask_score": 0.9391,
+        "mask_area_pixels": 1655
+      }
+    }
+  ],
+  "timings": {
+    "qwen_plan_seconds": 1.749,
+    "grounding_dino_seconds": 12.451,
+    "group_verification_seconds": 2.769,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 6.401,
+      "inference_seconds": 0.522,
+      "memory_after_load_mb": 292.8,
+      "peak_memory_mb": 648.8
+    }
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "images/output_images/result_009.jpg"
+  }
+}

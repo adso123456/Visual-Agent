@@ -1,0 +1,103 @@
+{
+  "prompt": "把正在钓鱼的人以外的背景变暗",
+  "plan": {
+    "target_object": "person",
+    "label": "正在钓鱼的人",
+    "constraints": [
+      "正在钓鱼",
+      "人"
+    ],
+    "action": {
+      "type": "dim_background"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        183.95,
+        60.79,
+        234.64,
+        148.47
+      ],
+      "dino_confidence": 0.6149,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "not_satisfied",
+          "evidence": "该候选区域仅包含一名戴白帽、穿白衬衫的人，其身体朝向和姿态未显示手持鱼竿或进行钓鱼动作，且未见明显钓鱼装备；其位置在B的右侧前方，与主要钓鱼行为无直接关联。"
+        },
+        {
+          "constraint": "人",
+          "status": "satisfied",
+          "evidence": "该区域可见一名穿着白衬衫、黑裤子、戴白帽的人，虽未明确显示钓鱼动作，但属于人类个体，满足‘人’的约束。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域仅包含一名戴白帽、穿白衬衫的人，其身体朝向和姿态未显示手持鱼竿或进行钓鱼动作，且未见明显钓鱼装备；其位置在B的右侧前方，与主要钓鱼行为无直接关联。；该区域可见一名穿着白衬衫、黑裤子、戴白帽的人，虽未明确显示钓鱼动作，但属于人类个体，满足‘人’的约束。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "dino_confidence": 0.654,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该候选区域包含一名戴红帽、穿白衬衫、蓝裤子的人，右手高举鱼竿，左手持长杆（疑似抄网杆），身体前倾靠近水面，下方有绿色抄网伸入水中，整体姿态符合钓鱼场景中的操作行为。"
+        },
+        {
+          "constraint": "人",
+          "status": "satisfied",
+          "evidence": "该区域清晰显示一名穿着红帽、白上衣、蓝裤的人，具备完整躯干与四肢，为人类个体，满足‘人’的约束。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该候选区域包含一名戴红帽、穿白衬衫、蓝裤子的人，右手高举鱼竿，左手持长杆（疑似抄网杆），身体前倾靠近水面，下方有绿色抄网伸入水中，整体姿态符合钓鱼场景中的操作行为。；该区域清晰显示一名穿着红帽、白上衣、蓝裤的人，具备完整躯干与四肢，为人类个体，满足‘人’的约束。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "B",
+      "label": "正在钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "confidence": 0.654,
+      "reason": "该候选区域包含一名戴红帽、穿白衬衫、蓝裤子的人，右手高举鱼竿，左手持长杆（疑似抄网杆），身体前倾靠近水面，下方有绿色抄网伸入水中，整体姿态符合钓鱼场景中的操作行为。；该区域清晰显示一名穿着红帽、白上衣、蓝裤的人，具备完整躯干与四肢，为人类个体，满足‘人’的约束。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_010_mask_B.png",
+        "mask_score": 0.9391,
+        "mask_area_pixels": 1655
+      }
+    }
+  ],
+  "timings": {
+    "qwen_plan_seconds": 1.781,
+    "grounding_dino_seconds": 10.804,
+    "group_verification_seconds": 4.426,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.625,
+      "inference_seconds": 0.483,
+      "memory_after_load_mb": 292.8,
+      "peak_memory_mb": 648.8
+    }
+  },
+  "action_result": {
+    "type": "dim_background",
+    "image_path": "images/output_images/result_010.jpg"
+  }
+}

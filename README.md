@@ -1,10 +1,10 @@
 # Visual Agent
 
-Visual Agent 是一个根据自然语言在图片中定位并分割目标的最小 Demo。
+Visual Agent 是一个根据自然语言在图片中定位、分割并处理目标的最小 Demo。
 
-当前架构：`qwen3-vl-flash` 将指令拆成基础目标和语义约束，Grounding DINO Base 定位候选，Qwen3-VL 群组验证完整语义，SAM 2.1 Base Plus 根据验证通过的 bbox 生成像素级 mask，OpenCV 绘制 mask、轮廓、bbox 和标签。
+当前架构：`qwen3-vl-flash` 将指令拆成基础目标、语义约束和操作，Grounding DINO Base 定位候选，Qwen3-VL 群组验证完整语义，SAM 2.1 Base Plus 根据验证通过的 bbox 生成像素级 mask，OpenCV 确定性执行操作。
 
-当前仅支持图片，输出按编号保存为 `result_NNN.jpg`、`result_NNN.json` 和 `result_NNN_mask_ID.png`。
+当前仅支持图片，操作白名单为：目标标红 `highlight`、目标描边 `outline`、模糊目标 `blur_target`、背景变暗 `dim_background`、透明背景抠图 `cutout`。输出按编号保存；抠图为透明 PNG，其余操作为 JPG，同时保留 JSON 和 binary mask PNG。
 
 ## 运行
 
@@ -15,4 +15,6 @@ python -m venv .venv
 .venv\Scripts\python -m pip install torch==2.11.0 torchvision==0.26.0 --index-url https://download.pytorch.org/whl/cu130
 .venv\Scripts\python -m pip install -r requirements.txt
 .venv\Scripts\python main.py --image images/test_images/image.jpg --prompt "找到正在钓鱼的人"
+.venv\Scripts\python main.py --image images/test_images/image.jpg --prompt "把正在钓鱼的人以外的背景变暗"
+.venv\Scripts\python main.py --image images/test_images/image.jpg --prompt "把正在钓鱼的人单独抠出来"
 ```

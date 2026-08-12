@@ -5,8 +5,10 @@ from pathlib import Path
 import cv2
 import numpy as np
 
+from visual_agent.actions import ImageActionExecutor
 
-def _next_result_paths(output_dir: Path) -> tuple[Path, Path]:
+
+def _next_result_paths(output_dir: Path, image_suffix: str) -> tuple[Path, Path]:
     numbers = []
     for path in output_dir.glob("result_*.*"):
         try:
@@ -15,7 +17,7 @@ def _next_result_paths(output_dir: Path) -> tuple[Path, Path]:
             continue
     number = max(numbers, default=0) + 1
     return (
-        output_dir / f"result_{number:03d}.jpg",
+        output_dir / f"result_{number:03d}{image_suffix}",
         output_dir / f"result_{number:03d}.json",
     )
 
@@ -26,14 +28,16 @@ def save_results(image_path: Path, result: dict, output_dir: Path) -> tuple[Path
         raise ValueError(f"OpenCV 无法读取图片：{image_path}")
 
     output_dir.mkdir(parents=True, exist_ok=True)
-    image_output, json_output = _next_result_paths(output_dir)
+    action_type = result["plan"]["action"]["type"]
+    image_suffix = ".png" if action_type == "cutout" and result["targets"] else ".jpg"
+    image_output, json_output = _next_result_paths(output_dir, image_suffix)
     result_stem = image_output.stem
     json_result = deepcopy(result)
 
-    colors = [(0, 200, 0), (255, 120, 0), (0, 120, 255), (180, 0, 180)]
-    for index, (target, json_target) in enumerate(zip(result["targets"], json_result["targets"])):
-        mask = target.pop("_mask", None)
-        mask_score = target.pop("_mask_score", None)
+    masks = []
+    for target, json_target in zip(result["targets"], json_result["targets"]):
+        mask = target.get("_mask")
+        mask_score = target.get("_mask_score")
         json_target.pop("_mask", None)
         json_target.pop("_mask_score", None)
         if mask is None or mask_score is None:
@@ -52,29 +56,13 @@ def save_results(image_path: Path, result: dict, output_dir: Path) -> tuple[Path
             "mask_score": round(mask_score, 4),
             "mask_area_pixels": int(mask.sum()),
         }
+        masks.append(mask)
 
-        color = colors[index % len(colors)]
-        overlay = np.zeros_like(image)
-        overlay[mask] = color
-        image = cv2.addWeighted(image, 1.0, overlay, 0.4, 0)
-        contours, _ = cv2.findContours(binary_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        cv2.drawContours(image, contours, -1, color, 2)
-
-    for index, target in enumerate(result["targets"]):
-        x1, y1, x2, y2 = (round(value) for value in target["bbox"])
-        color = colors[index % len(colors)]
-        cv2.rectangle(image, (x1, y1), (x2, y2), color, 2)
-        text = f'{target["text_label"]} {target["confidence"]:.2f}'
-        cv2.putText(
-            image,
-            text,
-            (x1, max(20, y1 - 8)),
-            cv2.FONT_HERSHEY_SIMPLEX,
-            0.65,
-            color,
-            2,
-            cv2.LINE_AA,
-        )
+    image = ImageActionExecutor().execute(image, masks, action_type)
+    json_result["action_result"] = {
+        "type": action_type,
+        "image_path": image_output.as_posix(),
+    }
 
     if not cv2.imwrite(str(image_output), image):
         raise RuntimeError(f"无法保存结果图片：{image_output}")

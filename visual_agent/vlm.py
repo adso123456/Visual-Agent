@@ -11,6 +11,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 MODEL_NAME = "qwen3-vl-flash"
 BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+ACTION_TYPES = {"highlight", "outline", "blur_target", "dim_background", "cutout"}
 
 
 def _image_data_url(image_path: Path) -> str:
@@ -82,13 +83,19 @@ def understand_target(image_path: Path, prompt: str) -> dict:
                 "content": (
                     "你是视觉任务规划器。只根据用户原始要求生成任务计划，不参考或猜测任何具体图片内容。"
                     "只返回 JSON，不要 Markdown、分析过程、"
-                    "候选方案、自我讨论或推理过程。只允许字段 target_object、label、constraints。"
+                    "候选方案、自我讨论或推理过程。只允许字段 target_object、label、constraints、action。"
                     "target_object 必须是适合开放词汇检测的简短英文基础实体，通常 1 到 3 个英文单词，"
                     "不得包含行为、环境或复杂关系。label 是简短中文目标名。constraints 是中文字符串数组，"
                     "只拆解用户要求中的行为、属性、空间关系、对象关系和否定条件，不得加入用户未要求的"
                     "衣着、姿势或场景细节。所有人物目标统一使用 person，不使用 man、woman、boy 或 girl。"
                     "constraints 只保留基础实体之外的剩余语义，不得重复 target_object、label 或实体类别。"
-                    "不要输出坐标或 reason。"
+                    "标红、高亮、描边、模糊、背景变暗、抠图等图片操作不是目标的视觉约束，"
+                    "只能表达在 action.type 中，严禁写入 constraints。"
+                    "action 只能包含 type，且 type 必须是以下白名单之一："
+                    "highlight 表示标红、高亮或只要求找到/定位；outline 表示只描边；"
+                    "blur_target 表示模糊目标；dim_background 表示保持目标原样并让目标以外背景变暗；"
+                    "cutout 表示抠出目标并使用透明背景。用户没有明确图片操作、只要求找到或定位时，"
+                    "action.type 必须为 highlight。不要输出坐标、reason 或任何图像处理参数。"
                 ),
             },
             {
@@ -100,6 +107,7 @@ def understand_target(image_path: Path, prompt: str) -> dict:
     target_object = result.get("target_object")
     label = result.get("label")
     constraints = result.get("constraints")
+    action = result.get("action")
     if not isinstance(target_object, str) or not target_object.strip():
         raise RuntimeError(f"Qwen3-VL 返回无效 target_object：{result}")
     if not isinstance(label, str) or not label.strip():
@@ -110,10 +118,17 @@ def understand_target(image_path: Path, prompt: str) -> dict:
         raise RuntimeError(f"Qwen3-VL 返回无效 constraints：{result}")
     if not 1 <= len(target_object.split()) <= 3:
         raise RuntimeError(f"Qwen3-VL target_object 不是简短基础实体：{target_object}")
+    if (
+        not isinstance(action, dict)
+        or set(action) != {"type"}
+        or action.get("type") not in ACTION_TYPES
+    ):
+        raise RuntimeError(f"Qwen3-VL 返回无效 action：{result}")
     return {
         "target_object": target_object.strip(),
         "label": label.strip(),
         "constraints": [item.strip() for item in constraints],
+        "action": {"type": action["type"]},
     }
 
 

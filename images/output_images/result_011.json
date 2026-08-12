@@ -1,0 +1,203 @@
+{
+  "prompt": "把正在钓鱼的人单独抠出来",
+  "plan": {
+    "target_object": "person",
+    "label": "正在钓鱼的人",
+    "constraints": [
+      "正在钓鱼",
+      "人"
+    ],
+    "action": {
+      "type": "cutout"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        516.22,
+        114.65,
+        665.27,
+        396.92
+      ],
+      "dino_confidence": 0.6635,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该候选区域包含一名男性，手持长鱼竿，鱼竿斜伸向水面，姿态符合钓鱼动作。"
+        },
+        {
+          "constraint": "人",
+          "status": "satisfied",
+          "evidence": "该区域清晰显示一名穿着西装、戴礼帽的成年男性，为完整人物实体。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该候选区域包含一名男性，手持长鱼竿，鱼竿斜伸向水面，姿态符合钓鱼动作。；该区域清晰显示一名穿着西装、戴礼帽的成年男性，为完整人物实体。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        780.57,
+        129.06,
+        908.34,
+        400.56
+      ],
+      "dino_confidence": 0.6614,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "not_satisfied",
+          "evidence": "该候选区域为一名女性，双手自然垂放或抱 child，未持有任何钓鱼装备，无钓鱼动作。"
+        },
+        {
+          "constraint": "人",
+          "status": "satisfied",
+          "evidence": "该区域清晰显示一名穿着长裙、戴帽子的成年女性，为完整人物实体。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域为一名女性，双手自然垂放或抱 child，未持有任何钓鱼装备，无钓鱼动作。；该区域清晰显示一名穿着长裙、戴帽子的成年女性，为完整人物实体。"
+    },
+    {
+      "id": "C",
+      "text_label": "person",
+      "bbox": [
+        432.05,
+        225.35,
+        532.78,
+        397.32
+      ],
+      "dino_confidence": 0.6279,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "not_satisfied",
+          "evidence": "该候选区域为一名幼童，站立于船边，双手自然下垂，未持任何物品，无钓鱼动作。"
+        },
+        {
+          "constraint": "人",
+          "status": "satisfied",
+          "evidence": "该区域清晰显示一名穿连衣裙的小孩，为完整人物实体。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域为一名幼童，站立于船边，双手自然下垂，未持任何物品，无钓鱼动作。；该区域清晰显示一名穿连衣裙的小孩，为完整人物实体。"
+    },
+    {
+      "id": "D",
+      "text_label": "person",
+      "bbox": [
+        761.09,
+        262.9,
+        837.93,
+        401.17
+      ],
+      "dino_confidence": 0.597,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "not_satisfied",
+          "evidence": "该候选区域为一名被女性抱在怀中的幼童，双手未持物，无钓鱼动作。"
+        },
+        {
+          "constraint": "人",
+          "status": "satisfied",
+          "evidence": "该区域清晰显示一名被抱起的幼童，为完整人物实体。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域为一名被女性抱在怀中的幼童，双手未持物，无钓鱼动作。；该区域清晰显示一名被抱起的幼童，为完整人物实体。"
+    },
+    {
+      "id": "E",
+      "text_label": "person",
+      "bbox": [
+        759.16,
+        534.91,
+        899.61,
+        771.99
+      ],
+      "dino_confidence": 0.3571,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "该候选区域为水中的倒影，无法确认是否对应实际人物，且倒影中无明确手持鱼竿等钓鱼装备的形态，无法判断其是否正在钓鱼。"
+        },
+        {
+          "constraint": "人",
+          "status": "uncertain",
+          "evidence": "该候选区域为水中的倒影，虽可推测对应船上某人，但无法确认具体是哪一位，且倒影本身非实体人物。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域为水中的倒影，无法确认是否对应实际人物，且倒影中无明确手持鱼竿等钓鱼装备的形态，无法判断其是否正在钓鱼。；该候选区域为水中的倒影，虽可推测对应船上某人，但无法确认具体是哪一位，且倒影本身非实体人物。"
+    },
+    {
+      "id": "F",
+      "text_label": "person",
+      "bbox": [
+        515.2,
+        543.54,
+        660.75,
+        795.19
+      ],
+      "dino_confidence": 0.31,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "该候选区域为水中的倒影，无法确认是否对应实际人物，且倒影中无明确手持鱼竿等钓鱼装备的形态，无法判断其是否正在钓鱼。"
+        },
+        {
+          "constraint": "人",
+          "status": "uncertain",
+          "evidence": "该候选区域为水中的倒影，虽可推测对应船上某人，但无法确认具体是哪一位，且倒影本身非实体人物。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域为水中的倒影，无法确认是否对应实际人物，且倒影中无明确手持鱼竿等钓鱼装备的形态，无法判断其是否正在钓鱼。；该候选区域为水中的倒影，虽可推测对应船上某人，但无法确认具体是哪一位，且倒影本身非实体人物。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "正在钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        516.22,
+        114.65,
+        665.27,
+        396.92
+      ],
+      "confidence": 0.6635,
+      "reason": "该候选区域包含一名男性，手持长鱼竿，鱼竿斜伸向水面，姿态符合钓鱼动作。；该区域清晰显示一名穿着西装、戴礼帽的成年男性，为完整人物实体。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_011_mask_A.png",
+        "mask_score": 0.949,
+        "mask_area_pixels": 22213
+      }
+    }
+  ],
+  "timings": {
+    "qwen_plan_seconds": 2.244,
+    "grounding_dino_seconds": 11.035,
+    "group_verification_seconds": 10.593,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.771,
+      "inference_seconds": 0.24,
+      "memory_after_load_mb": 293.2,
+      "peak_memory_mb": 649.2
+    }
+  },
+  "action_result": {
+    "type": "cutout",
+    "image_path": "images/output_images/result_011.png"
+  }
+}
