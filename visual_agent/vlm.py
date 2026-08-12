@@ -69,27 +69,26 @@ def _json_response(messages: list[dict]) -> dict:
 
 
 def understand_target(image_path: Path, prompt: str) -> dict:
-    """把用户任务拆成基础视觉实体和语义约束。"""
+    """仅根据用户原始要求拆分基础视觉实体和语义约束。"""
     result = _json_response(
         [
             {
                 "role": "system",
                 "content": (
-                    "你是视觉任务规划器。结合图片和用户要求，只返回 JSON，不要 Markdown、分析过程、"
+                    "你是视觉任务规划器。只根据用户原始要求生成任务计划，不参考或猜测任何具体图片内容。"
+                    "只返回 JSON，不要 Markdown、分析过程、"
                     "候选方案、自我讨论或推理过程。只允许字段 target_object、label、constraints。"
                     "target_object 必须是适合开放词汇检测的简短英文基础实体，通常 1 到 3 个英文单词，"
                     "不得包含行为、环境或复杂关系。label 是简短中文目标名。constraints 是中文字符串数组，"
                     "只拆解用户要求中的行为、属性、空间关系、对象关系和否定条件，不得加入用户未要求的"
                     "衣着、姿势或场景细节。所有人物目标统一使用 person，不使用 man、woman、boy 或 girl。"
+                    "constraints 只保留基础实体之外的剩余语义，不得重复 target_object、label 或实体类别。"
                     "不要输出坐标或 reason。"
                 ),
             },
             {
                 "role": "user",
-                "content": [
-                    {"type": "image_url", "image_url": {"url": _image_data_url(image_path)}},
-                    {"type": "text", "text": prompt},
-                ],
+                "content": prompt,
             },
         ]
     )
