@@ -1,10 +1,10 @@
 # Visual Agent
 
-Visual Agent 是一个根据自然语言在图片中定位目标的最小 Demo。
+Visual Agent 是一个根据自然语言在图片中定位并分割目标的最小 Demo。
 
-第一版架构：`qwen3-vl-flash` 将图片指令拆成基础目标和语义约束，Grounding DINO Base 定位基础目标候选，Qwen3-VL 逐候选验证完整语义，OpenCV 只绘制验证通过的目标，最终生成 `images/output_images/result.jpg` 与 `images/output_images/result.json`。
+当前架构：`qwen3-vl-flash` 将指令拆成基础目标和语义约束，Grounding DINO Base 定位候选，Qwen3-VL 群组验证完整语义，SAM 2.1 Base Plus 根据验证通过的 bbox 生成像素级 mask，OpenCV 绘制 mask、轮廓、bbox 和标签。
 
-当前仅支持图片，组件仅包含 Qwen3-VL、Grounding DINO 和 OpenCV。
+当前仅支持图片，输出按编号保存为 `result_NNN.jpg`、`result_NNN.json` 和 `result_NNN_mask_ID.png`。
 
 ## 运行
 
