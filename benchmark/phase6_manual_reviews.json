@@ -1,0 +1,22 @@
+[
+  {"id":"core_001","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"evidence":"唯一狗目标被正确高亮，mask 沿完整犬体。"},
+  {"id":"core_002","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"evidence":"唯一女性保持原亮度，其他区域变暗。"},
+  {"id":"core_003","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"evidence":"唯一持伞者被选择并沿人体描边。"},
+  {"id":"core_004","result":"FAIL","target_selection":true,"segmentation":false,"action":true,"primary_failure_stage":"SEGMENTATION","evidence":"Planner 已修复为 person+[手持雨伞]；透明抠图仍只保留人体，未包含雨伞。"},
+  {"id":"core_005","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"evidence":"清晰钓鱼者被正确高亮。"},
+  {"id":"core_006","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"evidence":"同一钓鱼者被正确标红。"},
+  {"id":"core_007","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"evidence":"轮廓仅作用于钓鱼者人物 mask。"},
+  {"id":"core_008","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"evidence":"仅钓鱼者人物区域被模糊。"},
+  {"id":"core_009","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"evidence":"钓鱼者保持原亮度，背景变暗。"},
+  {"id":"core_010","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"evidence":"透明 PNG 只保留钓鱼者，alpha 与 mask 一致。"},
+  {"id":"core_011","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"evidence":"两名戴帽目标均被选择并模糊。"},
+  {"id":"core_012","result":"PASS","target_selection":true,"segmentation":null,"action":true,"primary_failure_stage":null,"evidence":"汽车不存在，targets=[] 且 SAM 未调用。"},
+  {"id":"core_013","result":"PASS","target_selection":true,"segmentation":null,"action":true,"primary_failure_stage":null,"evidence":"狗不存在，targets=[] 且 SAM 未调用。"},
+  {"id":"core_014","result":"PASS","target_selection":true,"segmentation":null,"action":true,"primary_failure_stage":null,"evidence":"无人持伞，候选被 verifier 拒绝。"},
+  {"id":"core_015","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"evidence":"Planner 为 person+[儿童]，船上两名儿童均被正确模糊。"},
+  {"id":"challenge_001","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"evidence":"低分辨率相邻人物场景只保留红帽钓鱼者。"},
+  {"id":"challenge_002","result":"PASS","target_selection":true,"segmentation":true,"action":true,"primary_failure_stage":null,"evidence":"中央完整人物被保留，局部肢体候选被拒绝。"},
+  {"id":"challenge_003","result":"AMBIGUOUS","target_selection":null,"segmentation":null,"action":true,"primary_failure_stage":null,"evidence":"低光远景无法确认人物正在操作鱼竿，系统保守返回 targets=[]。"},
+  {"id":"challenge_004","result":"AMBIGUOUS","target_selection":null,"segmentation":true,"action":true,"primary_failure_stage":null,"evidence":"老人明确钓鱼；儿童关系有歧义，系统保留两人。"},
+  {"id":"challenge_005","result":"FAIL","target_selection":false,"segmentation":true,"action":true,"primary_failure_stage":"GROUNDING","evidence":"仍只产生并保留 3 个前景红衣目标，漏掉背景密集小目标。"}
+]

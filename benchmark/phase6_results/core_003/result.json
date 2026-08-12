@@ -1,0 +1,80 @@
+{
+  "prompt": "只给手持雨伞的人描边",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-flash",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "持伞人",
+    "constraints": [
+      "手持雨伞"
+    ],
+    "action": {
+      "type": "outline"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        667.15,
+        662.65,
+        1003.39,
+        1412.13
+      ],
+      "dino_confidence": 0.6666,
+      "verification_checks": [
+        {
+          "constraint": "手持雨伞",
+          "status": "satisfied",
+          "evidence": "候选A的右手握着一把黑色雨伞的伞柄，雨伞位于其头顶上方，明确显示为手持状态。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "候选A的右手握着一把黑色雨伞的伞柄，雨伞位于其头顶上方，明确显示为手持状态。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "持伞人",
+      "text_label": "person",
+      "bbox": [
+        667.15,
+        662.65,
+        1003.39,
+        1412.13
+      ],
+      "confidence": 0.6666,
+      "reason": "候选A的右手握着一把黑色雨伞的伞柄，雨伞位于其头顶上方，明确显示为手持状态。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_045_mask_A.png",
+        "mask_score": 0.9855,
+        "mask_area_pixels": 140360
+      }
+    }
+  ],
+  "timings": {
+    "deepseek_plan_seconds": 0.903,
+    "grounding_dino_seconds": 9.359,
+    "group_verification_seconds": 2.163,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.564,
+      "inference_seconds": 0.354,
+      "memory_after_load_mb": 356.8,
+      "peak_memory_mb": 712.8
+    },
+    "deepseek_final_response_seconds": 0.653
+  },
+  "action_result": {
+    "type": "outline",
+    "image_path": "images/output_images/result_045.jpg"
+  },
+  "agent_response": "已为手持雨伞的人描边。"
+}

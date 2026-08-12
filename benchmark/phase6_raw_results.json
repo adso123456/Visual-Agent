@@ -1,0 +1,1814 @@
+[
+  {
+    "id": "core_001",
+    "case_id": "core_001",
+    "suite": "core",
+    "image": "images/test_images/test_image.jpg",
+    "prompt": "找到图片里的狗",
+    "expected": {
+      "target_object": "dog",
+      "action": "highlight",
+      "target_count": 1,
+      "target_description": "海滩上的拉布拉多犬",
+      "constraints_semantics": []
+    },
+    "status": "success",
+    "cli_total_seconds": 19.526,
+    "plan": {
+      "target_object": "dog",
+      "label": "狗",
+      "constraints": [],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "狗",
+        "text_label": "dog",
+        "bbox": [
+          461.48,
+          581.66,
+          1177.17,
+          1203.13
+        ],
+        "confidence": 0.8197,
+        "reason": "",
+        "segmentation": {
+          "mask_path": "images/output_images/result_043_mask_A.png",
+          "mask_score": 0.9561,
+          "mask_area_pixels": 144314
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 1.375,
+      "grounding_dino_seconds": 10.855,
+      "group_verification_seconds": 0.0,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.752,
+        "inference_seconds": 0.577,
+        "memory_after_load_mb": 292.8,
+        "peak_memory_mb": 648.8
+      },
+      "deepseek_final_response_seconds": 0.736
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/core_001/result.jpg",
+      "result_json": "benchmark/phase6_results/core_001/result.json",
+      "masks": [
+        "benchmark/phase6_results/core_001/masks/result_043_mask_A.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "已根据图片在目标位置高亮标注出找到的1只狗。"
+  },
+  {
+    "id": "core_002",
+    "case_id": "core_002",
+    "suite": "core",
+    "image": "images/test_images/test_image.jpg",
+    "prompt": "把图片中的人以外背景变暗",
+    "expected": {
+      "target_object": "person",
+      "action": "dim_background",
+      "target_count": 1,
+      "target_description": "海滩上坐着的女性",
+      "constraints_semantics": []
+    },
+    "status": "success",
+    "cli_total_seconds": 17.718,
+    "plan": {
+      "target_object": "person",
+      "label": "人",
+      "constraints": [],
+      "action": {
+        "type": "dim_background"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "人",
+        "text_label": "person",
+        "bbox": [
+          924.56,
+          522.52,
+          1493.97,
+          1080.89
+        ],
+        "confidence": 0.759,
+        "reason": "",
+        "segmentation": {
+          "mask_path": "images/output_images/result_044_mask_A.png",
+          "mask_score": 0.9834,
+          "mask_area_pixels": 142649
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 1.015,
+      "grounding_dino_seconds": 9.457,
+      "group_verification_seconds": 0.0,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.954,
+        "inference_seconds": 0.502,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      },
+      "deepseek_final_response_seconds": 0.617
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/core_002/result.jpg",
+      "result_json": "benchmark/phase6_results/core_002/result.json",
+      "masks": [
+        "benchmark/phase6_results/core_002/masks/result_044_mask_A.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "已将图片中除人以外的背景变暗，操作执行成功。"
+  },
+  {
+    "id": "core_003",
+    "case_id": "core_003",
+    "suite": "core",
+    "image": "images/test_images/commons_umbrella.jpg",
+    "prompt": "只给手持雨伞的人描边",
+    "expected": {
+      "target_object": "person",
+      "action": "outline",
+      "target_count": 1,
+      "target_description": "街上手持黑色雨伞的人",
+      "constraints_semantics": [
+        "手持雨伞"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 19.126,
+    "plan": {
+      "target_object": "person",
+      "label": "持伞人",
+      "constraints": [
+        "手持雨伞"
+      ],
+      "action": {
+        "type": "outline"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "持伞人",
+        "text_label": "person",
+        "bbox": [
+          667.15,
+          662.65,
+          1003.39,
+          1412.13
+        ],
+        "confidence": 0.6666,
+        "reason": "候选A的右手握着一把黑色雨伞的伞柄，雨伞位于其头顶上方，明确显示为手持状态。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_045_mask_A.png",
+          "mask_score": 0.9855,
+          "mask_area_pixels": 140360
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 0.903,
+      "grounding_dino_seconds": 9.359,
+      "group_verification_seconds": 2.163,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.564,
+        "inference_seconds": 0.354,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      },
+      "deepseek_final_response_seconds": 0.653
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/core_003/result.jpg",
+      "result_json": "benchmark/phase6_results/core_003/result.json",
+      "masks": [
+        "benchmark/phase6_results/core_003/masks/result_045_mask_A.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "已为手持雨伞的人描边。"
+  },
+  {
+    "id": "core_004",
+    "case_id": "core_004",
+    "suite": "core",
+    "image": "images/test_images/commons_umbrella.jpg",
+    "prompt": "把手持雨伞的人单独抠出来",
+    "expected": {
+      "target_object": "person",
+      "action": "cutout",
+      "target_count": 1,
+      "target_description": "街上手持黑色雨伞的人",
+      "constraints_semantics": [
+        "手持雨伞"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 19.899,
+    "plan": {
+      "target_object": "person",
+      "label": "持伞人",
+      "constraints": [
+        "手持雨伞"
+      ],
+      "action": {
+        "type": "cutout"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "持伞人",
+        "text_label": "person",
+        "bbox": [
+          667.15,
+          662.65,
+          1003.39,
+          1412.13
+        ],
+        "confidence": 0.6666,
+        "reason": "候选A的右手握着黑色雨伞的伞柄，雨伞位于其头顶上方，明确显示为手持状态。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_046_mask_A.png",
+          "mask_score": 0.9855,
+          "mask_area_pixels": 140360
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 1.121,
+      "grounding_dino_seconds": 10.091,
+      "group_verification_seconds": 2.094,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.245,
+        "inference_seconds": 0.418,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      },
+      "deepseek_final_response_seconds": 0.768
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/core_004/result.png",
+      "result_json": "benchmark/phase6_results/core_004/result.json",
+      "masks": [
+        "benchmark/phase6_results/core_004/masks/result_046_mask_A.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "已成功将手持雨伞的人单独抠出。"
+  },
+  {
+    "id": "core_005",
+    "case_id": "core_005",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "找到正在钓鱼的人",
+    "expected": {
+      "target_object": "person",
+      "action": "highlight",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 18.577,
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          400.36,
+          77.84,
+          497.7,
+          336.44
+        ],
+        "confidence": 0.8313,
+        "reason": "该人物背对镜头站立于河岸，双手持握一根明显弯曲的鱼竿，鱼竿呈抛投姿态，水面可见浮漂，符合钓鱼动作特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_047_mask_A.png",
+          "mask_score": 0.9304,
+          "mask_area_pixels": 12231
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 0.938,
+      "grounding_dino_seconds": 9.206,
+      "group_verification_seconds": 1.673,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.295,
+        "inference_seconds": 0.312,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      },
+      "deepseek_final_response_seconds": 1.097
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/core_005/result.jpg",
+      "result_json": "benchmark/phase6_results/core_005/result.json",
+      "masks": [
+        "benchmark/phase6_results/core_005/masks/result_047_mask_A.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "找到1个正在钓鱼的人。"
+  },
+  {
+    "id": "core_006",
+    "case_id": "core_006",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "把正在钓鱼的人标红",
+    "expected": {
+      "target_object": "person",
+      "action": "highlight",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 19.285,
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          400.36,
+          77.84,
+          497.7,
+          336.44
+        ],
+        "confidence": 0.8313,
+        "reason": "该人物背对镜头站立于河岸，双手持握一根明显弯曲的鱼竿，鱼竿呈抛投姿态，水面可见浮漂，符合正在钓鱼的行为特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_048_mask_A.png",
+          "mask_score": 0.9304,
+          "mask_area_pixels": 12231
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 0.976,
+      "grounding_dino_seconds": 9.767,
+      "group_verification_seconds": 1.643,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.522,
+        "inference_seconds": 0.322,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      },
+      "deepseek_final_response_seconds": 0.997
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/core_006/result.jpg",
+      "result_json": "benchmark/phase6_results/core_006/result.json",
+      "masks": [
+        "benchmark/phase6_results/core_006/masks/result_048_mask_A.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "已找到1个正在钓鱼的人，并已标红。"
+  },
+  {
+    "id": "core_007",
+    "case_id": "core_007",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "只给正在钓鱼的人描边",
+    "expected": {
+      "target_object": "person",
+      "action": "outline",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 19.491,
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "outline"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          400.36,
+          77.84,
+          497.7,
+          336.44
+        ],
+        "confidence": 0.8313,
+        "reason": "该人物背对镜头站立于河岸，双手持握一根明显弯曲的鱼竿，鱼竿呈抛投姿态，水面可见浮漂，符合正在钓鱼的行为特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_049_mask_A.png",
+          "mask_score": 0.9304,
+          "mask_area_pixels": 12231
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 0.969,
+      "grounding_dino_seconds": 10.246,
+      "group_verification_seconds": 1.609,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.325,
+        "inference_seconds": 0.401,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      },
+      "deepseek_final_response_seconds": 0.895
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/core_007/result.jpg",
+      "result_json": "benchmark/phase6_results/core_007/result.json",
+      "masks": [
+        "benchmark/phase6_results/core_007/masks/result_049_mask_A.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "已为正在钓鱼的人添加描边。"
+  },
+  {
+    "id": "core_008",
+    "case_id": "core_008",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "模糊正在钓鱼的人",
+    "expected": {
+      "target_object": "person",
+      "action": "blur_target",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 18.802,
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "blur_target"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          400.36,
+          77.84,
+          497.7,
+          336.44
+        ],
+        "confidence": 0.8313,
+        "reason": "该人物背对镜头站立于河岸，双手持握一根明显弯曲的鱼竿，鱼竿末端延伸至水面，水中有浮漂，整体姿态和装备配置符合正在钓鱼的行为特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_050_mask_A.png",
+          "mask_score": 0.9304,
+          "mask_area_pixels": 12231
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 1.237,
+      "grounding_dino_seconds": 9.314,
+      "group_verification_seconds": 1.673,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.431,
+        "inference_seconds": 0.339,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      },
+      "deepseek_final_response_seconds": 0.754
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/core_008/result.jpg",
+      "result_json": "benchmark/phase6_results/core_008/result.json",
+      "masks": [
+        "benchmark/phase6_results/core_008/masks/result_050_mask_A.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "已找到1名正在钓鱼的人物，并对其进行了模糊处理。"
+  },
+  {
+    "id": "core_009",
+    "case_id": "core_009",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "把正在钓鱼的人以外背景变暗",
+    "expected": {
+      "target_object": "person",
+      "action": "dim_background",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 18.782,
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "dim_background"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          400.36,
+          77.84,
+          497.7,
+          336.44
+        ],
+        "confidence": 0.8313,
+        "reason": "该候选区域显示一名男子背对镜头站立于河岸，手持弯曲的鱼竿，鱼线延伸至水面，水中有浮漂，符合钓鱼行为特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_051_mask_A.png",
+          "mask_score": 0.9304,
+          "mask_area_pixels": 12231
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 1.174,
+      "grounding_dino_seconds": 9.369,
+      "group_verification_seconds": 1.559,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.362,
+        "inference_seconds": 0.324,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      },
+      "deepseek_final_response_seconds": 0.947
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/core_009/result.jpg",
+      "result_json": "benchmark/phase6_results/core_009/result.json",
+      "masks": [
+        "benchmark/phase6_results/core_009/masks/result_051_mask_A.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "已找到1名正在钓鱼的人，并已将其以外背景调暗。"
+  },
+  {
+    "id": "core_010",
+    "case_id": "core_010",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_clear.png",
+    "prompt": "把正在钓鱼的人单独抠出来",
+    "expected": {
+      "target_object": "person",
+      "action": "cutout",
+      "target_count": 1,
+      "target_description": "河边持弯曲鱼竿的男子",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 18.408,
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "cutout"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [
+      {
+        "id": "A",
+        "label": "钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          400.36,
+          77.84,
+          497.7,
+          336.44
+        ],
+        "confidence": 0.8313,
+        "reason": "该人物背对镜头站立于河岸，双手持握一根明显弯曲的鱼竿，鱼竿呈抛投姿态，水面可见浮漂，符合钓鱼动作特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_052_mask_A.png",
+          "mask_score": 0.9304,
+          "mask_area_pixels": 12231
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 0.985,
+      "grounding_dino_seconds": 9.26,
+      "group_verification_seconds": 1.592,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.373,
+        "inference_seconds": 0.394,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      },
+      "deepseek_final_response_seconds": 0.753
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/core_010/result.png",
+      "result_json": "benchmark/phase6_results/core_010/result.json",
+      "masks": [
+        "benchmark/phase6_results/core_010/masks/result_052_mask_A.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "已成功将正在钓鱼的人物单独抠出。"
+  },
+  {
+    "id": "core_011",
+    "case_id": "core_011",
+    "suite": "core",
+    "image": "images/test_images/benchmark_fishing_hats.png",
+    "prompt": "模糊戴帽子的人",
+    "expected": {
+      "target_object": "person",
+      "action": "blur_target",
+      "target_count": 2,
+      "target_description": "戴草帽的男子和戴遮阳帽的女孩",
+      "constraints_semantics": [
+        "戴帽子"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 20.245,
+    "plan": {
+      "target_object": "person",
+      "label": "戴帽子的人",
+      "constraints": [
+        "戴帽子"
+      ],
+      "action": {
+        "type": "blur_target"
+      }
+    },
+    "candidate_count": 2,
+    "targets": [
+      {
+        "id": "A",
+        "label": "戴帽子的人",
+        "text_label": "person",
+        "bbox": [
+          122.68,
+          88.52,
+          290.56,
+          347.96
+        ],
+        "confidence": 0.7329,
+        "reason": "候选A包含一名背对镜头的男性，头上戴着一顶草帽，帽子有明显帽檐和编织纹理，清晰可见。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_053_mask_A.png",
+          "mask_score": 0.9877,
+          "mask_area_pixels": 27559
+        }
+      },
+      {
+        "id": "B",
+        "label": "戴帽子的人",
+        "text_label": "person",
+        "bbox": [
+          7.79,
+          145.29,
+          127.93,
+          347.25
+        ],
+        "confidence": 0.6757,
+        "reason": "候选B包含一名背对镜头的女孩，头上戴着一顶灰白波点图案的帽子，帽子形状完整、位置明确，清晰可见。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_053_mask_B.png",
+          "mask_score": 0.9832,
+          "mask_area_pixels": 15913
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 1.278,
+      "grounding_dino_seconds": 9.354,
+      "group_verification_seconds": 2.747,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.479,
+        "inference_seconds": 0.176,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      },
+      "deepseek_final_response_seconds": 1.158
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/core_011/result.jpg",
+      "result_json": "benchmark/phase6_results/core_011/result.json",
+      "masks": [
+        "benchmark/phase6_results/core_011/masks/result_053_mask_A.png",
+        "benchmark/phase6_results/core_011/masks/result_053_mask_B.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "已对画面中2名戴帽子的人（一名戴草帽的男性和一名戴灰白波点帽的女孩）进行了模糊处理。"
+  },
+  {
+    "id": "core_012",
+    "case_id": "core_012",
+    "suite": "core",
+    "image": "images/test_images/OIP-C.jpg",
+    "prompt": "找到图片中的汽车",
+    "expected": {
+      "target_object": "car",
+      "action": "highlight",
+      "target_count": 0,
+      "target_description": "图片中没有汽车",
+      "constraints_semantics": []
+    },
+    "status": "success",
+    "cli_total_seconds": 11.855,
+    "plan": {
+      "target_object": "car",
+      "label": "汽车",
+      "constraints": [],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 0,
+    "targets": [],
+    "timings": {
+      "deepseek_plan_seconds": 1.129,
+      "grounding_dino_seconds": 10.16,
+      "group_verification_seconds": 0.0,
+      "sam2": null,
+      "deepseek_final_response_seconds": 0.548
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/core_012/result.jpg",
+      "result_json": "benchmark/phase6_results/core_012/result.json",
+      "masks": []
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "未能在提供的图片中找到符合“汽车”要求的目标。"
+  },
+  {
+    "id": "core_013",
+    "case_id": "core_013",
+    "suite": "core",
+    "image": "images/test_images/commons_umbrella.jpg",
+    "prompt": "把图片中的狗标红",
+    "expected": {
+      "target_object": "dog",
+      "action": "highlight",
+      "target_count": 0,
+      "target_description": "图片中没有狗",
+      "constraints_semantics": []
+    },
+    "status": "success",
+    "cli_total_seconds": 11.252,
+    "plan": {
+      "target_object": "dog",
+      "label": "狗",
+      "constraints": [],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 0,
+    "targets": [],
+    "timings": {
+      "deepseek_plan_seconds": 1.239,
+      "grounding_dino_seconds": 9.158,
+      "group_verification_seconds": 0.0,
+      "sam2": null,
+      "deepseek_final_response_seconds": 0.826
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/core_013/result.jpg",
+      "result_json": "benchmark/phase6_results/core_013/result.json",
+      "masks": []
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "图片中没有找到“狗”这一目标，因此无法执行标红操作。"
+  },
+  {
+    "id": "core_014",
+    "case_id": "core_014",
+    "suite": "core",
+    "image": "images/test_images/test_image.jpg",
+    "prompt": "只给手持雨伞的人描边",
+    "expected": {
+      "target_object": "person",
+      "action": "outline",
+      "target_count": 0,
+      "target_description": "图片中无人持伞",
+      "constraints_semantics": [
+        "手持雨伞"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 13.453,
+    "plan": {
+      "target_object": "person",
+      "label": "持伞人",
+      "constraints": [
+        "手持雨伞"
+      ],
+      "action": {
+        "type": "outline"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [],
+    "timings": {
+      "deepseek_plan_seconds": 1.243,
+      "grounding_dino_seconds": 9.415,
+      "group_verification_seconds": 1.834,
+      "sam2": null,
+      "deepseek_final_response_seconds": 0.919
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/core_014/result.jpg",
+      "result_json": "benchmark/phase6_results/core_014/result.json",
+      "masks": []
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "未找到手持雨伞的人，因此没有进行描边操作。"
+  },
+  {
+    "id": "core_015",
+    "case_id": "core_015",
+    "suite": "core",
+    "image": "images/test_images/test_family_fishing.jpg",
+    "prompt": "模糊图中的儿童",
+    "expected": {
+      "target_object": "person",
+      "action": "blur_target",
+      "target_count": 2,
+      "target_description": "船上的两名儿童",
+      "constraints_semantics": [
+        "儿童"
+      ]
+    },
+    "status": "success",
+    "cli_total_seconds": 23.717,
+    "plan": {
+      "target_object": "person",
+      "label": "儿童",
+      "constraints": [
+        "儿童"
+      ],
+      "action": {
+        "type": "blur_target"
+      }
+    },
+    "candidate_count": 6,
+    "targets": [
+      {
+        "id": "C",
+        "label": "儿童",
+        "text_label": "person",
+        "bbox": [
+          432.05,
+          225.35,
+          532.78,
+          397.32
+        ],
+        "confidence": 0.6279,
+        "reason": "该区域为一名穿连衣裙、戴帽子的小女孩，体型明显小于周围成人，符合儿童特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_057_mask_C.png",
+          "mask_score": 0.9594,
+          "mask_area_pixels": 9451
+        }
+      },
+      {
+        "id": "D",
+        "label": "儿童",
+        "text_label": "person",
+        "bbox": [
+          761.09,
+          262.9,
+          837.93,
+          401.17
+        ],
+        "confidence": 0.597,
+        "reason": "该区域为一名被成年女性抱在怀中的幼童，体型小，符合儿童特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_057_mask_D.png",
+          "mask_score": 0.88,
+          "mask_area_pixels": 6534
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 1.105,
+      "grounding_dino_seconds": 9.589,
+      "group_verification_seconds": 5.874,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.966,
+        "inference_seconds": 0.171,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      },
+      "deepseek_final_response_seconds": 0.878
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/core_015/result.jpg",
+      "result_json": "benchmark/phase6_results/core_015/result.json",
+      "masks": [
+        "benchmark/phase6_results/core_015/masks/result_057_mask_C.png",
+        "benchmark/phase6_results/core_015/masks/result_057_mask_D.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "已成功找出图中的2名儿童目标，并已执行模糊处理。"
+  },
+  {
+    "id": "challenge_001",
+    "case_id": "challenge_001",
+    "suite": "challenge",
+    "image": "images/test_images/OIP-C.jpg",
+    "prompt": "找到正在钓鱼的人",
+    "expected": {
+      "target_object": "person",
+      "action": "highlight",
+      "target_count": 1,
+      "target_description": "低分辨率图中的红帽钓鱼者；白帽人物证据不足",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ],
+      "ground_truth": "positive"
+    },
+    "status": "success",
+    "cli_total_seconds": 20.641,
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 2,
+    "targets": [
+      {
+        "id": "B",
+        "label": "钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          155.37,
+          23.12,
+          205.32,
+          124.4
+        ],
+        "confidence": 0.654,
+        "reason": "该候选区域显示一人站立于岸边，右手高举鱼竿，左手持另一根长杆（疑似抄网杆），鱼竿伸向水面，下方可见绿色抄网入水，整体姿态与装备配置符合钓鱼行为特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_058_mask_B.png",
+          "mask_score": 0.9391,
+          "mask_area_pixels": 1655
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 0.896,
+      "grounding_dino_seconds": 10.076,
+      "group_verification_seconds": 2.737,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.688,
+        "inference_seconds": 0.168,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      },
+      "deepseek_final_response_seconds": 1.051
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/challenge_001/result.jpg",
+      "result_json": "benchmark/phase6_results/challenge_001/result.json",
+      "masks": [
+        "benchmark/phase6_results/challenge_001/masks/result_058_mask_B.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "找到1名正在钓鱼的人，已高亮标记。"
+  },
+  {
+    "id": "challenge_002",
+    "case_id": "challenge_002",
+    "suite": "challenge",
+    "image": "images/test_images/test_fishing.jpg",
+    "prompt": "找到正在钓鱼的人",
+    "expected": {
+      "target_object": "person",
+      "action": "highlight",
+      "target_count": 1,
+      "target_description": "中央完整人物；左侧仅露出局部肢体",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ],
+      "ground_truth": "positive"
+    },
+    "status": "success",
+    "cli_total_seconds": 20.993,
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 3,
+    "targets": [
+      {
+        "id": "A",
+        "label": "钓鱼的人",
+        "text_label": "person",
+        "bbox": [
+          457.35,
+          283.43,
+          989.8,
+          848.91
+        ],
+        "confidence": 0.7678,
+        "reason": "该候选区域包含一名男性，他坐在河边岩石上，右手持鱼竿，鱼竿延伸至水面，姿态专注，符合正在钓鱼的特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_059_mask_A.png",
+          "mask_score": 0.9851,
+          "mask_area_pixels": 136314
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 0.97,
+      "grounding_dino_seconds": 9.296,
+      "group_verification_seconds": 3.449,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.598,
+        "inference_seconds": 0.165,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      },
+      "deepseek_final_response_seconds": 1.442
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/challenge_002/result.jpg",
+      "result_json": "benchmark/phase6_results/challenge_002/result.json",
+      "masks": [
+        "benchmark/phase6_results/challenge_002/masks/result_059_mask_A.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "找到了一名正在钓鱼的人，已在结果中高亮显示。"
+  },
+  {
+    "id": "challenge_003",
+    "case_id": "challenge_003",
+    "suite": "challenge",
+    "image": "images/test_images/benchmark_fishing_lowlight.png",
+    "prompt": "把正在钓鱼的人标红",
+    "expected": {
+      "target_object": "person",
+      "action": "highlight",
+      "target_count": 1,
+      "target_description": "低光远景中岸边的单个人物",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ],
+      "ground_truth": "ambiguous"
+    },
+    "status": "success",
+    "cli_total_seconds": 12.972,
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "candidate_count": 1,
+    "targets": [],
+    "timings": {
+      "deepseek_plan_seconds": 1.028,
+      "grounding_dino_seconds": 9.44,
+      "group_verification_seconds": 1.415,
+      "sam2": null,
+      "deepseek_final_response_seconds": 1.077
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": false,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": false,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/challenge_003/result.jpg",
+      "result_json": "benchmark/phase6_results/challenge_003/result.json",
+      "masks": []
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "未找到正在钓鱼的人，因此未执行标红操作。"
+  },
+  {
+    "id": "challenge_004",
+    "case_id": "challenge_004",
+    "suite": "challenge",
+    "image": "images/test_images/benchmark_fishing_two_people.png",
+    "prompt": "把正在钓鱼的人以外背景变暗",
+    "expected": {
+      "target_object": "person",
+      "action": "dim_background",
+      "target_count": null,
+      "target_description": "老人明确持竿；儿童是否独立钓鱼存在歧义",
+      "constraints_semantics": [
+        "正在钓鱼"
+      ],
+      "ground_truth": "ambiguous"
+    },
+    "status": "success",
+    "cli_total_seconds": 21.617,
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼者",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "dim_background"
+      }
+    },
+    "candidate_count": 2,
+    "targets": [
+      {
+        "id": "A",
+        "label": "钓鱼者",
+        "text_label": "person",
+        "bbox": [
+          471.6,
+          98.27,
+          544.83,
+          320.23
+        ],
+        "confidence": 0.7082,
+        "reason": "候选A为一名白发男性，身穿蓝色牛仔外套，右手握持一根长鱼竿，鱼竿延伸至水面，姿态为站立垂钓，符合‘正在钓鱼’的视觉特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_061_mask_A.png",
+          "mask_score": 0.9771,
+          "mask_area_pixels": 9129
+        }
+      },
+      {
+        "id": "B",
+        "label": "钓鱼者",
+        "text_label": "person",
+        "bbox": [
+          430.95,
+          171.57,
+          485.74,
+          337.7
+        ],
+        "confidence": 0.7098,
+        "reason": "候选B为一名穿蓝色羽绒服、戴条纹帽的儿童，左手握持一根较短鱼竿，鱼竿末端伸向水面，身体朝向水面，呈现钓鱼姿态，符合‘正在钓鱼’的视觉特征。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_061_mask_B.png",
+          "mask_score": 0.9705,
+          "mask_area_pixels": 5432
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 1.058,
+      "grounding_dino_seconds": 10.013,
+      "group_verification_seconds": 3.549,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 5.843,
+        "inference_seconds": 0.174,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      },
+      "deepseek_final_response_seconds": 0.927
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/challenge_004/result.jpg",
+      "result_json": "benchmark/phase6_results/challenge_004/result.json",
+      "masks": [
+        "benchmark/phase6_results/challenge_004/masks/result_061_mask_A.png",
+        "benchmark/phase6_results/challenge_004/masks/result_061_mask_B.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "已识别出2位正在钓鱼的人（一位白发男性持长鱼竿站立垂钓，一位蓝衣儿童持短竿朝向水面），并将其以外背景压暗处理。"
+  },
+  {
+    "id": "challenge_005",
+    "case_id": "challenge_005",
+    "suite": "challenge",
+    "image": "images/test_images/commons_red_shirts.jpg",
+    "prompt": "只给穿红色衣服的人描边",
+    "expected": {
+      "target_object": "person",
+      "action": "outline",
+      "target_count": null,
+      "target_description": "密集场景中多名穿红衣的人，含遮挡和小目标",
+      "constraints_semantics": [
+        "穿红色衣服"
+      ],
+      "ground_truth": "ambiguous"
+    },
+    "status": "success",
+    "cli_total_seconds": 22.721,
+    "plan": {
+      "target_object": "person",
+      "label": "穿红衣的人",
+      "constraints": [
+        "穿红色衣服"
+      ],
+      "action": {
+        "type": "outline"
+      }
+    },
+    "candidate_count": 4,
+    "targets": [
+      {
+        "id": "A",
+        "label": "穿红衣的人",
+        "text_label": "person",
+        "bbox": [
+          383.16,
+          105.19,
+          1130.32,
+          861.9
+        ],
+        "confidence": 0.4071,
+        "reason": "该区域包含戴彩色羽毛帽的主体，其内搭为红色衬衫，外穿红黑格子衫，领口可见红色衣领；背景中有多人穿着红色上衣，整体区域以红色为主。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_062_mask_A.png",
+          "mask_score": 0.9909,
+          "mask_area_pixels": 327361
+        }
+      },
+      {
+        "id": "B",
+        "label": "穿红衣的人",
+        "text_label": "person",
+        "bbox": [
+          1100.33,
+          361.34,
+          1278.31,
+          862.34
+        ],
+        "confidence": 0.3548,
+        "reason": "该区域右侧人物身穿纯红色短袖T恤，颜色鲜明清晰可见。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_062_mask_B.png",
+          "mask_score": 0.9813,
+          "mask_area_pixels": 59502
+        }
+      },
+      {
+        "id": "C",
+        "label": "穿红衣的人",
+        "text_label": "person",
+        "bbox": [
+          1.87,
+          329.27,
+          165.4,
+          861.68
+        ],
+        "confidence": 0.3454,
+        "reason": "该区域左侧人物身穿红色短袖上衣，胸前及肩部红色明显，虽面部模糊但服装颜色可确认。",
+        "segmentation": {
+          "mask_path": "images/output_images/result_062_mask_C.png",
+          "mask_score": 0.9759,
+          "mask_area_pixels": 66221
+        }
+      }
+    ],
+    "timings": {
+      "deepseek_plan_seconds": 1.132,
+      "grounding_dino_seconds": 9.293,
+      "group_verification_seconds": 4.542,
+      "sam2": {
+        "model": "facebook/sam2.1-hiera-base-plus",
+        "device": "cuda",
+        "load_seconds": 6.422,
+        "inference_seconds": 0.173,
+        "memory_after_load_mb": 356.8,
+        "peak_memory_mb": 712.8
+      },
+      "deepseek_final_response_seconds": 1.057
+    },
+    "checks": {
+      "json_parseable": true,
+      "target_object": true,
+      "action": true,
+      "target_count": true,
+      "segmentation_present": true,
+      "mask_files_exist": true,
+      "mask_sizes_match": true,
+      "masks_binary": true,
+      "cutout_rgba": true,
+      "cutout_alpha_matches": true,
+      "negative_no_new_masks": true,
+      "negative_sam_skipped": true
+    },
+    "structural_pass": true,
+    "artifacts": {
+      "result_image": "benchmark/phase6_results/challenge_005/result.jpg",
+      "result_json": "benchmark/phase6_results/challenge_005/result.json",
+      "masks": [
+        "benchmark/phase6_results/challenge_005/masks/result_062_mask_A.png",
+        "benchmark/phase6_results/challenge_005/masks/result_062_mask_B.png",
+        "benchmark/phase6_results/challenge_005/masks/result_062_mask_C.png"
+      ]
+    },
+    "agent": {
+      "provider": "deepseek",
+      "model": "deepseek-v4-flash",
+      "planner_tool": "execute_visual_task",
+      "plan_attempts": 1
+    },
+    "agent_response": "已为3位穿红色衣服的人完成描边。"
+  }
+]

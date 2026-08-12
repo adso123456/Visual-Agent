@@ -1,10 +1,12 @@
+import json
 import time
 from pathlib import Path
 
+from visual_agent.deepseek_agent import MODEL_NAME, TOOL_NAME, DeepSeekAgent
 from visual_agent.grounding import GroundingDetector
 from visual_agent.renderer import save_results
 from visual_agent.segmentation import Sam2Segmenter
-from visual_agent.vlm import understand_target, verify_candidates
+from visual_agent.vlm import verify_candidates
 
 
 def run_pipeline(image_path: Path, prompt: str) -> tuple[Path, Path]:
@@ -12,8 +14,9 @@ def run_pipeline(image_path: Path, prompt: str) -> tuple[Path, Path]:
     if not image_path.is_file():
         raise FileNotFoundError(f"图片不存在：{image_path}")
 
+    agent = DeepSeekAgent()
     started_at = time.perf_counter()
-    plan = understand_target(image_path, prompt)
+    plan = agent.plan_request(prompt)
     plan_seconds = time.perf_counter() - started_at
 
     started_at = time.perf_counter()
@@ -76,14 +79,50 @@ def run_pipeline(image_path: Path, prompt: str) -> tuple[Path, Path]:
 
     result = {
         "prompt": prompt,
+        "agent": {
+            "provider": "deepseek",
+            "model": MODEL_NAME,
+            "planner_tool": TOOL_NAME,
+            "plan_attempts": agent.plan_attempts,
+        },
         "plan": plan,
         "candidates": candidates,
         "targets": targets,
         "timings": {
-            "qwen_plan_seconds": round(plan_seconds, 3),
+            "deepseek_plan_seconds": round(plan_seconds, 3),
             "grounding_dino_seconds": round(grounding_seconds, 3),
             "group_verification_seconds": round(verification_seconds, 3),
             "sam2": sam_metrics,
         },
     }
-    return save_results(image_path, result, Path("images/output_images"))
+    image_output, json_output = save_results(image_path, result, Path("images/output_images"))
+    saved_result = json.loads(json_output.read_text(encoding="utf-8"))
+    public_visual_result = {
+        "plan": saved_result["plan"],
+        "targets_count": len(saved_result["targets"]),
+        "targets": [
+            {
+                "label": target["label"],
+                "verification_reason": target["reason"],
+                "verification_checks": next(
+                    candidate["verification_checks"]
+                    for candidate in saved_result["candidates"]
+                    if candidate["id"] == target["id"]
+                ),
+            }
+            for target in saved_result["targets"]
+        ],
+        "action": saved_result["plan"]["action"],
+        "execution_success": image_output.is_file(),
+    }
+    started_at = time.perf_counter()
+    saved_result["agent_response"] = agent.build_final_response(prompt, public_visual_result)
+    saved_result["timings"]["deepseek_final_response_seconds"] = round(
+        time.perf_counter() - started_at,
+        3,
+    )
+    json_output.write_text(
+        json.dumps(saved_result, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    return image_output, json_output

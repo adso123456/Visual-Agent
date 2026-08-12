@@ -1,0 +1,80 @@
+{
+  "prompt": "把正在钓鱼的人标红",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-flash",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ],
+    "action": {
+      "type": "highlight"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        400.36,
+        77.84,
+        497.7,
+        336.44
+      ],
+      "dino_confidence": 0.8313,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该人物背对镜头站立于河岸，双手持握一根明显弯曲的鱼竿，鱼竿末端延伸至水面，水中有浮漂，整体姿态和装备表明其正在进行钓鱼活动。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该人物背对镜头站立于河岸，双手持握一根明显弯曲的鱼竿，鱼竿末端延伸至水面，水中有浮漂，整体姿态和装备表明其正在进行钓鱼活动。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        400.36,
+        77.84,
+        497.7,
+        336.44
+      ],
+      "confidence": 0.8313,
+      "reason": "该人物背对镜头站立于河岸，双手持握一根明显弯曲的鱼竿，鱼竿末端延伸至水面，水中有浮漂，整体姿态和装备表明其正在进行钓鱼活动。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_065_mask_A.png",
+        "mask_score": 0.9304,
+        "mask_area_pixels": 12231
+      }
+    }
+  ],
+  "timings": {
+    "deepseek_plan_seconds": 1.287,
+    "grounding_dino_seconds": 9.232,
+    "group_verification_seconds": 1.654,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.191,
+      "inference_seconds": 0.467,
+      "memory_after_load_mb": 354.8,
+      "peak_memory_mb": 710.8
+    },
+    "deepseek_final_response_seconds": 0.771
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "images/output_images/result_065.jpg"
+  },
+  "agent_response": "已将正在钓鱼的人标红。"
+}

@@ -1,0 +1,140 @@
+[
+  {
+    "prompt": "找到正在钓鱼的人",
+    "expected": {
+      "prompt": "找到正在钓鱼的人",
+      "target_object": "person",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": "highlight"
+    },
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "highlight"
+      }
+    },
+    "plan_attempts": 1,
+    "checks": {
+      "target_object": true,
+      "constraints": true,
+      "action": true
+    },
+    "passed": true
+  },
+  {
+    "prompt": "把手持雨伞的人单独抠出来",
+    "expected": {
+      "prompt": "把手持雨伞的人单独抠出来",
+      "target_object": "person",
+      "constraints": [
+        "手持雨伞"
+      ],
+      "action": "cutout"
+    },
+    "plan": {
+      "target_object": "person",
+      "label": "持伞者",
+      "constraints": [
+        "手持雨伞"
+      ],
+      "action": {
+        "type": "cutout"
+      }
+    },
+    "plan_attempts": 1,
+    "checks": {
+      "target_object": true,
+      "constraints": true,
+      "action": true
+    },
+    "passed": true
+  },
+  {
+    "prompt": "模糊图中的儿童",
+    "expected": {
+      "prompt": "模糊图中的儿童",
+      "target_object": "person",
+      "constraints": [
+        "儿童"
+      ],
+      "action": "blur_target"
+    },
+    "plan": {
+      "target_object": "person",
+      "label": "儿童",
+      "constraints": [
+        "儿童"
+      ],
+      "action": {
+        "type": "blur_target"
+      }
+    },
+    "plan_attempts": 1,
+    "checks": {
+      "target_object": true,
+      "constraints": true,
+      "action": true
+    },
+    "passed": true
+  },
+  {
+    "prompt": "只给穿红衣服的女人描边",
+    "expected": {
+      "prompt": "只给穿红衣服的女人描边",
+      "target_object": "person",
+      "constraints": [
+        "女性",
+        "穿红色衣服"
+      ],
+      "action": "outline"
+    },
+    "plan": {
+      "target_object": "person",
+      "label": "红衣女人",
+      "constraints": [
+        "女性",
+        "穿红衣服"
+      ],
+      "action": {
+        "type": "outline"
+      }
+    },
+    "plan_attempts": 1,
+    "checks": {
+      "target_object": true,
+      "constraints": true,
+      "action": true
+    },
+    "passed": true
+  },
+  {
+    "prompt": "把狗以外背景变暗",
+    "expected": {
+      "prompt": "把狗以外背景变暗",
+      "target_object": "dog",
+      "constraints": [],
+      "action": "dim_background"
+    },
+    "plan": {
+      "target_object": "dog",
+      "label": "狗",
+      "constraints": [],
+      "action": {
+        "type": "dim_background"
+      }
+    },
+    "plan_attempts": 1,
+    "checks": {
+      "target_object": true,
+      "constraints": true,
+      "action": true
+    },
+    "passed": true
+  }
+]

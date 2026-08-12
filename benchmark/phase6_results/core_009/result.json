@@ -1,0 +1,80 @@
+{
+  "prompt": "把正在钓鱼的人以外背景变暗",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-flash",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ],
+    "action": {
+      "type": "dim_background"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        400.36,
+        77.84,
+        497.7,
+        336.44
+      ],
+      "dino_confidence": 0.8313,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该候选区域显示一名男子背对镜头站立于河岸，手持弯曲的鱼竿，鱼线延伸至水面，水中有浮漂，符合钓鱼行为特征。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该候选区域显示一名男子背对镜头站立于河岸，手持弯曲的鱼竿，鱼线延伸至水面，水中有浮漂，符合钓鱼行为特征。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        400.36,
+        77.84,
+        497.7,
+        336.44
+      ],
+      "confidence": 0.8313,
+      "reason": "该候选区域显示一名男子背对镜头站立于河岸，手持弯曲的鱼竿，鱼线延伸至水面，水中有浮漂，符合钓鱼行为特征。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_051_mask_A.png",
+        "mask_score": 0.9304,
+        "mask_area_pixels": 12231
+      }
+    }
+  ],
+  "timings": {
+    "deepseek_plan_seconds": 1.174,
+    "grounding_dino_seconds": 9.369,
+    "group_verification_seconds": 1.559,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.362,
+      "inference_seconds": 0.324,
+      "memory_after_load_mb": 356.8,
+      "peak_memory_mb": 712.8
+    },
+    "deepseek_final_response_seconds": 0.947
+  },
+  "action_result": {
+    "type": "dim_background",
+    "image_path": "images/output_images/result_051.jpg"
+  },
+  "agent_response": "已找到1名正在钓鱼的人，并已将其以外背景调暗。"
+}

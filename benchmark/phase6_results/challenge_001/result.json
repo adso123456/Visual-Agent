@@ -1,0 +1,100 @@
+{
+  "prompt": "找到正在钓鱼的人",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-flash",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ],
+    "action": {
+      "type": "highlight"
+    }
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        183.95,
+        60.79,
+        234.64,
+        148.47
+      ],
+      "dino_confidence": 0.6149,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "该候选区域显示一人蹲坐于岸边，但未见其手持鱼竿或进行明显钓鱼动作；其前方有鱼竿和渔网，但无法确认该鱼竿是否由其持有或操作。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域显示一人蹲坐于岸边，但未见其手持鱼竿或进行明显钓鱼动作；其前方有鱼竿和渔网，但无法确认该鱼竿是否由其持有或操作。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "dino_confidence": 0.654,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该候选区域显示一人站立于岸边，右手高举鱼竿，左手持另一根长杆（疑似抄网杆），鱼竿伸向水面，下方可见绿色抄网入水，整体姿态与装备配置符合钓鱼行为特征。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该候选区域显示一人站立于岸边，右手高举鱼竿，左手持另一根长杆（疑似抄网杆），鱼竿伸向水面，下方可见绿色抄网入水，整体姿态与装备配置符合钓鱼行为特征。"
+    }
+  ],
+  "targets": [
+    {
+      "id": "B",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "confidence": 0.654,
+      "reason": "该候选区域显示一人站立于岸边，右手高举鱼竿，左手持另一根长杆（疑似抄网杆），鱼竿伸向水面，下方可见绿色抄网入水，整体姿态与装备配置符合钓鱼行为特征。",
+      "segmentation": {
+        "mask_path": "images/output_images/result_058_mask_B.png",
+        "mask_score": 0.9391,
+        "mask_area_pixels": 1655
+      }
+    }
+  ],
+  "timings": {
+    "deepseek_plan_seconds": 0.896,
+    "grounding_dino_seconds": 10.076,
+    "group_verification_seconds": 2.737,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.688,
+      "inference_seconds": 0.168,
+      "memory_after_load_mb": 356.8,
+      "peak_memory_mb": 712.8
+    },
+    "deepseek_final_response_seconds": 1.051
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "images/output_images/result_058.jpg"
+  },
+  "agent_response": "找到1名正在钓鱼的人，已高亮标记。"
+}

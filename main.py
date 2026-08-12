@@ -1,4 +1,5 @@
 import argparse
+import json
 from pathlib import Path
 
 from visual_agent.pipeline import run_pipeline
@@ -13,8 +14,9 @@ def main() -> None:
     result_image, result_json = run_pipeline(args.image, args.prompt)
     print(f"结果图片：{result_image}")
     print(f"结果 JSON：{result_json}")
+    result = json.loads(result_json.read_text(encoding="utf-8"))
+    print(f"Agent：{result['agent_response']}")
 
 
 if __name__ == "__main__":
     main()
-
