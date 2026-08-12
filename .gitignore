@@ -4,8 +4,10 @@ __pycache__/
 venv/
 .env
 .cache/
-outputs/*
-!outputs/.gitkeep
+images/test_images/*
+!images/test_images/.gitkeep
+images/output_images/*
+!images/output_images/.gitkeep
 *.jpg
 *.jpeg
 *.png
@@ -13,4 +15,3 @@ outputs/*
 *.pth
 *.pt
 *.safetensors
-
