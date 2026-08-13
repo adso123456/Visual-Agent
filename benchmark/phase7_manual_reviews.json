@@ -1,0 +1,22 @@
+[
+  {"id":"core_001","result":"PASS","target_selection":true,"segmentation":true,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"唯一狗目标被正确高亮。"},
+  {"id":"core_002","result":"PASS","target_selection":true,"segmentation":true,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"唯一人物保持原亮度，其他区域变暗。"},
+  {"id":"core_003","result":"PASS","target_selection":true,"segmentation":true,"action":true,"relation_binding":true,"primary_failure_stage":null,"evidence":"人物A与雨伞R1绑定为 satisfied，最终红色轮廓完整覆盖人体和雨伞。"},
+  {"id":"core_004","result":"PASS","target_selection":true,"segmentation":true,"action":true,"relation_binding":true,"primary_failure_stage":null,"evidence":"人物与雨伞分别分割后使用 OR 合并；透明抠图完整保留人体和雨伞，alpha 与 composite mask 一致。"},
+  {"id":"core_005","result":"PASS","target_selection":true,"segmentation":true,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"清晰钓鱼者被正确高亮。"},
+  {"id":"core_006","result":"PASS","target_selection":true,"segmentation":true,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"钓鱼者被正确标红。"},
+  {"id":"core_007","result":"PASS","target_selection":true,"segmentation":true,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"轮廓仅作用于钓鱼者。"},
+  {"id":"core_008","result":"PASS","target_selection":true,"segmentation":true,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"仅钓鱼者被模糊。"},
+  {"id":"core_009","result":"PASS","target_selection":true,"segmentation":true,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"钓鱼者保持原亮度，背景变暗。"},
+  {"id":"core_010","result":"PASS","target_selection":true,"segmentation":true,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"钓鱼者透明抠图正确。"},
+  {"id":"core_011","result":"PASS","target_selection":true,"segmentation":true,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"两名戴帽人物均被选择并模糊。"},
+  {"id":"core_012","result":"PASS","target_selection":true,"segmentation":null,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"汽车不存在，targets=[] 且 SAM 未调用。"},
+  {"id":"core_013","result":"PASS","target_selection":true,"segmentation":null,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"狗不存在，targets=[] 且 SAM 未调用。"},
+  {"id":"core_014","result":"PASS","target_selection":true,"segmentation":null,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"主体验证全部拒绝，关联检测与关系验证均跳过，没有制造 semantic target。"},
+  {"id":"core_015","result":"PASS","target_selection":true,"segmentation":true,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"Planner 保持 person+[儿童]+related_objects=[]，两名儿童均正确模糊。"},
+  {"id":"challenge_001","result":"PASS","target_selection":true,"segmentation":true,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"低分辨率相邻人物场景只保留红帽钓鱼者。"},
+  {"id":"challenge_002","result":"PASS","target_selection":true,"segmentation":true,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"中央完整人物被保留，局部肢体候选被拒绝。"},
+  {"id":"challenge_003","result":"AMBIGUOUS","target_selection":null,"segmentation":null,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"低光远景无法确认人物正在操作鱼竿，系统保守返回 targets=[]。"},
+  {"id":"challenge_004","result":"AMBIGUOUS","target_selection":null,"segmentation":true,"action":true,"relation_binding":null,"primary_failure_stage":null,"evidence":"首次 Qwen verifier 返回错误 JSON 形状导致 RuntimeError；相同输入重跑成功并保留两人，首次错误单独留档。"},
+  {"id":"challenge_005","result":"FAIL","target_selection":false,"segmentation":true,"action":true,"relation_binding":null,"primary_failure_stage":"GROUNDING","evidence":"仍只保留3个前景红衣目标，密集小目标召回问题未处理。"}
+]

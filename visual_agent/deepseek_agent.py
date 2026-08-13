@@ -5,7 +5,7 @@ import re
 from openai import OpenAI
 
 
-MODEL_NAME = "deepseek-v4-flash"
+MODEL_NAME = "deepseek-v4-pro"
 BASE_URL = "https://api.deepseek.com"
 TOOL_NAME = "execute_visual_task"
 ACTION_TYPES = {"highlight", "outline", "blur_target", "dim_background", "cutout"}
@@ -39,8 +39,30 @@ EXECUTE_VISUAL_TASK_TOOL = {
                     "required": ["type"],
                     "additionalProperties": False,
                 },
+                "related_objects": {
+                    "type": "array",
+                    "maxItems": 1,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "object": {"type": "string"},
+                            "relation": {
+                                "type": "string",
+                                "enum": ["held_by_target"],
+                            },
+                        },
+                        "required": ["object", "relation"],
+                        "additionalProperties": False,
+                    },
+                },
             },
-            "required": ["target_object", "label", "constraints", "action"],
+            "required": [
+                "target_object",
+                "label",
+                "constraints",
+                "action",
+                "related_objects",
+            ],
             "additionalProperties": False,
         },
     },
@@ -56,12 +78,18 @@ PLANNER_SYSTEM_PROMPT = (
     "action.type 只能使用工具 schema 的白名单：找到、定位、标红或高亮使用 highlight；"
     "只描边使用 outline；模糊目标使用 blur_target；目标以外背景变暗使用 dim_background；"
     "单独抠出使用 cutout。不得生成图像参数、代码或命令。label 使用简短中文目标名。"
+    "related_objects 始终必填。仅当用户要求人物明确手持、拿着或撑着一个无生命手持物体时，"
+    "返回一个基础英文物体和 relation=held_by_target；否则必须返回空数组。即使生成关联物体，"
+    "constraints 仍须保留完整关系语义。骑自行车、戴安全帽、靠近汽车、抱着狗等关系不受支持，"
+    "必须 related_objects=[]，不得映射为 held_by_target。"
 )
 
 FINAL_SYSTEM_PROMPT = (
     "你是 Visual Agent 的结果汇总器。只能根据提供的已执行计划和结构化视觉结果，"
     "生成一句简短中文回答。不得增加结果中没有的视觉事实，不得猜身份、年龄、地点、颜色或数量，"
-    "不得声称执行了不存在的动作。如果 targets_count 为 0，必须明确没有找到满足条件的目标。"
+    "不得声称执行了不存在的动作。如果 complete_semantic_targets_count 为 0、但 verified_subjects_count 大于 0，"
+    "必须根据 incomplete_semantic_groups 说明已找到主体候选但关联对象不完整，因此没有执行图片操作；"
+    "不能说没有找到目标。只有 verified_subjects_count 也为 0 时，才明确没有找到满足条件的目标。"
     "你不能修改计划、候选、验证结论、动作或触发重新执行。只输出给用户的最终回答。"
 )
 
@@ -135,7 +163,13 @@ class DeepSeekAgent:
         arguments = json.loads(tool_call.function.arguments)
         if not isinstance(arguments, dict):
             raise RuntimeError("tool arguments 必须是 JSON 对象")
-        if set(arguments) != {"target_object", "label", "constraints", "action"}:
+        if set(arguments) != {
+            "target_object",
+            "label",
+            "constraints",
+            "action",
+            "related_objects",
+        }:
             raise RuntimeError("tool arguments 顶层字段不正确")
 
         target_object = arguments["target_object"]
@@ -170,9 +204,31 @@ class DeepSeekAgent:
             or action.get("type") not in ACTION_TYPES
         ):
             raise RuntimeError("action 只能包含白名单 type")
+        related_objects = arguments["related_objects"]
+        if not isinstance(related_objects, list) or len(related_objects) > 1:
+            raise RuntimeError("related_objects 必须是长度 0..1 的数组")
+        normalized_related_objects = []
+        for related in related_objects:
+            if not isinstance(related, dict) or set(related) != {"object", "relation"}:
+                raise RuntimeError("related object 只能包含 object 和 relation")
+            related_object = related["object"]
+            if not isinstance(related_object, str) or not related_object.strip():
+                raise RuntimeError("related object 必须是非空字符串")
+            related_object = related_object.strip().lower()
+            related_words = related_object.split()
+            if not 1 <= len(related_words) <= 3 or not all(
+                re.fullmatch(r"[a-z]+", word) for word in related_words
+            ):
+                raise RuntimeError("related object 必须是 1 到 3 个英文单词")
+            if related["relation"] != "held_by_target":
+                raise RuntimeError("Phase 7 relation 只能是 held_by_target")
+            normalized_related_objects.append(
+                {"object": related_object, "relation": "held_by_target"}
+            )
         return {
             "target_object": target_object,
             "label": label.strip(),
             "constraints": constraints,
             "action": {"type": action["type"]},
+            "related_objects": normalized_related_objects,
         }

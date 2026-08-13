@@ -1,0 +1,38 @@
+{
+  "prompt": "把图片中的狗标红",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "dog",
+    "label": "狗",
+    "constraints": [],
+    "action": {
+      "type": "highlight"
+    },
+    "related_objects": []
+  },
+  "candidates": [],
+  "verified_subjects": [],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [],
+  "targets": [],
+  "timings": {
+    "deepseek_plan_seconds": 1.393,
+    "grounding_dino_seconds": 0.449,
+    "group_verification_seconds": 0.0,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": null,
+    "deepseek_final_response_seconds": 1.941
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "images/output_images/result_095.jpg"
+  },
+  "agent_response": "没有找到满足条件的目标。"
+}

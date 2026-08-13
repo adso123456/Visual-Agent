@@ -1,0 +1,188 @@
+[
+  {
+    "prompt": "只给手持雨伞的人描边",
+    "plan": {
+      "target_object": "person",
+      "label": "持伞人",
+      "constraints": [
+        "手持雨伞"
+      ],
+      "action": {
+        "type": "outline"
+      },
+      "related_objects": [
+        {
+          "object": "umbrella",
+          "relation": "held_by_target"
+        }
+      ]
+    },
+    "plan_attempts": 1,
+    "checks": {
+      "target_object": true,
+      "constraints_preserved": true,
+      "action": true,
+      "related_objects": true
+    },
+    "passed": true
+  },
+  {
+    "prompt": "把手持雨伞的人单独抠出来",
+    "plan": {
+      "target_object": "person",
+      "label": "手持雨伞的人",
+      "constraints": [
+        "手持雨伞"
+      ],
+      "action": {
+        "type": "cutout"
+      },
+      "related_objects": [
+        {
+          "object": "umbrella",
+          "relation": "held_by_target"
+        }
+      ]
+    },
+    "plan_attempts": 1,
+    "checks": {
+      "target_object": true,
+      "constraints_preserved": true,
+      "action": true,
+      "related_objects": true
+    },
+    "passed": true
+  },
+  {
+    "prompt": "找到正在钓鱼的人",
+    "plan": {
+      "target_object": "person",
+      "label": "正在钓鱼的人",
+      "constraints": [
+        "正在钓鱼"
+      ],
+      "action": {
+        "type": "highlight"
+      },
+      "related_objects": []
+    },
+    "plan_attempts": 1,
+    "checks": {
+      "target_object": true,
+      "constraints_preserved": true,
+      "action": true,
+      "related_objects": true
+    },
+    "passed": true
+  },
+  {
+    "prompt": "模糊图中的儿童",
+    "plan": {
+      "target_object": "person",
+      "label": "儿童",
+      "constraints": [
+        "儿童"
+      ],
+      "action": {
+        "type": "blur_target"
+      },
+      "related_objects": []
+    },
+    "plan_attempts": 1,
+    "checks": {
+      "target_object": true,
+      "constraints_preserved": true,
+      "action": true,
+      "related_objects": true
+    },
+    "passed": true
+  },
+  {
+    "prompt": "找到骑自行车的人",
+    "plan": {
+      "target_object": "person",
+      "label": "骑自行车的人",
+      "constraints": [
+        "正在骑自行车"
+      ],
+      "action": {
+        "type": "highlight"
+      },
+      "related_objects": []
+    },
+    "plan_attempts": 1,
+    "checks": {
+      "target_object": true,
+      "constraints_preserved": true,
+      "action": true,
+      "related_objects": true
+    },
+    "passed": true
+  },
+  {
+    "prompt": "找到戴安全帽的人",
+    "plan": {
+      "target_object": "person",
+      "label": "戴安全帽的人",
+      "constraints": [
+        "戴安全帽"
+      ],
+      "action": {
+        "type": "highlight"
+      },
+      "related_objects": []
+    },
+    "plan_attempts": 1,
+    "checks": {
+      "target_object": true,
+      "constraints_preserved": true,
+      "action": true,
+      "related_objects": true
+    },
+    "passed": true
+  },
+  {
+    "prompt": "找到靠近汽车的人",
+    "plan": {
+      "target_object": "person",
+      "label": "人",
+      "constraints": [
+        "靠近汽车"
+      ],
+      "action": {
+        "type": "highlight"
+      },
+      "related_objects": []
+    },
+    "plan_attempts": 1,
+    "checks": {
+      "target_object": true,
+      "constraints_preserved": true,
+      "action": true,
+      "related_objects": true
+    },
+    "passed": true
+  },
+  {
+    "prompt": "找到抱着狗的人",
+    "plan": {
+      "target_object": "person",
+      "label": "抱着狗的人",
+      "constraints": [
+        "抱着狗"
+      ],
+      "action": {
+        "type": "highlight"
+      },
+      "related_objects": []
+    },
+    "plan_attempts": 1,
+    "checks": {
+      "target_object": true,
+      "constraints_preserved": true,
+      "action": true,
+      "related_objects": true
+    },
+    "passed": true
+  }
+]

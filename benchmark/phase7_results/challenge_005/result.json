@@ -1,0 +1,338 @@
+{
+  "prompt": "只给穿红色衣服的人描边",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "穿红衣服的人",
+    "constraints": [
+      "穿红色衣服"
+    ],
+    "action": {
+      "type": "outline"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        383.16,
+        105.19,
+        1130.32,
+        861.9
+      ],
+      "dino_confidence": 0.4071,
+      "verification_checks": [
+        {
+          "constraint": "穿红色衣服",
+          "status": "satisfied",
+          "evidence": "该区域包含一位戴彩色羽毛帽、穿红色帽子和红色领子衬衫的男子，其衣着主体为红色；背景中也有穿红色上衣的人群。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该区域包含一位戴彩色羽毛帽、穿红色帽子和红色领子衬衫的男子，其衣着主体为红色；背景中也有穿红色上衣的人群。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        1100.33,
+        361.34,
+        1278.31,
+        862.34
+      ],
+      "dino_confidence": 0.3548,
+      "verification_checks": [
+        {
+          "constraint": "穿红色衣服",
+          "status": "satisfied",
+          "evidence": "该区域右侧可见一位穿红色T恤的人，衣物颜色明确为红色。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该区域右侧可见一位穿红色T恤的人，衣物颜色明确为红色。"
+    },
+    {
+      "id": "C",
+      "text_label": "person",
+      "bbox": [
+        1.87,
+        329.27,
+        165.4,
+        861.68
+      ],
+      "dino_confidence": 0.3454,
+      "verification_checks": [
+        {
+          "constraint": "穿红色衣服",
+          "status": "satisfied",
+          "evidence": "该区域左侧可见一位穿红色短袖上衣的人，衣服颜色为红色。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该区域左侧可见一位穿红色短袖上衣的人，衣服颜色为红色。"
+    },
+    {
+      "id": "D",
+      "text_label": "person",
+      "bbox": [
+        933.26,
+        419.05,
+        1131.58,
+        830.5
+      ],
+      "dino_confidence": 0.3309,
+      "verification_checks": [
+        {
+          "constraint": "穿红色衣服",
+          "status": "not_satisfied",
+          "evidence": "该区域主要覆盖一位穿黑灰格子衬衫、内搭红色衣领的人，但其主体外衣并非红色；区域内未见纯红色衣服的完整人物。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该区域主要覆盖一位穿黑灰格子衬衫、内搭红色衣领的人，但其主体外衣并非红色；区域内未见纯红色衣服的完整人物。"
+    }
+  ],
+  "verified_subjects": [
+    {
+      "id": "A",
+      "label": "穿红衣服的人",
+      "text_label": "person",
+      "bbox": [
+        383.16,
+        105.19,
+        1130.32,
+        861.9
+      ],
+      "confidence": 0.4071,
+      "reason": "该区域包含一位戴彩色羽毛帽、穿红色帽子和红色领子衬衫的男子，其衣着主体为红色；背景中也有穿红色上衣的人群。"
+    },
+    {
+      "id": "B",
+      "label": "穿红衣服的人",
+      "text_label": "person",
+      "bbox": [
+        1100.33,
+        361.34,
+        1278.31,
+        862.34
+      ],
+      "confidence": 0.3548,
+      "reason": "该区域右侧可见一位穿红色T恤的人，衣物颜色明确为红色。"
+    },
+    {
+      "id": "C",
+      "label": "穿红衣服的人",
+      "text_label": "person",
+      "bbox": [
+        1.87,
+        329.27,
+        165.4,
+        861.68
+      ],
+      "confidence": 0.3454,
+      "reason": "该区域左侧可见一位穿红色短袖上衣的人，衣服颜色为红色。"
+    }
+  ],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "A",
+      "label": "穿红衣服的人",
+      "subject": {
+        "candidate_id": "A",
+        "object": "person",
+        "bbox": [
+          383.16,
+          105.19,
+          1130.32,
+          861.9
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        383.16,
+        105.19,
+        1130.32,
+        861.9
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    },
+    {
+      "id": "B",
+      "label": "穿红衣服的人",
+      "subject": {
+        "candidate_id": "B",
+        "object": "person",
+        "bbox": [
+          1100.33,
+          361.34,
+          1278.31,
+          862.34
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        1100.33,
+        361.34,
+        1278.31,
+        862.34
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    },
+    {
+      "id": "C",
+      "label": "穿红衣服的人",
+      "subject": {
+        "candidate_id": "C",
+        "object": "person",
+        "bbox": [
+          1.87,
+          329.27,
+          165.4,
+          861.68
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        1.87,
+        329.27,
+        165.4,
+        861.68
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "穿红衣服的人",
+      "text_label": "person",
+      "bbox": [
+        383.16,
+        105.19,
+        1130.32,
+        861.9
+      ],
+      "confidence": 0.4071,
+      "reason": "该区域包含一位戴彩色羽毛帽、穿红色帽子和红色领子衬衫的男子，其衣着主体为红色；背景中也有穿红色上衣的人群。",
+      "composite_bbox": [
+        383.16,
+        105.19,
+        1130.32,
+        861.9
+      ],
+      "components": [
+        {
+          "role": "subject",
+          "object": "person",
+          "candidate_id": "A",
+          "mask_score": 0.9909,
+          "mask_area_pixels": 327361
+        }
+      ],
+      "segmentation": {
+        "mask_path": "images/output_images/result_101_mask_A.png",
+        "mask_score": 0.9909,
+        "mask_area_pixels": 327361
+      }
+    },
+    {
+      "id": "B",
+      "label": "穿红衣服的人",
+      "text_label": "person",
+      "bbox": [
+        1100.33,
+        361.34,
+        1278.31,
+        862.34
+      ],
+      "confidence": 0.3548,
+      "reason": "该区域右侧可见一位穿红色T恤的人，衣物颜色明确为红色。",
+      "composite_bbox": [
+        1100.33,
+        361.34,
+        1278.31,
+        862.34
+      ],
+      "components": [
+        {
+          "role": "subject",
+          "object": "person",
+          "candidate_id": "B",
+          "mask_score": 0.9813,
+          "mask_area_pixels": 59502
+        }
+      ],
+      "segmentation": {
+        "mask_path": "images/output_images/result_101_mask_B.png",
+        "mask_score": 0.9813,
+        "mask_area_pixels": 59502
+      }
+    },
+    {
+      "id": "C",
+      "label": "穿红衣服的人",
+      "text_label": "person",
+      "bbox": [
+        1.87,
+        329.27,
+        165.4,
+        861.68
+      ],
+      "confidence": 0.3454,
+      "reason": "该区域左侧可见一位穿红色短袖上衣的人，衣服颜色为红色。",
+      "composite_bbox": [
+        1.87,
+        329.27,
+        165.4,
+        861.68
+      ],
+      "components": [
+        {
+          "role": "subject",
+          "object": "person",
+          "candidate_id": "C",
+          "mask_score": 0.9759,
+          "mask_area_pixels": 66221
+        }
+      ],
+      "segmentation": {
+        "mask_path": "images/output_images/result_101_mask_C.png",
+        "mask_score": 0.9759,
+        "mask_area_pixels": 66221
+      }
+    }
+  ],
+  "timings": {
+    "deepseek_plan_seconds": 1.836,
+    "grounding_dino_seconds": 0.521,
+    "group_verification_seconds": 3.77,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.897,
+      "inference_seconds": 0.172,
+      "memory_after_load_mb": 1246.5,
+      "peak_memory_mb": 1602.5
+    },
+    "deepseek_final_response_seconds": 1.505
+  },
+  "action_result": {
+    "type": "outline",
+    "image_path": "images/output_images/result_101.jpg"
+  },
+  "agent_response": "已完成，给图中 3 位穿红色衣服的人描边。"
+}

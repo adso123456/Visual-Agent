@@ -1,0 +1,61 @@
+{
+  "prompt": "把正在钓鱼的人标红",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "正在钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ],
+    "action": {
+      "type": "highlight"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        260.7,
+        168.83,
+        309.72,
+        301.64
+      ],
+      "dino_confidence": 0.8651,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "候选A为背对镜头的站立人物，位于水边，但未清晰显示其手中是否持有鱼竿或进行钓鱼动作；远处水边可见几根疑似鱼竿的物体，但无法确认是否属于A。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "候选A为背对镜头的站立人物，位于水边，但未清晰显示其手中是否持有鱼竿或进行钓鱼动作；远处水边可见几根疑似鱼竿的物体，但无法确认是否属于A。"
+    }
+  ],
+  "verified_subjects": [],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [],
+  "targets": [],
+  "timings": {
+    "deepseek_plan_seconds": 1.492,
+    "grounding_dino_seconds": 0.507,
+    "group_verification_seconds": 1.816,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": null,
+    "deepseek_final_response_seconds": 1.221
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "images/output_images/result_100.jpg"
+  },
+  "agent_response": "没有找到满足条件的目标。"
+}

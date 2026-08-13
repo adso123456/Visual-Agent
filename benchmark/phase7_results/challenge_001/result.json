@@ -1,0 +1,160 @@
+{
+  "prompt": "找到正在钓鱼的人",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ],
+    "action": {
+      "type": "highlight"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        183.95,
+        60.79,
+        234.64,
+        148.47
+      ],
+      "dino_confidence": 0.6149,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "该候选为蹲姿，面向水面，但未见其手持鱼竿或明显钓鱼动作；其前方有鱼竿和渔网，但无法确认该鱼竿是否由其持有或操作。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选为蹲姿，面向水面，但未见其手持鱼竿或明显钓鱼动作；其前方有鱼竿和渔网，但无法确认该鱼竿是否由其持有或操作。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "dino_confidence": 0.654,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该候选站立于岸边，双手持长杆（鱼竿），鱼竿伸向水面，且下方可见绿色渔网已入水，呈现典型的钓鱼姿态与装备配置。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该候选站立于岸边，双手持长杆（鱼竿），鱼竿伸向水面，且下方可见绿色渔网已入水，呈现典型的钓鱼姿态与装备配置。"
+    }
+  ],
+  "verified_subjects": [
+    {
+      "id": "B",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "confidence": 0.654,
+      "reason": "该候选站立于岸边，双手持长杆（鱼竿），鱼竿伸向水面，且下方可见绿色渔网已入水，呈现典型的钓鱼姿态与装备配置。"
+    }
+  ],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "B",
+      "label": "钓鱼的人",
+      "subject": {
+        "candidate_id": "B",
+        "object": "person",
+        "bbox": [
+          155.37,
+          23.12,
+          205.32,
+          124.4
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "B",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "confidence": 0.654,
+      "reason": "该候选站立于岸边，双手持长杆（鱼竿），鱼竿伸向水面，且下方可见绿色渔网已入水，呈现典型的钓鱼姿态与装备配置。",
+      "composite_bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "components": [
+        {
+          "role": "subject",
+          "object": "person",
+          "candidate_id": "B",
+          "mask_score": 0.9391,
+          "mask_area_pixels": 1655
+        }
+      ],
+      "segmentation": {
+        "mask_path": "images/output_images/result_098_mask_B.png",
+        "mask_score": 0.9391,
+        "mask_area_pixels": 1655
+      }
+    }
+  ],
+  "timings": {
+    "deepseek_plan_seconds": 1.844,
+    "grounding_dino_seconds": 0.492,
+    "group_verification_seconds": 2.437,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 5.285,
+      "inference_seconds": 0.174,
+      "memory_after_load_mb": 1246.5,
+      "peak_memory_mb": 1602.5
+    },
+    "deepseek_final_response_seconds": 1.545
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "images/output_images/result_098.jpg"
+  },
+  "agent_response": "已找到 1 个正在钓鱼的人，并已为其添加高亮标记。"
+}

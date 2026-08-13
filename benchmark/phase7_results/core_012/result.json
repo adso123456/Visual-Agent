@@ -1,0 +1,38 @@
+{
+  "prompt": "找到图片中的汽车",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "car",
+    "label": "汽车",
+    "constraints": [],
+    "action": {
+      "type": "highlight"
+    },
+    "related_objects": []
+  },
+  "candidates": [],
+  "verified_subjects": [],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [],
+  "targets": [],
+  "timings": {
+    "deepseek_plan_seconds": 1.782,
+    "grounding_dino_seconds": 0.494,
+    "group_verification_seconds": 0.0,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": null,
+    "deepseek_final_response_seconds": 2.253
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "images/output_images/result_094.jpg"
+  },
+  "agent_response": "没有在图片中找到满足条件的汽车。"
+}
