@@ -214,7 +214,12 @@ def validate_candidate_verification(
     returned_candidates = result.get("candidates")
     if not isinstance(returned_candidates, list) or len(returned_candidates) != len(candidates):
         raise RuntimeError(f"Qwen3-VL candidates 数量与输入不一致：{result}")
-    candidates_by_id = {item.get("id"): item for item in returned_candidates if isinstance(item, dict)}
+    for item in returned_candidates:
+        if not isinstance(item, dict) or not isinstance(item.get("id"), str):
+            raise RuntimeError(f"Qwen3-VL candidate id 必须是字符串：{result}")
+        if not isinstance(item.get("checks"), list):
+            raise RuntimeError(f"Qwen3-VL checks 必须是数组：{result}")
+    candidates_by_id = {item["id"]: item for item in returned_candidates}
     if set(candidates_by_id) != {candidate["id"] for candidate in candidates}:
         raise RuntimeError(f"Qwen3-VL candidates ID 与输入不一致：{result}")
 
@@ -229,7 +234,11 @@ def validate_candidate_verification(
             if not isinstance(check, dict) or check.get("constraint") != expected_constraint:
                 raise RuntimeError(f"Qwen3-VL check 未对应原始 constraint：{result}")
             status = check.get("status")
-            if status not in {"satisfied", "not_satisfied", "uncertain"}:
+            if not isinstance(status, str) or status not in {
+                "satisfied",
+                "not_satisfied",
+                "uncertain",
+            }:
                 raise RuntimeError(f"Qwen3-VL 返回无效 status：{result}")
             evidence = check.get("evidence")
             if not isinstance(evidence, str) or not evidence.strip():

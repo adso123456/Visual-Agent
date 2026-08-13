@@ -63,6 +63,32 @@ def candidate_protocol(responses):
     return stub, value, metadata
 
 
+def relation_protocol(responses):
+    stub = Stub(responses)
+    value, metadata = request_validated_json(
+        stub,
+        lambda result: validate_relation_bindings(
+            result, SUBJECTS, RELATED, "held_by_target"
+        ),
+        "relation verification",
+        "relation schema",
+    )
+    return stub, value, metadata
+
+
+def assert_contract_retry(protocol, malformed: dict, valid: dict) -> None:
+    stub, _, metadata = protocol(
+        [json.dumps(malformed, ensure_ascii=False), json.dumps(valid, ensure_ascii=False)]
+    )
+    assert metadata == {
+        "attempts": 2,
+        "retry_count": 1,
+        "recovered": True,
+        "first_error_code": "contract_validation_error",
+    }
+    assert "FORMAT CORRECTION ONLY" in stub.corrections[1]
+
+
 def main() -> None:
     wrong_shape = json.dumps({"candidates": {"A": {"checks": []}}}, ensure_ascii=False)
     valid = json.dumps(VALID_CANDIDATE, ensure_ascii=False)
@@ -105,6 +131,21 @@ def main() -> None:
     assert relation_metadata["attempts"] == 2
     assert relation_metadata["recovered"] is True
     assert relation_metadata["first_error_code"] == "contract_validation_error"
+
+    for malformed_candidate in [
+        {"candidates": [{"id": [], "checks": []}]},
+        {"candidates": [{"id": {}, "checks": []}]},
+        {"candidates": [{"id": "A", "checks": {}}]},
+    ]:
+        assert_contract_retry(candidate_protocol, malformed_candidate, VALID_CANDIDATE)
+
+    valid_binding = VALID_RELATION["bindings"][0]
+    for malformed_relation in [
+        {"bindings": [{**valid_binding, "subject_id": []}]},
+        {"bindings": [{**valid_binding, "related_id": {}}]},
+        {"bindings": [{key: value for key, value in valid_binding.items() if key != "status"}]},
+    ]:
+        assert_contract_retry(relation_protocol, malformed_relation, VALID_RELATION)
     print("Phase 8 protocol retry: PASS")
 
 

@@ -87,6 +87,9 @@ def validate_relation_bindings(
             "evidence",
         }:
             raise RuntimeError("Qwen relation binding 字段不正确")
+        for field in ["subject_id", "related_id", "relation", "status", "evidence"]:
+            if not isinstance(binding[field], str):
+                raise RuntimeError(f"Qwen relation binding {field} 必须是字符串")
         pair = (binding["subject_id"], binding["related_id"])
         if pair not in expected_pairs or pair in returned_pairs:
             raise RuntimeError("Qwen relation binding 包含非法或重复组合")
