@@ -1,0 +1,102 @@
+[
+  {
+    "run": 1,
+    "status": "success",
+    "protocol": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "result": [
+      {
+        "subject_id": "A",
+        "related_id": "R1",
+        "relation": "held_by_target",
+        "status": "satisfied",
+        "evidence": "Subject A's right hand is directly gripping the handle of umbrella R1, with clear physical contact and control; the umbrella is positioned above A's head, indicating active holding."
+      }
+    ],
+    "seconds": 2.015
+  },
+  {
+    "run": 2,
+    "status": "success",
+    "protocol": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "result": [
+      {
+        "subject_id": "A",
+        "related_id": "R1",
+        "relation": "held_by_target",
+        "status": "satisfied",
+        "evidence": "Subject A's right hand is directly gripping the handle of umbrella R1, with the umbrella positioned above and shielding A, indicating clear physical holding."
+      }
+    ],
+    "seconds": 1.803
+  },
+  {
+    "run": 3,
+    "status": "success",
+    "protocol": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "result": [
+      {
+        "subject_id": "A",
+        "related_id": "R1",
+        "relation": "held_by_target",
+        "status": "satisfied",
+        "evidence": "Subject A's right hand is directly gripping the handle of umbrella R1, with the umbrella positioned above and shielding A, indicating clear physical holding."
+      }
+    ],
+    "seconds": 2.294
+  },
+  {
+    "run": 4,
+    "status": "success",
+    "protocol": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "result": [
+      {
+        "subject_id": "A",
+        "related_id": "R1",
+        "relation": "held_by_target",
+        "status": "satisfied",
+        "evidence": "Subject A's right hand is directly gripping the handle of umbrella R1, with clear physical contact and control; the umbrella is positioned above A's head, indicating active holding."
+      }
+    ],
+    "seconds": 2.001
+  },
+  {
+    "run": 5,
+    "status": "success",
+    "protocol": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "result": [
+      {
+        "subject_id": "A",
+        "related_id": "R1",
+        "relation": "held_by_target",
+        "status": "satisfied",
+        "evidence": "Subject A's right hand is directly gripping the handle of umbrella R1, with clear physical contact and control; the umbrella is positioned above A's head, indicating active holding."
+      }
+    ],
+    "seconds": 2.199
+  }
+]

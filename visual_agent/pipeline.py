@@ -10,6 +10,7 @@ from visual_agent.relations import verify_relations
 from visual_agent.renderer import save_results
 from visual_agent.segmentation import Sam2Segmenter
 from visual_agent.vlm import verify_candidates
+from visual_agent.qwen_protocol import skipped_protocol_metadata
 
 
 def _union_bbox(boxes: list[list[float]]) -> list[float]:
@@ -150,8 +151,11 @@ def run_pipeline(image_path: Path, prompt: str) -> tuple[Path, Path]:
         for index, detection in enumerate(detections)
     ]
     started_at = time.perf_counter()
+    candidate_protocol = skipped_protocol_metadata()
     if plan["constraints"] and candidate_inputs:
-        verification_results = verify_candidates(image_path, prompt, plan, candidate_inputs)
+        verification_results, candidate_protocol = verify_candidates(
+            image_path, prompt, plan, candidate_inputs
+        )
         checks_by_id = {item["id"]: item["checks"] for item in verification_results}
     else:
         checks_by_id = {candidate["id"]: [] for candidate in candidate_inputs}
@@ -190,6 +194,7 @@ def run_pipeline(image_path: Path, prompt: str) -> tuple[Path, Path]:
     relation_bindings = []
     relation_grounding_seconds = 0.0
     relation_verification_seconds = 0.0
+    relation_protocol = skipped_protocol_metadata()
     if verified_subjects and plan["related_objects"]:
         related_plan = plan["related_objects"][0]
         started_at = time.perf_counter()
@@ -207,7 +212,7 @@ def run_pipeline(image_path: Path, prompt: str) -> tuple[Path, Path]:
         ]
         if relation_candidates:
             started_at = time.perf_counter()
-            relation_bindings = verify_relations(
+            relation_bindings, relation_protocol = verify_relations(
                 image_path,
                 verified_subjects,
                 relation_candidates,
@@ -297,6 +302,10 @@ def run_pipeline(image_path: Path, prompt: str) -> tuple[Path, Path]:
         "relation_bindings": relation_bindings,
         "semantic_groups": semantic_groups,
         "targets": targets,
+        "qwen_protocol": {
+            "candidate_verification": candidate_protocol,
+            "relation_verification": relation_protocol,
+        },
         "timings": {
             "deepseek_plan_seconds": round(plan_seconds, 3),
             "grounding_dino_seconds": round(grounding_seconds, 3),

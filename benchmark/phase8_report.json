@@ -1,0 +1,408 @@
+{
+  "phase7": {
+    "model": "deepseek-v4-pro",
+    "core": {
+      "passed_cases": 15,
+      "total_cases": 15,
+      "end_to_end_pass_rate": 1.0
+    },
+    "metrics": {
+      "target_object_accuracy": 1.0,
+      "constraint_semantic_accuracy": 1.0,
+      "action_accuracy": 1.0,
+      "target_selection_exact_match_rate": 1.0,
+      "negative_case_pass_rate": 1.0,
+      "segmentation_visual_pass_rate": 1.0,
+      "action_visual_pass_rate": 1.0,
+      "relation_binding_pass_rate": 1.0
+    },
+    "relation_cases": [
+      "core_003",
+      "core_004"
+    ],
+    "repeatability": {
+      "core_004": {
+        "runs": 3,
+        "business_consistent": true,
+        "label_consistent": true,
+        "labels": [
+          "手持雨伞的人",
+          "手持雨伞的人",
+          "手持雨伞的人"
+        ],
+        "signature": {
+          "target_object": "person",
+          "constraints": [
+            "手持雨伞"
+          ],
+          "action": {
+            "type": "cutout"
+          },
+          "related_objects": [
+            {
+              "object": "umbrella",
+              "relation": "held_by_target"
+            }
+          ],
+          "bindings": [
+            {
+              "subject_id": "A",
+              "related_id": "R1",
+              "relation": "held_by_target",
+              "status": "satisfied"
+            }
+          ],
+          "semantic_groups": [
+            {
+              "id": "A",
+              "subject": {
+                "candidate_id": "A",
+                "object": "person",
+                "bbox": [
+                  667.15,
+                  662.65,
+                  1003.39,
+                  1412.13
+                ]
+              },
+              "related_members": [
+                {
+                  "candidate_id": "R1",
+                  "object": "umbrella",
+                  "relation": "held_by_target",
+                  "bbox": [
+                    636.04,
+                    361.79,
+                    1135.29,
+                    719.8
+                  ]
+                }
+              ],
+              "composite_bbox": [
+                636.04,
+                361.79,
+                1135.29,
+                1412.13
+              ],
+              "composite_complete": true,
+              "completion_reason": null
+            }
+          ],
+          "targets": [
+            {
+              "id": "A",
+              "components": [
+                {
+                  "role": "subject",
+                  "object": "person",
+                  "candidate_id": "A",
+                  "mask_score": 0.9855,
+                  "mask_area_pixels": 140360
+                },
+                {
+                  "role": "related",
+                  "candidate_id": "R1",
+                  "object": "umbrella",
+                  "relation": "held_by_target",
+                  "mask_score": 0.9933,
+                  "mask_area_pixels": 121493
+                }
+              ],
+              "mask_score": 0.9855,
+              "mask_area_pixels": 261852
+            }
+          ]
+        }
+      },
+      "core_006": {
+        "runs": 3,
+        "business_consistent": true,
+        "label_consistent": false,
+        "labels": [
+          "钓鱼的人",
+          "正在钓鱼的人",
+          "钓鱼的人"
+        ],
+        "signature": {
+          "target_object": "person",
+          "constraints": [
+            "正在钓鱼"
+          ],
+          "action": {
+            "type": "highlight"
+          },
+          "related_objects": [],
+          "bindings": [],
+          "semantic_groups": [
+            {
+              "id": "A",
+              "subject": {
+                "candidate_id": "A",
+                "object": "person",
+                "bbox": [
+                  400.36,
+                  77.84,
+                  497.7,
+                  336.44
+                ]
+              },
+              "related_members": [],
+              "composite_bbox": [
+                400.36,
+                77.84,
+                497.7,
+                336.44
+              ],
+              "composite_complete": true,
+              "completion_reason": null
+            }
+          ],
+          "targets": [
+            {
+              "id": "A",
+              "components": [
+                {
+                  "role": "subject",
+                  "object": "person",
+                  "candidate_id": "A",
+                  "mask_score": 0.9304,
+                  "mask_area_pixels": 12231
+                }
+              ],
+              "mask_score": 0.9304,
+              "mask_area_pixels": 12231
+            }
+          ]
+        }
+      },
+      "core_011": {
+        "runs": 3,
+        "business_consistent": true,
+        "label_consistent": false,
+        "labels": [
+          "戴帽子的人",
+          "人",
+          "戴帽子的人"
+        ],
+        "signature": {
+          "target_object": "person",
+          "constraints": [
+            "戴帽子"
+          ],
+          "action": {
+            "type": "blur_target"
+          },
+          "related_objects": [],
+          "bindings": [],
+          "semantic_groups": [
+            {
+              "id": "A",
+              "subject": {
+                "candidate_id": "A",
+                "object": "person",
+                "bbox": [
+                  122.68,
+                  88.52,
+                  290.56,
+                  347.96
+                ]
+              },
+              "related_members": [],
+              "composite_bbox": [
+                122.68,
+                88.52,
+                290.56,
+                347.96
+              ],
+              "composite_complete": true,
+              "completion_reason": null
+            },
+            {
+              "id": "B",
+              "subject": {
+                "candidate_id": "B",
+                "object": "person",
+                "bbox": [
+                  7.79,
+                  145.29,
+                  127.93,
+                  347.25
+                ]
+              },
+              "related_members": [],
+              "composite_bbox": [
+                7.79,
+                145.29,
+                127.93,
+                347.25
+              ],
+              "composite_complete": true,
+              "completion_reason": null
+            }
+          ],
+          "targets": [
+            {
+              "id": "A",
+              "components": [
+                {
+                  "role": "subject",
+                  "object": "person",
+                  "candidate_id": "A",
+                  "mask_score": 0.9877,
+                  "mask_area_pixels": 27559
+                }
+              ],
+              "mask_score": 0.9877,
+              "mask_area_pixels": 27559
+            },
+            {
+              "id": "B",
+              "components": [
+                {
+                  "role": "subject",
+                  "object": "person",
+                  "candidate_id": "B",
+                  "mask_score": 0.9832,
+                  "mask_area_pixels": 15913
+                }
+              ],
+              "mask_score": 0.9832,
+              "mask_area_pixels": 15913
+            }
+          ]
+        }
+      },
+      "core_012": {
+        "runs": 3,
+        "business_consistent": true,
+        "label_consistent": true,
+        "labels": [
+          "汽车",
+          "汽车",
+          "汽车"
+        ],
+        "signature": {
+          "target_object": "car",
+          "constraints": [],
+          "action": {
+            "type": "highlight"
+          },
+          "related_objects": [],
+          "bindings": [],
+          "semantic_groups": [],
+          "targets": []
+        }
+      }
+    },
+    "performance_seconds": {
+      "deepseek_plan_seconds": {
+        "min": 1.393,
+        "median": 1.843,
+        "max": 2.744
+      },
+      "grounding_dino_seconds": {
+        "min": 0.449,
+        "median": 0.502,
+        "max": 0.927
+      },
+      "group_verification_seconds": {
+        "min": 0.0,
+        "median": 1.805,
+        "max": 5.816
+      },
+      "relation_grounding_seconds": {
+        "min": 0.0,
+        "median": 0.0,
+        "max": 0.564
+      },
+      "relation_verification_seconds": {
+        "min": 0.0,
+        "median": 0.0,
+        "max": 2.141
+      },
+      "deepseek_final_response_seconds": {
+        "min": 0.834,
+        "median": 1.483,
+        "max": 4.096
+      }
+    },
+    "challenge_004_first_run_error": {
+      "id": "challenge_004",
+      "case_id": "challenge_004",
+      "suite": "challenge",
+      "image": "images/test_images/benchmark_fishing_two_people.png",
+      "prompt": "把正在钓鱼的人以外背景变暗",
+      "expected": {
+        "target_object": "person",
+        "action": "dim_background",
+        "target_count": null,
+        "target_description": "老人明确持竿；儿童是否独立钓鱼存在歧义",
+        "constraints_semantics": [
+          "正在钓鱼"
+        ],
+        "ground_truth": "ambiguous"
+      },
+      "status": "error",
+      "cli_total_seconds": 15.015,
+      "error_type": "RuntimeError",
+      "error": "Qwen3-VL candidates 数量与输入不一致：{'candidates': {'A': {'checks': [{'constraint': '正在钓鱼', 'status': 'satisfied', 'evidence': '候选A为一名白发男性，身穿蓝色牛仔外套和牛仔裤，右手握持一根长鱼竿，鱼竿延伸至水面，姿态为站立垂钓，符合‘正在钓鱼’的视觉特征。'}]}, 'B': {'checks': [{'constraint': '正在钓鱼', 'status': 'satisfied', 'evidence': '候选B为一名穿蓝色羽绒服、戴条纹帽的儿童，双手握持一根较短鱼竿，鱼竿伸向水面，身体朝向水面，呈现钓鱼姿态，符合‘正在钓鱼’的视觉特征。'}]}}}",
+      "traceback": "Traceback (most recent call last):\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\run_benchmark.py\", line 104, in run_case\n    image_output, json_output = run_pipeline(image_path, case[\"prompt\"])\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\pipeline.py\", line 154, in run_pipeline\n    verification_results = verify_candidates(image_path, prompt, plan, candidate_inputs)\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\3\\Visual Agent\\Visual-Agent\\visual_agent\\vlm.py\", line 185, in verify_candidates\n    raise RuntimeError(f\"Qwen3-VL candidates 数量与输入不一致：{result}\")\nRuntimeError: Qwen3-VL candidates 数量与输入不一致：{'candidates': {'A': {'checks': [{'constraint': '正在钓鱼', 'status': 'satisfied', 'evidence': '候选A为一名白发男性，身穿蓝色牛仔外套和牛仔裤，右手握持一根长鱼竿，鱼竿延伸至水面，姿态为站立垂钓，符合‘正在钓鱼’的视觉特征。'}]}, 'B': {'checks': [{'constraint': '正在钓鱼', 'status': 'satisfied', 'evidence': '候选B为一名穿蓝色羽绒服、戴条纹帽的儿童，双手握持一根较短鱼竿，鱼竿伸向水面，身体朝向水面，呈现钓鱼姿态，符合‘正在钓鱼’的视觉特征。'}]}}}\n"
+    },
+    "challenge_005": {
+      "id": "challenge_005",
+      "result": "FAIL",
+      "target_selection": false,
+      "segmentation": true,
+      "action": true,
+      "relation_binding": null,
+      "primary_failure_stage": "GROUNDING",
+      "evidence": "仍只保留3个前景红衣目标，密集小目标召回问题未处理。"
+    },
+    "frozen_modules_modified": false
+  },
+  "phase8": {
+    "qwen_model": "qwen3-vl-flash",
+    "deepseek_model": "deepseek-v4-pro",
+    "max_attempts": 2,
+    "candidate_verification_stability": {
+      "total_calls": 10,
+      "first_attempt_success": 10,
+      "contract_retries": 0,
+      "recovered_retries": 0,
+      "unrecovered_structured_failures": 0
+    },
+    "relation_verification_stability": {
+      "total_calls": 5,
+      "first_attempt_success": 5,
+      "contract_retries": 0,
+      "recovered_retries": 0,
+      "unrecovered_structured_failures": 0
+    },
+    "core": {
+      "passed_cases": 15,
+      "total_cases": 15,
+      "end_to_end_pass_rate": 1.0
+    },
+    "metrics": {
+      "target_selection_exact_match_rate": 1.0,
+      "negative_case_pass_rate": 1.0,
+      "segmentation_visual_pass_rate": 1.0,
+      "action_visual_pass_rate": 1.0
+    },
+    "runtime_failure_count": 0,
+    "structured_output_runtime_failure_count": 0,
+    "challenge_004": {
+      "status": "PASS",
+      "attempts": 1,
+      "targets": 2,
+      "note": "已知 dict shape 未复现；首次合法数组响应通过，完整链路正常完成。"
+    },
+    "challenge_005": {
+      "status": "FAIL",
+      "primary_failure_stage": "GROUNDING",
+      "targets": 3,
+      "note": "仍只覆盖 3 个前景红衣目标，密集小目标召回问题未处理。"
+    },
+    "frozen_modules_modified": false
+  }
+}

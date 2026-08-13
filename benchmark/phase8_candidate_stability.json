@@ -1,0 +1,332 @@
+[
+  {
+    "run": 1,
+    "status": "success",
+    "protocol": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "result": [
+      {
+        "id": "A",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "A 是一位白发老人，身穿蓝色牛仔外套和牛仔裤，右手握着一根长鱼竿，鱼竿延伸至水面，姿态为持竿垂钓，符合‘正在钓鱼’的视觉特征。"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "B 是一名穿蓝色羽绒服、戴条纹帽的儿童，站在 A 旁边，双手握着一根较短的鱼竿，鱼竿也伸向水面，身体朝向水面，呈现钓鱼姿态，符合‘正在钓鱼’的视觉特征。"
+          }
+        ]
+      }
+    ],
+    "seconds": 3.814
+  },
+  {
+    "run": 2,
+    "status": "success",
+    "protocol": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "result": [
+      {
+        "id": "A",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "A 是一位白发老人，身穿蓝色牛仔外套和牛仔裤，站在水边，右手握着一根长鱼竿，鱼竿延伸至水面，姿态表明其正在钓鱼。"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "B 是一名穿蓝色羽绒服、戴条纹帽的儿童，站在水边，双手握着一根鱼竿，鱼竿伸向水面，姿态表明其正在钓鱼。"
+          }
+        ]
+      }
+    ],
+    "seconds": 2.632
+  },
+  {
+    "run": 3,
+    "status": "success",
+    "protocol": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "result": [
+      {
+        "id": "A",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "A 是一位白发老人，身穿蓝色牛仔外套和牛仔裤，站在水边，双手握持一根长鱼竿，鱼竿延伸至水面，姿态表明其正在进行钓鱼活动。"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "B 是一名穿蓝色羽绒服、戴条纹帽子的儿童，站在 A 旁边，双手也握持一根鱼竿，鱼竿伸向水面，身体朝向水面，呈现钓鱼姿态。"
+          }
+        ]
+      }
+    ],
+    "seconds": 3.311
+  },
+  {
+    "run": 4,
+    "status": "success",
+    "protocol": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "result": [
+      {
+        "id": "A",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "该候选区域包含一位白发男性，手持鱼竿，身体朝向水面，呈典型钓鱼姿态，鱼竿明显伸向水面，符合正在钓鱼的视觉特征。"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "该候选区域包含一名穿蓝色外套的儿童，同样手持鱼竿，身体朝向水面，鱼竿伸入水中，呈现与成人相似的钓鱼动作，符合正在钓鱼的视觉特征。"
+          }
+        ]
+      }
+    ],
+    "seconds": 2.845
+  },
+  {
+    "run": 5,
+    "status": "success",
+    "protocol": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "result": [
+      {
+        "id": "A",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "A 是一位白发老人，身穿蓝色牛仔外套和牛仔裤，站在水边，双手握持一根长鱼竿，鱼竿延伸至水面，姿态表明其正在进行钓鱼活动。"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "B 是一名穿蓝色羽绒服、戴条纹帽的儿童，站在水边，双手握持一根鱼竿，鱼竿伸向水面，姿态表明其正在钓鱼。"
+          }
+        ]
+      }
+    ],
+    "seconds": 2.664
+  },
+  {
+    "run": 6,
+    "status": "success",
+    "protocol": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "result": [
+      {
+        "id": "A",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "A 是一位白发老人，身穿蓝色牛仔外套和牛仔裤，站在水边，双手握持一根长鱼竿，鱼竿延伸至水面，姿态表明其正在钓鱼。"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "B 是一名穿蓝色羽绒服、戴条纹帽的儿童，站在水边，双手握持一根鱼竿，鱼竿伸向水面，姿态表明其正在钓鱼。"
+          }
+        ]
+      }
+    ],
+    "seconds": 3.097
+  },
+  {
+    "run": 7,
+    "status": "success",
+    "protocol": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "result": [
+      {
+        "id": "A",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "A 是一位白发老人，身穿蓝色牛仔外套和牛仔裤，站在水边，双手握持一根长鱼竿，鱼竿延伸至水面，姿态表明其正在进行钓鱼活动。"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "B 是一名穿蓝色羽绒服、戴条纹帽的儿童，站在水边，双手握持一根较短的鱼竿，鱼竿伸向水面，身体朝向水面，呈现钓鱼姿态。"
+          }
+        ]
+      }
+    ],
+    "seconds": 2.8
+  },
+  {
+    "run": 8,
+    "status": "success",
+    "protocol": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "result": [
+      {
+        "id": "A",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "A 是一位白发老人，身穿蓝色牛仔外套和牛仔裤，站在水边，右手握着一根长鱼竿，鱼竿延伸至水面，姿态表明其正在钓鱼。"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "B 是一名穿蓝色羽绒服、戴条纹帽子的儿童，站在水边，双手握着一根鱼竿，鱼竿伸向水面，姿态表明其正在钓鱼。"
+          }
+        ]
+      }
+    ],
+    "seconds": 2.562
+  },
+  {
+    "run": 9,
+    "status": "success",
+    "protocol": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "result": [
+      {
+        "id": "A",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "A 是一位白发老人，身穿蓝色牛仔外套和牛仔裤，站在水边，右手握着一根长鱼竿，鱼竿延伸至水面，姿态表明其正在钓鱼。"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "B 是一名穿蓝色羽绒服、戴条纹帽的儿童，站在水边，双手握着一根较短的鱼竿，鱼竿伸向水面，姿态表明其正在钓鱼。"
+          }
+        ]
+      }
+    ],
+    "seconds": 2.536
+  },
+  {
+    "run": 10,
+    "status": "success",
+    "protocol": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "result": [
+      {
+        "id": "A",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "A 是一位白发老人，身穿蓝色牛仔外套和牛仔裤，右手握着一根长鱼竿，鱼竿延伸至水面，姿态为持竿垂钓，符合‘正在钓鱼’的视觉特征。"
+          }
+        ]
+      },
+      {
+        "id": "B",
+        "checks": [
+          {
+            "constraint": "正在钓鱼",
+            "status": "satisfied",
+            "evidence": "B 是一名穿蓝色羽绒服、戴条纹帽的儿童，站在 A 身旁，双手握着一根较短的鱼竿，鱼竿同样伸向水面，身体朝向水面，呈现钓鱼姿态，符合‘正在钓鱼’的视觉特征。"
+          }
+        ]
+      }
+    ],
+    "seconds": 3.1
+  }
+]

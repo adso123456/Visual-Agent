@@ -7,6 +7,8 @@ from pathlib import Path
 from openai import OpenAI
 from PIL import Image, ImageDraw, ImageFont
 
+from visual_agent.qwen_protocol import request_validated_json
+
 
 MODEL_NAME = "qwen3-vl-flash"
 BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
@@ -116,14 +118,12 @@ def verify_relations(
     related_candidates: list[dict],
     related_object: str,
     relation: str,
-) -> list[dict]:
+) -> tuple[list[dict], dict]:
     if not subjects or not related_candidates:
         raise ValueError("Relation Verification 需要非空 subjects 和 related candidates")
     if relation != RELATION:
         raise ValueError(f"不支持的 relation：{relation}")
-    response = _client().chat.completions.create(
-        model=MODEL_NAME,
-        messages=[
+    messages = [
             {
                 "role": "system",
                 "content": (
@@ -133,6 +133,9 @@ def verify_relations(
                     "不得把相邻人物的物体借给当前主体，不得根据常识猜测。证据不足必须使用 uncertain。"
                     "只返回 JSON，顶层仅 bindings。每项只能包含 subject_id、related_id、relation、status、evidence。"
                     "status 只能是 satisfied、not_satisfied、uncertain。每个 S×R 组合必须恰好返回一次。"
+                    "bindings 的值必须是 JSON 数组，不得返回以候选 ID 为 key 的对象。"
+                    "结构必须为 {\"bindings\":[{\"subject_id\":\"A\",\"related_id\":\"R1\","
+                    "\"relation\":\"held_by_target\",\"status\":\"<三态之一>\",\"evidence\":\"<非空证据>\"}]}。"
                     "不要输出 Markdown、分析过程或候选之外的视觉事实。"
                 ),
             },
@@ -160,16 +163,28 @@ def verify_relations(
                     },
                 ],
             },
-        ],
-        temperature=0,
-        response_format={"type": "json_object"},
-    )
-    content = response.choices[0].message.content
-    if not content:
-        raise RuntimeError("Qwen Relation Verification 返回了空响应")
-    return validate_relation_bindings(
-        json.loads(content),
-        subjects,
-        related_candidates,
-        relation,
+        ]
+
+    def request_once(correction: str | None) -> str | None:
+        request_messages = [*messages]
+        if correction:
+            request_messages.append({"role": "user", "content": correction})
+        response = _client().chat.completions.create(
+            model=MODEL_NAME,
+            messages=request_messages,
+            temperature=0,
+            response_format={"type": "json_object"},
+        )
+        return response.choices[0].message.content
+
+    return request_validated_json(
+        request_once,
+        lambda result: validate_relation_bindings(
+            result,
+            subjects,
+            related_candidates,
+            relation,
+        ),
+        "relation verification",
+        '{"bindings":[{"subject_id":"A","related_id":"R1","relation":"held_by_target","status":"<三态之一>","evidence":"<非空证据>"}]}',
     )

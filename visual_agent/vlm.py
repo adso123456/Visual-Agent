@@ -8,6 +8,8 @@ from pathlib import Path
 from openai import OpenAI
 from PIL import Image, ImageDraw, ImageFont
 
+from visual_agent.qwen_protocol import request_validated_json
+
 
 MODEL_NAME = "qwen3-vl-flash"
 BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
@@ -137,10 +139,9 @@ def verify_candidates(
     prompt: str,
     plan: dict,
     candidates: list[dict],
-) -> list[dict]:
+) -> tuple[list[dict], dict]:
     """在同一完整场景中对所有候选进行相对验证。"""
-    result = _json_response(
-        [
+    messages = [
             {
                 "role": "system",
                 "content": (
@@ -156,6 +157,9 @@ def verify_candidates(
                     "constraint、status、evidence。status 只能是 satisfied、not_satisfied 或 uncertain。"
                     "satisfied 表示有明确可见证据；not_satisfied 表示有明确反证；uncertain 表示证据不足或归属不清。"
                     "evidence 使用中文，只写该候选的可见证据。"
+                    "candidates 的值必须是 JSON 数组，不得返回以 A/B/C 为 key 的对象。"
+                    "结构必须为 {\"candidates\":[{\"id\":\"A\",\"checks\":[{\"constraint\":\"<原始约束>\","
+                    "\"status\":\"<三态之一>\",\"evidence\":\"<非空证据>\"}]}]}。"
                     "不要输出 Markdown、思维过程、备选答案、自我讨论，也不要使用‘首先’‘进一步分析’"
                     "‘综合判断’‘最终决定’‘可能的其他选择’。不得凭空补充事实或推断。"
                 ),
@@ -179,7 +183,34 @@ def verify_candidates(
                 ],
             },
         ]
+
+    def request_once(correction: str | None) -> str | None:
+        request_messages = [*messages]
+        if correction:
+            request_messages.append({"role": "user", "content": correction})
+        response = _client().chat.completions.create(
+            model=MODEL_NAME,
+            messages=request_messages,
+            temperature=0,
+            response_format={"type": "json_object"},
+        )
+        return response.choices[0].message.content
+
+    return request_validated_json(
+        request_once,
+        lambda result: validate_candidate_verification(result, candidates, plan["constraints"]),
+        "candidate verification",
+        '{"candidates":[{"id":"A","checks":[{"constraint":"<原始约束>","status":"<三态之一>","evidence":"<非空证据>"}]}]}',
     )
+
+
+def validate_candidate_verification(
+    result: dict,
+    candidates: list[dict],
+    constraints: list[str],
+) -> list[dict]:
+    if not isinstance(result, dict):
+        raise RuntimeError("result 必须是 JSON object")
     returned_candidates = result.get("candidates")
     if not isinstance(returned_candidates, list) or len(returned_candidates) != len(candidates):
         raise RuntimeError(f"Qwen3-VL candidates 数量与输入不一致：{result}")
@@ -191,10 +222,10 @@ def verify_candidates(
     for candidate in candidates:
         candidate_id = candidate["id"]
         checks = candidates_by_id[candidate_id].get("checks")
-        if not isinstance(checks, list) or len(checks) != len(plan["constraints"]):
+        if not isinstance(checks, list) or len(checks) != len(constraints):
             raise RuntimeError(f"Qwen3-VL checks 数量与 constraints 不一致：{result}")
         normalized_checks = []
-        for expected_constraint, check in zip(plan["constraints"], checks):
+        for expected_constraint, check in zip(constraints, checks):
             if not isinstance(check, dict) or check.get("constraint") != expected_constraint:
                 raise RuntimeError(f"Qwen3-VL check 未对应原始 constraint：{result}")
             status = check.get("status")
