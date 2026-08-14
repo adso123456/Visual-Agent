@@ -62,3 +62,18 @@ python -m venv .venv
 Instance Purity 0.685、Mixed-box Rate 0.098、Duplicate Rate 0.043。
 
 详见 `benchmark/instance_quality_v1/README.md` 与 `VISUAL_AGENT_PERCEPTION_CONTRACT_V1.0.md`。
+## Demo Showcase（PRD §7）
+
+一条命令用本地栈跑通五种确定性操作的示例：
+
+```bash
+.venv\Scripts\python demo_showcase.py
+# 输出到 demo_showcase_output/：outline / cutout / highlight / blur / dim + manifest.json
+```
+
+注意：本地栈模式 verify=False，不做 Qwen 语义验证（关系/约束任务只展示
+定位与分割链路）；完整语义链路请使用 main.py 或 Demo UI 并设置 API Key。
+
+## PRD §29 验收对照
+
+逐条证据见 `docs/PRD_ACCEPTANCE_EVIDENCE.md`。
