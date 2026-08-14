@@ -1,5 +1,10 @@
 {
   "benchmark_version": "1.0",
+  "status": "PROVISIONAL",
+  "official_baseline": false,
+  "review_source": "assistant_vision_draft",
+  "review_status": "IN_PROGRESS",
+  "warning": "NOT FOR FORMAL DETECTOR A/B — Candidate Review 尚未人工确认",
   "benchmark_fingerprint": "06f5e26de9f5081d883ed6e6cb95a3aaa9cf26863a14a84c9d8408ff8f00d669",
   "detector_config_hash": "ff1f6f9ac713d4e99f64a1b150088ecc3ca82f38c0bbee10e334e9cdf6d12f65",
   "dataset": {
