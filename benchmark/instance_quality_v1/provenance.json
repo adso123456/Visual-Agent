@@ -1,0 +1,295 @@
+{
+  "benchmark_version": "1.0",
+  "assets": [
+    {
+      "image_id": "TST_SPARSE_001",
+      "commons_title": "File:Cinderella (Nikke) cosplay at Comiket 106 (full body).jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Cinderella_(Nikke)_cosplay_at_Comiket_106_(full_body).jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Cinderella_%28Nikke%29_cosplay_at_Comiket_106_%28full_body%29.jpg/1280px-Cinderella_%28Nikke%29_cosplay_at_Comiket_106_%28full_body%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Benlisquare",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_SPARSE_002",
+      "commons_title": "File:Boxer dog posing on the grass.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Boxer_dog_posing_on_the_grass.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Boxer_dog_posing_on_the_grass.jpg/1280px-Boxer_dog_posing_on_the_grass.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "attribution": "Joselodos",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_SPARSE_003",
+      "commons_title": "File:Red sailing boat south harbor Lysekil.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Red_sailing_boat_south_harbor_Lysekil.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Red_sailing_boat_south_harbor_Lysekil.jpg/1280px-Red_sailing_boat_south_harbor_Lysekil.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "W.carter",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_ADJACENT_001",
+      "commons_title": "File:Two People Standing Back to Back in Milton Keynes - geograph.org.uk - 984546.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Two_People_Standing_Back_to_Back_in_Milton_Keynes_-_geograph.org.uk_-_984546.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Two_People_Standing_Back_to_Back_in_Milton_Keynes_-_geograph.org.uk_-_984546.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "attribution": "Duncan David McColl",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_ADJACENT_002",
+      "commons_title": "File:Group portrait of three young men in Bangladesh 2026.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Group_portrait_of_three_young_men_in_Bangladesh_2026.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Group_portrait_of_three_young_men_in_Bangladesh_2026.jpg/1280px-Group_portrait_of_three_young_men_in_Bangladesh_2026.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Mishu Tiwari",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_ADJACENT_003",
+      "commons_title": "File:Two dogs at Trail & Tail Dog Park, Bangkok.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Two_dogs_at_Trail_%26_Tail_Dog_Park,_Bangkok.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Two_dogs_at_Trail_%26_Tail_Dog_Park%2C_Bangkok.jpg/1280px-Two_dogs_at_Trail_%26_Tail_Dog_Park%2C_Bangkok.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Slyronit",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_DENSE_001",
+      "commons_title": "File:Red shirt in Bangkok.JPG",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Red_shirt_in_Bangkok.JPG",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Red_shirt_in_Bangkok.JPG/1280px-Red_shirt_in_Bangkok.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "attribution": "K.rol2007",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_DENSE_002",
+      "commons_title": "File:Crowd of People at Ridge, Shimla.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Crowd_of_People_at_Ridge,_Shimla.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Crowd_of_People_at_Ridge%2C_Shimla.jpg/1280px-Crowd_of_People_at_Ridge%2C_Shimla.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution": "Shimla Deities",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_DENSE_003",
+      "commons_title": "File:Group portrait of seven elderly people (AM 77607-1).jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Group_portrait_of_seven_elderly_people_(AM_77607-1).jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Group_portrait_of_seven_elderly_people_%28AM_77607-1%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution": "Collins, Tudor Washington, 1898-1970, photographer",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_SMALL_001",
+      "commons_title": "File:Crowd at Noam Rotem concert.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Crowd_at_Noam_Rotem_concert.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Crowd_at_Noam_Rotem_concert.jpg/1280px-Crowd_at_Noam_Rotem_concert.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "attribution": "Asaf antman",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_SMALL_002",
+      "commons_title": "File:Parking lot, Gross-Gerau (P1090665).jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Parking_lot,_Gross-Gerau_(P1090665).jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Parking_lot%2C_Gross-Gerau_%28P1090665%29.jpg/1280px-Parking_lot%2C_Gross-Gerau_%28P1090665%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en",
+      "attribution": "Matti Blume",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_SMALL_003",
+      "commons_title": "File:Small Boats in a Harbor (3519068744).jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Small_Boats_in_a_Harbor_(3519068744).jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Small_Boats_in_a_Harbor_%283519068744%29.jpg/1280px-Small_Boats_in_a_Harbor_%283519068744%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0",
+      "attribution": "Rennett Stowe from USA",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "commons_title": "File:Chinese Sailors watch from behind a barrier as the Seventh Fleet flagship US Navy (USN) USS BLUE RIDGE (LCC 19) is tied up to the pier. The BLUE RIDGE, the Guided Missile Cruiser US - DPLA - 77764cad08e1f3c9690aa4a913a10705.jpeg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Chinese_Sailors_watch_from_behind_a_barrier_as_the_Seventh_Fleet_flagship_US_Navy_(USN)_USS_BLUE_RIDGE_(LCC_19)_is_tied_up_to_the_pier._The_BLUE_RIDGE,_the_Guided_Missile_Cruiser_US_-_DPLA_-_77764cad08e1f3c9690aa4a913a10705.jpeg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Chinese_Sailors_watch_from_behind_a_barrier_as_the_Seventh_Fleet_flagship_US_Navy_%28USN%29_USS_BLUE_RIDGE_%28LCC_19%29_is_tied_up_to_the_pier._The_BLUE_RIDGE%2C_the_Guided_Missile_Cruiser_US_-_DPLA_-_77764cad08e1f3c9690aa4a913a10705.jpeg/1280px-thumbnail.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "Public domain",
+      "license_url": "",
+      "attribution": "Department of Defense. American Forces Information Service. Defense Visual Information Center. 1994",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_OCCLUSION_002",
+      "commons_title": "File:Jogging across North Parade Bridge, Bath - geograph.org.uk - 4192102.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Jogging_across_North_Parade_Bridge,_Bath_-_geograph.org.uk_-_4192102.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Jogging_across_North_Parade_Bridge%2C_Bath_-_geograph.org.uk_-_4192102.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "attribution": "Jaggery",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_OCCLUSION_003",
+      "commons_title": "File:View on a temporary bike-path along the sidewalk wit walking people and the road Ruijterkade; location is behind Central Station Amsterdam; free photo by Fons Heijnsbroek, April 2022.tif",
+      "source_url": "https://commons.wikimedia.org/wiki/File:View_on_a_temporary_bike-path_along_the_sidewalk_wit_walking_people_and_the_road_Ruijterkade;_location_is_behind_Central_Station_Amsterdam;_free_photo_by_Fons_Heijnsbroek,_April_2022.tif",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/View_on_a_temporary_bike-path_along_the_sidewalk_wit_walking_people_and_the_road_Ruijterkade%3B_location_is_behind_Central_Station_Amsterdam%3B_free_photo_by_Fons_Heijnsbroek%2C_April_2022.tif/lossy-page1-1280px-thumbnail.tif.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "attribution": "Fons Heijnsbroek",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_SCALE_001",
+      "commons_title": "File:Fishing boats. Ano Symi harbor, Greece.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Fishing_boats._Ano_Symi_harbor,_Greece.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Fishing_boats._Ano_Symi_harbor%2C_Greece.jpg/1280px-Fishing_boats._Ano_Symi_harbor%2C_Greece.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+      "attribution": "Ввласенко",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_SCALE_002",
+      "commons_title": "File:5 people taking group selfies with Demon Slayer cosplay clothing, Kuro Historian photographing 20210321.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:5_people_taking_group_selfies_with_Demon_Slayer_cosplay_clothing,_Kuro_Historian_photographing_20210321.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/5_people_taking_group_selfies_with_Demon_Slayer_cosplay_clothing%2C_Kuro_Historian_photographing_20210321.jpg/1280px-5_people_taking_group_selfies_with_Demon_Slayer_cosplay_clothing%2C_Kuro_Historian_photographing_20210321.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Solomon203",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_SCALE_003",
+      "commons_title": "File:Long row of parked cars, Station Road, Sandown - geograph.org.uk - 4646851.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Long_row_of_parked_cars,_Station_Road,_Sandown_-_geograph.org.uk_-_4646851.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Long_row_of_parked_cars%2C_Station_Road%2C_Sandown_-_geograph.org.uk_-_4646851.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "attribution": "Jaggery",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_INTERFERENCE_001",
+      "commons_title": "File:A man holding an umbrella.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:A_man_holding_an_umbrella.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/A_man_holding_an_umbrella.jpg/1280px-A_man_holding_an_umbrella.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Salil Kumar Mukherjee",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_INTERFERENCE_002",
+      "commons_title": "File:Woman sitting under a red umbrella, Alameda Afonso Henriques, Lisbon, Portugal julesvernex2.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Woman_sitting_under_a_red_umbrella,_Alameda_Afonso_Henriques,_Lisbon,_Portugal_julesvernex2.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Woman_sitting_under_a_red_umbrella%2C_Alameda_Afonso_Henriques%2C_Lisbon%2C_Portugal_julesvernex2.jpg/1280px-Woman_sitting_under_a_red_umbrella%2C_Alameda_Afonso_Henriques%2C_Lisbon%2C_Portugal_julesvernex2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Jules Verne Times Two",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_INTERFERENCE_003",
+      "commons_title": "File:Vitoria - Hospital de Txagorritxu - Parking - Plazas para minusválidos 01.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Vitoria_-_Hospital_de_Txagorritxu_-_Parking_-_Plazas_para_minusv%C3%A1lidos_01.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Vitoria_-_Hospital_de_Txagorritxu_-_Parking_-_Plazas_para_minusv%C3%A1lidos_01.jpg/1280px-Vitoria_-_Hospital_de_Txagorritxu_-_Parking_-_Plazas_para_minusv%C3%A1lidos_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Basotxerri",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_DOMAIN_001",
+      "commons_title": "File:Caterpillar 330 excavator on a pile of dirt.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Caterpillar_330_excavator_on_a_pile_of_dirt.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Caterpillar_330_excavator_on_a_pile_of_dirt.jpg/1280px-Caterpillar_330_excavator_on_a_pile_of_dirt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Matthew T Rader",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_DOMAIN_002",
+      "commons_title": "File:Sluice Gate in Loutolim.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Sluice_Gate_in_Loutolim.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Sluice_Gate_in_Loutolim.jpg/1280px-Sluice_Gate_in_Loutolim.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "JosephAssisFernandes",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "TST_DOMAIN_003",
+      "commons_title": "File:Sluice Gate - geograph.org.uk - 1968819.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Sluice_Gate_-_geograph.org.uk_-_1968819.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Sluice_Gate_-_geograph.org.uk_-_1968819.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "attribution": "Adrian S Pye",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "CAL_SPARSE_001",
+      "commons_title": "File:Paul Chowdhry May 2022 Englandia Tour (full body).jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Paul_Chowdhry_May_2022_Englandia_Tour_(full_body).jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Paul_Chowdhry_May_2022_Englandia_Tour_%28full_body%29.jpg/1280px-Paul_Chowdhry_May_2022_Englandia_Tour_%28full_body%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC0",
+      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+      "attribution": "Lydshsu",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "CAL_ADJACENT_001",
+      "commons_title": "File:The Dogs of Alcibiades in Victoria Park - geograph.org.uk - 6320717.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:The_Dogs_of_Alcibiades_in_Victoria_Park_-_geograph.org.uk_-_6320717.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/The_Dogs_of_Alcibiades_in_Victoria_Park_-_geograph.org.uk_-_6320717.jpg/1280px-The_Dogs_of_Alcibiades_in_Victoria_Park_-_geograph.org.uk_-_6320717.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+      "attribution": "Marathon",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "CAL_DENSE_001",
+      "commons_title": "File:Parking Monthieu.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Parking_Monthieu.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Parking_Monthieu.jpg/1280px-Parking_Monthieu.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution": "Touam",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "CAL_SMALL_001",
+      "commons_title": "File:Fishing boats in the harbor in Hanga Roa.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Fishing_boats_in_the_harbor_in_Hanga_Roa.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Fishing_boats_in_the_harbor_in_Hanga_Roa.jpg/1280px-Fishing_boats_in_the_harbor_in_Hanga_Roa.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY 4.0",
+      "license_url": "https://creativecommons.org/licenses/by/4.0",
+      "attribution": "Docrgd",
+      "retrieved_utc": "2026-08-13"
+    },
+    {
+      "image_id": "CAL_DOMAIN_001",
+      "commons_title": "File:Doosan DX85R-3 excavator in Remiremont, France - 2022-05-03 - 01.jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Doosan_DX85R-3_excavator_in_Remiremont,_France_-_2022-05-03_-_01.jpg",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Doosan_DX85R-3_excavator_in_Remiremont%2C_France_-_2022-05-03_-_01.jpg/1280px-Doosan_DX85R-3_excavator_in_Remiremont%2C_France_-_2022-05-03_-_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "license": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+      "attribution": "Mathieu Kappler",
+      "retrieved_utc": "2026-08-13"
+    }
+  ]
+}

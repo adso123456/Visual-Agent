@@ -1,0 +1,9 @@
+{
+  "provider": "huggingface_transformers",
+  "model": "IDEA-Research/grounding-dino-base",
+  "full_frame": true,
+  "box_threshold": 0.3,
+  "text_threshold": 0.3,
+  "candidate_order": "detector_return_order",
+  "production_behavioral_baseline": "1682abe2e58229e94225839db881c4b1a5c15e26"
+}

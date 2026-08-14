@@ -16,3 +16,9 @@ images/output_images/*
 *.pt
 *.safetensors
 benchmark/latency_scratch/
+
+# instance_quality_v1 基准资产图片（24 测试图 + 5 校准图）需要入库
+!benchmark/instance_quality_v1/test/*.jpg
+!benchmark/instance_quality_v1/test/*.jpeg
+!benchmark/instance_quality_v1/calibration/*.jpg
+benchmark/instance_quality_v1/runs/

@@ -1,0 +1,23 @@
+{
+  "phase": 12,
+  "status": "BLOCKED_BY_MANUAL_GT",
+  "benchmark_version": "1.0-draft",
+  "completed": {
+    "infrastructure": true,
+    "licensed_assets": true,
+    "test_image_count": 24,
+    "calibration_image_count": 5,
+    "base_raw_run": true,
+    "base_raw_candidate_count": 122,
+    "runtime_metrics": true
+  },
+  "not_completed": {
+    "manual_ground_truth": true,
+    "manual_candidate_review": true,
+    "semantic_probe": true,
+    "official_metrics": true,
+    "official_benchmark_fingerprint": true,
+    "official_baseline_report": true
+  },
+  "reason": "Reliable exhaustive manual GT cannot be completed for all 24 images in the current inspection environment. Model output was not used as GT."
+}

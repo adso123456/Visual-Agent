@@ -1,0 +1,1480 @@
+{
+  "benchmark_version": "1.0",
+  "annotation_state": "DRAFT",
+  "images": [
+    {
+      "image_id": "TST_SPARSE_001",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-13T08:58:06.622091Z",
+      "reviewed_by": "human",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            504.9,
+            160.72,
+            942.81,
+            1807.54
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "isolated",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Assistant reviewed metadata; human confirmation required."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            220.73,
+            461.2,
+            455,
+            1276.46
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "medium",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Partly occluded by foreground subject; human confirmation required."
+        },
+        {
+          "instance_id": "I03",
+          "bbox": [
+            865.94,
+            395.98,
+            1045.3,
+            1066.82
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "medium",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Partly occluded by foreground subject; human confirmation required."
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SPARSE_002",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-13T08:58:09.521457Z",
+      "reviewed_by": "human",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            175,
+            145,
+            1088,
+            770
+          ],
+          "target_object": "dog",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "isolated",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Assistant visual draft; human confirmation required."
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SPARSE_003",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-13T08:58:13.866725Z",
+      "reviewed_by": "human",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            629.96,
+            49.24,
+            1027.37,
+            1896.36
+          ],
+          "target_object": "boat",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "isolated",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Includes the boat's mast and visible hull; human confirmation required."
+        }
+      ]
+    },
+    {
+      "image_id": "TST_ADJACENT_001",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-13T08:58:17.298496Z",
+      "reviewed_by": "human",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            510,
+            132,
+            532,
+            228
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Human-shaped sculpture; category policy requires human confirmation."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            526,
+            130,
+            551,
+            228
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Human-shaped sculpture; category policy requires human confirmation."
+        }
+      ]
+    },
+    {
+      "image_id": "TST_ADJACENT_002",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-13T08:58:19.832201Z",
+      "reviewed_by": "human",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            20,
+            175,
+            390,
+            1248
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Lower legs are outside the image."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            405,
+            180,
+            855,
+            1248
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Lower legs are outside the image."
+        },
+        {
+          "instance_id": "I03",
+          "bbox": [
+            875,
+            175,
+            1279,
+            1248
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Lower legs are outside the image."
+        }
+      ]
+    },
+    {
+      "image_id": "TST_ADJACENT_003",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-13T08:58:23.831126Z",
+      "reviewed_by": "human",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            0,
+            560.2,
+            520.53,
+            1331.8
+          ],
+          "target_object": "dog",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Left side clipped by image boundary."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            508.0,
+            534.47,
+            1280.0,
+            1339.74
+          ],
+          "target_object": "dog",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Assistant visual draft; human confirmation required."
+        }
+      ]
+    },
+    {
+      "image_id": "TST_DENSE_001",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": "2026-08-13T08:57:46.348948Z",
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            420,
+            95,
+            1055,
+            865
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "isolated",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Unambiguous foreground person cropped at image bottom; blurred background figures intentionally excluded."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "Human-review draft: keep only the unambiguous foreground person; blurred background figures are excluded from GT."
+    },
+    {
+      "image_id": "TST_DENSE_002",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            0,
+            1210,
+            124,
+            1706
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Left-boundary foreground woman."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            89,
+            1125,
+            181,
+            1477
+          ],
+          "target_object": "person",
+          "visibility": "heavily_occluded",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Left midground man, partly hidden by foreground people."
+        },
+        {
+          "instance_id": "I03",
+          "bbox": [
+            139,
+            1196,
+            308,
+            1597
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Foreground man in white shirt."
+        },
+        {
+          "instance_id": "I04",
+          "bbox": [
+            238,
+            1194,
+            347,
+            1558
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Foreground man beside white-shirt person."
+        },
+        {
+          "instance_id": "I05",
+          "bbox": [
+            318,
+            1248,
+            397,
+            1594
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Dark-clothed person partially occluded beside yellow top."
+        },
+        {
+          "instance_id": "I06",
+          "bbox": [
+            348,
+            1257,
+            443,
+            1581
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Person in yellow top."
+        },
+        {
+          "instance_id": "I07",
+          "bbox": [
+            376,
+            1255,
+            555,
+            1706
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Central foreground woman cropped at image bottom."
+        },
+        {
+          "instance_id": "I08",
+          "bbox": [
+            574,
+            1219,
+            686,
+            1505
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Central woman in long brown dress."
+        },
+        {
+          "instance_id": "I09",
+          "bbox": [
+            675,
+            1192,
+            751,
+            1512
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Central patterned-clothing person."
+        },
+        {
+          "instance_id": "I10",
+          "bbox": [
+            731,
+            1188,
+            844,
+            1584
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Central dark-clothed man."
+        },
+        {
+          "instance_id": "I11",
+          "bbox": [
+            812,
+            1221,
+            914,
+            1556
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Woman in light vest, partly occluded."
+        },
+        {
+          "instance_id": "I12",
+          "bbox": [
+            896,
+            1238,
+            1008,
+            1575
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Woman in magenta top."
+        },
+        {
+          "instance_id": "I13",
+          "bbox": [
+            969,
+            1244,
+            1081,
+            1594
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Woman in red outfit."
+        },
+        {
+          "instance_id": "I14",
+          "bbox": [
+            1053,
+            1205,
+            1170,
+            1669
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Long-haired woman in light outerwear."
+        },
+        {
+          "instance_id": "I15",
+          "bbox": [
+            804,
+            1408,
+            1042,
+            1706
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Foreground plaid-shirt girl cropped at image bottom."
+        },
+        {
+          "instance_id": "I16",
+          "bbox": [
+            1099,
+            1331,
+            1279,
+            1706
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Right-boundary foreground woman."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "Human-review draft: 16 prominent, independently attributable foreground/midground people are included. Tiny or body-ambiguous background crowd is excluded; do not freeze before human review."
+    },
+    {
+      "image_id": "TST_DENSE_003",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            55,
+            135,
+            345,
+            765
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Standing left."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            330,
+            155,
+            555,
+            555
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Standing rear-left, lower body hidden."
+        },
+        {
+          "instance_id": "I03",
+          "bbox": [
+            650,
+            125,
+            870,
+            535
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Standing rear-center, lower body hidden."
+        },
+        {
+          "instance_id": "I04",
+          "bbox": [
+            885,
+            125,
+            1175,
+            755
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Standing right."
+        },
+        {
+          "instance_id": "I05",
+          "bbox": [
+            270,
+            350,
+            585,
+            820
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Seated left."
+        },
+        {
+          "instance_id": "I06",
+          "bbox": [
+            520,
+            305,
+            760,
+            820
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Seated center."
+        },
+        {
+          "instance_id": "I07",
+          "bbox": [
+            700,
+            295,
+            980,
+            815
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Seated right."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "Seven posed people."
+    },
+    {
+      "image_id": "TST_SMALL_001",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "EXHAUSTIVE_REVIEW_REQUIRED: dense cropped concert crowd; assistant draft left empty rather than fabricate uncertain body extents."
+    },
+    {
+      "image_id": "TST_SMALL_002",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "EXHAUSTIVE_REVIEW_REQUIRED: aerial vehicle storage contains hundreds of tiny cars. Manual exhaustive annotation is required; no guessed draft boxes supplied."
+    },
+    {
+      "image_id": "TST_SMALL_003",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            75,
+            310,
+            250,
+            510
+          ],
+          "target_object": "boat",
+          "visibility": "full",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Left dark fishing boat."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            245,
+            300,
+            375,
+            510
+          ],
+          "target_object": "boat",
+          "visibility": "full",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "White fishing boat."
+        },
+        {
+          "instance_id": "I03",
+          "bbox": [
+            360,
+            345,
+            590,
+            535
+          ],
+          "target_object": "boat",
+          "visibility": "partial",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Green/white boat amid overlap."
+        },
+        {
+          "instance_id": "I04",
+          "bbox": [
+            590,
+            345,
+            885,
+            545
+          ],
+          "target_object": "boat",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Large white center boat."
+        },
+        {
+          "instance_id": "I05",
+          "bbox": [
+            835,
+            325,
+            1110,
+            575
+          ],
+          "target_object": "boat",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Right-center vessel."
+        },
+        {
+          "instance_id": "I06",
+          "bbox": [
+            1020,
+            365,
+            1279,
+            605
+          ],
+          "target_object": "boat",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Right-boundary boat."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "EXHAUSTIVE_REVIEW_REQUIRED: crowded harbor. Draft contains prominent separable boats only; scan background vessels."
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            190,
+            745,
+            445,
+            1640
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Foreground left sailor, lower body partly hidden."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            410,
+            700,
+            730,
+            1710
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Foreground center sailor, lower body partly hidden."
+        },
+        {
+          "instance_id": "I03",
+          "bbox": [
+            770,
+            600,
+            1080,
+            1690
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Foreground right sailor, lower body partly hidden."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "EXHAUSTIVE_REVIEW_REQUIRED: three foreground sailors plus many small sailors on ship decks. Draft contains foreground only."
+    },
+    {
+      "image_id": "TST_OCCLUSION_002",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            78,
+            132,
+            116,
+            245
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Distant pedestrian."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            102,
+            125,
+            142,
+            240
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Distant pedestrian."
+        },
+        {
+          "instance_id": "I03",
+          "bbox": [
+            128,
+            133,
+            164,
+            236
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Distant partially overlapping pedestrian."
+        },
+        {
+          "instance_id": "I04",
+          "bbox": [
+            145,
+            145,
+            178,
+            250
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Distant runner."
+        },
+        {
+          "instance_id": "I05",
+          "bbox": [
+            175,
+            150,
+            202,
+            235
+          ],
+          "target_object": "person",
+          "visibility": "heavily_occluded",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Small distant figure; verify identity."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "Five small pedestrians/runners visible on left walkway; verify at high zoom."
+    },
+    {
+      "image_id": "TST_OCCLUSION_003",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            1150,
+            420,
+            1279,
+            852
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "isolated",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Right-boundary foreground person."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            1162,
+            245,
+            1218,
+            390
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Background pedestrian."
+        },
+        {
+          "instance_id": "I03",
+          "bbox": [
+            1210,
+            258,
+            1262,
+            390
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Background pedestrian."
+        },
+        {
+          "instance_id": "I04",
+          "bbox": [
+            1118,
+            255,
+            1162,
+            380
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Background pedestrian."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "Foreground right person and several background pedestrians; draft includes the clearest instances only."
+    },
+    {
+      "image_id": "TST_SCALE_001",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            85,
+            360,
+            755,
+            840
+          ],
+          "target_object": "boat",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Foreground left boat."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            590,
+            320,
+            1240,
+            760
+          ],
+          "target_object": "boat",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Foreground right boat."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "Two prominent foreground fishing boats; inspect background harbor boats for additional small instances."
+    },
+    {
+      "image_id": "TST_SCALE_002",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            190,
+            195,
+            430,
+            755
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Central-left person, lower body hidden."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            355,
+            285,
+            620,
+            865
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "White-clothed person, lower body hidden."
+        },
+        {
+          "instance_id": "I03",
+          "bbox": [
+            505,
+            230,
+            710,
+            680
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Center person facing curtain."
+        },
+        {
+          "instance_id": "I04",
+          "bbox": [
+            615,
+            335,
+            915,
+            735
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Patterned green clothing."
+        },
+        {
+          "instance_id": "I05",
+          "bbox": [
+            775,
+            205,
+            1135,
+            830
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Right standing person."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "Five central standing people plus cropped foreground audience; draft contains central group only."
+    },
+    {
+      "image_id": "TST_SCALE_003",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            0,
+            390,
+            310,
+            660
+          ],
+          "target_object": "car",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Nearest car clipped by left boundary."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            220,
+            365,
+            430,
+            555
+          ],
+          "target_object": "car",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Second car."
+        },
+        {
+          "instance_id": "I03",
+          "bbox": [
+            395,
+            345,
+            535,
+            485
+          ],
+          "target_object": "car",
+          "visibility": "partial",
+          "scale": "medium",
+          "crowding": "adjacent",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "White van."
+        },
+        {
+          "instance_id": "I04",
+          "bbox": [
+            505,
+            337,
+            590,
+            420
+          ],
+          "target_object": "car",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Distant dark car."
+        },
+        {
+          "instance_id": "I05",
+          "bbox": [
+            565,
+            330,
+            625,
+            390
+          ],
+          "target_object": "car",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Distant red car."
+        },
+        {
+          "instance_id": "I06",
+          "bbox": [
+            610,
+            325,
+            655,
+            370
+          ],
+          "target_object": "car",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Distant car."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "Row of near-to-far parked cars; draft contains clearly separable vehicles, verify distant tail."
+    },
+    {
+      "image_id": "TST_INTERFERENCE_001",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            625,
+            365,
+            1125,
+            735
+          ],
+          "target_object": "umbrella",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "isolated",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Assistant visual draft; human confirmation required."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "One foreground black umbrella; inspect distant street for other umbrellas."
+    },
+    {
+      "image_id": "TST_INTERFERENCE_002",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            565,
+            170,
+            1028,
+            455
+          ],
+          "target_object": "umbrella",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "isolated",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Assistant visual draft; human confirmation required."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "One red umbrella."
+    },
+    {
+      "image_id": "TST_INTERFERENCE_003",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            385,
+            75,
+            535,
+            180
+          ],
+          "target_object": "car",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Dark car left-center."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            620,
+            100,
+            755,
+            190
+          ],
+          "target_object": "car",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Light car center."
+        },
+        {
+          "instance_id": "I03",
+          "bbox": [
+            754,
+            105,
+            875,
+            185
+          ],
+          "target_object": "car",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Light car right-center."
+        },
+        {
+          "instance_id": "I04",
+          "bbox": [
+            900,
+            105,
+            1035,
+            190
+          ],
+          "target_object": "car",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Dark car partly behind barrier."
+        },
+        {
+          "instance_id": "I05",
+          "bbox": [
+            1085,
+            110,
+            1195,
+            195
+          ],
+          "target_object": "car",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Red car partly behind barrier."
+        },
+        {
+          "instance_id": "I06",
+          "bbox": [
+            1210,
+            85,
+            1279,
+            190
+          ],
+          "target_object": "car",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "Right-boundary white vehicle."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "Background parked cars only; verify small partially hidden vehicles at high zoom."
+    },
+    {
+      "image_id": "TST_DOMAIN_001",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            145,
+            165,
+            1215,
+            805
+          ],
+          "target_object": "excavator",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "isolated",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Assistant visual draft; human confirmation required."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "Single excavator; bbox covers tracks, body, boom, and bucket."
+    },
+    {
+      "image_id": "TST_DOMAIN_002",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            452,
+            302,
+            825,
+            490
+          ],
+          "target_object": "gate",
+          "visibility": "full",
+          "scale": "large",
+          "crowding": "isolated",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Gate leaf and crossbeam assembly."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "One wooden sluice gate assembly spanning the channel."
+    },
+    {
+      "image_id": "TST_DOMAIN_003",
+      "annotation_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "pending_human_review",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            0,
+            105,
+            640,
+            395
+          ],
+          "target_object": "gate",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "isolated",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Full visible gate/mechanism spans image width; human policy confirmation required."
+        }
+      ],
+      "draft_source": "assistant_visual_draft_pending_human_review",
+      "draft_review_note": "One mechanical sluice gate assembly; verify whether contract policy wants gate leaf only or full mechanism."
+    }
+  ]
+}
