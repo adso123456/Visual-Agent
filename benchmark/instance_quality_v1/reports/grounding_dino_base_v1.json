@@ -40,33 +40,33 @@
     "recalled_gt_count": 63,
     "instance_recall": 0.732558,
     "review_counts": {
-      "AMBIGUOUS": 30,
-      "DUPLICATE_INSTANCE": 4,
+      "AMBIGUOUS": 25,
+      "DUPLICATE_INSTANCE": 7,
       "FALSE_DETECTION": 6,
       "MIXED_INSTANCE": 9,
-      "PARTIAL_INSTANCE": 10,
-      "VALID_INSTANCE": 63
+      "PARTIAL_INSTANCE": 11,
+      "VALID_INSTANCE": 64
     },
-    "instance_purity": 0.684783,
+    "instance_purity": 0.659794,
     "completeness": {
       "COMPLETE": {
-        "count": 76,
-        "rate": 0.622951
+        "count": 78,
+        "rate": 0.639344
       },
       "UNUSABLE_PARTIAL": {
         "count": 6,
         "rate": 0.04918
       },
       "USABLE_PARTIAL": {
-        "count": 40,
-        "rate": 0.327869
+        "count": 38,
+        "rate": 0.311475
       }
     },
-    "duplicate_candidate_rate": 0.043478,
-    "duplicate_multiplicity": 1.079365,
-    "mixed_box_rate": 0.097826,
-    "false_detection_rate": 0.065217,
-    "ambiguous_count": 30,
+    "duplicate_candidate_rate": 0.072165,
+    "duplicate_multiplicity": 1.15873,
+    "mixed_box_rate": 0.092784,
+    "false_detection_rate": 0.061856,
+    "ambiguous_count": 25,
     "scenario_breakdown": {
       "adjacent_instances": {
         "raw_candidate_count": 7,
@@ -142,14 +142,14 @@
         "recalled_gt_count": 18,
         "instance_recall": 0.75,
         "review_counts": {
-          "AMBIGUOUS": 2,
-          "DUPLICATE_INSTANCE": 0,
+          "AMBIGUOUS": 1,
+          "DUPLICATE_INSTANCE": 1,
           "FALSE_DETECTION": 2,
           "MIXED_INSTANCE": 2,
           "PARTIAL_INSTANCE": 0,
           "VALID_INSTANCE": 18
         },
-        "instance_purity": 0.818182,
+        "instance_purity": 0.782609,
         "completeness": {
           "COMPLETE": {
             "count": 20,
@@ -164,11 +164,11 @@
             "rate": 0.083333
           }
         },
-        "duplicate_candidate_rate": 0.0,
-        "duplicate_multiplicity": 1.0,
-        "mixed_box_rate": 0.090909,
-        "false_detection_rate": 0.090909,
-        "ambiguous_count": 2
+        "duplicate_candidate_rate": 0.043478,
+        "duplicate_multiplicity": 1.055556,
+        "mixed_box_rate": 0.086957,
+        "false_detection_rate": 0.086957,
+        "ambiguous_count": 1
       },
       "domain_long_tail": {
         "raw_candidate_count": 3,
@@ -210,33 +210,33 @@
         "recalled_gt_count": 9,
         "instance_recall": 0.642857,
         "review_counts": {
-          "AMBIGUOUS": 17,
-          "DUPLICATE_INSTANCE": 1,
+          "AMBIGUOUS": 14,
+          "DUPLICATE_INSTANCE": 3,
           "FALSE_DETECTION": 1,
           "MIXED_INSTANCE": 3,
           "PARTIAL_INSTANCE": 3,
-          "VALID_INSTANCE": 9
+          "VALID_INSTANCE": 10
         },
-        "instance_purity": 0.529412,
+        "instance_purity": 0.5,
         "completeness": {
           "COMPLETE": {
-            "count": 13,
-            "rate": 0.382353
+            "count": 15,
+            "rate": 0.441176
           },
           "UNUSABLE_PARTIAL": {
             "count": 1,
             "rate": 0.029412
           },
           "USABLE_PARTIAL": {
-            "count": 20,
-            "rate": 0.588235
+            "count": 18,
+            "rate": 0.529412
           }
         },
-        "duplicate_candidate_rate": 0.058824,
-        "duplicate_multiplicity": 1.111111,
-        "mixed_box_rate": 0.176471,
-        "false_detection_rate": 0.058824,
-        "ambiguous_count": 17
+        "duplicate_candidate_rate": 0.15,
+        "duplicate_multiplicity": 1.444444,
+        "mixed_box_rate": 0.15,
+        "false_detection_rate": 0.05,
+        "ambiguous_count": 14
       },
       "scale_variation": {
         "raw_candidate_count": 20,
@@ -244,33 +244,33 @@
         "recalled_gt_count": 8,
         "instance_recall": 0.615385,
         "review_counts": {
-          "AMBIGUOUS": 4,
-          "DUPLICATE_INSTANCE": 1,
+          "AMBIGUOUS": 2,
+          "DUPLICATE_INSTANCE": 2,
           "FALSE_DETECTION": 2,
           "MIXED_INSTANCE": 3,
-          "PARTIAL_INSTANCE": 2,
+          "PARTIAL_INSTANCE": 3,
           "VALID_INSTANCE": 8
         },
-        "instance_purity": 0.5,
+        "instance_purity": 0.444444,
         "completeness": {
           "COMPLETE": {
-            "count": 12,
-            "rate": 0.6
+            "count": 13,
+            "rate": 0.65
           },
           "UNUSABLE_PARTIAL": {
             "count": 2,
             "rate": 0.1
           },
           "USABLE_PARTIAL": {
-            "count": 6,
-            "rate": 0.3
+            "count": 5,
+            "rate": 0.25
           }
         },
-        "duplicate_candidate_rate": 0.0625,
-        "duplicate_multiplicity": 1.125,
-        "mixed_box_rate": 0.1875,
-        "false_detection_rate": 0.125,
-        "ambiguous_count": 4
+        "duplicate_candidate_rate": 0.111111,
+        "duplicate_multiplicity": 1.375,
+        "mixed_box_rate": 0.166667,
+        "false_detection_rate": 0.111111,
+        "ambiguous_count": 2
       },
       "small_distant": {
         "raw_candidate_count": 11,
@@ -278,33 +278,33 @@
         "recalled_gt_count": 9,
         "instance_recall": 0.75,
         "review_counts": {
-          "AMBIGUOUS": 1,
-          "DUPLICATE_INSTANCE": 1,
+          "AMBIGUOUS": 2,
+          "DUPLICATE_INSTANCE": 0,
           "FALSE_DETECTION": 0,
           "MIXED_INSTANCE": 0,
           "PARTIAL_INSTANCE": 0,
           "VALID_INSTANCE": 9
         },
-        "instance_purity": 0.9,
+        "instance_purity": 1.0,
         "completeness": {
           "COMPLETE": {
-            "count": 10,
-            "rate": 0.909091
+            "count": 9,
+            "rate": 0.818182
           },
           "UNUSABLE_PARTIAL": {
             "count": 0,
             "rate": 0.0
           },
           "USABLE_PARTIAL": {
-            "count": 1,
-            "rate": 0.090909
+            "count": 2,
+            "rate": 0.181818
           }
         },
-        "duplicate_candidate_rate": 0.1,
-        "duplicate_multiplicity": 1.111111,
+        "duplicate_candidate_rate": 0.0,
+        "duplicate_multiplicity": 1.0,
         "mixed_box_rate": 0.0,
         "false_detection_rate": 0.0,
-        "ambiguous_count": 1
+        "ambiguous_count": 2
       },
       "sparse_easy": {
         "raw_candidate_count": 11,

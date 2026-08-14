@@ -211,6 +211,28 @@ def _iou(left, right):
     return 0.0 if union <= 0 else intersection / union
 
 
+def _containment(candidate, gt):
+    """candidate 落在 gt 内的比例（candidate 面积中属于该 GT 的比例）。"""
+    x1, y1 = max(candidate[0], gt[0]), max(candidate[1], gt[1])
+    x2, y2 = min(candidate[2], gt[2]), min(candidate[3], gt[3])
+    intersection = max(0, x2 - x1) * max(0, y2 - y1)
+    candidate_area = (candidate[2] - candidate[0]) * (candidate[3] - candidate[1])
+    return 0.0 if candidate_area <= 0 else intersection / candidate_area
+
+
+def _anchor(candidate, gt_instances):
+    """返回 (mapped_gt, anchor_score)：anchor_score = max(IoU, containment)。
+    小框完全落在大 GT 实例内时 containment 接近 1，适合把局部框判为 PARTIAL。"""
+    best_id, best_score = None, 0.0
+    for gt in gt_instances:
+        iou = _iou(candidate["bbox"], gt["bbox"])
+        containment = _containment(candidate["bbox"], gt["bbox"])
+        score = max(iou, containment)
+        if score > best_score:
+            best_id, best_score = gt["instance_id"], score
+    return best_id, best_score
+
+
 def main() -> None:
     raw = json.loads((ROOT / "runs" / "grounding_dino_base" / "candidates.json").read_text(encoding="utf-8"))
     gt = json.loads((ROOT / "annotations" / "ground_truth.json").read_text(encoding="utf-8"))
@@ -231,30 +253,30 @@ def main() -> None:
             raise RuntimeError(
                 f"verdict mismatch for {image_id}: {sorted(set(classes) ^ {item['id'] for item in row['candidates']})}"
             )
-        # 1) best-IoU 锚定
-        anchors: dict[str, tuple[str | None, float]] = {}
-        for candidate in row["candidates"]:
-            best = max(gt_instances, key=lambda g: _iou(candidate["bbox"], g["bbox"]))
-            anchors[candidate["id"]] = (best["instance_id"], _iou(candidate["bbox"], best["bbox"]))
+        # 1) containment-aware 锚定（IoU 与 containment 取高者）
+        anchors: dict[str, tuple[str | None, float]] = {
+            candidate["id"]: _anchor(candidate, gt_instances)
+            for candidate in row["candidates"]
+        }
         # 2) 一致性：DUPLICATE 需要同 GT 存在更强候选
         mapped_count = Counter()
         for candidate in row["candidates"]:
             cls = classes[candidate["id"]]["class"]
             if cls in {"VALID_INSTANCE", "PARTIAL_INSTANCE", "DUPLICATE_INSTANCE"}:
-                mapped_id, iou = anchors[candidate["id"]]
-                if iou >= 0.15 and mapped_id in gt_ids:
+                mapped_id, score = anchors[candidate["id"]]
+                if score >= 0.30 and mapped_id in gt_ids:
                     mapped_count[mapped_id] += 1
         reviews = []
         for candidate in row["candidates"]:
             candidate_id = candidate["id"]
             info = classes[candidate_id]
             cls, completeness, notes = info["class"], info["completeness"], info["notes"]
-            mapped_id, iou = anchors[candidate_id]
+            mapped_id, score = anchors[candidate_id]
             if cls in {"VALID_INSTANCE", "PARTIAL_INSTANCE", "DUPLICATE_INSTANCE"}:
-                if iou < 0.15 or mapped_id not in gt_ids:
+                if score < 0.30 or mapped_id not in gt_ids:
                     cls = "AMBIGUOUS"
                     completeness = "USABLE_PARTIAL"
-                    notes = notes + "（best-IoU 锚定失败，降级 AMBIGUOUS）"
+                    notes = notes + "（anchor 锚定失败，降级 AMBIGUOUS）"
                     mapped_id = None
                 elif cls == "DUPLICATE_INSTANCE" and mapped_count[mapped_id] < 2:
                     cls = "VALID_INSTANCE"

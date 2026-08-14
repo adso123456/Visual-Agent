@@ -72,28 +72,28 @@
           "classification": "AMBIGUOUS",
           "completeness": "USABLE_PARTIAL",
           "mapped_gt_instance_id": null,
-          "review_notes": "黄色框仅覆盖小艇主体，船头/船尾略有截断；GT 仅收录 I01 主帆船。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "review_notes": "黄色框仅覆盖小艇主体，船头/船尾略有截断；GT 仅收录 I01 主帆船。（anchor 锚定失败，降级 AMBIGUOUS）"
         },
         {
           "candidate_id": "C003",
           "classification": "AMBIGUOUS",
           "completeness": "USABLE_PARTIAL",
           "mapped_gt_instance_id": null,
-          "review_notes": "黄色框覆盖右侧快艇大部分，船尾被遮挡或截断；GT 未收录该实例。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "review_notes": "黄色框覆盖右侧快艇大部分，船尾被遮挡或截断；GT 未收录该实例。（anchor 锚定失败，降级 AMBIGUOUS）"
         },
         {
           "candidate_id": "C004",
           "classification": "AMBIGUOUS",
           "completeness": "USABLE_PARTIAL",
           "mapped_gt_instance_id": null,
-          "review_notes": "黄色小框仅包含小艇前端一小段，明显截断；GT 未收录。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "review_notes": "黄色小框仅包含小艇前端一小段，明显截断；GT 未收录。（anchor 锚定失败，降级 AMBIGUOUS）"
         },
         {
           "candidate_id": "C005",
           "classification": "AMBIGUOUS",
           "completeness": "USABLE_PARTIAL",
           "mapped_gt_instance_id": null,
-          "review_notes": "与 C001 重叠覆盖同一艘大帆船（I01），C001 为更优完整检测。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "review_notes": "与 C001 重叠覆盖同一艘大帆船（I01），C001 为更优完整检测。（anchor 锚定失败，降级 AMBIGUOUS）"
         },
         {
           "candidate_id": "C006",
@@ -206,10 +206,10 @@
         },
         {
           "candidate_id": "C004",
-          "classification": "AMBIGUOUS",
+          "classification": "DUPLICATE_INSTANCE",
           "completeness": "USABLE_PARTIAL",
-          "mapped_gt_instance_id": null,
-          "review_notes": "仅覆盖主人员头部侧影，C001 已更完整覆盖该人。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "仅覆盖主人员头部侧影，C001 已更完整覆盖该人。"
         }
       ]
     },
@@ -405,10 +405,10 @@
         },
         {
           "candidate_id": "C005",
-          "classification": "DUPLICATE_INSTANCE",
-          "completeness": "COMPLETE",
-          "mapped_gt_instance_id": "I01",
-          "review_notes": "与 C001 重复框选同一女性（GT I01），位置偏移但主体相同。"
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "与 C001 重复框选同一女性（GT I01），位置偏移但主体相同。（anchor 锚定失败，降级 AMBIGUOUS）"
         }
       ]
     },
@@ -459,7 +459,7 @@
           "classification": "AMBIGUOUS",
           "completeness": "USABLE_PARTIAL",
           "mapped_gt_instance_id": null,
-          "review_notes": "仅覆盖船前半部，船尾被截断，但主体可辨识（GT I04）。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "review_notes": "仅覆盖船前半部，船尾被截断，但主体可辨识（GT I04）。（anchor 锚定失败，降级 AMBIGUOUS）"
         },
         {
           "candidate_id": "C005",
@@ -509,7 +509,7 @@
           "classification": "AMBIGUOUS",
           "completeness": "USABLE_PARTIAL",
           "mapped_gt_instance_id": null,
-          "review_notes": "小框落在 I03 区域内，C003 已更完整覆盖，属重复检测。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "review_notes": "小框落在 I03 区域内，C003 已更完整覆盖，属重复检测。（anchor 锚定失败，降级 AMBIGUOUS）"
         },
         {
           "candidate_id": "C006",
@@ -520,10 +520,10 @@
         },
         {
           "candidate_id": "C007",
-          "classification": "AMBIGUOUS",
+          "classification": "DUPLICATE_INSTANCE",
           "completeness": "USABLE_PARTIAL",
-          "mapped_gt_instance_id": null,
-          "review_notes": "小框落在 I03 区域内，C003 为更优候选，属重复检测。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "mapped_gt_instance_id": "I03",
+          "review_notes": "小框落在 I03 区域内，C003 为更优候选，属重复检测。"
         },
         {
           "candidate_id": "C008",
@@ -551,7 +551,7 @@
           "classification": "AMBIGUOUS",
           "completeness": "USABLE_PARTIAL",
           "mapped_gt_instance_id": null,
-          "review_notes": "黄色框完整覆盖前景水兵（GT I02），姿态清晰。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "review_notes": "黄色框完整覆盖前景水兵（GT I02），姿态清晰。（anchor 锚定失败，降级 AMBIGUOUS）"
         },
         {
           "candidate_id": "C012",
@@ -562,10 +562,10 @@
         },
         {
           "candidate_id": "C013",
-          "classification": "AMBIGUOUS",
-          "completeness": "USABLE_PARTIAL",
-          "mapped_gt_instance_id": null,
-          "review_notes": "黄色框精准框住左侧站立水兵（GT I01），全身可见。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "黄色框精准框住左侧站立水兵（GT I01），全身可见。"
         },
         {
           "candidate_id": "C014",
@@ -576,31 +576,31 @@
         },
         {
           "candidate_id": "C015",
-          "classification": "AMBIGUOUS",
-          "completeness": "USABLE_PARTIAL",
-          "mapped_gt_instance_id": null,
-          "review_notes": "与 C003 重叠覆盖同一人（I03），C003 更居中完整。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "classification": "DUPLICATE_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I03",
+          "review_notes": "与 C003 重叠覆盖同一人（I03），C003 更居中完整。"
         },
         {
           "candidate_id": "C016",
           "classification": "AMBIGUOUS",
           "completeness": "USABLE_PARTIAL",
           "mapped_gt_instance_id": null,
-          "review_notes": "覆盖中间水手（I02），C011 已更完整覆盖。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "review_notes": "覆盖中间水手（I02），C011 已更完整覆盖。（anchor 锚定失败，降级 AMBIGUOUS）"
         },
         {
           "candidate_id": "C017",
           "classification": "AMBIGUOUS",
           "completeness": "USABLE_PARTIAL",
           "mapped_gt_instance_id": null,
-          "review_notes": "仅覆盖人物上半身（头至腰），下半身被遮挡（GT I03 区域）。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "review_notes": "仅覆盖人物上半身（头至腰），下半身被遮挡（GT I03 区域）。（anchor 锚定失败，降级 AMBIGUOUS）"
         },
         {
           "candidate_id": "C018",
           "classification": "AMBIGUOUS",
           "completeness": "USABLE_PARTIAL",
           "mapped_gt_instance_id": null,
-          "review_notes": "覆盖人物躯干与头部，腿部被遮挡（GT I01 区域）。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "review_notes": "覆盖人物躯干与头部，腿部被遮挡（GT I01 区域）。（anchor 锚定失败，降级 AMBIGUOUS）"
         },
         {
           "candidate_id": "C019",
@@ -621,7 +621,7 @@
           "classification": "AMBIGUOUS",
           "completeness": "USABLE_PARTIAL",
           "mapped_gt_instance_id": null,
-          "review_notes": "小框覆盖中间水手头部区域，清晰但仅为局部（GT I02 区域）。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "review_notes": "小框覆盖中间水手头部区域，清晰但仅为局部（GT I02 区域）。（anchor 锚定失败，降级 AMBIGUOUS）"
         }
       ]
     },
@@ -664,7 +664,7 @@
           "classification": "AMBIGUOUS",
           "completeness": "USABLE_PARTIAL",
           "mapped_gt_instance_id": null,
-          "review_notes": "紧邻 C004，同覆盖一人（GT I04），属重复检测。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "review_notes": "紧邻 C004，同覆盖一人（GT I04），属重复检测。（anchor 锚定失败，降级 AMBIGUOUS）"
         }
       ]
     },
@@ -747,24 +747,24 @@
         },
         {
           "candidate_id": "C002",
-          "classification": "AMBIGUOUS",
-          "completeness": "USABLE_PARTIAL",
-          "mapped_gt_instance_id": null,
-          "review_notes": "黄色框完整包裹前景右侧渔船（GT I02）。（best-IoU 锚定失败，降级 AMBIGUOUS）"
-        },
-        {
-          "candidate_id": "C003",
-          "classification": "AMBIGUOUS",
-          "completeness": "USABLE_PARTIAL",
-          "mapped_gt_instance_id": null,
-          "review_notes": "仅截取中景船只局部；GT 未收录该实例。（best-IoU 锚定失败，降级 AMBIGUOUS）"
-        },
-        {
-          "candidate_id": "C004",
           "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
           "mapped_gt_instance_id": "I02",
-          "review_notes": "与 C002 重叠同覆盖 I02 船只，C002 更紧致准确。（同 GT I02 无更强候选，按 VALID 计）"
+          "review_notes": "黄色框完整包裹前景右侧渔船（GT I02）。"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "PARTIAL_INSTANCE",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "仅截取中景船只局部；GT 未收录该实例。"
+        },
+        {
+          "candidate_id": "C004",
+          "classification": "DUPLICATE_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "与 C002 重叠同覆盖 I02 船只，C002 更紧致准确。"
         },
         {
           "candidate_id": "C005",
@@ -814,14 +814,14 @@
           "classification": "AMBIGUOUS",
           "completeness": "USABLE_PARTIAL",
           "mapped_gt_instance_id": null,
-          "review_notes": "框出人物后脑勺部分（GT I05 区域），属可用局部。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "review_notes": "框出人物后脑勺部分（GT I05 区域），属可用局部。（anchor 锚定失败，降级 AMBIGUOUS）"
         },
         {
           "candidate_id": "C006",
           "classification": "AMBIGUOUS",
           "completeness": "USABLE_PARTIAL",
           "mapped_gt_instance_id": null,
-          "review_notes": "仅覆盖一人后脑勺，无完整躯干；GT 未收录该区域。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "review_notes": "仅覆盖一人后脑勺，无完整躯干；GT 未收录该区域。（anchor 锚定失败，降级 AMBIGUOUS）"
         },
         {
           "candidate_id": "C007",
@@ -841,7 +841,7 @@
           "candidate_id": "C009",
           "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "mapped_gt_instance_id": "I03",
+          "mapped_gt_instance_id": "I02",
           "review_notes": "清晰覆盖白衣背影完整上半身（GT I02）。"
         }
       ]
@@ -972,7 +972,7 @@
           "classification": "AMBIGUOUS",
           "completeness": "USABLE_PARTIAL",
           "mapped_gt_instance_id": null,
-          "review_notes": "仅覆盖红色车前部（GT I01 区域），未含完整车身。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+          "review_notes": "仅覆盖红色车前部（GT I01 区域），未含完整车身。（anchor 锚定失败，降级 AMBIGUOUS）"
         },
         {
           "candidate_id": "C007",
