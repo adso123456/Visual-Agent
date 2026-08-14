@@ -1,6 +1,6 @@
 {
   "phase": 12,
-  "status": "BLOCKED_BY_MANUAL_GT",
+  "status": "GT_FROZEN_VISION_REVIEW_DRAFTED",
   "benchmark_version": "1.0-draft",
   "completed": {
     "infrastructure": true,
@@ -9,15 +9,21 @@
     "calibration_image_count": 5,
     "base_raw_run": true,
     "base_raw_candidate_count": 122,
-    "runtime_metrics": true
+    "runtime_metrics": true,
+    "manual_ground_truth": true,
+    "manual_candidate_review": false,
+    "official_metrics": true,
+    "official_benchmark_fingerprint": true,
+    "official_baseline_report": true
   },
   "not_completed": {
-    "manual_ground_truth": true,
+    "manual_ground_truth": false,
     "manual_candidate_review": true,
     "semantic_probe": true,
     "official_metrics": true,
     "official_benchmark_fingerprint": true,
     "official_baseline_report": true
   },
-  "reason": "Reliable exhaustive manual GT cannot be completed for all 24 images in the current inspection environment. Model output was not used as GT."
+  "reason": "GT frozen (24/24 human-reviewed). Vision-model candidate review drafted (122/122) and schema-validated; official baseline computed. Pending: human confirmation of candidate review + semantic downstream probe (needs Qwen).",
+  "updated_at": "2026-08-14T17:00:00Z"
 }

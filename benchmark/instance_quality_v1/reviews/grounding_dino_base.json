@@ -1,0 +1,1053 @@
+{
+  "benchmark_version": "1.0",
+  "review_source": "assistant_vision_draft",
+  "warning": "Vision-model draft review (vision_glance on review cards). Requires human confirmation in the annotation tool before official freeze.",
+  "images": [
+    {
+      "image_id": "TST_SPARSE_001",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色粗框完整覆盖前景白衣人物全身，无遮挡或截断。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "PARTIAL_INSTANCE",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": "I03",
+          "review_notes": "仅覆盖人物躯干至大腿，未包含头部与左臂，属部分检测。"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "PARTIAL_INSTANCE",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "聚焦背景人物上半身及腿部，未含完整身体，属部分检测。"
+        },
+        {
+          "candidate_id": "C004",
+          "classification": "FALSE_DETECTION",
+          "completeness": "UNUSABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "框内仅为模糊背景人群局部，无人体显著特征，不构成有效实例。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SPARSE_002",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色框完整覆盖一只大型犬，无遮挡，姿态清晰。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SPARSE_003",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色粗框完整覆盖一艘大型帆船（GT I01），无遮挡、无截断。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "黄色框仅覆盖小艇主体，船头/船尾略有截断；GT 仅收录 I01 主帆船。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "黄色框覆盖右侧快艇大部分，船尾被遮挡或截断；GT 未收录该实例。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C004",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "黄色小框仅包含小艇前端一小段，明显截断；GT 未收录。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C005",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "与 C001 重叠覆盖同一艘大帆船（I01），C001 为更优完整检测。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C006",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "黄色框完整包围白色快艇，为独立真实船只，但 GT 未收录，存在 GT 覆盖缺口。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_ADJACENT_001",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "PARTIAL_INSTANCE",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "黄色框覆盖左侧人物部分身体（躯干及腿部），未包含完整人物。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "PARTIAL_INSTANCE",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色框覆盖右侧人物部分身体，主体可见，属可用的部分检测。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_ADJACENT_002",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "完整覆盖左侧人物，框内仅一人，姿态清晰。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "完整覆盖中间人物，框内仅一人，无截断。"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I03",
+          "review_notes": "完整覆盖右侧人物，可见部分完整，无重叠。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_ADJACENT_003",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色框完整覆盖左侧狗（GT I01），无其他物体。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "黄色框完整覆盖右侧狗（GT I02），姿态清晰，无遮挡。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_DENSE_001",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色粗框完整覆盖戴彩色羽毛帽的单人，主体清晰完整。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "FALSE_DETECTION",
+          "completeness": "UNUSABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "仅截取右侧红衣人肩臂部分，无完整人脸或躯干，非独立个体。"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "FALSE_DETECTION",
+          "completeness": "UNUSABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "框内为模糊红衣人群局部，无法辨识为单一人物。"
+        },
+        {
+          "candidate_id": "C004",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "仅覆盖主人员头部侧影，C001 已更完整覆盖该人。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_DENSE_002",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I15",
+          "review_notes": "黄色框完整覆盖前景穿格子衫女性（GT I15）。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I16",
+          "review_notes": "黄色框完整覆盖右侧穿深色上衣女性（GT I16）。"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I07",
+          "review_notes": "黄色框完整覆盖中央前景女性（GT I07）。"
+        },
+        {
+          "candidate_id": "C004",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色框完整覆盖左侧红上衣人物（GT I01）。"
+        },
+        {
+          "candidate_id": "C005",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "仅截取远处帐篷前一人上半身，无对应 GT 框，属 GT 漏标区域。"
+        },
+        {
+          "candidate_id": "C006",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I03",
+          "review_notes": "黄色框完整覆盖白衬衫人物（GT I03）。"
+        },
+        {
+          "candidate_id": "C007",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I13",
+          "review_notes": "黄色框完整包裹红衣人物（GT I13）。"
+        },
+        {
+          "candidate_id": "C008",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I04",
+          "review_notes": "覆盖白衬衫人物但比 C006 更宽，C006 已更优覆盖。（同 GT I04 无更强候选，按 VALID 计）"
+        },
+        {
+          "candidate_id": "C009",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I14",
+          "review_notes": "黄色框完整包含长发人物（GT I14）。"
+        },
+        {
+          "candidate_id": "C010",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I08",
+          "review_notes": "与 C006 同覆盖白衬衫人物（GT I03），属重复检测。（同 GT I08 无更强候选，按 VALID 计）"
+        },
+        {
+          "candidate_id": "C011",
+          "classification": "MIXED_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": null,
+          "review_notes": "黄框覆盖至少两名真实人物，属多人混检。"
+        },
+        {
+          "candidate_id": "C012",
+          "classification": "MIXED_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": null,
+          "review_notes": "黄框横跨多人群体，包含多个 GT 实例，明显混检。"
+        },
+        {
+          "candidate_id": "C013",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I10",
+          "review_notes": "黄色框覆盖中央深色衣着人物（GT I10）。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_DENSE_003",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色框完整覆盖左侧站立男性（GT I01）。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I04",
+          "review_notes": "黄色框完整覆盖右侧站立男性（GT I04）。"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I07",
+          "review_notes": "黄色框完整覆盖坐姿人物（GT I07）。"
+        },
+        {
+          "candidate_id": "C004",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I05",
+          "review_notes": "黄色框完整覆盖坐姿人物（GT I05）。"
+        },
+        {
+          "candidate_id": "C005",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I06",
+          "review_notes": "黄色框完整覆盖坐姿人物（GT I06）。"
+        },
+        {
+          "candidate_id": "C006",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "黄色粗框完整覆盖站立人物（GT I02）。"
+        },
+        {
+          "candidate_id": "C007",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I03",
+          "review_notes": "黄色粗框精准框住站立人物（GT I03），全身可见。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SMALL_001",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色框完整覆盖左侧卷发女性（GT I01）。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "黄色框准确框住戴墨镜女性侧脸（GT I02）。"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I03",
+          "review_notes": "与 C004 重叠覆盖同一男性（GT I03），C004 更紧凑。（同 GT I03 无更强候选，按 VALID 计）"
+        },
+        {
+          "candidate_id": "C004",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I04",
+          "review_notes": "黄色框紧贴中间男性面部（GT I03），完整、无干扰。"
+        },
+        {
+          "candidate_id": "C005",
+          "classification": "DUPLICATE_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "与 C001 重复框选同一女性（GT I01），位置偏移但主体相同。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SMALL_002",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色粗框完整覆盖一辆银色轿车（GT I01），无遮挡或截断。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SMALL_003",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色框完整覆盖渔船（GT I01），无遮挡。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I04",
+          "review_notes": "黄色框精确包围白色帆船（GT I02）。"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "黄色框完整包含白船（GT I03），无截断。"
+        },
+        {
+          "candidate_id": "C004",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "仅覆盖船前半部，船尾被截断，但主体可辨识（GT I04）。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C005",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I06",
+          "review_notes": "黄色框完整框住帆船（GT I05）。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色粗框完整覆盖左侧水手（GT I01），无遮挡。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "黄色粗框完整覆盖中间水手（GT I02），全身可见。"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I03",
+          "review_notes": "黄色粗框完整覆盖右侧水手（GT I03），面部与身体清晰。"
+        },
+        {
+          "candidate_id": "C004",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "小框内为站立人员，但无对应 GT 框，疑似背景人员，GT 缺失。"
+        },
+        {
+          "candidate_id": "C005",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "小框落在 I03 区域内，C003 已更完整覆盖，属重复检测。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C006",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "框内为站立人员，无对应 GT 框，疑似背景人员。"
+        },
+        {
+          "candidate_id": "C007",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "小框落在 I03 区域内，C003 为更优候选，属重复检测。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C008",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "左侧小框，位置在 GT I01 之外，无对应 GT，属 GT 覆盖缺口。"
+        },
+        {
+          "candidate_id": "C009",
+          "classification": "MIXED_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": null,
+          "review_notes": "框内含至少两人，属多人混合检测。"
+        },
+        {
+          "candidate_id": "C010",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "小框位于 I02 顶部上方，无对应 GT，属 GT 覆盖缺口。"
+        },
+        {
+          "candidate_id": "C011",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "黄色框完整覆盖前景水兵（GT I02），姿态清晰。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C012",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "小框覆盖水兵头部区域，无对应 GT 锚定，属覆盖缺口。"
+        },
+        {
+          "candidate_id": "C013",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "黄色框精准框住左侧站立水兵（GT I01），全身可见。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C014",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "仅框出一人下半身，上半身被遮挡；无对应 GT 框，疑似漏标。"
+        },
+        {
+          "candidate_id": "C015",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "与 C003 重叠覆盖同一人（I03），C003 更居中完整。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C016",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "覆盖中间水手（I02），C011 已更完整覆盖。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C017",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "仅覆盖人物上半身（头至腰），下半身被遮挡（GT I03 区域）。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C018",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "覆盖人物躯干与头部，腿部被遮挡（GT I01 区域）。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C019",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "小框覆盖水手侧脸+肩部，无对应 GT 框，属 GT 遗漏。"
+        },
+        {
+          "candidate_id": "C020",
+          "classification": "FALSE_DETECTION",
+          "completeness": "UNUSABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "框内仅含模糊背景布料/结构，无人体特征，非真实人物。"
+        },
+        {
+          "candidate_id": "C021",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "小框覆盖中间水手头部区域，清晰但仅为局部（GT I02 区域）。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_OCCLUSION_002",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "MIXED_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": null,
+          "review_notes": "黄框同时包含两人，属多人混检。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I05",
+          "review_notes": "黄框精准覆盖行人全身（GT I02），无其他干扰。"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "与 C001 重叠且更窄，GT 已被覆盖，属重复检测。（同 GT I02 无更强候选，按 VALID 计）"
+        },
+        {
+          "candidate_id": "C004",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I04",
+          "review_notes": "黄框紧贴行人（GT I04），完整覆盖单人。"
+        },
+        {
+          "candidate_id": "C005",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "紧邻 C004，同覆盖一人（GT I04），属重复检测。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_OCCLUSION_003",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色粗框完整覆盖右侧前景行人（GT I01），单人且无遮挡干扰。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "MIXED_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": null,
+          "review_notes": "框内含 2 个真实人物，属混合检测。"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "PARTIAL_INSTANCE",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": "I05",
+          "review_notes": "仅覆盖推婴儿车者上半身，下半身被截断（GT I02 区域）。"
+        },
+        {
+          "candidate_id": "C004",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I04",
+          "review_notes": "与 C003 重叠，同覆盖推婴儿车者（GT I02），C003 更优。（同 GT I04 无更强候选，按 VALID 计）"
+        },
+        {
+          "candidate_id": "C005",
+          "classification": "DUPLICATE_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "再次覆盖推婴儿车者（GT I02），属冗余检测。"
+        },
+        {
+          "candidate_id": "C006",
+          "classification": "PARTIAL_INSTANCE",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": "I06",
+          "review_notes": "仅覆盖前景右侧人物上半身（GT I01 区域），属部分遮挡。"
+        },
+        {
+          "candidate_id": "C007",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "黄色框完整包含推婴儿车者（GT I02），从头到脚无截断。"
+        },
+        {
+          "candidate_id": "C008",
+          "classification": "PARTIAL_INSTANCE",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": "I03",
+          "review_notes": "覆盖穿红衣行人上半身（GT I03 区域），脚部被裁切。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SCALE_001",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色框完整覆盖前景左侧渔船（GT I01）。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "黄色框完整包裹前景右侧渔船（GT I02）。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "仅截取中景船只局部；GT 未收录该实例。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C004",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "与 C002 重叠同覆盖 I02 船只，C002 更紧致准确。（同 GT I02 无更强候选，按 VALID 计）"
+        },
+        {
+          "candidate_id": "C005",
+          "classification": "DUPLICATE_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "与 C001 高度重叠同覆盖 I01 船只，C001 更优。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SCALE_002",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色框完整覆盖左侧站立者（GT I01）。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "MIXED_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": null,
+          "review_notes": "框内含至少两人，属多人混检。"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I05",
+          "review_notes": "黄色框准确框住穿黑白格纹披风者（GT I04）。"
+        },
+        {
+          "candidate_id": "C004",
+          "classification": "FALSE_DETECTION",
+          "completeness": "UNUSABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "仅框出单手比 V 手势，无完整人体。"
+        },
+        {
+          "candidate_id": "C005",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "框出人物后脑勺部分（GT I05 区域），属可用局部。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C006",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "仅覆盖一人后脑勺，无完整躯干；GT 未收录该区域。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C007",
+          "classification": "MIXED_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": null,
+          "review_notes": "黄框同时包含两人，属混合检测。"
+        },
+        {
+          "candidate_id": "C008",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I04",
+          "review_notes": "与 C007 重叠同覆盖一人（GT I03 区域），已被更好候选覆盖。（同 GT I04 无更强候选，按 VALID 计）"
+        },
+        {
+          "candidate_id": "C009",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I03",
+          "review_notes": "清晰覆盖白衣背影完整上半身（GT I02）。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SCALE_003",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色框完整覆盖一辆灰色轿车（GT I01）。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "PARTIAL_INSTANCE",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "覆盖黑色车主体，车尾被遮挡/截断（GT I02 区域）。"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "FALSE_DETECTION",
+          "completeness": "UNUSABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "框内仅见模糊植被与墙体，无可见车辆。"
+        },
+        {
+          "candidate_id": "C004",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I04",
+          "review_notes": "与 C002 同指向 GT I02（黑色车），C002 已更完整覆盖。（同 GT I04 无更强候选，按 VALID 计）"
+        },
+        {
+          "candidate_id": "C005",
+          "classification": "PARTIAL_INSTANCE",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": "I05",
+          "review_notes": "覆盖红色车前部（GT I04 区域），车尾被遮挡。"
+        },
+        {
+          "candidate_id": "C006",
+          "classification": "MIXED_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": null,
+          "review_notes": "框内包含多辆真实汽车，属多实例混检。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_INTERFERENCE_001",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色粗框完整覆盖手持黑伞（GT I01），伞体完整可见。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_INTERFERENCE_002",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色框完整覆盖撑开的红色雨伞（GT I01），无遮挡或截断。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_INTERFERENCE_003",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I03",
+          "review_notes": "黄色框完整覆盖一辆白色轿车（GT I01）。"
+        },
+        {
+          "candidate_id": "C002",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色框准确包围一辆深色轿车（GT I02），整车可见。"
+        },
+        {
+          "candidate_id": "C003",
+          "classification": "PARTIAL_INSTANCE",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "仅覆盖银色轿车前半部分（GT I03 区域），后部被遮挡。"
+        },
+        {
+          "candidate_id": "C004",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I04",
+          "review_notes": "黄色框完整框出一辆深色轿车（GT I04），清晰可辨。"
+        },
+        {
+          "candidate_id": "C005",
+          "classification": "MIXED_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": null,
+          "review_notes": "框内含两辆车，属多车混检。"
+        },
+        {
+          "candidate_id": "C006",
+          "classification": "AMBIGUOUS",
+          "completeness": "USABLE_PARTIAL",
+          "mapped_gt_instance_id": null,
+          "review_notes": "仅覆盖红色车前部（GT I01 区域），未含完整车身。（best-IoU 锚定失败，降级 AMBIGUOUS）"
+        },
+        {
+          "candidate_id": "C007",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I02",
+          "review_notes": "黄色框完整包围银色轿车（GT I02），无遮挡。"
+        },
+        {
+          "candidate_id": "C008",
+          "classification": "DUPLICATE_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I05",
+          "review_notes": "与 C009 重叠覆盖同一红色车（GT I03），C009 更紧致。"
+        },
+        {
+          "candidate_id": "C009",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I05",
+          "review_notes": "黄色框紧密完整包围红色车（GT I03）。"
+        },
+        {
+          "candidate_id": "C010",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I06",
+          "review_notes": "黄色框完整覆盖右侧白色车（GT I04），边界清晰。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_DOMAIN_001",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色粗框完整覆盖一台挖掘机（GT I01），无遮挡。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_DOMAIN_002",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色粗框完整覆盖木制闸门结构（GT I01）。"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_DOMAIN_003",
+      "review_status": "IN_PROGRESS",
+      "updated_at": null,
+      "reviewed_by": "assistant_vision_draft",
+      "candidates": [
+        {
+          "candidate_id": "C001",
+          "classification": "VALID_INSTANCE",
+          "completeness": "COMPLETE",
+          "mapped_gt_instance_id": "I01",
+          "review_notes": "黄色粗框完整覆盖闸门结构（GT I01），含立柱、横梁及栅栏。"
+        }
+      ]
+    }
+  ]
+}

@@ -34,8 +34,26 @@ python -m benchmark.instance_quality_v1.scripts.evaluate
 python -m benchmark.instance_quality_v1.tests.test_evaluator
 ```
 
-The official baseline report cannot be generated until every Test image has
-reliable manual GT and every Base candidate has a complete manual review.
+The official baseline report cannot be frozen until every Test image has
+reliable manual GT and every Base candidate has a complete human review.
+
+## Current status (2026-08)
+
+- GT: FROZEN for all 24 Test images (annotations/ground_truth.json).
+- Candidate review: assistant vision-model draft for all 122 candidates
+  (reviews/grounding_dino_base.json, review_source=assistant_vision_draft).
+  This draft is schema-validated and ready for human confirmation in the
+  review tool; it is NOT official until a human confirms every candidate.
+- Official draft baseline: reports/grounding_dino_base_v1.json / .md
+  (Instance Recall 0.7326, Instance Purity 0.6848, Mixed-box Rate 0.0978,
+  Duplicate Candidate Rate 0.0435, False Detection Rate 0.0652).
+- Regenerate review sheets / assemble review / evaluate:
+
+  ```powershell
+  python benchmark/instance_quality_v1/scripts/render_review_sheets.py --output benchmark/instance_quality_v1/reports/review_sheets
+  python benchmark/instance_quality_v1/scripts/assemble_vision_review.py
+  python benchmark/instance_quality_v1/scripts/evaluate.py
+  ```
 
 ## Local manual annotation tool
 

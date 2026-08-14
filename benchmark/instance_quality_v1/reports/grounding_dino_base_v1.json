@@ -1,0 +1,399 @@
+{
+  "benchmark_version": "1.0",
+  "benchmark_fingerprint": "06f5e26de9f5081d883ed6e6cb95a3aaa9cf26863a14a84c9d8408ff8f00d669",
+  "detector_config_hash": "ff1f6f9ac713d4e99f64a1b150088ecc3ca82f38c0bbee10e334e9cdf6d12f65",
+  "dataset": {
+    "test_count": 24,
+    "calibration_count": 5,
+    "scenario_distribution": {
+      "sparse_easy": 3,
+      "adjacent_instances": 3,
+      "dense_instances": 3,
+      "small_distant": 3,
+      "occlusion": 3,
+      "scale_variation": 3,
+      "cross_object_interference": 3,
+      "domain_long_tail": 3
+    },
+    "target_distribution": {
+      "person": 11,
+      "dog": 2,
+      "boat": 3,
+      "car": 3,
+      "umbrella": 2,
+      "excavator": 1,
+      "gate": 2
+    }
+  },
+  "detector_config": {
+    "provider": "huggingface_transformers",
+    "model": "IDEA-Research/grounding-dino-base",
+    "full_frame": true,
+    "box_threshold": 0.3,
+    "text_threshold": 0.3,
+    "candidate_order": "detector_return_order",
+    "production_behavioral_baseline": "1682abe2e58229e94225839db881c4b1a5c15e26"
+  },
+  "metrics": {
+    "raw_candidate_count": 122,
+    "evaluable_gt_count": 86,
+    "recalled_gt_count": 63,
+    "instance_recall": 0.732558,
+    "review_counts": {
+      "AMBIGUOUS": 30,
+      "DUPLICATE_INSTANCE": 4,
+      "FALSE_DETECTION": 6,
+      "MIXED_INSTANCE": 9,
+      "PARTIAL_INSTANCE": 10,
+      "VALID_INSTANCE": 63
+    },
+    "instance_purity": 0.684783,
+    "completeness": {
+      "COMPLETE": {
+        "count": 76,
+        "rate": 0.622951
+      },
+      "UNUSABLE_PARTIAL": {
+        "count": 6,
+        "rate": 0.04918
+      },
+      "USABLE_PARTIAL": {
+        "count": 40,
+        "rate": 0.327869
+      }
+    },
+    "duplicate_candidate_rate": 0.043478,
+    "duplicate_multiplicity": 1.079365,
+    "mixed_box_rate": 0.097826,
+    "false_detection_rate": 0.065217,
+    "ambiguous_count": 30,
+    "scenario_breakdown": {
+      "adjacent_instances": {
+        "raw_candidate_count": 7,
+        "evaluable_gt_count": 7,
+        "recalled_gt_count": 5,
+        "instance_recall": 0.714286,
+        "review_counts": {
+          "AMBIGUOUS": 0,
+          "DUPLICATE_INSTANCE": 0,
+          "FALSE_DETECTION": 0,
+          "MIXED_INSTANCE": 0,
+          "PARTIAL_INSTANCE": 2,
+          "VALID_INSTANCE": 5
+        },
+        "instance_purity": 0.714286,
+        "completeness": {
+          "COMPLETE": {
+            "count": 5,
+            "rate": 0.714286
+          },
+          "UNUSABLE_PARTIAL": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "USABLE_PARTIAL": {
+            "count": 2,
+            "rate": 0.285714
+          }
+        },
+        "duplicate_candidate_rate": 0.0,
+        "duplicate_multiplicity": 1.0,
+        "mixed_box_rate": 0.0,
+        "false_detection_rate": 0.0,
+        "ambiguous_count": 0
+      },
+      "cross_object_interference": {
+        "raw_candidate_count": 12,
+        "evaluable_gt_count": 8,
+        "recalled_gt_count": 8,
+        "instance_recall": 1.0,
+        "review_counts": {
+          "AMBIGUOUS": 1,
+          "DUPLICATE_INSTANCE": 1,
+          "FALSE_DETECTION": 0,
+          "MIXED_INSTANCE": 1,
+          "PARTIAL_INSTANCE": 1,
+          "VALID_INSTANCE": 8
+        },
+        "instance_purity": 0.727273,
+        "completeness": {
+          "COMPLETE": {
+            "count": 10,
+            "rate": 0.833333
+          },
+          "UNUSABLE_PARTIAL": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "USABLE_PARTIAL": {
+            "count": 2,
+            "rate": 0.166667
+          }
+        },
+        "duplicate_candidate_rate": 0.090909,
+        "duplicate_multiplicity": 1.25,
+        "mixed_box_rate": 0.090909,
+        "false_detection_rate": 0.0,
+        "ambiguous_count": 1
+      },
+      "dense_instances": {
+        "raw_candidate_count": 24,
+        "evaluable_gt_count": 24,
+        "recalled_gt_count": 18,
+        "instance_recall": 0.75,
+        "review_counts": {
+          "AMBIGUOUS": 2,
+          "DUPLICATE_INSTANCE": 0,
+          "FALSE_DETECTION": 2,
+          "MIXED_INSTANCE": 2,
+          "PARTIAL_INSTANCE": 0,
+          "VALID_INSTANCE": 18
+        },
+        "instance_purity": 0.818182,
+        "completeness": {
+          "COMPLETE": {
+            "count": 20,
+            "rate": 0.833333
+          },
+          "UNUSABLE_PARTIAL": {
+            "count": 2,
+            "rate": 0.083333
+          },
+          "USABLE_PARTIAL": {
+            "count": 2,
+            "rate": 0.083333
+          }
+        },
+        "duplicate_candidate_rate": 0.0,
+        "duplicate_multiplicity": 1.0,
+        "mixed_box_rate": 0.090909,
+        "false_detection_rate": 0.090909,
+        "ambiguous_count": 2
+      },
+      "domain_long_tail": {
+        "raw_candidate_count": 3,
+        "evaluable_gt_count": 3,
+        "recalled_gt_count": 3,
+        "instance_recall": 1.0,
+        "review_counts": {
+          "AMBIGUOUS": 0,
+          "DUPLICATE_INSTANCE": 0,
+          "FALSE_DETECTION": 0,
+          "MIXED_INSTANCE": 0,
+          "PARTIAL_INSTANCE": 0,
+          "VALID_INSTANCE": 3
+        },
+        "instance_purity": 1.0,
+        "completeness": {
+          "COMPLETE": {
+            "count": 3,
+            "rate": 1.0
+          },
+          "UNUSABLE_PARTIAL": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "USABLE_PARTIAL": {
+            "count": 0,
+            "rate": 0.0
+          }
+        },
+        "duplicate_candidate_rate": 0.0,
+        "duplicate_multiplicity": 1.0,
+        "mixed_box_rate": 0.0,
+        "false_detection_rate": 0.0,
+        "ambiguous_count": 0
+      },
+      "occlusion": {
+        "raw_candidate_count": 34,
+        "evaluable_gt_count": 14,
+        "recalled_gt_count": 9,
+        "instance_recall": 0.642857,
+        "review_counts": {
+          "AMBIGUOUS": 17,
+          "DUPLICATE_INSTANCE": 1,
+          "FALSE_DETECTION": 1,
+          "MIXED_INSTANCE": 3,
+          "PARTIAL_INSTANCE": 3,
+          "VALID_INSTANCE": 9
+        },
+        "instance_purity": 0.529412,
+        "completeness": {
+          "COMPLETE": {
+            "count": 13,
+            "rate": 0.382353
+          },
+          "UNUSABLE_PARTIAL": {
+            "count": 1,
+            "rate": 0.029412
+          },
+          "USABLE_PARTIAL": {
+            "count": 20,
+            "rate": 0.588235
+          }
+        },
+        "duplicate_candidate_rate": 0.058824,
+        "duplicate_multiplicity": 1.111111,
+        "mixed_box_rate": 0.176471,
+        "false_detection_rate": 0.058824,
+        "ambiguous_count": 17
+      },
+      "scale_variation": {
+        "raw_candidate_count": 20,
+        "evaluable_gt_count": 13,
+        "recalled_gt_count": 8,
+        "instance_recall": 0.615385,
+        "review_counts": {
+          "AMBIGUOUS": 4,
+          "DUPLICATE_INSTANCE": 1,
+          "FALSE_DETECTION": 2,
+          "MIXED_INSTANCE": 3,
+          "PARTIAL_INSTANCE": 2,
+          "VALID_INSTANCE": 8
+        },
+        "instance_purity": 0.5,
+        "completeness": {
+          "COMPLETE": {
+            "count": 12,
+            "rate": 0.6
+          },
+          "UNUSABLE_PARTIAL": {
+            "count": 2,
+            "rate": 0.1
+          },
+          "USABLE_PARTIAL": {
+            "count": 6,
+            "rate": 0.3
+          }
+        },
+        "duplicate_candidate_rate": 0.0625,
+        "duplicate_multiplicity": 1.125,
+        "mixed_box_rate": 0.1875,
+        "false_detection_rate": 0.125,
+        "ambiguous_count": 4
+      },
+      "small_distant": {
+        "raw_candidate_count": 11,
+        "evaluable_gt_count": 12,
+        "recalled_gt_count": 9,
+        "instance_recall": 0.75,
+        "review_counts": {
+          "AMBIGUOUS": 1,
+          "DUPLICATE_INSTANCE": 1,
+          "FALSE_DETECTION": 0,
+          "MIXED_INSTANCE": 0,
+          "PARTIAL_INSTANCE": 0,
+          "VALID_INSTANCE": 9
+        },
+        "instance_purity": 0.9,
+        "completeness": {
+          "COMPLETE": {
+            "count": 10,
+            "rate": 0.909091
+          },
+          "UNUSABLE_PARTIAL": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "USABLE_PARTIAL": {
+            "count": 1,
+            "rate": 0.090909
+          }
+        },
+        "duplicate_candidate_rate": 0.1,
+        "duplicate_multiplicity": 1.111111,
+        "mixed_box_rate": 0.0,
+        "false_detection_rate": 0.0,
+        "ambiguous_count": 1
+      },
+      "sparse_easy": {
+        "raw_candidate_count": 11,
+        "evaluable_gt_count": 5,
+        "recalled_gt_count": 3,
+        "instance_recall": 0.6,
+        "review_counts": {
+          "AMBIGUOUS": 5,
+          "DUPLICATE_INSTANCE": 0,
+          "FALSE_DETECTION": 1,
+          "MIXED_INSTANCE": 0,
+          "PARTIAL_INSTANCE": 2,
+          "VALID_INSTANCE": 3
+        },
+        "instance_purity": 0.5,
+        "completeness": {
+          "COMPLETE": {
+            "count": 3,
+            "rate": 0.272727
+          },
+          "UNUSABLE_PARTIAL": {
+            "count": 1,
+            "rate": 0.090909
+          },
+          "USABLE_PARTIAL": {
+            "count": 7,
+            "rate": 0.636364
+          }
+        },
+        "duplicate_candidate_rate": 0.0,
+        "duplicate_multiplicity": 1.0,
+        "mixed_box_rate": 0.0,
+        "false_detection_rate": 0.166667,
+        "ambiguous_count": 5
+      }
+    },
+    "small_instance_recall": 0.65,
+    "partial_visibility_recall": 0.6875,
+    "heavy_occlusion_recall": 0.666667,
+    "iqs": "NOT_DEFINED_V1",
+    "downstream_usability": {
+      "probe_image_count": 0,
+      "evaluated_usable_candidates": 0,
+      "vlm_correct": 0,
+      "vlm_incorrect": 0,
+      "detector_downstream_unusable": 0,
+      "vlm_semantic_limit": 0,
+      "not_evaluable": 0,
+      "rate": null
+    }
+  },
+  "runtime": {
+    "model_load_seconds": 9.41875,
+    "mean_detection_latency_seconds": 8.099511,
+    "p50_detection_latency_seconds": 7.806746,
+    "p95_detection_latency_seconds": 10.599892,
+    "device": "cpu",
+    "cuda_available": false,
+    "peak_vram_bytes": "not_available",
+    "torch_version": "2.11.0+cpu",
+    "transformers_version": "5.8.1",
+    "python_version": "3.12.4",
+    "batch_support": "not_measured; production detect() accepts one image",
+    "dependency_complexity": "Existing local PyTorch and Transformers stack; no dependency added.",
+    "binding_repair_runs": [
+      {
+        "image_ids": [
+          "TST_SMALL_002"
+        ],
+        "model_load_seconds": 9.567195,
+        "mean_detection_latency_seconds": 9.189133,
+        "p50_detection_latency_seconds": 9.189133,
+        "p95_detection_latency_seconds": 9.189133,
+        "device": "cpu",
+        "cuda_available": false,
+        "peak_vram_bytes": "not_available",
+        "torch_version": "2.11.0+cpu",
+        "transformers_version": "5.8.1",
+        "python_version": "3.12.4",
+        "batch_support": "not_measured; production detect() accepts one image",
+        "dependency_complexity": "Existing local PyTorch and Transformers stack; no dependency added."
+      }
+    ]
+  },
+  "deployment": {
+    "local_inference": true,
+    "requires_cloud_api": false,
+    "requires_api_token": false,
+    "image_leaves_machine": false,
+    "model_license": "UNKNOWN (local cache contains no model card)"
+  }
+}

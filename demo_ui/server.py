@@ -1,0 +1,439 @@
+"""Visual Agent Demo UI 服务器（纯标准库，无第三方 Web 依赖）。
+
+运行：
+    python -m demo_ui.server [--host 127.0.0.1] [--port 8080]
+
+API：
+    GET  /                          UI 页面
+    GET  /api/health                健康检查
+    POST /api/run                   提交任务（multipart: image + prompt [+ plan]）
+    GET  /api/status/<job_id>       轮询任务状态与结果摘要
+    GET  /api/job/<job_id>/<file>   获取任务产物（result.jpg / result.json / masks / candidates.png）
+
+模式：
+- 完整链路：未传 plan，需要 DEEPSEEK_API_KEY（规划）与 DASHSCOPE_API_KEY（验证）。
+- 本地调试：传 plan JSON（或示例计划），仅运行 Detector → SAM2 → Action，
+  不需要任何 API Key（verify=False）。UI 中明确标注，不改变生产语义。
+"""
+
+import argparse
+import io
+import json
+import mimetypes
+import os
+import threading
+import time
+import uuid
+import warnings
+from datetime import datetime, timezone
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
+
+from PIL import Image, ImageDraw, ImageFont
+
+from visual_agent.pipeline import run_pipeline
+
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+
+ROOT = Path(__file__).resolve().parent
+UPLOAD_DIR = ROOT / "uploads"
+OUTPUT_DIR = ROOT / "outputs"
+STATIC_DIR = ROOT / "static"
+INDEX_HTML = STATIC_DIR / "index.html"
+
+for directory in (UPLOAD_DIR, OUTPUT_DIR):
+    directory.mkdir(parents=True, exist_ok=True)
+
+_jobs: dict[str, dict] = {}
+_jobs_lock = threading.Lock()
+_queue: list[str] = []
+_queue_cond = threading.Condition(_jobs_lock)
+
+ACTION_LABELS = {
+    "highlight": "高亮标注",
+    "outline": "描边",
+    "blur_target": "模糊",
+    "dim_background": "背景变暗",
+    "cutout": "抠图",
+}
+
+EXAMPLE_PLANS = {
+    "只给穿红色衣服的人描边": {
+        "target_object": "person",
+        "label": "穿红色衣服的人",
+        "constraints": ["穿红色衣服"],
+        "action": {"type": "outline"},
+        "related_objects": [],
+    },
+    "把拿雨伞的人单独抠出来": {
+        "target_object": "person",
+        "label": "拿雨伞的人",
+        "constraints": ["手持雨伞"],
+        "action": {"type": "cutout"},
+        "related_objects": [{"object": "umbrella", "relation": "held_by_target"}],
+    },
+    "把正在钓鱼的人高亮": {
+        "target_object": "person",
+        "label": "正在钓鱼的人",
+        "constraints": ["正在钓鱼"],
+        "action": {"type": "highlight"},
+        "related_objects": [],
+    },
+    "把戴帽子的人模糊": {
+        "target_object": "person",
+        "label": "戴帽子的人",
+        "constraints": ["戴帽子"],
+        "action": {"type": "blur_target"},
+        "related_objects": [],
+    },
+    "把人物以外的背景变暗": {
+        "target_object": "person",
+        "label": "人物",
+        "constraints": [],
+        "action": {"type": "dim_background"},
+        "related_objects": [],
+    },
+}
+
+
+def _now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _validate_plan(plan: dict) -> str | None:
+    """本地调试模式下校验 plan 契约（与 DeepSeek Planner 输出契约一致）。"""
+    try:
+        target = plan["target_object"]
+        if not isinstance(target, str) or not (1 <= len(target.split()) <= 3):
+            return "target_object 必须是 1-3 个英文单词的基础实体"
+        label = plan["label"]
+        if not isinstance(label, str) or not label.strip():
+            return "label 必须是非空字符串"
+        constraints = plan["constraints"]
+        if not isinstance(constraints, list) or not all(
+            isinstance(item, str) and item.strip() for item in constraints
+        ):
+            return "constraints 必须是非空字符串数组"
+        action = plan["action"]
+        if (
+            not isinstance(action, dict)
+            or set(action) != {"type"}
+            or action["type"] not in ACTION_LABELS
+        ):
+            return "action.type 必须是白名单之一"
+        related = plan["related_objects"]
+        if not isinstance(related, list) or len(related) > 1:
+            return "related_objects 必须是长度 0..1 的数组"
+        for item in related:
+            if (
+                not isinstance(item, dict)
+                or set(item) != {"object", "relation"}
+                or item["relation"] != "held_by_target"
+            ):
+                return "related object 只能包含 object 与 relation=held_by_target"
+    except KeyError as error:
+        return f"plan 缺少字段：{error}"
+    return None
+
+
+def _annotate_candidates(input_image: Path, result: dict, output_png: Path) -> None:
+    """把 Detector 候选框与验证状态画到输入图上，作为调试面板的候选 bbox 图。"""
+    image = Image.open(input_image).convert("RGB")
+    draw = ImageDraw.Draw(image)
+    scale = max(1.0, 1400 / max(image.size))
+    if scale > 1:
+        image = image.resize(
+            (round(image.width * scale), round(image.height * scale)),
+            Image.Resampling.LANCZOS,
+        )
+        draw = ImageDraw.Draw(image)
+    font = ImageFont.load_default(size=max(16, min(image.size) // 40))
+    line_width = max(2, min(image.size) // 250)
+    candidates = result.get("candidates", [])
+    for candidate in candidates:
+        bbox = [coordinate * scale for coordinate in candidate["bbox"]]
+        status = "satisfied" if candidate.get("verified") else "rejected"
+        if status == "satisfied":
+            color = "#00cc44"
+        else:
+            color = "#ff4444"
+        draw.rectangle(bbox, outline=color, width=line_width)
+        candidate_id = candidate["id"]
+        text = f"{candidate_id} {status}"
+        text_bbox = draw.textbbox((0, 0), text, font=font)
+        label_x = max(0, int(bbox[0]))
+        label_y = max(0, int(bbox[1]) - (text_bbox[3] - text_bbox[1]) - 6)
+        draw.rectangle(
+            (
+                label_x,
+                label_y,
+                label_x + (text_bbox[2] - text_bbox[0]) + 8,
+                label_y + (text_bbox[3] - text_bbox[1]) + 4,
+            ),
+            fill=color,
+        )
+        draw.text((label_x + 4, label_y + 2), text, fill="white", font=font)
+    image.save(output_png, format="PNG")
+
+
+def _worker() -> None:
+    while True:
+        with _queue_cond:
+            while not _queue:
+                _queue_cond.wait()
+            job_id = _queue.pop(0)
+            job = _jobs[job_id]
+            job["status"] = "running"
+            job["started_at"] = _now_iso()
+        try:
+            _run_job(job)
+        except Exception as error:  # noqa: BLE001 - 前台收集并结构化返回
+            job["status"] = "error"
+            job["error"] = str(error)
+            job["finished_at"] = _now_iso()
+
+
+def _run_job(job: dict) -> None:
+    plan = job.get("plan")
+    local_mode = plan is not None
+    image_output, json_output = run_pipeline(
+        job["image_path"],
+        job["prompt"],
+        plan=plan,
+        verify=not local_mode,
+        final_response=not local_mode,
+        fresh_models=False,
+        output_dir=job["output_dir"],
+    )
+    result = json.loads(json_output.read_text(encoding="utf-8"))
+    _annotate_candidates(job["image_path"], result, job["output_dir"] / "candidates.png")
+    job["status"] = "done"
+    job["finished_at"] = _now_iso()
+    job["result_image"] = image_output.name
+    job["result_json"] = json_output.name
+    job["summary"] = {
+        "prompt": result["prompt"],
+        "mode": "local_debug" if local_mode else "full_chain",
+        "plan": result["plan"],
+        "agent_response": result.get("agent_response"),
+        "candidates_count": len(result["candidates"]),
+        "verified_subjects_count": len(result["verified_subjects"]),
+        "targets_count": len(result["targets"]),
+        "action_type": result["plan"]["action"]["type"],
+        "action_label": ACTION_LABELS.get(result["plan"]["action"]["type"]),
+        "relation_bindings": [
+            {
+                "subject_id": item["subject_id"],
+                "related_id": item["related_id"],
+                "status": item["status"],
+                "evidence": item["evidence"],
+            }
+            for item in result["relation_bindings"]
+        ],
+        "targets": [
+            {
+                "id": target["id"],
+                "label": target["label"],
+                "verification_reason": target["reason"],
+                "mask_score": target.get("segmentation", {}).get("mask_score"),
+                "mask_area_pixels": target.get("segmentation", {}).get("mask_area_pixels"),
+            }
+            for target in result["targets"]
+        ],
+        "timings": result["timings"],
+    }
+
+
+class Handler(BaseHTTPRequestHandler):
+    server_version = "VisualAgentDemo/1.0"
+
+    def log_message(self, fmt, *args):  # 精简访问日志
+        print(f"[ui] {self.address_string()} {fmt % args}")
+
+    def _send_json(self, payload: dict, status: int = 200) -> None:
+        body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
+    def _send_file(self, path: Path, download: bool = False) -> None:
+        if not path.is_file():
+            self._send_json({"error": "文件不存在"}, 404)
+            return
+        mime, _ = mimetypes.guess_type(path.name)
+        body = path.read_bytes()
+        self.send_response(200)
+        self.send_header("Content-Type", mime or "application/octet-stream")
+        self.send_header("Content-Length", str(len(body)))
+        if download:
+            self.send_header("Content-Disposition", f'attachment; filename="{path.name}"')
+        self.end_headers()
+        self.wfile.write(body)
+
+    def do_GET(self) -> None:  # noqa: N802
+        path = self.path.split("?", 1)[0]
+        if path == "/":
+            if not INDEX_HTML.is_file():
+                self._send_json({"error": "index.html 缺失"}, 500)
+                return
+            self._send_file(INDEX_HTML)
+            return
+        if path == "/api/health":
+            self._send_json({"ok": True, "jobs": len(_jobs)})
+            return
+        if path.startswith("/api/status/"):
+            job_id = path.removeprefix("/api/status/")
+            with _jobs_lock:
+                job = _jobs.get(job_id)
+            if job is None:
+                self._send_json({"error": "任务不存在"}, 404)
+                return
+            self._send_json({key: job[key] for key in
+                             ["id", "status", "mode", "prompt", "error",
+                              "created_at", "started_at", "finished_at",
+                              "result_image", "summary"] if key in job})
+            return
+        if path.startswith("/api/job/"):
+            parts = path.removeprefix("/api/job/").split("/", 1)
+            if len(parts) != 2:
+                self._send_json({"error": "路径格式错误"}, 400)
+                return
+            job_id, filename = parts
+            with _jobs_lock:
+                job = _jobs.get(job_id)
+            if job is None:
+                self._send_json({"error": "任务不存在"}, 404)
+                return
+            candidate = (job["output_dir"] / filename).resolve()
+            if not str(candidate).startswith(str(job["output_dir"].resolve())):
+                self._send_json({"error": "非法路径"}, 403)
+                return
+            self._send_file(candidate)
+            return
+        self._send_json({"error": "not found"}, 404)
+
+    def do_POST(self) -> None:  # noqa: N802
+        path = self.path.split("?", 1)[0]
+        if path != "/api/run":
+            self._send_json({"error": "not found"}, 404)
+            return
+        try:
+            self._handle_run()
+        except Exception as error:  # noqa: BLE001
+            self._send_json({"error": f"请求处理失败：{error}"}, 400)
+
+    def _handle_run(self) -> None:
+        content_type = self.headers.get("Content-Type", "")
+        if "multipart/form-data" not in content_type:
+            self._send_json({"error": "需要 multipart/form-data"}, 400)
+            return
+        import cgi
+
+        form = cgi.FieldStorage(
+            fp=self.rfile,
+            headers=self.headers,
+            environ={
+                "REQUEST_METHOD": "POST",
+                "CONTENT_TYPE": content_type,
+            },
+        )
+        image_field = form["image"]
+        if image_field is None or not getattr(image_field, "file", None):
+            self._send_json({"error": "缺少图片文件"}, 400)
+            return
+        prompt = form.getvalue("prompt") or ""
+        prompt = prompt.strip()
+        if not prompt:
+            self._send_json({"error": "缺少自然语言指令"}, 400)
+            return
+        plan_text = form.getvalue("plan") or ""
+        plan = None
+        local_mode = bool(plan_text.strip())
+        if local_mode:
+            try:
+                plan = json.loads(plan_text)
+            except json.JSONDecodeError as error:
+                self._send_json({"error": f"plan JSON 解析失败：{error}"}, 400)
+                return
+            validation_error = _validate_plan(plan)
+            if validation_error:
+                self._send_json({"error": f"plan 契约校验失败：{validation_error}"}, 400)
+                return
+        else:
+            if not os.getenv("DEEPSEEK_API_KEY"):
+                self._send_json(
+                    {
+                        "error": (
+                            "未设置 DEEPSEEK_API_KEY，无法使用自然语言完整链路。"
+                            "请设置 DEEPSEEK_API_KEY（规划）与 DASHSCOPE_API_KEY（验证），"
+                            "或切换到「本地调试模式」并提供预编译计划 JSON。"
+                        )
+                    },
+                    400,
+                )
+                return
+
+        job_id = uuid.uuid4().hex[:12]
+        job_dir = OUTPUT_DIR / job_id
+        job_dir.mkdir(parents=True, exist_ok=True)
+        raw_name = Path(image_field.filename or "upload.jpg").name
+        suffix = Path(raw_name).suffix.lower() or ".jpg"
+        if suffix not in {".jpg", ".jpeg", ".png", ".webp", ".bmp"}:
+            self._send_json({"error": f"不支持的图片格式：{suffix}"}, 400)
+            return
+        image_path = UPLOAD_DIR / f"{job_id}{suffix}"
+        with open(image_path, "wb") as handle:
+            handle.write(image_field.file.read())
+
+        job = {
+            "id": job_id,
+            "status": "queued",
+            "mode": "local_debug" if local_mode else "full_chain",
+            "prompt": prompt,
+            "plan": plan,
+            "image_path": image_path,
+            "output_dir": job_dir,
+            "result_image": None,
+            "result_json": None,
+            "error": None,
+            "summary": None,
+            "created_at": _now_iso(),
+            "started_at": None,
+            "finished_at": None,
+        }
+        with _queue_cond:
+            _jobs[job_id] = job
+            _queue.append(job_id)
+            _queue_cond.notify()
+        self._send_json({"job_id": job_id, "mode": job["mode"]}, 202)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Visual Agent Demo UI")
+    parser.add_argument("--host", default="127.0.0.1")
+    parser.add_argument("--port", type=int, default=8080)
+    args = parser.parse_args()
+
+    worker = threading.Thread(target=_worker, daemon=True, name="visual-agent-worker")
+    worker.start()
+    server = ThreadingHTTPServer((args.host, args.port), Handler)
+    has_deepseek = bool(os.getenv("DEEPSEEK_API_KEY"))
+    has_dashscope = bool(os.getenv("DASHSCOPE_API_KEY"))
+    print("Visual Agent Demo UI 已启动：")
+    print(f"  地址：http://{args.host}:{args.port}")
+    print(f"  DeepSeek API：{'已配置' if has_deepseek else '未配置（自然语言链路不可用，可用本地调试模式）'}")
+    print(f"  DashScope API：{'已配置' if has_dashscope else '未配置（语义验证不可用）'}")
+    print("  按 Ctrl+C 停止。")
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        print()
+        print("正在停止…")
+    finally:
+        server.server_close()
+
+
+if __name__ == "__main__":
+    main()

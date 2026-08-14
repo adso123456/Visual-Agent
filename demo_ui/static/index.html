@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Agent Demo</title>
+<style>
+:root {
+  --bg: #0f1117; --panel: #171a23; --panel2: #1d2130; --border: #2a3040;
+  --text: #e8eaf0; --muted: #9aa3b5; --accent: #4f8cff; --green: #34c77b;
+  --red: #ff5c5c; --yellow: #ffc24b;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif; min-height: 100vh; }
+header { padding: 18px 28px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 14px; }
+header h1 { font-size: 20px; font-weight: 650; letter-spacing: .5px; }
+header .sub { color: var(--muted); font-size: 13px; }
+main { display: grid; grid-template-columns: 420px 1fr; gap: 20px; padding: 20px 28px; max-width: 1500px; margin: 0 auto; }
+@media (max-width: 1100px) { main { grid-template-columns: 1fr; } }
+.card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+.card h2 { font-size: 14px; color: var(--muted); font-weight: 600; margin-bottom: 12px; text-transform: uppercase; letter-spacing: .8px; }
+label { font-size: 13px; color: var(--muted); display: block; margin-bottom: 6px; }
+.dropzone { border: 2px dashed var(--border); border-radius: 10px; padding: 18px; text-align: center; color: var(--muted); cursor: pointer; transition: border-color .2s; background: var(--panel2); }
+.dropzone:hover, .dropzone.drag { border-color: var(--accent); color: var(--text); }
+.dropzone img { max-width: 100%; max-height: 260px; border-radius: 8px; display: block; margin: 8px auto 0; }
+textarea, input[type=text] { width: 100%; background: var(--panel2); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 10px 12px; font-size: 14px; font-family: inherit; resize: vertical; }
+textarea:focus, input:focus { outline: none; border-color: var(--accent); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+.chip { background: var(--panel2); border: 1px solid var(--border); color: var(--muted); border-radius: 20px; padding: 4px 12px; font-size: 12px; cursor: pointer; transition: all .15s; }
+.chip:hover { border-color: var(--accent); color: var(--text); }
+button.run { width: 100%; margin-top: 14px; padding: 12px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: filter .15s; }
+button.run:hover { filter: brightness(1.1); }
+button.run:disabled { opacity: .5; cursor: not-allowed; }
+.mode { display: flex; gap: 8px; margin-bottom: 12px; }
+.mode button { flex: 1; padding: 8px; background: var(--panel2); border: 1px solid var(--border); color: var(--muted); border-radius: 8px; cursor: pointer; font-size: 13px; }
+.mode button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.hint { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.5; }
+.hint code { background: var(--panel2); padding: 1px 5px; border-radius: 4px; color: var(--yellow); font-size: 11px; }
+#planInput { font-family: Consolas, monospace; font-size: 12px; min-height: 130px; display: none; }
+#planInput.show { display: block; }
+#status { margin-top: 12px; font-size: 13px; color: var(--muted); min-height: 20px; }
+#status.error { color: var(--red); }
+#status .spinner { display: inline-block; width: 12px; height: 12px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; vertical-align: -2px; margin-right: 6px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.result-area { min-height: 480px; display: flex; flex-direction: column; gap: 16px; }
+.result-img-wrap { background: var(--panel2); border: 1px solid var(--border); border-radius: 10px; padding: 12px; text-align: center; }
+.result-img-wrap img { max-width: 100%; max-height: 560px; border-radius: 6px; }
+.placeholder { color: var(--muted); text-align: center; padding: 120px 20px; font-size: 14px; line-height: 2; }
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; }
+.stat { background: var(--panel2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; text-align: center; }
+.stat .v { font-size: 22px; font-weight: 650; color: var(--accent); }
+.stat .k { font-size: 11px; color: var(--muted); margin-top: 2px; }
+.panels { display: flex; flex-direction: column; gap: 14px; }
+.panel { background: var(--panel2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.panel summary { padding: 10px 14px; cursor: pointer; font-size: 13px; font-weight: 600; color: var(--text); list-style: none; display: flex; align-items: center; gap: 8px; }
+.panel summary::before { content: "▸"; color: var(--muted); transition: transform .15s; }
+.panel[open] summary::before { transform: rotate(90deg); }
+.panel .body { padding: 0 14px 14px; }
+pre.json { background: #0b0d13; border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 12px; overflow: auto; max-height: 320px; color: #b8c4de; line-height: 1.55; }
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+th, td { padding: 7px 10px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+th { color: var(--muted); font-weight: 600; white-space: nowrap; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+.tag.ok { background: rgba(52,199,123,.15); color: var(--green); }
+.tag.no { background: rgba(255,92,92,.15); color: var(--red); }
+.tag.un { background: rgba(255,194,75,.15); color: var(--yellow); }
+.mono { font-family: Consolas, monospace; font-size: 11.5px; color: var(--muted); }
+a.dl { color: var(--accent); text-decoration: none; font-size: 12px; }
+a.dl:hover { text-decoration: underline; }
+footer { padding: 18px 28px; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+<header>
+  <h1>Visual Agent Demo</h1>
+  <span class="sub">自然语言驱动的通用视觉执行 · 定位 → 语义验证 → 精确分割 → 确定性操作</span>
+</header>
+<main>
+  <section>
+    <div class="card">
+      <h2>输入</h2>
+      <label>图片</label>
+      <div class="dropzone" id="dropzone">
+        <span id="dzText">点击或拖拽图片到此处</span>
+        <img id="preview" alt="" style="display:none">
+      </div>
+      <input type="file" id="fileInput" accept="image/*" style="display:none">
+
+      <div style="height:14px"></div>
+      <label>自然语言指令</label>
+      <textarea id="promptInput" rows="2" placeholder="例如：只给穿红色衣服的人描边"></textarea>
+      <div class="chips" id="chips"></div>
+
+      <div class="mode" id="modeSwitch">
+        <button data-mode="nl" class="active">自然语言（完整链路）</button>
+        <button data-mode="plan">预编译计划（本地调试）</button>
+      </div>
+      <textarea id="planInput" placeholder='粘贴预编译计划 JSON，例如：
+{"target_object":"person","label":"穿红色衣服的人","constraints":["穿红色衣服"],"action":{"type":"outline"},"related_objects":[]}'></textarea>
+      <div class="hint" id="modeHint"></div>
+
+      <button class="run" id="runBtn">执行视觉任务</button>
+      <div id="status"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="card result-area">
+      <h2>结果</h2>
+      <div id="resultWrap">
+        <div class="placeholder" id="placeholder">
+          上传图片并输入指令，点击「执行视觉任务」。<br>
+          完整链路需要 DEEPSEEK_API_KEY 与 DASHSCOPE_API_KEY；<br>
+          本地调试模式只需 GPU/CPU 与本地模型（DINO + SAM2 + OpenCV）。
+        </div>
+      </div>
+      <div id="summaryPanel" style="display:none">
+        <div class="summary-grid" id="summaryGrid"></div>
+      </div>
+      <div class="panels" id="debugPanels" style="display:none"></div>
+    </div>
+  </section>
+</main>
+<footer>
+  Visual Agent · Agent(DeepSeek) → Detector(Grounding DINO Base, 本地) → VLM(Qwen3-VL) → Relation → SAM2.1 → Action(OpenCV)
+</footer>
+
+<script>
+const EXAMPLES = [
+  "只给穿红色衣服的人描边",
+  "把拿雨伞的人单独抠出来",
+  "把正在钓鱼的人高亮",
+  "把戴帽子的人模糊",
+  "把人物以外的背景变暗",
+  "图片里没有人戴黄色帽子",
+];
+const MODE_HINTS = {
+  nl: "完整链路：DeepSeek 规划 → 本地 DINO 定位 → Qwen 语义验证 → SAM2 分割 → OpenCV 执行。需要设置 DEEPSEEK_API_KEY 与 DASHSCOPE_API_KEY。",
+  plan: "本地调试：使用预编译计划直接运行 Detector → SAM2 → Action，不做 LLM 规划与语义验证，无需 API Key。",
+};
+let currentMode = "nl";
+let currentJob = null;
+let pollTimer = null;
+let selectedFile = null;
+
+const $ = (id) => document.getElementById(id);
+
+const chips = $("chips");
+EXAMPLES.forEach((text) => {
+  const chip = document.createElement("button");
+  chip.className = "chip";
+  chip.textContent = text;
+  chip.onclick = () => { $("promptInput").value = text; };
+  chips.appendChild(chip);
+});
+
+const dz = $("dropzone");
+const fileInput = $("fileInput");
+dz.onclick = () => fileInput.click();
+dz.ondragover = (e) => { e.preventDefault(); dz.classList.add("drag"); };
+dz.ondragleave = () => dz.classList.remove("drag");
+dz.ondrop = (e) => {
+  e.preventDefault();
+  dz.classList.remove("drag");
+  if (e.dataTransfer.files.length) setFile(e.dataTransfer.files[0]);
+};
+fileInput.onchange = () => { if (fileInput.files.length) setFile(fileInput.files[0]); };
+
+function setFile(file) {
+  selectedFile = file;
+  const url = URL.createObjectURL(file);
+  const img = $("preview");
+  img.src = url;
+  img.style.display = "block";
+  $("dzText").textContent = file.name + "（点击更换）";
+  if (pollTimer) clearInterval(pollTimer);
+  currentJob = null;
+  resetResult();
+}
+
+$("modeSwitch").querySelectorAll("button").forEach((btn) => {
+  btn.onclick = () => {
+    currentMode = btn.dataset.mode;
+    $("modeSwitch").querySelectorAll("button").forEach((b) => b.classList.toggle("active", b === btn));
+    $("planInput").classList.toggle("show", currentMode === "plan");
+    $("modeHint").textContent = MODE_HINTS[currentMode];
+  };
+});
+$("modeHint").textContent = MODE_HINTS.nl;
+
+function setStatus(html, isError = false) {
+  const el = $("status");
+  el.className = isError ? "error" : "";
+  el.innerHTML = html;
+}
+
+function resetResult() {
+  $("resultWrap").innerHTML = '<div class="placeholder" id="placeholder">等待执行…</div>';
+  $("summaryPanel").style.display = "none";
+  $("debugPanels").style.display = "none";
+  $("debugPanels").innerHTML = "";
+}
+
+async function run() {
+  const prompt = $("promptInput").value.trim();
+  if (!selectedFile) { setStatus("请先选择图片。", true); return; }
+  if (!prompt) { setStatus("请先输入自然语言指令。", true); return; }
+  const plan = currentMode === "plan" ? $("planInput").value.trim() : "";
+  if (currentMode === "plan" && !plan) { setStatus("本地调试模式需要提供预编译计划 JSON。", true); return; }
+
+  const btn = $("runBtn");
+  btn.disabled = true;
+  setStatus('<span class="spinner"></span>提交任务…');
+  resetResult();
+
+  const form = new FormData();
+  form.append("image", selectedFile);
+  form.append("prompt", prompt);
+  if (plan) form.append("plan", plan);
+  try {
+    const resp = await fetch("/api/run", { method: "POST", body: form });
+    const data = await resp.json();
+    if (!resp.ok) { throw new Error(data.error || "提交失败"); }
+    currentJob = data.job_id;
+    pollStatus();
+  } catch (err) {
+    btn.disabled = false;
+    setStatus("提交失败：" + err.message, true);
+  }
+}
+
+function pollStatus() {
+  if (pollTimer) clearInterval(pollTimer);
+  const tick = async () => {
+    if (!currentJob) return;
+    try {
+      const resp = await fetch("/api/status/" + currentJob);
+      const data = await resp.json();
+      if (!resp.ok) throw new Error(data.error);
+      if (data.status === "queued" || data.status === "running") {
+        setStatus('<span class="spinner"></span>处理中…（Detector 定位 → 语义验证 → SAM2 分割 → Action 执行）');
+        return;
+      }
+      if (pollTimer) clearInterval(pollTimer);
+      $("runBtn").disabled = false;
+      if (data.status === "error") {
+        setStatus("执行失败：" + (data.error || "未知错误"), true);
+        return;
+      }
+      if (data.status === "done") { renderResult(data); }
+    } catch (err) {
+      if (pollTimer) clearInterval(pollTimer);
+      $("runBtn").disabled = false;
+      setStatus("轮询失败：" + err.message, true);
+    }
+  };
+  tick();
+  pollTimer = setInterval(tick, 1500);
+}
+
+function renderResult(data) {
+  setStatus("完成 ✔ 模式：" + (data.mode === "local_debug" ? "本地调试（无 LLM 验证）" : "完整链路"));
+  const s = data.summary;
+  const imgWrap = document.createElement("div");
+  imgWrap.className = "result-img-wrap";
+  const img = document.createElement("img");
+  img.src = "/api/job/" + data.id + "/" + data.result_image;
+  img.alt = "结果图片";
+  imgWrap.appendChild(img);
+  $("resultWrap").innerHTML = "";
+  $("resultWrap").appendChild(imgWrap);
+
+  const grid = $("summaryGrid");
+  grid.innerHTML = "";
+  const stats = [
+    ["计划目标", s.plan.target_object, "target_object"],
+    ["动作", s.action_label || s.action_type, "action"],
+    ["Detector 候选", s.candidates_count, "candidates"],
+    ["语义通过主体", s.verified_subjects_count, "verified"],
+    ["最终目标", s.targets_count, "targets"],
+  ];
+  stats.forEach(([k, v, cls]) => {
+    const d = document.createElement("div");
+    d.className = "stat";
+    d.innerHTML = '<div class="v">' + escapeHtml(String(v)) + '</div><div class="k">' + k + "</div>";
+    grid.appendChild(d);
+  });
+  $("summaryPanel").style.display = "block";
+
+  const panels = $("debugPanels");
+  panels.innerHTML = "";
+  panels.style.display = "flex";
+
+  // Agent 最终回答
+  if (s.agent_response) {
+    panels.appendChild(panel("Agent 最终回答", '<div style="font-size:13px;line-height:1.7">' + escapeHtml(s.agent_response) + "</div>"));
+  }
+  // Agent plan
+  panels.appendChild(panel("Agent 计划（plan）", "<pre class='json'>" + escapeHtml(JSON.stringify(s.plan, null, 2)) + "</pre>"));
+  // 候选 bbox 图
+  panels.appendChild(panel("Detector 候选框（绿=验证通过，红=未通过）", '<div class="result-img-wrap"><img src="/api/job/' + data.id + '/candidates.png" alt="候选框" style="max-height:360px"></div>'));
+  // 关系绑定
+  if (s.relation_bindings && s.relation_bindings.length) {
+    const rows = s.relation_bindings.map((b) =>
+      "<tr><td>" + escapeHtml(b.subject_id) + "</td><td>" + escapeHtml(b.related_id) + "</td><td>" + statusTag(b.status) + "</td><td>" + escapeHtml(b.evidence) + "</td></tr>"
+    ).join("");
+    panels.appendChild(panel("关系验证（held_by_target）", "<table><tr><th>主体</th><th>关联</th><th>状态</th><th>证据</th></tr>" + rows + "</table>"));
+  }
+  // 最终目标
+  if (s.targets && s.targets.length) {
+    const rows = s.targets.map((t) =>
+      "<tr><td class='mono'>" + escapeHtml(t.id) + "</td><td>" + escapeHtml(t.label) + "</td><td class='mono'>" + (t.mask_score ?? "-") + "</td><td class='mono'>" + (t.mask_area_pixels ?? "-") + "</td><td>" + escapeHtml(t.verification_reason || "") + "</td></tr>"
+    ).join("");
+    panels.appendChild(panel("最终语义目标（" + s.targets.length + " 个）", "<table><tr><th>ID</th><th>标签</th><th>mask score</th><th>像素</th><th>验证依据</th></tr>" + rows + "</table>"));
+  } else {
+    panels.appendChild(panel("最终语义目标", '<div class="hint">0 个满足条件的目标（Negative Case 正常结果，未执行图片操作）。</div>'));
+  }
+  // 耗时
+  if (s.timings) {
+    panels.appendChild(panel("阶段耗时（秒）", "<pre class='json'>" + escapeHtml(JSON.stringify(s.timings, null, 2)) + "</pre>"));
+  }
+}
+
+function panel(title, bodyHtml) {
+  const p = document.createElement("details");
+  p.className = "panel";
+  p.open = true;
+  p.innerHTML = "<summary>" + escapeHtml(title) + "</summary><div class='body'>" + bodyHtml + "</div>";
+  return p;
+}
+
+function statusTag(status) {
+  if (status === "satisfied") return '<span class="tag ok">satisfied</span>';
+  if (status === "not_satisfied") return '<span class="tag no">not_satisfied</span>';
+  return '<span class="tag un">uncertain</span>';
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+$("runBtn").onclick = run;
+</script>
+</body>
+</html>

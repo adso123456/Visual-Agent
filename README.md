@@ -35,3 +35,30 @@ python -m venv .venv
 
 全链路（含 DeepSeek/Qwen API）需设置 `DEEPSEEK_API_KEY` 与 `DASHSCOPE_API_KEY` 后，去掉 `--plan-map` 并传 `--prompt`。
 `main.py --profile` 可输出单次运行各阶段耗时。
+## Demo UI（PRD §18）
+
+本地零依赖 Web 演示界面（仅标准库，无需 Flask/Gradio）：
+
+```bash
+.venv\Scripts\python -m demo_ui.server --host 127.0.0.1 --port 8080
+# 打开 http://127.0.0.1:8080
+```
+
+- 完整链路：设置 `DEEPSEEK_API_KEY` + `DASHSCOPE_API_KEY`，输入自然语言执行。
+- 本地调试：粘贴预编译 plan JSON（或使用示例计划），仅运行 DINO → SAM2 → Action，无需 API Key。
+- 界面包含结果图片与 Agent plan / candidate bbox / semantic verification / final targets 调试面板。
+
+## Instance Quality Benchmark v1（PRD §22）
+
+24 张 Test + 5 张 Calibration，八类场景，GT 已冻结。
+122 个 raw candidate 的六分类视觉复核草稿与官方基线已生成：
+
+```bash
+.venv\Scripts\python benchmark\instance_quality_v1\scripts\evaluate.py
+# 基线报告：benchmark/instance_quality_v1/reports/grounding_dino_base_v1.json / .md
+```
+
+基线指标（draft，待人工确认 candidate review）：Instance Recall 0.733、
+Instance Purity 0.685、Mixed-box Rate 0.098、Duplicate Rate 0.043。
+
+详见 `benchmark/instance_quality_v1/README.md` 与 `VISUAL_AGENT_PERCEPTION_CONTRACT_V1.0.md`。
