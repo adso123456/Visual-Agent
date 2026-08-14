@@ -11,6 +11,9 @@
   （held_by_target）→ `segmentation.py`（SAM2.1）→ `actions.py`（确定性 OpenCV）。
 - 五种操作全部实现：highlight / outline / blur_target / dim_background / cutout
   （`visual_agent/actions.py`，已逐一用 vision 复核输出）。
+- Segmentation（§23）：SAM mask 明显优于纯 bbox —— 对比图见
+  `docs/SAM_VS_BBOX_EVIDENCE.md`（outline 与 dim_background 各一对并排图，
+  vision 复核确认右侧 mask 轮廓严格贴合人物、无背景溢出）。
 - Demo UI（`demo_ui/`）提供图片输入 + 自然语言指令 + 执行按钮 + 结果图片。
 - 可运行示例：`python demo_showcase.py`（本地栈，无 Key）。
 
