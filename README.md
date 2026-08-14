@@ -20,3 +20,18 @@ python -m venv .venv
 .venv\Scripts\python main.py --image images/test_images/image.jpg --prompt "把正在钓鱼的人以外的背景变暗"
 .venv\Scripts\python main.py --image images/test_images/image.jpg --prompt "把正在钓鱼的人单独抠出来"
 ```
+
+## 延迟测量
+
+模型（DINO + SAM2）默认在进程内只加载一次（`visual_agent/models.py` 常驻注册表），后续调用直接复用。
+本地栈（Detector→SAM2→Action，不含 LLM API）冷启动约 20s，热复用约 0.7s/图（RTX 4060）：
+
+```bash
+.venv\Scripts\python benchmark\measure_latency.py \
+    --image images/test_images/benchmark_fishing_clear.png --image images/test_images/commons_umbrella.jpg \
+    --plan-map benchmark/latency_plan_map.json --no-verify --no-final-response --runs 2 \
+    --json benchmark/latency_report.json
+```
+
+全链路（含 DeepSeek/Qwen API）需设置 `DEEPSEEK_API_KEY` 与 `DASHSCOPE_API_KEY` 后，去掉 `--plan-map` 并传 `--prompt`。
+`main.py --profile` 可输出单次运行各阶段耗时。

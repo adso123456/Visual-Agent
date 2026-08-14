@@ -1,3 +1,4 @@
+import time
 from pathlib import Path
 
 import torch
@@ -11,11 +12,16 @@ MODEL_NAME = "IDEA-Research/grounding-dino-base"
 class GroundingDetector:
     def __init__(self) -> None:
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        started_at = time.perf_counter()
         self.processor = AutoProcessor.from_pretrained(MODEL_NAME)
         self.model = AutoModelForZeroShotObjectDetection.from_pretrained(
             MODEL_NAME, dtype=torch.float32
         ).to(self.device)
         self.model.eval()
+        if self.device == "cuda":
+            torch.cuda.synchronize()
+        self.load_seconds = time.perf_counter() - started_at
+        self.memory_after_load_mb = self._memory_allocated_mb()
 
     def detect(self, image_path: Path, target_text: str, threshold: float = 0.3) -> list[dict]:
         image = Image.open(image_path).convert("RGB")
@@ -47,3 +53,8 @@ class GroundingDetector:
                 }
             )
         return detections
+
+    def _memory_allocated_mb(self) -> float:
+        if self.device != "cuda":
+            return 0.0
+        return torch.cuda.memory_allocated() / 1024**2

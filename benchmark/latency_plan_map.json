@@ -1,0 +1,29 @@
+{
+  "benchmark_fishing_clear.png": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [],
+    "action": {
+      "type": "highlight"
+    },
+    "related_objects": []
+  },
+  "commons_umbrella.jpg": {
+    "target_object": "umbrella",
+    "label": "雨伞",
+    "constraints": [],
+    "action": {
+      "type": "highlight"
+    },
+    "related_objects": []
+  },
+  "test_family_fishing.jpg": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [],
+    "action": {
+      "type": "highlight"
+    },
+    "related_objects": []
+  }
+}

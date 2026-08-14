@@ -5,12 +5,21 @@ from pathlib import Path
 import numpy as np
 
 from visual_agent.deepseek_agent import MODEL_NAME, TOOL_NAME, DeepSeekAgent
-from visual_agent.grounding import GroundingDetector
+from visual_agent.grounding import MODEL_NAME as DETECTOR_MODEL_NAME
+from visual_agent.models import get_detector, get_segmenter
 from visual_agent.relations import verify_relations
 from visual_agent.renderer import save_results
-from visual_agent.segmentation import Sam2Segmenter
 from visual_agent.vlm import verify_candidates
 from visual_agent.qwen_protocol import skipped_protocol_metadata
+
+
+ACTION_LABELS = {
+    "highlight": "高亮标注",
+    "outline": "描边",
+    "blur_target": "模糊",
+    "dim_background": "背景变暗",
+    "cutout": "抠图",
+}
 
 
 def _union_bbox(boxes: list[list[float]]) -> list[float]:
@@ -20,6 +29,26 @@ def _union_bbox(boxes: list[list[float]]) -> list[float]:
         max(box[2] for box in boxes),
         max(box[3] for box in boxes),
     ]
+
+
+def _local_summary(public_visual_result: dict) -> str:
+    """确定性本地汇总：不调用 DeepSeek，不声称结果中没有的视觉事实。"""
+    action = public_visual_result.get("action", {}).get("type", "highlight")
+    action_label = ACTION_LABELS.get(action, action)
+    target_count = public_visual_result.get("complete_semantic_targets_count", 0)
+    if target_count > 0:
+        return f"已在图片中找到 {target_count} 个满足条件的目标，并完成{action_label}。"
+    verified_count = public_visual_result.get("verified_subjects_count", 0)
+    if verified_count > 0:
+        details = "；".join(
+            f"{item.get('label', '目标')}:{item.get('completion_reason', '关联对象不完整')}"
+            for item in public_visual_result.get("incomplete_semantic_groups", [])
+        )
+        return (
+            f"已找到 {verified_count} 个主体候选，但关联对象不完整（{details}），"
+            "未执行图片操作。"
+        )
+    return "未找到满足条件的目标。"
 
 
 def _build_semantic_groups(
@@ -129,17 +158,41 @@ def _build_semantic_groups(
     return groups
 
 
-def run_pipeline(image_path: Path, prompt: str) -> tuple[Path, Path]:
+def run_pipeline(
+    image_path: Path,
+    prompt: str,
+    *,
+    plan: dict | None = None,
+    verify: bool = True,
+    final_response: bool = True,
+    fresh_models: bool = False,
+    output_dir: Path | None = None,
+) -> tuple[Path, Path]:
+    """端到端执行视觉任务。
+
+    - plan：预编译的计划 dict（含 target_object/label/constraints/action/related_objects）。
+      传 None 时调用 DeepSeek Planner。传入后可完全跳过 Planner（配合 final_response=False
+      实现无 API 的本地延迟测量）。
+    - verify：是否调用 Qwen3-VL 做候选/关系验证。False 时所有候选视为已验证
+      （仅用于延迟测量/CI，会改变结果语义，生产必须为 True）。
+    - final_response：是否调用 DeepSeek 生成最终回答。False 时使用确定性本地模板。
+    - fresh_models：True 时强制重新加载 DINO/SAM2（冷启动测量）。
+    - output_dir：结果输出目录，默认 images/output_images。
+    """
     image_path = image_path.resolve()
     if not image_path.is_file():
         raise FileNotFoundError(f"图片不存在：{image_path}")
+    total_started_at = time.perf_counter()
 
-    agent = DeepSeekAgent()
-    started_at = time.perf_counter()
-    plan = agent.plan_request(prompt)
-    plan_seconds = time.perf_counter() - started_at
+    agent = DeepSeekAgent() if (plan is None or final_response) else None
+    if plan is None:
+        started_at = time.perf_counter()
+        plan = agent.plan_request(prompt)
+        plan_seconds = time.perf_counter() - started_at
+    else:
+        plan_seconds = 0.0
 
-    detector = GroundingDetector()
+    detector, detector_cached = get_detector(fresh=fresh_models)
     started_at = time.perf_counter()
     detections = detector.detect(image_path, plan["target_object"])
     grounding_seconds = time.perf_counter() - started_at
@@ -152,7 +205,7 @@ def run_pipeline(image_path: Path, prompt: str) -> tuple[Path, Path]:
     ]
     started_at = time.perf_counter()
     candidate_protocol = skipped_protocol_metadata()
-    if plan["constraints"] and candidate_inputs:
+    if plan["constraints"] and candidate_inputs and verify:
         verification_results, candidate_protocol = verify_candidates(
             image_path, prompt, plan, candidate_inputs
         )
@@ -195,7 +248,7 @@ def run_pipeline(image_path: Path, prompt: str) -> tuple[Path, Path]:
     relation_grounding_seconds = 0.0
     relation_verification_seconds = 0.0
     relation_protocol = skipped_protocol_metadata()
-    if verified_subjects and plan["related_objects"]:
+    if verified_subjects and plan["related_objects"] and verify:
         related_plan = plan["related_objects"][0]
         started_at = time.perf_counter()
         related_detections = detector.detect(image_path, related_plan["object"])
@@ -260,11 +313,14 @@ def run_pipeline(image_path: Path, prompt: str) -> tuple[Path, Path]:
                 key = (component["role"], component["candidate_id"])
                 component_specs_by_key.setdefault(key, component)
         component_keys = list(component_specs_by_key)
-        segmenter = Sam2Segmenter()
+        segmenter, segmenter_cached = get_segmenter(fresh=fresh_models)
         segmentations, sam_metrics = segmenter.segment(
             image_path,
             [component_specs_by_key[key]["bbox"] for key in component_keys],
         )
+        sam_metrics["cached"] = segmenter_cached
+        if segmenter_cached:
+            sam_metrics["load_seconds"] = 0.0
         segmentations_by_key = dict(zip(component_keys, segmentations))
         for target in targets:
             component_masks = []
@@ -293,7 +349,7 @@ def run_pipeline(image_path: Path, prompt: str) -> tuple[Path, Path]:
             "provider": "deepseek",
             "model": MODEL_NAME,
             "planner_tool": TOOL_NAME,
-            "plan_attempts": agent.plan_attempts,
+            "plan_attempts": agent.plan_attempts if agent is not None else 0,
         },
         "plan": plan,
         "candidates": candidates,
@@ -308,6 +364,13 @@ def run_pipeline(image_path: Path, prompt: str) -> tuple[Path, Path]:
         },
         "timings": {
             "deepseek_plan_seconds": round(plan_seconds, 3),
+            "detector": {
+                "model": DETECTOR_MODEL_NAME,
+                "device": detector.device,
+                "load_seconds": round(detector.load_seconds, 3) if not detector_cached else 0.0,
+                "cached": detector_cached,
+                "memory_after_load_mb": round(detector.memory_after_load_mb, 1),
+            },
             "grounding_dino_seconds": round(grounding_seconds, 3),
             "group_verification_seconds": round(verification_seconds, 3),
             "relation_grounding_seconds": round(relation_grounding_seconds, 3),
@@ -315,7 +378,9 @@ def run_pipeline(image_path: Path, prompt: str) -> tuple[Path, Path]:
             "sam2": sam_metrics,
         },
     }
-    image_output, json_output = save_results(image_path, result, Path("images/output_images"))
+    image_output, json_output = save_results(
+        image_path, result, output_dir if output_dir is not None else Path("images/output_images")
+    )
     saved_result = json.loads(json_output.read_text(encoding="utf-8"))
     public_visual_result = {
         "plan": saved_result["plan"],
@@ -345,10 +410,20 @@ def run_pipeline(image_path: Path, prompt: str) -> tuple[Path, Path]:
         "action": saved_result["plan"]["action"],
         "execution_success": bool(saved_result["targets"]) and image_output.is_file(),
     }
-    started_at = time.perf_counter()
-    saved_result["agent_response"] = agent.build_final_response(prompt, public_visual_result)
-    saved_result["timings"]["deepseek_final_response_seconds"] = round(
-        time.perf_counter() - started_at,
+    if final_response:
+        started_at = time.perf_counter()
+        saved_result["agent_response"] = agent.build_final_response(
+            prompt, public_visual_result
+        )
+        saved_result["timings"]["deepseek_final_response_seconds"] = round(
+            time.perf_counter() - started_at,
+            3,
+        )
+    else:
+        saved_result["agent_response"] = _local_summary(public_visual_result)
+        saved_result["timings"]["deepseek_final_response_seconds"] = 0.0
+    saved_result["timings"]["total_seconds"] = round(
+        time.perf_counter() - total_started_at,
         3,
     )
     json_output.write_text(
