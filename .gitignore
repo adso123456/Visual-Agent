@@ -15,3 +15,4 @@ images/output_images/*
 *.pth
 *.pt
 *.safetensors
+benchmark/latency_scratch/
