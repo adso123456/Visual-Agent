@@ -27,6 +27,10 @@ demo_ui/uploads/
 demo_ui/outputs/
 # demo showcase 运行时产物
 demo_showcase_output/
+# 验收证据图片需要入库
+!docs/evidence/*.jpg
+!docs/evidence/*.jpeg
+!docs/evidence/*.png
 # instance_quality_v1 评测中间产物（review sheets/cards 由脚本生成）
 benchmark/instance_quality_v1/reports/review_sheets/
 benchmark/instance_quality_v1/reports/review_cards/
