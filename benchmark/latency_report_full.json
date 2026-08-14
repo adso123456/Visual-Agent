@@ -1,0 +1,282 @@
+{
+  "mode": {
+    "verify": true,
+    "final_response": true,
+    "runs_per_image": 1
+  },
+  "images": [
+    {
+      "image": "E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\benchmark_fishing_clear.png",
+      "prompt": "找到正在钓鱼的人",
+      "plan": null,
+      "runs": [
+        {
+          "wall_seconds": 26.352,
+          "total_seconds": 26.351,
+          "timings": {
+            "deepseek_plan_seconds": 4.334,
+            "detector": {
+              "model": "IDEA-Research/grounding-dino-base",
+              "device": "cuda",
+              "load_seconds": 11.164,
+              "cached": false,
+              "memory_after_load_mb": 892.1
+            },
+            "grounding_dino_seconds": 1.165,
+            "group_verification_seconds": 1.461,
+            "relation_grounding_seconds": 0.0,
+            "relation_verification_seconds": 0.0,
+            "sam2": {
+              "model": "facebook/sam2.1-hiera-base-plus",
+              "device": "cuda",
+              "load_seconds": 6.063,
+              "inference_seconds": 0.564,
+              "memory_after_load_mb": 1185.8,
+              "peak_memory_mb": 1541.8,
+              "cached": false
+            },
+            "deepseek_final_response_seconds": 1.315,
+            "total_seconds": 26.351,
+            "sam2_load_seconds": 6.063,
+            "sam2_inference_seconds": 0.564,
+            "sam2_cached": false,
+            "sam2_load_seconds_total": 6.063
+          },
+          "candidates": 1,
+          "verified_subjects": 1,
+          "targets": 1,
+          "action": "highlight",
+          "agent_response": "已找到 1 名正在钓鱼的人，并已高亮显示。",
+          "image_output": "E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\latency_scratch\\result_010.jpg",
+          "run_index": 1,
+          "cold": true
+        },
+        {
+          "wall_seconds": 5.884,
+          "total_seconds": 5.884,
+          "timings": {
+            "deepseek_plan_seconds": 2.342,
+            "detector": {
+              "model": "IDEA-Research/grounding-dino-base",
+              "device": "cuda",
+              "load_seconds": 0.0,
+              "cached": true,
+              "memory_after_load_mb": 892.1
+            },
+            "grounding_dino_seconds": 0.714,
+            "group_verification_seconds": 1.542,
+            "relation_grounding_seconds": 0.0,
+            "relation_verification_seconds": 0.0,
+            "sam2": {
+              "model": "facebook/sam2.1-hiera-base-plus",
+              "device": "cuda",
+              "load_seconds": 0.0,
+              "inference_seconds": 0.157,
+              "memory_after_load_mb": 1185.8,
+              "peak_memory_mb": 1605.8,
+              "cached": true
+            },
+            "deepseek_final_response_seconds": 1.082,
+            "total_seconds": 5.884,
+            "sam2_load_seconds": 0.0,
+            "sam2_inference_seconds": 0.157,
+            "sam2_cached": true,
+            "sam2_load_seconds_total": 0.0
+          },
+          "candidates": 1,
+          "verified_subjects": 1,
+          "targets": 1,
+          "action": "highlight",
+          "agent_response": "已找到正在钓鱼的人，并已高亮显示。",
+          "image_output": "E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\latency_scratch\\result_011.jpg",
+          "run_index": 2,
+          "cold": false
+        }
+      ]
+    },
+    {
+      "image": "E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\commons_umbrella.jpg",
+      "prompt": "把拿着雨伞的人标红",
+      "plan": null,
+      "runs": [
+        {
+          "wall_seconds": 9.375,
+          "total_seconds": 9.373,
+          "timings": {
+            "deepseek_plan_seconds": 1.973,
+            "detector": {
+              "model": "IDEA-Research/grounding-dino-base",
+              "device": "cuda",
+              "load_seconds": 0.0,
+              "cached": true,
+              "memory_after_load_mb": 892.1
+            },
+            "grounding_dino_seconds": 0.565,
+            "group_verification_seconds": 1.94,
+            "relation_grounding_seconds": 0.572,
+            "relation_verification_seconds": 1.88,
+            "sam2": {
+              "model": "facebook/sam2.1-hiera-base-plus",
+              "device": "cuda",
+              "load_seconds": 0.0,
+              "inference_seconds": 0.337,
+              "memory_after_load_mb": 1185.8,
+              "peak_memory_mb": 1605.8,
+              "cached": true
+            },
+            "deepseek_final_response_seconds": 1.942,
+            "total_seconds": 9.373,
+            "sam2_load_seconds": 0.0,
+            "sam2_inference_seconds": 0.337,
+            "sam2_cached": true,
+            "sam2_load_seconds_total": 0.0
+          },
+          "candidates": 1,
+          "verified_subjects": 1,
+          "targets": 1,
+          "action": "highlight",
+          "agent_response": "已把拿着雨伞的人标红。",
+          "image_output": "E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\latency_scratch\\result_012.jpg",
+          "run_index": 1,
+          "cold": false
+        },
+        {
+          "wall_seconds": 9.057,
+          "total_seconds": 9.056,
+          "timings": {
+            "deepseek_plan_seconds": 2.356,
+            "detector": {
+              "model": "IDEA-Research/grounding-dino-base",
+              "device": "cuda",
+              "load_seconds": 0.0,
+              "cached": true,
+              "memory_after_load_mb": 892.1
+            },
+            "grounding_dino_seconds": 0.623,
+            "group_verification_seconds": 1.989,
+            "relation_grounding_seconds": 0.559,
+            "relation_verification_seconds": 1.855,
+            "sam2": {
+              "model": "facebook/sam2.1-hiera-base-plus",
+              "device": "cuda",
+              "load_seconds": 0.0,
+              "inference_seconds": 0.277,
+              "memory_after_load_mb": 1185.8,
+              "peak_memory_mb": 1605.8,
+              "cached": true
+            },
+            "deepseek_final_response_seconds": 1.264,
+            "total_seconds": 9.056,
+            "sam2_load_seconds": 0.0,
+            "sam2_inference_seconds": 0.277,
+            "sam2_cached": true,
+            "sam2_load_seconds_total": 0.0
+          },
+          "candidates": 1,
+          "verified_subjects": 1,
+          "targets": 1,
+          "action": "highlight",
+          "agent_response": "已将拿着雨伞的人标红。",
+          "image_output": "E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\latency_scratch\\result_013.jpg",
+          "run_index": 2,
+          "cold": false
+        }
+      ]
+    },
+    {
+      "image": "E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\test_family_fishing.jpg",
+      "prompt": "把正在钓鱼的人以外的背景变暗",
+      "plan": null,
+      "runs": [
+        {
+          "wall_seconds": 10.498,
+          "total_seconds": 10.497,
+          "timings": {
+            "deepseek_plan_seconds": 1.954,
+            "detector": {
+              "model": "IDEA-Research/grounding-dino-base",
+              "device": "cuda",
+              "load_seconds": 0.0,
+              "cached": true,
+              "memory_after_load_mb": 892.1
+            },
+            "grounding_dino_seconds": 0.574,
+            "group_verification_seconds": 6.492,
+            "relation_grounding_seconds": 0.0,
+            "relation_verification_seconds": 0.0,
+            "sam2": {
+              "model": "facebook/sam2.1-hiera-base-plus",
+              "device": "cuda",
+              "load_seconds": 0.0,
+              "inference_seconds": 0.448,
+              "memory_after_load_mb": 1185.8,
+              "peak_memory_mb": 1605.8,
+              "cached": true
+            },
+            "deepseek_final_response_seconds": 0.905,
+            "total_seconds": 10.497,
+            "sam2_load_seconds": 0.0,
+            "sam2_inference_seconds": 0.448,
+            "sam2_cached": true,
+            "sam2_load_seconds_total": 0.0
+          },
+          "candidates": 6,
+          "verified_subjects": 1,
+          "targets": 1,
+          "action": "dim_background",
+          "agent_response": "已把正在钓鱼的人以外的背景变暗。",
+          "image_output": "E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\latency_scratch\\result_014.jpg",
+          "run_index": 1,
+          "cold": false
+        },
+        {
+          "wall_seconds": 10.751,
+          "total_seconds": 10.75,
+          "timings": {
+            "deepseek_plan_seconds": 2.198,
+            "detector": {
+              "model": "IDEA-Research/grounding-dino-base",
+              "device": "cuda",
+              "load_seconds": 0.0,
+              "cached": true,
+              "memory_after_load_mb": 892.1
+            },
+            "grounding_dino_seconds": 0.601,
+            "group_verification_seconds": 5.841,
+            "relation_grounding_seconds": 0.0,
+            "relation_verification_seconds": 0.0,
+            "sam2": {
+              "model": "facebook/sam2.1-hiera-base-plus",
+              "device": "cuda",
+              "load_seconds": 0.0,
+              "inference_seconds": 0.339,
+              "memory_after_load_mb": 1185.8,
+              "peak_memory_mb": 1605.8,
+              "cached": true
+            },
+            "deepseek_final_response_seconds": 1.629,
+            "total_seconds": 10.75,
+            "sam2_load_seconds": 0.0,
+            "sam2_inference_seconds": 0.339,
+            "sam2_cached": true,
+            "sam2_load_seconds_total": 0.0
+          },
+          "candidates": 6,
+          "verified_subjects": 1,
+          "targets": 1,
+          "action": "dim_background",
+          "agent_response": "已将正在钓鱼的人以外的背景变暗。",
+          "image_output": "E:\\3\\Visual Agent\\Visual-Agent\\benchmark\\latency_scratch\\result_015.jpg",
+          "run_index": 2,
+          "cold": false
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "cold_median_seconds": 26.351,
+    "warm_median_seconds": 9.373,
+    "cold_runs": 1,
+    "warm_runs": 5
+  }
+}

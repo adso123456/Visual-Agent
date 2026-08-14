@@ -90,7 +90,8 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="端到端延迟测量：冷启动 vs 热复用")
     parser.add_argument("--image", action="append", type=Path, default=[], help="输入图片（可重复）")
     parser.add_argument("--dir", type=Path, default=None, help="批量测量目录（*.jpg/*.png/*.jpeg）")
-    parser.add_argument("--prompt", default=None, help="提示词；local 模式用 --plan/--plan-map")
+    parser.add_argument("--prompt", default=None, help="提示词（所有图共用）；local 模式用 --plan/--plan-map")
+    parser.add_argument("--prompt-map", type=Path, default=None, help="{图像文件名: 提示词} JSON（全链路逐图提示词）")
     parser.add_argument("--plan", type=Path, default=None, help="canned plan JSON（对所有图生效）")
     parser.add_argument("--plan-map", type=Path, default=None, help="{图像文件名: plan} JSON")
     parser.add_argument("--no-verify", action="store_true", help="跳过 Qwen 验证（本地栈测量）")
@@ -107,8 +108,15 @@ def main() -> None:
     images = [path for path in dict.fromkeys(path.resolve() for path in images) if path.is_file()]
     if not images:
         raise SystemExit("没有可用图片：--image 或 --dir 至少提供一个")
-    if args.prompt is None and args.plan is None and args.plan_map is None:
-        raise SystemExit("缺少输入：--prompt（全链路）或 --plan/--plan-map（本地栈）必须提供")
+    if args.prompt is None and args.prompt_map is None and args.plan is None and args.plan_map is None:
+        raise SystemExit("缺少输入：--prompt/--prompt-map（全链路）或 --plan/--plan-map（本地栈）必须提供")
+
+    prompt_map: dict[str, str] = {}
+    if args.prompt_map:
+        data = json.loads(args.prompt_map.read_text(encoding="utf-8"))
+        if not isinstance(data, dict):
+            raise SystemExit("prompt-map 必须是 {图像文件名: 提示词}")
+        prompt_map = {str(key): str(value) for key, value in data.items()}
 
     plan_map: dict[str, dict] = {}
     if args.plan_map:
@@ -128,10 +136,10 @@ def main() -> None:
         "images": [],
     }
     for image_path in images:
-        prompt = args.prompt
+        prompt = args.prompt if args.prompt is not None else prompt_map.get(image_path.name)
         plan = plan_map.get(image_path.name) if plan_map else None
         if plan is None and prompt is None:
-            print(f"跳过 {image_path.name}：plan-map 中没有该图且未给 --prompt")
+            print(f"跳过 {image_path.name}：缺少该图的 plan 或 prompt")
             continue
         entry = {"image": str(image_path), "prompt": prompt, "plan": plan, "runs": []}
         print(f"== {image_path.name} ==")
