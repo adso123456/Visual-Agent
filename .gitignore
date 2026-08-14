@@ -8,6 +8,9 @@ images/test_images/*
 !images/test_images/.gitkeep
 images/output_images/*
 !images/output_images/.gitkeep
+# 完整链路回归结果 JSON（证据）入库，图片产物不入库
+images/output_images/full_chain_regression/*.json
+images/output_images/full_chain_regression/*.png
 *.jpg
 *.jpeg
 *.png

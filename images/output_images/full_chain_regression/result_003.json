@@ -1,0 +1,203 @@
+{
+  "prompt": "把正在钓鱼的人高亮",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      "正在钓鱼"
+    ],
+    "action": {
+      "type": "highlight"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        457.35,
+        283.43,
+        989.8,
+        848.91
+      ],
+      "dino_confidence": 0.7678,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该候选区域包含一名男性，他坐在河边岩石上，右手持鱼竿，鱼竿延伸至水中，姿态专注，符合正在钓鱼的特征。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该候选区域包含一名男性，他坐在河边岩石上，右手持鱼竿，鱼竿延伸至水中，姿态专注，符合正在钓鱼的特征。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        0.95,
+        387.55,
+        97.77,
+        570.88
+      ],
+      "dino_confidence": 0.3681,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "not_satisfied",
+          "evidence": "该候选区域仅显示部分手臂和手部，未见鱼竿、鱼线或水体中的垂钓动作，无法确认其正在钓鱼。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域仅显示部分手臂和手部，未见鱼竿、鱼线或水体中的垂钓动作，无法确认其正在钓鱼。"
+    },
+    {
+      "id": "C",
+      "text_label": "person",
+      "bbox": [
+        0.64,
+        385.97,
+        97.36,
+        525.08
+      ],
+      "dino_confidence": 0.4242,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "该候选区域仅显示部分手臂和手部，虽靠近水面，但未明确显示鱼竿、鱼线或垂钓动作，无法确认是否在钓鱼。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该候选区域仅显示部分手臂和手部，虽靠近水面，但未明确显示鱼竿、鱼线或垂钓动作，无法确认是否在钓鱼。"
+    }
+  ],
+  "verified_subjects": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        457.35,
+        283.43,
+        989.8,
+        848.91
+      ],
+      "confidence": 0.7678,
+      "reason": "该候选区域包含一名男性，他坐在河边岩石上，右手持鱼竿，鱼竿延伸至水中，姿态专注，符合正在钓鱼的特征。"
+    }
+  ],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "subject": {
+        "candidate_id": "A",
+        "object": "person",
+        "bbox": [
+          457.35,
+          283.43,
+          989.8,
+          848.91
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        457.35,
+        283.43,
+        989.8,
+        848.91
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        457.35,
+        283.43,
+        989.8,
+        848.91
+      ],
+      "confidence": 0.7678,
+      "reason": "该候选区域包含一名男性，他坐在河边岩石上，右手持鱼竿，鱼竿延伸至水中，姿态专注，符合正在钓鱼的特征。",
+      "composite_bbox": [
+        457.35,
+        283.43,
+        989.8,
+        848.91
+      ],
+      "components": [
+        {
+          "role": "subject",
+          "object": "person",
+          "candidate_id": "A",
+          "mask_score": 0.9851,
+          "mask_area_pixels": 136314
+        }
+      ],
+      "segmentation": {
+        "mask_path": "images/output_images/full_chain_regression/result_003_mask_A.png",
+        "mask_score": 0.9851,
+        "mask_area_pixels": 136314
+      }
+    }
+  ],
+  "qwen_protocol": {
+    "candidate_verification": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 2.148,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 892.1
+    },
+    "grounding_dino_seconds": 0.657,
+    "group_verification_seconds": 3.38,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "inference_seconds": 0.436,
+      "memory_after_load_mb": 1185.8,
+      "peak_memory_mb": 1605.8,
+      "cached": true
+    },
+    "deepseek_final_response_seconds": 2.051,
+    "total_seconds": 8.766
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "images/output_images/full_chain_regression/result_003.jpg"
+  },
+  "agent_response": "已成功将正在钓鱼的人高亮。"
+}

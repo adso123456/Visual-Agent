@@ -8,29 +8,32 @@
 >
 > 每条证据必须标注以下三态之一，不得混用：
 >
-> - `CURRENT RUN VERIFIED` —— 在本会话当前环境中实际重新运行并验证（本环境
->   无 DEEPSEEK/DASHSCOPE API Key，因此仅本地栈 DINO→SAM2→Action 与基准评测
->   属于此态）。
-> - `HISTORICAL VERIFIED` —— 仓库中既有的历史运行结果（含全链路 DeepSeek+Qwen
->   结果），作为历史证据保留，不代表当前环境重新运行过。
-> - `NOT RUN IN CURRENT ENVIRONMENT` —— 代码/工具已就绪但因缺 Key 或需人工
->   尚未在本环境运行。
+> - `CURRENT RUN VERIFIED` —— 在可用环境中实际重新运行并验证。
+> - `HISTORICAL VERIFIED` —— 仓库中既有的历史运行结果（含早期全链路结果），
+>   作为历史证据保留，不代表最新环境重新运行过。
+> - `NOT RUN` —— 代码/工具已就绪但因缺 Key 或需人工尚未运行。
 >
-> 特别声明：本环境没有 API Key，因此**本轮没有重新运行「自然语言 → Agent → Qwen」
-> 完整链路**。凡涉及完整链路处均为 HISTORICAL VERIFIED 或 NOT RUN。
+> 状态说明：本环境已配置 DASHSCOPE_API_KEY（用户级）与 DEEPSEEK_API_KEY
+> （系统级）。2026-08-14 已在本环境**重新跑通完整链路回归**（见 §1/§4），
+> 该回归结果存放在 `images/output_images/full_chain_regression/`。
 
 ## 1. 用户能只通过自然语言完成多种不同图片操作任务
 
-- `CURRENT RUN VERIFIED`（本地栈）：五种确定性操作全部实现并逐一用 vision 复核：
-  highlight / outline / blur_target / dim_background / cutout（`visual_agent/actions.py`）。
-- `CURRENT RUN VERIFIED`：Demo UI（`demo_ui/`）图片输入 + 自然语言指令 + 执行按钮
-  + 结果图片 + 调试面板，本地栈模式端到端跑通（`demo_showcase.py`）。
-- `HISTORICAL VERIFIED`：完整链路 `visual_agent/deepseek_agent.py`（DeepSeek Planner）
-  → `grounding.py` → `vlm.py`（Qwen3-VL）→ `relations.py` → `segmentation.py` →
-  `actions.py`。仓库中 `images/output_images/` 与 `benchmark/results/` 保存历史全链路
-  结果（如 result_118.png 雨伞抠图等）。
-- `CURRENT RUN VERIFIED`：Segmentation（§23）SAM mask 优于纯 bbox —— 对比图见
+- `CURRENT RUN VERIFIED`（完整链路回归，2026-08-14）：
+  `images/output_images/full_chain_regression/result_001.json`（描边，4 目标）、
+  `result_002.json`（雨伞抠图，关系组合目标）、`result_003.json`（钓鱼高亮，
+  3 候选经 Qwen 过滤为 1 目标）。vision 复核输出图确认：4 红衣人描边、
+  人+伞透明抠图、仅 1 名钓鱼者高亮。
+- `CURRENT RUN VERIFIED`（本地栈）：五种确定性操作 highlight / outline /
+  blur_target / dim_background / cutout（`visual_agent/actions.py`）逐一用
+  vision 复核输出正确。
+- `CURRENT RUN VERIFIED`：Demo UI（`demo_ui/`）图片输入 + 自然语言指令 +
+  执行按钮 + 结果图片 + 调试面板，本地栈模式端到端跑通（`demo_showcase.py`）。
+- `CURRENT RUN VERIFIED`：Segmentation（§23）SAM mask 优于纯 bbox —— 对比图
   `docs/SAM_VS_BBOX_EVIDENCE.md`，vision 复核确认 mask 轮廓严格贴合人物。
+- 完整链路代码：`visual_agent/deepseek_agent.py`（DeepSeek Planner）→
+  `grounding.py`（DINO）→ `vlm.py`（Qwen3-VL）→ `relations.py` →
+  `segmentation.py` → `actions.py`。
 
 ## 2. 新任务不要求重新训练一个专项 Detector
 
@@ -46,13 +49,14 @@
 
 ## 4. 系统能够处理单目标、多目标、零目标与 uncertain
 
+- `CURRENT RUN VERIFIED`（完整链路回归，2026-08-14）：
+  多目标描边 4 目标（result_001）；语义过滤 3→1（result_003）。
 - `CURRENT RUN VERIFIED`（本地栈）：多目标 `commons_red_shirts.jpg` 描边 4 目标
   （vision 复核确认多人描边）。
 - `HISTORICAL VERIFIED`：零目标（Negative Case）全链路结果 `result_094/112/113/126`
   等 0 targets / 0 verified_subjects（PRD §16）。
-- uncertain：`vlm.py` 三态协议（satisfied/not_satisfied/uncertain）为正式状态，
-  不强制归并（PRD §17）。三态全链路路径 `NOT RUN IN CURRENT ENVIRONMENT`
-  （需 DASHSCOPE_API_KEY）；协议实现与校验为 `CURRENT RUN VERIFIED`（单测）。
+- `CURRENT RUN VERIFIED`（协议层）：`vlm.py` 三态协议（satisfied/not_satisfied/
+  uncertain）为正式状态，不强制归并（PRD §17）；单测覆盖校验逻辑。
 
 ## 5. Detector/VLM/SAM 的失败能够被明确归因
 
@@ -71,6 +75,8 @@
   `assistant_vision_draft` Candidate Review 计算，属 **Draft / Assistant-assisted
   provisional metrics**，**不是** Grounding DINO Base Baseline v1 正式指标，
   不得用于正式 Detector A/B。
+- `NOT RUN`（待人工 Review 完成）：Downstream Usability Probe（契约 §10.5），
+  脚本已就绪：`scripts/run_semantic_probe.py`（前置=人工确认 24/24 COMPLETE）。
 - 契约要求：同一 GT/同一 VLM/同一 SAM 下 A/B，禁止 Tile/SAHI/下游修补（§13）。
 
 ## 7. 核心 Demo 回归稳定
@@ -101,13 +107,14 @@
 
 | 项 | 正式状态 | 说明 |
 |---|---|---|
-| Demo UI | 功能实现完成，待远端代码核对 | 已 push，待 GitHub 核对 Diff |
+| Demo UI | 功能实现完成，待远端代码核对 | 已 push（master=3ea2a95） |
 | PRD Local Stack Evidence | 基本完成 | 本地栈 + vision 复核 + 单测 |
+| 完整链路回归 | CURRENT RUN VERIFIED（2026-08-14） |
+  images/output_images/full_chain_regression/（描边4/抠图1/高亮3→1） |
 | Candidate Review | ASSISTANT_VISION_DRAFT / NOT FORMALLY ACCEPTED |
   `reviews/grounding_dino_base.json` 24/24 IN_PROGRESS，待人工逐候选确认 |
 | Grounding DINO Base metrics | PROVISIONAL / NOT FROZEN | 不得用于正式 A/B |
-| Downstream Usability | NOT RUN | 需 DASHSCOPE_API_KEY 的语义探针 |
-| 完整链路（DeepSeek+Qwen）回归 | NOT RUN IN CURRENT ENVIRONMENT（历史结果存在） |
+| Downstream Usability | NOT RUN | 脚本就绪，前置=人工 Review 完成 |
 | Phase 12 | IN PROGRESS | 阻塞于 Candidate Review 人工确认 |
 | Local Detector A/B readiness | NO | 待正式基线冻结后才可启动 |
 | PRD overall acceptance | NOT YET | 见上表各待办 |
