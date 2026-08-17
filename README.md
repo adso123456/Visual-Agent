@@ -35,7 +35,7 @@ python -m venv .venv
 
 全链路（含 DeepSeek/Qwen API）需设置 `DEEPSEEK_API_KEY` 与 `DASHSCOPE_API_KEY` 后，去掉 `--plan-map` 并传 `--prompt`。
 `main.py --profile` 可输出单次运行各阶段耗时。
-## Demo UI（PRD §18）
+## Developer Demo v1（PRD §18）
 
 本地零依赖 Web 演示界面（仅标准库，无需 Flask/Gradio）：
 
@@ -44,9 +44,9 @@ python -m venv .venv
 # 打开 http://127.0.0.1:8080
 ```
 
-- 完整链路：设置 `DEEPSEEK_API_KEY` + `DASHSCOPE_API_KEY`，输入自然语言执行。
-- 本地调试：粘贴预编译 plan JSON（或使用示例计划），仅运行 DINO → SAM2 → Action，无需 API Key。
-- 界面包含结果图片与 Agent plan / candidate bbox / semantic verification / final targets 调试面板。
+- Full Chain：设置 `DEEPSEEK_API_KEY` + `DASHSCOPE_API_KEY`，输入自然语言执行。
+- Local Debug：无需 API Key，但使用 precompiled plan，并跳过 Agent 与 Qwen；它只用于本地调试，不代表完整自然语言链路。
+- 页面展示 Original / Result、Agent Plan、Detector Candidates、Semantic Verification、Final Targets 与实际阶段耗时。
 
 ## Instance Quality Benchmark v1（PRD §22）
 

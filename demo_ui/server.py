@@ -79,20 +79,6 @@ EXAMPLE_PLANS = {
         "action": {"type": "highlight"},
         "related_objects": [],
     },
-    "把戴帽子的人模糊": {
-        "target_object": "person",
-        "label": "戴帽子的人",
-        "constraints": ["戴帽子"],
-        "action": {"type": "blur_target"},
-        "related_objects": [],
-    },
-    "把人物以外的背景变暗": {
-        "target_object": "person",
-        "label": "人物",
-        "constraints": [],
-        "action": {"type": "dim_background"},
-        "related_objects": [],
-    },
 }
 
 
@@ -136,7 +122,24 @@ def _validate_plan(plan: dict) -> str | None:
     return None
 
 
-def _annotate_candidates(input_image: Path, result: dict, output_png: Path) -> None:
+def _candidate_status(candidate: dict, local_mode: bool) -> str:
+    """只按 pipeline 已有结果归纳展示状态，不在 Demo 中增加判断。"""
+    if local_mode:
+        return "skipped"
+    checks = candidate.get("verification_checks", [])
+    if not checks:
+        return "not_applicable"
+    statuses = {check.get("status") for check in checks}
+    if "not_satisfied" in statuses:
+        return "not_satisfied"
+    if statuses == {"satisfied"}:
+        return "satisfied"
+    return "uncertain"
+
+
+def _annotate_candidates(
+    input_image: Path, result: dict, output_png: Path, local_mode: bool
+) -> None:
     """把 Detector 候选框与验证状态画到输入图上，作为调试面板的候选 bbox 图。"""
     image = Image.open(input_image).convert("RGB")
     draw = ImageDraw.Draw(image)
@@ -152,9 +155,11 @@ def _annotate_candidates(input_image: Path, result: dict, output_png: Path) -> N
     candidates = result.get("candidates", [])
     for candidate in candidates:
         bbox = [coordinate * scale for coordinate in candidate["bbox"]]
-        status = "satisfied" if candidate.get("verified") else "rejected"
-        if status == "satisfied":
+        status = _candidate_status(candidate, local_mode)
+        if status in {"satisfied", "not_applicable"}:
             color = "#00cc44"
+        elif status in {"uncertain", "skipped"}:
+            color = "#f0ad4e"
         else:
             color = "#ff4444"
         draw.rectangle(bbox, outline=color, width=line_width)
@@ -174,6 +179,56 @@ def _annotate_candidates(input_image: Path, result: dict, output_png: Path) -> N
         )
         draw.text((label_x + 4, label_y + 2), text, fill="white", font=font)
     image.save(output_png, format="PNG")
+
+
+def _build_summary(result: dict, local_mode: bool) -> dict:
+    """把 pipeline 现有字段整理为只读 UI 摘要。"""
+    relation_by_subject = {
+        item["subject_id"]: item for item in result.get("relation_bindings", [])
+    }
+    return {
+        "prompt": result["prompt"],
+        "mode": "local_debug" if local_mode else "full_chain",
+        "plan": result["plan"],
+        "agent_response": result.get("agent_response"),
+        "candidates_count": len(result["candidates"]),
+        "verified_subjects_count": len(result["verified_subjects"]),
+        "targets_count": len(result["targets"]),
+        "action_type": result["plan"]["action"]["type"],
+        "action_label": ACTION_LABELS.get(result["plan"]["action"]["type"]),
+        "candidates": [
+            {
+                "id": candidate["id"],
+                "label": candidate.get("text_label"),
+                "confidence": candidate.get("dino_confidence"),
+                "verification_status": _candidate_status(candidate, local_mode),
+                "verification_checks": candidate.get("verification_checks", []),
+                "verification_reason": candidate.get("verification_reason"),
+            }
+            for candidate in result["candidates"]
+        ],
+        "relation_bindings": [
+            {
+                "subject_id": item["subject_id"],
+                "related_id": item["related_id"],
+                "status": item["status"],
+                "evidence": item["evidence"],
+            }
+            for item in result["relation_bindings"]
+        ],
+        "targets": [
+            {
+                "id": target["id"],
+                "label": target["label"],
+                "verification_reason": target["reason"],
+                "relation": relation_by_subject.get(target["id"]),
+                "mask_score": target.get("segmentation", {}).get("mask_score"),
+                "mask_area_pixels": target.get("segmentation", {}).get("mask_area_pixels"),
+            }
+            for target in result["targets"]
+        ],
+        "timings": result["timings"],
+    }
 
 
 def _worker() -> None:
@@ -206,42 +261,14 @@ def _run_job(job: dict) -> None:
         output_dir=job["output_dir"],
     )
     result = json.loads(json_output.read_text(encoding="utf-8"))
-    _annotate_candidates(job["image_path"], result, job["output_dir"] / "candidates.png")
+    _annotate_candidates(
+        job["image_path"], result, job["output_dir"] / "candidates.png", local_mode
+    )
     job["status"] = "done"
     job["finished_at"] = _now_iso()
     job["result_image"] = image_output.name
     job["result_json"] = json_output.name
-    job["summary"] = {
-        "prompt": result["prompt"],
-        "mode": "local_debug" if local_mode else "full_chain",
-        "plan": result["plan"],
-        "agent_response": result.get("agent_response"),
-        "candidates_count": len(result["candidates"]),
-        "verified_subjects_count": len(result["verified_subjects"]),
-        "targets_count": len(result["targets"]),
-        "action_type": result["plan"]["action"]["type"],
-        "action_label": ACTION_LABELS.get(result["plan"]["action"]["type"]),
-        "relation_bindings": [
-            {
-                "subject_id": item["subject_id"],
-                "related_id": item["related_id"],
-                "status": item["status"],
-                "evidence": item["evidence"],
-            }
-            for item in result["relation_bindings"]
-        ],
-        "targets": [
-            {
-                "id": target["id"],
-                "label": target["label"],
-                "verification_reason": target["reason"],
-                "mask_score": target.get("segmentation", {}).get("mask_score"),
-                "mask_area_pixels": target.get("segmentation", {}).get("mask_area_pixels"),
-            }
-            for target in result["targets"]
-        ],
-        "timings": result["timings"],
-    }
+    job["summary"] = _build_summary(result, local_mode)
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -281,7 +308,21 @@ class Handler(BaseHTTPRequestHandler):
             self._send_file(INDEX_HTML)
             return
         if path == "/api/health":
-            self._send_json({"ok": True, "jobs": len(_jobs)})
+            self._send_json({
+                "ok": True,
+                "jobs": len(_jobs),
+                "full_chain_available": bool(
+                    os.getenv("DEEPSEEK_API_KEY") and os.getenv("DASHSCOPE_API_KEY")
+                ),
+            })
+            return
+        if path.startswith("/static/"):
+            filename = path.removeprefix("/static/")
+            candidate = (STATIC_DIR / filename).resolve()
+            if not str(candidate).startswith(str(STATIC_DIR.resolve())):
+                self._send_json({"error": "非法路径"}, 403)
+                return
+            self._send_file(candidate)
             return
         if path.startswith("/api/status/"):
             job_id = path.removeprefix("/api/status/")
@@ -293,7 +334,7 @@ class Handler(BaseHTTPRequestHandler):
             self._send_json({key: job[key] for key in
                              ["id", "status", "mode", "prompt", "error",
                               "created_at", "started_at", "finished_at",
-                              "result_image", "summary"] if key in job})
+                              "result_image", "result_json", "summary"] if key in job})
             return
         if path.startswith("/api/job/"):
             parts = path.removeprefix("/api/job/").split("/", 1)
@@ -305,6 +346,9 @@ class Handler(BaseHTTPRequestHandler):
                 job = _jobs.get(job_id)
             if job is None:
                 self._send_json({"error": "任务不存在"}, 404)
+                return
+            if filename == "original":
+                self._send_file(job["image_path"])
                 return
             candidate = (job["output_dir"] / filename).resolve()
             if not str(candidate).startswith(str(job["output_dir"].resolve())):
@@ -362,12 +406,16 @@ class Handler(BaseHTTPRequestHandler):
                 self._send_json({"error": f"plan 契约校验失败：{validation_error}"}, 400)
                 return
         else:
-            if not os.getenv("DEEPSEEK_API_KEY"):
+            missing_keys = [
+                key for key in ("DEEPSEEK_API_KEY", "DASHSCOPE_API_KEY")
+                if not os.getenv(key)
+            ]
+            if missing_keys:
                 self._send_json(
                     {
                         "error": (
-                            "未设置 DEEPSEEK_API_KEY，无法使用自然语言完整链路。"
-                            "请设置 DEEPSEEK_API_KEY（规划）与 DASHSCOPE_API_KEY（验证），"
+                            f"缺少 {', '.join(missing_keys)}，无法使用自然语言完整链路。"
+                            "请配置 DeepSeek（规划）与 DashScope（语义验证）凭据，"
                             "或切换到「本地调试模式」并提供预编译计划 JSON。"
                         )
                     },

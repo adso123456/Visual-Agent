@@ -1,9 +1,9 @@
-# Visual Agent Demo UI
+# Visual Agent Developer Demo v1
 
 本地零依赖 Web 演示界面（仅使用 Python 标准库，不引入 Flask/Gradio）。
 
-满足 PRD §18 最低需求：图片输入、自然语言输入、执行按钮、结果图片，
-并附加 Agent plan / candidate bbox / semantic verification / final targets 调试面板。
+用于开发者浏览 Visual Agent 完整执行链。页面展示 Original / Result、Agent Plan、
+Detector Candidates、Semantic Verification、Final Targets 与 pipeline 实际 timing。
 
 ## 运行
 
@@ -17,11 +17,18 @@
 
 | 模式 | 触发方式 | 依赖 | 链路 |
 |---|---|---|---|
-| 自然语言（完整链路） | 只填指令，不填 plan | DEEPSEEK_API_KEY + DASHSCOPE_API_KEY | DeepSeek 规划 → DINO → Qwen 验证 → 关系 → SAM2 → Action |
-| 预编译计划（本地调试） | 粘贴 plan JSON 或点击示例计划 | 无 API Key，仅本地模型 | DINO → SAM2 → Action（无 LLM 规划与语义验证） |
+| Full Chain | 只填指令，不填 plan | DEEPSEEK_API_KEY + DASHSCOPE_API_KEY | DeepSeek 规划 → DINO → Qwen 验证 → 关系 → SAM2 → Action |
+| Local Debug | 粘贴 plan JSON 或点击示例 | 无 API Key，仅本地模型 | DINO → SAM2 → Action（Agent / Qwen 均跳过） |
 
-未设置 API Key 时自动提示切换本地调试模式。本地调试模式明确标注
-「无 LLM 验证」，不会把未验证候选当作生产语义结论。
+Local Debug 使用 precompiled plan，仅供本地调试，不代表完整自然语言 Agent/VLM
+链路。页面中的 Candidate、Semantic、Target 和 Timing 均直接来自 `run_pipeline`
+结果，不在 Demo 层重新判断或过滤。
+
+## 固定示例
+
+- 只给穿红色衣服的人描边
+- 把拿雨伞的人单独抠出来
+- 把正在钓鱼的人高亮
 
 ## API
 
