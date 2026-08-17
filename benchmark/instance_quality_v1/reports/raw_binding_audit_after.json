@@ -1,0 +1,18 @@
+{
+  "audited_test_images": 24,
+  "matched_images": 24,
+  "mismatched_images": 0,
+  "unverifiable_images": 0,
+  "actually_rerun_image_ids": ["TST_SMALL_002"],
+  "detector_config": {
+    "model": "IDEA-Research/grounding-dino-base",
+    "box_threshold": 0.3,
+    "text_threshold": 0.3,
+    "full_frame": true
+  },
+  "old_raw_candidate_count": 122,
+  "stale_raw_count": 1,
+  "new_raw_candidate_count": 122,
+  "gt_fingerprint": "110a9dda47c1c4adbbfdb4a5b151fa0ef8efaa1acc7b5ede37f10fa658320931",
+  "gt_modified": false
+}

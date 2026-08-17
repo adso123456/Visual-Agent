@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 from benchmark.instance_quality_v1.annotation_tool.gt_store import GroundTruthStore, atomic_write_json, utc_now
-from benchmark.instance_quality_v1.schema import COMPLETENESS, REVIEW_CLASSES, validate_bbox
+from benchmark.instance_quality_v1.schema import COMPLETENESS, REVIEW_CLASSES, validate_raw_bindings
 
 
 class CandidateReviewStore:
@@ -19,6 +19,7 @@ class CandidateReviewStore:
         self.raw_bytes = self.raw_path.read_bytes()
         self.raw_sha256 = hashlib.sha256(self.raw_bytes).hexdigest()
         self.raw = json.loads(self.raw_bytes.decode("utf-8"))
+        validate_raw_bindings(self.gt.manifest, self.raw["images"])
         if self.review_path.exists():
             self.document = json.loads(self.review_path.read_text(encoding="utf-8"))
         else:
@@ -73,11 +74,33 @@ class CandidateReviewStore:
         if raw_ids != reviewed_ids:
             raise RuntimeError("UNREVIEWED_CANDIDATES_REMAIN")
         self.review_image(image_id)["review_status"] = "COMPLETE"
+        self.review_image(image_id)["reviewed_by"] = "human"
         self.review_image(image_id)["updated_at"] = utc_now()
+        atomic_write_json(self.review_path, self.document)
+        self.assert_raw_unchanged()
+
+    def confirm_all(self, confirmation_source):
+        if not isinstance(confirmation_source, str) or not confirmation_source.strip():
+            raise ValueError("confirmation_source must be non-empty")
+        for entry in self.document["images"]:
+            raw_ids = {item["id"] for item in self.raw_image(entry["image_id"])["candidates"]}
+            reviewed_ids = {item["candidate_id"] for item in entry["candidates"]}
+            if raw_ids != reviewed_ids:
+                raise RuntimeError(f"UNREVIEWED_CANDIDATES_REMAIN: {entry['image_id']}")
+        confirmed_at = utc_now()
+        for entry in self.document["images"]:
+            entry["review_status"] = "COMPLETE"
+            entry["reviewed_by"] = "human"
+            entry["updated_at"] = confirmed_at
+        self.document["review_source"] = "human_confirmed_codex_manual_visual_audit"
+        self.document["warning"] = None
+        self.document["confirmation"] = {
+            "source": confirmation_source.strip(),
+            "confirmed_at": confirmed_at,
+        }
         atomic_write_json(self.review_path, self.document)
         self.assert_raw_unchanged()
 
     def assert_raw_unchanged(self):
         if hashlib.sha256(self.raw_path.read_bytes()).hexdigest() != self.raw_sha256:
             raise RuntimeError("RAW_CANDIDATES_MODIFIED")
-

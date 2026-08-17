@@ -1,0 +1,1281 @@
+{
+  "benchmark_version": "1.0",
+  "model": "qwen3-vl-flash",
+  "provider": "dashscope_openai_compatible",
+  "prompt_version": "semantic_constraint_v1",
+  "probe_type": "predeclared_semantic_constraint",
+  "semantic_spec_sha256": "368196c8f090759918d60aab6ba777394bedb1347fed13d602d79200a71f912e",
+  "raw_candidates_sha256": "9b08e1e36df8a44076ee5ff15f2c028fd7e675d06cf3c20f1f784b0a2340bbc1",
+  "review_sha256": "a0ec927201acd9393ead8c0941d4290d3ab6191b43a102d595f65974da1fea98",
+  "gt_fingerprint": "110a9dda47c1c4adbbfdb4a5b151fa0ef8efaa1acc7b5ede37f10fa658320931",
+  "created_at": "2026-08-17T02:48:04.700254Z",
+  "image_leaves_machine": true,
+  "images": [
+    {
+      "image_id": "TST_SPARSE_001",
+      "constraint_id": "wearing_red_clothing",
+      "question": "这个人是否穿着以红色为主的衣服？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "wearing_red_clothing",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "wearing_red_clothing",
+          "mapped_gt_instance_id": "I03",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C003",
+          "constraint_id": "wearing_red_clothing",
+          "mapped_gt_instance_id": "I02",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C004",
+          "constraint_id": "wearing_red_clothing",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SPARSE_002",
+      "constraint_id": "wearing_collar",
+      "question": "这只狗是否戴着项圈？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "wearing_collar",
+          "mapped_gt_instance_id": "I01",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SPARSE_003",
+      "constraint_id": "has_tall_mast",
+      "question": "这艘船是否有明显的高桅杆？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "has_tall_mast",
+          "mapped_gt_instance_id": "I01",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "has_tall_mast",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C003",
+          "constraint_id": "has_tall_mast",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C004",
+          "constraint_id": "has_tall_mast",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C005",
+          "constraint_id": "has_tall_mast",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C006",
+          "constraint_id": "has_tall_mast",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_ADJACENT_001",
+      "constraint_id": "wearing_red_or_orange_clothing",
+      "question": "这个人是否穿着以红色或橙色为主的衣服？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "wearing_red_or_orange_clothing",
+          "mapped_gt_instance_id": "I02",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "wearing_red_or_orange_clothing",
+          "mapped_gt_instance_id": "I01",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_ADJACENT_002",
+      "constraint_id": "wearing_scarf",
+      "question": "这个人是否围着围巾？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "wearing_scarf",
+          "mapped_gt_instance_id": "I01",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "wearing_scarf",
+          "mapped_gt_instance_id": "I02",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C003",
+          "constraint_id": "wearing_scarf",
+          "mapped_gt_instance_id": "I03",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_ADJACENT_003",
+      "constraint_id": "has_long_floppy_ears",
+      "question": "这只狗是否有明显下垂的长耳朵？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "has_long_floppy_ears",
+          "mapped_gt_instance_id": "I01",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "has_long_floppy_ears",
+          "mapped_gt_instance_id": "I02",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_DENSE_001",
+      "constraint_id": "wearing_face_mask",
+      "question": "这个人是否戴着口罩？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "wearing_face_mask",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "wearing_face_mask",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C003",
+          "constraint_id": "wearing_face_mask",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C004",
+          "constraint_id": "wearing_face_mask",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_DENSE_002",
+      "constraint_id": "wearing_red_or_pink_clothing",
+      "question": "这个人是否穿着以红色或粉色为主的衣服？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "wearing_red_or_pink_clothing",
+          "mapped_gt_instance_id": "I15",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "wearing_red_or_pink_clothing",
+          "mapped_gt_instance_id": "I16",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C003",
+          "constraint_id": "wearing_red_or_pink_clothing",
+          "mapped_gt_instance_id": "I07",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C004",
+          "constraint_id": "wearing_red_or_pink_clothing",
+          "mapped_gt_instance_id": "I01",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C005",
+          "constraint_id": "wearing_red_or_pink_clothing",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C006",
+          "constraint_id": "wearing_red_or_pink_clothing",
+          "mapped_gt_instance_id": "I03",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C007",
+          "constraint_id": "wearing_red_or_pink_clothing",
+          "mapped_gt_instance_id": "I13",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C008",
+          "constraint_id": "wearing_red_or_pink_clothing",
+          "mapped_gt_instance_id": "I04",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C009",
+          "constraint_id": "wearing_red_or_pink_clothing",
+          "mapped_gt_instance_id": "I14",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "UNCLEAR",
+          "attribution": "VLM_SEMANTIC_LIMIT"
+        },
+        {
+          "id": "C010",
+          "constraint_id": "wearing_red_or_pink_clothing",
+          "mapped_gt_instance_id": "I08",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "UNCLEAR",
+          "attribution": "VLM_SEMANTIC_LIMIT"
+        },
+        {
+          "id": "C011",
+          "constraint_id": "wearing_red_or_pink_clothing",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C012",
+          "constraint_id": "wearing_red_or_pink_clothing",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C013",
+          "constraint_id": "wearing_red_or_pink_clothing",
+          "mapped_gt_instance_id": "I10",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_DENSE_003",
+      "constraint_id": "is_seated",
+      "question": "这个人是否坐着？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "is_seated",
+          "mapped_gt_instance_id": "I01",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "is_seated",
+          "mapped_gt_instance_id": "I04",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C003",
+          "constraint_id": "is_seated",
+          "mapped_gt_instance_id": "I07",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C004",
+          "constraint_id": "is_seated",
+          "mapped_gt_instance_id": "I05",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C005",
+          "constraint_id": "is_seated",
+          "mapped_gt_instance_id": "I06",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C006",
+          "constraint_id": "is_seated",
+          "mapped_gt_instance_id": "I02",
+          "expected": "NO",
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C007",
+          "constraint_id": "is_seated",
+          "mapped_gt_instance_id": "I03",
+          "expected": "NO",
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SMALL_001",
+      "constraint_id": "sunglasses_covering_eyes",
+      "question": "这个人的眼睛是否被太阳镜镜片覆盖？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "sunglasses_covering_eyes",
+          "mapped_gt_instance_id": "I01",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "sunglasses_covering_eyes",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C003",
+          "constraint_id": "sunglasses_covering_eyes",
+          "mapped_gt_instance_id": "I03",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C004",
+          "constraint_id": "sunglasses_covering_eyes",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C005",
+          "constraint_id": "sunglasses_covering_eyes",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SMALL_002",
+      "constraint_id": "silver_body",
+      "question": "这辆车的车身是否以银灰色为主？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "silver_body",
+          "mapped_gt_instance_id": "I01",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SMALL_003",
+      "constraint_id": "predominantly_black_hull",
+      "question": "这艘船的船体是否以黑色为主？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "predominantly_black_hull",
+          "mapped_gt_instance_id": "I01",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "predominantly_black_hull",
+          "mapped_gt_instance_id": "I04",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C003",
+          "constraint_id": "predominantly_black_hull",
+          "mapped_gt_instance_id": "I02",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C004",
+          "constraint_id": "predominantly_black_hull",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C005",
+          "constraint_id": "predominantly_black_hull",
+          "mapped_gt_instance_id": "I06",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "constraint_id": "looking_at_camera",
+      "question": "这个人是否正面看向镜头？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": "I01",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": "I02",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C003",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": "I03",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_SEMANTIC_LIMIT"
+        },
+        {
+          "id": "C004",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C005",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C006",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C007",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C008",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C009",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C010",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C011",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C012",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C013",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C014",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C015",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C016",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C017",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C018",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C019",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C020",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C021",
+          "constraint_id": "looking_at_camera",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_OCCLUSION_002",
+      "constraint_id": "wearing_dark_clothing",
+      "question": "这个人是否穿着以深色为主的衣服？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "wearing_dark_clothing",
+          "mapped_gt_instance_id": "I03",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "wearing_dark_clothing",
+          "mapped_gt_instance_id": "I05",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C003",
+          "constraint_id": "wearing_dark_clothing",
+          "mapped_gt_instance_id": "I02",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C004",
+          "constraint_id": "wearing_dark_clothing",
+          "mapped_gt_instance_id": "I04",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C005",
+          "constraint_id": "wearing_dark_clothing",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_OCCLUSION_003",
+      "constraint_id": "pushing_stroller",
+      "question": "这个人是否正在推婴儿车？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "pushing_stroller",
+          "mapped_gt_instance_id": "I01",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "pushing_stroller",
+          "mapped_gt_instance_id": "I03",
+          "expected": "NO",
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C003",
+          "constraint_id": "pushing_stroller",
+          "mapped_gt_instance_id": "I05",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C004",
+          "constraint_id": "pushing_stroller",
+          "mapped_gt_instance_id": "I04",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C005",
+          "constraint_id": "pushing_stroller",
+          "mapped_gt_instance_id": "I02",
+          "expected": "YES",
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C006",
+          "constraint_id": "pushing_stroller",
+          "mapped_gt_instance_id": "I06",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C007",
+          "constraint_id": "pushing_stroller",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C008",
+          "constraint_id": "pushing_stroller",
+          "mapped_gt_instance_id": "I03",
+          "expected": "NO",
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SCALE_001",
+      "constraint_id": "has_exposed_cable_reels",
+      "question": "这艘船的甲板上是否有明显外露的大型卷线盘？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "has_exposed_cable_reels",
+          "mapped_gt_instance_id": "I01",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "has_exposed_cable_reels",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C003",
+          "constraint_id": "has_exposed_cable_reels",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C004",
+          "constraint_id": "has_exposed_cable_reels",
+          "mapped_gt_instance_id": "I02",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C005",
+          "constraint_id": "has_exposed_cable_reels",
+          "mapped_gt_instance_id": "I01",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SCALE_002",
+      "constraint_id": "wearing_green_clothing",
+      "question": "这个人是否穿着以绿色为主的衣服？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "wearing_green_clothing",
+          "mapped_gt_instance_id": "I01",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "wearing_green_clothing",
+          "mapped_gt_instance_id": "I02",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C003",
+          "constraint_id": "wearing_green_clothing",
+          "mapped_gt_instance_id": "I05",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C004",
+          "constraint_id": "wearing_green_clothing",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C005",
+          "constraint_id": "wearing_green_clothing",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C006",
+          "constraint_id": "wearing_green_clothing",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C007",
+          "constraint_id": "wearing_green_clothing",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C008",
+          "constraint_id": "wearing_green_clothing",
+          "mapped_gt_instance_id": "I04",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C009",
+          "constraint_id": "wearing_green_clothing",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SCALE_003",
+      "constraint_id": "white_body",
+      "question": "这辆车的车身是否以白色为主？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "white_body",
+          "mapped_gt_instance_id": "I01",
+          "expected": "NO",
+          "evidence_sufficient": true,
+          "verdict": "NO",
+          "attribution": "VLM_CORRECT"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "white_body",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C003",
+          "constraint_id": "white_body",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C004",
+          "constraint_id": "white_body",
+          "mapped_gt_instance_id": "I04",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C005",
+          "constraint_id": "white_body",
+          "mapped_gt_instance_id": "I05",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C006",
+          "constraint_id": "white_body",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_INTERFERENCE_001",
+      "constraint_id": "black_canopy",
+      "question": "这把伞的伞面是否以黑色为主？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "black_canopy",
+          "mapped_gt_instance_id": "I01",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_INTERFERENCE_002",
+      "constraint_id": "red_canopy",
+      "question": "这把伞的伞面是否以红色为主？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "red_canopy",
+          "mapped_gt_instance_id": "I01",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_INTERFERENCE_003",
+      "constraint_id": "red_body",
+      "question": "这辆车的车身是否以红色为主？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "red_body",
+          "mapped_gt_instance_id": "I03",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C002",
+          "constraint_id": "red_body",
+          "mapped_gt_instance_id": "I01",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C003",
+          "constraint_id": "red_body",
+          "mapped_gt_instance_id": "I02",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C004",
+          "constraint_id": "red_body",
+          "mapped_gt_instance_id": "I04",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C005",
+          "constraint_id": "red_body",
+          "mapped_gt_instance_id": "I06",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C006",
+          "constraint_id": "red_body",
+          "mapped_gt_instance_id": null,
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C007",
+          "constraint_id": "red_body",
+          "mapped_gt_instance_id": "I02",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C008",
+          "constraint_id": "red_body",
+          "mapped_gt_instance_id": "I05",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C009",
+          "constraint_id": "red_body",
+          "mapped_gt_instance_id": "I05",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        },
+        {
+          "id": "C010",
+          "constraint_id": "red_body",
+          "mapped_gt_instance_id": "I06",
+          "expected": null,
+          "evidence_sufficient": false,
+          "verdict": null,
+          "attribution": "DETECTOR_DOWNSTREAM_UNUSABLE"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_DOMAIN_001",
+      "constraint_id": "yellow_body",
+      "question": "这台挖掘机的机身是否以黄色为主？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "yellow_body",
+          "mapped_gt_instance_id": "I01",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_DOMAIN_002",
+      "constraint_id": "wooden_gate",
+      "question": "这道闸门的主体是否由木材制成？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "wooden_gate",
+          "mapped_gt_instance_id": "I01",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "YES",
+          "attribution": "VLM_CORRECT"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_DOMAIN_003",
+      "constraint_id": "metal_gate",
+      "question": "这道闸门的主体是否为金属结构？",
+      "candidates": [
+        {
+          "id": "C001",
+          "constraint_id": "metal_gate",
+          "mapped_gt_instance_id": "I01",
+          "expected": "YES",
+          "evidence_sufficient": true,
+          "verdict": "UNCLEAR",
+          "attribution": "VLM_SEMANTIC_LIMIT"
+        }
+      ]
+    }
+  ]
+}

@@ -11,7 +11,7 @@
     {"image_id":"TST_DENSE_002","split":"test","scenario":"dense_instances","target_object":"person","title":"File:Crowd of People at Ridge, Shimla.jpg"},
     {"image_id":"TST_DENSE_003","split":"test","scenario":"dense_instances","target_object":"person","title":"File:Group portrait of seven elderly people (AM 77607-1).jpg"},
     {"image_id":"TST_SMALL_001","split":"test","scenario":"small_distant","target_object":"person","title":"File:Crowd at Noam Rotem concert.jpg"},
-    {"image_id":"TST_SMALL_002","split":"test","scenario":"small_distant","target_object":"car","title":"File:Parking lot, Gross-Gerau (P1090665).jpg"},
+    {"image_id":"TST_SMALL_002","split":"test","scenario":"small_distant","target_object":"car","title":"File:A vehicle on the road.jpg"},
     {"image_id":"TST_SMALL_003","split":"test","scenario":"small_distant","target_object":"boat","title":"File:Small Boats in a Harbor (3519068744).jpg"},
     {"image_id":"TST_OCCLUSION_001","split":"test","scenario":"occlusion","target_object":"person","title":"File:Chinese Sailors watch from behind a barrier as the Seventh Fleet flagship US Navy (USN) USS BLUE RIDGE (LCC 19) is tied up to the pier. The BLUE RIDGE, the Guided Missile Cruiser US - DPLA - 77764cad08e1f3c9690aa4a913a10705.jpeg"},
     {"image_id":"TST_OCCLUSION_002","split":"test","scenario":"occlusion","target_object":"person","title":"File:Jogging across North Parade Bridge, Bath - geograph.org.uk - 4192102.jpg"},

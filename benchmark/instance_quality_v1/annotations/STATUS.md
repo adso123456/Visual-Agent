@@ -1,22 +1,18 @@
 # Manual ground-truth status
 
-Status: `GT_FROZEN_VISION_REVIEW_DRAFTED`
+Status: `GROUNDING_DINO_BASELINE_V1_FROZEN`
 
 - Ground truth is FROZEN for all 24 Test images (annotation_state=FROZEN, 24/24 COMPLETE, reviewed_by=human).
-- Assistant vision-model candidate review is drafted for all 122 raw candidates
-  (reviews/grounding_dino_base.json, review_source=assistant_vision_draft,
-  schema-validated through CandidateReviewStore).
-- Official baseline computed: reports/grounding_dino_base_v1.json / .md
-  (Instance Recall 0.733, Instance Purity 0.685, Mixed-box Rate 0.098, Duplicate Rate 0.043).
-
-Pending before official freeze:
-
-1. Human confirmation of every candidate classification in the review tool
-   (python -m benchmark.instance_quality_v1.annotation_tool --review).
-2. Optional semantic downstream probe (needs DASHSCOPE_API_KEY) for
-   Downstream Usability.
-3. Update reviews/grounding_dino_base.json reviewed_by -> human and
-   review_status -> COMPLETE after confirmation.
+- Human Candidate Review is COMPLETE for all 122 raw candidates；用户已明确接受
+  Codex manual visual audit as final human confirmation。
+- Detector-only official baseline: Recall 0.744186，Purity 0.752941，Small Recall
+  0.75，Partial Recall 0.6875，Heavy Occlusion Recall 0.333333，Duplicate 0.058824，
+  Mixed 0.141176，False Detection 0。
+- Semantic constraint spec is FROZEN and bound to GT/raw/review. Formal semantic
+  result: 43 correct / 4 VLM semantic limit / 75 detector downstream unusable；
+  Semantic Downstream Usability = 0.914894。
+- Phase 12 Base Baseline v1 is FROZEN；Local Detector A/B may start from this SHA。
 
 The frozen GT was NOT derived from detector output (per contract). The vision
-review draft is an assistant aid and does not constitute official human review.
+review provenance is recorded in reviews/grounding_dino_base.json and
+reviews/manual_visual_audit_v1.json.

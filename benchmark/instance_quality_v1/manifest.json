@@ -169,13 +169,13 @@
       "target_object": "car",
       "relative_path": "test/TST_SMALL_002.jpg",
       "width": 1280,
-      "height": 802,
-      "sha256": "ad640a23889f321e77f1a251b8c0b11a6098ba650a9a4f6c0c20ee70762e7603",
+      "height": 2560,
+      "sha256": "bddce5a5a78bb6bf7a60a38bc6c1532b192ef9ed1f1fe2dd11ea7cd94e185cd9",
       "source": "Wikimedia Commons",
-      "source_url": "https://commons.wikimedia.org/wiki/File:Parking_lot,_Gross-Gerau_(P1090665).jpg",
+      "source_url": "https://commons.wikimedia.org/wiki/File:A_vehicle_on_the_road.jpg",
       "license": "CC BY-SA 4.0",
-      "attribution": "Matti Blume",
-      "original_filename": "Parking lot, Gross-Gerau (P1090665).jpg",
+      "attribution": "Vintage1608",
+      "original_filename": "A vehicle on the road.jpg",
       "acquisition_note": "1280-pixel thumbnail from Wikimedia Commons API; license inherited from file page."
     },
     {

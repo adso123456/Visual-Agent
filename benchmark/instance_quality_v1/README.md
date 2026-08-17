@@ -17,7 +17,7 @@ this package.
 
 - `test/`, `calibration/`: redistributable benchmark images.
 - `manifest.json`, `provenance.json`: frozen asset metadata and licenses.
-- `annotations/`: manual GT (pending until the manual-GT blocker is resolved).
+- `annotations/`: frozen manual GT and predeclared semantic-constraint Probe spec.
 - `reviews/`: manual candidate reviews.
 - `configs/`: frozen Base configuration.
 - `runs/grounding_dino_base/`: raw candidates, previews, and timing.
@@ -30,23 +30,22 @@ this package.
 ```powershell
 python -m benchmark.instance_quality_v1.scripts.validate
 python -m benchmark.instance_quality_v1.scripts.run_baseline
+python -m benchmark.instance_quality_v1.scripts.run_semantic_probe
 python -m benchmark.instance_quality_v1.scripts.evaluate
 python -m benchmark.instance_quality_v1.tests.test_evaluator
 ```
 
-The official baseline report cannot be frozen until every Test image has
-reliable manual GT and every Base candidate has a complete human review.
-
 ## Current status (2026-08)
 
 - GT: FROZEN for all 24 Test images (annotations/ground_truth.json).
-- Candidate review: assistant vision-model draft for all 122 candidates
-  (reviews/grounding_dino_base.json, review_source=assistant_vision_draft).
-  This draft is schema-validated and ready for human confirmation in the
-  review tool; it is NOT official until a human confirms every candidate.
-- Official draft baseline: reports/grounding_dino_base_v1.json / .md
-  (Instance Recall 0.7326, Instance Purity 0.6848, Mixed-box Rate 0.0978,
-  Duplicate Candidate Rate 0.0435, False Detection Rate 0.0652).
+- Candidate review: 122/122 complete，reviewed_by=human；用户明确接受 Codex
+  逐候选视觉复核作为最终人工确认。
+- Official Base baseline: FROZEN（Instance Recall 0.744186，Instance Purity
+  0.752941，Mixed-box 0.141176，Duplicate 0.058824，False Detection 0）。
+- Downstream Usability 是预声明语义约束准确率，不是对象类别可辨识率。冻结 spec
+  为 `annotations/semantic_probe_v1.json`，同时绑定 GT/raw/review；正式结果为
+  43 VLM Correct / 4 VLM Semantic Limit / 75 Detector Downstream Unusable，
+  Semantic Downstream Usability 0.914894。
 - Regenerate review sheets / assemble review / evaluate:
 
   ```powershell

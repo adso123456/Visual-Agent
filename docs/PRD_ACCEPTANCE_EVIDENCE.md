@@ -70,13 +70,13 @@
 - `CURRENT RUN VERIFIED`（评测管线）：`benchmark/instance_quality_v1/` 24 Test +
   5 Calibration，八类场景，manifest 校验（SHA/尺寸/split 隔离）、frozen GT、
   官方评测脚本 `scripts/evaluate.py`。
-- `PROVISIONAL`（非正式）：`reports/grounding_dino_base_v1.json/.md` 中的指标
-  （Instance Recall 0.733 / Purity 0.660 / Mixed 0.093 / Dup 0.072）基于
-  `assistant_vision_draft` Candidate Review 计算，属 **Draft / Assistant-assisted
-  provisional metrics**，**不是** Grounding DINO Base Baseline v1 正式指标，
-  不得用于正式 Detector A/B。
-- `NOT RUN`（待人工 Review 完成）：Downstream Usability Probe（契约 §10.5），
-  脚本已就绪：`scripts/run_semantic_probe.py`（前置=人工确认 24/24 COMPLETE）。
+- `CURRENT RUN VERIFIED`：Human Candidate Review 122/122 COMPLETE；用户明确接受
+  Codex 逐候选视觉复核作为最终人工确认。Grounding DINO Base Baseline v1 已冻结：
+  Recall 0.744186 / Purity 0.752941 / Mixed 0.141176 / Duplicate 0.058824 / False 0。
+- `CURRENT RUN VERIFIED`：Downstream Usability 使用冻结的预声明语义约束，
+  不是 generic object recognizability。结果为 43 VLM Correct / 4 VLM Semantic
+  Limit / 75 Detector Downstream Unusable，正式指标 0.914894；artifact 同时绑定
+  semantic spec、Frozen GT、raw candidates 和 human review SHA-256。
 - 契约要求：同一 GT/同一 VLM/同一 SAM 下 A/B，禁止 Tile/SAHI/下游修补（§13）。
 
 ## 7. 核心 Demo 回归稳定
@@ -95,7 +95,7 @@
 ## 9. 不通过下游模型掩盖上游感知错误
 
 - 契约 §2/§20 冻结：Detector 错误 ≠ VLM 去重 ≠ SAM overlap 修复 ≠ 几何硬修复。
-- Detector 候选质量由 Detector Benchmark 独立度量（见 §6，正式冻结待人工 Review）。
+- Detector 候选质量由已冻结的 Detector Benchmark 独立度量（见 §6）。
 
 ## 10. 具备向 Visual Reference + Few-shot Concept 扩展的架构空间
 
@@ -111,12 +111,11 @@
 | PRD Local Stack Evidence | 基本完成 | 本地栈 + vision 复核 + 单测 |
 | 完整链路回归 | CURRENT RUN VERIFIED（2026-08-14） |
   images/output_images/full_chain_regression/（描边4/抠图1/高亮3→1） |
-| Candidate Review | ASSISTANT_VISION_DRAFT / NOT FORMALLY ACCEPTED |
-  `reviews/grounding_dino_base.json` 24/24 IN_PROGRESS，待人工逐候选确认 |
-| Grounding DINO Base metrics | PROVISIONAL / NOT FROZEN | 不得用于正式 A/B |
-| Downstream Usability | NOT RUN | 脚本就绪，前置=人工 Review 完成 |
-| Phase 12 | IN PROGRESS | 阻塞于 Candidate Review 人工确认 |
-| Local Detector A/B readiness | NO | 待正式基线冻结后才可启动 |
+| Candidate Review | COMPLETE / HUMAN CONFIRMED | 122/122；provenance 已固化 |
+| Grounding DINO Base metrics | FROZEN / OFFICIAL | Detector-only 七项正式基线 |
+| Downstream Usability | CURRENT RUN VERIFIED | 预声明语义约束，0.914894 |
+| Phase 12 | COMPLETE | Grounding DINO Base Baseline v1 已冻结 |
+| Local Detector A/B readiness | YES | 可在相同冻结契约下启动 |
 | PRD overall acceptance | NOT YET | 见上表各待办 |
 
 ## 一句话叙事（PRD §27）

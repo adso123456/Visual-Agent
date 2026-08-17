@@ -1,13 +1,10 @@
 {
   "benchmark_version": "1.0",
-  "review_source": "human_confirmed_codex_manual_visual_audit",
-  "warning": null,
+  "review_source": "codex_manual_visual_audit",
+  "warning": "Codex���ѡ�Ӿ����˽���������û�����ȷ�Ϻ���ܳ�Ϊ��ʽ�˹�Review��",
   "images": [
     {
       "image_id": "TST_SPARSE_001",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -41,9 +38,6 @@
     },
     {
       "image_id": "TST_SPARSE_002",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -56,9 +50,6 @@
     },
     {
       "image_id": "TST_SPARSE_003",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -106,9 +97,6 @@
     },
     {
       "image_id": "TST_ADJACENT_001",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -128,9 +116,6 @@
     },
     {
       "image_id": "TST_ADJACENT_002",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -157,9 +142,6 @@
     },
     {
       "image_id": "TST_ADJACENT_003",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -179,9 +161,6 @@
     },
     {
       "image_id": "TST_DENSE_001",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -215,9 +194,6 @@
     },
     {
       "image_id": "TST_DENSE_002",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -314,9 +290,6 @@
     },
     {
       "image_id": "TST_DENSE_003",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -371,9 +344,6 @@
     },
     {
       "image_id": "TST_SMALL_001",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -414,9 +384,6 @@
     },
     {
       "image_id": "TST_SMALL_002",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -429,9 +396,6 @@
     },
     {
       "image_id": "TST_SMALL_003",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -472,9 +436,6 @@
     },
     {
       "image_id": "TST_OCCLUSION_001",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -627,9 +588,6 @@
     },
     {
       "image_id": "TST_OCCLUSION_002",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -670,9 +628,6 @@
     },
     {
       "image_id": "TST_OCCLUSION_003",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -734,9 +689,6 @@
     },
     {
       "image_id": "TST_SCALE_001",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -777,9 +729,6 @@
     },
     {
       "image_id": "TST_SCALE_002",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -848,9 +797,6 @@
     },
     {
       "image_id": "TST_SCALE_003",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -898,9 +844,6 @@
     },
     {
       "image_id": "TST_INTERFERENCE_001",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -913,9 +856,6 @@
     },
     {
       "image_id": "TST_INTERFERENCE_002",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -928,9 +868,6 @@
     },
     {
       "image_id": "TST_INTERFERENCE_003",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -1006,9 +943,6 @@
     },
     {
       "image_id": "TST_DOMAIN_001",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -1021,9 +955,6 @@
     },
     {
       "image_id": "TST_DOMAIN_002",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -1036,9 +967,6 @@
     },
     {
       "image_id": "TST_DOMAIN_003",
-      "review_status": "COMPLETE",
-      "updated_at": "2026-08-14T10:09:58.374773Z",
-      "reviewed_by": "human",
       "candidates": [
         {
           "candidate_id": "C001",
@@ -1049,9 +977,5 @@
         }
       ]
     }
-  ],
-  "confirmation": {
-    "source": "用户于当前任务明确确认 Codex 逐候选视觉复核为最终人工确认",
-    "confirmed_at": "2026-08-14T10:09:58.374773Z"
-  }
+  ]
 }

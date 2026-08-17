@@ -1,9 +1,14 @@
 import hashlib
 import json
+import sys
 from collections import Counter
 from pathlib import Path
 
+if __package__ in {None, ""}:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
+
 from benchmark.instance_quality_v1.evaluator import evaluate
+from benchmark.instance_quality_v1.annotation_tool.gt_store import GroundTruthStore
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -11,6 +16,36 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def canonical(value):
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+
+def validate_semantic_artifact(semantic, raw_path, review_path, spec_path, raw, expected_gt_fingerprint):
+    required = {
+        "benchmark_version", "model", "provider", "prompt_version", "probe_type",
+        "semantic_spec_sha256",
+        "raw_candidates_sha256", "review_sha256", "gt_fingerprint",
+        "created_at", "image_leaves_machine", "images",
+    }
+    if not required <= set(semantic):
+        raise ValueError(f"SEMANTIC_ARTIFACT_UNVERIFIABLE: missing={sorted(required - set(semantic))}")
+    if semantic["raw_candidates_sha256"] != hashlib.sha256(raw_path.read_bytes()).hexdigest():
+        raise ValueError("SEMANTIC_ARTIFACT_RAW_MISMATCH")
+    if semantic["review_sha256"] != hashlib.sha256(review_path.read_bytes()).hexdigest():
+        raise ValueError("SEMANTIC_ARTIFACT_REVIEW_MISMATCH")
+    if semantic["gt_fingerprint"] != expected_gt_fingerprint:
+        raise ValueError("SEMANTIC_ARTIFACT_GT_MISMATCH")
+    if semantic["probe_type"] != "predeclared_semantic_constraint":
+        raise ValueError("SEMANTIC_ARTIFACT_PROBE_TYPE_INVALID")
+    if semantic["prompt_version"] != "semantic_constraint_v1":
+        raise ValueError("SEMANTIC_ARTIFACT_PROMPT_VERSION_INVALID")
+    if semantic["semantic_spec_sha256"] != hashlib.sha256(spec_path.read_bytes()).hexdigest():
+        raise ValueError("SEMANTIC_ARTIFACT_SPEC_MISMATCH")
+    expected = {item["image_id"]: {candidate["id"] for candidate in item["candidates"]} for item in raw["images"]}
+    actual = {item.get("image_id"): {candidate.get("id") for candidate in item.get("candidates", [])} for item in semantic["images"]}
+    if actual != expected:
+        raise ValueError("SEMANTIC_ARTIFACT_CANDIDATE_SET_MISMATCH")
+    if semantic["image_leaves_machine"] is not True:
+        raise ValueError("SEMANTIC_ARTIFACT_TRANSPORT_DECLARATION_INVALID")
+    return semantic
 
 
 def report_state(reviews: dict) -> dict:
@@ -50,8 +85,20 @@ def main():
     ground_truth = json.loads((ROOT / "annotations" / "ground_truth.json").read_text(encoding="utf-8"))
     run = json.loads((ROOT / "runs" / "grounding_dino_base" / "candidates.json").read_text(encoding="utf-8"))
     reviews = json.loads((ROOT / "reviews" / "grounding_dino_base.json").read_text(encoding="utf-8"))
+    raw_path = ROOT / "runs" / "grounding_dino_base" / "candidates.json"
+    review_path = ROOT / "reviews" / "grounding_dino_base.json"
     semantic_path = ROOT / "runs" / "grounding_dino_base" / "semantic_results.json"
-    semantic = json.loads(semantic_path.read_text(encoding="utf-8")) if semantic_path.exists() else {"images": []}
+    semantic_spec_path = ROOT / "annotations" / "semantic_probe_v1.json"
+    semantic = {"images": []}
+    if semantic_path.exists():
+        semantic = validate_semantic_artifact(
+            json.loads(semantic_path.read_text(encoding="utf-8")),
+            raw_path,
+            review_path,
+            semantic_spec_path,
+            run,
+            GroundTruthStore(ROOT).fingerprint(),
+        )
     fingerprint = hashlib.sha256((canonical(manifest) + canonical(ground_truth)).encode()).hexdigest()
     config_hash = hashlib.sha256(canonical(run["detector_config"]).encode()).hexdigest()
     metrics = evaluate(manifest, ground_truth, run["images"], reviews["images"], semantic)
@@ -65,10 +112,23 @@ def main():
         "review_status": state["review_status"],
         "warning": state["warning"],
         "benchmark_fingerprint": fingerprint,
+        "gt_fingerprint": GroundTruthStore(ROOT).fingerprint(),
         "detector_config_hash": config_hash,
         "dataset": {"test_count": len(test), "calibration_count": len(manifest["images"]) - len(test), "scenario_distribution": dict(Counter(x["scenario"] for x in test)), "target_distribution": dict(Counter(x["target_object"] for x in test))},
         "detector_config": run["detector_config"], "metrics": metrics, "runtime": run["runtime"],
-        "deployment": {"local_inference": True, "requires_cloud_api": False, "requires_api_token": False, "image_leaves_machine": False, "model_license": "UNKNOWN (local cache contains no model card)"},
+        "semantic_probe": {
+            "probe_type": semantic.get("probe_type"),
+            "prompt_version": semantic.get("prompt_version"),
+            "semantic_spec_sha256": semantic.get("semantic_spec_sha256"),
+        },
+        "deployment": {
+            "detector_local_inference": True,
+            "semantic_probe_included": bool(semantic["images"]),
+            "requires_cloud_api": bool(semantic["images"]),
+            "requires_api_token": bool(semantic["images"]),
+            "image_leaves_machine": bool(semantic["images"]),
+            "model_license": "UNKNOWN (local cache contains no model card)",
+        },
     }
     reports = ROOT / "reports"; reports.mkdir(exist_ok=True)
     (reports / "grounding_dino_base_v1.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + chr(10), encoding="utf-8")
@@ -78,10 +138,10 @@ def main():
     if not state["official_baseline"]:
         banner = [
             "> \u26a0\ufe0f STATUS: **PROVISIONAL / NOT FROZEN**",
-            "> Candidate Review: assistant_vision_draft（24/24 IN_PROGRESS，待人工确认）",
+            f"> Candidate Review: {state['review_source']}（24/24 IN_PROGRESS，待人工确认）",
             "> DO NOT USE FOR FORMAL DETECTOR A/B",
             ">",
-            "> 这些指标基于 assistant_vision_draft Candidate Review 计算，不是正式基线。",
+            f"> 这些指标基于 {state['review_source']} Candidate Review 计算，不是正式基线。",
             "> 人工确认完成后，由 evaluator 重新生成 FROZEN 版本（status=FROZEN / official_baseline=true）。",
             "",
         ]
@@ -97,7 +157,11 @@ def main():
         f"- Test / Calibration: {len(test)} / {len(manifest['images']) - len(test)}",
         f"- Instance Recall: {metrics['instance_recall']}",
         f"- Instance Purity: {metrics['instance_purity']}",
-        f"- Downstream Usability: {metrics['downstream_usability']['rate']}",
+        f"- Semantic Downstream Usability: {metrics['downstream_usability']['rate']}",
+        f"- Semantic definition: {metrics['downstream_usability']['definition']}",
+        f"- Semantic VLM correct / limit: {metrics['downstream_usability']['vlm_correct']} / {metrics['downstream_usability']['vlm_semantic_limit']}",
+        f"- Detector downstream unusable: {metrics['downstream_usability']['detector_downstream_unusable']}",
+        f"- Semantic spec SHA-256: `{semantic.get('semantic_spec_sha256')}`",
         "",
         "See `grounding_dino_base_v1.json` for complete machine-readable results.",
     ]

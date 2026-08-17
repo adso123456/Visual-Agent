@@ -57,8 +57,16 @@
       {"instance_id":"I06","bbox":[520,305,760,820],"target_object":"person","visibility":"full","scale":"large","crowding":"dense","semantic_visibility":"sufficient","evaluable":true,"notes":"Seated center."},
       {"instance_id":"I07","bbox":[700,295,980,815],"target_object":"person","visibility":"full","scale":"large","crowding":"dense","semantic_visibility":"sufficient","evaluable":true,"notes":"Seated right."}
     ]},
-    {"image_id":"TST_SMALL_001","review_note":"EXHAUSTIVE_REVIEW_REQUIRED: dense cropped concert crowd; assistant draft left empty rather than fabricate uncertain body extents.","instances":[]},
-    {"image_id":"TST_SMALL_002","review_note":"EXHAUSTIVE_REVIEW_REQUIRED: aerial vehicle storage contains hundreds of tiny cars. Manual exhaustive annotation is required; no guessed draft boxes supplied.","instances":[]},
+    {"image_id":"TST_SMALL_001","review_note":"Human-review draft: five independently attributable people are marked. Strongly defocused or body-ambiguous background figures are excluded.","instances":[
+      {"instance_id":"I01","bbox":[0,16,365,852],"target_object":"person","visibility":"partial","scale":"large","crowding":"dense","semantic_visibility":"sufficient","evaluable":true,"notes":"Left-boundary foreground woman, cropped by the image edges."},
+      {"instance_id":"I02","bbox":[515,322,1010,852],"target_object":"person","visibility":"partial","scale":"large","crowding":"dense","semantic_visibility":"sufficient","evaluable":true,"notes":"Foreground woman wearing sunglasses, cropped at image bottom."},
+      {"instance_id":"I03","bbox":[918,76,1216,852],"target_object":"person","visibility":"partial","scale":"large","crowding":"dense","semantic_visibility":"sufficient","evaluable":true,"notes":"Right-side man wearing sunglasses, cropped at image bottom."},
+      {"instance_id":"I04","bbox":[433,66,748,852],"target_object":"person","visibility":"heavily_occluded","scale":"large","crowding":"dense","semantic_visibility":"sufficient","evaluable":true,"notes":"Central man in blue, lower body hidden by the foreground person."},
+      {"instance_id":"I05","bbox":[1145,170,1279,594],"target_object":"person","visibility":"partial","scale":"medium","crowding":"dense","semantic_visibility":"sufficient","evaluable":true,"notes":"Right-boundary background woman, partially hidden by adjacent people."}
+    ]},
+    {"image_id":"TST_SMALL_002","review_note":"Replacement sample pending human review: one independently attributable car; the rejected mass-parking image is archived under rejected/.","instances":[
+      {"instance_id":"I01","bbox":[600,720,992,972],"target_object":"car","visibility":"full","scale":"small","crowding":"isolated","semantic_visibility":"sufficient","evaluable":true,"notes":"Single car on the road in the replacement sample."}
+    ]},
     {"image_id":"TST_SMALL_003","review_note":"EXHAUSTIVE_REVIEW_REQUIRED: crowded harbor. Draft contains prominent separable boats only; scan background vessels.","instances":[
       {"instance_id":"I01","bbox":[75,310,250,510],"target_object":"boat","visibility":"full","scale":"medium","crowding":"dense","semantic_visibility":"sufficient","evaluable":true,"notes":"Left dark fishing boat."},
       {"instance_id":"I02","bbox":[245,300,375,510],"target_object":"boat","visibility":"full","scale":"medium","crowding":"dense","semantic_visibility":"sufficient","evaluable":true,"notes":"White fishing boat."},

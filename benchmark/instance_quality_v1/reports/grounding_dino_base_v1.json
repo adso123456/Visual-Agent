@@ -1,11 +1,12 @@
 {
   "benchmark_version": "1.0",
-  "status": "PROVISIONAL",
-  "official_baseline": false,
-  "review_source": "assistant_vision_draft",
-  "review_status": "IN_PROGRESS",
-  "warning": "NOT FOR FORMAL DETECTOR A/B — Candidate Review 尚未人工确认",
+  "status": "FROZEN",
+  "official_baseline": true,
+  "review_source": "human",
+  "review_status": "COMPLETE",
+  "warning": null,
   "benchmark_fingerprint": "06f5e26de9f5081d883ed6e6cb95a3aaa9cf26863a14a84c9d8408ff8f00d669",
+  "gt_fingerprint": "110a9dda47c1c4adbbfdb4a5b151fa0ef8efaa1acc7b5ede37f10fa658320931",
   "detector_config_hash": "ff1f6f9ac713d4e99f64a1b150088ecc3ca82f38c0bbee10e334e9cdf6d12f65",
   "dataset": {
     "test_count": 24,
@@ -42,63 +43,63 @@
   "metrics": {
     "raw_candidate_count": 122,
     "evaluable_gt_count": 86,
-    "recalled_gt_count": 63,
-    "instance_recall": 0.732558,
+    "recalled_gt_count": 64,
+    "instance_recall": 0.744186,
     "review_counts": {
-      "AMBIGUOUS": 25,
-      "DUPLICATE_INSTANCE": 7,
-      "FALSE_DETECTION": 6,
-      "MIXED_INSTANCE": 9,
-      "PARTIAL_INSTANCE": 11,
+      "AMBIGUOUS": 37,
+      "DUPLICATE_INSTANCE": 5,
+      "FALSE_DETECTION": 0,
+      "MIXED_INSTANCE": 12,
+      "PARTIAL_INSTANCE": 4,
       "VALID_INSTANCE": 64
     },
-    "instance_purity": 0.659794,
+    "instance_purity": 0.752941,
     "completeness": {
       "COMPLETE": {
-        "count": 78,
-        "rate": 0.639344
+        "count": 112,
+        "rate": 0.918033
       },
       "UNUSABLE_PARTIAL": {
-        "count": 6,
-        "rate": 0.04918
+        "count": 1,
+        "rate": 0.008197
       },
       "USABLE_PARTIAL": {
-        "count": 38,
-        "rate": 0.311475
+        "count": 9,
+        "rate": 0.07377
       }
     },
-    "duplicate_candidate_rate": 0.072165,
-    "duplicate_multiplicity": 1.15873,
-    "mixed_box_rate": 0.092784,
-    "false_detection_rate": 0.061856,
-    "ambiguous_count": 25,
+    "duplicate_candidate_rate": 0.058824,
+    "duplicate_multiplicity": 1.046875,
+    "mixed_box_rate": 0.141176,
+    "false_detection_rate": 0.0,
+    "ambiguous_count": 37,
     "scenario_breakdown": {
       "adjacent_instances": {
         "raw_candidate_count": 7,
         "evaluable_gt_count": 7,
-        "recalled_gt_count": 5,
-        "instance_recall": 0.714286,
+        "recalled_gt_count": 7,
+        "instance_recall": 1.0,
         "review_counts": {
           "AMBIGUOUS": 0,
           "DUPLICATE_INSTANCE": 0,
           "FALSE_DETECTION": 0,
           "MIXED_INSTANCE": 0,
-          "PARTIAL_INSTANCE": 2,
-          "VALID_INSTANCE": 5
+          "PARTIAL_INSTANCE": 0,
+          "VALID_INSTANCE": 7
         },
-        "instance_purity": 0.714286,
+        "instance_purity": 1.0,
         "completeness": {
           "COMPLETE": {
-            "count": 5,
-            "rate": 0.714286
+            "count": 7,
+            "rate": 1.0
           },
           "UNUSABLE_PARTIAL": {
             "count": 0,
             "rate": 0.0
           },
           "USABLE_PARTIAL": {
-            "count": 2,
-            "rate": 0.285714
+            "count": 0,
+            "rate": 0.0
           }
         },
         "duplicate_candidate_rate": 0.0,
@@ -110,70 +111,70 @@
       "cross_object_interference": {
         "raw_candidate_count": 12,
         "evaluable_gt_count": 8,
-        "recalled_gt_count": 8,
-        "instance_recall": 1.0,
+        "recalled_gt_count": 6,
+        "instance_recall": 0.75,
         "review_counts": {
           "AMBIGUOUS": 1,
-          "DUPLICATE_INSTANCE": 1,
+          "DUPLICATE_INSTANCE": 3,
           "FALSE_DETECTION": 0,
-          "MIXED_INSTANCE": 1,
-          "PARTIAL_INSTANCE": 1,
-          "VALID_INSTANCE": 8
+          "MIXED_INSTANCE": 0,
+          "PARTIAL_INSTANCE": 2,
+          "VALID_INSTANCE": 6
         },
-        "instance_purity": 0.727273,
+        "instance_purity": 0.545455,
         "completeness": {
           "COMPLETE": {
-            "count": 10,
-            "rate": 0.833333
+            "count": 8,
+            "rate": 0.666667
           },
           "UNUSABLE_PARTIAL": {
-            "count": 0,
-            "rate": 0.0
+            "count": 1,
+            "rate": 0.083333
           },
           "USABLE_PARTIAL": {
-            "count": 2,
-            "rate": 0.166667
+            "count": 3,
+            "rate": 0.25
           }
         },
-        "duplicate_candidate_rate": 0.090909,
-        "duplicate_multiplicity": 1.25,
-        "mixed_box_rate": 0.090909,
+        "duplicate_candidate_rate": 0.272727,
+        "duplicate_multiplicity": 1.166667,
+        "mixed_box_rate": 0.0,
         "false_detection_rate": 0.0,
         "ambiguous_count": 1
       },
       "dense_instances": {
         "raw_candidate_count": 24,
         "evaluable_gt_count": 24,
-        "recalled_gt_count": 18,
-        "instance_recall": 0.75,
+        "recalled_gt_count": 16,
+        "instance_recall": 0.666667,
         "review_counts": {
-          "AMBIGUOUS": 1,
-          "DUPLICATE_INSTANCE": 1,
-          "FALSE_DETECTION": 2,
-          "MIXED_INSTANCE": 2,
-          "PARTIAL_INSTANCE": 0,
-          "VALID_INSTANCE": 18
+          "AMBIGUOUS": 4,
+          "DUPLICATE_INSTANCE": 0,
+          "FALSE_DETECTION": 0,
+          "MIXED_INSTANCE": 3,
+          "PARTIAL_INSTANCE": 1,
+          "VALID_INSTANCE": 16
         },
-        "instance_purity": 0.782609,
+        "instance_purity": 0.8,
         "completeness": {
           "COMPLETE": {
-            "count": 20,
-            "rate": 0.833333
+            "count": 23,
+            "rate": 0.958333
           },
           "UNUSABLE_PARTIAL": {
-            "count": 2,
-            "rate": 0.083333
+            "count": 0,
+            "rate": 0.0
           },
           "USABLE_PARTIAL": {
-            "count": 2,
-            "rate": 0.083333
+            "count": 1,
+            "rate": 0.041667
           }
         },
-        "duplicate_candidate_rate": 0.043478,
-        "duplicate_multiplicity": 1.055556,
-        "mixed_box_rate": 0.086957,
-        "false_detection_rate": 0.086957,
-        "ambiguous_count": 1
+        "duplicate_candidate_rate": 0.0,
+        "duplicate_multiplicity": 1.0,
+        "mixed_box_rate": 0.15,
+        "false_detection_rate": 0.0,
+        "ambiguous_count": 4
       },
       "domain_long_tail": {
         "raw_candidate_count": 3,
@@ -212,36 +213,36 @@
       "occlusion": {
         "raw_candidate_count": 34,
         "evaluable_gt_count": 14,
-        "recalled_gt_count": 9,
-        "instance_recall": 0.642857,
+        "recalled_gt_count": 13,
+        "instance_recall": 0.928571,
         "review_counts": {
-          "AMBIGUOUS": 14,
-          "DUPLICATE_INSTANCE": 3,
-          "FALSE_DETECTION": 1,
-          "MIXED_INSTANCE": 3,
-          "PARTIAL_INSTANCE": 3,
-          "VALID_INSTANCE": 10
+          "AMBIGUOUS": 19,
+          "DUPLICATE_INSTANCE": 1,
+          "FALSE_DETECTION": 0,
+          "MIXED_INSTANCE": 1,
+          "PARTIAL_INSTANCE": 0,
+          "VALID_INSTANCE": 13
         },
-        "instance_purity": 0.5,
+        "instance_purity": 0.866667,
         "completeness": {
           "COMPLETE": {
-            "count": 15,
-            "rate": 0.441176
+            "count": 30,
+            "rate": 0.882353
           },
           "UNUSABLE_PARTIAL": {
-            "count": 1,
-            "rate": 0.029412
+            "count": 0,
+            "rate": 0.0
           },
           "USABLE_PARTIAL": {
-            "count": 18,
-            "rate": 0.529412
+            "count": 4,
+            "rate": 0.117647
           }
         },
-        "duplicate_candidate_rate": 0.15,
-        "duplicate_multiplicity": 1.444444,
-        "mixed_box_rate": 0.15,
-        "false_detection_rate": 0.05,
-        "ambiguous_count": 14
+        "duplicate_candidate_rate": 0.066667,
+        "duplicate_multiplicity": 1.076923,
+        "mixed_box_rate": 0.066667,
+        "false_detection_rate": 0.0,
+        "ambiguous_count": 19
       },
       "scale_variation": {
         "raw_candidate_count": 20,
@@ -249,116 +250,117 @@
         "recalled_gt_count": 8,
         "instance_recall": 0.615385,
         "review_counts": {
-          "AMBIGUOUS": 2,
-          "DUPLICATE_INSTANCE": 2,
-          "FALSE_DETECTION": 2,
-          "MIXED_INSTANCE": 3,
-          "PARTIAL_INSTANCE": 3,
+          "AMBIGUOUS": 6,
+          "DUPLICATE_INSTANCE": 1,
+          "FALSE_DETECTION": 0,
+          "MIXED_INSTANCE": 4,
+          "PARTIAL_INSTANCE": 1,
           "VALID_INSTANCE": 8
         },
-        "instance_purity": 0.444444,
+        "instance_purity": 0.571429,
         "completeness": {
           "COMPLETE": {
-            "count": 13,
-            "rate": 0.65
-          },
-          "UNUSABLE_PARTIAL": {
-            "count": 2,
-            "rate": 0.1
-          },
-          "USABLE_PARTIAL": {
-            "count": 5,
-            "rate": 0.25
-          }
-        },
-        "duplicate_candidate_rate": 0.111111,
-        "duplicate_multiplicity": 1.375,
-        "mixed_box_rate": 0.166667,
-        "false_detection_rate": 0.111111,
-        "ambiguous_count": 2
-      },
-      "small_distant": {
-        "raw_candidate_count": 11,
-        "evaluable_gt_count": 12,
-        "recalled_gt_count": 9,
-        "instance_recall": 0.75,
-        "review_counts": {
-          "AMBIGUOUS": 2,
-          "DUPLICATE_INSTANCE": 0,
-          "FALSE_DETECTION": 0,
-          "MIXED_INSTANCE": 0,
-          "PARTIAL_INSTANCE": 0,
-          "VALID_INSTANCE": 9
-        },
-        "instance_purity": 1.0,
-        "completeness": {
-          "COMPLETE": {
-            "count": 9,
-            "rate": 0.818182
+            "count": 19,
+            "rate": 0.95
           },
           "UNUSABLE_PARTIAL": {
             "count": 0,
             "rate": 0.0
           },
           "USABLE_PARTIAL": {
-            "count": 2,
-            "rate": 0.181818
+            "count": 1,
+            "rate": 0.05
+          }
+        },
+        "duplicate_candidate_rate": 0.071429,
+        "duplicate_multiplicity": 1.125,
+        "mixed_box_rate": 0.285714,
+        "false_detection_rate": 0.0,
+        "ambiguous_count": 6
+      },
+      "small_distant": {
+        "raw_candidate_count": 11,
+        "evaluable_gt_count": 12,
+        "recalled_gt_count": 7,
+        "instance_recall": 0.583333,
+        "review_counts": {
+          "AMBIGUOUS": 1,
+          "DUPLICATE_INSTANCE": 0,
+          "FALSE_DETECTION": 0,
+          "MIXED_INSTANCE": 3,
+          "PARTIAL_INSTANCE": 0,
+          "VALID_INSTANCE": 7
+        },
+        "instance_purity": 0.7,
+        "completeness": {
+          "COMPLETE": {
+            "count": 11,
+            "rate": 1.0
+          },
+          "UNUSABLE_PARTIAL": {
+            "count": 0,
+            "rate": 0.0
+          },
+          "USABLE_PARTIAL": {
+            "count": 0,
+            "rate": 0.0
           }
         },
         "duplicate_candidate_rate": 0.0,
         "duplicate_multiplicity": 1.0,
-        "mixed_box_rate": 0.0,
+        "mixed_box_rate": 0.3,
         "false_detection_rate": 0.0,
-        "ambiguous_count": 2
+        "ambiguous_count": 1
       },
       "sparse_easy": {
         "raw_candidate_count": 11,
         "evaluable_gt_count": 5,
-        "recalled_gt_count": 3,
-        "instance_recall": 0.6,
+        "recalled_gt_count": 4,
+        "instance_recall": 0.8,
         "review_counts": {
-          "AMBIGUOUS": 5,
+          "AMBIGUOUS": 6,
           "DUPLICATE_INSTANCE": 0,
-          "FALSE_DETECTION": 1,
-          "MIXED_INSTANCE": 0,
-          "PARTIAL_INSTANCE": 2,
-          "VALID_INSTANCE": 3
+          "FALSE_DETECTION": 0,
+          "MIXED_INSTANCE": 1,
+          "PARTIAL_INSTANCE": 0,
+          "VALID_INSTANCE": 4
         },
-        "instance_purity": 0.5,
+        "instance_purity": 0.8,
         "completeness": {
           "COMPLETE": {
-            "count": 3,
-            "rate": 0.272727
+            "count": 11,
+            "rate": 1.0
           },
           "UNUSABLE_PARTIAL": {
-            "count": 1,
-            "rate": 0.090909
+            "count": 0,
+            "rate": 0.0
           },
           "USABLE_PARTIAL": {
-            "count": 7,
-            "rate": 0.636364
+            "count": 0,
+            "rate": 0.0
           }
         },
         "duplicate_candidate_rate": 0.0,
         "duplicate_multiplicity": 1.0,
-        "mixed_box_rate": 0.0,
-        "false_detection_rate": 0.166667,
-        "ambiguous_count": 5
+        "mixed_box_rate": 0.2,
+        "false_detection_rate": 0.0,
+        "ambiguous_count": 6
       }
     },
-    "small_instance_recall": 0.65,
+    "small_instance_recall": 0.75,
     "partial_visibility_recall": 0.6875,
-    "heavy_occlusion_recall": 0.666667,
+    "heavy_occlusion_recall": 0.333333,
     "iqs": "NOT_DEFINED_V1",
     "downstream_usability": {
-      "probe_image_count": 0,
-      "evaluated_usable_candidates": 0,
-      "vlm_correct": 0,
-      "vlm_incorrect": 0,
-      "detector_downstream_unusable": 0,
-      "vlm_semantic_limit": 0,
+      "definition": "predeclared_semantic_constraint_accuracy_on_detector_usable_candidates",
+      "probe_image_count": 24,
+      "evaluated_usable_candidates": 47,
+      "vlm_correct": 43,
+      "vlm_incorrect": 4,
+      "detector_downstream_unusable": 75,
+      "vlm_semantic_limit": 4,
       "not_evaluable": 0,
-      "rate": null
+      "rate": 0.914894
     }
   },
   "runtime": {
@@ -394,11 +396,17 @@
       }
     ]
   },
+  "semantic_probe": {
+    "probe_type": "predeclared_semantic_constraint",
+    "prompt_version": "semantic_constraint_v1",
+    "semantic_spec_sha256": "368196c8f090759918d60aab6ba777394bedb1347fed13d602d79200a71f912e"
+  },
   "deployment": {
-    "local_inference": true,
-    "requires_cloud_api": false,
-    "requires_api_token": false,
-    "image_leaves_machine": false,
+    "detector_local_inference": true,
+    "semantic_probe_included": true,
+    "requires_cloud_api": true,
+    "requires_api_token": true,
+    "image_leaves_machine": true,
     "model_license": "UNKNOWN (local cache contains no model card)"
   }
 }

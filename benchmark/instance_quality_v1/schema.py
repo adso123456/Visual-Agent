@@ -42,12 +42,19 @@ def _string(value, name):
         raise ValueError(f"{name}必须是非空字符串")
 
 
-def validate_bbox(box, width, height, name="bbox"):
+def validate_bbox(box, width, height, name="bbox", edge_tolerance=0):
     if not isinstance(box, list) or len(box) != 4:
         raise ValueError(f"{name}必须是四元素数组")
     if not all(isinstance(v, (int, float)) and math.isfinite(v) for v in box):
         raise ValueError(f"{name}坐标非法")
-    if not (0 <= box[0] < box[2] <= width and 0 <= box[1] < box[3] <= height):
+    if not (
+        -edge_tolerance <= box[0] < box[2] <= width + edge_tolerance
+        and -edge_tolerance <= box[1] < box[3] <= height + edge_tolerance
+        and box[2] > 0
+        and box[3] > 0
+        and box[0] < width
+        and box[1] < height
+    ):
         raise ValueError(f"{name}超界或面积非正")
 
 
@@ -148,7 +155,9 @@ def validate_candidates_and_reviews(manifest, ground_truth, runs, reviews):
         image = next(item for item in manifest["images"] if item["image_id"] == image_id)
         for candidate in candidates:
             _string(candidate.get("id"), "candidate id")
-            validate_bbox(candidate.get("bbox"), image["width"], image["height"], "candidate bbox")
+            # Detector post-processing can leave sub-pixel edge overshoot. Raw artifacts
+            # stay immutable; accept only a small rounding tolerance at image borders.
+            validate_bbox(candidate.get("bbox"), image["width"], image["height"], "candidate bbox", edge_tolerance=5)
             confidence = candidate.get("confidence")
             if not isinstance(confidence, (int, float)) or not 0 <= confidence <= 1:
                 raise ValueError("candidate confidence必须位于[0,1]")
@@ -161,6 +170,36 @@ def validate_candidates_and_reviews(manifest, ground_truth, runs, reviews):
             if review["classification"] in {"VALID_INSTANCE", "PARTIAL_INSTANCE", "DUPLICATE_INSTANCE"} and mapped is None:
                 raise ValueError("实例类review必须映射GT")
             _string(review.get("review_notes"), "review_notes")
+
+
+def audit_raw_bindings(manifest, runs):
+    """逐图核对 raw candidate 与当前 Test asset 的显式绑定元数据。"""
+    test = {item["image_id"]: item for item in validate_manifest(manifest) if item["split"] == "test"}
+    rows = {item.get("image_id"): item for item in runs if isinstance(item, dict)}
+    results = []
+    required = {"source_image_sha256", "source_width", "source_height"}
+    for image_id, meta in test.items():
+        row = rows.get(image_id)
+        if row is None or not required.issubset(row):
+            status = "UNVERIFIABLE"
+        elif (
+            row["source_image_sha256"] != meta["sha256"]
+            or row["source_width"] != meta["width"]
+            or row["source_height"] != meta["height"]
+        ):
+            status = "MISMATCH"
+        else:
+            status = "MATCH"
+        results.append({"image_id": image_id, "status": status})
+    return {"images": results, "extra_image_ids": sorted(set(rows) - set(test))}
+
+
+def validate_raw_bindings(manifest, runs):
+    audit = audit_raw_bindings(manifest, runs)
+    invalid = [item for item in audit["images"] if item["status"] != "MATCH"]
+    if invalid or audit["extra_image_ids"]:
+        raise ValueError(f"RAW_IMAGE_BINDING_INVALID: images={invalid}, extras={audit['extra_image_ids']}")
+    return audit
 
 
 def scenario_counts(manifest):

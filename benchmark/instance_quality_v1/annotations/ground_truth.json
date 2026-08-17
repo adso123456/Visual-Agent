@@ -1,11 +1,11 @@
 {
   "benchmark_version": "1.0",
-  "annotation_state": "DRAFT",
+  "annotation_state": "FROZEN",
   "images": [
     {
       "image_id": "TST_SPARSE_001",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-13T08:58:06.622091Z",
+      "updated_at": "2026-08-14T07:43:05.209937Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -61,7 +61,7 @@
     {
       "image_id": "TST_SPARSE_002",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-13T08:58:09.521457Z",
+      "updated_at": "2026-08-14T07:43:07.731511Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -85,7 +85,7 @@
     {
       "image_id": "TST_SPARSE_003",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-13T08:58:13.866725Z",
+      "updated_at": "2026-08-14T07:43:10.285087Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -109,7 +109,7 @@
     {
       "image_id": "TST_ADJACENT_001",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-13T08:58:17.298496Z",
+      "updated_at": "2026-08-14T07:43:13.358736Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -149,7 +149,7 @@
     {
       "image_id": "TST_ADJACENT_002",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-13T08:58:19.832201Z",
+      "updated_at": "2026-08-14T07:43:16.941853Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -205,7 +205,7 @@
     {
       "image_id": "TST_ADJACENT_003",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-13T08:58:23.831126Z",
+      "updated_at": "2026-08-14T07:43:20.217890Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -244,9 +244,9 @@
     },
     {
       "image_id": "TST_DENSE_001",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": "2026-08-13T08:57:46.348948Z",
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:43:23.136239Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
@@ -264,15 +264,13 @@
           "evaluable": true,
           "notes": "Unambiguous foreground person cropped at image bottom; blurred background figures intentionally excluded."
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "Human-review draft: keep only the unambiguous foreground person; blurred background figures are excluded from GT."
+      ]
     },
     {
       "image_id": "TST_DENSE_002",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:43:26.452790Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
@@ -530,15 +528,13 @@
           "evaluable": true,
           "notes": "Right-boundary foreground woman."
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "Human-review draft: 16 prominent, independently attributable foreground/midground people are included. Tiny or body-ambiguous background crowd is excluded; do not freeze before human review."
+      ]
     },
     {
       "image_id": "TST_DENSE_003",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:43:29.077662Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
@@ -652,33 +648,125 @@
           "evaluable": true,
           "notes": "Seated right."
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "Seven posed people."
+      ]
     },
     {
       "image_id": "TST_SMALL_001",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
-      "instances": [],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "EXHAUSTIVE_REVIEW_REQUIRED: dense cropped concert crowd; assistant draft left empty rather than fabricate uncertain body extents."
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:43:37.665310Z",
+      "reviewed_by": "human",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            0,
+            16,
+            365,
+            852
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Left-boundary foreground woman, cropped by the image edges."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            515,
+            322,
+            1010,
+            852
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Foreground woman wearing sunglasses, cropped at image bottom."
+        },
+        {
+          "instance_id": "I03",
+          "bbox": [
+            918,
+            76,
+            1216,
+            852
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Right-side man wearing sunglasses, cropped at image bottom."
+        },
+        {
+          "instance_id": "I04",
+          "bbox": [
+            433,
+            66,
+            748,
+            852
+          ],
+          "target_object": "person",
+          "visibility": "heavily_occluded",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Central man in blue, lower body hidden by the foreground person."
+        },
+        {
+          "instance_id": "I05",
+          "bbox": [
+            1145,
+            170,
+            1279,
+            594
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Right-boundary background woman, partially hidden by adjacent people."
+        }
+      ]
     },
     {
       "image_id": "TST_SMALL_002",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
-      "instances": [],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "EXHAUSTIVE_REVIEW_REQUIRED: aerial vehicle storage contains hundreds of tiny cars. Manual exhaustive annotation is required; no guessed draft boxes supplied."
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:43:41.702709Z",
+      "reviewed_by": "human",
+      "instances": [
+        {
+          "instance_id": "I01",
+          "bbox": [
+            600,
+            720,
+            992,
+            972
+          ],
+          "target_object": "car",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "isolated",
+          "semantic_visibility": "sufficient",
+          "evaluable": true,
+          "notes": "Single car on the road in the replacement sample."
+        }
+      ]
     },
     {
       "image_id": "TST_SMALL_003",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:43:44.644302Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
@@ -776,15 +864,13 @@
           "evaluable": true,
           "notes": "Right-boundary boat."
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "EXHAUSTIVE_REVIEW_REQUIRED: crowded harbor. Draft contains prominent separable boats only; scan background vessels."
+      ]
     },
     {
       "image_id": "TST_OCCLUSION_001",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:43:47.435927Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
@@ -834,23 +920,21 @@
           "evaluable": true,
           "notes": "Foreground right sailor, lower body partly hidden."
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "EXHAUSTIVE_REVIEW_REQUIRED: three foreground sailors plus many small sailors on ship decks. Draft contains foreground only."
+      ]
     },
     {
       "image_id": "TST_OCCLUSION_002",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:44:43.315265Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
           "bbox": [
-            78,
-            132,
-            116,
-            245
+            78.0,
+            132.0,
+            103.51,
+            189.78
           ],
           "target_object": "person",
           "visibility": "full",
@@ -863,10 +947,10 @@
         {
           "instance_id": "I02",
           "bbox": [
-            102,
-            125,
-            142,
-            240
+            88.19,
+            138.81,
+            128.19,
+            253.81
           ],
           "target_object": "person",
           "visibility": "full",
@@ -879,10 +963,10 @@
         {
           "instance_id": "I03",
           "bbox": [
-            128,
-            133,
-            164,
-            236
+            118.14,
+            146.15,
+            164.0,
+            278.07
           ],
           "target_object": "person",
           "visibility": "partial",
@@ -895,10 +979,10 @@
         {
           "instance_id": "I04",
           "bbox": [
-            145,
-            145,
-            178,
-            250
+            182.47,
+            153.55,
+            197.07,
+            184.27
           ],
           "target_object": "person",
           "visibility": "partial",
@@ -911,10 +995,10 @@
         {
           "instance_id": "I05",
           "bbox": [
-            175,
-            150,
-            202,
-            235
+            267.69,
+            149.34,
+            291.4,
+            186.35
           ],
           "target_object": "person",
           "visibility": "heavily_occluded",
@@ -924,15 +1008,13 @@
           "evaluable": true,
           "notes": "Small distant figure; verify identity."
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "Five small pedestrians/runners visible on left walkway; verify at high zoom."
+      ]
     },
     {
       "image_id": "TST_OCCLUSION_003",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:45:19.301081Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
@@ -953,10 +1035,10 @@
         {
           "instance_id": "I02",
           "bbox": [
-            1162,
-            245,
-            1218,
-            390
+            1175.43,
+            280.11,
+            1223.17,
+            403.42
           ],
           "target_object": "person",
           "visibility": "full",
@@ -969,10 +1051,10 @@
         {
           "instance_id": "I03",
           "bbox": [
-            1210,
-            258,
-            1262,
-            390
+            1230.65,
+            270.39,
+            1268.19,
+            376.57
           ],
           "target_object": "person",
           "visibility": "full",
@@ -985,10 +1067,10 @@
         {
           "instance_id": "I04",
           "bbox": [
-            1118,
-            255,
-            1162,
-            380
+            1125.23,
+            255.0,
+            1160.97,
+            317.01
           ],
           "target_object": "person",
           "visibility": "partial",
@@ -997,16 +1079,46 @@
           "semantic_visibility": "insufficient",
           "evaluable": true,
           "notes": "Background pedestrian."
+        },
+        {
+          "instance_id": "I05",
+          "visibility": "full",
+          "scale": "medium",
+          "crowding": "isolated",
+          "semantic_visibility": "sufficient",
+          "bbox": [
+            1163.57,
+            253.01,
+            1186.29,
+            326.33
+          ],
+          "evaluable": true,
+          "notes": "",
+          "target_object": "person"
+        },
+        {
+          "instance_id": "I06",
+          "visibility": "full",
+          "scale": "medium",
+          "crowding": "isolated",
+          "semantic_visibility": "sufficient",
+          "bbox": [
+            1135.69,
+            235.45,
+            1153.25,
+            261.27
+          ],
+          "evaluable": true,
+          "notes": "",
+          "target_object": "person"
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "Foreground right person and several background pedestrians; draft includes the clearest instances only."
+      ]
     },
     {
       "image_id": "TST_SCALE_001",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:45:22.567716Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
@@ -1040,15 +1152,13 @@
           "evaluable": true,
           "notes": "Foreground right boat."
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "Two prominent foreground fishing boats; inspect background harbor boats for additional small instances."
+      ]
     },
     {
       "image_id": "TST_SCALE_002",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:45:24.847650Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
@@ -1130,15 +1240,13 @@
           "evaluable": true,
           "notes": "Right standing person."
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "Five central standing people plus cropped foreground audience; draft contains central group only."
+      ]
     },
     {
       "image_id": "TST_SCALE_003",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:46:10.141743Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
@@ -1159,10 +1267,10 @@
         {
           "instance_id": "I02",
           "bbox": [
-            220,
-            365,
-            430,
-            555
+            243.08,
+            377.82,
+            426.58,
+            536.2
           ],
           "target_object": "car",
           "visibility": "full",
@@ -1175,10 +1283,10 @@
         {
           "instance_id": "I03",
           "bbox": [
-            395,
-            345,
-            535,
-            485
+            359.96,
+            360.39,
+            482.87,
+            480.73
           ],
           "target_object": "car",
           "visibility": "partial",
@@ -1191,10 +1299,10 @@
         {
           "instance_id": "I04",
           "bbox": [
-            505,
-            337,
-            590,
-            420
+            475.94,
+            394.26,
+            528.46,
+            444.78
           ],
           "target_object": "car",
           "visibility": "partial",
@@ -1207,10 +1315,10 @@
         {
           "instance_id": "I05",
           "bbox": [
-            565,
-            330,
-            625,
-            390
+            521.41,
+            387.27,
+            557.48,
+            427.61
           ],
           "target_object": "car",
           "visibility": "partial",
@@ -1223,10 +1331,10 @@
         {
           "instance_id": "I06",
           "bbox": [
-            610,
-            325,
-            655,
-            370
+            541.62,
+            383.98,
+            578.07,
+            415.3
           ],
           "target_object": "car",
           "visibility": "partial",
@@ -1236,15 +1344,13 @@
           "evaluable": true,
           "notes": "Distant car."
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "Row of near-to-far parked cars; draft contains clearly separable vehicles, verify distant tail."
+      ]
     },
     {
       "image_id": "TST_INTERFERENCE_001",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:46:16.403032Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
@@ -1262,15 +1368,13 @@
           "evaluable": true,
           "notes": "Assistant visual draft; human confirmation required."
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "One foreground black umbrella; inspect distant street for other umbrellas."
+      ]
     },
     {
       "image_id": "TST_INTERFERENCE_002",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:46:21.284636Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
@@ -1288,15 +1392,13 @@
           "evaluable": true,
           "notes": "Assistant visual draft; human confirmation required."
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "One red umbrella."
+      ]
     },
     {
       "image_id": "TST_INTERFERENCE_003",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:46:24.728134Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
@@ -1394,15 +1496,13 @@
           "evaluable": true,
           "notes": "Right-boundary white vehicle."
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "Background parked cars only; verify small partially hidden vehicles at high zoom."
+      ]
     },
     {
       "image_id": "TST_DOMAIN_001",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:46:27.346098Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
@@ -1420,15 +1520,13 @@
           "evaluable": true,
           "notes": "Assistant visual draft; human confirmation required."
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "Single excavator; bbox covers tracks, body, boom, and bucket."
+      ]
     },
     {
       "image_id": "TST_DOMAIN_002",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:46:29.993927Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
@@ -1446,15 +1544,13 @@
           "evaluable": true,
           "notes": "Gate leaf and crossbeam assembly."
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "One wooden sluice gate assembly spanning the channel."
+      ]
     },
     {
       "image_id": "TST_DOMAIN_003",
-      "annotation_status": "IN_PROGRESS",
-      "updated_at": null,
-      "reviewed_by": "pending_human_review",
+      "annotation_status": "COMPLETE",
+      "updated_at": "2026-08-14T07:46:35.541295Z",
+      "reviewed_by": "human",
       "instances": [
         {
           "instance_id": "I01",
@@ -1472,9 +1568,7 @@
           "evaluable": true,
           "notes": "Full visible gate/mechanism spans image width; human policy confirmation required."
         }
-      ],
-      "draft_source": "assistant_visual_draft_pending_human_review",
-      "draft_review_note": "One mechanical sluice gate assembly; verify whether contract policy wants gate leaf only or full mechanism."
+      ]
     }
   ]
 }

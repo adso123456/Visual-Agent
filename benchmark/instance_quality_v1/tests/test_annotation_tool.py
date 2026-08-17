@@ -11,6 +11,7 @@ from benchmark.instance_quality_v1.annotation_tool.geometry import normalize_cli
 from benchmark.instance_quality_v1.annotation_tool.gt_store import GroundTruthStore
 from benchmark.instance_quality_v1.annotation_tool.draft_store import DraftStore
 from benchmark.instance_quality_v1.annotation_tool.review_store import CandidateReviewStore
+from benchmark.instance_quality_v1.schema import validate_bbox
 
 
 SOURCE_ROOT = Path(__file__).resolve().parents[1]
@@ -160,7 +161,14 @@ def test_freeze_and_review():
         image_id = store.test_images[0]["image_id"]
         raw_path = root / "runs" / "grounding_dino_base" / "candidates.json"
         raw_path.parent.mkdir(parents=True)
-        raw = {"images": [{"image_id": image_id, "candidates": [{"id": "C001", "bbox": [1, 1, 10, 10], "confidence": 0.8, "text_label": "person"}]}]}
+        raw_images = []
+        for meta in store.test_images:
+            candidates = [{"id": "C001", "bbox": [1, 1, 10, 10], "confidence": 0.8, "text_label": meta["target_object"]}] if meta["image_id"] == image_id else []
+            raw_images.append({
+                "image_id": meta["image_id"], "source_image_sha256": meta["sha256"],
+                "source_width": meta["width"], "source_height": meta["height"], "candidates": candidates,
+            })
+        raw = {"images": raw_images}
         raw_path.write_text(json.dumps(raw), encoding="utf-8")
         raw_hash = hashlib.sha256(raw_path.read_bytes()).hexdigest()
         review = CandidateReviewStore(root)
@@ -169,9 +177,31 @@ def test_freeze_and_review():
         review.save_review(image_id, {"candidate_id": "C001", "mapped_gt_instance_id": None, "classification": "FALSE_DETECTION", "completeness": "COMPLETE", "review_notes": "manual review"})
         review.mark_complete(image_id)
         assert review.review_image(image_id)["review_status"] == "COMPLETE"
+        assert review.review_image(image_id)["reviewed_by"] == "human"
         assert hashlib.sha256(raw_path.read_bytes()).hexdigest() == raw_hash
+
+        review.confirm_all("explicit user confirmation")
+        assert all(item["review_status"] == "COMPLETE" for item in review.document["images"])
+        assert review.document["review_source"] == "human_confirmed_codex_manual_visual_audit"
+
+        bad = deepcopy(raw); bad["images"][0]["source_image_sha256"] = "0" * 64
+        raw_path.write_text(json.dumps(bad), encoding="utf-8")
+        expect_error(ValueError, lambda: CandidateReviewStore(root))
+        bad = deepcopy(raw); bad["images"][0]["source_width"] += 1
+        raw_path.write_text(json.dumps(bad), encoding="utf-8")
+        expect_error(ValueError, lambda: CandidateReviewStore(root))
     finally:
         temporary.cleanup()
+
+
+def test_candidate_bbox_allows_only_small_edge_rounding():
+    validate_bbox([-1.29, 10, 100, 101.5], 100, 100, "candidate", edge_tolerance=5)
+    try:
+        validate_bbox([-5.01, 10, 100, 101.5], 100, 100, "candidate", edge_tolerance=5)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError("large candidate edge overshoot must be rejected")
 
 
 def main():

@@ -1,6 +1,6 @@
 from collections import Counter, defaultdict
 
-from .schema import COMPLETENESS, REVIEW_CLASSES, SCENARIOS, validate_candidates_and_reviews
+from .schema import COMPLETENESS, REVIEW_CLASSES, SCENARIOS, validate_candidates_and_reviews, validate_raw_bindings
 
 
 def _ratio(numerator, denominator):
@@ -56,6 +56,7 @@ def _evaluate_subset(image_ids, gt_by_image, run_by_image, review_by_image):
 
 
 def evaluate(manifest, ground_truth, runs, reviews, semantic_results=None):
+    validate_raw_bindings(manifest, runs)
     validate_candidates_and_reviews(manifest, ground_truth, runs, reviews)
     images = {item["image_id"]: item for item in manifest["images"] if item["split"] == "test"}
     gt_by_image = {item["image_id"]: item for item in ground_truth["images"]}
@@ -90,6 +91,7 @@ def evaluate(manifest, ground_truth, runs, reviews, semantic_results=None):
     attribution = Counter(row["attribution"] for row in semantic_rows)
     evaluated_usable = attribution["VLM_CORRECT"] + attribution["VLM_SEMANTIC_LIMIT"]
     metrics["downstream_usability"] = {
+        "definition": "predeclared_semantic_constraint_accuracy_on_detector_usable_candidates",
         "probe_image_count": len(semantic_results.get("images", [])),
         "evaluated_usable_candidates": evaluated_usable,
         "vlm_correct": attribution["VLM_CORRECT"],

@@ -1,0 +1,20 @@
+{
+  "reviewed_at": "2026-08-14",
+  "reviewed_by": "human",
+  "decisions": [
+    {
+      "image_id": "TST_SMALL_001",
+      "decision": "CORRECTED_AND_ACCEPTED",
+      "reason": "Human reviewer rejected the current sample/annotation.",
+      "included_in_final_24": true
+    },
+    {
+      "image_id": "TST_SMALL_002",
+      "decision": "REMOVED_REPLACED_AND_ACCEPTED",
+      "reason": "The original aerial parking-lot image contained too many cars for reliable exhaustive GT.",
+      "archived_asset": "rejected/TST_SMALL_002_parking_lot_rejected.jpg",
+      "replacement_source": "https://commons.wikimedia.org/wiki/File:A_vehicle_on_the_road.jpg",
+      "included_in_final_24": true
+    }
+  ]
+}

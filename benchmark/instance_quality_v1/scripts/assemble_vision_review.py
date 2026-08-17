@@ -6,11 +6,9 @@
 
 本脚本：
 1. 读取 raw candidates 与 frozen GT；
-2. 使用视觉复核结论（VISION_CLASS）作为分类来源；
-3. 映射锚定：VALID/PARTIAL/DUPLICATE 的 mapped GT 使用 best-IoU 确定性锚定
-   （review card 本身即显示 IoU(ref) 作为参照）；
-4. 一致性规则：DUPLICATE 必须存在同 GT 的更强候选，否则降级 VALID；
-   VALID/PARTIAL 若 best-IoU 过低则降级 AMBIGUOUS；
+2. 读取逐候选视觉复核文件 manual_visual_audit_v1.json；
+3. 分类与 GT 映射均以视觉判断为准，IoU/containment 不参与自动分类或映射；
+4. 校验 image/candidate 集合与 mapped GT ID；
 5. 通过 schema 校验后写入 reviews/grounding_dino_base.json。
 
 注意：本文件是「assistant 视觉复核草稿」，正式定稿仍应在 annotation_tool review
@@ -25,7 +23,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 # ---------------------------------------------------------------------------
-# 视觉复核结论（由 vision_glance 对每张 review card 逐卡判定）
+# 旧视觉草稿，仅保留为诊断历史；main() 不再读取，禁止用于自动映射。
+# 当前草稿来源为 reviews/manual_visual_audit_v1.json。
 # 格式：image_id -> {candidate_id: {"class": ..., "completeness": ..., "notes": ...}}
 # mapped GT 不在此处给出，统一由 best-IoU 确定性锚定。
 # ---------------------------------------------------------------------------
@@ -237,64 +236,34 @@ def main() -> None:
     raw = json.loads((ROOT / "runs" / "grounding_dino_base" / "candidates.json").read_text(encoding="utf-8"))
     gt = json.loads((ROOT / "annotations" / "ground_truth.json").read_text(encoding="utf-8"))
     gt_by = {item["image_id"]: item for item in gt["images"]}
+    audit = json.loads((ROOT / "reviews" / "manual_visual_audit_v1.json").read_text(encoding="utf-8"))
+    audit_by = {item["image_id"]: item for item in audit["images"]}
 
     document = {
         "benchmark_version": "1.0",
-        "review_source": "assistant_vision_draft",
-        "warning": "Vision-model draft review (vision_glance on review cards). Requires human confirmation in the annotation tool before official freeze.",
+        "review_source": audit["review_source"],
+        "warning": audit["warning"],
         "images": [],
     }
     for row in raw["images"]:
         image_id = row["image_id"]
-        gt_instances = gt_by[image_id]["instances"]
-        gt_ids = {item["instance_id"] for item in gt_instances}
-        classes = VISION_CLASS[image_id]
-        if set(classes) != {item["id"] for item in row["candidates"]}:
+        gt_ids = {item["instance_id"] for item in gt_by[image_id]["instances"]}
+        reviews = audit_by[image_id]["candidates"]
+        raw_ids = [item["id"] for item in row["candidates"]]
+        review_ids = [item["candidate_id"] for item in reviews]
+        if raw_ids != review_ids:
             raise RuntimeError(
-                f"verdict mismatch for {image_id}: {sorted(set(classes) ^ {item['id'] for item in row['candidates']})}"
+                f"manual visual review mismatch for {image_id}: raw={raw_ids}, review={review_ids}"
             )
-        # 1) containment-aware 锚定（IoU 与 containment 取高者）
-        anchors: dict[str, tuple[str | None, float]] = {
-            candidate["id"]: _anchor(candidate, gt_instances)
-            for candidate in row["candidates"]
-        }
-        # 2) 一致性：DUPLICATE 需要同 GT 存在更强候选
-        mapped_count = Counter()
-        for candidate in row["candidates"]:
-            cls = classes[candidate["id"]]["class"]
-            if cls in {"VALID_INSTANCE", "PARTIAL_INSTANCE", "DUPLICATE_INSTANCE"}:
-                mapped_id, score = anchors[candidate["id"]]
-                if score >= 0.30 and mapped_id in gt_ids:
-                    mapped_count[mapped_id] += 1
-        reviews = []
-        for candidate in row["candidates"]:
-            candidate_id = candidate["id"]
-            info = classes[candidate_id]
-            cls, completeness, notes = info["class"], info["completeness"], info["notes"]
-            mapped_id, score = anchors[candidate_id]
-            if cls in {"VALID_INSTANCE", "PARTIAL_INSTANCE", "DUPLICATE_INSTANCE"}:
-                if score < 0.30 or mapped_id not in gt_ids:
-                    cls = "AMBIGUOUS"
-                    completeness = "USABLE_PARTIAL"
-                    notes = notes + "（anchor 锚定失败，降级 AMBIGUOUS）"
-                    mapped_id = None
-                elif cls == "DUPLICATE_INSTANCE" and mapped_count[mapped_id] < 2:
-                    cls = "VALID_INSTANCE"
-                    notes = notes + f"（同 GT {mapped_id} 无更强候选，按 VALID 计）"
-            else:
-                mapped_id = None
-            reviews.append({
-                "candidate_id": candidate_id,
-                "classification": cls,
-                "completeness": completeness,
-                "mapped_gt_instance_id": mapped_id,
-                "review_notes": notes,
-            })
+        for review in reviews:
+            mapped_id = review["mapped_gt_instance_id"]
+            if mapped_id is not None and mapped_id not in gt_ids:
+                raise RuntimeError(f"manual visual review maps missing GT: {image_id}/{review['candidate_id']}/{mapped_id}")
         document["images"].append({
             "image_id": image_id,
             "review_status": "IN_PROGRESS",
             "updated_at": None,
-            "reviewed_by": "assistant_vision_draft",
+            "reviewed_by": "codex_manual_visual_audit",
             "candidates": reviews,
         })
     out_path = ROOT / "reviews" / "grounding_dino_base.json"

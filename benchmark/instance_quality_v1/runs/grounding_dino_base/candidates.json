@@ -1,0 +1,1817 @@
+{
+  "benchmark_version": "1.0",
+  "detector_config": {
+    "provider": "huggingface_transformers",
+    "model": "IDEA-Research/grounding-dino-base",
+    "full_frame": true,
+    "box_threshold": 0.3,
+    "text_threshold": 0.3,
+    "candidate_order": "detector_return_order",
+    "production_behavioral_baseline": "1682abe2e58229e94225839db881c4b1a5c15e26"
+  },
+  "runtime": {
+    "model_load_seconds": 9.41875,
+    "mean_detection_latency_seconds": 8.099511,
+    "p50_detection_latency_seconds": 7.806746,
+    "p95_detection_latency_seconds": 10.599892,
+    "device": "cpu",
+    "cuda_available": false,
+    "peak_vram_bytes": "not_available",
+    "torch_version": "2.11.0+cpu",
+    "transformers_version": "5.8.1",
+    "python_version": "3.12.4",
+    "batch_support": "not_measured; production detect() accepts one image",
+    "dependency_complexity": "Existing local PyTorch and Transformers stack; no dependency added.",
+    "binding_repair_runs": [
+      {
+        "image_ids": [
+          "TST_SMALL_002"
+        ],
+        "model_load_seconds": 9.567195,
+        "mean_detection_latency_seconds": 9.189133,
+        "p50_detection_latency_seconds": 9.189133,
+        "p95_detection_latency_seconds": 9.189133,
+        "device": "cpu",
+        "cuda_available": false,
+        "peak_vram_bytes": "not_available",
+        "torch_version": "2.11.0+cpu",
+        "transformers_version": "5.8.1",
+        "python_version": "3.12.4",
+        "batch_support": "not_measured; production detect() accepts one image",
+        "dependency_complexity": "Existing local PyTorch and Transformers stack; no dependency added."
+      }
+    ]
+  },
+  "images": [
+    {
+      "image_id": "TST_SPARSE_001",
+      "target_object": "person",
+      "latency_seconds": 11.134558,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            413.14,
+            150.46,
+            1011.45,
+            1780.28
+          ],
+          "confidence": 0.6416,
+          "text_label": "person"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            892.37,
+            398.32,
+            1059.87,
+            1068.91
+          ],
+          "confidence": 0.5623,
+          "text_label": "person"
+        },
+        {
+          "id": "C003",
+          "bbox": [
+            199.86,
+            490.12,
+            455.67,
+            1248.8
+          ],
+          "confidence": 0.509,
+          "text_label": "person"
+        },
+        {
+          "id": "C004",
+          "bbox": [
+            0.38,
+            624.61,
+            95.43,
+            1013.81
+          ],
+          "confidence": 0.3441,
+          "text_label": "person"
+        }
+      ],
+      "source_image_sha256": "40792e9277460b8ef95d0f3ea5a2dc189fad98444f01cd74bc5ef2375760c8a9",
+      "source_width": 1280,
+      "source_height": 1924,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_SPARSE_002",
+      "target_object": "dog",
+      "latency_seconds": 9.833895,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            184.98,
+            148.35,
+            1080.62,
+            774.23
+          ],
+          "confidence": 0.8278,
+          "text_label": "dog"
+        }
+      ],
+      "source_image_sha256": "9144333d91fa3d54b4110763417731a7a7b1e29b963c7a27930a376c16b7e69e",
+      "source_width": 1280,
+      "source_height": 853,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_SPARSE_003",
+      "target_object": "boat",
+      "latency_seconds": 8.969266,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            640.99,
+            79.69,
+            1005.13,
+            1725.15
+          ],
+          "confidence": 0.5856,
+          "text_label": "boat"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            214.14,
+            1307.91,
+            320.26,
+            1339.52
+          ],
+          "confidence": 0.4667,
+          "text_label": "boat"
+        },
+        {
+          "id": "C003",
+          "bbox": [
+            359.35,
+            1296.67,
+            474.89,
+            1330.83
+          ],
+          "confidence": 0.4608,
+          "text_label": "boat"
+        },
+        {
+          "id": "C004",
+          "bbox": [
+            0.12,
+            1319.19,
+            38.08,
+            1344.76
+          ],
+          "confidence": 0.387,
+          "text_label": "boat"
+        },
+        {
+          "id": "C005",
+          "bbox": [
+            55.19,
+            1312.89,
+            166.8,
+            1341.67
+          ],
+          "confidence": 0.4141,
+          "text_label": "boat"
+        },
+        {
+          "id": "C006",
+          "bbox": [
+            313.82,
+            1306.62,
+            369.25,
+            1332.65
+          ],
+          "confidence": 0.3232,
+          "text_label": "boat"
+        }
+      ],
+      "source_image_sha256": "83a7329fc3718df4c0ab23dc41d7f5bc78806a8424385e2cd63107f00ea6f887",
+      "source_width": 1280,
+      "source_height": 2377,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_ADJACENT_001",
+      "target_object": "person",
+      "latency_seconds": 7.681532,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            525.99,
+            136.79,
+            546.23,
+            223.26
+          ],
+          "confidence": 0.6946,
+          "text_label": "person"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            511.45,
+            139.45,
+            530.71,
+            225.32
+          ],
+          "confidence": 0.726,
+          "text_label": "person"
+        }
+      ],
+      "source_image_sha256": "4fcbe4d7158c7075df6b6cb52e078a1362c86695839750fe53dbeb0d5471cfab",
+      "source_width": 640,
+      "source_height": 480,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_ADJACENT_002",
+      "target_object": "person",
+      "latency_seconds": 7.649886,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            -1.29,
+            179.81,
+            387.28,
+            1246.01
+          ],
+          "confidence": 0.7241,
+          "text_label": "person"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            392.45,
+            204.81,
+            840.02,
+            1244.99
+          ],
+          "confidence": 0.7382,
+          "text_label": "person"
+        },
+        {
+          "id": "C003",
+          "bbox": [
+            884.99,
+            187.53,
+            1278.29,
+            1243.8
+          ],
+          "confidence": 0.7389,
+          "text_label": "person"
+        }
+      ],
+      "source_image_sha256": "d6c96976b3d12003c24aa248d6c7e3d54900cb7f1737e0d3d5d010a1e5a69860",
+      "source_width": 1280,
+      "source_height": 1248,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_ADJACENT_003",
+      "target_object": "dog",
+      "latency_seconds": 9.3394,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            3.61,
+            518.53,
+            533.27,
+            1328.11
+          ],
+          "confidence": 0.6358,
+          "text_label": "dog"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            503.23,
+            548.86,
+            1278.74,
+            1382.04
+          ],
+          "confidence": 0.6569,
+          "text_label": "dog"
+        }
+      ],
+      "source_image_sha256": "2991cf22dc75690d76a35d0338d1c983d222862fe65266b61aeed8959628be18",
+      "source_width": 1280,
+      "source_height": 1707,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_DENSE_001",
+      "target_object": "person",
+      "latency_seconds": 9.038208,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            383.16,
+            105.19,
+            1130.32,
+            861.9
+          ],
+          "confidence": 0.4067,
+          "text_label": "person"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            1100.33,
+            361.34,
+            1278.31,
+            862.34
+          ],
+          "confidence": 0.3551,
+          "text_label": "person"
+        },
+        {
+          "id": "C003",
+          "bbox": [
+            1.87,
+            329.27,
+            165.4,
+            861.68
+          ],
+          "confidence": 0.3459,
+          "text_label": "person"
+        },
+        {
+          "id": "C004",
+          "bbox": [
+            933.26,
+            419.05,
+            1131.58,
+            830.5
+          ],
+          "confidence": 0.3314,
+          "text_label": "person"
+        }
+      ],
+      "source_image_sha256": "b3bddb365514caed18268db9703c006072e13f7a8cc4737219155b7544ce3a3e",
+      "source_width": 1280,
+      "source_height": 865,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_DENSE_002",
+      "target_object": "person",
+      "latency_seconds": 7.360435,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            809.41,
+            1436.41,
+            1030.62,
+            1701.78
+          ],
+          "confidence": 0.3966,
+          "text_label": "person"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            1105.58,
+            1345.91,
+            1277.91,
+            1705.31
+          ],
+          "confidence": 0.3363,
+          "text_label": "person"
+        },
+        {
+          "id": "C003",
+          "bbox": [
+            384.0,
+            1291.46,
+            553.19,
+            1702.62
+          ],
+          "confidence": 0.3982,
+          "text_label": "person"
+        },
+        {
+          "id": "C004",
+          "bbox": [
+            1.3,
+            1289.09,
+            121.91,
+            1701.19
+          ],
+          "confidence": 0.3835,
+          "text_label": "person"
+        },
+        {
+          "id": "C005",
+          "bbox": [
+            617.78,
+            1079.78,
+            647.17,
+            1138.19
+          ],
+          "confidence": 0.3943,
+          "text_label": "person"
+        },
+        {
+          "id": "C006",
+          "bbox": [
+            137.65,
+            1236.84,
+            308.33,
+            1591.93
+          ],
+          "confidence": 0.3659,
+          "text_label": "person"
+        },
+        {
+          "id": "C007",
+          "bbox": [
+            966.38,
+            1283.34,
+            1069.76,
+            1595.43
+          ],
+          "confidence": 0.3036,
+          "text_label": "person"
+        },
+        {
+          "id": "C008",
+          "bbox": [
+            236.88,
+            1215.03,
+            342.81,
+            1565.2
+          ],
+          "confidence": 0.3147,
+          "text_label": "person"
+        },
+        {
+          "id": "C009",
+          "bbox": [
+            1057.27,
+            1273.11,
+            1176.77,
+            1670.28
+          ],
+          "confidence": 0.3063,
+          "text_label": "person"
+        },
+        {
+          "id": "C010",
+          "bbox": [
+            601.88,
+            1236.99,
+            694.29,
+            1503.17
+          ],
+          "confidence": 0.3131,
+          "text_label": "person"
+        },
+        {
+          "id": "C011",
+          "bbox": [
+            353.67,
+            1256.66,
+            462.32,
+            1711.69
+          ],
+          "confidence": 0.3232,
+          "text_label": "person"
+        },
+        {
+          "id": "C012",
+          "bbox": [
+            -0.12,
+            1179.63,
+            1279.84,
+            1699.87
+          ],
+          "confidence": 0.3193,
+          "text_label": "person"
+        },
+        {
+          "id": "C013",
+          "bbox": [
+            721.53,
+            1250.55,
+            819.41,
+            1580.21
+          ],
+          "confidence": 0.3146,
+          "text_label": "person"
+        }
+      ],
+      "source_image_sha256": "e84d67b4ed6dd10b674e934c9502e24c83f9d38ddf6a7e3e1d4a06d77f4ee58f",
+      "source_width": 1280,
+      "source_height": 1707,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_DENSE_003",
+      "target_object": "person",
+      "latency_seconds": 7.828868,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            76.71,
+            149.25,
+            346.05,
+            757.69
+          ],
+          "confidence": 0.5969,
+          "text_label": "person"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            905.64,
+            142.18,
+            1169.18,
+            755.89
+          ],
+          "confidence": 0.5928,
+          "text_label": "person"
+        },
+        {
+          "id": "C003",
+          "bbox": [
+            737.58,
+            300.98,
+            961.34,
+            801.08
+          ],
+          "confidence": 0.5493,
+          "text_label": "person"
+        },
+        {
+          "id": "C004",
+          "bbox": [
+            308.91,
+            356.97,
+            574.45,
+            802.2
+          ],
+          "confidence": 0.5482,
+          "text_label": "person"
+        },
+        {
+          "id": "C005",
+          "bbox": [
+            531.57,
+            309.87,
+            753.17,
+            781.41
+          ],
+          "confidence": 0.5443,
+          "text_label": "person"
+        },
+        {
+          "id": "C006",
+          "bbox": [
+            353.9,
+            168.27,
+            556.27,
+            512.09
+          ],
+          "confidence": 0.5405,
+          "text_label": "person"
+        },
+        {
+          "id": "C007",
+          "bbox": [
+            656.44,
+            147.78,
+            846.48,
+            554.88
+          ],
+          "confidence": 0.4297,
+          "text_label": "person"
+        }
+      ],
+      "source_image_sha256": "489e31ecc929ce3e9b6e6771bbd24f9b69111e4b38c417af961e3e3d37ce5b99",
+      "source_width": 1275,
+      "source_height": 957,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_SMALL_001",
+      "target_object": "person",
+      "latency_seconds": 10.599892,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            1.16,
+            27.0,
+            351.33,
+            851.56
+          ],
+          "confidence": 0.4681,
+          "text_label": "person"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            515.23,
+            323.86,
+            1046.52,
+            848.97
+          ],
+          "confidence": 0.4348,
+          "text_label": "person"
+        },
+        {
+          "id": "C003",
+          "bbox": [
+            887.95,
+            84.3,
+            1216.99,
+            852.51
+          ],
+          "confidence": 0.3958,
+          "text_label": "person"
+        },
+        {
+          "id": "C004",
+          "bbox": [
+            419.35,
+            70.2,
+            732.63,
+            842.35
+          ],
+          "confidence": 0.3542,
+          "text_label": "person"
+        },
+        {
+          "id": "C005",
+          "bbox": [
+            3.35,
+            5.12,
+            1273.73,
+            852.29
+          ],
+          "confidence": 0.3205,
+          "text_label": "person"
+        }
+      ],
+      "source_image_sha256": "f9a16677ace417f2d261af0ab2aa5a1a3dc043d141f9b9ddccebcfec5d9184d4",
+      "source_width": 1280,
+      "source_height": 854,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_SMALL_002",
+      "target_object": "car",
+      "source_image_sha256": "bddce5a5a78bb6bf7a60a38bc6c1532b192ef9ed1f1fe2dd11ea7cd94e185cd9",
+      "source_width": 1280,
+      "source_height": 2560,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "latency_seconds": 9.189133,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            608.97,
+            716.32,
+            983.79,
+            951.79
+          ],
+          "confidence": 0.8137,
+          "text_label": "car"
+        }
+      ]
+    },
+    {
+      "image_id": "TST_SMALL_003",
+      "target_object": "boat",
+      "latency_seconds": 7.92302,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            75.69,
+            254.03,
+            249.63,
+            472.18
+          ],
+          "confidence": 0.4305,
+          "text_label": "boat"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            611.41,
+            4.87,
+            887.11,
+            532.51
+          ],
+          "confidence": 0.3717,
+          "text_label": "boat"
+        },
+        {
+          "id": "C003",
+          "bbox": [
+            244.21,
+            232.51,
+            387.7,
+            476.78
+          ],
+          "confidence": 0.3758,
+          "text_label": "boat"
+        },
+        {
+          "id": "C004",
+          "bbox": [
+            1.1,
+            314.67,
+            51.9,
+            427.26
+          ],
+          "confidence": 0.3604,
+          "text_label": "boat"
+        },
+        {
+          "id": "C005",
+          "bbox": [
+            1038.88,
+            97.47,
+            1276.02,
+            580.29
+          ],
+          "confidence": 0.3558,
+          "text_label": "boat"
+        }
+      ],
+      "source_image_sha256": "5be8e8ad11333efc022138506ab52d6bdab9d3ea7b8fcb5dba051996cbca0df5",
+      "source_width": 1280,
+      "source_height": 853,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "target_object": "person",
+      "latency_seconds": 8.760008,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            206.81,
+            750.45,
+            423.8,
+            1698.32
+          ],
+          "confidence": 0.5823,
+          "text_label": "person"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            404.37,
+            717.93,
+            700.86,
+            1713.98
+          ],
+          "confidence": 0.5949,
+          "text_label": "person"
+        },
+        {
+          "id": "C003",
+          "bbox": [
+            782.61,
+            601.21,
+            1060.23,
+            1883.76
+          ],
+          "confidence": 0.6017,
+          "text_label": "person"
+        },
+        {
+          "id": "C004",
+          "bbox": [
+            1199.17,
+            600.58,
+            1226.1,
+            668.75
+          ],
+          "confidence": 0.4754,
+          "text_label": "person"
+        },
+        {
+          "id": "C005",
+          "bbox": [
+            1072.15,
+            608.17,
+            1099.05,
+            675.81
+          ],
+          "confidence": 0.4332,
+          "text_label": "person"
+        },
+        {
+          "id": "C006",
+          "bbox": [
+            1233.48,
+            602.63,
+            1265.49,
+            668.65
+          ],
+          "confidence": 0.4606,
+          "text_label": "person"
+        },
+        {
+          "id": "C007",
+          "bbox": [
+            1042.36,
+            603.98,
+            1074.47,
+            677.67
+          ],
+          "confidence": 0.4336,
+          "text_label": "person"
+        },
+        {
+          "id": "C008",
+          "bbox": [
+            107.56,
+            895.4,
+            139.48,
+            957.34
+          ],
+          "confidence": 0.4273,
+          "text_label": "person"
+        },
+        {
+          "id": "C009",
+          "bbox": [
+            666.38,
+            867.95,
+            699.91,
+            901.4
+          ],
+          "confidence": 0.3698,
+          "text_label": "person"
+        },
+        {
+          "id": "C010",
+          "bbox": [
+            644.28,
+            626.26,
+            678.48,
+            695.1
+          ],
+          "confidence": 0.3524,
+          "text_label": "person"
+        },
+        {
+          "id": "C011",
+          "bbox": [
+            732.74,
+            628.94,
+            763.1,
+            690.38
+          ],
+          "confidence": 0.3736,
+          "text_label": "person"
+        },
+        {
+          "id": "C012",
+          "bbox": [
+            619.97,
+            629.76,
+            644.46,
+            697.62
+          ],
+          "confidence": 0.35,
+          "text_label": "person"
+        },
+        {
+          "id": "C013",
+          "bbox": [
+            418.09,
+            874.18,
+            450.09,
+            948.24
+          ],
+          "confidence": 0.3126,
+          "text_label": "person"
+        },
+        {
+          "id": "C014",
+          "bbox": [
+            1242.0,
+            859.67,
+            1268.75,
+            931.94
+          ],
+          "confidence": 0.3819,
+          "text_label": "person"
+        },
+        {
+          "id": "C015",
+          "bbox": [
+            800.43,
+            626.95,
+            824.15,
+            686.37
+          ],
+          "confidence": 0.3363,
+          "text_label": "person"
+        },
+        {
+          "id": "C016",
+          "bbox": [
+            549.54,
+            639.29,
+            570.54,
+            700.34
+          ],
+          "confidence": 0.3424,
+          "text_label": "person"
+        },
+        {
+          "id": "C017",
+          "bbox": [
+            569.38,
+            637.58,
+            595.16,
+            699.93
+          ],
+          "confidence": 0.3478,
+          "text_label": "person"
+        },
+        {
+          "id": "C018",
+          "bbox": [
+            596.45,
+            637.18,
+            623.5,
+            698.59
+          ],
+          "confidence": 0.3421,
+          "text_label": "person"
+        },
+        {
+          "id": "C019",
+          "bbox": [
+            606.99,
+            873.62,
+            638.63,
+            902.2
+          ],
+          "confidence": 0.3308,
+          "text_label": "person"
+        },
+        {
+          "id": "C020",
+          "bbox": [
+            638.85,
+            869.53,
+            663.82,
+            901.25
+          ],
+          "confidence": 0.3555,
+          "text_label": "person"
+        },
+        {
+          "id": "C021",
+          "bbox": [
+            525.39,
+            652.36,
+            548.7,
+            700.68
+          ],
+          "confidence": 0.3168,
+          "text_label": "person"
+        }
+      ],
+      "source_image_sha256": "90eb258d31d4b1954d1908e5d18fff51172568346f5302940eeba6151fc8d06a",
+      "source_width": 1280,
+      "source_height": 1971,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_OCCLUSION_002",
+      "target_object": "person",
+      "latency_seconds": 7.87075,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            109.33,
+            150.29,
+            163.39,
+            280.23
+          ],
+          "confidence": 0.5533,
+          "text_label": "person"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            271.15,
+            149.7,
+            286.44,
+            184.32
+          ],
+          "confidence": 0.5924,
+          "text_label": "person"
+        },
+        {
+          "id": "C003",
+          "bbox": [
+            92.16,
+            138.6,
+            128.81,
+            255.27
+          ],
+          "confidence": 0.5197,
+          "text_label": "person"
+        },
+        {
+          "id": "C004",
+          "bbox": [
+            185.78,
+            160.62,
+            195.03,
+            178.84
+          ],
+          "confidence": 0.3792,
+          "text_label": "person"
+        },
+        {
+          "id": "C005",
+          "bbox": [
+            196.69,
+            160.05,
+            207.37,
+            178.75
+          ],
+          "confidence": 0.3203,
+          "text_label": "person"
+        }
+      ],
+      "source_image_sha256": "56b80c953e168e79aab5d819ca12ac4b14c88b9fb8c28f4c094b056ff4e4b9de",
+      "source_width": 800,
+      "source_height": 543,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_OCCLUSION_003",
+      "target_object": "person",
+      "latency_seconds": 7.905479,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            1169.52,
+            424.43,
+            1277.95,
+            850.46
+          ],
+          "confidence": 0.6003,
+          "text_label": "person"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            1228.58,
+            270.8,
+            1275.59,
+            373.7
+          ],
+          "confidence": 0.4553,
+          "text_label": "person"
+        },
+        {
+          "id": "C003",
+          "bbox": [
+            1163.28,
+            253.96,
+            1187.36,
+            324.93
+          ],
+          "confidence": 0.5017,
+          "text_label": "person"
+        },
+        {
+          "id": "C004",
+          "bbox": [
+            1138.38,
+            255.32,
+            1161.12,
+            322.84
+          ],
+          "confidence": 0.4883,
+          "text_label": "person"
+        },
+        {
+          "id": "C005",
+          "bbox": [
+            1176.62,
+            279.26,
+            1221.86,
+            383.47
+          ],
+          "confidence": 0.4113,
+          "text_label": "person"
+        },
+        {
+          "id": "C006",
+          "bbox": [
+            1138.89,
+            236.14,
+            1152.42,
+            260.28
+          ],
+          "confidence": 0.3825,
+          "text_label": "person"
+        },
+        {
+          "id": "C007",
+          "bbox": [
+            1176.89,
+            279.45,
+            1222.81,
+            408.22
+          ],
+          "confidence": 0.3159,
+          "text_label": "person"
+        },
+        {
+          "id": "C008",
+          "bbox": [
+            1247.81,
+            271.15,
+            1277.28,
+            368.59
+          ],
+          "confidence": 0.3276,
+          "text_label": "person"
+        }
+      ],
+      "source_image_sha256": "cc57258b91acac886e741e8b5cf9b64be6ebaf82c0da948d77abd47e4446dac2",
+      "source_width": 1280,
+      "source_height": 853,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_SCALE_001",
+      "target_object": "boat",
+      "latency_seconds": 7.704365,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            95.79,
+            347.41,
+            756.05,
+            830.93
+          ],
+          "confidence": 0.3257,
+          "text_label": "boat"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            959.44,
+            351.95,
+            1130.82,
+            409.77
+          ],
+          "confidence": 0.4102,
+          "text_label": "boat"
+        },
+        {
+          "id": "C003",
+          "bbox": [
+            1129.1,
+            353.95,
+            1277.85,
+            436.2
+          ],
+          "confidence": 0.393,
+          "text_label": "boat"
+        },
+        {
+          "id": "C004",
+          "bbox": [
+            478.88,
+            298.65,
+            1224.67,
+            697.34
+          ],
+          "confidence": 0.3581,
+          "text_label": "boat"
+        },
+        {
+          "id": "C005",
+          "bbox": [
+            96.39,
+            280.71,
+            753.18,
+            825.95
+          ],
+          "confidence": 0.3964,
+          "text_label": "boat"
+        }
+      ],
+      "source_image_sha256": "3a0d344946556399260c8c2fba2cf24f7e811f809b3546483608340b48b67ea4",
+      "source_width": 1280,
+      "source_height": 890,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_SCALE_002",
+      "target_object": "person",
+      "latency_seconds": 7.121371,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            184.69,
+            195.51,
+            465.7,
+            775.9
+          ],
+          "confidence": 0.4877,
+          "text_label": "person"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            348.08,
+            296.15,
+            629.18,
+            953.9
+          ],
+          "confidence": 0.4445,
+          "text_label": "person"
+        },
+        {
+          "id": "C003",
+          "bbox": [
+            785.87,
+            211.56,
+            1133.73,
+            842.5
+          ],
+          "confidence": 0.4154,
+          "text_label": "person"
+        },
+        {
+          "id": "C004",
+          "bbox": [
+            1131.05,
+            717.31,
+            1277.77,
+            957.03
+          ],
+          "confidence": 0.3917,
+          "text_label": "person"
+        },
+        {
+          "id": "C005",
+          "bbox": [
+            92.69,
+            732.94,
+            349.81,
+            956.09
+          ],
+          "confidence": 0.3773,
+          "text_label": "person"
+        },
+        {
+          "id": "C006",
+          "bbox": [
+            209.49,
+            792.21,
+            428.05,
+            958.56
+          ],
+          "confidence": 0.3506,
+          "text_label": "person"
+        },
+        {
+          "id": "C007",
+          "bbox": [
+            610.06,
+            349.79,
+            1034.11,
+            744.16
+          ],
+          "confidence": 0.3276,
+          "text_label": "person"
+        },
+        {
+          "id": "C008",
+          "bbox": [
+            609.82,
+            348.96,
+            896.79,
+            717.28
+          ],
+          "confidence": 0.3319,
+          "text_label": "person"
+        },
+        {
+          "id": "C009",
+          "bbox": [
+            426.24,
+            226.3,
+            694.37,
+            735.96
+          ],
+          "confidence": 0.363,
+          "text_label": "person"
+        }
+      ],
+      "source_image_sha256": "9d093884798eb40f98361ae6b387684e8126a1f1ca4943d13f6c2901fc0b93d3",
+      "source_width": 1280,
+      "source_height": 960,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_SCALE_003",
+      "target_object": "car",
+      "latency_seconds": 6.059582,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            2.19,
+            429.0,
+            306.74,
+            661.74
+          ],
+          "confidence": 0.5662,
+          "text_label": "car"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            241.36,
+            399.59,
+            417.1,
+            518.11
+          ],
+          "confidence": 0.4959,
+          "text_label": "car"
+        },
+        {
+          "id": "C003",
+          "bbox": [
+            756.46,
+            405.91,
+            798.92,
+            466.68
+          ],
+          "confidence": 0.4598,
+          "text_label": "car"
+        },
+        {
+          "id": "C004",
+          "bbox": [
+            481.12,
+            401.13,
+            527.46,
+            433.3
+          ],
+          "confidence": 0.3654,
+          "text_label": "car"
+        },
+        {
+          "id": "C005",
+          "bbox": [
+            508.62,
+            397.17,
+            542.34,
+            426.63
+          ],
+          "confidence": 0.3115,
+          "text_label": "car"
+        },
+        {
+          "id": "C006",
+          "bbox": [
+            480.73,
+            386.29,
+            582.92,
+            443.41
+          ],
+          "confidence": 0.3025,
+          "text_label": "car"
+        }
+      ],
+      "source_image_sha256": "1d83271bc115af7415abc0aefaa7b154c3750a7ac2b345fbe1d31e3bb639d267",
+      "source_width": 800,
+      "source_height": 706,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_INTERFERENCE_001",
+      "target_object": "umbrella",
+      "latency_seconds": 6.677632,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            636.04,
+            361.79,
+            1135.29,
+            719.8
+          ],
+          "confidence": 0.6609,
+          "text_label": "umbrella"
+        }
+      ],
+      "source_image_sha256": "5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0",
+      "source_width": 1280,
+      "source_height": 1589,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_INTERFERENCE_002",
+      "target_object": "umbrella",
+      "latency_seconds": 7.212293,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            574.86,
+            173.21,
+            1028.28,
+            500.97
+          ],
+          "confidence": 0.6232,
+          "text_label": "umbrella"
+        }
+      ],
+      "source_image_sha256": "04a7927b728ca8fe391bde2cba49231dd9d4f9b3e17c4d900de82af144a5a9ec",
+      "source_width": 1280,
+      "source_height": 931,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_INTERFERENCE_003",
+      "target_object": "car",
+      "latency_seconds": 7.206979,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            754.95,
+            101.61,
+            852.64,
+            166.66
+          ],
+          "confidence": 0.507,
+          "text_label": "car"
+        },
+        {
+          "id": "C002",
+          "bbox": [
+            391.36,
+            80.36,
+            540.42,
+            162.72
+          ],
+          "confidence": 0.4728,
+          "text_label": "car"
+        },
+        {
+          "id": "C003",
+          "bbox": [
+            592.73,
+            89.63,
+            720.74,
+            165.77
+          ],
+          "confidence": 0.4704,
+          "text_label": "car"
+        },
+        {
+          "id": "C004",
+          "bbox": [
+            897.87,
+            105.06,
+            995.88,
+            174.69
+          ],
+          "confidence": 0.4173,
+          "text_label": "car"
+        },
+        {
+          "id": "C005",
+          "bbox": [
+            1193.15,
+            72.23,
+            1250.73,
+            167.93
+          ],
+          "confidence": 0.3601,
+          "text_label": "car"
+        },
+        {
+          "id": "C006",
+          "bbox": [
+            24.11,
+            113.05,
+            102.36,
+            165.36
+          ],
+          "confidence": 0.3516,
+          "text_label": "car"
+        },
+        {
+          "id": "C007",
+          "bbox": [
+            629.69,
+            63.6,
+            740.25,
+            163.34
+          ],
+          "confidence": 0.3667,
+          "text_label": "car"
+        },
+        {
+          "id": "C008",
+          "bbox": [
+            1075.72,
+            108.92,
+            1161.47,
+            175.34
+          ],
+          "confidence": 0.3031,
+          "text_label": "car"
+        },
+        {
+          "id": "C009",
+          "bbox": [
+            1047.71,
+            107.29,
+            1160.76,
+            175.82
+          ],
+          "confidence": 0.3549,
+          "text_label": "car"
+        },
+        {
+          "id": "C010",
+          "bbox": [
+            1236.57,
+            65.12,
+            1278.44,
+            172.77
+          ],
+          "confidence": 0.3321,
+          "text_label": "car"
+        }
+      ],
+      "source_image_sha256": "489805c0551166b31f3ef420fca513814a6d7751c5abc617cdcc888584bd6c45",
+      "source_width": 1280,
+      "source_height": 961,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_DOMAIN_001",
+      "target_object": "excavator",
+      "latency_seconds": 7.784623,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            154.7,
+            163.51,
+            1212.54,
+            813.44
+          ],
+          "confidence": 0.9285,
+          "text_label": "excavator"
+        }
+      ],
+      "source_image_sha256": "908b45b2a670232a9edb50972bbc099e65823386048d29f218f4611ee0eec887",
+      "source_width": 1280,
+      "source_height": 853,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_DOMAIN_002",
+      "target_object": "gate",
+      "latency_seconds": 6.908963,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            472.09,
+            298.18,
+            818.3,
+            496.93
+          ],
+          "confidence": 0.6018,
+          "text_label": "gate"
+        }
+      ],
+      "source_image_sha256": "7fe8ae1707f20848e4f9eb1312b82d612b33d241e058cbd6eb6fc8b8f6223149",
+      "source_width": 1280,
+      "source_height": 607,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    },
+    {
+      "image_id": "TST_DOMAIN_003",
+      "target_object": "gate",
+      "latency_seconds": 6.993627,
+      "candidates": [
+        {
+          "id": "C001",
+          "bbox": [
+            0.54,
+            111.94,
+            639.36,
+            275.88
+          ],
+          "confidence": 0.3213,
+          "text_label": "gate"
+        }
+      ],
+      "source_image_sha256": "7f15874208ea992c4ef9b47851f4fb81c27ba0677e1ca4e416ef7799b24d71b9",
+      "source_width": 640,
+      "source_height": 480,
+      "detector_model": "IDEA-Research/grounding-dino-base",
+      "box_threshold": 0.3,
+      "text_threshold": 0.3,
+      "full_frame": true,
+      "binding_attestation": {
+        "method": "same_asset_and_raw_commit",
+        "commit": "4d0eca3b708737effb53ed00ac4c695921271efa"
+      }
+    }
+  ]
+}
