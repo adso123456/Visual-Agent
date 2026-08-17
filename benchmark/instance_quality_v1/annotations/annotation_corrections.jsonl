@@ -1,0 +1,1 @@
+{"timestamp": "2026-08-17T03:13:06.546586Z", "reviewed_by": "human", "reason": "Candidate Review proved 37 confirmed visible target omissions; supersede benchmark v1.0 with v1.1", "image_id": "TST_SPARSE_001", "changed_fields": ["instances", "benchmark_version"]}

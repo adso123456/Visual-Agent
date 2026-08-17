@@ -47,7 +47,7 @@ def atomic_write_json(path, value):
 def new_document(manifest):
     test_images = [item for item in validate_manifest(manifest) if item["split"] == "test"]
     return {
-        "benchmark_version": "1.0",
+        "benchmark_version": manifest["benchmark_version"],
         "annotation_state": "DRAFT",
         "images": [
             {
@@ -199,7 +199,7 @@ class GroundTruthStore:
         fingerprint = self.fingerprint()
         self.document["annotation_state"] = "FROZEN"
         atomic_write_json(self.annotation_path, self.document)
-        atomic_write_json(self.freeze_path, {"benchmark_version": "1.0", "gt_fingerprint": fingerprint, "frozen_at": utc_now()})
+        atomic_write_json(self.freeze_path, {"benchmark_version": self.document["benchmark_version"], "gt_fingerprint": fingerprint, "frozen_at": utc_now()})
         return fingerprint
 
     def unfreeze(self, reason, image_id, changed_fields):

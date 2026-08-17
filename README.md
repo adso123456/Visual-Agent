@@ -55,11 +55,11 @@ python -m venv .venv
 
 ```bash
 .venv\Scripts\python benchmark\instance_quality_v1\scripts\evaluate.py
-# 基线报告：benchmark/instance_quality_v1/reports/grounding_dino_base_v1.json / .md
+# 基线报告：benchmark/instance_quality_v1/reports/grounding_dino_base_v1_1.json / .md
 ```
 
-Grounding DINO Base Baseline v1 已冻结：Instance Recall 0.744186、
-Instance Purity 0.752941、Mixed-box Rate 0.141176、Duplicate Rate 0.058824；
+Grounding DINO Base Baseline v1.1 已冻结：Instance Recall 0.821138、
+Instance Purity 0.827869、Mixed-box Rate 0.098361、Duplicate Rate 0.040984；
 预声明语义约束 Downstream Usability 0.914894。
 
 详见 `benchmark/instance_quality_v1/README.md` 与 `VISUAL_AGENT_PERCEPTION_CONTRACT_V1.0.md`。

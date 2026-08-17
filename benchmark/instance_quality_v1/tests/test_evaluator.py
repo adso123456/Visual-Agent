@@ -1,5 +1,10 @@
 import copy
 import json
+import sys
+from pathlib import Path
+
+if __package__ in {None, ""}:
+    sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 
 from benchmark.instance_quality_v1.evaluator import evaluate
 from benchmark.instance_quality_v1.schema import validate_ground_truth, validate_manifest
@@ -31,7 +36,10 @@ def fixture():
             "semantic_visibility": "sufficient", "evaluable": True,
         }]})
         candidates = [{"id": "A", "bbox": [10, 10, 50, 90], "confidence": 0.9, "text_label": "person"}]
-        runs.append({"image_id": image_id, "candidates": candidates})
+        runs.append({
+            "image_id": image_id, "source_image_sha256": f"hash{index}",
+            "source_width": 100, "source_height": 100, "candidates": candidates,
+        })
         reviews.append({"image_id": image_id, "candidates": [{
             "candidate_id": "A", "mapped_gt_instance_id": "P1", "classification": "VALID_INSTANCE",
             "completeness": "COMPLETE", "review_notes": "fixture valid",
@@ -71,6 +79,12 @@ def main():
 
     bad = copy.deepcopy(reviews); bad[0]["candidates"][0]["mapped_gt_instance_id"] = "MISSING"
     must_fail(lambda: evaluate(manifest, gt, runs, bad))
+    bad = copy.deepcopy(reviews)
+    bad[0]["candidates"][0].update({
+        "classification": "AMBIGUOUS", "mapped_gt_instance_id": None,
+        "review_notes": "visible person is absent from frozen GT",
+    })
+    must_fail(lambda: evaluate(manifest, gt, runs, bad))
     bad = copy.deepcopy(manifest); bad["images"][-1]["sha256"] = bad["images"][0]["sha256"]
     must_fail(lambda: validate_manifest(bad))
     bad = copy.deepcopy(manifest); bad["images"][-1]["relative_path"] = bad["images"][0]["relative_path"]
@@ -84,6 +98,15 @@ def main():
     empty_reviews = copy.deepcopy(reviews); empty_reviews[0]["candidates"] = []
     assert evaluate(manifest, empty_gt, empty_runs, empty_reviews)["evaluable_gt_count"] == 7
     print("Instance Quality evaluator tests: PASS")
+
+
+def test_ambiguous_cannot_hide_confirmed_gt_omission():
+    manifest, gt, runs, reviews = fixture()
+    reviews[0]["candidates"][0].update({
+        "classification": "AMBIGUOUS", "mapped_gt_instance_id": None,
+        "review_notes": "visible person is absent from frozen GT",
+    })
+    must_fail(lambda: evaluate(manifest, gt, runs, reviews))
 
 
 if __name__ == "__main__":

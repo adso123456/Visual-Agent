@@ -71,8 +71,10 @@
   5 Calibration，八类场景，manifest 校验（SHA/尺寸/split 隔离）、frozen GT、
   官方评测脚本 `scripts/evaluate.py`。
 - `CURRENT RUN VERIFIED`：Human Candidate Review 122/122 COMPLETE；用户明确接受
-  Codex 逐候选视觉复核作为最终人工确认。Grounding DINO Base Baseline v1 已冻结：
-  Recall 0.744186 / Purity 0.752941 / Mixed 0.141176 / Duplicate 0.058824 / False 0。
+  Codex 逐候选视觉复核作为最终人工确认。v1.0 因 37 个 GT omission 被撤销；
+  修复后的 Grounding DINO Base Baseline v1.1 已冻结：123 GT / 101 recalled /
+  Ambiguous 0 / Recall 0.821138 / Purity 0.827869 / Mixed 0.098361 /
+  Duplicate 0.040984 / False 0。
 - `CURRENT RUN VERIFIED`：Downstream Usability 使用冻结的预声明语义约束，
   不是 generic object recognizability。结果为 43 VLM Correct / 4 VLM Semantic
   Limit / 75 Detector Downstream Unusable，正式指标 0.914894；artifact 同时绑定
@@ -112,9 +114,9 @@
 | 完整链路回归 | CURRENT RUN VERIFIED（2026-08-14） |
   images/output_images/full_chain_regression/（描边4/抠图1/高亮3→1） |
 | Candidate Review | COMPLETE / HUMAN CONFIRMED | 122/122；provenance 已固化 |
-| Grounding DINO Base metrics | FROZEN / OFFICIAL | Detector-only 七项正式基线 |
+| Grounding DINO Base metrics | v1.1 FROZEN / OFFICIAL | v1.0 已因 GT omission 撤销 |
 | Downstream Usability | CURRENT RUN VERIFIED | 预声明语义约束，0.914894 |
-| Phase 12 | COMPLETE | Grounding DINO Base Baseline v1 已冻结 |
+| Phase 12 | COMPLETE | Grounding DINO Base Baseline v1.1 已冻结 |
 | Local Detector A/B readiness | YES | 可在相同冻结契约下启动 |
 | PRD overall acceptance | NOT YET | 见上表各待办 |
 

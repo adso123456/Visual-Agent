@@ -1,0 +1,456 @@
+{
+  "benchmark_version": "1.1",
+  "status": "COMPLETE",
+  "source_commit": "a65c207e3c65ce8523109b01eef251f419a42d78",
+  "old_gt_fingerprint": "110a9dda47c1c4adbbfdb4a5b151fa0ef8efaa1acc7b5ede37f10fa658320931",
+  "new_gt_fingerprint": "6b90ba1f1b6b4def7658570b3504eaad834d6fc593f4c217a6646ce7c4671b9a",
+  "confirmed_omission_count": 37,
+  "affected_image_count": 11,
+  "review_method": "manual visual audit of original images",
+  "omissions": [
+    {
+      "image_id": "TST_SPARSE_001",
+      "candidate_id": "C004",
+      "new_gt_instance_id": "I04",
+      "manual_gt_bbox": [
+        0,
+        620,
+        100,
+        1018
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_SPARSE_003",
+      "candidate_id": "C004",
+      "new_gt_instance_id": "I02",
+      "manual_gt_bbox": [
+        0,
+        1315,
+        42,
+        1348
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_SPARSE_003",
+      "candidate_id": "C005",
+      "new_gt_instance_id": "I03",
+      "manual_gt_bbox": [
+        52,
+        1308,
+        170,
+        1345
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_SPARSE_003",
+      "candidate_id": "C002",
+      "new_gt_instance_id": "I04",
+      "manual_gt_bbox": [
+        210,
+        1303,
+        324,
+        1343
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_SPARSE_003",
+      "candidate_id": "C006",
+      "new_gt_instance_id": "I05",
+      "manual_gt_bbox": [
+        308,
+        1302,
+        374,
+        1337
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_SPARSE_003",
+      "candidate_id": "C003",
+      "new_gt_instance_id": "I06",
+      "manual_gt_bbox": [
+        354,
+        1292,
+        480,
+        1335
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_DENSE_001",
+      "candidate_id": "C003",
+      "new_gt_instance_id": "I02",
+      "manual_gt_bbox": [
+        0,
+        325,
+        170,
+        854
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_DENSE_001",
+      "candidate_id": "C004",
+      "new_gt_instance_id": "I03",
+      "manual_gt_bbox": [
+        928,
+        412,
+        1138,
+        840
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_DENSE_001",
+      "candidate_id": "C002",
+      "new_gt_instance_id": "I04",
+      "manual_gt_bbox": [
+        1095,
+        355,
+        1279,
+        854
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_DENSE_002",
+      "candidate_id": "C005",
+      "new_gt_instance_id": "I17",
+      "manual_gt_bbox": [
+        614,
+        1075,
+        651,
+        1142
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_SMALL_003",
+      "candidate_id": "C004",
+      "new_gt_instance_id": "I07",
+      "manual_gt_bbox": [
+        0,
+        309,
+        56,
+        432
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C004",
+      "new_gt_instance_id": "I04",
+      "manual_gt_bbox": [
+        1196,
+        596,
+        1230,
+        672
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C005",
+      "new_gt_instance_id": "I05",
+      "manual_gt_bbox": [
+        1068,
+        604,
+        1103,
+        680
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C006",
+      "new_gt_instance_id": "I06",
+      "manual_gt_bbox": [
+        1230,
+        598,
+        1270,
+        672
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C007",
+      "new_gt_instance_id": "I07",
+      "manual_gt_bbox": [
+        1038,
+        600,
+        1078,
+        681
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C008",
+      "new_gt_instance_id": "I08",
+      "manual_gt_bbox": [
+        104,
+        891,
+        143,
+        961
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C009",
+      "new_gt_instance_id": "I09",
+      "manual_gt_bbox": [
+        662,
+        864,
+        704,
+        906
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C010",
+      "new_gt_instance_id": "I10",
+      "manual_gt_bbox": [
+        640,
+        622,
+        682,
+        700
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C011",
+      "new_gt_instance_id": "I11",
+      "manual_gt_bbox": [
+        728,
+        624,
+        768,
+        695
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C012",
+      "new_gt_instance_id": "I12",
+      "manual_gt_bbox": [
+        616,
+        625,
+        648,
+        702
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C013",
+      "new_gt_instance_id": "I13",
+      "manual_gt_bbox": [
+        414,
+        870,
+        454,
+        952
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C014",
+      "new_gt_instance_id": "I14",
+      "manual_gt_bbox": [
+        1238,
+        855,
+        1273,
+        936
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C015",
+      "new_gt_instance_id": "I15",
+      "manual_gt_bbox": [
+        796,
+        622,
+        829,
+        691
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C016",
+      "new_gt_instance_id": "I16",
+      "manual_gt_bbox": [
+        546,
+        635,
+        575,
+        705
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C017",
+      "new_gt_instance_id": "I17",
+      "manual_gt_bbox": [
+        565,
+        633,
+        600,
+        704
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C018",
+      "new_gt_instance_id": "I18",
+      "manual_gt_bbox": [
+        592,
+        633,
+        628,
+        703
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C019",
+      "new_gt_instance_id": "I19",
+      "manual_gt_bbox": [
+        602,
+        869,
+        643,
+        907
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C020",
+      "new_gt_instance_id": "I20",
+      "manual_gt_bbox": [
+        634,
+        865,
+        668,
+        906
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_001",
+      "candidate_id": "C021",
+      "new_gt_instance_id": "I21",
+      "manual_gt_bbox": [
+        521,
+        648,
+        553,
+        705
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_OCCLUSION_002",
+      "candidate_id": "C005",
+      "new_gt_instance_id": "I06",
+      "manual_gt_bbox": [
+        193,
+        157,
+        211,
+        182
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_SCALE_001",
+      "candidate_id": "C002",
+      "new_gt_instance_id": "I03",
+      "manual_gt_bbox": [
+        954,
+        346,
+        1136,
+        416
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_SCALE_001",
+      "candidate_id": "C003",
+      "new_gt_instance_id": "I04",
+      "manual_gt_bbox": [
+        1124,
+        348,
+        1279,
+        442
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_SCALE_002",
+      "candidate_id": "C004",
+      "new_gt_instance_id": "I06",
+      "manual_gt_bbox": [
+        1126,
+        712,
+        1279,
+        960
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_SCALE_002",
+      "candidate_id": "C005",
+      "new_gt_instance_id": "I07",
+      "manual_gt_bbox": [
+        88,
+        728,
+        354,
+        960
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_SCALE_002",
+      "candidate_id": "C006",
+      "new_gt_instance_id": "I08",
+      "manual_gt_bbox": [
+        205,
+        788,
+        434,
+        960
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_SCALE_003",
+      "candidate_id": "C003",
+      "new_gt_instance_id": "I07",
+      "manual_gt_bbox": [
+        752,
+        401,
+        800,
+        471
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    },
+    {
+      "image_id": "TST_INTERFERENCE_003",
+      "candidate_id": "C006",
+      "new_gt_instance_id": "I07",
+      "manual_gt_bbox": [
+        20,
+        108,
+        107,
+        170
+      ],
+      "decision": "CONFIRMED_GT_OMISSION_REPAIRED"
+    }
+  ]
+}

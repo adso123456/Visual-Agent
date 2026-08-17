@@ -1,7 +1,9 @@
 {
   "phase": 12,
-  "status": "GT_FROZEN_VISION_REVIEW_DRAFTED",
+  "status": "SUPERSEDED_HISTORICAL_RECORD",
   "benchmark_version": "1.0-draft",
+  "official_baseline": false,
+  "superseded_by": "grounding_dino_base_v1_1.json",
   "completed": {
     "infrastructure": true,
     "licensed_assets": true,
@@ -24,6 +26,6 @@
     "official_benchmark_fingerprint": true,
     "official_baseline_report": true
   },
-  "reason": "GT frozen (24/24 human-reviewed). Vision-model candidate review drafted (122/122) and schema-validated; official baseline computed. Pending: human confirmation of candidate review + semantic downstream probe (needs Qwen).",
+  "reason": "Historical Phase 12 blocker record. Superseded by the frozen benchmark v1.1 official baseline after Candidate Review confirmation, semantic probing, and repair of 37 confirmed GT omissions.",
   "updated_at": "2026-08-14T17:00:00Z"
 }

@@ -1,12 +1,12 @@
 {
-  "benchmark_version": "1.0",
-  "status": "REVOKED_GT_OMISSION",
-  "official_baseline": false,
-  "review_source": "human_confirmed_codex_manual_visual_audit",
+  "benchmark_version": "1.1",
+  "status": "FROZEN",
+  "official_baseline": true,
+  "review_source": "human_confirmed_codex_manual_visual_audit_gt_repaired_v1_1",
   "review_status": "COMPLETE",
-  "warning": "REVOKED: Candidate Review proved 37 visible target omissions in Frozen GT. Superseded by benchmark v1.1.",
-  "benchmark_fingerprint": "06f5e26de9f5081d883ed6e6cb95a3aaa9cf26863a14a84c9d8408ff8f00d669",
-  "gt_fingerprint": "110a9dda47c1c4adbbfdb4a5b151fa0ef8efaa1acc7b5ede37f10fa658320931",
+  "warning": null,
+  "benchmark_fingerprint": "1c7621e69a6cf0dc6aaa190c7bb4ed06bfeb97bcb9e405cd504671cd0098dee6",
+  "gt_fingerprint": "6b90ba1f1b6b4def7658570b3504eaad834d6fc593f4c217a6646ce7c4671b9a",
   "detector_config_hash": "ff1f6f9ac713d4e99f64a1b150088ecc3ca82f38c0bbee10e334e9cdf6d12f65",
   "dataset": {
     "test_count": 24,
@@ -42,18 +42,18 @@
   },
   "metrics": {
     "raw_candidate_count": 122,
-    "evaluable_gt_count": 86,
-    "recalled_gt_count": 64,
-    "instance_recall": 0.744186,
+    "evaluable_gt_count": 123,
+    "recalled_gt_count": 101,
+    "instance_recall": 0.821138,
     "review_counts": {
-      "AMBIGUOUS": 37,
+      "AMBIGUOUS": 0,
       "DUPLICATE_INSTANCE": 5,
       "FALSE_DETECTION": 0,
       "MIXED_INSTANCE": 12,
       "PARTIAL_INSTANCE": 4,
-      "VALID_INSTANCE": 64
+      "VALID_INSTANCE": 101
     },
-    "instance_purity": 0.752941,
+    "instance_purity": 0.827869,
     "completeness": {
       "COMPLETE": {
         "count": 112,
@@ -68,11 +68,11 @@
         "rate": 0.07377
       }
     },
-    "duplicate_candidate_rate": 0.058824,
-    "duplicate_multiplicity": 1.046875,
-    "mixed_box_rate": 0.141176,
+    "duplicate_candidate_rate": 0.040984,
+    "duplicate_multiplicity": 1.029703,
+    "mixed_box_rate": 0.098361,
     "false_detection_rate": 0.0,
-    "ambiguous_count": 37,
+    "ambiguous_count": 0,
     "scenario_breakdown": {
       "adjacent_instances": {
         "raw_candidate_count": 7,
@@ -110,18 +110,18 @@
       },
       "cross_object_interference": {
         "raw_candidate_count": 12,
-        "evaluable_gt_count": 8,
-        "recalled_gt_count": 6,
-        "instance_recall": 0.75,
+        "evaluable_gt_count": 9,
+        "recalled_gt_count": 7,
+        "instance_recall": 0.777778,
         "review_counts": {
-          "AMBIGUOUS": 1,
+          "AMBIGUOUS": 0,
           "DUPLICATE_INSTANCE": 3,
           "FALSE_DETECTION": 0,
           "MIXED_INSTANCE": 0,
           "PARTIAL_INSTANCE": 2,
-          "VALID_INSTANCE": 6
+          "VALID_INSTANCE": 7
         },
-        "instance_purity": 0.545455,
+        "instance_purity": 0.583333,
         "completeness": {
           "COMPLETE": {
             "count": 8,
@@ -136,26 +136,26 @@
             "rate": 0.25
           }
         },
-        "duplicate_candidate_rate": 0.272727,
-        "duplicate_multiplicity": 1.166667,
+        "duplicate_candidate_rate": 0.25,
+        "duplicate_multiplicity": 1.142857,
         "mixed_box_rate": 0.0,
         "false_detection_rate": 0.0,
-        "ambiguous_count": 1
+        "ambiguous_count": 0
       },
       "dense_instances": {
         "raw_candidate_count": 24,
-        "evaluable_gt_count": 24,
-        "recalled_gt_count": 16,
-        "instance_recall": 0.666667,
+        "evaluable_gt_count": 28,
+        "recalled_gt_count": 20,
+        "instance_recall": 0.714286,
         "review_counts": {
-          "AMBIGUOUS": 4,
+          "AMBIGUOUS": 0,
           "DUPLICATE_INSTANCE": 0,
           "FALSE_DETECTION": 0,
           "MIXED_INSTANCE": 3,
           "PARTIAL_INSTANCE": 1,
-          "VALID_INSTANCE": 16
+          "VALID_INSTANCE": 20
         },
-        "instance_purity": 0.8,
+        "instance_purity": 0.833333,
         "completeness": {
           "COMPLETE": {
             "count": 23,
@@ -172,9 +172,9 @@
         },
         "duplicate_candidate_rate": 0.0,
         "duplicate_multiplicity": 1.0,
-        "mixed_box_rate": 0.15,
+        "mixed_box_rate": 0.125,
         "false_detection_rate": 0.0,
-        "ambiguous_count": 4
+        "ambiguous_count": 0
       },
       "domain_long_tail": {
         "raw_candidate_count": 3,
@@ -212,18 +212,18 @@
       },
       "occlusion": {
         "raw_candidate_count": 34,
-        "evaluable_gt_count": 14,
-        "recalled_gt_count": 13,
-        "instance_recall": 0.928571,
+        "evaluable_gt_count": 33,
+        "recalled_gt_count": 32,
+        "instance_recall": 0.969697,
         "review_counts": {
-          "AMBIGUOUS": 19,
+          "AMBIGUOUS": 0,
           "DUPLICATE_INSTANCE": 1,
           "FALSE_DETECTION": 0,
           "MIXED_INSTANCE": 1,
           "PARTIAL_INSTANCE": 0,
-          "VALID_INSTANCE": 13
+          "VALID_INSTANCE": 32
         },
-        "instance_purity": 0.866667,
+        "instance_purity": 0.941176,
         "completeness": {
           "COMPLETE": {
             "count": 30,
@@ -238,26 +238,26 @@
             "rate": 0.117647
           }
         },
-        "duplicate_candidate_rate": 0.066667,
-        "duplicate_multiplicity": 1.076923,
-        "mixed_box_rate": 0.066667,
+        "duplicate_candidate_rate": 0.029412,
+        "duplicate_multiplicity": 1.03125,
+        "mixed_box_rate": 0.029412,
         "false_detection_rate": 0.0,
-        "ambiguous_count": 19
+        "ambiguous_count": 0
       },
       "scale_variation": {
         "raw_candidate_count": 20,
-        "evaluable_gt_count": 13,
-        "recalled_gt_count": 8,
-        "instance_recall": 0.615385,
+        "evaluable_gt_count": 19,
+        "recalled_gt_count": 14,
+        "instance_recall": 0.736842,
         "review_counts": {
-          "AMBIGUOUS": 6,
+          "AMBIGUOUS": 0,
           "DUPLICATE_INSTANCE": 1,
           "FALSE_DETECTION": 0,
           "MIXED_INSTANCE": 4,
           "PARTIAL_INSTANCE": 1,
-          "VALID_INSTANCE": 8
+          "VALID_INSTANCE": 14
         },
-        "instance_purity": 0.571429,
+        "instance_purity": 0.7,
         "completeness": {
           "COMPLETE": {
             "count": 19,
@@ -272,26 +272,26 @@
             "rate": 0.05
           }
         },
-        "duplicate_candidate_rate": 0.071429,
-        "duplicate_multiplicity": 1.125,
-        "mixed_box_rate": 0.285714,
+        "duplicate_candidate_rate": 0.05,
+        "duplicate_multiplicity": 1.071429,
+        "mixed_box_rate": 0.2,
         "false_detection_rate": 0.0,
-        "ambiguous_count": 6
+        "ambiguous_count": 0
       },
       "small_distant": {
         "raw_candidate_count": 11,
-        "evaluable_gt_count": 12,
-        "recalled_gt_count": 7,
-        "instance_recall": 0.583333,
+        "evaluable_gt_count": 13,
+        "recalled_gt_count": 8,
+        "instance_recall": 0.615385,
         "review_counts": {
-          "AMBIGUOUS": 1,
+          "AMBIGUOUS": 0,
           "DUPLICATE_INSTANCE": 0,
           "FALSE_DETECTION": 0,
           "MIXED_INSTANCE": 3,
           "PARTIAL_INSTANCE": 0,
-          "VALID_INSTANCE": 7
+          "VALID_INSTANCE": 8
         },
-        "instance_purity": 0.7,
+        "instance_purity": 0.727273,
         "completeness": {
           "COMPLETE": {
             "count": 11,
@@ -308,24 +308,24 @@
         },
         "duplicate_candidate_rate": 0.0,
         "duplicate_multiplicity": 1.0,
-        "mixed_box_rate": 0.3,
+        "mixed_box_rate": 0.272727,
         "false_detection_rate": 0.0,
-        "ambiguous_count": 1
+        "ambiguous_count": 0
       },
       "sparse_easy": {
         "raw_candidate_count": 11,
-        "evaluable_gt_count": 5,
-        "recalled_gt_count": 4,
-        "instance_recall": 0.8,
+        "evaluable_gt_count": 11,
+        "recalled_gt_count": 10,
+        "instance_recall": 0.909091,
         "review_counts": {
-          "AMBIGUOUS": 6,
+          "AMBIGUOUS": 0,
           "DUPLICATE_INSTANCE": 0,
           "FALSE_DETECTION": 0,
           "MIXED_INSTANCE": 1,
           "PARTIAL_INSTANCE": 0,
-          "VALID_INSTANCE": 4
+          "VALID_INSTANCE": 10
         },
-        "instance_purity": 0.8,
+        "instance_purity": 0.909091,
         "completeness": {
           "COMPLETE": {
             "count": 11,
@@ -342,14 +342,14 @@
         },
         "duplicate_candidate_rate": 0.0,
         "duplicate_multiplicity": 1.0,
-        "mixed_box_rate": 0.2,
+        "mixed_box_rate": 0.090909,
         "false_detection_rate": 0.0,
-        "ambiguous_count": 6
+        "ambiguous_count": 0
       }
     },
-    "small_instance_recall": 0.75,
-    "partial_visibility_recall": 0.6875,
-    "heavy_occlusion_recall": 0.333333,
+    "small_instance_recall": 0.901961,
+    "partial_visibility_recall": 0.741379,
+    "heavy_occlusion_recall": 0.8,
     "iqs": "NOT_DEFINED_V1",
     "downstream_usability": {
       "definition": "predeclared_semantic_constraint_accuracy_on_detector_usable_candidates",
@@ -399,7 +399,7 @@
   "semantic_probe": {
     "probe_type": "predeclared_semantic_constraint",
     "prompt_version": "semantic_constraint_v1",
-    "semantic_spec_sha256": "368196c8f090759918d60aab6ba777394bedb1347fed13d602d79200a71f912e"
+    "semantic_spec_sha256": "feb7c0b92f3a71e7a2aa1a6ec97e21f35397f8a2b5952b84379cdd3d2eb33d83"
   },
   "deployment": {
     "detector_local_inference": true,

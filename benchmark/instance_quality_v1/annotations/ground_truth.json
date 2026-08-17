@@ -1,11 +1,11 @@
 {
-  "benchmark_version": "1.0",
+  "benchmark_version": "1.1",
   "annotation_state": "FROZEN",
   "images": [
     {
       "image_id": "TST_SPARSE_001",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-14T07:43:05.209937Z",
+      "updated_at": "2026-08-17T03:19:39.917471Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -55,6 +55,22 @@
           "semantic_visibility": "sufficient",
           "evaluable": true,
           "notes": "Partly occluded by foreground subject; human confirmation required."
+        },
+        {
+          "instance_id": "I04",
+          "bbox": [
+            0,
+            620,
+            100,
+            1018
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Far-left boundary person."
         }
       ]
     },
@@ -85,7 +101,7 @@
     {
       "image_id": "TST_SPARSE_003",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-14T07:43:10.285087Z",
+      "updated_at": "2026-08-17T03:19:39.917471Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -103,6 +119,86 @@
           "semantic_visibility": "sufficient",
           "evaluable": true,
           "notes": "Includes the boat's mast and visible hull; human confirmation required."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            0,
+            1315,
+            42,
+            1348
+          ],
+          "target_object": "boat",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Far-left background boat."
+        },
+        {
+          "instance_id": "I03",
+          "bbox": [
+            52,
+            1308,
+            170,
+            1345
+          ],
+          "target_object": "boat",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Background boat."
+        },
+        {
+          "instance_id": "I04",
+          "bbox": [
+            210,
+            1303,
+            324,
+            1343
+          ],
+          "target_object": "boat",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Background boat."
+        },
+        {
+          "instance_id": "I05",
+          "bbox": [
+            308,
+            1302,
+            374,
+            1337
+          ],
+          "target_object": "boat",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Background boat."
+        },
+        {
+          "instance_id": "I06",
+          "bbox": [
+            354,
+            1292,
+            480,
+            1335
+          ],
+          "target_object": "boat",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Background boat."
         }
       ]
     },
@@ -245,7 +341,7 @@
     {
       "image_id": "TST_DENSE_001",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-14T07:43:23.136239Z",
+      "updated_at": "2026-08-17T03:19:39.917471Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -263,13 +359,61 @@
           "semantic_visibility": "sufficient",
           "evaluable": true,
           "notes": "Unambiguous foreground person cropped at image bottom; blurred background figures intentionally excluded."
+        },
+        {
+          "instance_id": "I02",
+          "bbox": [
+            0,
+            325,
+            170,
+            854
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Blurred left-background person."
+        },
+        {
+          "instance_id": "I03",
+          "bbox": [
+            928,
+            412,
+            1138,
+            840
+          ],
+          "target_object": "person",
+          "visibility": "heavily_occluded",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Blurred person behind the foreground subject."
+        },
+        {
+          "instance_id": "I04",
+          "bbox": [
+            1095,
+            355,
+            1279,
+            854
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Blurred right-background person."
         }
       ]
     },
     {
       "image_id": "TST_DENSE_002",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-14T07:43:26.452790Z",
+      "updated_at": "2026-08-17T03:19:39.917471Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -527,6 +671,22 @@
           "semantic_visibility": "sufficient",
           "evaluable": true,
           "notes": "Right-boundary foreground woman."
+        },
+        {
+          "instance_id": "I17",
+          "bbox": [
+            614,
+            1075,
+            651,
+            1142
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Tiny human-shaped figure above the tent line."
         }
       ]
     },
@@ -765,7 +925,7 @@
     {
       "image_id": "TST_SMALL_003",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-14T07:43:44.644302Z",
+      "updated_at": "2026-08-17T03:19:39.917471Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -863,13 +1023,29 @@
           "semantic_visibility": "sufficient",
           "evaluable": true,
           "notes": "Right-boundary boat."
+        },
+        {
+          "instance_id": "I07",
+          "bbox": [
+            0,
+            309,
+            56,
+            432
+          ],
+          "target_object": "boat",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Far-left boundary boat."
         }
       ]
     },
     {
       "image_id": "TST_OCCLUSION_001",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-14T07:43:47.435927Z",
+      "updated_at": "2026-08-17T03:19:39.917471Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -919,13 +1095,301 @@
           "semantic_visibility": "sufficient",
           "evaluable": true,
           "notes": "Foreground right sailor, lower body partly hidden."
+        },
+        {
+          "instance_id": "I04",
+          "bbox": [
+            1196,
+            596,
+            1230,
+            672
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Upper-deck person."
+        },
+        {
+          "instance_id": "I05",
+          "bbox": [
+            1068,
+            604,
+            1103,
+            680
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Upper-deck person."
+        },
+        {
+          "instance_id": "I06",
+          "bbox": [
+            1230,
+            598,
+            1270,
+            672
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Upper-deck person."
+        },
+        {
+          "instance_id": "I07",
+          "bbox": [
+            1038,
+            600,
+            1078,
+            681
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Upper-deck person."
+        },
+        {
+          "instance_id": "I08",
+          "bbox": [
+            104,
+            891,
+            143,
+            961
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Lower-deck person."
+        },
+        {
+          "instance_id": "I09",
+          "bbox": [
+            662,
+            864,
+            704,
+            906
+          ],
+          "target_object": "person",
+          "visibility": "heavily_occluded",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Lower-deck partially visible person."
+        },
+        {
+          "instance_id": "I10",
+          "bbox": [
+            640,
+            622,
+            682,
+            700
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Upper-deck person."
+        },
+        {
+          "instance_id": "I11",
+          "bbox": [
+            728,
+            624,
+            768,
+            695
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Upper-deck person."
+        },
+        {
+          "instance_id": "I12",
+          "bbox": [
+            616,
+            625,
+            648,
+            702
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Upper-deck person."
+        },
+        {
+          "instance_id": "I13",
+          "bbox": [
+            414,
+            870,
+            454,
+            952
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Lower-deck person."
+        },
+        {
+          "instance_id": "I14",
+          "bbox": [
+            1238,
+            855,
+            1273,
+            936
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Right lower-deck boundary person."
+        },
+        {
+          "instance_id": "I15",
+          "bbox": [
+            796,
+            622,
+            829,
+            691
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Upper-deck person."
+        },
+        {
+          "instance_id": "I16",
+          "bbox": [
+            546,
+            635,
+            575,
+            705
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Upper-deck person."
+        },
+        {
+          "instance_id": "I17",
+          "bbox": [
+            565,
+            633,
+            600,
+            704
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Upper-deck person."
+        },
+        {
+          "instance_id": "I18",
+          "bbox": [
+            592,
+            633,
+            628,
+            703
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Upper-deck person."
+        },
+        {
+          "instance_id": "I19",
+          "bbox": [
+            602,
+            869,
+            643,
+            907
+          ],
+          "target_object": "person",
+          "visibility": "heavily_occluded",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Lower-deck partially visible person."
+        },
+        {
+          "instance_id": "I20",
+          "bbox": [
+            634,
+            865,
+            668,
+            906
+          ],
+          "target_object": "person",
+          "visibility": "heavily_occluded",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Lower-deck partially visible person."
+        },
+        {
+          "instance_id": "I21",
+          "bbox": [
+            521,
+            648,
+            553,
+            705
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Upper-deck person."
         }
       ]
     },
     {
       "image_id": "TST_OCCLUSION_002",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-14T07:44:43.315265Z",
+      "updated_at": "2026-08-17T03:19:39.917471Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -1007,6 +1471,22 @@
           "semantic_visibility": "insufficient",
           "evaluable": true,
           "notes": "Small distant figure; verify identity."
+        },
+        {
+          "instance_id": "I06",
+          "bbox": [
+            193,
+            157,
+            211,
+            182
+          ],
+          "target_object": "person",
+          "visibility": "full",
+          "scale": "small",
+          "crowding": "adjacent",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Second distant pedestrian."
         }
       ]
     },
@@ -1117,7 +1597,7 @@
     {
       "image_id": "TST_SCALE_001",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-14T07:45:22.567716Z",
+      "updated_at": "2026-08-17T03:19:39.917471Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -1151,13 +1631,45 @@
           "semantic_visibility": "sufficient",
           "evaluable": true,
           "notes": "Foreground right boat."
+        },
+        {
+          "instance_id": "I03",
+          "bbox": [
+            954,
+            346,
+            1136,
+            416
+          ],
+          "target_object": "boat",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Background boat."
+        },
+        {
+          "instance_id": "I04",
+          "bbox": [
+            1124,
+            348,
+            1279,
+            442
+          ],
+          "target_object": "boat",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Far-right background boat."
         }
       ]
     },
     {
       "image_id": "TST_SCALE_002",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-14T07:45:24.847650Z",
+      "updated_at": "2026-08-17T03:19:39.917471Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -1239,13 +1751,61 @@
           "semantic_visibility": "sufficient",
           "evaluable": true,
           "notes": "Right standing person."
+        },
+        {
+          "instance_id": "I06",
+          "bbox": [
+            1126,
+            712,
+            1279,
+            960
+          ],
+          "target_object": "person",
+          "visibility": "partial",
+          "scale": "medium",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Right-boundary audience person."
+        },
+        {
+          "instance_id": "I07",
+          "bbox": [
+            88,
+            728,
+            354,
+            960
+          ],
+          "target_object": "person",
+          "visibility": "heavily_occluded",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Lower-left audience person."
+        },
+        {
+          "instance_id": "I08",
+          "bbox": [
+            205,
+            788,
+            434,
+            960
+          ],
+          "target_object": "person",
+          "visibility": "heavily_occluded",
+          "scale": "large",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Foreground audience person."
         }
       ]
     },
     {
       "image_id": "TST_SCALE_003",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-14T07:46:10.141743Z",
+      "updated_at": "2026-08-17T03:19:39.917471Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -1343,6 +1903,22 @@
           "semantic_visibility": "insufficient",
           "evaluable": true,
           "notes": "Distant car."
+        },
+        {
+          "instance_id": "I07",
+          "bbox": [
+            752,
+            401,
+            800,
+            471
+          ],
+          "target_object": "car",
+          "visibility": "heavily_occluded",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Right-side car mostly hidden by vegetation."
         }
       ]
     },
@@ -1397,7 +1973,7 @@
     {
       "image_id": "TST_INTERFERENCE_003",
       "annotation_status": "COMPLETE",
-      "updated_at": "2026-08-14T07:46:24.728134Z",
+      "updated_at": "2026-08-17T03:19:39.917471Z",
       "reviewed_by": "human",
       "instances": [
         {
@@ -1495,6 +2071,22 @@
           "semantic_visibility": "insufficient",
           "evaluable": true,
           "notes": "Right-boundary white vehicle."
+        },
+        {
+          "instance_id": "I07",
+          "bbox": [
+            20,
+            108,
+            107,
+            170
+          ],
+          "target_object": "car",
+          "visibility": "partial",
+          "scale": "small",
+          "crowding": "dense",
+          "semantic_visibility": "insufficient",
+          "evaluable": true,
+          "notes": "v1.1 GT omission repair; manually bounded from the original image. Far-left red car."
         }
       ]
     },

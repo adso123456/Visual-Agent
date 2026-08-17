@@ -240,7 +240,7 @@ def main() -> None:
     audit_by = {item["image_id"]: item for item in audit["images"]}
 
     document = {
-        "benchmark_version": "1.0",
+        "benchmark_version": audit["benchmark_version"],
         "review_source": audit["review_source"],
         "warning": audit["warning"],
         "images": [],

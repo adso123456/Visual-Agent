@@ -3,7 +3,7 @@ import json
 
 import pytest
 
-from benchmark.instance_quality_v1.scripts.evaluate import validate_semantic_artifact
+from benchmark.instance_quality_v1.scripts.evaluate import report_state, validate_semantic_artifact
 from benchmark.instance_quality_v1.scripts.run_semantic_probe import _attribute
 
 
@@ -13,7 +13,7 @@ def test_semantic_artifact_is_bound_to_raw_review_and_gt(tmp_path):
     spec_path = tmp_path / "semantic_probe_v1.json"
     raw_path.write_text('{"raw":1}\n', encoding="utf-8")
     review_path.write_text('{"review":1}\n', encoding="utf-8")
-    spec_path.write_text('{"probe":"semantic"}\n', encoding="utf-8")
+    spec_path.write_text('{"benchmark_version":"1.0","probe":"semantic"}\n', encoding="utf-8")
     raw = {"images": [{"image_id": "T1", "candidates": [{"id": "C001"}]}]}
     semantic = {
         "benchmark_version": "1.0",
@@ -48,3 +48,11 @@ def test_semantic_attribution_respects_predeclared_evidence_and_expected_answer(
     assert _attribute(usable, "YES", True, "NO") == "VLM_SEMANTIC_LIMIT"
     assert _attribute(usable, "NO", True, "UNCLEAR") == "VLM_SEMANTIC_LIMIT"
     assert _attribute(usable, "YES", False, None) == "DETECTOR_DOWNSTREAM_UNUSABLE"
+
+
+def test_frozen_report_preserves_real_review_provenance():
+    reviews = {
+        "review_source": "human_confirmed_codex_manual_visual_audit_gt_repaired_v1_1",
+        "images": [{"reviewed_by": "human", "review_status": "COMPLETE"}],
+    }
+    assert report_state(reviews)["review_source"] == reviews["review_source"]

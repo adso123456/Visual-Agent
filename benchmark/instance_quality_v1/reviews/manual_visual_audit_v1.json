@@ -1,7 +1,7 @@
 {
-  "benchmark_version": "1.0",
-  "review_source": "codex_manual_visual_audit",
-  "warning": "Codex���ѡ�Ӿ����˽���������û�����ȷ�Ϻ���ܳ�Ϊ��ʽ�˹�Review��",
+  "benchmark_version": "1.1",
+  "review_source": "codex_manual_visual_audit_gt_repaired_v1_1",
+  "warning": null,
   "images": [
     {
       "image_id": "TST_SPARSE_001",
@@ -29,10 +29,10 @@
         },
         {
           "candidate_id": "C004",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I04",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible far-left person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         }
       ]
     },
@@ -60,38 +60,38 @@
         },
         {
           "candidate_id": "C002",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I04",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background boat is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C003",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I06",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background boat is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C004",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I02",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background boat is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C005",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I03",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background boat is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C006",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I05",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background boat is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         }
       ]
     },
@@ -171,24 +171,24 @@
         },
         {
           "candidate_id": "C002",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I04",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible blurred right-background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C003",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I02",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible blurred left-background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C004",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I03",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible blurred person behind foreground subject is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         }
       ]
     },
@@ -225,10 +225,10 @@
         },
         {
           "candidate_id": "C005",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I17",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible person standing above the tent line is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C006",
@@ -420,10 +420,10 @@
         },
         {
           "candidate_id": "C004",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I07",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible far-left small boat is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C005",
@@ -460,129 +460,129 @@
         },
         {
           "candidate_id": "C004",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I04",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C005",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I05",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C006",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I06",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C007",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I07",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C008",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I08",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C009",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I09",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C010",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I10",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C011",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I11",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C012",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I12",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C013",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I13",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C014",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I14",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C015",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I15",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C016",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I16",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C017",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I17",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C018",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I18",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C019",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I19",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C020",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I20",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C021",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I21",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         }
       ]
     },
@@ -619,10 +619,10 @@
         },
         {
           "candidate_id": "C005",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I06",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible second distant person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         }
       ]
     },
@@ -699,17 +699,17 @@
         },
         {
           "candidate_id": "C002",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I03",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible background boat is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C003",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I04",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible far-right background boat is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C004",
@@ -753,24 +753,24 @@
         },
         {
           "candidate_id": "C004",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I06",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible partial audience person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C005",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I07",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible lower-left audience person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C006",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I08",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible foreground audience person is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C007",
@@ -814,10 +814,10 @@
         },
         {
           "candidate_id": "C003",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I07",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible partially hidden right-side car is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C004",
@@ -906,10 +906,10 @@
         },
         {
           "candidate_id": "C006",
-          "mapped_gt_instance_id": null,
-          "classification": "AMBIGUOUS",
+          "mapped_gt_instance_id": "I07",
+          "classification": "VALID_INSTANCE",
           "completeness": "COMPLETE",
-          "review_notes": "visible far-left red car is absent from frozen GT"
+          "review_notes": "Confirmed distinct visible target; GT omission repaired in benchmark v1.1."
         },
         {
           "candidate_id": "C007",

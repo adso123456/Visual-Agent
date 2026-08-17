@@ -168,7 +168,7 @@ def test_freeze_and_review():
                 "image_id": meta["image_id"], "source_image_sha256": meta["sha256"],
                 "source_width": meta["width"], "source_height": meta["height"], "candidates": candidates,
             })
-        raw = {"images": raw_images}
+        raw = {"benchmark_version": "1.0", "images": raw_images}
         raw_path.write_text(json.dumps(raw), encoding="utf-8")
         raw_hash = hashlib.sha256(raw_path.read_bytes()).hexdigest()
         review = CandidateReviewStore(root)

@@ -97,7 +97,7 @@ def main():
         runtime.setdefault("binding_repair_runs", []).append({"image_ids": sorted(selected), **current_runtime})
     else:
         runtime = current_runtime
-    payload = {"benchmark_version": "1.0", "detector_config": config, "runtime": runtime, "images": rows}
+    payload = {"benchmark_version": manifest["benchmark_version"], "detector_config": config, "runtime": runtime, "images": rows}
     aggregate_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(current_runtime, ensure_ascii=False, indent=2))
 

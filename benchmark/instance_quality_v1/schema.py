@@ -30,6 +30,8 @@ REVIEW_CLASSES = {
     "AMBIGUOUS",
 }
 COMPLETENESS = {"COMPLETE", "USABLE_PARTIAL", "UNUSABLE_PARTIAL"}
+SUPPORTED_BENCHMARK_VERSIONS = {"1.0", "1.1"}
+GT_OMISSION_MARKERS = {"absent from frozen gt", "absent from gt", "missing from frozen gt"}
 
 
 def _object(value, name):
@@ -60,8 +62,8 @@ def validate_bbox(box, width, height, name="bbox", edge_tolerance=0):
 
 def validate_manifest(manifest):
     _object(manifest, "manifest")
-    if manifest.get("benchmark_version") != "1.0":
-        raise ValueError("benchmark_version必须为1.0")
+    if manifest.get("benchmark_version") not in SUPPORTED_BENCHMARK_VERSIONS:
+        raise ValueError("benchmark_version必须为受支持版本")
     images = manifest.get("images")
     if not isinstance(images, list):
         raise ValueError("images必须是数组")
@@ -169,6 +171,9 @@ def validate_candidates_and_reviews(manifest, ground_truth, runs, reviews):
                 raise ValueError("candidate指向不存在GT")
             if review["classification"] in {"VALID_INSTANCE", "PARTIAL_INSTANCE", "DUPLICATE_INSTANCE"} and mapped is None:
                 raise ValueError("实例类review必须映射GT")
+            notes = review.get("review_notes", "")
+            if review["classification"] == "AMBIGUOUS" and any(marker in notes.lower() for marker in GT_OMISSION_MARKERS):
+                raise ValueError("AMBIGUOUS不得承载已确认的GT omission")
             _string(review.get("review_notes"), "review_notes")
 
 

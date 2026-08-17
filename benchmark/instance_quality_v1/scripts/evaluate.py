@@ -39,6 +39,9 @@ def validate_semantic_artifact(semantic, raw_path, review_path, spec_path, raw, 
         raise ValueError("SEMANTIC_ARTIFACT_PROMPT_VERSION_INVALID")
     if semantic["semantic_spec_sha256"] != hashlib.sha256(spec_path.read_bytes()).hexdigest():
         raise ValueError("SEMANTIC_ARTIFACT_SPEC_MISMATCH")
+    spec = json.loads(spec_path.read_text(encoding="utf-8"))
+    if semantic["benchmark_version"] != spec["benchmark_version"]:
+        raise ValueError("SEMANTIC_ARTIFACT_BENCHMARK_VERSION_MISMATCH")
     expected = {item["image_id"]: {candidate["id"] for candidate in item["candidates"]} for item in raw["images"]}
     actual = {item.get("image_id"): {candidate.get("id") for candidate in item.get("candidates", [])} for item in semantic["images"]}
     if actual != expected:
@@ -67,7 +70,7 @@ def report_state(reviews: dict) -> dict:
         return {
             "status": "FROZEN",
             "official_baseline": True,
-            "review_source": "human",
+            "review_source": review_source,
             "review_status": "COMPLETE",
             "warning": None,
         }
@@ -105,7 +108,7 @@ def main():
     state = report_state(reviews)
     test = [item for item in manifest["images"] if item["split"] == "test"]
     report = {
-        "benchmark_version": "1.0",
+        "benchmark_version": manifest["benchmark_version"],
         "status": state["status"],
         "official_baseline": state["official_baseline"],
         "review_source": state["review_source"],
@@ -131,7 +134,8 @@ def main():
         },
     }
     reports = ROOT / "reports"; reports.mkdir(exist_ok=True)
-    (reports / "grounding_dino_base_v1.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + chr(10), encoding="utf-8")
+    report_stem = "grounding_dino_base_v1_1" if manifest["benchmark_version"] == "1.1" else "grounding_dino_base_v1"
+    (reports / f"{report_stem}.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + chr(10), encoding="utf-8")
 
     # Markdown：顶部醒目状态横幅（provisional 时）
     banner = []
@@ -146,7 +150,7 @@ def main():
             "",
         ]
     lines = [
-        "# Grounding DINO Base — Instance Quality Benchmark v1.0",
+        f"# Grounding DINO Base — Instance Quality Benchmark v{manifest['benchmark_version']}",
         "",
         *banner,
         f"- Status: {state['status']}",
@@ -163,9 +167,9 @@ def main():
         f"- Detector downstream unusable: {metrics['downstream_usability']['detector_downstream_unusable']}",
         f"- Semantic spec SHA-256: `{semantic.get('semantic_spec_sha256')}`",
         "",
-        "See `grounding_dino_base_v1.json` for complete machine-readable results.",
+        f"See `{report_stem}.json` for complete machine-readable results.",
     ]
-    (reports / "grounding_dino_base_v1.md").write_text(chr(10).join(lines) + chr(10), encoding="utf-8")
+    (reports / f"{report_stem}.md").write_text(chr(10).join(lines) + chr(10), encoding="utf-8")
     print(json.dumps({"status": state["status"], "official_baseline": state["official_baseline"], "review_source": state["review_source"], "benchmark_fingerprint": fingerprint, "metrics": metrics}, ensure_ascii=False, indent=2))
 
 

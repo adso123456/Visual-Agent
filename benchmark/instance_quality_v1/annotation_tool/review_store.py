@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 from benchmark.instance_quality_v1.annotation_tool.gt_store import GroundTruthStore, atomic_write_json, utc_now
-from benchmark.instance_quality_v1.schema import COMPLETENESS, REVIEW_CLASSES, validate_raw_bindings
+from benchmark.instance_quality_v1.schema import COMPLETENESS, GT_OMISSION_MARKERS, REVIEW_CLASSES, validate_raw_bindings
 
 
 class CandidateReviewStore:
@@ -24,7 +24,7 @@ class CandidateReviewStore:
             self.document = json.loads(self.review_path.read_text(encoding="utf-8"))
         else:
             self.document = {
-                "benchmark_version": "1.0",
+                "benchmark_version": self.raw["benchmark_version"],
                 "images": [
                     {"image_id": item["image_id"], "review_status": "IN_PROGRESS", "updated_at": None, "reviewed_by": "human", "candidates": []}
                     for item in self.raw["images"]
@@ -52,6 +52,10 @@ class CandidateReviewStore:
             raise ValueError("this classification requires null mapped GT under the current schema")
         if not isinstance(review.get("review_notes"), str) or not review["review_notes"].strip():
             raise ValueError("review_notes must be non-empty")
+        if review["classification"] == "AMBIGUOUS" and any(
+            marker in review["review_notes"].lower() for marker in GT_OMISSION_MARKERS
+        ):
+            raise ValueError("AMBIGUOUS cannot hide a confirmed GT omission")
         candidate_ids = {item["id"] for item in self.raw_image(image_id)["candidates"]}
         if review.get("candidate_id") not in candidate_ids:
             raise ValueError("candidate does not exist")

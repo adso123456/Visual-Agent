@@ -1,4 +1,5 @@
 # Phase 12 SHA-256 绑定按文件字节计算，强制 LF 保证跨平台可复核。
 benchmark/instance_quality_v1/**/*.json text eol=lf
+benchmark/instance_quality_v1/**/*.jsonl text eol=lf
 benchmark/instance_quality_v1/**/*.md text eol=lf
 benchmark/instance_quality_v1/**/*.py text eol=lf

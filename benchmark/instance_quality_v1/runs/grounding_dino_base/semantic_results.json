@@ -1,14 +1,14 @@
 {
-  "benchmark_version": "1.0",
+  "benchmark_version": "1.1",
   "model": "qwen3-vl-flash",
   "provider": "dashscope_openai_compatible",
   "prompt_version": "semantic_constraint_v1",
   "probe_type": "predeclared_semantic_constraint",
-  "semantic_spec_sha256": "368196c8f090759918d60aab6ba777394bedb1347fed13d602d79200a71f912e",
-  "raw_candidates_sha256": "9b08e1e36df8a44076ee5ff15f2c028fd7e675d06cf3c20f1f784b0a2340bbc1",
-  "review_sha256": "a0ec927201acd9393ead8c0941d4290d3ab6191b43a102d595f65974da1fea98",
-  "gt_fingerprint": "110a9dda47c1c4adbbfdb4a5b151fa0ef8efaa1acc7b5ede37f10fa658320931",
-  "created_at": "2026-08-17T02:48:04.700254Z",
+  "semantic_spec_sha256": "feb7c0b92f3a71e7a2aa1a6ec97e21f35397f8a2b5952b84379cdd3d2eb33d83",
+  "raw_candidates_sha256": "f1ead0e50c5da8c786b7627bd23d4462778ca2a8af4001d5d1a7d9c5bcdbb4ad",
+  "review_sha256": "d342fec5515b1ae0aa0d6a22d9422f38c18b0d4694deffa06544731967535e46",
+  "gt_fingerprint": "6b90ba1f1b6b4def7658570b3504eaad834d6fc593f4c217a6646ce7c4671b9a",
+  "created_at": "2026-08-17T03:23:04.038118Z",
   "image_leaves_machine": true,
   "images": [
     {
@@ -46,7 +46,7 @@
         {
           "id": "C004",
           "constraint_id": "wearing_red_clothing",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I04",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -87,7 +87,7 @@
         {
           "id": "C002",
           "constraint_id": "has_tall_mast",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I04",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -96,7 +96,7 @@
         {
           "id": "C003",
           "constraint_id": "has_tall_mast",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I06",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -105,7 +105,7 @@
         {
           "id": "C004",
           "constraint_id": "has_tall_mast",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I02",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -114,7 +114,7 @@
         {
           "id": "C005",
           "constraint_id": "has_tall_mast",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I03",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -123,7 +123,7 @@
         {
           "id": "C006",
           "constraint_id": "has_tall_mast",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I05",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -232,7 +232,7 @@
         {
           "id": "C002",
           "constraint_id": "wearing_face_mask",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I04",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -241,7 +241,7 @@
         {
           "id": "C003",
           "constraint_id": "wearing_face_mask",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I02",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -250,7 +250,7 @@
         {
           "id": "C004",
           "constraint_id": "wearing_face_mask",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I03",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -302,7 +302,7 @@
         {
           "id": "C005",
           "constraint_id": "wearing_red_or_pink_clothing",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I17",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -555,7 +555,7 @@
         {
           "id": "C004",
           "constraint_id": "predominantly_black_hull",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I07",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -607,7 +607,7 @@
         {
           "id": "C004",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I04",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -616,7 +616,7 @@
         {
           "id": "C005",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I05",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -625,7 +625,7 @@
         {
           "id": "C006",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I06",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -634,7 +634,7 @@
         {
           "id": "C007",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I07",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -643,7 +643,7 @@
         {
           "id": "C008",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I08",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -652,7 +652,7 @@
         {
           "id": "C009",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I09",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -661,7 +661,7 @@
         {
           "id": "C010",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I10",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -670,7 +670,7 @@
         {
           "id": "C011",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I11",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -679,7 +679,7 @@
         {
           "id": "C012",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I12",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -688,7 +688,7 @@
         {
           "id": "C013",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I13",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -697,7 +697,7 @@
         {
           "id": "C014",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I14",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -706,7 +706,7 @@
         {
           "id": "C015",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I15",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -715,7 +715,7 @@
         {
           "id": "C016",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I16",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -724,7 +724,7 @@
         {
           "id": "C017",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I17",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -733,7 +733,7 @@
         {
           "id": "C018",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I18",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -742,7 +742,7 @@
         {
           "id": "C019",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I19",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -751,7 +751,7 @@
         {
           "id": "C020",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I20",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -760,7 +760,7 @@
         {
           "id": "C021",
           "constraint_id": "looking_at_camera",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I21",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -812,7 +812,7 @@
         {
           "id": "C005",
           "constraint_id": "wearing_dark_clothing",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I06",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -916,7 +916,7 @@
         {
           "id": "C002",
           "constraint_id": "has_exposed_cable_reels",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I03",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -925,7 +925,7 @@
         {
           "id": "C003",
           "constraint_id": "has_exposed_cable_reels",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I04",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -986,7 +986,7 @@
         {
           "id": "C004",
           "constraint_id": "wearing_green_clothing",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I06",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -995,7 +995,7 @@
         {
           "id": "C005",
           "constraint_id": "wearing_green_clothing",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I07",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -1004,7 +1004,7 @@
         {
           "id": "C006",
           "constraint_id": "wearing_green_clothing",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I08",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -1065,7 +1065,7 @@
         {
           "id": "C003",
           "constraint_id": "white_body",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I07",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,
@@ -1185,7 +1185,7 @@
         {
           "id": "C006",
           "constraint_id": "red_body",
-          "mapped_gt_instance_id": null,
+          "mapped_gt_instance_id": "I07",
           "expected": null,
           "evidence_sufficient": false,
           "verdict": null,

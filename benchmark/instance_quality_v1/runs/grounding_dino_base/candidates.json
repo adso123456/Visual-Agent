@@ -1,5 +1,5 @@
 {
-  "benchmark_version": "1.0",
+  "benchmark_version": "1.1",
   "detector_config": {
     "provider": "huggingface_transformers",
     "model": "IDEA-Research/grounding-dino-base",

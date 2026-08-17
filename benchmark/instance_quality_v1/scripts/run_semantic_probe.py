@@ -154,7 +154,7 @@ def main() -> None:
     spec_by = {item["image_id"]: item for item in spec["images"]}
 
     results = {
-        "benchmark_version": "1.0", "model": VLM_MODEL,
+        "benchmark_version": spec["benchmark_version"], "model": VLM_MODEL,
         "provider": "dashscope_openai_compatible", "prompt_version": PROMPT_VERSION,
         "probe_type": PROBE_TYPE, "semantic_spec_sha256": spec_sha256,
         "raw_candidates_sha256": store.raw_sha256,

@@ -1,4 +1,4 @@
-# Instance Quality Benchmark v1.0
+# Instance Quality Benchmark v1.1
 
 This directory implements the detector evaluation rules in
 `VISUAL_AGENT_PERCEPTION_CONTRACT_V1.0.md`. Production code must never import
@@ -40,12 +40,16 @@ python -m benchmark.instance_quality_v1.tests.test_evaluator
 - GT: FROZEN for all 24 Test images (annotations/ground_truth.json).
 - Candidate review: 122/122 complete，reviewed_by=human；用户明确接受 Codex
   逐候选视觉复核作为最终人工确认。
-- Official Base baseline: FROZEN（Instance Recall 0.744186，Instance Purity
-  0.752941，Mixed-box 0.141176，Duplicate 0.058824，False Detection 0）。
+- v1.0 baseline is `REVOKED_GT_OMISSION`：Candidate Review 证明 Frozen GT 漏标
+  37 个真实目标；历史报告只用于审计，禁止用于 Detector A/B。
+- Official Base baseline v1.1: FROZEN（123 GT instances，101 recalled，Ambiguous 0，
+  Instance Recall 0.821138，Instance Purity 0.827869，Mixed-box 0.098361，
+  Duplicate 0.040984，False Detection 0）。
 - Downstream Usability 是预声明语义约束准确率，不是对象类别可辨识率。冻结 spec
   为 `annotations/semantic_probe_v1.json`，同时绑定 GT/raw/review；正式结果为
   43 VLM Correct / 4 VLM Semantic Limit / 75 Detector Downstream Unusable，
-  Semantic Downstream Usability 0.914894。
+  Semantic Downstream Usability 0.914894。GT omission 修复记录见
+  `reports/gt_omission_repair_v1_1.json`。
 - Regenerate review sheets / assemble review / evaluate:
 
   ```powershell
