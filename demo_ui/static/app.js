@@ -156,7 +156,7 @@ function renderResult(data) {
     ["Target Object", plan.target_object],
     ["Constraints", plan.constraints?.length ? plan.constraints.join("\n") : "N/A"],
     ["Related Objects", plan.related_objects?.length ? JSON.stringify(plan.related_objects) : "N/A"],
-    ["Action", plan.action?.type || "N/A"],
+    ["Action", plan.action?.type ? `${plan.action.type}${plan.action.color ? ` · ${plan.action.color}` : ""}` : "N/A"],
   ];
   $("planSummary").innerHTML = planItems.map(([key, value]) => `<div class="datum"><small>${escapeHtml(key)}</small><code>${escapeHtml(value)}</code></div>`).join("");
   $("agentResponse").hidden = !summary.agent_response;

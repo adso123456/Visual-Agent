@@ -8,7 +8,7 @@ from openai import OpenAI
 MODEL_NAME = "deepseek-v4-pro"
 BASE_URL = "https://api.deepseek.com"
 TOOL_NAME = "execute_visual_task"
-ACTION_TYPES = {"highlight", "outline", "blur_target", "dim_background", "cutout"}
+ACTION_TYPES = {"highlight", "outline", "box", "blur_target", "dim_background", "cutout"}
 
 EXECUTE_VISUAL_TASK_TOOL = {
     "type": "function",
@@ -34,7 +34,12 @@ EXECUTE_VISUAL_TASK_TOOL = {
                         "type": {
                             "type": "string",
                             "enum": sorted(ACTION_TYPES),
-                        }
+                        },
+                        "color": {
+                            "type": "string",
+                            "pattern": "^#[0-9A-Fa-f]{6}$",
+                            "description": "仅 box、outline、highlight 可用；用户指定颜色时输出 #RRGGBB。",
+                        },
                     },
                     "required": ["type"],
                     "additionalProperties": False,
@@ -76,7 +81,10 @@ PLANNER_SYSTEM_PROMPT = (
     "人物子类、属性、行为和关系放入 constraints，例如儿童、女性、穿红色衣服、正在钓鱼、手持雨伞。"
     "constraints 只保留基础实体之外的用户语义，不得重复人、人物或 person，也不得加入图片操作。"
     "action.type 只能使用工具 schema 的白名单：找到、定位、标红或高亮使用 highlight；"
-    "只描边使用 outline；模糊目标使用 blur_target；目标以外背景变暗使用 dim_background；"
+    "框出、框选或框起来使用 box；只描边使用 outline；用户明确指定框选、描边或高亮颜色时，"
+    "在 action.color 中输出对应的 #RRGGBB，未指定颜色时不得输出 color；color 只能与 box、"
+    "outline 或 highlight 同时使用。"
+    "目标以外背景变暗使用 dim_background；"
     "单独抠出使用 cutout。不得生成图像参数、代码或命令。label 使用简短中文目标名。"
     "related_objects 始终必填。仅当用户要求人物明确手持、拿着或撑着一个无生命手持物体时，"
     "返回一个基础英文物体和 relation=held_by_target；否则必须返回空数组。即使生成关联物体，"
@@ -200,10 +208,17 @@ class DeepSeekAgent:
         action = arguments["action"]
         if (
             not isinstance(action, dict)
-            or set(action) != {"type"}
+            or not {"type"} <= set(action) <= {"type", "color"}
             or action.get("type") not in ACTION_TYPES
         ):
-            raise RuntimeError("action 只能包含白名单 type")
+            raise RuntimeError("action 只能包含白名单 type 和可选 color")
+        color = action.get("color")
+        if color is not None and (
+            action["type"] not in {"box", "outline", "highlight"}
+            or not isinstance(color, str)
+            or re.fullmatch(r"#[0-9a-fA-F]{6}", color) is None
+        ):
+            raise RuntimeError("action.color 只能是 box、outline 或 highlight 使用的 #RRGGBB")
         related_objects = arguments["related_objects"]
         if not isinstance(related_objects, list) or len(related_objects) > 1:
             raise RuntimeError("related_objects 必须是长度 0..1 的数组")
@@ -225,10 +240,13 @@ class DeepSeekAgent:
             normalized_related_objects.append(
                 {"object": related_object, "relation": "held_by_target"}
             )
+        normalized_action = {"type": action["type"]}
+        if color is not None:
+            normalized_action["color"] = color.lower()
         return {
             "target_object": target_object,
             "label": label.strip(),
             "constraints": constraints,
-            "action": {"type": action["type"]},
+            "action": normalized_action,
             "related_objects": normalized_related_objects,
         }

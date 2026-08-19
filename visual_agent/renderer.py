@@ -35,7 +35,12 @@ def save_results(image_path: Path, result: dict, output_dir: Path) -> tuple[Path
     json_result = deepcopy(result)
 
     masks = []
+    boxes = []
     for target, json_target in zip(result["targets"], json_result["targets"]):
+        json_target.pop("_component_specs", None)
+        if action_type == "box":
+            boxes.append(target.get("composite_bbox") or target["bbox"])
+            continue
         mask = target.get("_mask")
         mask_score = target.get("_mask_score")
         json_target.pop("_mask", None)
@@ -58,7 +63,13 @@ def save_results(image_path: Path, result: dict, output_dir: Path) -> tuple[Path
         }
         masks.append(mask)
 
-    image = ImageActionExecutor().execute(image, masks, action_type)
+    image = ImageActionExecutor().execute(
+        image,
+        masks,
+        action_type,
+        boxes=boxes,
+        action_color=result["plan"]["action"].get("color", "#ff0000"),
+    )
     json_result["action_result"] = {
         "type": action_type,
         "image_path": image_output.as_posix(),

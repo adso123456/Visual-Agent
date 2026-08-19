@@ -52,6 +52,7 @@ _queue_cond = threading.Condition(_jobs_lock)
 ACTION_LABELS = {
     "highlight": "高亮标注",
     "outline": "描边",
+    "box": "矩形框选",
     "blur_target": "模糊",
     "dim_background": "背景变暗",
     "cutout": "抠图",
@@ -103,10 +104,19 @@ def _validate_plan(plan: dict) -> str | None:
         action = plan["action"]
         if (
             not isinstance(action, dict)
-            or set(action) != {"type"}
+            or not {"type"} <= set(action) <= {"type", "color"}
             or action["type"] not in ACTION_LABELS
         ):
             return "action.type 必须是白名单之一"
+        color = action.get("color")
+        if color is not None and (
+            action["type"] not in {"box", "outline", "highlight"}
+            or not isinstance(color, str)
+            or len(color) != 7
+            or not color.startswith("#")
+            or any(character not in "0123456789abcdefABCDEF" for character in color[1:])
+        ):
+            return "action.color 只能是 box、outline 或 highlight 使用的 #RRGGBB"
         related = plan["related_objects"]
         if not isinstance(related, list) or len(related) > 1:
             return "related_objects 必须是长度 0..1 的数组"

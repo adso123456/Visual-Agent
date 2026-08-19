@@ -16,6 +16,7 @@ from visual_agent.qwen_protocol import skipped_protocol_metadata
 ACTION_LABELS = {
     "highlight": "高亮标注",
     "outline": "描边",
+    "box": "矩形框选",
     "blur_target": "模糊",
     "dim_background": "背景变暗",
     "cutout": "抠图",
@@ -306,7 +307,7 @@ def run_pipeline(
         )
 
     sam_metrics = None
-    if targets:
+    if targets and plan["action"]["type"] != "box":
         component_specs_by_key = {}
         for target in targets:
             for component in target["_component_specs"]:
