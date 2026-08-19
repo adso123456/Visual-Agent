@@ -55,7 +55,7 @@ def test_three_fixed_examples_and_static_split():
     assert (STATIC_DIR / "app.js").is_file()
     script = (STATIC_DIR / "app.js").read_text(encoding="utf-8")
     assert script.count("prompt:") == 3
-    assert "0 final targets — valid negative result" in script
+    assert "最终目标为 0——这是有效的负向结果" in script
 
 
 def test_summary_only_exposes_existing_pipeline_values():
@@ -77,7 +77,7 @@ def test_health_home_and_static_assets():
             health = json.load(response)
         assert health["ok"] is True
         with urllib.request.urlopen(base + "/") as response:
-            assert b"Visual Agent Developer Demo" in response.read()
+            assert "Visual Agent 开发者演示" in response.read().decode("utf-8")
         with urllib.request.urlopen(base + "/static/app.js") as response:
             assert response.headers.get_content_type() == "application/javascript"
     finally:

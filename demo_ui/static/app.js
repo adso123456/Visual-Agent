@@ -56,11 +56,11 @@ function setMode(nextMode) {
   const banner = $("modeBanner");
   banner.className = `mode-banner ${local ? "local-debug" : "full-chain"}`;
   banner.innerHTML = local
-    ? "<strong>LOCAL DEBUG</strong><span>⚠ Precompiled Plan · Detector → SAM2 → Action</span><small>Agent: SKIPPED · Qwen Semantic Verification: SKIPPED</small>"
-    : "<strong>FULL CHAIN</strong><span>Natural Language → Agent → Detector → Qwen → Relation → SAM2 → Action</span><small>Requires DEEPSEEK_API_KEY and DASHSCOPE_API_KEY</small>";
+    ? "<strong>本地调试</strong><span>⚠ 预编译计划 · Detector → SAM2 → 动作执行</span><small>Agent：已跳过 · Qwen 语义验证：已跳过</small>"
+    : "<strong>完整链路</strong><span>自然语言 → Agent → Detector → Qwen → 关系验证 → SAM2 → 动作执行</span><small>需要配置 DEEPSEEK_API_KEY 和 DASHSCOPE_API_KEY</small>";
   $("modeHint").textContent = local
-    ? "Local Debug uses a precompiled plan and does not represent the complete Agent/VLM chain."
-    : "Full Chain uses the natural-language planner and frozen Qwen semantic verification.";
+    ? "本地调试使用预编译计划，不代表完整的 Agent/VLM 链路。"
+    : "完整链路使用自然语言规划器和已冻结的 Qwen 语义验证。";
 }
 
 $("modeSwitch").querySelectorAll("button").forEach((button) => button.addEventListener("click", () => setMode(button.dataset.mode)));
@@ -81,15 +81,15 @@ function setFile(file) {
   selectedFile = file;
   $("preview").src = URL.createObjectURL(file);
   $("preview").hidden = false;
-  $("dropzoneText").textContent = `${file.name} · click to replace`;
+  $("dropzoneText").textContent = `${file.name} · 点击替换`;
 }
 
 async function run() {
   const prompt = $("promptInput").value.trim();
-  if (!selectedFile) return setRunStatus("error", "Error", "Please select an image.");
-  if (!prompt) return setRunStatus("error", "Error", "Please enter a prompt.");
+  if (!selectedFile) return setRunStatus("error", "错误", "请选择一张图片。");
+  if (!prompt) return setRunStatus("error", "错误", "请输入任务指令。");
   const plan = mode === "local_debug" ? $("planInput").value.trim() : "";
-  if (mode === "local_debug" && !plan) return setRunStatus("error", "Error", "Local Debug requires a precompiled plan.");
+  if (mode === "local_debug" && !plan) return setRunStatus("error", "错误", "本地调试需要预编译计划。");
 
   const form = new FormData();
   form.append("image", selectedFile);
@@ -97,16 +97,16 @@ async function run() {
   if (plan) form.append("plan", plan);
   $("runButton").disabled = true;
   $("results").hidden = true;
-  setRunStatus("queued", "Queued", "Waiting for the Visual Agent worker.");
+  setRunStatus("queued", "已排队", "正在等待 Visual Agent 执行进程。");
   try {
     const response = await fetch("/api/run", {method: "POST", body: form});
     const data = await response.json();
-    if (!response.ok) throw new Error(data.error || "Request failed");
+    if (!response.ok) throw new Error(data.error || "请求失败");
     jobId = data.job_id;
     startPolling();
   } catch (error) {
     $("runButton").disabled = false;
-    setRunStatus("error", "Error", error.message);
+    setRunStatus("error", "错误", error.message);
   }
 }
 
@@ -116,20 +116,20 @@ function startPolling() {
     try {
       const response = await fetch(`/api/status/${jobId}`);
       const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "Status request failed");
-      if (data.status === "queued") return setRunStatus("queued", "Queued", "Waiting for the Visual Agent worker.");
-      if (data.status === "running") return setRunStatus("running", "Running", "Visual Agent is running...");
+      if (!response.ok) throw new Error(data.error || "状态查询失败");
+      if (data.status === "queued") return setRunStatus("queued", "已排队", "正在等待 Visual Agent 执行进程。");
+      if (data.status === "running") return setRunStatus("running", "运行中", "Visual Agent 正在执行任务……");
       clearInterval(pollTimer);
       $("runButton").disabled = false;
-      if (data.status === "error") return setRunStatus("error", "Error", data.error || "Unknown error");
+      if (data.status === "error") return setRunStatus("error", "错误", data.error || "未知错误");
       if (data.status === "done") {
-        setRunStatus("completed", "Completed", `${data.summary.targets_count} final target(s).`);
+        setRunStatus("completed", "已完成", `共得到 ${data.summary.targets_count} 个最终目标。`);
         renderResult(data);
       }
     } catch (error) {
       clearInterval(pollTimer);
       $("runButton").disabled = false;
-      setRunStatus("error", "Error", error.message);
+      setRunStatus("error", "错误", error.message);
     }
   };
   poll();
@@ -139,7 +139,8 @@ function startPolling() {
 function statusTag(status) {
   const known = ["satisfied", "not_satisfied", "uncertain", "skipped", "not_applicable"];
   const safe = known.includes(status) ? status : "uncertain";
-  const label = safe === "not_applicable" ? "N/A" : safe;
+  const labels = {satisfied: "满足", not_satisfied: "不满足", uncertain: "不确定", skipped: "已跳过", not_applicable: "N/A"};
+  const label = labels[safe];
   return `<span class="tag ${safe}">${escapeHtml(label)}</span>`;
 }
 
@@ -149,28 +150,28 @@ function renderResult(data) {
   $("originalImage").src = `/api/job/${data.id}/original`;
   $("resultImage").src = `/api/job/${data.id}/${data.result_image}`;
   $("candidateOverlay").src = `/api/job/${data.id}/candidates.png`;
-  $("artifactLinks").innerHTML = `<a href="/api/job/${data.id}/candidates.png" target="_blank">Open candidates.png</a><a href="/api/job/${data.id}/${escapeHtml(data.result_json)}" target="_blank">Open result JSON</a>`;
+  $("artifactLinks").innerHTML = `<a href="/api/job/${data.id}/candidates.png" target="_blank">打开 candidates.png</a><a href="/api/job/${data.id}/${escapeHtml(data.result_json)}" target="_blank">打开结果 JSON</a>`;
 
   const plan = summary.plan;
   const planItems = [
-    ["Target Object", plan.target_object],
-    ["Constraints", plan.constraints?.length ? plan.constraints.join("\n") : "N/A"],
-    ["Related Objects", plan.related_objects?.length ? JSON.stringify(plan.related_objects) : "N/A"],
-    ["Action", plan.action?.type ? `${plan.action.type}${plan.action.color ? ` · ${plan.action.color}` : ""}` : "N/A"],
+    ["目标对象", plan.target_object],
+    ["语义约束", plan.constraints?.length ? plan.constraints.join("\n") : "N/A"],
+    ["关联对象", plan.related_objects?.length ? JSON.stringify(plan.related_objects) : "N/A"],
+    ["执行动作", plan.action?.type ? `${plan.action.type}${plan.action.color ? ` · ${plan.action.color}` : ""}` : "N/A"],
   ];
   $("planSummary").innerHTML = planItems.map(([key, value]) => `<div class="datum"><small>${escapeHtml(key)}</small><code>${escapeHtml(value)}</code></div>`).join("");
   $("agentResponse").hidden = !summary.agent_response;
   $("agentResponse").textContent = summary.agent_response || "";
 
-  $("candidateCount").textContent = `${summary.candidates_count} raw candidate(s)`;
+  $("candidateCount").textContent = `${summary.candidates_count} 个原始候选目标`;
   $("candidateRows").innerHTML = summary.candidates.length
     ? summary.candidates.map((candidate) => `<tr><td><code>${escapeHtml(candidate.id)}</code></td><td>${escapeHtml(candidate.label ?? "N/A")}</td><td><code>${candidate.confidence == null ? "N/A" : escapeHtml(candidate.confidence)}</code></td><td>${statusTag(candidate.verification_status)}</td></tr>`).join("")
-    : '<tr><td colspan="4" class="empty">0 detector candidates</td></tr>';
+    : '<tr><td colspan="4" class="empty">Detector 未返回候选目标</td></tr>';
 
   const localDebug = data.mode === "local_debug";
   $("semanticNotice").textContent = localDebug
-    ? "SKIPPED — Local Debug does not call Qwen Semantic Verification."
-    : "Statuses and evidence below are read directly from the pipeline result.";
+    ? "已跳过——本地调试不会调用 Qwen 语义验证。"
+    : "下方状态和证据直接读取自 Pipeline 结果。";
   const semanticRows = [];
   summary.candidates.forEach((candidate) => {
     if (candidate.verification_checks.length) {
@@ -179,16 +180,16 @@ function renderResult(data) {
       semanticRows.push(`<tr><td><code>${escapeHtml(candidate.id)}</code></td><td>N/A</td><td>${statusTag(localDebug ? "skipped" : candidate.verification_status)}</td><td>${escapeHtml(candidate.verification_reason || "N/A")}</td></tr>`);
     }
   });
-  $("semanticRows").innerHTML = semanticRows.length ? semanticRows.join("") : '<tr><td colspan="4" class="empty">No candidates to verify</td></tr>';
+  $("semanticRows").innerHTML = semanticRows.length ? semanticRows.join("") : '<tr><td colspan="4" class="empty">没有需要验证的候选目标</td></tr>';
   renderRelations(summary.relation_bindings);
 
-  $("targetCount").textContent = `${summary.targets_count} final target(s)`;
+  $("targetCount").textContent = `${summary.targets_count} 个最终目标`;
   $("targetRows").innerHTML = summary.targets.length
     ? summary.targets.map((target) => {
       const relation = target.relation ? `${target.relation.related_id} · ${target.relation.status}` : "N/A";
       return `<tr><td><code>${escapeHtml(target.id)}</code></td><td>${escapeHtml(target.label)}</td><td>${escapeHtml(target.verification_reason || "N/A")}</td><td>${escapeHtml(relation)}</td><td><code>${target.mask_score ?? "N/A"}</code></td><td><code>${target.mask_area_pixels ?? "N/A"}</code></td></tr>`;
     }).join("")
-    : '<tr><td colspan="6" class="empty">0 final targets — valid negative result, not a system error.</td></tr>';
+    : '<tr><td colspan="6" class="empty">最终目标为 0——这是有效的负向结果，并非系统错误。</td></tr>';
   renderTimings(summary.timings);
   $("results").scrollIntoView({behavior: "smooth", block: "start"});
 }
@@ -199,10 +200,25 @@ function renderRelations(bindings) {
     return;
   }
   const rows = bindings.map((binding) => `<tr><td>${escapeHtml(binding.subject_id)}</td><td>${escapeHtml(binding.related_id)}</td><td>${statusTag(binding.status)}</td><td>${escapeHtml(binding.evidence)}</td></tr>`).join("");
-  $("relationBlock").innerHTML = `<div class="relation"><h3>Relation Verification</h3><div class="table-wrap"><table><thead><tr><th>Subject</th><th>Related</th><th>Status</th><th>Evidence</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+  $("relationBlock").innerHTML = `<div class="relation"><h3>关系验证</h3><div class="table-wrap"><table class="relation-table"><thead><tr><th>主体</th><th>关联对象</th><th>状态</th><th>证据</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
 }
 
 function renderTimings(timings) {
+  const labels = {
+    deepseek_plan_seconds: "Agent 规划",
+    "detector.model": "Detector 模型",
+    "detector.device": "运行设备",
+    "detector.load_seconds": "Detector 加载",
+    "detector.cached": "Detector 缓存",
+    "detector.memory_after_load_mb": "Detector 内存",
+    grounding_dino_seconds: "目标检测",
+    group_verification_seconds: "语义验证",
+    relation_grounding_seconds: "关系目标检测",
+    relation_verification_seconds: "关系验证",
+    sam2: "SAM2",
+    deepseek_final_response_seconds: "最终回答",
+    total_seconds: "总耗时",
+  };
   const items = [];
   Object.entries(timings || {}).forEach(([key, value]) => {
     if (value && typeof value === "object" && !Array.isArray(value)) {
@@ -212,8 +228,14 @@ function renderTimings(timings) {
     }
   });
   $("timingGrid").innerHTML = items.length
-    ? items.map(([key, value]) => `<div class="timing-item"><span>${escapeHtml(key)}</span><code>${escapeHtml(value ?? "N/A")}</code></div>`).join("")
-    : '<div class="empty">No timing fields in this result.</div>';
+    ? items.map(([key, value]) => {
+      let displayValue = value ?? "N/A";
+      if (typeof value === "number" && key.endsWith("_seconds")) displayValue = `${value.toFixed(3)} 秒`;
+      if (typeof value === "number" && key.endsWith("_mb")) displayValue = `${value.toFixed(1)} MB`;
+      if (typeof value === "boolean") displayValue = value ? "是" : "否";
+      return `<div class="timing-item"><span>${escapeHtml(labels[key] || key)}</span><code>${escapeHtml(displayValue)}</code></div>`;
+    }).join("")
+    : '<div class="empty">结果中没有耗时字段。</div>';
 }
 
 $("runButton").addEventListener("click", run);
