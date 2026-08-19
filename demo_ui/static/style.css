@@ -15,7 +15,7 @@
 [hidden] { display: none !important; }
 body { margin: 0; min-height: 100vh; color: var(--text); background: var(--bg); font: 14px/1.6 "Microsoft YaHei UI", "Microsoft YaHei", "Segoe UI", system-ui, sans-serif; }
 button, textarea { font: inherit; }
-button { user-select: none; }
+button, .viewer-stage { user-select: none; }
 .site-header { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 22px 32px; border-bottom: 1px solid var(--border); background: #fff; }
 .site-header h1 { margin: 0; font-size: 24px; letter-spacing: .2px; }
 .site-header p { margin: 2px 0 0; color: var(--muted); }
@@ -64,6 +64,17 @@ figure { min-width: 0; margin: 0; }
 figcaption { margin-bottom: 7px; color: var(--muted); font-size: 12px; }
 .image-frame { display: grid; place-items: center; min-height: 260px; padding: 10px; overflow: hidden; border: 1px solid var(--border); border-radius: 9px; background: #f1f4f8; }
 .image-frame img { display: block; max-width: 100%; max-height: 600px; object-fit: contain; }
+.interactive-image { cursor: zoom-in; }
+.interactive-image:hover { filter: brightness(.97); }
+.image-viewer { position: fixed; inset: 0; z-index: 1000; display: grid; grid-template-rows: auto 1fr; color: #fff; background: rgba(9,14,24,.94); }
+.viewer-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 12px 18px; background: rgba(9,14,24,.82); }
+.viewer-toolbar span { color: #d7dfec; font-size: 13px; }
+.viewer-toolbar button { padding: 7px 16px; color: #fff; border: 1px solid #76849a; border-radius: 7px; background: #263247; cursor: pointer; }
+.viewer-toolbar button:hover { background: #34435c; }
+.viewer-stage { display: grid; place-items: center; min-width: 0; min-height: 0; overflow: hidden; cursor: default; touch-action: none; }
+.viewer-stage.dragging { cursor: grabbing; }
+.viewer-stage img { display: block; max-width: 92vw; max-height: calc(100vh - 72px); object-fit: contain; transform-origin: center; will-change: transform; }
+body.viewer-open { overflow: hidden; }
 .artifact-links { display: flex; gap: 14px; margin-top: 10px; }
 .artifact-links a { color: var(--blue); text-decoration: none; font-size: 12px; }
 .plan-summary { display: grid; grid-template-columns: repeat(4, minmax(130px, 1fr)); gap: 10px; }

@@ -59,8 +59,8 @@
       <section class="card">
         <div class="section-title"><span>02</span><h2>原图 / 结果</h2></div>
         <div class="image-compare">
-          <figure><figcaption>原始图片</figcaption><div class="image-frame"><img id="originalImage" alt="原始图片"></div></figure>
-          <figure><figcaption>结果图片</figcaption><div class="image-frame"><img id="resultImage" alt="结果图片"></div></figure>
+          <figure><figcaption>原始图片</figcaption><div class="image-frame"><img id="originalImage" class="interactive-image" alt="原始图片" title="点击放大"></div></figure>
+          <figure><figcaption>结果图片</figcaption><div class="image-frame"><img id="resultImage" class="interactive-image" alt="结果图片" title="点击放大"></div></figure>
         </div>
         <div id="artifactLinks" class="artifact-links"></div>
       </section>
@@ -97,6 +97,16 @@
       </section>
     </section>
   </main>
+
+  <div id="imageViewer" class="image-viewer" role="dialog" aria-modal="true" aria-label="图片预览" hidden>
+    <div class="viewer-toolbar">
+      <span>滚轮缩放 · 拖拽平移 · 双击复位</span>
+      <button type="button" id="viewerClose" aria-label="关闭图片预览">关闭</button>
+    </div>
+    <div id="viewerStage" class="viewer-stage">
+      <img id="viewerImage" alt="放大预览" draggable="false">
+    </div>
+  </div>
 
   <footer>开发者演示 v1 · UI 仅展示 <code>run_pipeline</code> 的输出，不会改变视觉感知结果。</footer>
   <script src="/static/app.js"></script>

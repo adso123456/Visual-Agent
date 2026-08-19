@@ -58,6 +58,20 @@ def test_three_fixed_examples_and_static_split():
     assert "最终目标为 0——这是有效的负向结果" in script
 
 
+def test_image_viewer_static_contract():
+    html = (STATIC_DIR / "index.html").read_text(encoding="utf-8")
+    script = (STATIC_DIR / "app.js").read_text(encoding="utf-8")
+
+    assert 'id="imageViewer"' in html
+    assert 'id="viewerStage"' in html
+    assert 'id="viewerClose"' in html
+    assert "function openViewer" in script
+    assert "function closeViewer" in script
+    assert "function resetViewer" in script
+    assert '.addEventListener("wheel"' in script
+    assert 'event.key === "Escape"' in script
+
+
 def test_summary_only_exposes_existing_pipeline_values():
     result = _result_fixture()
     summary = _build_summary(result, local_mode=False)
