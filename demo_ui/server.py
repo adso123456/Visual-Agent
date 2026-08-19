@@ -21,11 +21,12 @@ import io
 import json
 import mimetypes
 import os
+import shutil
 import threading
 import time
 import uuid
 import warnings
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -40,6 +41,7 @@ UPLOAD_DIR = ROOT / "uploads"
 OUTPUT_DIR = ROOT / "outputs"
 STATIC_DIR = ROOT / "static"
 INDEX_HTML = STATIC_DIR / "index.html"
+ARTIFACT_RETENTION = timedelta(hours=24)
 
 for directory in (UPLOAD_DIR, OUTPUT_DIR):
     directory.mkdir(parents=True, exist_ok=True)
@@ -85,6 +87,80 @@ EXAMPLE_PLANS = {
 
 def _now_iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _remove_job_artifacts(
+    job_id: str,
+    *,
+    image_path: Path | None = None,
+    output_dir: Path | None = None,
+) -> None:
+    """只删除 Demo 专用目录内属于指定 job 的文件。"""
+    uploads_root = UPLOAD_DIR.resolve()
+    outputs_root = OUTPUT_DIR.resolve()
+    upload_candidates = (
+        [image_path]
+        if image_path is not None
+        else [path for path in UPLOAD_DIR.iterdir() if path.is_file() and path.stem == job_id]
+    )
+    for candidate in upload_candidates:
+        resolved = candidate.resolve()
+        if resolved.parent != uploads_root:
+            raise RuntimeError(f"拒绝清理 uploads 目录外的文件：{resolved}")
+        resolved.unlink(missing_ok=True)
+
+    resolved_output = (output_dir or OUTPUT_DIR / job_id).resolve()
+    if resolved_output.parent != outputs_root:
+        raise RuntimeError(f"拒绝清理 outputs 目录外的目录：{resolved_output}")
+    if resolved_output.is_dir():
+        shutil.rmtree(resolved_output)
+
+
+def _cleanup_expired_jobs(now: datetime | None = None) -> list[str]:
+    """清理内存中已完成且超过保留期的 job，并同步删除其磁盘产物。"""
+    cutoff = (now or datetime.now(timezone.utc)) - ARTIFACT_RETENTION
+    expired_jobs = []
+    with _jobs_lock:
+        for job_id, job in list(_jobs.items()):
+            if job.get("status") not in {"done", "error"} or not job.get("finished_at"):
+                continue
+            try:
+                finished_at = datetime.fromisoformat(job["finished_at"])
+                if finished_at.tzinfo is None:
+                    finished_at = finished_at.replace(tzinfo=timezone.utc)
+            except (TypeError, ValueError):
+                continue
+            if finished_at.astimezone(timezone.utc) >= cutoff.astimezone(timezone.utc):
+                continue
+            expired_jobs.append(_jobs.pop(job_id))
+
+    for job in expired_jobs:
+        _remove_job_artifacts(
+            job["id"], image_path=job["image_path"], output_dir=job["output_dir"]
+        )
+    return [job["id"] for job in expired_jobs]
+
+
+def _cleanup_stale_disk_artifacts(now: datetime | None = None) -> list[str]:
+    """服务启动时清理超过保留期的历史磁盘残留；此时不存在存活 job。"""
+    cutoff_timestamp = ((now or datetime.now(timezone.utc)) - ARTIFACT_RETENTION).timestamp()
+    output_dirs = {path.name: path for path in OUTPUT_DIR.iterdir() if path.is_dir()}
+    uploads_by_job: dict[str, list[Path]] = {}
+    for path in UPLOAD_DIR.iterdir():
+        if path.is_file():
+            uploads_by_job.setdefault(path.stem, []).append(path)
+
+    removed = []
+    for job_id in output_dirs.keys() | uploads_by_job.keys():
+        output_dir = output_dirs.get(job_id)
+        paths = [*uploads_by_job.get(job_id, [])]
+        if output_dir is not None:
+            paths.append(output_dir)
+            paths.extend(output_dir.iterdir())
+        if paths and max(path.stat().st_mtime for path in paths) < cutoff_timestamp:
+            _remove_job_artifacts(job_id, output_dir=output_dir)
+            removed.append(job_id)
+    return removed
 
 
 def _validate_plan(plan: dict) -> str | None:
@@ -253,9 +329,10 @@ def _worker() -> None:
         try:
             _run_job(job)
         except Exception as error:  # noqa: BLE001 - 前台收集并结构化返回
-            job["status"] = "error"
-            job["error"] = str(error)
-            job["finished_at"] = _now_iso()
+            with _jobs_lock:
+                job["status"] = "error"
+                job["error"] = str(error)
+                job["finished_at"] = _now_iso()
 
 
 def _run_job(job: dict) -> None:
@@ -274,11 +351,12 @@ def _run_job(job: dict) -> None:
     _annotate_candidates(
         job["image_path"], result, job["output_dir"] / "candidates.png", local_mode
     )
-    job["status"] = "done"
-    job["finished_at"] = _now_iso()
-    job["result_image"] = image_output.name
-    job["result_json"] = json_output.name
-    job["summary"] = _build_summary(result, local_mode)
+    with _jobs_lock:
+        job["status"] = "done"
+        job["finished_at"] = _now_iso()
+        job["result_image"] = image_output.name
+        job["result_json"] = json_output.name
+        job["summary"] = _build_summary(result, local_mode)
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -433,6 +511,7 @@ class Handler(BaseHTTPRequestHandler):
                 )
                 return
 
+        _cleanup_expired_jobs()
         job_id = uuid.uuid4().hex[:12]
         job_dir = OUTPUT_DIR / job_id
         job_dir.mkdir(parents=True, exist_ok=True)
@@ -474,6 +553,7 @@ def main() -> None:
     parser.add_argument("--port", type=int, default=8080)
     args = parser.parse_args()
 
+    removed = _cleanup_stale_disk_artifacts()
     worker = threading.Thread(target=_worker, daemon=True, name="visual-agent-worker")
     worker.start()
     server = ThreadingHTTPServer((args.host, args.port), Handler)
@@ -483,6 +563,7 @@ def main() -> None:
     print(f"  地址：http://{args.host}:{args.port}")
     print(f"  DeepSeek API：{'已配置' if has_deepseek else '未配置（自然语言链路不可用，可用本地调试模式）'}")
     print(f"  DashScope API：{'已配置' if has_dashscope else '未配置（语义验证不可用）'}")
+    print(f"  产物保留：24 小时（启动时已清理 {len(removed)} 个过期任务）")
     print("  按 Ctrl+C 停止。")
     try:
         server.serve_forever()

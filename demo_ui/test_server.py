@@ -1,14 +1,19 @@
 import json
+import os
 import threading
 import urllib.request
+from datetime import datetime, timedelta, timezone
 from http.server import ThreadingHTTPServer
 
+from demo_ui import server as server_module
 from demo_ui.server import (
     EXAMPLE_PLANS,
     Handler,
     STATIC_DIR,
     _build_summary,
     _candidate_status,
+    _cleanup_expired_jobs,
+    _cleanup_stale_disk_artifacts,
 )
 
 
@@ -78,3 +83,82 @@ def test_health_home_and_static_assets():
     finally:
         httpd.shutdown()
         httpd.server_close()
+
+
+def test_cleanup_expired_jobs_keeps_active_jobs_and_removes_memory(tmp_path, monkeypatch):
+    uploads = tmp_path / "uploads"
+    outputs = tmp_path / "outputs"
+    uploads.mkdir()
+    outputs.mkdir()
+    monkeypatch.setattr(server_module, "UPLOAD_DIR", uploads)
+    monkeypatch.setattr(server_module, "OUTPUT_DIR", outputs)
+    now = datetime(2026, 8, 18, 12, tzinfo=timezone.utc)
+    old = (now - timedelta(hours=25)).isoformat()
+    recent = (now - timedelta(hours=23)).isoformat()
+
+    jobs = {}
+    for job_id, status, finished_at in [
+        ("done_old", "done", old),
+        ("error_old", "error", old),
+        ("queued_old", "queued", old),
+        ("running_old", "running", old),
+        ("done_recent", "done", recent),
+    ]:
+        image_path = uploads / f"{job_id}.jpg"
+        output_dir = outputs / job_id
+        image_path.write_bytes(b"image")
+        output_dir.mkdir()
+        (output_dir / "result.json").write_text("{}", encoding="utf-8")
+        jobs[job_id] = {
+            "id": job_id,
+            "status": status,
+            "finished_at": finished_at,
+            "image_path": image_path,
+            "output_dir": output_dir,
+        }
+
+    with server_module._jobs_lock:
+        server_module._jobs.clear()
+        server_module._jobs.update(jobs)
+    try:
+        removed = _cleanup_expired_jobs(now)
+        assert set(removed) == {"done_old", "error_old"}
+        assert set(server_module._jobs) == {"queued_old", "running_old", "done_recent"}
+        assert not (uploads / "done_old.jpg").exists()
+        assert not (outputs / "error_old").exists()
+        assert (uploads / "queued_old.jpg").is_file()
+        assert (outputs / "running_old").is_dir()
+    finally:
+        with server_module._jobs_lock:
+            server_module._jobs.clear()
+
+
+def test_startup_cleanup_removes_only_stale_disk_artifacts(tmp_path, monkeypatch):
+    uploads = tmp_path / "uploads"
+    outputs = tmp_path / "outputs"
+    uploads.mkdir()
+    outputs.mkdir()
+    monkeypatch.setattr(server_module, "UPLOAD_DIR", uploads)
+    monkeypatch.setattr(server_module, "OUTPUT_DIR", outputs)
+    now = datetime(2026, 8, 18, 12, tzinfo=timezone.utc)
+
+    def make_artifacts(job_id: str, modified_at: datetime):
+        image_path = uploads / f"{job_id}.jpg"
+        output_dir = outputs / job_id
+        result_path = output_dir / "result.json"
+        image_path.write_bytes(b"image")
+        output_dir.mkdir()
+        result_path.write_text("{}", encoding="utf-8")
+        timestamp = modified_at.timestamp()
+        for path in (image_path, result_path, output_dir):
+            os.utime(path, (timestamp, timestamp))
+
+    make_artifacts("stale", now - timedelta(hours=25))
+    make_artifacts("recent", now - timedelta(hours=23))
+
+    removed = _cleanup_stale_disk_artifacts(now)
+    assert removed == ["stale"]
+    assert not (uploads / "stale.jpg").exists()
+    assert not (outputs / "stale").exists()
+    assert (uploads / "recent.jpg").is_file()
+    assert (outputs / "recent").is_dir()
