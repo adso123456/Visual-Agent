@@ -4,3 +4,6 @@ Pillow>=10.4.0
 torch==2.11.0
 torchvision==0.26.0
 transformers>=4.57.0
+fastapi>=0.138.0
+uvicorn>=0.47.0
+python-multipart>=0.0.29

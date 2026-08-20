@@ -10,6 +10,31 @@ Visual Agent 是一个自然语言驱动的通用视觉执行 Demo。开发者�
 
 Qwen结构化输出使用严格Python契约校验；仅空响应、非法JSON或schema错误允许一次format-only retry，不对合法视觉判断结果重试或宽容转换。
 
+## Production API（Batch V1）
+
+`api/` 是独立的生产接口层，不依赖 Demo UI。单图和批量任务都会进入
+后台 worker queue，调用同一个 `visual_agent.pipeline.run_pipeline()`；
+V1 默认 `MAX_CONCURRENT_JOBS=1`，先保证接口、状态、失败隔离和产物正确。
+
+```powershell
+$env:DEEPSEEK_API_KEY = "你的 DeepSeek API Key"
+$env:DASHSCOPE_API_KEY = "你的 DashScope API Key"
+$env:MAX_CONCURRENT_JOBS = "1"
+python -m api.server --host 0.0.0.0 --port 8000
+```
+
+端点：
+
+| 方法 | 路径 | 说明 |
+|---|---|---|
+| `POST` | `/api/v1/tasks` | 单图任务，multipart：`image` + `prompt`，立即返回 `task_id` |
+| `GET` | `/api/v1/tasks/{task_id}` | 查询任务状态、结果摘要与产物地址 |
+| `GET` | `/api/v1/tasks/{task_id}/artifacts/{name}` | 下载结果图片 / JSON / mask |
+| `POST` | `/api/v1/batches` | 批量任务，multipart：`prompt` + `images[]`，立即返回 `batch_id` |
+| `GET` | `/api/v1/batches/{batch_id}` | 查询 `total / completed / failed` 与逐图状态 |
+
+Batch 异步执行，单张图片失败只标记该任务为 `failed`，不影响批次中的其他图片。
+
 ## Developer Demo
 
 ### 1. 配置环境

@@ -35,6 +35,8 @@ benchmark/instance_quality_v1/runs/grounding_dino_base/*
 # demo_ui 运行时产物
 demo_ui/uploads/
 demo_ui/outputs/
+# api 运行时产物
+api/storage/
 # demo showcase 运行时产物
 demo_showcase_output/
 # 验收证据图片需要入库
