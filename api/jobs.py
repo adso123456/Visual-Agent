@@ -5,17 +5,19 @@ V1 不引入 Redis/Celery/数据库；任务状态保存在进程内，
 """
 
 import json
+import itertools
 import queue
 import threading
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Callable
+from typing import Callable, Iterable
 from urllib.parse import quote
 
 from api.schemas import SUPPORTED_IMAGE_SUFFIXES
 
 MAX_UPLOAD_BYTES = 64 * 1024 * 1024
+MAX_BATCH_IMAGES = 32
 
 Runner = Callable[[Path, str, Path], tuple[Path, Path]]
 
@@ -111,7 +113,10 @@ class JobManager:
         if not image_bytes:
             raise ValueError("图片内容为空")
         if len(image_bytes) > MAX_UPLOAD_BYTES:
-            raise ValueError("图片超过 64 MiB 上限")
+            max_mib = max(1, MAX_UPLOAD_BYTES // (1024 * 1024))
+            raise ValueError(
+                f"图片超过 {max_mib} MiB 上限"
+            )
         suffix = Path(image_name).suffix.lower()
         if suffix not in SUPPORTED_IMAGE_SUFFIXES:
             raise ValueError(f"不支持的图片格式：{suffix}")
@@ -146,13 +151,19 @@ class JobManager:
     def submit_batch(
         self,
         prompt: str,
-        images: list[tuple[bytes, str]],
+        images: Iterable[tuple[bytes, str]],
     ) -> str:
-        """创建批处理：同一 prompt 作用到多张图片，单图失败不影响其他图。"""
+        """创建批处理：同一 prompt 作用到多张图片，单图失败不影响其他图。
+
+        images 为惰性可迭代对象时逐项消费，避免整批图片同时驻留内存。
+        """
         if not prompt.strip():
             raise ValueError("prompt 不能为空")
-        if not images:
-            raise ValueError("images 不能为空")
+        iterator = iter(images)
+        try:
+            first = next(iterator)
+        except StopIteration as error:
+            raise ValueError("images 不能为空") from error
 
         batch_id = uuid.uuid4().hex[:16]
         with self._lock:
@@ -164,7 +175,7 @@ class JobManager:
             }
 
         task_ids = []
-        for image_bytes, image_name in images:
+        for image_bytes, image_name in itertools.chain((first,), iterator):
             try:
                 task_id = self.submit_task(
                     image_bytes,

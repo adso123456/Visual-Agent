@@ -34,6 +34,8 @@ python -m api.server --host 0.0.0.0 --port 8000
 | `GET` | `/api/v1/batches/{batch_id}` | 查询 `total / completed / failed` 与逐图状态 |
 
 Batch 异步执行，单张图片失败只标记该任务为 `failed`，不影响批次中的其他图片。
+V1 上传边界：单图最大 64 MiB，单次 batch 最多 32 张；图片按张有界读取，
+不会先把整批图片同时读入内存。
 
 ## Developer Demo
 

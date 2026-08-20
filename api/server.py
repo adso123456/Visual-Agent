@@ -19,12 +19,22 @@ import uvicorn
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 
+from api import jobs as jobs_module
 from api.jobs import JobManager
 from api.schemas import BatchCreated, BatchStatus, TaskCreated, TaskStatus
 
 
 def _max_concurrent_jobs() -> int:
     return max(1, int(os.getenv("MAX_CONCURRENT_JOBS", "1")))
+
+
+def _iter_limited_images(images: list[UploadFile]):
+    """逐图读取，每次只保留一张图片的有界字节，不整批读入内存。"""
+    for image in images:
+        yield (
+            image.file.read(jobs_module.MAX_UPLOAD_BYTES + 1),
+            image.filename or "upload.jpg",
+        )
 
 
 def create_app(job_manager: JobManager | None = None) -> FastAPI:
@@ -71,12 +81,16 @@ def create_app(job_manager: JobManager | None = None) -> FastAPI:
         prompt: str = Form(...),
         images: list[UploadFile] = File(...),
     ) -> dict:
-        uploaded = [
-            (await image.read(), image.filename or "upload.jpg")
-            for image in images
-        ]
+        if len(images) > jobs_module.MAX_BATCH_IMAGES:
+            raise HTTPException(
+                status_code=400,
+                detail=f"单次批处理最多 {jobs_module.MAX_BATCH_IMAGES} 张图片",
+            )
         try:
-            batch_id = manager.submit_batch(prompt, uploaded)
+            batch_id = manager.submit_batch(
+                prompt,
+                _iter_limited_images(images),
+            )
         except ValueError as error:
             raise HTTPException(status_code=400, detail=str(error)) from error
         view = manager.get_batch(batch_id)

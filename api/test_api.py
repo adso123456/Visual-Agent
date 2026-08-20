@@ -1,14 +1,16 @@
 """API V1 单图 / 批处理接口测试（使用假 runner，不加载模型）。"""
 
 import json
+import io
 import threading
 import time
 from pathlib import Path
 
 from fastapi.testclient import TestClient
 
+from api import jobs as jobs_module
 from api.jobs import JobManager
-from api.server import create_app
+from api.server import _iter_limited_images, create_app
 
 
 def _write_result(output_dir: Path, prompt: str, image_bytes: bytes):
@@ -175,3 +177,70 @@ def test_single_task_rejects_bad_image(tmp_path):
             )
             assert response.status_code == 400
             assert "不支持的图片格式" in response.json()["detail"]
+
+
+def test_batch_rejects_too_many_images(tmp_path, monkeypatch):
+    monkeypatch.setattr(jobs_module, "MAX_BATCH_IMAGES", 2)
+    with JobManager(
+        data_dir=tmp_path / "data",
+        max_concurrent_jobs=1,
+        runner=_fake_runner,
+    ) as manager:
+        with TestClient(create_app(manager)) as client:
+            files = [
+                ("images", (f"{index}.jpg", b"good", "image/jpeg"))
+                for index in range(3)
+            ]
+            response = client.post(
+                "/api/v1/batches",
+                files=files,
+                data={"prompt": "框出所有人"},
+            )
+            assert response.status_code == 400
+            assert "最多 2 张图片" in response.json()["detail"]
+
+
+def test_batch_oversized_image_is_isolated(tmp_path, monkeypatch):
+    monkeypatch.setattr(jobs_module, "MAX_UPLOAD_BYTES", 16)
+    with JobManager(
+        data_dir=tmp_path / "data",
+        max_concurrent_jobs=1,
+        runner=_fake_runner,
+    ) as manager:
+        with TestClient(create_app(manager)) as client:
+            files = [
+                ("images", ("big.jpg", b"x" * 100, "image/jpeg")),
+                ("images", ("ok.jpg", b"good", "image/jpeg")),
+            ]
+            response = client.post(
+                "/api/v1/batches",
+                files=files,
+                data={"prompt": "框出所有人"},
+            )
+            assert response.status_code == 202
+
+            batch = _wait_status(
+                client,
+                f"/api/v1/batches/{response.json()['batch_id']}",
+                {"completed"},
+            )
+            assert batch["completed"] == 1
+            assert batch["failed"] == 1
+            by_name = {item["image_name"]: item for item in batch["items"]}
+            assert by_name["big.jpg"]["status"] == "failed"
+            assert "超过 1 MiB 上限" in by_name["big.jpg"]["error"]
+            assert by_name["ok.jpg"]["status"] == "success"
+
+
+def test_bounded_upload_read(monkeypatch):
+    monkeypatch.setattr(jobs_module, "MAX_UPLOAD_BYTES", 16)
+
+    class FakeUpload:
+        def __init__(self, data: bytes):
+            self.file = io.BytesIO(data)
+            self.filename = "big.jpg"
+
+    payload = b"x" * 100
+    data, name = next(_iter_limited_images([FakeUpload(payload)]))
+    assert len(data) == 17
+    assert name == "big.jpg"
