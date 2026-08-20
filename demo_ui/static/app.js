@@ -1,15 +1,15 @@
 const EXAMPLES = [
   {
     prompt: "只给穿红色衣服的人描边",
-    plan: {target_object: "person", label: "穿红色衣服的人", constraints: ["穿红色衣服"], action: {type: "outline"}, related_objects: []},
+    plan: {target_object: "person", label: "穿红色衣服的人", constraints: [{text: "穿红色衣服", route: "attribute"}], action: {type: "outline"}, related_objects: []},
   },
   {
     prompt: "把拿雨伞的人单独抠出来",
-    plan: {target_object: "person", label: "拿雨伞的人", constraints: ["手持雨伞"], action: {type: "cutout"}, related_objects: [{object: "umbrella", relation: "held_by_target"}]},
+    plan: {target_object: "person", label: "拿雨伞的人", constraints: [{text: "手持雨伞", route: "relation"}], action: {type: "cutout"}, related_objects: [{object: "umbrella", relation: "held_by_target"}]},
   },
   {
     prompt: "把正在钓鱼的人高亮",
-    plan: {target_object: "person", label: "正在钓鱼的人", constraints: ["正在钓鱼"], action: {type: "highlight"}, related_objects: []},
+    plan: {target_object: "person", label: "正在钓鱼的人", constraints: [{text: "正在钓鱼", route: "behavior"}], action: {type: "highlight"}, related_objects: []},
   },
 ];
 
@@ -155,7 +155,7 @@ function renderResult(data) {
   const plan = summary.plan;
   const planItems = [
     ["目标对象", plan.target_object],
-    ["语义约束", plan.constraints?.length ? plan.constraints.join("\n") : "N/A"],
+    ["语义约束", plan.constraints?.length ? plan.constraints.map((item) => `${item.text} · ${item.route}`).join("\n") : "N/A"],
     ["关联对象", plan.related_objects?.length ? JSON.stringify(plan.related_objects) : "N/A"],
     ["执行动作", plan.action?.type ? `${plan.action.type}${plan.action.color ? ` · ${plan.action.color}` : ""}` : "N/A"],
   ];

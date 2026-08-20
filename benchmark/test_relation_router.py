@@ -1,0 +1,298 @@
+import json
+from pathlib import Path
+
+import cv2
+import numpy as np
+import pytest
+
+from visual_agent import pipeline
+
+
+SUBJECTS = [
+    {"id": "A", "bbox": [2, 2, 12, 24]},
+    {"id": "B", "bbox": [16, 2, 28, 24]},
+]
+RELATED = [
+    {"id": "R1", "bbox": [8, 8, 16, 20]},
+    {"id": "R2", "bbox": [24, 8, 32, 20]},
+]
+PLAN = {
+    "target_object": "person",
+    "label": "拿雨伞的人",
+    "constraints": [{"text": "拿着雨伞", "route": "relation"}],
+    "action": {"type": "box"},
+    "related_objects": [{"object": "umbrella", "relation": "held_by_target"}],
+}
+
+
+def _binding(subject, related, status, evidence=None):
+    return {
+        "subject_id": subject,
+        "related_id": related,
+        "relation": "held_by_target",
+        "status": status,
+        "evidence": evidence or f"{subject}-{related}-{status}",
+    }
+
+
+def test_relation_resolver_freezes_all_status_mappings():
+    absent = pipeline.resolve_relation_outcomes(SUBJECTS[:1], [], [], PLAN)["A"]
+    assert (absent["status"], absent["completion_reason"]) == (
+        "uncertain",
+        "related_object_not_detected",
+    )
+
+    unique = pipeline.resolve_relation_outcomes(
+        SUBJECTS[:1],
+        RELATED,
+        [_binding("A", "R1", "satisfied"), _binding("A", "R2", "uncertain")],
+        PLAN,
+    )["A"]
+    assert unique["status"] == "satisfied"
+    assert unique["completion_reason"] is None
+    assert unique["group"]["composite_complete"] is True
+
+    uncertain = pipeline.resolve_relation_outcomes(
+        SUBJECTS[:1],
+        RELATED,
+        [_binding("A", "R1", "uncertain"), _binding("A", "R2", "not_satisfied")],
+        PLAN,
+    )["A"]
+    assert (uncertain["status"], uncertain["completion_reason"]) == (
+        "uncertain",
+        "binding_uncertain",
+    )
+
+    negative = pipeline.resolve_relation_outcomes(
+        SUBJECTS[:1],
+        RELATED,
+        [_binding("A", "R1", "not_satisfied"), _binding("A", "R2", "not_satisfied")],
+        PLAN,
+    )["A"]
+    assert (negative["status"], negative["completion_reason"]) == (
+        "not_satisfied",
+        "binding_not_satisfied",
+    )
+
+    conflict = pipeline.resolve_relation_outcomes(
+        SUBJECTS,
+        RELATED[:1],
+        [_binding("A", "R1", "satisfied"), _binding("B", "R1", "satisfied")],
+        PLAN,
+    )
+    assert all(
+        (item["status"], item["completion_reason"])
+        == ("uncertain", "binding_conflict")
+        for item in conflict.values()
+    )
+
+
+class DetectorStub:
+    device = "cpu"
+    load_seconds = 0.0
+    memory_after_load_mb = 0.0
+
+    def __init__(self):
+        self.calls = []
+
+    def detect(self, _image_path: Path, target_object: str):
+        self.calls.append(target_object)
+        if target_object == "person":
+            return [{"bbox": [2, 2, 14, 26], "text_label": "person", "confidence": 0.9}]
+        return [{"bbox": [10, 8, 20, 22], "text_label": "umbrella", "confidence": 0.8}]
+
+
+class TwoSubjectDetectorStub(DetectorStub):
+    def detect(self, _image_path: Path, target_object: str):
+        self.calls.append(target_object)
+        if target_object == "person":
+            return [
+                {"bbox": [2, 2, 14, 26], "text_label": "person", "confidence": 0.9},
+                {"bbox": [22, 2, 36, 26], "text_label": "person", "confidence": 0.85},
+            ]
+        return [
+            {"bbox": [8, 8, 16, 22], "text_label": "umbrella", "confidence": 0.8},
+            {"bbox": [24, 8, 34, 22], "text_label": "umbrella", "confidence": 0.75},
+        ]
+
+
+class SegmenterStub:
+    device = "cpu"
+    load_seconds = 0.0
+    memory_after_load_mb = 0.0
+
+    def __init__(self):
+        self.calls = []
+
+    def segment(self, image_path, boxes):
+        self.calls.append([list(box) for box in boxes])
+        image = cv2.imread(str(image_path))
+        results = []
+        for box in boxes:
+            mask = np.zeros(image.shape[:2], dtype=bool)
+            x1, y1, x2, y2 = map(int, box)
+            mask[y1:y2, x1:x2] = True
+            results.append({"mask": mask, "score": 0.9})
+        return results, {
+            "model": "stub", "device": "cpu", "load_seconds": 0.0,
+            "inference_seconds": 0.01, "memory_after_load_mb": 0.0,
+            "peak_memory_mb": 0.0,
+        }
+
+
+def _image(tmp_path):
+    path = tmp_path / "input.jpg"
+    cv2.imwrite(str(path), np.zeros((32, 40, 3), dtype=np.uint8))
+    return path
+
+
+@pytest.mark.parametrize(
+    ("validity", "expected_check"),
+    [("invalid", "not_satisfied"), ("uncertain", "uncertain")],
+)
+def test_non_valid_subject_never_enters_relation(
+    tmp_path, monkeypatch, validity, expected_check
+):
+    detector = DetectorStub()
+    segmenter = SegmenterStub()
+    monkeypatch.setattr(pipeline, "get_detector", lambda fresh=False: (detector, True))
+    monkeypatch.setattr(pipeline, "get_segmenter", lambda fresh=False: (segmenter, True))
+    monkeypatch.setattr(
+        pipeline,
+        "verify_subject_instance",
+        lambda candidate, target, evidence: (
+            {"candidate_id": candidate["id"], "target_object": target, "status": validity, "evidence": "前置证据"},
+            {"attempts": 1},
+        ),
+    )
+    monkeypatch.setattr(
+        pipeline,
+        "verify_relations",
+        lambda *_args: (_ for _ in ()).throw(AssertionError("无效主体不得进入 Relation")),
+    )
+
+    _, result_path = pipeline.run_pipeline(
+        _image(tmp_path), "框出拿雨伞的人", plan=PLAN, verify=True,
+        final_response=False, output_dir=tmp_path / "out",
+    )
+    result = json.loads(result_path.read_text(encoding="utf-8"))
+    assert detector.calls == ["person"]
+    assert len(segmenter.calls) == 1
+    assert result["candidates"][0]["verification_checks"][0]["status"] == expected_check
+    assert result["targets"] == []
+
+
+def test_relation_check_and_group_share_single_resolver_outcome(tmp_path, monkeypatch):
+    detector = DetectorStub()
+    segmenter = SegmenterStub()
+    monkeypatch.setattr(pipeline, "get_detector", lambda fresh=False: (detector, True))
+    monkeypatch.setattr(pipeline, "get_segmenter", lambda fresh=False: (segmenter, True))
+    monkeypatch.setattr(
+        pipeline,
+        "verify_subject_instance",
+        lambda candidate, target, evidence: (
+            {"candidate_id": candidate["id"], "target_object": target, "status": "valid", "evidence": "独立人物"},
+            {"attempts": 1},
+        ),
+    )
+    monkeypatch.setattr(
+        pipeline,
+        "verify_relations",
+        lambda *_args: ([_binding("A", "R1", "satisfied", "直接持握")], {"attempts": 1}),
+    )
+    original_resolver = pipeline.resolve_relation_outcomes
+    calls = []
+
+    def counted_resolver(*args):
+        calls.append(args)
+        return original_resolver(*args)
+
+    monkeypatch.setattr(pipeline, "resolve_relation_outcomes", counted_resolver)
+
+    _, result_path = pipeline.run_pipeline(
+        _image(tmp_path), "框出拿雨伞的人", plan=PLAN, verify=True,
+        final_response=False, output_dir=tmp_path / "out",
+    )
+    result = json.loads(result_path.read_text(encoding="utf-8"))
+    check = result["candidates"][0]["verification_checks"][0]
+    group = result["semantic_groups"][0]
+    assert len(calls) == 1
+    assert check["status"] == "satisfied"
+    assert check["evidence"] == "直接持握"
+    assert group["completion_reason"] is None
+    assert group["composite_complete"] is True
+    assert len(result["targets"]) == 1
+    assert detector.calls == ["person", "umbrella"]
+    assert len(segmenter.calls) == 1
+
+
+def test_relation_verification_isolated_per_subject_with_all_related_candidates(
+    tmp_path, monkeypatch
+):
+    detector = TwoSubjectDetectorStub()
+    segmenter = SegmenterStub()
+    monkeypatch.setattr(pipeline, "get_detector", lambda fresh=False: (detector, True))
+    monkeypatch.setattr(pipeline, "get_segmenter", lambda fresh=False: (segmenter, True))
+    monkeypatch.setattr(
+        pipeline,
+        "verify_subject_instance",
+        lambda candidate, target, evidence: (
+            {"candidate_id": candidate["id"], "target_object": target, "status": "valid", "evidence": "独立人物"},
+            {"attempts": 1},
+        ),
+    )
+    calls = []
+
+    def record_relation_call(_image_path, subjects, related, *_args):
+        calls.append(
+            {
+                "subjects": [subject["id"] for subject in subjects],
+                "related": [candidate["id"] for candidate in related],
+            }
+        )
+        subject_id = subjects[0]["id"]
+        return ([_binding(subject_id, "R1", "not_satisfied")], {"attempts": 1})
+
+    monkeypatch.setattr(pipeline, "verify_relations", record_relation_call)
+
+    pipeline.run_pipeline(
+        _image(tmp_path), "框出拿雨伞的人", plan=PLAN, verify=True,
+        final_response=False, output_dir=tmp_path / "out",
+    )
+
+    assert calls == [
+        {"subjects": ["A"], "related": ["R1", "R2"]},
+        {"subjects": ["B"], "related": ["R1", "R2"]},
+    ]
+
+
+def test_relation_mask_action_reuses_subject_and_segments_related_only_on_demand(
+    tmp_path, monkeypatch
+):
+    detector = DetectorStub()
+    segmenter = SegmenterStub()
+    monkeypatch.setattr(pipeline, "get_detector", lambda fresh=False: (detector, True))
+    monkeypatch.setattr(pipeline, "get_segmenter", lambda fresh=False: (segmenter, True))
+    monkeypatch.setattr(
+        pipeline,
+        "verify_subject_instance",
+        lambda candidate, target, evidence: (
+            {"candidate_id": candidate["id"], "target_object": target, "status": "valid", "evidence": "独立人物"},
+            {"attempts": 1},
+        ),
+    )
+    monkeypatch.setattr(
+        pipeline,
+        "verify_relations",
+        lambda *_args: ([_binding("A", "R1", "satisfied")], {"attempts": 1}),
+    )
+    outline_plan = {**PLAN, "action": {"type": "outline"}}
+
+    pipeline.run_pipeline(
+        _image(tmp_path), "描边拿雨伞的人", plan=outline_plan, verify=True,
+        final_response=False, output_dir=tmp_path / "out",
+    )
+
+    assert len(segmenter.calls) == 2
+    assert segmenter.calls[0] == [[2, 2, 14, 26]]
+    assert segmenter.calls[1] == [[10, 8, 20, 22]]

@@ -23,7 +23,7 @@ def _result_fixture():
         "plan": {
             "target_object": "person",
             "label": "穿红色衣服的人",
-            "constraints": ["穿红色衣服"],
+            "constraints": [{"text": "穿红色衣服", "route": "attribute"}],
             "action": {"type": "outline"},
             "related_objects": [],
         },

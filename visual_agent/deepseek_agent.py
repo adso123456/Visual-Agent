@@ -9,6 +9,7 @@ MODEL_NAME = "deepseek-v4-pro"
 BASE_URL = "https://api.deepseek.com"
 TOOL_NAME = "execute_visual_task"
 ACTION_TYPES = {"highlight", "outline", "box", "blur_target", "dim_background", "cutout"}
+CONSTRAINT_ROUTES = {"attribute", "behavior", "relation"}
 
 EXECUTE_VISUAL_TASK_TOOL = {
     "type": "function",
@@ -25,8 +26,19 @@ EXECUTE_VISUAL_TASK_TOOL = {
                 "label": {"type": "string", "description": "简短中文目标名称。"},
                 "constraints": {
                     "type": "array",
-                    "items": {"type": "string"},
-                    "description": "基础实体之外、需要视觉验证的中文语义约束。",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "text": {"type": "string", "minLength": 1},
+                            "route": {
+                                "type": "string",
+                                "enum": sorted(CONSTRAINT_ROUTES),
+                            },
+                        },
+                        "required": ["text", "route"],
+                        "additionalProperties": False,
+                    },
+                    "description": "按用户原顺序排列的原子中文语义约束及其视觉证据路由。",
                 },
                 "action": {
                     "type": "object",
@@ -78,8 +90,12 @@ PLANNER_SYSTEM_PROMPT = (
     "不得猜测图片内容、目标数量、位置或视觉事实。必须且只能调用 execute_visual_task 一次。"
     "target_object 必须是 1 到 3 个英文单词组成的基础可检测实体，不能包含属性、行为或关系。"
     "男人、女人、男孩、女孩、儿童、老人、工人等所有人物类目标一律使用 person；"
-    "人物子类、属性、行为和关系放入 constraints，例如儿童、女性、穿红色衣服、正在钓鱼、手持雨伞。"
-    "constraints 只保留基础实体之外的用户语义，不得重复人、人物或 person，也不得加入图片操作。"
+    "人物子类、属性、行为和关系放入 constraints。每条原子语义必须单独输出 text 和 route，"
+    "并严格保持用户语义原顺序。route 只表示该约束需要的视觉证据，不表示语义判断结果。"
+    "attribute 用于依赖目标本人即可判断的外观或属性，例如儿童、女性、穿红衣、戴眼镜、戴帽子；"
+    "behavior 用于需要目标附近姿态、物体、交互或局部上下文的语义，例如钓鱼、骑车、打电话、跑步；"
+    "relation 当前只能用于受支持的 held_by_target 手持关系。constraints 不得重复人、人物或 person，"
+    "也不得加入图片操作。"
     "action.type 只能使用工具 schema 的白名单：找到、定位、标红或高亮使用 highlight；"
     "框出、框选或框起来使用 box；只描边使用 outline；用户明确指定框选、描边或高亮颜色时，"
     "在 action.color 中输出对应的 #RRGGBB，未指定颜色时不得输出 color；color 只能与 box、"
@@ -87,17 +103,18 @@ PLANNER_SYSTEM_PROMPT = (
     "目标以外背景变暗使用 dim_background；"
     "单独抠出使用 cutout。不得生成图像参数、代码或命令。label 使用简短中文目标名。"
     "related_objects 始终必填。仅当用户要求人物明确手持、拿着或撑着一个无生命手持物体时，"
-    "返回一个基础英文物体和 relation=held_by_target；否则必须返回空数组。即使生成关联物体，"
-    "constraints 仍须保留完整关系语义。骑自行车、戴安全帽、靠近汽车、抱着狗等关系不受支持，"
+    "返回一个基础英文物体和 relation=held_by_target；否则必须返回空数组。生成关联物体时，"
+    "constraints 必须恰好包含一条 route=relation 的完整关系语义，与 related_objects[0] 形成 1:1 ownership。"
+    "没有关联物体时不得输出 relation route。骑自行车、戴安全帽、靠近汽车、抱着狗等关系不受支持，"
     "必须 related_objects=[]，不得映射为 held_by_target。"
 )
 
 FINAL_SYSTEM_PROMPT = (
     "你是 Visual Agent 的结果汇总器。只能根据提供的已执行计划和结构化视觉结果，"
     "生成一句简短中文回答。不得增加结果中没有的视觉事实，不得猜身份、年龄、地点、颜色或数量，"
-    "不得声称执行了不存在的动作。如果 complete_semantic_targets_count 为 0、但 verified_subjects_count 大于 0，"
-    "必须根据 incomplete_semantic_groups 说明已找到主体候选但关联对象不完整，因此没有执行图片操作；"
-    "不能说没有找到目标。只有 verified_subjects_count 也为 0 时，才明确没有找到满足条件的目标。"
+    "不得声称执行了不存在的动作。如果 complete_semantic_targets_count 为 0、但 incomplete_semantic_groups 非空，"
+    "必须根据其中的 completion_reason 说明主体候选的关系语义不完整，因此没有执行图片操作；"
+    "不能说没有找到目标。只有 incomplete_semantic_groups 也为空时，才明确没有找到满足条件的目标。"
     "你不能修改计划、候选、验证结论、动作或触发重新执行。只输出给用户的最终回答。"
 )
 
@@ -171,6 +188,13 @@ class DeepSeekAgent:
         arguments = json.loads(tool_call.function.arguments)
         if not isinstance(arguments, dict):
             raise RuntimeError("tool arguments 必须是 JSON 对象")
+        return DeepSeekAgent._validated_plan_arguments(arguments)
+
+    @staticmethod
+    def _validated_plan_arguments(arguments: dict) -> dict:
+        """验证并规范化 Planner 或预编译 plan 的唯一正式契约。"""
+        if not isinstance(arguments, dict):
+            raise RuntimeError("plan 必须是 JSON 对象")
         if set(arguments) != {
             "target_object",
             "label",
@@ -195,13 +219,22 @@ class DeepSeekAgent:
         if not isinstance(label, str) or not label.strip():
             raise RuntimeError("label 必须是非空字符串")
         constraints = arguments["constraints"]
-        if not isinstance(constraints, list) or any(
-            not isinstance(item, str) or not item.strip() for item in constraints
-        ):
-            raise RuntimeError("constraints 必须是非空字符串组成的数组")
-        constraints = [item.strip() for item in constraints]
+        if not isinstance(constraints, list):
+            raise RuntimeError("constraints 必须是 typed object 数组")
+        normalized_constraints = []
+        for constraint in constraints:
+            if not isinstance(constraint, dict) or set(constraint) != {"text", "route"}:
+                raise RuntimeError("constraint 字段必须且只能是 text 和 route")
+            text = constraint["text"]
+            route = constraint["route"]
+            if not isinstance(text, str) or not text.strip():
+                raise RuntimeError("constraint text 必须是非空字符串")
+            if route not in CONSTRAINT_ROUTES:
+                raise RuntimeError("constraint route 不在白名单")
+            normalized_constraints.append({"text": text.strip(), "route": route})
         if target_object == "person" and any(
-            item.lower() in {"人", "人物", "person"} for item in constraints
+            item["text"].lower() in {"人", "人物", "person"}
+            for item in normalized_constraints
         ):
             raise RuntimeError("person 的 constraints 不得重复基础人物实体")
 
@@ -240,13 +273,20 @@ class DeepSeekAgent:
             normalized_related_objects.append(
                 {"object": related_object, "relation": "held_by_target"}
             )
+        relation_constraints = [
+            item for item in normalized_constraints if item["route"] == "relation"
+        ]
+        if len(relation_constraints) != len(normalized_related_objects):
+            raise RuntimeError(
+                "relation constraint 与 related_objects 必须保持 1:1 ownership"
+            )
         normalized_action = {"type": action["type"]}
         if color is not None:
             normalized_action["color"] = color.lower()
         return {
             "target_object": target_object,
             "label": label.strip(),
-            "constraints": constraints,
+            "constraints": normalized_constraints,
             "action": normalized_action,
             "related_objects": normalized_related_objects,
         }

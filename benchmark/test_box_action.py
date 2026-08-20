@@ -21,7 +21,7 @@ from visual_agent.vlm import ACTION_TYPES as VLM_ACTION_TYPES
 BOX_PLAN = {
     "target_object": "person",
     "label": "戴眼罩的人",
-    "constraints": ["戴眼罩"],
+    "constraints": [{"text": "戴眼罩", "route": "attribute"}],
     "action": {"type": "box"},
     "related_objects": [],
 }

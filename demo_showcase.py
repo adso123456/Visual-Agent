@@ -27,14 +27,14 @@ DEMO_CASES = [
         "images/test_images/commons_red_shirts.jpg",
         "只给穿红色衣服的人描边",
         {"target_object": "person", "label": "穿红色衣服的人",
-         "constraints": ["穿红色衣服"], "action": {"type": "outline"}, "related_objects": []},
+         "constraints": [{"text": "穿红色衣服", "route": "attribute"}], "action": {"type": "outline"}, "related_objects": []},
     ),
     (
         "02_umbrella_cutout",
         "images/test_images/commons_umbrella.jpg",
         "把拿雨伞的人单独抠出来",
         {"target_object": "person", "label": "拿雨伞的人",
-         "constraints": ["手持雨伞"], "action": {"type": "cutout"},
+         "constraints": [{"text": "手持雨伞", "route": "relation"}], "action": {"type": "cutout"},
          "related_objects": [{"object": "umbrella", "relation": "held_by_target"}]},
     ),
     (
@@ -42,14 +42,14 @@ DEMO_CASES = [
         "images/test_images/test_fishing.jpg",
         "把正在钓鱼的人高亮",
         {"target_object": "person", "label": "正在钓鱼的人",
-         "constraints": ["正在钓鱼"], "action": {"type": "highlight"}, "related_objects": []},
+         "constraints": [{"text": "正在钓鱼", "route": "behavior"}], "action": {"type": "highlight"}, "related_objects": []},
     ),
     (
         "04_hat_blur",
         "images/test_images/benchmark_fishing_hats.png",
         "把戴帽子的人模糊",
         {"target_object": "person", "label": "戴帽子的人",
-         "constraints": ["戴帽子"], "action": {"type": "blur_target"}, "related_objects": []},
+         "constraints": [{"text": "戴帽子", "route": "attribute"}], "action": {"type": "blur_target"}, "related_objects": []},
     ),
     (
         "05_dim_background",

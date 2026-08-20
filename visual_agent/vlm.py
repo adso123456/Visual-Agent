@@ -14,12 +14,22 @@ from visual_agent.qwen_protocol import request_validated_json
 MODEL_NAME = "qwen3-vl-flash"
 BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
 ACTION_TYPES = {"highlight", "outline", "box", "blur_target", "dim_background", "cutout"}
+SEMANTIC_ROUTES = {"attribute", "behavior"}
+SEMANTIC_STATUSES = {"satisfied", "not_satisfied", "uncertain"}
+VALIDITY_STATUSES = {"valid", "invalid", "uncertain"}
 
 
 def _image_data_url(image_path: Path) -> str:
     mime_type = mimetypes.guess_type(image_path.name)[0] or "image/jpeg"
     encoded = base64.b64encode(image_path.read_bytes()).decode("ascii")
     return f"data:{mime_type};base64,{encoded}"
+
+
+def _pil_image_data_url(image: Image.Image) -> str:
+    buffer = io.BytesIO()
+    image.convert("RGB").save(buffer, format="PNG")
+    encoded = base64.b64encode(buffer.getvalue()).decode("ascii")
+    return f"data:image/png;base64,{encoded}"
 
 
 def _marked_candidates_data_url(image_path: Path, candidates: list[dict]) -> str:
@@ -61,6 +71,211 @@ def _client() -> OpenAI:
     if not api_key:
         raise RuntimeError("未设置环境变量 DASHSCOPE_API_KEY")
     return OpenAI(api_key=api_key, base_url=BASE_URL)
+
+
+def validate_subject_instance(
+    result: dict,
+    candidate: dict,
+    target_object: str,
+) -> dict:
+    if not isinstance(result, dict) or set(result) != {
+        "candidate_id",
+        "target_object",
+        "status",
+        "evidence",
+    }:
+        raise RuntimeError("Qwen instance validity 字段不正确")
+    if result["candidate_id"] != candidate["id"]:
+        raise RuntimeError("Qwen instance validity candidate_id 与输入不一致")
+    if result["target_object"] != target_object:
+        raise RuntimeError("Qwen instance validity target_object 与输入不一致")
+    if result["status"] not in VALIDITY_STATUSES:
+        raise RuntimeError("Qwen instance validity status 不在三态枚举中")
+    evidence = result["evidence"]
+    if not isinstance(evidence, str) or not evidence.strip():
+        raise RuntimeError("Qwen instance validity evidence 必须是非空字符串")
+    return {
+        "candidate_id": candidate["id"],
+        "target_object": target_object,
+        "status": result["status"],
+        "evidence": evidence.strip(),
+    }
+
+
+def verify_subject_instance(
+    candidate: dict,
+    target_object: str,
+    evidence_image: Image.Image,
+) -> tuple[dict, dict]:
+    """只判断候选是否为一个可独立评价的基础目标实例。"""
+    messages = [
+        {
+            "role": "system",
+            "content": (
+                "你是基础目标实例有效性验证器。输入图只保留当前候选实例像素，其他区域为中性灰。"
+                "只判断该视觉证据是否主要对应一个合理、独立、可作为指定 target_object 的实例。"
+                "不得判断任何用户属性、行为、关系或任务是否满足。合理截断或遮挡但仍可独立识别的实例"
+                "可以是 valid；明确只有手、手臂、腿等局部碎片、明确非目标、或明确混合多个目标实例且"
+                "无法形成单独实例时是 invalid；证据不足时是 uncertain。只返回 JSON，字段必须且只能是"
+                "candidate_id、target_object、status、evidence。status 只能是 valid、invalid、uncertain，"
+                "evidence 必须使用中文并只描述实例有效性证据。不要输出 Markdown 或分析过程。"
+            ),
+        },
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "image_url",
+                    "image_url": {"url": _pil_image_data_url(evidence_image)},
+                },
+                {
+                    "type": "text",
+                    "text": (
+                        f"candidate_id：{candidate['id']}\n"
+                        f"target_object：{target_object}\n"
+                        "请判断该候选是否为一个有效、独立的基础目标实例。"
+                    ),
+                },
+            ],
+        },
+    ]
+
+    def request_once(correction: str | None) -> str | None:
+        request_messages = [*messages]
+        if correction:
+            request_messages.append({"role": "user", "content": correction})
+        response = _client().chat.completions.create(
+            model=MODEL_NAME,
+            messages=request_messages,
+            temperature=0,
+            response_format={"type": "json_object"},
+        )
+        return response.choices[0].message.content
+
+    return request_validated_json(
+        request_once,
+        lambda result: validate_subject_instance(result, candidate, target_object),
+        "subject instance validity",
+        '{"candidate_id":"A","target_object":"person","status":"<valid|invalid|uncertain>","evidence":"<非空证据>"}',
+    )
+
+
+def validate_candidate_constraints(
+    result: dict,
+    candidate: dict,
+    constraints: list[dict],
+    route: str,
+) -> list[dict]:
+    if route not in SEMANTIC_ROUTES:
+        raise ValueError(f"不支持的 semantic route：{route}")
+    if not constraints or any(item.get("route") != route for item in constraints):
+        raise ValueError("routed constraints 必须非空且全部匹配当前 route")
+    if not isinstance(result, dict) or set(result) != {"candidate_id", "checks"}:
+        raise RuntimeError("Qwen routed verification 顶层字段不正确")
+    if result["candidate_id"] != candidate["id"]:
+        raise RuntimeError("Qwen routed verification candidate_id 与输入不一致")
+    checks = result["checks"]
+    if not isinstance(checks, list) or len(checks) != len(constraints):
+        raise RuntimeError("Qwen routed checks 数量与 constraints 不一致")
+    normalized = []
+    for constraint, check in zip(constraints, checks):
+        if not isinstance(check, dict) or set(check) != {
+            "constraint",
+            "status",
+            "evidence",
+        }:
+            raise RuntimeError("Qwen routed check 字段不正确")
+        if check["constraint"] != constraint["text"]:
+            raise RuntimeError("Qwen routed check 未对应原始 constraint")
+        if check["status"] not in SEMANTIC_STATUSES:
+            raise RuntimeError("Qwen routed check status 不在三态枚举中")
+        evidence = check["evidence"]
+        if not isinstance(evidence, str) or not evidence.strip():
+            raise RuntimeError("Qwen routed check evidence 必须是非空字符串")
+        normalized.append(
+            {
+                "constraint": constraint["text"],
+                "status": check["status"],
+                "evidence": evidence.strip(),
+            }
+        )
+    return normalized
+
+
+def verify_candidate_constraints(
+    candidate: dict,
+    constraints: list[dict],
+    evidence_image: Image.Image,
+    route: str,
+) -> tuple[list[dict], dict]:
+    """使用单候选、单 evidence route 判断同 route 下的多条约束。"""
+    if route not in SEMANTIC_ROUTES:
+        raise ValueError(f"不支持的 semantic route：{route}")
+    route_instruction = {
+        "attribute": (
+            "图像只保留当前候选实例像素。只根据该候选本人的外观、衣着、颜色、装备等可见证据判断，"
+            "不得使用灰色区域或想象相邻人物属性。"
+        ),
+        "behavior": (
+            "图中轮廓标出当前需要判断的人物实例。行为判断只能归属于当前轮廓对应的人物。"
+            "可以使用当前局部图中与该人物直接相关的物体、姿态和交互上下文作为证据，"
+            "不得把附近其他人物的行为归给当前人物。"
+        ),
+    }[route]
+    constraint_texts = [item["text"] for item in constraints]
+    messages = [
+        {
+            "role": "system",
+            "content": (
+                f"你是单候选 {route} 语义验证器。{route_instruction}"
+                "逐条判断输入 constraints，顺序和原文必须完全一致，不得合并或新增。"
+                "status 只能是 satisfied、not_satisfied、uncertain；证据不足或归属不清必须 uncertain。"
+                "只返回 JSON，顶层字段必须且只能是 candidate_id、checks；每个 check 只能包含"
+                "constraint、status、evidence，evidence 必须为非空中文证据。不要输出 Markdown 或分析过程。"
+            ),
+        },
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "image_url",
+                    "image_url": {"url": _pil_image_data_url(evidence_image)},
+                },
+                {
+                    "type": "text",
+                    "text": (
+                        f"candidate_id：{candidate['id']}\nroute：{route}\n"
+                        f"constraints：{json.dumps(constraint_texts, ensure_ascii=False)}\n"
+                        "请返回每条约束的独立三态判断。"
+                    ),
+                },
+            ],
+        },
+    ]
+
+    def request_once(correction: str | None) -> str | None:
+        request_messages = [*messages]
+        if correction:
+            request_messages.append({"role": "user", "content": correction})
+        response = _client().chat.completions.create(
+            model=MODEL_NAME,
+            messages=request_messages,
+            temperature=0,
+            response_format={"type": "json_object"},
+        )
+        return response.choices[0].message.content
+
+    return request_validated_json(
+        request_once,
+        lambda result: validate_candidate_constraints(
+            result,
+            candidate,
+            constraints,
+            route,
+        ),
+        f"{route} candidate verification",
+        '{"candidate_id":"A","checks":[{"constraint":"<原始约束>","status":"<三态之一>","evidence":"<非空证据>"}]}',
+    )
 
 
 def _json_response(messages: list[dict]) -> dict:

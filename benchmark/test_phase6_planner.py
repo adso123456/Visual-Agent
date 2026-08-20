@@ -19,8 +19,8 @@ CASES = [
 ]
 
 
-def semantic_match(actual: list[str], expected: list[str]) -> bool:
-    normalized = " ".join(actual)
+def semantic_match(actual: list[dict], expected: list[str]) -> bool:
+    normalized = " ".join(item["text"] for item in actual)
     return len(actual) == len(expected) and all(
         any(keyword in normalized for keyword in group)
         for group in [

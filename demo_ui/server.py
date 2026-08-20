@@ -64,21 +64,21 @@ EXAMPLE_PLANS = {
     "只给穿红色衣服的人描边": {
         "target_object": "person",
         "label": "穿红色衣服的人",
-        "constraints": ["穿红色衣服"],
+        "constraints": [{"text": "穿红色衣服", "route": "attribute"}],
         "action": {"type": "outline"},
         "related_objects": [],
     },
     "把拿雨伞的人单独抠出来": {
         "target_object": "person",
         "label": "拿雨伞的人",
-        "constraints": ["手持雨伞"],
+        "constraints": [{"text": "手持雨伞", "route": "relation"}],
         "action": {"type": "cutout"},
         "related_objects": [{"object": "umbrella", "relation": "held_by_target"}],
     },
     "把正在钓鱼的人高亮": {
         "target_object": "person",
         "label": "正在钓鱼的人",
-        "constraints": ["正在钓鱼"],
+        "constraints": [{"text": "正在钓鱼", "route": "behavior"}],
         "action": {"type": "highlight"},
         "related_objects": [],
     },
@@ -173,10 +173,17 @@ def _validate_plan(plan: dict) -> str | None:
         if not isinstance(label, str) or not label.strip():
             return "label 必须是非空字符串"
         constraints = plan["constraints"]
-        if not isinstance(constraints, list) or not all(
-            isinstance(item, str) and item.strip() for item in constraints
-        ):
-            return "constraints 必须是非空字符串数组"
+        if not isinstance(constraints, list):
+            return "constraints 必须是 typed object 数组"
+        for item in constraints:
+            if (
+                not isinstance(item, dict)
+                or set(item) != {"text", "route"}
+                or not isinstance(item["text"], str)
+                or not item["text"].strip()
+                or item["route"] not in {"attribute", "behavior", "relation"}
+            ):
+                return "constraint 必须只包含非空 text 和合法 route"
         action = plan["action"]
         if (
             not isinstance(action, dict)
@@ -203,6 +210,9 @@ def _validate_plan(plan: dict) -> str | None:
                 or item["relation"] != "held_by_target"
             ):
                 return "related object 只能包含 object 与 relation=held_by_target"
+        relation_count = sum(item["route"] == "relation" for item in constraints)
+        if relation_count != len(related):
+            return "relation constraint 与 related_objects 必须保持 1:1 ownership"
     except KeyError as error:
         return f"plan 缺少字段：{error}"
     return None

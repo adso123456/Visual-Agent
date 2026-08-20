@@ -191,3 +191,90 @@ def verify_relations(
         "relation verification",
         '{"bindings":[{"subject_id":"A","related_id":"R1","relation":"held_by_target","status":"<三态之一>","evidence":"<非空证据>"}]}',
     )
+
+
+def verify_focused_ownership(
+    image_path: Path,
+    subjects: list[dict],
+    related_candidates: list[dict],
+    related_object: str,
+    relation: str,
+) -> tuple[list[dict], dict]:
+    """对象级归属冲突裁决：一次只裁决多个冲突主体与一个 related object。"""
+    if len(subjects) < 2:
+        raise ValueError("Focused Ownership 需要至少 2 个冲突 subjects")
+    if len(related_candidates) != 1:
+        raise ValueError("Focused Ownership 每次只能裁决 1 个 related object")
+    if relation != RELATION:
+        raise ValueError(f"不支持的 relation：{relation}")
+    related_id = related_candidates[0]["id"]
+    subject_ids = json.dumps(
+        [item["id"] for item in subjects], ensure_ascii=False
+    )
+    messages = [
+        {
+            "role": "system",
+            "content": (
+                f"你是对象级归属冲突裁决器。完整原图中红框 {subject_ids} 是潜在持有主体，"
+                f"蓝框 {related_id} 是唯一关联对象。你只裁决 {related_id} 究竟由这些主体中哪些明确持有，"
+                "必须同时比较这些潜在持有者与关联对象的相对位置、手部、手柄或接触位置以及明确视觉归属。"
+                "只有能从手部、手柄或接触位置和明确视觉归属确认时才返回 satisfied；"
+                "相邻、遮挡或仅靠近不得判 satisfied；不能唯一确认时必须使用 uncertain。"
+                "不要判断其他未标出的关联对象，也不要根据常识猜测。"
+                "只返回 JSON，顶层仅 bindings。每项只能包含 subject_id、related_id、relation、status、evidence。"
+                "status 只能是 satisfied、not_satisfied、uncertain。"
+                f"每个主体与唯一关联对象 {related_id} 的组合必须恰好返回一次，不得只输出一个 owner ID。"
+                "结构必须为 {\"bindings\":[{\"subject_id\":\"B\",\"related_id\":\"R2\","
+                "\"relation\":\"held_by_target\",\"status\":\"<三态之一>\",\"evidence\":\"<非空证据>\"}]}。"
+                "不要输出 Markdown、分析过程或候选之外的视觉事实。"
+            ),
+        },
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": _marked_scene_data_url(
+                            image_path,
+                            subjects,
+                            related_candidates,
+                        )
+                    },
+                },
+                {
+                    "type": "text",
+                    "text": (
+                        f"relation：{relation}\n关联实体：{related_object}\n"
+                        f"唯一关联对象 ID：{related_id}\n"
+                        f"冲突潜在持有主体 IDs：{subject_ids}\n"
+                        f"请判断该关联对象由哪些主体明确持有；每个 subject-{related_id} 组合返回三态。"
+                    ),
+                },
+            ],
+        },
+    ]
+
+    def request_once(correction: str | None) -> str | None:
+        request_messages = [*messages]
+        if correction:
+            request_messages.append({"role": "user", "content": correction})
+        response = _client().chat.completions.create(
+            model=MODEL_NAME,
+            messages=request_messages,
+            temperature=0,
+            response_format={"type": "json_object"},
+        )
+        return response.choices[0].message.content
+
+    return request_validated_json(
+        request_once,
+        lambda result: validate_relation_bindings(
+            result,
+            subjects,
+            related_candidates,
+            relation,
+        ),
+        "focused ownership verification",
+        '{"bindings":[{"subject_id":"B","related_id":"R2","relation":"held_by_target","status":"<三态之一>","evidence":"<非空证据>"}]}',
+    )
