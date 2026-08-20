@@ -31,10 +31,12 @@ def _max_concurrent_jobs() -> int:
 def _iter_limited_images(images: list[UploadFile]):
     """逐图读取，每次只保留一张图片的有界字节，不整批读入内存。"""
     for image in images:
-        yield (
-            image.file.read(jobs_module.MAX_UPLOAD_BYTES + 1),
-            image.filename or "upload.jpg",
-        )
+        yield _read_image_bytes(image), image.filename or "upload.jpg"
+
+
+def _read_image_bytes(image: UploadFile) -> bytes:
+    """单图也只读 limit + 1，超过上限的剩余字节不进入 Python 内存。"""
+    return image.file.read(jobs_module.MAX_UPLOAD_BYTES + 1)
 
 
 def create_app(job_manager: JobManager | None = None) -> FastAPI:
@@ -51,7 +53,7 @@ def create_app(job_manager: JobManager | None = None) -> FastAPI:
         image: UploadFile = File(...),
         prompt: str = Form(...),
     ) -> dict:
-        image_bytes = await image.read()
+        image_bytes = _read_image_bytes(image)
         try:
             task_id = manager.submit_task(
                 image_bytes,

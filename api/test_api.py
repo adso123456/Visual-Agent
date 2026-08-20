@@ -10,7 +10,7 @@ from fastapi.testclient import TestClient
 
 from api import jobs as jobs_module
 from api.jobs import JobManager
-from api.server import _iter_limited_images, create_app
+from api.server import _iter_limited_images, _read_image_bytes, create_app
 
 
 def _write_result(output_dir: Path, prompt: str, image_bytes: bytes):
@@ -177,6 +177,35 @@ def test_single_task_rejects_bad_image(tmp_path):
             )
             assert response.status_code == 400
             assert "不支持的图片格式" in response.json()["detail"]
+
+
+def test_single_task_rejects_oversized_image(tmp_path, monkeypatch):
+    monkeypatch.setattr(jobs_module, "MAX_UPLOAD_BYTES", 16)
+    with JobManager(
+        data_dir=tmp_path / "data",
+        max_concurrent_jobs=1,
+        runner=_fake_runner,
+    ) as manager:
+        with TestClient(create_app(manager)) as client:
+            response = client.post(
+                "/api/v1/tasks",
+                files={"image": ("big.jpg", b"x" * 100, "image/jpeg")},
+                data={"prompt": "找到人"},
+            )
+            assert response.status_code == 400
+            assert "超过 1 MiB 上限" in response.json()["detail"]
+
+
+def test_single_upload_read_is_bounded(monkeypatch):
+    monkeypatch.setattr(jobs_module, "MAX_UPLOAD_BYTES", 16)
+
+    class FakeUpload:
+        def __init__(self, data: bytes):
+            self.file = io.BytesIO(data)
+
+    payload = b"x" * 100
+    data = _read_image_bytes(FakeUpload(payload))
+    assert len(data) == 17
 
 
 def test_batch_rejects_too_many_images(tmp_path, monkeypatch):
