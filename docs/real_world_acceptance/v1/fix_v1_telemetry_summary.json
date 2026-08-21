@@ -1,0 +1,17 @@
+{
+ "phase": "full_240_regression",
+ "tested_commit": "6ce8533d8a55b52e01d7daa30bce43139b5070b4",
+ "evidence_calls": 639,
+ "triggered": 65,
+ "non_triggered": 574,
+ "original_over_18MiB": 65,
+ "one_to_one_over_limit_triggered": true,
+ "normalized_over_18MiB_violations": 0,
+ "max_original_payload_bytes": 91107672,
+ "max_normalized_payload_bytes": 18869028,
+ "triggered_upscale_violations": 0,
+ "triggered_aspect_violations": 0,
+ "non_triggered_identity_violations": 0,
+ "hard_cap_runtime_errors": 0,
+ "unit": "base64_payload_chars"
+}

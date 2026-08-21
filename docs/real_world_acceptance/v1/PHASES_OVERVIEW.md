@@ -8,37 +8,37 @@
 | PHASE 1 | ACCEPTANCE CONTRACT FREEZE | CLOSED (FROZEN, v3) |
 | PHASE 2 | END_TO_END_EXECUTION | CLOSED / BASELINE CAPTURED |
 | PHASE 3 | VISUAL ADJUDICATION | ACCEPTED / CLOSED |
-| NEXT | SYSTEM_RELIABILITY_FIX_V1 | 未开始 |
+| — | SYSTEM_FAILURE_DIAGNOSIS_V1 | **ACCEPTED / CLOSED** |
+| — | SYSTEM_RELIABILITY_FIX_V1 | **APPROVED / VALIDATED** (tested commit = 6ce8533d8a55b52e01d7daa30bce43139b5070b4) |
+| — | SYSTEM_RELIABILITY_REGRESSION_V1 | **ACCEPTED / CLOSED** |
+| NEXT | PRODUCTION MERGE | 未开始 (fast-forward master@5075ab5 → 6ce8533, --ff-only) |
 
-## 总口径
+## 系统可靠性最终口径
 
-240 submitted
-├─ 204 pipeline success
-│  ├─ 196 valid scored
-│  └─   8 invalid_test_data (F1/F2/F3/F4 × fishing_022 数据不一致 + F2/fishing_021、F4/fishing_010、F4/fishing_025、P3/pollution_030 合同语义/标签问题)
-└─  36 SYSTEM FAILURE (冻结 baseline, 未重跑)
+240 submitted → 240 pipeline success → 0 SYSTEM FAILURE
 
-## 视觉最终统计 (valid scored = 196)
+- baseline 36 failure → 36/36 recovered
+- baseline 204 success → 204/204 preserved
+- 8 invalid_test_data 本轮仍执行 → 8/8 pipeline success → 仅不进入视觉评分
 
-- Positive valid = 91: PASS 52 (57.1%), DEGRADED 8 (8.8%), FAIL 31 (34.1%); PASS+DEGRADED = 60/91 = 65.9%
-- Negative valid = 105: TN 95 (90.5%), FP 10 (9.5%)
-- VISION_FAILURE = 41 (31 FAIL + 10 FP); OOS = 0
+## Telemetry(完整 240 回归)
 
-## 结论
+- 639 Qwen PNG evidence calls
+- 65 triggered / 574 non-triggered
+- original >18 MiB ↔ triggered = 1:1 (65↔65)
+- normalized >18 MiB violations = 0
+- hard-cap RuntimeError = 0
 
-1. 当前系统未达'真实场景验收通过'状态: 视觉层正样本仍有 31/91 明确 FAIL, 污染方向明显弱于钓鱼方向 (P1/P3/P4 正样本 FAIL 占比高)。
-2. 下一优先级 blocker = SYSTEM RELIABILITY: 冻结 baseline 36/240 = 15% 系统失败率 (provider 载荷上限 ~载荷24 + 连接错误12), 先解决系统层再优化视觉, 否则视觉数据被执行失败严重干扰。
+## 视觉统计(定格, 见 PHASE3 报告)
 
-## 数据完整性问题 (已发现并排除, 不重跑/不改合同/不改代码)
+- 可计分 196: Positive PASS 52 / DEGRADED 8 / FAIL 31; Negative TN 95 / FP 10; VISION_FAILURE 41; OOS 0; invalid_test_data 8。
 
-- fishing_022 磁盘文件为黑白撒网图 (31803434), 与合同元数据 15521411 不符 → 4 case 排除。
-- F2/fishing_021 (正样本无持竿)、F4/fishing_010、F4/fishing_025 (负样本实际持鱼)、P3/pollution_030 (船属漂浮物, prompt 语义歧义) → 4 case 排除。
+## 文件
 
-## 本目录文件
+- ACCEPTANCE_CONTRACT_V1.* : 冻结合同
+- PHASE2_EXECUTION_REPORT.md / PHASE3_VISUAL_ADJUDICATION_REPORT.md : 执行与视觉评审
+- SYSTEM_FAILURE_DIAGNOSIS_V1.md / system_failure_attribution.v2.json : 根因诊断
+- SYSTEM_RELIABILITY_FIX_V1_REPORT.md : 修复实施(PNG payload normalization, 候选方案未实施)
+- SYSTEM_RELIABILITY_REGRESSION_V1_REPORT.md / fix_v1_telemetry_summary.json / fix_v1_regression_240_summary.json : 240 回归证据
 
-- ACCEPTANCE_CONTRACT_V1.md / acceptance_contract_v1.json : Phase1 冻结合同
-- PHASE2_EXECUTION_REPORT.md : 执行与 SYSTEM FAILURE 报告
-- PHASE3_VISUAL_ADJUDICATION_REPORT.md : 视觉评审报告 (v3 终版)
-- PHASES_OVERVIEW.md : 本文件
-
-详细台账与原始审计中间件 (adjudication.json、ledger.json、_work_*.json、cards、outputs 等) 按归档约定不入库, 保留在 E:\3\_visual_agent_real_world_acceptance\v1\_phase2\ 供追溯。
+详细台账与原始中间件(_fix36/_reg240/result 全量/cards/outputs 等)不入库, 保留在 E:\3\_visual_agent_real_world_acceptance\v1\_phase2\ 供追溯。

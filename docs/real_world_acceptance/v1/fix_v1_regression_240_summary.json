@@ -1,0 +1,60 @@
+{
+ "submitted": 240,
+ "success": 240,
+ "failed": 0,
+ "orig36": {
+  "total": 36,
+  "success": 36,
+  "failed": 0
+ },
+ "orig204": {
+  "total": 204,
+  "success": 204,
+  "failed": 0
+ },
+ "per_test": {
+  "F1": {
+   "success": 30,
+   "failed": 0
+  },
+  "F2": {
+   "success": 30,
+   "failed": 0
+  },
+  "F3": {
+   "success": 30,
+   "failed": 0
+  },
+  "F4": {
+   "success": 30,
+   "failed": 0
+  },
+  "P1": {
+   "success": 30,
+   "failed": 0
+  },
+  "P2": {
+   "success": 30,
+   "failed": 0
+  },
+  "P3": {
+   "success": 30,
+   "failed": 0
+  },
+  "P4": {
+   "success": 30,
+   "failed": 0
+  }
+ },
+ "telemetry_calls": 639,
+ "triggered": 65,
+ "non_triggered": 574,
+ "original_over_limit": 65,
+ "one_to_one_ok": true,
+ "normalized_over_limit_violations": 0,
+ "hard_cap_runtime_errors": 0,
+ "max_original_payload_bytes": 91107672,
+ "max_normalized_payload_bytes": 18869028,
+ "dims_violations": 0,
+ "aspect_violations": 0
+}
