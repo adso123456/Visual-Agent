@@ -99,6 +99,12 @@ def _normalize_evidence_payload(
     if normalized_url is None:
         normalized_url, normalized_payload = _encode_png_data_url(current)
         normalized_dims = list(current.size)
+    if normalized_payload is None or normalized_payload > EVIDENCE_PAYLOAD_SAFE_LIMIT:
+        raise RuntimeError(
+            "Qwen evidence payload normalization failed to satisfy safe limit: "
+            f"{normalized_payload} > {EVIDENCE_PAYLOAD_SAFE_LIMIT} bytes; "
+            "refusing to send oversized data-uri to provider"
+        )
     return normalized_url, {
         "normalization_triggered": True,
         "original_dimensions": list(original_size),
