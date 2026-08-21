@@ -1,0 +1,336 @@
+{
+ "total": 36,
+ "by_class": {
+  "A1_datauri_20MiB": 15,
+  "A2_stringlen_28M": 9,
+  "B_connection": 12,
+  "other": 0
+ },
+ "stage": "Qwen per-candidate semantic verification (verify_subject_instance/verify_candidate_constraints; B = its transport layer)",
+ "incidents": [
+  {
+   "test_id": "F1",
+   "image": "fishing_001.jpeg",
+   "subset": "positive",
+   "class": "A1_datauri_20MiB",
+   "width": 5152,
+   "height": 7728,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'Exceeded limit on max bytes per data-uri item : 20971520', 'ty"
+  },
+  {
+   "test_id": "F1",
+   "image": "fishing_020.jpeg",
+   "subset": "negative",
+   "class": "A1_datauri_20MiB",
+   "width": 3840,
+   "height": 5760,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'Exceeded limit on max bytes per data-uri item : 20971520', 'ty"
+  },
+  {
+   "test_id": "F2",
+   "image": "fishing_001.jpeg",
+   "subset": "negative",
+   "class": "A1_datauri_20MiB",
+   "width": 5152,
+   "height": 7728,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'Exceeded limit on max bytes per data-uri item : 20971520', 'ty"
+  },
+  {
+   "test_id": "F2",
+   "image": "fishing_020.jpeg",
+   "subset": "negative",
+   "class": "A1_datauri_20MiB",
+   "width": 3840,
+   "height": 5760,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'Exceeded limit on max bytes per data-uri item : 20971520', 'ty"
+  },
+  {
+   "test_id": "P1",
+   "image": "pollution_003.jpeg",
+   "subset": "positive",
+   "class": "B_connection",
+   "width": 6048,
+   "height": 4024,
+   "error_first_120": "APIConnectionError: Connection error."
+  },
+  {
+   "test_id": "P1",
+   "image": "pollution_011.jpeg",
+   "subset": "positive",
+   "class": "B_connection",
+   "width": 8192,
+   "height": 5461,
+   "error_first_120": "APIConnectionError: Connection error."
+  },
+  {
+   "test_id": "P1",
+   "image": "pollution_013.jpeg",
+   "subset": "negative",
+   "class": "B_connection",
+   "width": 5389,
+   "height": 3567,
+   "error_first_120": "APIConnectionError: Connection error."
+  },
+  {
+   "test_id": "P1",
+   "image": "pollution_017.jpeg",
+   "subset": "negative",
+   "class": "A2_stringlen_28M",
+   "width": 4512,
+   "height": 3008,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'String value length (28049408) exceeds the maximum allowed (28"
+  },
+  {
+   "test_id": "P1",
+   "image": "pollution_019.jpeg",
+   "subset": "negative",
+   "class": "A2_stringlen_28M",
+   "width": 5568,
+   "height": 3712,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'String value length (28039712) exceeds the maximum allowed (28"
+  },
+  {
+   "test_id": "P1",
+   "image": "pollution_022.jpeg",
+   "subset": "negative",
+   "class": "A1_datauri_20MiB",
+   "width": 3024,
+   "height": 4032,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'Exceeded limit on max bytes per data-uri item : 20971520', 'ty"
+  },
+  {
+   "test_id": "P1",
+   "image": "pollution_029.jpeg",
+   "subset": "negative",
+   "class": "A2_stringlen_28M",
+   "width": 6000,
+   "height": 4000,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'String value length (28048705) exceeds the maximum allowed (28"
+  },
+  {
+   "test_id": "P2",
+   "image": "pollution_017.jpeg",
+   "subset": "negative",
+   "class": "A2_stringlen_28M",
+   "width": 4512,
+   "height": 3008,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'String value length (28026391) exceeds the maximum allowed (28"
+  },
+  {
+   "test_id": "P2",
+   "image": "pollution_019.jpeg",
+   "subset": "negative",
+   "class": "A2_stringlen_28M",
+   "width": 5568,
+   "height": 3712,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'String value length (28049408) exceeds the maximum allowed (28"
+  },
+  {
+   "test_id": "P3",
+   "image": "pollution_011.jpeg",
+   "subset": "positive",
+   "class": "A1_datauri_20MiB",
+   "width": 8192,
+   "height": 5461,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'Exceeded limit on max bytes per data-uri item : 20971520', 'ty"
+  },
+  {
+   "test_id": "P3",
+   "image": "pollution_012.jpeg",
+   "subset": "positive",
+   "class": "A1_datauri_20MiB",
+   "width": 5472,
+   "height": 3648,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'Exceeded limit on max bytes per data-uri item : 20971520', 'ty"
+  },
+  {
+   "test_id": "P3",
+   "image": "pollution_013.jpeg",
+   "subset": "positive",
+   "class": "B_connection",
+   "width": 5389,
+   "height": 3567,
+   "error_first_120": "APIConnectionError: Connection error."
+  },
+  {
+   "test_id": "P3",
+   "image": "pollution_014.jpeg",
+   "subset": "positive",
+   "class": "B_connection",
+   "width": 6240,
+   "height": 4160,
+   "error_first_120": "APIConnectionError: Connection error."
+  },
+  {
+   "test_id": "P3",
+   "image": "pollution_017.jpeg",
+   "subset": "positive",
+   "class": "B_connection",
+   "width": 4512,
+   "height": 3008,
+   "error_first_120": "APIConnectionError: Connection error."
+  },
+  {
+   "test_id": "P3",
+   "image": "pollution_019.jpeg",
+   "subset": "positive",
+   "class": "A2_stringlen_28M",
+   "width": 5568,
+   "height": 3712,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'String value length (28049408) exceeds the maximum allowed (28"
+  },
+  {
+   "test_id": "P3",
+   "image": "pollution_021.jpeg",
+   "subset": "positive",
+   "class": "A1_datauri_20MiB",
+   "width": 5184,
+   "height": 2931,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'Exceeded limit on max bytes per data-uri item : 20971520', 'ty"
+  },
+  {
+   "test_id": "P3",
+   "image": "pollution_022.jpeg",
+   "subset": "positive",
+   "class": "A1_datauri_20MiB",
+   "width": 3024,
+   "height": 4032,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'Exceeded limit on max bytes per data-uri item : 20971520', 'ty"
+  },
+  {
+   "test_id": "P4",
+   "image": "pollution_003.jpeg",
+   "subset": "positive",
+   "class": "B_connection",
+   "width": 6048,
+   "height": 4024,
+   "error_first_120": "APIConnectionError: Connection error."
+  },
+  {
+   "test_id": "P4",
+   "image": "pollution_006.jpeg",
+   "subset": "positive",
+   "class": "B_connection",
+   "width": 9660,
+   "height": 7245,
+   "error_first_120": "APIConnectionError: Connection error."
+  },
+  {
+   "test_id": "P4",
+   "image": "pollution_007.jpeg",
+   "subset": "positive",
+   "class": "A1_datauri_20MiB",
+   "width": 6720,
+   "height": 4480,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'Exceeded limit on max bytes per data-uri item : 20971520', 'ty"
+  },
+  {
+   "test_id": "P4",
+   "image": "pollution_009.jpeg",
+   "subset": "positive",
+   "class": "B_connection",
+   "width": 9660,
+   "height": 7245,
+   "error_first_120": "APIConnectionError: Connection error."
+  },
+  {
+   "test_id": "P4",
+   "image": "pollution_013.jpeg",
+   "subset": "positive",
+   "class": "B_connection",
+   "width": 5389,
+   "height": 3567,
+   "error_first_120": "APIConnectionError: Connection error."
+  },
+  {
+   "test_id": "P4",
+   "image": "pollution_014.jpeg",
+   "subset": "positive",
+   "class": "A1_datauri_20MiB",
+   "width": 6240,
+   "height": 4160,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'Exceeded limit on max bytes per data-uri item : 20971520', 'ty"
+  },
+  {
+   "test_id": "P4",
+   "image": "pollution_015.png",
+   "subset": "positive",
+   "class": "B_connection",
+   "width": 6960,
+   "height": 4640,
+   "error_first_120": "APIConnectionError: Connection error."
+  },
+  {
+   "test_id": "P4",
+   "image": "pollution_017.jpeg",
+   "subset": "positive",
+   "class": "A2_stringlen_28M",
+   "width": 4512,
+   "height": 3008,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'String value length (28049408) exceeds the maximum allowed (28"
+  },
+  {
+   "test_id": "P4",
+   "image": "pollution_019.jpeg",
+   "subset": "positive",
+   "class": "A2_stringlen_28M",
+   "width": 5568,
+   "height": 3712,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'String value length (28049408) exceeds the maximum allowed (28"
+  },
+  {
+   "test_id": "P4",
+   "image": "pollution_020.jpeg",
+   "subset": "positive",
+   "class": "A1_datauri_20MiB",
+   "width": 4496,
+   "height": 3000,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'Exceeded limit on max bytes per data-uri item : 20971520', 'ty"
+  },
+  {
+   "test_id": "P4",
+   "image": "pollution_021.jpeg",
+   "subset": "positive",
+   "class": "A1_datauri_20MiB",
+   "width": 5184,
+   "height": 2931,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'Exceeded limit on max bytes per data-uri item : 20971520', 'ty"
+  },
+  {
+   "test_id": "P4",
+   "image": "pollution_022.jpeg",
+   "subset": "positive",
+   "class": "A1_datauri_20MiB",
+   "width": 3024,
+   "height": 4032,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'Exceeded limit on max bytes per data-uri item : 20971520', 'ty"
+  },
+  {
+   "test_id": "P4",
+   "image": "pollution_024.jpeg",
+   "subset": "positive",
+   "class": "A1_datauri_20MiB",
+   "width": 4480,
+   "height": 6720,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'Exceeded limit on max bytes per data-uri item : 20971520', 'ty"
+  },
+  {
+   "test_id": "P4",
+   "image": "pollution_011.jpeg",
+   "subset": "negative",
+   "class": "B_connection",
+   "width": 8192,
+   "height": 5461,
+   "error_first_120": "APIConnectionError: Connection error."
+  },
+  {
+   "test_id": "P4",
+   "image": "pollution_029.jpeg",
+   "subset": "negative",
+   "class": "A2_stringlen_28M",
+   "width": 6000,
+   "height": 4000,
+   "error_first_120": "BadRequestError: Error code: 400 - {'error': {'message': 'String value length (28049408) exceeds the maximum allowed (28"
+  }
+ ]
+}
