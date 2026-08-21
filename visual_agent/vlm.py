@@ -1,6 +1,7 @@
 import base64
 import io
 import json
+import math
 import mimetypes
 import os
 from pathlib import Path
@@ -25,11 +26,102 @@ def _image_data_url(image_path: Path) -> str:
     return f"data:{mime_type};base64,{encoded}"
 
 
-def _pil_image_data_url(image: Image.Image) -> str:
+_DATA_URI_PNG_PREFIX = "data:image/png;base64,"
+# Qwen provider caps: decoded data-uri bytes 20 MiB / base64 string length
+# ~28M chars.  Internal safe limit on the actual sent payload (base64 chars)
+# keeps headroom without sitting near the provider limit.
+EVIDENCE_PAYLOAD_SAFE_LIMIT = 18 * 1024 * 1024
+EVIDENCE_NORMALIZE_TARGET_PIXELS = 4_000_000
+
+_EVIDENCE_TELEMETRY: dict | None = None
+
+
+def _encode_png_data_url(image: Image.Image) -> tuple[str, int]:
     buffer = io.BytesIO()
     image.convert("RGB").save(buffer, format="PNG")
     encoded = base64.b64encode(buffer.getvalue()).decode("ascii")
-    return f"data:image/png;base64,{encoded}"
+    return f"{_DATA_URI_PNG_PREFIX}{encoded}", len(encoded)
+
+
+def _normalize_evidence_payload(
+    image: Image.Image,
+) -> tuple[str, dict]:
+    """把超限临时 evidence 缩小后重新 PNG 编码，直至实际 payload <= safe limit。
+
+    仅作用于序列化边界的临时副本：保持宽高比、禁止放大；evidence 构造语义不变，
+    原始图片 / Detector / SAM 输入输出分辨率均不受影响。
+    """
+    data_url, payload = _encode_png_data_url(image)
+    original_size = (image.width, image.height)
+    original_payload = payload
+    if payload <= EVIDENCE_PAYLOAD_SAFE_LIMIT:
+        return data_url, {
+            "normalization_triggered": False,
+            "original_dimensions": list(original_size),
+            "original_payload_bytes": original_payload,
+            "normalized_dimensions": list(original_size),
+            "normalized_payload_bytes": original_payload,
+            "target_pixels_first_pass": EVIDENCE_NORMALIZE_TARGET_PIXELS,
+            "unit": "base64_payload_chars",
+        }
+    current = image
+    target_pixels = EVIDENCE_NORMALIZE_TARGET_PIXELS
+    normalized_dims = None
+    normalized_payload = None
+    normalized_url = None
+    guard = 0
+    while guard < 64:
+        guard += 1
+        area = current.width * current.height
+        if area <= 256:
+            break
+        scale = min(math.sqrt(target_pixels / area), 1.0)
+        if scale <= 0.0:
+            break
+        new_size = (
+            max(1, round(current.width * scale)),
+            max(1, round(current.height * scale)),
+        )
+        if tuple(new_size) == current.size:
+            break
+        resized = current.convert("RGB").resize(
+            new_size,
+            Image.Resampling.LANCZOS,
+        )
+        data_url, payload = _encode_png_data_url(resized)
+        normalized_dims = list(new_size)
+        normalized_payload = payload
+        normalized_url = data_url
+        if payload <= EVIDENCE_PAYLOAD_SAFE_LIMIT:
+            break
+        current = resized
+        target_pixels = max(1, target_pixels // 2)
+    if normalized_url is None:
+        normalized_url, normalized_payload = _encode_png_data_url(current)
+        normalized_dims = list(current.size)
+    return normalized_url, {
+        "normalization_triggered": True,
+        "original_dimensions": list(original_size),
+        "original_payload_bytes": original_payload,
+        "normalized_dimensions": normalized_dims,
+        "normalized_payload_bytes": normalized_payload,
+        "target_pixels_first_pass": EVIDENCE_NORMALIZE_TARGET_PIXELS,
+        "unit": "base64_payload_chars",
+    }
+
+
+def _pil_image_data_url(image: Image.Image) -> str:
+    global _EVIDENCE_TELEMETRY
+    data_url, telemetry = _normalize_evidence_payload(image)
+    _EVIDENCE_TELEMETRY = telemetry
+    return data_url
+
+
+def _take_evidence_telemetry() -> dict | None:
+    global _EVIDENCE_TELEMETRY
+    telemetry = _EVIDENCE_TELEMETRY
+    _EVIDENCE_TELEMETRY = None
+    return telemetry
 
 
 def _marked_candidates_data_url(image_path: Path, candidates: list[dict]) -> str:
@@ -152,12 +244,16 @@ def verify_subject_instance(
         )
         return response.choices[0].message.content
 
-    return request_validated_json(
+    validated, protocol = request_validated_json(
         request_once,
         lambda result: validate_subject_instance(result, candidate, target_object),
         "subject instance validity",
         '{"candidate_id":"A","target_object":"person","status":"<valid|invalid|uncertain>","evidence":"<非空证据>"}',
     )
+    telemetry = _take_evidence_telemetry()
+    if telemetry is not None:
+        protocol["evidence_payload"] = telemetry
+    return validated, protocol
 
 
 def validate_candidate_constraints(
@@ -265,7 +361,7 @@ def verify_candidate_constraints(
         )
         return response.choices[0].message.content
 
-    return request_validated_json(
+    validated, protocol = request_validated_json(
         request_once,
         lambda result: validate_candidate_constraints(
             result,
@@ -276,6 +372,10 @@ def verify_candidate_constraints(
         f"{route} candidate verification",
         '{"candidate_id":"A","checks":[{"constraint":"<原始约束>","status":"<三态之一>","evidence":"<非空证据>"}]}',
     )
+    telemetry = _take_evidence_telemetry()
+    if telemetry is not None:
+        protocol["evidence_payload"] = telemetry
+    return validated, protocol
 
 
 def _json_response(messages: list[dict]) -> dict:
