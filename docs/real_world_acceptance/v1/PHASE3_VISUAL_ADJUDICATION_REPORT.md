@@ -1,6 +1,8 @@
 # REAL_WORLD_BATCH_ACCEPTANCE_V1 — PHASE 3 (v3, FINAL lab): VISUAL ADJUDICATION REPORT
 
-状态: REAL_WORLD_BATCH_ACCEPTANCE_V1_PHASE3 = FINAL_REVIEW_HOLD (等待人工复审)。
+状态: REAL_WORLD_BATCH_ACCEPTANCE_V1_PHASE3 = ACCEPTED / CLOSED
+人工复审结论: Blocking findings = 0
+说明: 本提交为正式复审通过后的状态同步 follow-up。历史轨迹: e05d269(归档基线, 等待正式复审) → 本提交(记录正式接受)。未重跑任何模型/管线, 未改合同, 未触碰 36 条 SYSTEM FAILURE baseline, 未改 8 条 invalid 口径; 数值与已推送归档一致, 无漂移。
 本版处理于 v2 全量修正之外残留的 4 个测试数据/合同语义无效 case; 不改 prompt、不改 positive/negative 冻结划分、不重跑任何模型与管线; 36 条 SYSTEM FAILURE baseline 未动; 4 条 fishing_022 invalid 保持不变。
 
 ## 新增 invalid_test_data（4 条，均为测试数据/合同语义完整性，非 Production 问题）
