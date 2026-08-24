@@ -3,17 +3,21 @@ import io
 import json
 import math
 import mimetypes
-import os
 from pathlib import Path
 
-from openai import OpenAI
 from PIL import Image, ImageDraw, ImageFont
 
 from visual_agent.qwen_protocol import request_validated_json
+from visual_agent.vlm_client import (
+    DEFAULT_VLM_BASE_URL,
+    DEFAULT_VLM_MODEL,
+    create_vlm_client,
+    get_vlm_model_name,
+)
 
 
-MODEL_NAME = "qwen3-vl-flash"
-BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+MODEL_NAME = DEFAULT_VLM_MODEL
+BASE_URL = DEFAULT_VLM_BASE_URL
 ACTION_TYPES = {"highlight", "outline", "box", "blur_target", "dim_background", "cutout"}
 SEMANTIC_ROUTES = {"attribute", "behavior"}
 SEMANTIC_STATUSES = {"satisfied", "not_satisfied", "uncertain"}
@@ -164,11 +168,8 @@ def _marked_candidates_data_url(image_path: Path, candidates: list[dict]) -> str
     return f"data:image/jpeg;base64,{encoded}"
 
 
-def _client() -> OpenAI:
-    api_key = os.getenv("DASHSCOPE_API_KEY")
-    if not api_key:
-        raise RuntimeError("未设置环境变量 DASHSCOPE_API_KEY")
-    return OpenAI(api_key=api_key, base_url=BASE_URL)
+def _client():
+    return create_vlm_client()
 
 
 def validate_subject_instance(
@@ -243,7 +244,7 @@ def verify_subject_instance(
         if correction:
             request_messages.append({"role": "user", "content": correction})
         response = _client().chat.completions.create(
-            model=MODEL_NAME,
+            model=get_vlm_model_name(),
             messages=request_messages,
             temperature=0,
             response_format={"type": "json_object"},
@@ -360,7 +361,7 @@ def verify_candidate_constraints(
         if correction:
             request_messages.append({"role": "user", "content": correction})
         response = _client().chat.completions.create(
-            model=MODEL_NAME,
+            model=get_vlm_model_name(),
             messages=request_messages,
             temperature=0,
             response_format={"type": "json_object"},
@@ -386,7 +387,7 @@ def verify_candidate_constraints(
 
 def _json_response(messages: list[dict]) -> dict:
     response = _client().chat.completions.create(
-        model=MODEL_NAME,
+        model=get_vlm_model_name(),
         messages=messages,
         temperature=0,
         response_format={"type": "json_object"},
@@ -525,7 +526,7 @@ def verify_candidates(
         if correction:
             request_messages.append({"role": "user", "content": correction})
         response = _client().chat.completions.create(
-            model=MODEL_NAME,
+            model=get_vlm_model_name(),
             messages=request_messages,
             temperature=0,
             response_format={"type": "json_object"},

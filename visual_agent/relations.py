@@ -1,26 +1,27 @@
 import base64
 import io
 import json
-import os
 from pathlib import Path
 
-from openai import OpenAI
 from PIL import Image, ImageDraw, ImageFont
 
 from visual_agent.qwen_protocol import request_validated_json
+from visual_agent.vlm_client import (
+    DEFAULT_VLM_BASE_URL,
+    DEFAULT_VLM_MODEL,
+    create_vlm_client,
+    get_vlm_model_name,
+)
 
 
-MODEL_NAME = "qwen3-vl-flash"
-BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+MODEL_NAME = DEFAULT_VLM_MODEL
+BASE_URL = DEFAULT_VLM_BASE_URL
 RELATION = "held_by_target"
 STATUSES = {"satisfied", "not_satisfied", "uncertain"}
 
 
-def _client() -> OpenAI:
-    api_key = os.getenv("DASHSCOPE_API_KEY")
-    if not api_key:
-        raise RuntimeError("未设置环境变量 DASHSCOPE_API_KEY")
-    return OpenAI(api_key=api_key, base_url=BASE_URL)
+def _client():
+    return create_vlm_client()
 
 
 def _marked_scene_data_url(
@@ -173,7 +174,7 @@ def verify_relations(
         if correction:
             request_messages.append({"role": "user", "content": correction})
         response = _client().chat.completions.create(
-            model=MODEL_NAME,
+            model=get_vlm_model_name(),
             messages=request_messages,
             temperature=0,
             response_format={"type": "json_object"},
@@ -260,7 +261,7 @@ def verify_focused_ownership(
         if correction:
             request_messages.append({"role": "user", "content": correction})
         response = _client().chat.completions.create(
-            model=MODEL_NAME,
+            model=get_vlm_model_name(),
             messages=request_messages,
             temperature=0,
             response_format={"type": "json_object"},
