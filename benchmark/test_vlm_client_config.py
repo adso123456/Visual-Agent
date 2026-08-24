@@ -33,6 +33,38 @@ def test_local_config_parses_model_endpoint_key_and_timeout():
     )
 
 
+def test_custom_endpoint_with_vlm_key_passes_without_dashscope_key():
+    config = vlm_client.load_vlm_config(
+        {
+            "VLM_BASE_URL": "http://local.example/v1",
+            "VLM_API_KEY": "local-key",
+        }
+    )
+
+    assert config.api_key == "local-key"
+
+
+def test_custom_endpoint_never_falls_back_to_dashscope_key():
+    with pytest.raises(RuntimeError, match="VLM_API_KEY"):
+        vlm_client.load_vlm_config(
+            {
+                "VLM_BASE_URL": "http://local.example/v1",
+                "DASHSCOPE_API_KEY": "real-cloud-secret",
+            }
+        )
+
+
+def test_explicit_default_endpoint_allows_dashscope_key_fallback():
+    config = vlm_client.load_vlm_config(
+        {
+            "VLM_BASE_URL": "https://dashscope.aliyuncs.com/compatible-mode/v1/",
+            "DASHSCOPE_API_KEY": "cloud-key",
+        }
+    )
+
+    assert config.api_key == "cloud-key"
+
+
 def test_client_only_passes_timeout_when_configured(monkeypatch):
     calls = []
     monkeypatch.setattr(vlm_client, "OpenAI", lambda **kwargs: calls.append(kwargs) or kwargs)

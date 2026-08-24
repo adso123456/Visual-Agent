@@ -24,10 +24,14 @@ def load_vlm_config(environ: Mapping[str, str] | None = None) -> VlmConfig:
     values = os.environ if environ is None else environ
     model = values.get("VLM_MODEL", "").strip() or DEFAULT_VLM_MODEL
     base_url = values.get("VLM_BASE_URL", "").strip() or DEFAULT_VLM_BASE_URL
-    api_key = (
-        values.get("VLM_API_KEY", "").strip()
-        or values.get("DASHSCOPE_API_KEY", "").strip()
-    )
+    vlm_api_key = values.get("VLM_API_KEY", "").strip()
+    dashscope_api_key = values.get("DASHSCOPE_API_KEY", "").strip()
+    if vlm_api_key:
+        api_key = vlm_api_key
+    elif base_url.rstrip("/") == DEFAULT_VLM_BASE_URL.rstrip("/"):
+        api_key = dashscope_api_key
+    else:
+        raise RuntimeError("非默认 VLM_BASE_URL 必须显式设置 VLM_API_KEY")
     if not api_key:
         raise RuntimeError("未设置环境变量 VLM_API_KEY 或 DASHSCOPE_API_KEY")
 
