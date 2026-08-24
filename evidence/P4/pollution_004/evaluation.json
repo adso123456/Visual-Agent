@@ -1,0 +1,16 @@
+{
+  "schema_version": "LOCAL_VLM_QUALITY_EVALUATION_V1",
+  "case_id": "P4::pollution_004.png",
+  "blind_case_id": "case_0206",
+  "ground_truth_class": "positive",
+  "blind_scores_source": "../../blinded_scores.json",
+  "blind_mapping_source": "../../private_blinding_map.json",
+  "A_provider": "cloud",
+  "B_provider": "local",
+  "A_grade": "FAIL",
+  "B_grade": "DEGRADED",
+  "local_grade": "DEGRADED",
+  "cloud_grade": "FAIL",
+  "note": "左边没框，右边框多了",
+  "derivation": "local_grade/cloud_grade 仅由原始 A/B grade 与 private blinding map 机械解盲，不重新评分。"
+}

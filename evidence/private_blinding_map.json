@@ -1,0 +1,1394 @@
+[
+  {
+    "case_id": "F1::fishing_001.jpeg",
+    "review_id": "case_0001",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F1::fishing_002.jpeg",
+    "review_id": "case_0002",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_003.jpeg",
+    "review_id": "case_0003",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F1::fishing_004.jpeg",
+    "review_id": "case_0004",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_005.jpeg",
+    "review_id": "case_0005",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_006.jpeg",
+    "review_id": "case_0006",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F1::fishing_007.jpeg",
+    "review_id": "case_0007",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_008.jpeg",
+    "review_id": "case_0008",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F1::fishing_009.jpeg",
+    "review_id": "case_0009",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_010.jpeg",
+    "review_id": "case_0010",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F1::fishing_011.jpeg",
+    "review_id": "case_0011",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_012.jpeg",
+    "review_id": "case_0012",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_013.jpeg",
+    "review_id": "case_0013",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_014.jpeg",
+    "review_id": "case_0014",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_015.jpeg",
+    "review_id": "case_0015",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F1::fishing_016.jpeg",
+    "review_id": "case_0016",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_017.jpeg",
+    "review_id": "case_0017",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F1::fishing_018.jpeg",
+    "review_id": "case_0018",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_019.jpeg",
+    "review_id": "case_0019",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_020.jpeg",
+    "review_id": "case_0020",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_021.jpeg",
+    "review_id": "case_0021",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F1::fishing_023.jpeg",
+    "review_id": "case_0022",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F1::fishing_024.jpeg",
+    "review_id": "case_0023",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_025.jpeg",
+    "review_id": "case_0024",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_026.jpeg",
+    "review_id": "case_0025",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_027.jpeg",
+    "review_id": "case_0026",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F1::fishing_028.jpeg",
+    "review_id": "case_0027",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_029.jpeg",
+    "review_id": "case_0028",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F1::fishing_030.jpeg",
+    "review_id": "case_0029",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F2::fishing_001.jpeg",
+    "review_id": "case_0030",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F2::fishing_002.jpeg",
+    "review_id": "case_0031",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_003.jpeg",
+    "review_id": "case_0032",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_004.jpeg",
+    "review_id": "case_0033",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F2::fishing_005.jpeg",
+    "review_id": "case_0034",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_006.jpeg",
+    "review_id": "case_0035",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_007.jpeg",
+    "review_id": "case_0036",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_008.jpeg",
+    "review_id": "case_0037",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F2::fishing_009.jpeg",
+    "review_id": "case_0038",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_010.jpeg",
+    "review_id": "case_0039",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_011.jpeg",
+    "review_id": "case_0040",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_012.jpeg",
+    "review_id": "case_0041",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_013.jpeg",
+    "review_id": "case_0042",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_014.jpeg",
+    "review_id": "case_0043",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_015.jpeg",
+    "review_id": "case_0044",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F2::fishing_016.jpeg",
+    "review_id": "case_0045",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F2::fishing_017.jpeg",
+    "review_id": "case_0046",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_018.jpeg",
+    "review_id": "case_0047",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F2::fishing_019.jpeg",
+    "review_id": "case_0048",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_020.jpeg",
+    "review_id": "case_0049",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F2::fishing_023.jpeg",
+    "review_id": "case_0050",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_024.jpeg",
+    "review_id": "case_0051",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F2::fishing_025.jpeg",
+    "review_id": "case_0052",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_026.jpeg",
+    "review_id": "case_0053",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F2::fishing_027.jpeg",
+    "review_id": "case_0054",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F2::fishing_028.jpeg",
+    "review_id": "case_0055",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F2::fishing_029.jpeg",
+    "review_id": "case_0056",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F2::fishing_030.jpeg",
+    "review_id": "case_0057",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_001.jpeg",
+    "review_id": "case_0058",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F3::fishing_002.jpeg",
+    "review_id": "case_0059",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_003.jpeg",
+    "review_id": "case_0060",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F3::fishing_004.jpeg",
+    "review_id": "case_0061",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F3::fishing_005.jpeg",
+    "review_id": "case_0062",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F3::fishing_006.jpeg",
+    "review_id": "case_0063",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F3::fishing_007.jpeg",
+    "review_id": "case_0064",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F3::fishing_008.jpeg",
+    "review_id": "case_0065",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_009.jpeg",
+    "review_id": "case_0066",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_010.jpeg",
+    "review_id": "case_0067",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F3::fishing_011.jpeg",
+    "review_id": "case_0068",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_012.jpeg",
+    "review_id": "case_0069",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F3::fishing_013.jpeg",
+    "review_id": "case_0070",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_014.jpeg",
+    "review_id": "case_0071",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F3::fishing_015.jpeg",
+    "review_id": "case_0072",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_016.jpeg",
+    "review_id": "case_0073",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_017.jpeg",
+    "review_id": "case_0074",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_018.jpeg",
+    "review_id": "case_0075",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_019.jpeg",
+    "review_id": "case_0076",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_020.jpeg",
+    "review_id": "case_0077",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F3::fishing_021.jpeg",
+    "review_id": "case_0078",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_023.jpeg",
+    "review_id": "case_0079",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_024.jpeg",
+    "review_id": "case_0080",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_025.jpeg",
+    "review_id": "case_0081",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_026.jpeg",
+    "review_id": "case_0082",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_027.jpeg",
+    "review_id": "case_0083",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_028.jpeg",
+    "review_id": "case_0084",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F3::fishing_029.jpeg",
+    "review_id": "case_0085",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F3::fishing_030.jpeg",
+    "review_id": "case_0086",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_001.jpeg",
+    "review_id": "case_0087",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_002.jpeg",
+    "review_id": "case_0088",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_003.jpeg",
+    "review_id": "case_0089",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_004.jpeg",
+    "review_id": "case_0090",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F4::fishing_005.jpeg",
+    "review_id": "case_0091",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_006.jpeg",
+    "review_id": "case_0092",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_007.jpeg",
+    "review_id": "case_0093",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F4::fishing_008.jpeg",
+    "review_id": "case_0094",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_009.jpeg",
+    "review_id": "case_0095",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F4::fishing_011.jpeg",
+    "review_id": "case_0096",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_012.jpeg",
+    "review_id": "case_0097",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F4::fishing_013.jpeg",
+    "review_id": "case_0098",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_014.jpeg",
+    "review_id": "case_0099",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F4::fishing_015.jpeg",
+    "review_id": "case_0100",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F4::fishing_016.jpeg",
+    "review_id": "case_0101",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_017.jpeg",
+    "review_id": "case_0102",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F4::fishing_018.jpeg",
+    "review_id": "case_0103",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F4::fishing_019.jpeg",
+    "review_id": "case_0104",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_020.jpeg",
+    "review_id": "case_0105",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F4::fishing_021.jpeg",
+    "review_id": "case_0106",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_023.jpeg",
+    "review_id": "case_0107",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_024.jpeg",
+    "review_id": "case_0108",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_026.jpeg",
+    "review_id": "case_0109",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_027.jpeg",
+    "review_id": "case_0110",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_028.jpeg",
+    "review_id": "case_0111",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "F4::fishing_029.jpeg",
+    "review_id": "case_0112",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "F4::fishing_030.jpeg",
+    "review_id": "case_0113",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P1::pollution_001.jpeg",
+    "review_id": "case_0114",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_002.jpeg",
+    "review_id": "case_0115",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_003.jpeg",
+    "review_id": "case_0116",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P1::pollution_004.png",
+    "review_id": "case_0117",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_005.jpeg",
+    "review_id": "case_0118",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P1::pollution_006.jpeg",
+    "review_id": "case_0119",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_007.jpeg",
+    "review_id": "case_0120",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P1::pollution_008.jpeg",
+    "review_id": "case_0121",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P1::pollution_009.jpeg",
+    "review_id": "case_0122",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_010.jpeg",
+    "review_id": "case_0123",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_011.jpeg",
+    "review_id": "case_0124",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P1::pollution_012.jpeg",
+    "review_id": "case_0125",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P1::pollution_013.jpeg",
+    "review_id": "case_0126",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_014.jpeg",
+    "review_id": "case_0127",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P1::pollution_015.png",
+    "review_id": "case_0128",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P1::pollution_016.jpeg",
+    "review_id": "case_0129",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_017.jpeg",
+    "review_id": "case_0130",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_018.jpeg",
+    "review_id": "case_0131",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_019.jpeg",
+    "review_id": "case_0132",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_020.jpeg",
+    "review_id": "case_0133",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_021.jpeg",
+    "review_id": "case_0134",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_022.jpeg",
+    "review_id": "case_0135",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P1::pollution_023.jpeg",
+    "review_id": "case_0136",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P1::pollution_024.jpeg",
+    "review_id": "case_0137",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_025.jpeg",
+    "review_id": "case_0138",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P1::pollution_026.jpeg",
+    "review_id": "case_0139",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_027.jpeg",
+    "review_id": "case_0140",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P1::pollution_028.jpeg",
+    "review_id": "case_0141",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P1::pollution_029.jpeg",
+    "review_id": "case_0142",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P1::pollution_030.jpeg",
+    "review_id": "case_0143",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_001.jpeg",
+    "review_id": "case_0144",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_002.jpeg",
+    "review_id": "case_0145",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P2::pollution_003.jpeg",
+    "review_id": "case_0146",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_004.png",
+    "review_id": "case_0147",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P2::pollution_005.jpeg",
+    "review_id": "case_0148",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P2::pollution_006.jpeg",
+    "review_id": "case_0149",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_007.jpeg",
+    "review_id": "case_0150",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P2::pollution_008.jpeg",
+    "review_id": "case_0151",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_009.jpeg",
+    "review_id": "case_0152",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P2::pollution_010.jpeg",
+    "review_id": "case_0153",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_011.jpeg",
+    "review_id": "case_0154",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_012.jpeg",
+    "review_id": "case_0155",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_013.jpeg",
+    "review_id": "case_0156",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P2::pollution_014.jpeg",
+    "review_id": "case_0157",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P2::pollution_015.png",
+    "review_id": "case_0158",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P2::pollution_016.jpeg",
+    "review_id": "case_0159",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_017.jpeg",
+    "review_id": "case_0160",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P2::pollution_018.jpeg",
+    "review_id": "case_0161",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P2::pollution_019.jpeg",
+    "review_id": "case_0162",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_020.jpeg",
+    "review_id": "case_0163",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_021.jpeg",
+    "review_id": "case_0164",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_022.jpeg",
+    "review_id": "case_0165",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P2::pollution_023.jpeg",
+    "review_id": "case_0166",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_024.jpeg",
+    "review_id": "case_0167",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P2::pollution_025.jpeg",
+    "review_id": "case_0168",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_026.jpeg",
+    "review_id": "case_0169",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P2::pollution_027.jpeg",
+    "review_id": "case_0170",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_028.jpeg",
+    "review_id": "case_0171",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P2::pollution_029.jpeg",
+    "review_id": "case_0172",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P2::pollution_030.jpeg",
+    "review_id": "case_0173",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_001.jpeg",
+    "review_id": "case_0174",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_002.jpeg",
+    "review_id": "case_0175",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_003.jpeg",
+    "review_id": "case_0176",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_004.png",
+    "review_id": "case_0177",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P3::pollution_005.jpeg",
+    "review_id": "case_0178",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_006.jpeg",
+    "review_id": "case_0179",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_007.jpeg",
+    "review_id": "case_0180",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_008.jpeg",
+    "review_id": "case_0181",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_009.jpeg",
+    "review_id": "case_0182",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_010.jpeg",
+    "review_id": "case_0183",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P3::pollution_011.jpeg",
+    "review_id": "case_0184",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P3::pollution_012.jpeg",
+    "review_id": "case_0185",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_013.jpeg",
+    "review_id": "case_0186",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_014.jpeg",
+    "review_id": "case_0187",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P3::pollution_015.png",
+    "review_id": "case_0188",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_016.jpeg",
+    "review_id": "case_0189",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_017.jpeg",
+    "review_id": "case_0190",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P3::pollution_018.jpeg",
+    "review_id": "case_0191",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P3::pollution_019.jpeg",
+    "review_id": "case_0192",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_020.jpeg",
+    "review_id": "case_0193",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_021.jpeg",
+    "review_id": "case_0194",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P3::pollution_022.jpeg",
+    "review_id": "case_0195",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_023.jpeg",
+    "review_id": "case_0196",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P3::pollution_024.jpeg",
+    "review_id": "case_0197",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_025.jpeg",
+    "review_id": "case_0198",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P3::pollution_026.jpeg",
+    "review_id": "case_0199",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P3::pollution_027.jpeg",
+    "review_id": "case_0200",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P3::pollution_028.jpeg",
+    "review_id": "case_0201",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P3::pollution_029.jpeg",
+    "review_id": "case_0202",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_001.jpeg",
+    "review_id": "case_0203",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P4::pollution_002.jpeg",
+    "review_id": "case_0204",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_003.jpeg",
+    "review_id": "case_0205",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_004.png",
+    "review_id": "case_0206",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_005.jpeg",
+    "review_id": "case_0207",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_006.jpeg",
+    "review_id": "case_0208",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P4::pollution_007.jpeg",
+    "review_id": "case_0209",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P4::pollution_008.jpeg",
+    "review_id": "case_0210",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P4::pollution_009.jpeg",
+    "review_id": "case_0211",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P4::pollution_010.jpeg",
+    "review_id": "case_0212",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P4::pollution_011.jpeg",
+    "review_id": "case_0213",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_012.jpeg",
+    "review_id": "case_0214",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_013.jpeg",
+    "review_id": "case_0215",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_014.jpeg",
+    "review_id": "case_0216",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_015.png",
+    "review_id": "case_0217",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_016.jpeg",
+    "review_id": "case_0218",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_017.jpeg",
+    "review_id": "case_0219",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_018.jpeg",
+    "review_id": "case_0220",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_019.jpeg",
+    "review_id": "case_0221",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P4::pollution_020.jpeg",
+    "review_id": "case_0222",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_021.jpeg",
+    "review_id": "case_0223",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_022.jpeg",
+    "review_id": "case_0224",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P4::pollution_023.jpeg",
+    "review_id": "case_0225",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_024.jpeg",
+    "review_id": "case_0226",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P4::pollution_025.jpeg",
+    "review_id": "case_0227",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P4::pollution_026.jpeg",
+    "review_id": "case_0228",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P4::pollution_027.jpeg",
+    "review_id": "case_0229",
+    "A_provider": "local",
+    "B_provider": "cloud"
+  },
+  {
+    "case_id": "P4::pollution_028.jpeg",
+    "review_id": "case_0230",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_029.jpeg",
+    "review_id": "case_0231",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  },
+  {
+    "case_id": "P4::pollution_030.jpeg",
+    "review_id": "case_0232",
+    "A_provider": "cloud",
+    "B_provider": "local"
+  }
+]

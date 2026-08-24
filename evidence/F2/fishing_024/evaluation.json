@@ -1,0 +1,16 @@
+{
+  "schema_version": "LOCAL_VLM_QUALITY_EVALUATION_V1",
+  "case_id": "F2::fishing_024.jpeg",
+  "blind_case_id": "case_0051",
+  "ground_truth_class": "positive",
+  "blind_scores_source": "../../blinded_scores.json",
+  "blind_mapping_source": "../../private_blinding_map.json",
+  "A_provider": "cloud",
+  "B_provider": "local",
+  "A_grade": "DEGRADED",
+  "B_grade": "PASS",
+  "local_grade": "PASS",
+  "cloud_grade": "DEGRADED",
+  "note": "同样的问题，不要连带鱼竿一起描边了",
+  "derivation": "local_grade/cloud_grade 仅由原始 A/B grade 与 private blinding map 机械解盲，不重新评分。"
+}

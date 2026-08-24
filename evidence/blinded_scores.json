@@ -1,0 +1,1400 @@
+{
+  "schema_version": "BLINDED_VISUAL_SCORES_V1",
+  "total_cases": 232,
+  "completed_cases": 232,
+  "incomplete_cases": 0,
+  "scores": [
+    {
+      "case_id": "F1::fishing_001.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "DEGRADED",
+      "note": "提着渔获不算正在钓鱼"
+    },
+    {
+      "case_id": "F1::fishing_002.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_003.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_004.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_005.jpeg",
+      "A_grade": "FP",
+      "B_grade": "FP",
+      "note": "应该是推断出来而不是直接肯定，此时此刻他没有钓鱼而是展示渔获"
+    },
+    {
+      "case_id": "F1::fishing_006.jpeg",
+      "A_grade": "FP",
+      "B_grade": "FP",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_007.jpeg",
+      "A_grade": "FP",
+      "B_grade": "FP",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_008.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_009.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_010.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "捉鱼不等于钓鱼"
+    },
+    {
+      "case_id": "F1::fishing_011.jpeg",
+      "A_grade": "FP",
+      "B_grade": "FP",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_012.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "DEGRADED",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_013.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_014.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "虽然有钓鱼竿但是明显没有进行钓鱼活动"
+    },
+    {
+      "case_id": "F1::fishing_015.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "框再大一点就可以察觉明显和钓鱼活动无关"
+    },
+    {
+      "case_id": "F1::fishing_016.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_017.jpeg",
+      "A_grade": "FP",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_018.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_019.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_020.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_021.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_023.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_024.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_025.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "DEGRADED",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_026.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_027.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "DEGRADED",
+      "note": "漏了左边的人"
+    },
+    {
+      "case_id": "F1::fishing_028.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "FAIL",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_029.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F1::fishing_030.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_001.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_002.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_003.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_004.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_005.jpeg",
+      "A_grade": "FP",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_006.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_007.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_008.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "DEGRADED",
+      "note": "左边完整度较高，但漏掉了绿色衣服女孩，右边给电线和树叶也描边了，质量较低，同样也漏掉了绿色衣服女孩"
+    },
+    {
+      "case_id": "F2::fishing_009.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_010.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_011.jpeg",
+      "A_grade": "FP",
+      "B_grade": "FP",
+      "note": "不是鱼竿是笼子"
+    },
+    {
+      "case_id": "F2::fishing_012.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "鱼竿只是在他身边，并没有手持的动作"
+    },
+    {
+      "case_id": "F2::fishing_013.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_014.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "FAIL",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_015.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "拿着的不一定是鱼竿"
+    },
+    {
+      "case_id": "F2::fishing_016.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "PASS",
+      "note": "给人描边而不是给鱼竿也描边了"
+    },
+    {
+      "case_id": "F2::fishing_017.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_018.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_019.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_020.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_023.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_024.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "PASS",
+      "note": "同样的问题，不要连带鱼竿一起描边了"
+    },
+    {
+      "case_id": "F2::fishing_025.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_026.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_027.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "DEGRADED",
+      "note": "右边图片漏掉了左边人物"
+    },
+    {
+      "case_id": "F2::fishing_028.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "FAIL",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_029.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F2::fishing_030.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_001.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_002.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_003.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "根本没框"
+    },
+    {
+      "case_id": "F3::fishing_004.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_005.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_006.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_007.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_008.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_009.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_010.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_011.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_012.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_013.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_014.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_015.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_016.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_017.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "没框"
+    },
+    {
+      "case_id": "F3::fishing_018.jpeg",
+      "A_grade": "FP",
+      "B_grade": "FP",
+      "note": "这是被网住的鱼没有桶"
+    },
+    {
+      "case_id": "F3::fishing_019.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_020.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_021.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_023.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_024.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_025.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_026.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_027.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_028.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_029.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F3::fishing_030.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_001.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_002.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_003.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_004.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_005.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_006.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_007.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_008.jpeg",
+      "A_grade": "TN",
+      "B_grade": "FP",
+      "note": "明显没拿鱼"
+    },
+    {
+      "case_id": "F4::fishing_009.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_011.jpeg",
+      "A_grade": "FP",
+      "B_grade": "FP",
+      "note": "拿着笼子"
+    },
+    {
+      "case_id": "F4::fishing_012.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_013.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_014.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_015.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_016.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_017.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "PASS",
+      "note": "给鱼也标记了"
+    },
+    {
+      "case_id": "F4::fishing_018.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_019.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_020.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "明显是有人持鱼"
+    },
+    {
+      "case_id": "F4::fishing_021.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_023.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_024.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_026.jpeg",
+      "A_grade": "TN",
+      "B_grade": "FP",
+      "note": "没有持鱼行为"
+    },
+    {
+      "case_id": "F4::fishing_027.jpeg",
+      "A_grade": "TN",
+      "B_grade": "FP",
+      "note": "无持鱼行为"
+    },
+    {
+      "case_id": "F4::fishing_028.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_029.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "F4::fishing_030.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_001.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "垃圾在小筏上不是水面上"
+    },
+    {
+      "case_id": "P1::pollution_002.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "水面上很多垃圾但是没有框"
+    },
+    {
+      "case_id": "P1::pollution_003.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "PASS",
+      "note": "不存在垃圾，这是青蛙"
+    },
+    {
+      "case_id": "P1::pollution_004.png",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "没框"
+    },
+    {
+      "case_id": "P1::pollution_005.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "不是垃圾是动物"
+    },
+    {
+      "case_id": "P1::pollution_006.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_007.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_008.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_009.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "DEGRADED",
+      "note": "上面还有"
+    },
+    {
+      "case_id": "P1::pollution_010.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "DEGRADED",
+      "note": "少框了几个"
+    },
+    {
+      "case_id": "P1::pollution_011.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_012.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "这么多垃圾瓶子不框"
+    },
+    {
+      "case_id": "P1::pollution_013.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_014.jpeg",
+      "A_grade": "TN",
+      "B_grade": "FP",
+      "note": "这是石头不是垃圾"
+    },
+    {
+      "case_id": "P1::pollution_015.png",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_016.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_017.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_018.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_019.jpeg",
+      "A_grade": "TN",
+      "B_grade": "FP",
+      "note": "没有发现垃圾"
+    },
+    {
+      "case_id": "P1::pollution_020.jpeg",
+      "A_grade": "FP",
+      "B_grade": "FP",
+      "note": "这是花不是垃圾，右边让你框垃圾你怎么把整个水面框起来了"
+    },
+    {
+      "case_id": "P1::pollution_021.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_022.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_023.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_024.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_025.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_026.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_027.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_028.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P1::pollution_029.jpeg",
+      "A_grade": "TN",
+      "B_grade": "FP",
+      "note": "这是石头不是垃圾"
+    },
+    {
+      "case_id": "P1::pollution_030.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_001.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_002.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_003.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_004.png",
+      "A_grade": "DEGRADED",
+      "B_grade": "DEGRADED",
+      "note": "漏检"
+    },
+    {
+      "case_id": "P2::pollution_005.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_006.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_007.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_008.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_009.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "DEGRADED",
+      "note": "漏检上面塑料瓶"
+    },
+    {
+      "case_id": "P2::pollution_010.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_011.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_012.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "这不全是漂浮的塑料瓶"
+    },
+    {
+      "case_id": "P2::pollution_013.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_014.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_015.png",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_016.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_017.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_018.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_019.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_020.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_021.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_022.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_023.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_024.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_025.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_026.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_027.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_028.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_029.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P2::pollution_030.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P3::pollution_001.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P3::pollution_002.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "一个没描"
+    },
+    {
+      "case_id": "P3::pollution_003.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": "这是动物不是塑料瓶"
+    },
+    {
+      "case_id": "P3::pollution_004.png",
+      "A_grade": "DEGRADED",
+      "B_grade": "DEGRADED",
+      "note": "应该框一大片"
+    },
+    {
+      "case_id": "P3::pollution_005.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P3::pollution_006.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "FAIL",
+      "note": "荷叶不在飘吗，木棍不在飘吗"
+    },
+    {
+      "case_id": "P3::pollution_007.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "FAIL",
+      "note": "口罩不在水中"
+    },
+    {
+      "case_id": "P3::pollution_008.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P3::pollution_009.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "DEGRADED",
+      "note": "全在水中飘"
+    },
+    {
+      "case_id": "P3::pollution_010.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "DEGRADED",
+      "note": "漏检"
+    },
+    {
+      "case_id": "P3::pollution_011.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P3::pollution_012.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "一个没标"
+    },
+    {
+      "case_id": "P3::pollution_013.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "全部漂在水面"
+    },
+    {
+      "case_id": "P3::pollution_014.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "石头压在石头上，不存在漂浮的条件"
+    },
+    {
+      "case_id": "P3::pollution_015.png",
+      "A_grade": "FAIL",
+      "B_grade": "DEGRADED",
+      "note": "一大片都在漂浮"
+    },
+    {
+      "case_id": "P3::pollution_016.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P3::pollution_017.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "油污难道不是漂在水面吗"
+    },
+    {
+      "case_id": "P3::pollution_018.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "油污不是漂在水面吗"
+    },
+    {
+      "case_id": "P3::pollution_019.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "DEGRADED",
+      "note": ""
+    },
+    {
+      "case_id": "P3::pollution_020.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "DEGRADED",
+      "note": "旁边的浮萍不是也浮在水面吗"
+    },
+    {
+      "case_id": "P3::pollution_021.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "PASS",
+      "note": "人是站着没有漂浮"
+    },
+    {
+      "case_id": "P3::pollution_022.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "看不出来"
+    },
+    {
+      "case_id": "P3::pollution_023.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "浮萍算不算漂浮物"
+    },
+    {
+      "case_id": "P3::pollution_024.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P3::pollution_025.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P3::pollution_026.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P3::pollution_027.jpeg",
+      "A_grade": "FP",
+      "B_grade": "TN",
+      "note": "石头不算漂浮物"
+    },
+    {
+      "case_id": "P3::pollution_028.jpeg",
+      "A_grade": "TN",
+      "B_grade": "FP",
+      "note": "这是建筑没有漂浮"
+    },
+    {
+      "case_id": "P3::pollution_029.jpeg",
+      "A_grade": "FP",
+      "B_grade": "FP",
+      "note": "石头没有漂浮是固定状态"
+    },
+    {
+      "case_id": "P4::pollution_001.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P4::pollution_002.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "没有标注"
+    },
+    {
+      "case_id": "P4::pollution_003.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "浮萍也是水污染"
+    },
+    {
+      "case_id": "P4::pollution_004.png",
+      "A_grade": "FAIL",
+      "B_grade": "DEGRADED",
+      "note": "左边没框，右边框多了"
+    },
+    {
+      "case_id": "P4::pollution_005.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "浮萍算不算水污染"
+    },
+    {
+      "case_id": "P4::pollution_006.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "框出更好"
+    },
+    {
+      "case_id": "P4::pollution_007.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P4::pollution_008.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P4::pollution_009.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "DEGRADED",
+      "note": "问题不明确"
+    },
+    {
+      "case_id": "P4::pollution_010.jpeg",
+      "A_grade": "FP",
+      "B_grade": "TN",
+      "note": "左边框的什么东西"
+    },
+    {
+      "case_id": "P4::pollution_011.jpeg",
+      "A_grade": "FP",
+      "B_grade": "FP",
+      "note": "为什么要框石头"
+    },
+    {
+      "case_id": "P4::pollution_012.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "没有任何标记"
+    },
+    {
+      "case_id": "P4::pollution_013.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": "非常不错"
+    },
+    {
+      "case_id": "P4::pollution_014.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P4::pollution_015.png",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "框树干什么"
+    },
+    {
+      "case_id": "P4::pollution_016.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P4::pollution_017.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "FAIL",
+      "note": ""
+    },
+    {
+      "case_id": "P4::pollution_018.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P4::pollution_019.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "不知道算不算水污染，如果算是什么"
+    },
+    {
+      "case_id": "P4::pollution_020.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "PASS",
+      "note": "右边可以"
+    },
+    {
+      "case_id": "P4::pollution_021.jpeg",
+      "A_grade": "PASS",
+      "B_grade": "PASS",
+      "note": ""
+    },
+    {
+      "case_id": "P4::pollution_022.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "DEGRADED",
+      "note": "需要标记而不是框出"
+    },
+    {
+      "case_id": "P4::pollution_023.jpeg",
+      "A_grade": "DEGRADED",
+      "B_grade": "FAIL",
+      "note": "标记和框出语义分清楚"
+    },
+    {
+      "case_id": "P4::pollution_024.jpeg",
+      "A_grade": "FAIL",
+      "B_grade": "FAIL",
+      "note": "左边为空右边不知道在标什么"
+    },
+    {
+      "case_id": "P4::pollution_025.jpeg",
+      "A_grade": "TN",
+      "B_grade": "FP",
+      "note": "是水面吗你就标"
+    },
+    {
+      "case_id": "P4::pollution_026.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P4::pollution_027.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P4::pollution_028.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P4::pollution_029.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    },
+    {
+      "case_id": "P4::pollution_030.jpeg",
+      "A_grade": "TN",
+      "B_grade": "TN",
+      "note": ""
+    }
+  ]
+}

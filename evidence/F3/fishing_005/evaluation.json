@@ -1,0 +1,16 @@
+{
+  "schema_version": "LOCAL_VLM_QUALITY_EVALUATION_V1",
+  "case_id": "F3::fishing_005.jpeg",
+  "blind_case_id": "case_0062",
+  "ground_truth_class": "negative",
+  "blind_scores_source": "../../blinded_scores.json",
+  "blind_mapping_source": "../../private_blinding_map.json",
+  "A_provider": "cloud",
+  "B_provider": "local",
+  "A_grade": "TN",
+  "B_grade": "TN",
+  "local_grade": "TN",
+  "cloud_grade": "TN",
+  "note": "",
+  "derivation": "local_grade/cloud_grade 仅由原始 A/B grade 与 private blinding map 机械解盲，不重新评分。"
+}

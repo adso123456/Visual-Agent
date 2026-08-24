@@ -3,3 +3,19 @@ benchmark/instance_quality_v1/**/*.json text eol=lf
 benchmark/instance_quality_v1/**/*.jsonl text eol=lf
 benchmark/instance_quality_v1/**/*.md text eol=lf
 benchmark/instance_quality_v1/**/*.py text eol=lf
+
+# LOCAL_VLM_QUALITY_COMPARISON_V1 证据图片保留原始字节，仅二进制证据走 Git LFS。
+evidence/**/original.* filter=lfs diff=lfs merge=lfs -text
+evidence/**/local_output.* filter=lfs diff=lfs merge=lfs -text
+evidence/**/cloud_output.* filter=lfs diff=lfs merge=lfs -text
+
+# 人工评分源、私有映射和冻结合同必须保持原始字节，不做换行规范化。
+evidence/blinded_scores.json -text -diff -merge
+evidence/private_blinding_map.json -text -diff -merge
+evidence/FROZEN_CONTRACT.md -text -diff -merge
+
+# 机械生成的审查视图与报告使用稳定 LF，仍由普通 Git 管理。
+evidence/manifest.json text eol=lf
+evidence/EVIDENCE_REPORT.md text eol=lf
+evidence/**/evaluation.json text eol=lf
+evidence/**/requirement.md text eol=lf
