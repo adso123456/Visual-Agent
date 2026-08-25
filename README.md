@@ -4,7 +4,9 @@ Visual Agent 是一个自然语言驱动的通用视觉执行 Demo。开发者�
 
 项目的核心目标是减少“每出现一个新视觉业务需求，就重新收集数据、标注并训练专项 Detector”的需要。它是 best-effort open-world perception Demo，不宣称完全替代专项训练，也不保证所有场景零样本完美识别。
 
-当前架构：`deepseek-v4-pro` 通过受控 Tool Call 将指令拆成基础目标、语义约束和操作，Grounding DINO Base 定位候选，`qwen3-vl-flash` 群组验证完整视觉语义，SAM 2.1 Base Plus 根据验证通过的 bbox 生成像素级 mask，OpenCV 确定性执行操作，最后由 DeepSeek 汇总结构化结果。关系组合目标 v1 仅支持一个主体与最多一个 `held_by_target` 手持物体，组件 mask 使用 OR 合并，组合分数取组件最低 SAM score（不是重新预测的 composite IoU）。
+**Visual Agent v1 已正式关闭并验收，产品范围冻结为 General RGB static-image visual execution。** 水污染 RGB 图片识别已移出产品范围；历史 P1～P4 仅作为研究证据保留，不再作为后续优化 Gate。完整冻结口径见 [`docs/PROJECT_CLOSURE_V1.md`](docs/PROJECT_CLOSURE_V1.md)。
+
+当前架构：`deepseek-v4-pro` 通过受控 Tool Call 将指令拆成基础目标、语义约束和操作，Grounding DINO Base 定位候选，可配置的 OpenAI-compatible VLM（默认 `qwen3-vl-flash`，也可切换已验证的 Local VLM）验证完整视觉语义，SAM 2.1 Base Plus 根据验证通过的 bbox 生成像素级 mask，OpenCV 确定性执行操作，最后由 DeepSeek 汇总结构化结果。关系组合目标 v1 仅支持一个主体与最多一个 `held_by_target` 手持物体，组件 mask 使用 OR 合并，组合分数取组件最低 SAM score（不是重新预测的 composite IoU）。
 
 当前仅支持图片，操作白名单为：目标标红 `highlight`、目标描边 `outline`、模糊目标 `blur_target`、背景变暗 `dim_background`、透明背景抠图 `cutout`。输出按编号保存；抠图为透明 PNG，其余操作为 JPG，同时保留 JSON 和 binary mask PNG。
 
@@ -59,7 +61,16 @@ $env:DASHSCOPE_API_KEY = "你的 DashScope API Key"
 
 浏览器打开 `http://127.0.0.1:8080`，选择 Full Chain，上传图片、输入 Prompt、点击 Run，等待 `Queued → Running → Completed`，即可查看 Original / Result、Agent Plan、Detector Candidates、Semantic Verification、Relation、Final Targets 和 Timing。
 
-Full Chain 必须同时配置 `DEEPSEEK_API_KEY` 和 `DASHSCOPE_API_KEY`。缺少凭据时页面会显示真实错误，不会自动降级并冒充完整链路。
+Full Chain 必须同时配置 `DEEPSEEK_API_KEY` 和 VLM 凭据。默认 Cloud 配置可继续使用 `DASHSCOPE_API_KEY`；切换自定义 OpenAI-compatible endpoint 时必须显式配置：
+
+```powershell
+$env:VLM_MODEL = "你的模型名"
+$env:VLM_BASE_URL = "http://你的服务地址/v1"
+$env:VLM_API_KEY = "显式凭据或本地服务占位值"
+$env:VLM_TIMEOUT = "120"  # 可选
+```
+
+自定义 `VLM_BASE_URL` 不会回退使用 `DASHSCOPE_API_KEY`，避免把云端凭据发送给自定义 endpoint。缺少凭据时页面会显示真实错误，不会自动降级并冒充完整链路。
 
 三个示例：
 
@@ -74,6 +85,8 @@ Local Debug 使用预编译 Plan，只运行 Detector → SAM2 → Action；Agen
 推荐使用基本清晰、正常大小的主体，适用于清晰单人属性、普通多人属性、明显行为、多目标、简单 `held_by_target`、普通遮挡和 Negative / 0-target 任务。
 
 明确不承诺：密集人群 exhaustive recall、极小远距离目标、严重运动模糊、极端遮挡，以及图中所有实例一个不漏。详细状态见 [`docs/DEMO_STATUS.md`](docs/DEMO_STATUS.md)。
+
+水面垃圾、漂浮塑料瓶、漂浮物和污染区域等 P1～P4 水污染 RGB 任务属于历史研究资产，不属于 v1 产品承诺。Sentinel-2 / Landsat `.tif` 的水质九参数反演是未来独立项目，不进入当前 Pipeline。
 
 ### CLI
 

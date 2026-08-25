@@ -1,5 +1,10 @@
 # Visual Agent Demo v1 产品验收证据（PRD §29 逐条对照）
 
+> **最终状态：`VISUAL_AGENT_V1 = CLOSED / ACCEPTED`。** 产品范围冻结为
+> General RGB static-image visual execution。本文保留历史验收过程与证据口径；
+> 最终范围、研究归档和 non-goals 以 [`PROJECT_CLOSURE_V1.md`](PROJECT_CLOSURE_V1.md)
+> 为准。
+
 > 本文档把 PRD §29 的十条最终验收定义映射到当前仓库的具体实现与证据。
 > 证据以代码路径、测试、脚本和已生成产物为准；标注「待人工」的项表示需要
 > 人工确认或外部 API Key 才能最终完成，不属于代码缺陷。
@@ -46,6 +51,9 @@
 - 每个组件是独立模块，仅通过 `pipeline.py` 的 `run_pipeline` 编排；
   契约文档明确禁止下游修补上游（§2/§20）。
 - `models.py` 提供进程内复用注册表，Detector/Segmenter 可独立替换。
+- `vlm_client.py` 提供最小共享配置 seam，`vlm.py` 与 `relations.py` 可通过
+  `VLM_MODEL / VLM_BASE_URL / VLM_API_KEY / VLM_TIMEOUT` 在默认 Cloud Qwen 与
+  OpenAI-compatible Local VLM 之间切换；Pipeline、evidence 和 validator 合同不变。
 
 ## 4. 系统能够处理单目标、多目标、零目标与 uncertain
 
@@ -109,16 +117,26 @@
 
 | 项 | 正式状态 | 说明 |
 |---|---|---|
-| Demo UI | 功能实现完成，待远端代码核对 | 已 push（master=3ea2a95） |
+| Demo UI | ACCEPTED | Developer Demo 已完成 |
 | PRD Local Stack Evidence | 基本完成 | 本地栈 + vision 复核 + 单测 |
-| 完整链路回归 | CURRENT RUN VERIFIED（2026-08-14） |
-  images/output_images/full_chain_regression/（描边4/抠图1/高亮3→1） |
+| 完整链路回归 | CURRENT RUN VERIFIED（2026-08-14） | `images/output_images/full_chain_regression/`（描边4/抠图1/高亮3→1） |
 | Candidate Review | COMPLETE / HUMAN CONFIRMED | 122/122；provenance 已固化 |
 | Grounding DINO Base metrics | v1.1 FROZEN / OFFICIAL | v1.0 已因 GT omission 撤销 |
 | Downstream Usability | CURRENT RUN VERIFIED | 预声明语义约束，0.914894 |
 | Phase 12 | COMPLETE | Grounding DINO Base Baseline v1.1 已冻结 |
-| Local Detector A/B readiness | YES | 可在相同冻结契约下启动 |
-| PRD overall acceptance | NOT YET | 见上表各待办 |
+| Local VLM integration | QUALIFIED / INTEGRATED | Cloud/Local 配置切换；既有协议、Pipeline、240 execution 与 232 blind comparison 证据已验收 |
+| Semantic IR V1 | ACCEPTED RESEARCH CONTRACT | 不安排 v1 Production integration |
+| Detector Query / Recall V1 | ACCEPTED / CLOSED | 历史研究；不触发 v1 Production action |
+| PRD overall acceptance | CLOSED / ACCEPTED | General RGB static-image visual execution |
+
+## 最终产品范围说明
+
+- F1～F4 fishing：有效 General RGB 研究/验收资产。
+- P1～P4 pollution：历史研究证据，不是产品需求，不再作为后续优化 Gate。
+- 水污染 RGB 图片识别：移出 Visual Agent v1 产品范围。
+- Remote Sensing Water Quality：未来独立项目，面向 Sentinel-2 / Landsat `.tif`
+  与九参数反演，不属于 v1。
+- Video / tracking：non-goal。
 
 ## 一句话叙事（PRD §27）
 
