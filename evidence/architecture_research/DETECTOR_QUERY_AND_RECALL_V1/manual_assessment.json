@@ -1,0 +1,119 @@
+{
+  "phase": "DETECTOR_QUERY_AND_RECALL_V1",
+  "assessment_source": "人工逐图审查原图与 28 张固定阈值标框图",
+  "rules": {
+    "exact": "只把与人工可数真实实例对应的独立候选计为召回；同一实例的重叠框不重复计数",
+    "dense": "不声明人工精确实例数，只判 instance_separated、group_region、none 或 false_region",
+    "lexical": "canonical 为 Semantic IR localization_target；每个概念最多两个预先限定英文 alias，不按 case 调参"
+  },
+  "cases": [
+    {
+      "case_id": "F3::fishing_003.jpeg",
+      "reference": "2 个真实桶",
+      "canonical": {"query": "bucket", "true_instances": 0, "false_candidates": 0},
+      "aliases": [{"query": "pail", "true_instances": 2, "false_candidates": 0}],
+      "conclusion": "lexical_recovery"
+    },
+    {
+      "case_id": "F3::fishing_017.jpeg",
+      "reference": "1 个透明桶",
+      "canonical": {"query": "bucket", "true_instances": 0, "false_candidates": 0},
+      "aliases": [{"query": "pail", "true_instances": 1, "false_candidates": 0}],
+      "conclusion": "lexical_recovery"
+    },
+    {
+      "case_id": "F3::fishing_019.jpeg",
+      "reference": "1 个透明桶",
+      "canonical": {"query": "bucket", "true_instances": 1, "false_candidates": 0},
+      "aliases": [{"query": "pail", "true_instances": 1, "false_candidates": 0}],
+      "conclusion": "alias_neutral"
+    },
+    {
+      "case_id": "F3::fishing_018.jpeg",
+      "reference": "无桶，画面是网中的鱼",
+      "canonical": {"query": "bucket", "true_instances": 0, "false_candidates": 1},
+      "aliases": [{"query": "pail", "true_instances": 0, "false_candidates": 0}],
+      "conclusion": "canonical_false_positive_not_added_by_alias"
+    },
+    {
+      "case_id": "P2::pollution_009.jpeg",
+      "reference": "2 个可见塑料瓶",
+      "canonical": {"query": "bottle", "true_instances": 1, "duplicate_candidates": 1, "missed_instances": 1},
+      "aliases": [{"query": "plastic bottle", "true_instances": 1, "duplicate_candidates": 0, "missed_instances": 1}],
+      "conclusion": "specific_alias_no_recall_gain"
+    },
+    {
+      "case_id": "P2::pollution_010.jpeg",
+      "reference": "水面与岸边有多类垃圾，只有部分为瓶",
+      "canonical": {"query": "bottle", "topology": "instance_separated_mixed_precision", "candidate_count": 10},
+      "aliases": [{"query": "plastic bottle", "topology": "instance_separated_mixed_precision", "candidate_count": 12}],
+      "conclusion": "specific_alias_increases_candidates_without_proven_precision"
+    },
+    {
+      "case_id": "P2::pollution_012.jpeg",
+      "reference": "稠密、重叠的数十个以上塑料瓶",
+      "canonical": {"query": "bottle", "topology": "group_region", "candidate_count": 1},
+      "aliases": [{"query": "plastic bottle", "topology": "group_region", "candidate_count": 1}],
+      "conclusion": "detector_capability_failure"
+    },
+    {
+      "case_id": "P2::pollution_014.jpeg",
+      "reference": "无瓶，只有水、岩石和藻类",
+      "canonical": {"query": "bottle", "true_instances": 0, "false_candidates": 0},
+      "aliases": [{"query": "plastic bottle", "true_instances": 0, "false_candidates": 0}],
+      "conclusion": "true_negative_preserved"
+    },
+    {
+      "case_id": "P1::pollution_002.jpeg",
+      "reference": "岸线和水中存在大量小型散落垃圾",
+      "canonical": {"query": "garbage", "topology": "false_region", "candidate_count": 1},
+      "aliases": [
+        {"query": "trash", "topology": "false_region", "candidate_count": 1},
+        {"query": "debris", "topology": "false_group_region", "candidate_count": 1}
+      ],
+      "conclusion": "detector_capability_and_precision_failure"
+    },
+    {
+      "case_id": "P1::pollution_004.png",
+      "reference": "垃圾拦截带中存在大量小型、重叠垃圾",
+      "canonical": {"query": "garbage", "topology": "none", "candidate_count": 0},
+      "aliases": [
+        {"query": "trash", "topology": "none", "candidate_count": 0},
+        {"query": "debris", "topology": "group_region", "candidate_count": 1}
+      ],
+      "conclusion": "alias_recovers_region_not_instances"
+    },
+    {
+      "case_id": "P3::pollution_010.jpeg",
+      "reference": "多个空间分离的漂浮物/垃圾",
+      "canonical": {"query": "object", "topology": "instance_separated_mixed_precision", "candidate_count": 10},
+      "aliases": [
+        {"query": "debris", "topology": "instance_separated_mixed_precision", "candidate_count": 8},
+        {"query": "floating object", "topology": "instance_separated_mixed_precision", "candidate_count": 13}
+      ],
+      "conclusion": "query_sensitive_but_requires_relation_verification"
+    },
+    {
+      "case_id": "P3::pollution_012.jpeg",
+      "reference": "稠密、重叠的数十个以上漂浮瓶/杂物",
+      "canonical": {"query": "object", "topology": "group_region", "candidate_count": 1},
+      "aliases": [
+        {"query": "debris", "topology": "group_region", "candidate_count": 1},
+        {"query": "floating object", "topology": "group_region", "candidate_count": 1}
+      ],
+      "conclusion": "detector_capability_failure"
+    }
+  ],
+  "aggregates": {
+    "bucket_exact_positive_instances": 4,
+    "bucket_canonical_true_instances": 1,
+    "bucket_canonical_recall": 0.25,
+    "bucket_canonical_plus_alias_true_instances": 4,
+    "bucket_canonical_plus_alias_recall": 1.0,
+    "bucket_alias_added_false_candidates": 0,
+    "bottle_exact_case_recall_canonical": "1/2",
+    "bottle_exact_case_recall_with_alias": "1/2",
+    "dense_cases_with_instance_exhaustive_output": "0/4",
+    "dense_cases_still_group_region_or_false_region_after_alias": "4/4"
+  }
+}

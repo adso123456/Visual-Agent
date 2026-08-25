@@ -1,0 +1,1269 @@
+{
+  "contract": {
+    "phase": "DETECTOR_QUERY_AND_RECALL_V1",
+    "production_modified": false,
+    "model": "IDEA-Research/grounding-dino-base",
+    "threshold": 0.3,
+    "case_count": 12,
+    "query_call_count": 28,
+    "dense_reference_rule": "不声明人工精确数量，只审查逐实例、分组大框或无召回的候选拓扑"
+  },
+  "runtime": {
+    "device": "cuda",
+    "model_load_seconds": 13.2847,
+    "gpu_memory_after_load_mb": 892.11
+  },
+  "cases": [
+    {
+      "case_id": "F3::fishing_003.jpeg",
+      "group": "bucket_lexical",
+      "reference": "exact:2",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_003.jpeg",
+      "image_sha256": "d62f2708ef6e36bd6b10c427ebd29398baecd4cfa203c4b2235238c19a06545e",
+      "image_size": [
+        3008,
+        2000
+      ],
+      "queries": [
+        {
+          "query": "bucket",
+          "role": "canonical",
+          "elapsed_seconds": 1.4283,
+          "geometry": {
+            "candidate_count": 0,
+            "largest_area_ratio": 0.0,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [],
+          "overlay": "overlays/F3__fishing_003_jpeg__1_bucket.jpg"
+        },
+        {
+          "query": "pail",
+          "role": "bounded_alias",
+          "elapsed_seconds": 0.5444,
+          "geometry": {
+            "candidate_count": 2,
+            "largest_area_ratio": 0.046534,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [
+            {
+              "bbox": [
+                782.36,
+                1220.7,
+                1274.28,
+                1789.79
+              ],
+              "confidence": 0.431,
+              "text_label": "pail"
+            },
+            {
+              "bbox": [
+                1243.5,
+                1401.61,
+                1575.74,
+                1743.16
+              ],
+              "confidence": 0.3887,
+              "text_label": "pail"
+            }
+          ],
+          "overlay": "overlays/F3__fishing_003_jpeg__2_pail.jpg"
+        }
+      ]
+    },
+    {
+      "case_id": "F3::fishing_017.jpeg",
+      "group": "bucket_lexical",
+      "reference": "exact:1",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_017.jpeg",
+      "image_sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99",
+      "image_size": [
+        2260,
+        3390
+      ],
+      "queries": [
+        {
+          "query": "bucket",
+          "role": "canonical",
+          "elapsed_seconds": 0.5507,
+          "geometry": {
+            "candidate_count": 0,
+            "largest_area_ratio": 0.0,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [],
+          "overlay": "overlays/F3__fishing_017_jpeg__1_bucket.jpg"
+        },
+        {
+          "query": "pail",
+          "role": "bounded_alias",
+          "elapsed_seconds": 0.5136,
+          "geometry": {
+            "candidate_count": 1,
+            "largest_area_ratio": 0.49053,
+            "near_full_scene_count": 0,
+            "group_region_count": 1
+          },
+          "detections": [
+            {
+              "bbox": [
+                314.71,
+                1074.87,
+                1991.81,
+                3315.73
+              ],
+              "confidence": 0.4269,
+              "text_label": "pail"
+            }
+          ],
+          "overlay": "overlays/F3__fishing_017_jpeg__2_pail.jpg"
+        }
+      ]
+    },
+    {
+      "case_id": "F3::fishing_019.jpeg",
+      "group": "bucket_lexical",
+      "reference": "exact:1",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_019.jpeg",
+      "image_sha256": "36591e58a9c7804eaeaddc606ce417ab416ca9d409a3d55d9a75acfc9381a8c8",
+      "image_size": [
+        6240,
+        3512
+      ],
+      "queries": [
+        {
+          "query": "bucket",
+          "role": "canonical",
+          "elapsed_seconds": 0.7179,
+          "geometry": {
+            "candidate_count": 1,
+            "largest_area_ratio": 0.096917,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [
+            {
+              "bbox": [
+                2495.74,
+                1081.91,
+                3945.97,
+                2546.45
+              ],
+              "confidence": 0.3608,
+              "text_label": "bucket"
+            }
+          ],
+          "overlay": "overlays/F3__fishing_019_jpeg__1_bucket.jpg"
+        },
+        {
+          "query": "pail",
+          "role": "bounded_alias",
+          "elapsed_seconds": 0.7019,
+          "geometry": {
+            "candidate_count": 1,
+            "largest_area_ratio": 0.097542,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [
+            {
+              "bbox": [
+                2501.52,
+                1070.53,
+                3947.82,
+                2548.53
+              ],
+              "confidence": 0.4006,
+              "text_label": "pail"
+            }
+          ],
+          "overlay": "overlays/F3__fishing_019_jpeg__2_pail.jpg"
+        }
+      ]
+    },
+    {
+      "case_id": "F3::fishing_018.jpeg",
+      "group": "bucket_lexical",
+      "reference": "exact:0",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_018.jpeg",
+      "image_sha256": "3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e",
+      "image_size": [
+        6784,
+        4525
+      ],
+      "queries": [
+        {
+          "query": "bucket",
+          "role": "canonical",
+          "elapsed_seconds": 0.7769,
+          "geometry": {
+            "candidate_count": 1,
+            "largest_area_ratio": 0.725097,
+            "near_full_scene_count": 1,
+            "group_region_count": 1
+          },
+          "detections": [
+            {
+              "bbox": [
+                1857.05,
+                29.24,
+                6795.86,
+                4536.14
+              ],
+              "confidence": 0.3974,
+              "text_label": "bucket"
+            }
+          ],
+          "overlay": "overlays/F3__fishing_018_jpeg__1_bucket.jpg"
+        },
+        {
+          "query": "pail",
+          "role": "bounded_alias",
+          "elapsed_seconds": 0.7798,
+          "geometry": {
+            "candidate_count": 0,
+            "largest_area_ratio": 0.0,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [],
+          "overlay": "overlays/F3__fishing_018_jpeg__2_pail.jpg"
+        }
+      ]
+    },
+    {
+      "case_id": "P2::pollution_009.jpeg",
+      "group": "bottle_lexical",
+      "reference": "exact:2",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_009.jpeg",
+      "image_sha256": "5b525360dc0290bae7b12fd18ada3e83b52237b436cd6d8e441c9c934d988267",
+      "image_size": [
+        9660,
+        7245
+      ],
+      "queries": [
+        {
+          "query": "bottle",
+          "role": "canonical",
+          "elapsed_seconds": 1.6363,
+          "geometry": {
+            "candidate_count": 2,
+            "largest_area_ratio": 0.045615,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [
+            {
+              "bbox": [
+                3360.45,
+                3153.16,
+                5738.22,
+                4495.78
+              ],
+              "confidence": 0.7742,
+              "text_label": "bottle"
+            },
+            {
+              "bbox": [
+                3794.05,
+                3990.26,
+                5776.17,
+                4891.57
+              ],
+              "confidence": 0.3443,
+              "text_label": "bottle"
+            }
+          ],
+          "overlay": "overlays/P2__pollution_009_jpeg__1_bottle.jpg"
+        },
+        {
+          "query": "plastic bottle",
+          "role": "bounded_alias",
+          "elapsed_seconds": 1.2751,
+          "geometry": {
+            "candidate_count": 1,
+            "largest_area_ratio": 0.04645,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [
+            {
+              "bbox": [
+                3361.29,
+                3145.09,
+                5746.01,
+                4508.3
+              ],
+              "confidence": 0.7877,
+              "text_label": "plastic bottle"
+            }
+          ],
+          "overlay": "overlays/P2__pollution_009_jpeg__2_plastic_bottle.jpg"
+        }
+      ]
+    },
+    {
+      "case_id": "P2::pollution_010.jpeg",
+      "group": "bottle_lexical",
+      "reference": "multiple_distinct",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_010.jpeg",
+      "image_sha256": "8f77bc8731781a165500696c59189f54f58f3ea832e435a9066e431938c8f02f",
+      "image_size": [
+        2048,
+        3073
+      ],
+      "queries": [
+        {
+          "query": "bottle",
+          "role": "canonical",
+          "elapsed_seconds": 0.5416,
+          "geometry": {
+            "candidate_count": 10,
+            "largest_area_ratio": 0.00347,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [
+            {
+              "bbox": [
+                324.82,
+                832.5,
+                394.53,
+                888.23
+              ],
+              "confidence": 0.3814,
+              "text_label": "bottle"
+            },
+            {
+              "bbox": [
+                141.87,
+                1640.31,
+                344.75,
+                1747.95
+              ],
+              "confidence": 0.4317,
+              "text_label": "bottle"
+            },
+            {
+              "bbox": [
+                1413.45,
+                1508.12,
+                1518.51,
+                1596.3
+              ],
+              "confidence": 0.3472,
+              "text_label": "bottle"
+            },
+            {
+              "bbox": [
+                1054.69,
+                926.06,
+                1166.04,
+                956.4
+              ],
+              "confidence": 0.3445,
+              "text_label": "bottle"
+            },
+            {
+              "bbox": [
+                1731.06,
+                1314.76,
+                1874.69,
+                1420.66
+              ],
+              "confidence": 0.3436,
+              "text_label": "bottle"
+            },
+            {
+              "bbox": [
+                1191.89,
+                931.12,
+                1263.4,
+                985.61
+              ],
+              "confidence": 0.3731,
+              "text_label": "bottle"
+            },
+            {
+              "bbox": [
+                847.73,
+                1716.1,
+                1006.04,
+                1828.66
+              ],
+              "confidence": 0.3503,
+              "text_label": "bottle"
+            },
+            {
+              "bbox": [
+                1278.25,
+                929.52,
+                1387.48,
+                988.96
+              ],
+              "confidence": 0.3006,
+              "text_label": "bottle"
+            },
+            {
+              "bbox": [
+                910.79,
+                710.28,
+                973.88,
+                733.98
+              ],
+              "confidence": 0.3007,
+              "text_label": "bottle"
+            },
+            {
+              "bbox": [
+                1160.49,
+                753.58,
+                1254.0,
+                812.19
+              ],
+              "confidence": 0.3332,
+              "text_label": "bottle"
+            }
+          ],
+          "overlay": "overlays/P2__pollution_010_jpeg__1_bottle.jpg"
+        },
+        {
+          "query": "plastic bottle",
+          "role": "bounded_alias",
+          "elapsed_seconds": 0.4878,
+          "geometry": {
+            "candidate_count": 12,
+            "largest_area_ratio": 0.00454,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [
+            {
+              "bbox": [
+                1730.32,
+                1312.81,
+                1874.86,
+                1423.23
+              ],
+              "confidence": 0.4722,
+              "text_label": "plastic bottle"
+            },
+            {
+              "bbox": [
+                322.91,
+                830.2,
+                395.84,
+                889.8
+              ],
+              "confidence": 0.4278,
+              "text_label": "plastic bottle"
+            },
+            {
+              "bbox": [
+                1054.02,
+                924.08,
+                1166.42,
+                959.12
+              ],
+              "confidence": 0.407,
+              "text_label": "plastic bottle"
+            },
+            {
+              "bbox": [
+                140.68,
+                1638.3,
+                344.57,
+                1750.38
+              ],
+              "confidence": 0.4358,
+              "text_label": "plastic bottle"
+            },
+            {
+              "bbox": [
+                1160.11,
+                750.49,
+                1255.87,
+                811.42
+              ],
+              "confidence": 0.4173,
+              "text_label": "plastic bottle"
+            },
+            {
+              "bbox": [
+                846.02,
+                1714.48,
+                1007.15,
+                1830.29
+              ],
+              "confidence": 0.4396,
+              "text_label": "plastic bottle"
+            },
+            {
+              "bbox": [
+                1277.16,
+                927.21,
+                1388.94,
+                991.34
+              ],
+              "confidence": 0.4046,
+              "text_label": "plastic bottle"
+            },
+            {
+              "bbox": [
+                1187.22,
+                929.17,
+                1264.13,
+                989.42
+              ],
+              "confidence": 0.389,
+              "text_label": "plastic bottle"
+            },
+            {
+              "bbox": [
+                1496.32,
+                1556.86,
+                1734.21,
+                1676.97
+              ],
+              "confidence": 0.3593,
+              "text_label": "plastic bottle"
+            },
+            {
+              "bbox": [
+                700.81,
+                626.57,
+                758.69,
+                667.81
+              ],
+              "confidence": 0.3651,
+              "text_label": "plastic bottle"
+            },
+            {
+              "bbox": [
+                908.68,
+                708.29,
+                975.15,
+                736.59
+              ],
+              "confidence": 0.3581,
+              "text_label": "plastic bottle"
+            },
+            {
+              "bbox": [
+                1409.45,
+                1503.67,
+                1518.51,
+                1599.46
+              ],
+              "confidence": 0.3411,
+              "text_label": "plastic bottle"
+            }
+          ],
+          "overlay": "overlays/P2__pollution_010_jpeg__2_plastic_bottle.jpg"
+        }
+      ]
+    },
+    {
+      "case_id": "P2::pollution_012.jpeg",
+      "group": "bottle_lexical",
+      "reference": "dense_many",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_012.jpeg",
+      "image_sha256": "0e7dcd397c45f240d5cf54eca4b3b500ac26dc7d71230f1752a9b4168afee74d",
+      "image_size": [
+        5472,
+        3648
+      ],
+      "queries": [
+        {
+          "query": "bottle",
+          "role": "canonical",
+          "elapsed_seconds": 0.6125,
+          "geometry": {
+            "candidate_count": 1,
+            "largest_area_ratio": 0.795186,
+            "near_full_scene_count": 1,
+            "group_region_count": 1
+          },
+          "detections": [
+            {
+              "bbox": [
+                -0.3,
+                701.17,
+                5471.64,
+                3602.04
+              ],
+              "confidence": 0.3854,
+              "text_label": "bottle"
+            }
+          ],
+          "overlay": "overlays/P2__pollution_012_jpeg__1_bottle.jpg"
+        },
+        {
+          "query": "plastic bottle",
+          "role": "bounded_alias",
+          "elapsed_seconds": 0.681,
+          "geometry": {
+            "candidate_count": 1,
+            "largest_area_ratio": 0.800425,
+            "near_full_scene_count": 1,
+            "group_region_count": 1
+          },
+          "detections": [
+            {
+              "bbox": [
+                -0.41,
+                684.11,
+                5471.42,
+                3604.15
+              ],
+              "confidence": 0.6255,
+              "text_label": "plastic bottle"
+            }
+          ],
+          "overlay": "overlays/P2__pollution_012_jpeg__2_plastic_bottle.jpg"
+        }
+      ]
+    },
+    {
+      "case_id": "P2::pollution_014.jpeg",
+      "group": "bottle_lexical",
+      "reference": "exact:0",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_014.jpeg",
+      "image_sha256": "378e291ebe760a8cf2bc14f2f087dfc2b6ea7ed7ed80d6cc9cc6134845681c86",
+      "image_size": [
+        6240,
+        4160
+      ],
+      "queries": [
+        {
+          "query": "bottle",
+          "role": "canonical",
+          "elapsed_seconds": 0.7665,
+          "geometry": {
+            "candidate_count": 0,
+            "largest_area_ratio": 0.0,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [],
+          "overlay": "overlays/P2__pollution_014_jpeg__1_bottle.jpg"
+        },
+        {
+          "query": "plastic bottle",
+          "role": "bounded_alias",
+          "elapsed_seconds": 0.7339,
+          "geometry": {
+            "candidate_count": 0,
+            "largest_area_ratio": 0.0,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [],
+          "overlay": "overlays/P2__pollution_014_jpeg__2_plastic_bottle.jpg"
+        }
+      ]
+    },
+    {
+      "case_id": "P1::pollution_002.jpeg",
+      "group": "dense_capability",
+      "reference": "dense_many",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_002.jpeg",
+      "image_sha256": "e7bb6d19fc5d68edb96a8dad61a1cd1f44f9a04392569b0cfb46c523f41efe17",
+      "image_size": [
+        5393,
+        3564
+      ],
+      "queries": [
+        {
+          "query": "garbage",
+          "role": "canonical",
+          "elapsed_seconds": 0.736,
+          "geometry": {
+            "candidate_count": 1,
+            "largest_area_ratio": 0.060823,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [
+            {
+              "bbox": [
+                798.22,
+                2275.48,
+                2018.22,
+                3233.72
+              ],
+              "confidence": 0.4908,
+              "text_label": "garbage"
+            }
+          ],
+          "overlay": "overlays/P1__pollution_002_jpeg__1_garbage.jpg"
+        },
+        {
+          "query": "trash",
+          "role": "bounded_alias",
+          "elapsed_seconds": 0.6924,
+          "geometry": {
+            "candidate_count": 1,
+            "largest_area_ratio": 0.060341,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [
+            {
+              "bbox": [
+                799.36,
+                2275.4,
+                2017.0,
+                3227.9
+              ],
+              "confidence": 0.3257,
+              "text_label": "trash"
+            }
+          ],
+          "overlay": "overlays/P1__pollution_002_jpeg__2_trash.jpg"
+        },
+        {
+          "query": "debris",
+          "role": "bounded_alias",
+          "elapsed_seconds": 0.6741,
+          "geometry": {
+            "candidate_count": 1,
+            "largest_area_ratio": 0.255656,
+            "near_full_scene_count": 0,
+            "group_region_count": 1
+          },
+          "detections": [
+            {
+              "bbox": [
+                3.23,
+                2357.52,
+                5391.66,
+                3269.45
+              ],
+              "confidence": 0.3275,
+              "text_label": "debris"
+            }
+          ],
+          "overlay": "overlays/P1__pollution_002_jpeg__3_debris.jpg"
+        }
+      ]
+    },
+    {
+      "case_id": "P1::pollution_004.png",
+      "group": "dense_capability",
+      "reference": "dense_many",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_004.png",
+      "image_sha256": "6b3e174f48b8f2852c77318eb0bb698cfad8c53236f7f1e00717e63aae5bdfca",
+      "image_size": [
+        3000,
+        1963
+      ],
+      "queries": [
+        {
+          "query": "garbage",
+          "role": "canonical",
+          "elapsed_seconds": 0.7003,
+          "geometry": {
+            "candidate_count": 0,
+            "largest_area_ratio": 0.0,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [],
+          "overlay": "overlays/P1__pollution_004_png__1_garbage.jpg"
+        },
+        {
+          "query": "trash",
+          "role": "bounded_alias",
+          "elapsed_seconds": 0.6924,
+          "geometry": {
+            "candidate_count": 0,
+            "largest_area_ratio": 0.0,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [],
+          "overlay": "overlays/P1__pollution_004_png__2_trash.jpg"
+        },
+        {
+          "query": "debris",
+          "role": "bounded_alias",
+          "elapsed_seconds": 0.7035,
+          "geometry": {
+            "candidate_count": 1,
+            "largest_area_ratio": 0.391035,
+            "near_full_scene_count": 0,
+            "group_region_count": 1
+          },
+          "detections": [
+            {
+              "bbox": [
+                11.11,
+                760.75,
+                1998.96,
+                1919.19
+              ],
+              "confidence": 0.4005,
+              "text_label": "debris"
+            }
+          ],
+          "overlay": "overlays/P1__pollution_004_png__3_debris.jpg"
+        }
+      ]
+    },
+    {
+      "case_id": "P3::pollution_010.jpeg",
+      "group": "weak_localization",
+      "reference": "multiple_distinct",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_010.jpeg",
+      "image_sha256": "8f77bc8731781a165500696c59189f54f58f3ea832e435a9066e431938c8f02f",
+      "image_size": [
+        2048,
+        3073
+      ],
+      "queries": [
+        {
+          "query": "object",
+          "role": "canonical",
+          "elapsed_seconds": 0.4893,
+          "geometry": {
+            "candidate_count": 10,
+            "largest_area_ratio": 0.003524,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [
+            {
+              "bbox": [
+                141.68,
+                1639.53,
+                343.89,
+                1749.22
+              ],
+              "confidence": 0.5233,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                324.15,
+                831.18,
+                394.95,
+                888.72
+              ],
+              "confidence": 0.4295,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                1189.01,
+                930.4,
+                1263.71,
+                988.58
+              ],
+              "confidence": 0.4502,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                1277.82,
+                928.43,
+                1388.3,
+                990.72
+              ],
+              "confidence": 0.4,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                1727.95,
+                1314.03,
+                1877.82,
+                1423.61
+              ],
+              "confidence": 0.386,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                1054.69,
+                924.92,
+                1166.36,
+                959.08
+              ],
+              "confidence": 0.397,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                1409.07,
+                1505.4,
+                1518.26,
+                1600.53
+              ],
+              "confidence": 0.3532,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                847.0,
+                1715.77,
+                1006.59,
+                1829.89
+              ],
+              "confidence": 0.3347,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                1161.23,
+                751.07,
+                1256.76,
+                813.69
+              ],
+              "confidence": 0.3645,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                910.88,
+                709.04,
+                973.9,
+                736.17
+              ],
+              "confidence": 0.3021,
+              "text_label": "object"
+            }
+          ],
+          "overlay": "overlays/P3__pollution_010_jpeg__1_object.jpg"
+        },
+        {
+          "query": "debris",
+          "role": "bounded_alias",
+          "elapsed_seconds": 0.5208,
+          "geometry": {
+            "candidate_count": 8,
+            "largest_area_ratio": 0.023374,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [
+            {
+              "bbox": [
+                141.02,
+                1638.8,
+                344.42,
+                1750.08
+              ],
+              "confidence": 0.3601,
+              "text_label": "debris"
+            },
+            {
+              "bbox": [
+                1277.63,
+                927.36,
+                1388.75,
+                991.53
+              ],
+              "confidence": 0.3603,
+              "text_label": "debris"
+            },
+            {
+              "bbox": [
+                1733.01,
+                2023.79,
+                2043.7,
+                2497.27
+              ],
+              "confidence": 0.3342,
+              "text_label": "debris"
+            },
+            {
+              "bbox": [
+                1189.04,
+                929.75,
+                1263.02,
+                988.98
+              ],
+              "confidence": 0.3481,
+              "text_label": "debris"
+            },
+            {
+              "bbox": [
+                323.88,
+                830.35,
+                394.82,
+                889.05
+              ],
+              "confidence": 0.322,
+              "text_label": "debris"
+            },
+            {
+              "bbox": [
+                1727.15,
+                1312.99,
+                1877.03,
+                1425.5
+              ],
+              "confidence": 0.3013,
+              "text_label": "debris"
+            },
+            {
+              "bbox": [
+                1160.64,
+                750.45,
+                1255.66,
+                813.74
+              ],
+              "confidence": 0.3262,
+              "text_label": "debris"
+            },
+            {
+              "bbox": [
+                1054.68,
+                924.13,
+                1165.6,
+                959.48
+              ],
+              "confidence": 0.3172,
+              "text_label": "debris"
+            }
+          ],
+          "overlay": "overlays/P3__pollution_010_jpeg__2_debris.jpg"
+        },
+        {
+          "query": "floating object",
+          "role": "bounded_alias",
+          "elapsed_seconds": 0.5076,
+          "geometry": {
+            "candidate_count": 13,
+            "largest_area_ratio": 0.004551,
+            "near_full_scene_count": 0,
+            "group_region_count": 0
+          },
+          "detections": [
+            {
+              "bbox": [
+                1277.56,
+                927.25,
+                1388.92,
+                992.15
+              ],
+              "confidence": 0.5665,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                322.7,
+                830.57,
+                395.79,
+                889.91
+              ],
+              "confidence": 0.5526,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                141.33,
+                1638.65,
+                343.6,
+                1750.02
+              ],
+              "confidence": 0.5964,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                1188.03,
+                929.44,
+                1263.59,
+                989.79
+              ],
+              "confidence": 0.5467,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                1728.5,
+                1312.83,
+                1877.64,
+                1425.76
+              ],
+              "confidence": 0.5734,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                1053.63,
+                923.58,
+                1164.53,
+                959.5
+              ],
+              "confidence": 0.5033,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                1159.8,
+                750.15,
+                1255.64,
+                813.43
+              ],
+              "confidence": 0.4997,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                844.55,
+                1714.5,
+                1006.63,
+                1831.33
+              ],
+              "confidence": 0.4225,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                700.72,
+                626.52,
+                758.96,
+                668.51
+              ],
+              "confidence": 0.4153,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                908.96,
+                708.28,
+                974.39,
+                736.66
+              ],
+              "confidence": 0.4176,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                1408.34,
+                1504.18,
+                1517.04,
+                1600.56
+              ],
+              "confidence": 0.3985,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                1494.55,
+                1560.47,
+                1735.3,
+                1679.44
+              ],
+              "confidence": 0.3926,
+              "text_label": "object"
+            },
+            {
+              "bbox": [
+                1026.48,
+                681.24,
+                1078.22,
+                704.14
+              ],
+              "confidence": 0.3026,
+              "text_label": "object"
+            }
+          ],
+          "overlay": "overlays/P3__pollution_010_jpeg__3_floating_object.jpg"
+        }
+      ]
+    },
+    {
+      "case_id": "P3::pollution_012.jpeg",
+      "group": "weak_localization",
+      "reference": "dense_many",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_012.jpeg",
+      "image_sha256": "0e7dcd397c45f240d5cf54eca4b3b500ac26dc7d71230f1752a9b4168afee74d",
+      "image_size": [
+        5472,
+        3648
+      ],
+      "queries": [
+        {
+          "query": "object",
+          "role": "canonical",
+          "elapsed_seconds": 0.6352,
+          "geometry": {
+            "candidate_count": 1,
+            "largest_area_ratio": 0.811331,
+            "near_full_scene_count": 1,
+            "group_region_count": 1
+          },
+          "detections": [
+            {
+              "bbox": [
+                -0.49,
+                666.65,
+                5471.24,
+                3626.53
+              ],
+              "confidence": 0.7514,
+              "text_label": "object"
+            }
+          ],
+          "overlay": "overlays/P3__pollution_012_jpeg__1_object.jpg"
+        },
+        {
+          "query": "debris",
+          "role": "bounded_alias",
+          "elapsed_seconds": 0.6344,
+          "geometry": {
+            "candidate_count": 1,
+            "largest_area_ratio": 0.81209,
+            "near_full_scene_count": 1,
+            "group_region_count": 1
+          },
+          "detections": [
+            {
+              "bbox": [
+                -0.23,
+                664.35,
+                5470.47,
+                3627.56
+              ],
+              "confidence": 0.7935,
+              "text_label": "debris"
+            }
+          ],
+          "overlay": "overlays/P3__pollution_012_jpeg__2_debris.jpg"
+        },
+        {
+          "query": "floating object",
+          "role": "bounded_alias",
+          "elapsed_seconds": 0.6236,
+          "geometry": {
+            "candidate_count": 1,
+            "largest_area_ratio": 0.806982,
+            "near_full_scene_count": 1,
+            "group_region_count": 1
+          },
+          "detections": [
+            {
+              "bbox": [
+                0.28,
+                670.88,
+                5468.29,
+                3616.9
+              ],
+              "confidence": 0.7702,
+              "text_label": "object"
+            }
+          ],
+          "overlay": "overlays/P3__pollution_012_jpeg__3_floating_object.jpg"
+        }
+      ]
+    }
+  ]
+}
