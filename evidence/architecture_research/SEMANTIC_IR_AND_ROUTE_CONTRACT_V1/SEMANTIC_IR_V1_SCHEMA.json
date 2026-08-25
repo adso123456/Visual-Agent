@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://visual-agent.local/contracts/semantic-ir-v1.schema.json",
+  "title": "Visual Agent Semantic IR V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["ir_version", "source_prompt", "target", "constraints", "action"],
+  "properties": {
+    "ir_version": {"const": "semantic_ir.v1"},
+    "source_prompt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "text"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "text": {"type": "string", "minLength": 1}
+      }
+    },
+    "target": {"$ref": "#/$defs/semanticTarget"},
+    "constraints": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/constraint"}
+    },
+    "action": {"$ref": "#/$defs/action"}
+  },
+  "$defs": {
+    "localizationTarget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["canonical_name"],
+      "properties": {
+        "canonical_name": {
+          "type": "string",
+          "pattern": "^[a-z]+(?: [a-z]+){0,2}$"
+        }
+      }
+    },
+    "semanticTarget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["concept_type", "semantic_name", "localization_target"],
+      "properties": {
+        "concept_type": {"enum": ["instance", "region"]},
+        "semantic_name": {"type": "string", "minLength": 1},
+        "localization_target": {}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"concept_type": {"const": "instance"}}},
+          "then": {"properties": {"localization_target": {"$ref": "#/$defs/localizationTarget"}}},
+          "else": {"properties": {"localization_target": {"type": "null"}}}
+        }
+      ]
+    },
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["predicate", "reference"],
+      "properties": {
+        "predicate": {"type": "string", "pattern": "^[a-z]+(?:_[a-z]+)*$"},
+        "reference": {"$ref": "#/$defs/semanticTarget"}
+      }
+    },
+    "constraint": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "text", "route"],
+          "properties": {
+            "id": {"type": "string", "minLength": 1},
+            "text": {"type": "string", "minLength": 1},
+            "route": {"enum": ["attribute", "behavior"]}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "text", "route", "relation"],
+          "properties": {
+            "id": {"type": "string", "minLength": 1},
+            "text": {"type": "string", "minLength": 1},
+            "route": {"const": "object_relation"},
+            "relation": {
+              "allOf": [
+                {"$ref": "#/$defs/relation"},
+                {"properties": {"reference": {"properties": {"concept_type": {"const": "instance"}}}}}
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "text", "route", "relation"],
+          "properties": {
+            "id": {"type": "string", "minLength": 1},
+            "text": {"type": "string", "minLength": 1},
+            "route": {"const": "scene_relation"},
+            "relation": {"$ref": "#/$defs/relation"}
+          }
+        }
+      ]
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type"],
+      "properties": {
+        "type": {"enum": ["highlight", "outline", "box", "blur_target", "dim_background", "cutout"]},
+        "color": {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"}
+      },
+      "allOf": [
+        {
+          "if": {"required": ["color"]},
+          "then": {"properties": {"type": {"enum": ["highlight", "outline", "box"]}}}
+        }
+      ]
+    }
+  }
+}

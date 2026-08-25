@@ -1,0 +1,204 @@
+{
+  "count": 6,
+  "probes": [
+    {
+      "probe_id": "G1_ATTRIBUTE",
+      "prompt": "框出红色汽车",
+      "semantic_ir_v1": {
+        "ir_version": "semantic_ir.v1",
+        "source_prompt": {
+          "id": "G1_ATTRIBUTE",
+          "text": "框出红色汽车"
+        },
+        "target": {
+          "concept_type": "instance",
+          "semantic_name": "汽车",
+          "localization_target": {
+            "canonical_name": "car"
+          }
+        },
+        "constraints": [
+          {
+            "id": "c1",
+            "text": "红色",
+            "route": "attribute"
+          }
+        ],
+        "action": {
+          "type": "box"
+        }
+      }
+    },
+    {
+      "probe_id": "G2_BEHAVIOR",
+      "prompt": "框出正在奔跑的狗",
+      "semantic_ir_v1": {
+        "ir_version": "semantic_ir.v1",
+        "source_prompt": {
+          "id": "G2_BEHAVIOR",
+          "text": "框出正在奔跑的狗"
+        },
+        "target": {
+          "concept_type": "instance",
+          "semantic_name": "狗",
+          "localization_target": {
+            "canonical_name": "dog"
+          }
+        },
+        "constraints": [
+          {
+            "id": "c1",
+            "text": "正在奔跑",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "box"
+        }
+      }
+    },
+    {
+      "probe_id": "G3_OBJECT_RELATION",
+      "prompt": "标出骑自行车的人",
+      "semantic_ir_v1": {
+        "ir_version": "semantic_ir.v1",
+        "source_prompt": {
+          "id": "G3_OBJECT_RELATION",
+          "text": "标出骑自行车的人"
+        },
+        "target": {
+          "concept_type": "instance",
+          "semantic_name": "人",
+          "localization_target": {
+            "canonical_name": "person"
+          }
+        },
+        "constraints": [
+          {
+            "id": "c1",
+            "text": "骑自行车",
+            "route": "object_relation",
+            "relation": {
+              "predicate": "riding",
+              "reference": {
+                "concept_type": "instance",
+                "semantic_name": "自行车",
+                "localization_target": {
+                  "canonical_name": "bicycle"
+                }
+              }
+            }
+          }
+        ],
+        "action": {
+          "type": "highlight"
+        }
+      }
+    },
+    {
+      "probe_id": "G4_SCENE_RELATION",
+      "prompt": "框出桥下的船",
+      "semantic_ir_v1": {
+        "ir_version": "semantic_ir.v1",
+        "source_prompt": {
+          "id": "G4_SCENE_RELATION",
+          "text": "框出桥下的船"
+        },
+        "target": {
+          "concept_type": "instance",
+          "semantic_name": "船",
+          "localization_target": {
+            "canonical_name": "boat"
+          }
+        },
+        "constraints": [
+          {
+            "id": "c1",
+            "text": "位于桥下",
+            "route": "scene_relation",
+            "relation": {
+              "predicate": "under",
+              "reference": {
+                "concept_type": "instance",
+                "semantic_name": "桥",
+                "localization_target": {
+                  "canonical_name": "bridge"
+                }
+              }
+            }
+          }
+        ],
+        "action": {
+          "type": "box"
+        }
+      }
+    },
+    {
+      "probe_id": "G5_REGION",
+      "prompt": "高亮道路积水区域",
+      "semantic_ir_v1": {
+        "ir_version": "semantic_ir.v1",
+        "source_prompt": {
+          "id": "G5_REGION",
+          "text": "高亮道路积水区域"
+        },
+        "target": {
+          "concept_type": "region",
+          "semantic_name": "积水区域",
+          "localization_target": null
+        },
+        "constraints": [
+          {
+            "id": "c1",
+            "text": "位于道路表面",
+            "route": "scene_relation",
+            "relation": {
+              "predicate": "located_on",
+              "reference": {
+                "concept_type": "region",
+                "semantic_name": "道路表面",
+                "localization_target": null
+              }
+            }
+          }
+        ],
+        "action": {
+          "type": "highlight"
+        }
+      }
+    },
+    {
+      "probe_id": "G6_MIXED_CONSTRAINTS",
+      "prompt": "框出戴帽子且正在跑步的人",
+      "semantic_ir_v1": {
+        "ir_version": "semantic_ir.v1",
+        "source_prompt": {
+          "id": "G6_MIXED_CONSTRAINTS",
+          "text": "框出戴帽子且正在跑步的人"
+        },
+        "target": {
+          "concept_type": "instance",
+          "semantic_name": "人",
+          "localization_target": {
+            "canonical_name": "person"
+          }
+        },
+        "constraints": [
+          {
+            "id": "c1",
+            "text": "戴帽子",
+            "route": "attribute"
+          },
+          {
+            "id": "c2",
+            "text": "正在跑步",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "box"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "real_prompt_count": 8,
+  "domain_neutral_probe_count": 6,
+  "negative_contract_probe_count": 5,
+  "all_positive_valid": true,
+  "all_negative_rejected": true,
+  "concept_type_coverage": {
+    "instance": 12,
+    "region": 2
+  },
+  "constraint_route_coverage": {
+    "behavior": 3,
+    "object_relation": 3,
+    "scene_relation": 6,
+    "attribute": 2
+  },
+  "forbidden_execution_fields_present": false,
+  "production_files_modified": 0,
+  "model_calls": 0
+}

@@ -1,0 +1,19 @@
+{"id": "F1", "set": "frozen_real_prompt", "valid": true, "concept_type": "instance", "routes": ["behavior"]}
+{"id": "F2", "set": "frozen_real_prompt", "valid": true, "concept_type": "instance", "routes": ["object_relation"]}
+{"id": "F3", "set": "frozen_real_prompt", "valid": true, "concept_type": "instance", "routes": []}
+{"id": "F4", "set": "frozen_real_prompt", "valid": true, "concept_type": "instance", "routes": ["object_relation"]}
+{"id": "P1", "set": "frozen_real_prompt", "valid": true, "concept_type": "instance", "routes": ["scene_relation"]}
+{"id": "P2", "set": "frozen_real_prompt", "valid": true, "concept_type": "instance", "routes": ["scene_relation"]}
+{"id": "P3", "set": "frozen_real_prompt", "valid": true, "concept_type": "instance", "routes": ["scene_relation"]}
+{"id": "P4", "set": "frozen_real_prompt", "valid": true, "concept_type": "region", "routes": ["scene_relation"]}
+{"id": "G1_ATTRIBUTE", "set": "domain_neutral_probe", "valid": true, "concept_type": "instance", "routes": ["attribute"]}
+{"id": "G2_BEHAVIOR", "set": "domain_neutral_probe", "valid": true, "concept_type": "instance", "routes": ["behavior"]}
+{"id": "G3_OBJECT_RELATION", "set": "domain_neutral_probe", "valid": true, "concept_type": "instance", "routes": ["object_relation"]}
+{"id": "G4_SCENE_RELATION", "set": "domain_neutral_probe", "valid": true, "concept_type": "instance", "routes": ["scene_relation"]}
+{"id": "G5_REGION", "set": "domain_neutral_probe", "valid": true, "concept_type": "region", "routes": ["scene_relation"]}
+{"id": "G6_MIXED_CONSTRAINTS", "set": "domain_neutral_probe", "valid": true, "concept_type": "instance", "routes": ["attribute", "behavior"]}
+{"id": "REJECT_EXECUTION_POLICY_FIELD", "set": "negative_contract_probe", "valid": false, "rejected_as_expected": true, "error": "IR 顶层字段不正确"}
+{"id": "REJECT_DETECTOR_QUERIES_FIELD", "set": "negative_contract_probe", "valid": false, "rejected_as_expected": true, "error": "target/reference 字段不正确"}
+{"id": "REJECT_REGION_BACKEND", "set": "negative_contract_probe", "valid": false, "rejected_as_expected": true, "error": "target/reference 字段不正确"}
+{"id": "REJECT_REGION_LOCALIZATION_TARGET", "set": "negative_contract_probe", "valid": false, "rejected_as_expected": true, "error": "region 的 localization_target 在 Phase 2 必须为 null"}
+{"id": "REJECT_ATTRIBUTE_WITH_RELATION", "set": "negative_contract_probe", "valid": false, "rejected_as_expected": true, "error": "attribute/behavior 不得携带 relation"}

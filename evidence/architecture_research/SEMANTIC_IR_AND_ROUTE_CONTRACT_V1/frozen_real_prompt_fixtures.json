@@ -1,0 +1,409 @@
+{
+  "count": 8,
+  "fixtures": [
+    {
+      "prompt_id": "F1",
+      "prompt": "框出正在钓鱼的人",
+      "production_plan_sample": {
+        "source_case_id": "F1::fishing_001.jpeg",
+        "plan": {
+          "target_object": "person",
+          "label": "人",
+          "constraints": [
+            {
+              "text": "正在钓鱼",
+              "route": "behavior"
+            }
+          ],
+          "action": {
+            "type": "box"
+          },
+          "related_objects": []
+        }
+      },
+      "semantic_ir_v1": {
+        "ir_version": "semantic_ir.v1",
+        "source_prompt": {
+          "id": "F1",
+          "text": "框出正在钓鱼的人"
+        },
+        "target": {
+          "concept_type": "instance",
+          "semantic_name": "人",
+          "localization_target": {
+            "canonical_name": "person"
+          }
+        },
+        "constraints": [
+          {
+            "id": "c1",
+            "text": "正在钓鱼",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "box"
+        }
+      }
+    },
+    {
+      "prompt_id": "F2",
+      "prompt": "把拿着鱼竿的人描边",
+      "production_plan_sample": {
+        "source_case_id": "F2::fishing_001.jpeg",
+        "plan": {
+          "target_object": "person",
+          "label": "人",
+          "constraints": [
+            {
+              "text": "拿着鱼竿",
+              "route": "behavior"
+            }
+          ],
+          "action": {
+            "type": "outline"
+          },
+          "related_objects": []
+        }
+      },
+      "semantic_ir_v1": {
+        "ir_version": "semantic_ir.v1",
+        "source_prompt": {
+          "id": "F2",
+          "text": "把拿着鱼竿的人描边"
+        },
+        "target": {
+          "concept_type": "instance",
+          "semantic_name": "人",
+          "localization_target": {
+            "canonical_name": "person"
+          }
+        },
+        "constraints": [
+          {
+            "id": "c1",
+            "text": "拿着鱼竿",
+            "route": "object_relation",
+            "relation": {
+              "predicate": "held_by_target",
+              "reference": {
+                "concept_type": "instance",
+                "semantic_name": "鱼竿",
+                "localization_target": {
+                  "canonical_name": "fishing rod"
+                }
+              }
+            }
+          }
+        ],
+        "action": {
+          "type": "outline"
+        }
+      }
+    },
+    {
+      "prompt_id": "F3",
+      "prompt": "框出桶",
+      "production_plan_sample": {
+        "source_case_id": "F3::fishing_001.jpeg",
+        "plan": {
+          "target_object": "bucket",
+          "label": "桶",
+          "constraints": [],
+          "action": {
+            "type": "box"
+          },
+          "related_objects": []
+        }
+      },
+      "semantic_ir_v1": {
+        "ir_version": "semantic_ir.v1",
+        "source_prompt": {
+          "id": "F3",
+          "text": "框出桶"
+        },
+        "target": {
+          "concept_type": "instance",
+          "semantic_name": "桶",
+          "localization_target": {
+            "canonical_name": "bucket"
+          }
+        },
+        "constraints": [],
+        "action": {
+          "type": "box"
+        }
+      }
+    },
+    {
+      "prompt_id": "F4",
+      "prompt": "把拿着鱼的人标出来",
+      "production_plan_sample": {
+        "source_case_id": "F4::fishing_001.jpeg",
+        "plan": {
+          "target_object": "person",
+          "label": "拿着鱼的人",
+          "constraints": [
+            {
+              "text": "拿着鱼",
+              "route": "relation"
+            }
+          ],
+          "action": {
+            "type": "highlight"
+          },
+          "related_objects": [
+            {
+              "object": "fish",
+              "relation": "held_by_target"
+            }
+          ]
+        }
+      },
+      "semantic_ir_v1": {
+        "ir_version": "semantic_ir.v1",
+        "source_prompt": {
+          "id": "F4",
+          "text": "把拿着鱼的人标出来"
+        },
+        "target": {
+          "concept_type": "instance",
+          "semantic_name": "人",
+          "localization_target": {
+            "canonical_name": "person"
+          }
+        },
+        "constraints": [
+          {
+            "id": "c1",
+            "text": "拿着鱼",
+            "route": "object_relation",
+            "relation": {
+              "predicate": "held_by_target",
+              "reference": {
+                "concept_type": "instance",
+                "semantic_name": "鱼",
+                "localization_target": {
+                  "canonical_name": "fish"
+                }
+              }
+            }
+          }
+        ],
+        "action": {
+          "type": "highlight"
+        }
+      }
+    },
+    {
+      "prompt_id": "P1",
+      "prompt": "框出水面上的垃圾",
+      "production_plan_sample": {
+        "source_case_id": "P1::pollution_001.jpeg",
+        "plan": {
+          "target_object": "garbage",
+          "label": "垃圾",
+          "constraints": [
+            {
+              "text": "在水面上",
+              "route": "behavior"
+            }
+          ],
+          "action": {
+            "type": "box"
+          },
+          "related_objects": []
+        }
+      },
+      "semantic_ir_v1": {
+        "ir_version": "semantic_ir.v1",
+        "source_prompt": {
+          "id": "P1",
+          "text": "框出水面上的垃圾"
+        },
+        "target": {
+          "concept_type": "instance",
+          "semantic_name": "垃圾",
+          "localization_target": {
+            "canonical_name": "garbage item"
+          }
+        },
+        "constraints": [
+          {
+            "id": "c1",
+            "text": "位于水面上",
+            "route": "scene_relation",
+            "relation": {
+              "predicate": "located_on_surface_of",
+              "reference": {
+                "concept_type": "region",
+                "semantic_name": "水面",
+                "localization_target": null
+              }
+            }
+          }
+        ],
+        "action": {
+          "type": "box"
+        }
+      }
+    },
+    {
+      "prompt_id": "P2",
+      "prompt": "高亮漂浮的塑料瓶",
+      "production_plan_sample": {
+        "source_case_id": "P2::pollution_001.jpeg",
+        "plan": {
+          "target_object": "plastic bottle",
+          "label": "塑料瓶",
+          "constraints": [
+            {
+              "text": "漂浮",
+              "route": "behavior"
+            }
+          ],
+          "action": {
+            "type": "highlight"
+          },
+          "related_objects": []
+        }
+      },
+      "semantic_ir_v1": {
+        "ir_version": "semantic_ir.v1",
+        "source_prompt": {
+          "id": "P2",
+          "text": "高亮漂浮的塑料瓶"
+        },
+        "target": {
+          "concept_type": "instance",
+          "semantic_name": "塑料瓶",
+          "localization_target": {
+            "canonical_name": "bottle"
+          }
+        },
+        "constraints": [
+          {
+            "id": "c1",
+            "text": "漂浮于水面",
+            "route": "scene_relation",
+            "relation": {
+              "predicate": "floating_on",
+              "reference": {
+                "concept_type": "region",
+                "semantic_name": "水面",
+                "localization_target": null
+              }
+            }
+          }
+        ],
+        "action": {
+          "type": "highlight"
+        }
+      }
+    },
+    {
+      "prompt_id": "P3",
+      "prompt": "描边水中的漂浮物",
+      "production_plan_sample": {
+        "source_case_id": "P3::pollution_001.jpeg",
+        "plan": {
+          "target_object": "floating object",
+          "label": "漂浮物",
+          "constraints": [
+            {
+              "text": "在水中",
+              "route": "attribute"
+            }
+          ],
+          "action": {
+            "type": "outline"
+          },
+          "related_objects": []
+        }
+      },
+      "semantic_ir_v1": {
+        "ir_version": "semantic_ir.v1",
+        "source_prompt": {
+          "id": "P3",
+          "text": "描边水中的漂浮物"
+        },
+        "target": {
+          "concept_type": "instance",
+          "semantic_name": "漂浮物",
+          "localization_target": {
+            "canonical_name": "object"
+          }
+        },
+        "constraints": [
+          {
+            "id": "c1",
+            "text": "漂浮在水中",
+            "route": "scene_relation",
+            "relation": {
+              "predicate": "floating_in",
+              "reference": {
+                "concept_type": "region",
+                "semantic_name": "水体",
+                "localization_target": null
+              }
+            }
+          }
+        ],
+        "action": {
+          "type": "outline"
+        }
+      }
+    },
+    {
+      "prompt_id": "P4",
+      "prompt": "标出水面污染区域",
+      "production_plan_sample": {
+        "source_case_id": "P4::pollution_001.jpeg",
+        "plan": {
+          "target_object": "water",
+          "label": "水面污染区域",
+          "constraints": [
+            {
+              "text": "污染",
+              "route": "behavior"
+            }
+          ],
+          "action": {
+            "type": "outline"
+          },
+          "related_objects": []
+        }
+      },
+      "semantic_ir_v1": {
+        "ir_version": "semantic_ir.v1",
+        "source_prompt": {
+          "id": "P4",
+          "text": "标出水面污染区域"
+        },
+        "target": {
+          "concept_type": "region",
+          "semantic_name": "污染区域",
+          "localization_target": null
+        },
+        "constraints": [
+          {
+            "id": "c1",
+            "text": "位于水面",
+            "route": "scene_relation",
+            "relation": {
+              "predicate": "located_on",
+              "reference": {
+                "concept_type": "region",
+                "semantic_name": "水面",
+                "localization_target": null
+              }
+            }
+          }
+        ],
+        "action": {
+          "type": "outline"
+        }
+      }
+    }
+  ]
+}
