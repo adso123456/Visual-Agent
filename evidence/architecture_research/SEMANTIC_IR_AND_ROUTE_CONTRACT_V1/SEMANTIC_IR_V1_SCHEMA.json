@@ -57,7 +57,16 @@
       "additionalProperties": false,
       "required": ["predicate", "reference"],
       "properties": {
-        "predicate": {"type": "string", "pattern": "^[a-z]+(?:_[a-z]+)*$"},
+        "predicate": {
+          "enum": [
+            "holding",
+            "riding",
+            "on_surface_of",
+            "floating_on",
+            "floating_in",
+            "under"
+          ]
+        },
         "reference": {"$ref": "#/$defs/semanticTarget"}
       }
     },

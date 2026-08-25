@@ -85,7 +85,7 @@
             "text": "拿着鱼竿",
             "route": "object_relation",
             "relation": {
-              "predicate": "held_by_target",
+              "predicate": "holding",
               "reference": {
                 "concept_type": "instance",
                 "semantic_name": "鱼竿",
@@ -179,7 +179,7 @@
             "text": "拿着鱼",
             "route": "object_relation",
             "relation": {
-              "predicate": "held_by_target",
+              "predicate": "holding",
               "reference": {
                 "concept_type": "instance",
                 "semantic_name": "鱼",
@@ -234,7 +234,7 @@
             "text": "位于水面上",
             "route": "scene_relation",
             "relation": {
-              "predicate": "located_on_surface_of",
+              "predicate": "on_surface_of",
               "reference": {
                 "concept_type": "region",
                 "semantic_name": "水面",
@@ -391,7 +391,7 @@
             "text": "位于水面",
             "route": "scene_relation",
             "relation": {
-              "predicate": "located_on",
+              "predicate": "on_surface_of",
               "reference": {
                 "concept_type": "region",
                 "semantic_name": "水面",

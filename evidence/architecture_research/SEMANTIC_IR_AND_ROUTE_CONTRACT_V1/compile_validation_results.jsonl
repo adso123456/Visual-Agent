@@ -16,4 +16,4 @@
 {"id": "REJECT_DETECTOR_QUERIES_FIELD", "set": "negative_contract_probe", "valid": false, "rejected_as_expected": true, "error": "target/reference 字段不正确"}
 {"id": "REJECT_REGION_BACKEND", "set": "negative_contract_probe", "valid": false, "rejected_as_expected": true, "error": "target/reference 字段不正确"}
 {"id": "REJECT_REGION_LOCALIZATION_TARGET", "set": "negative_contract_probe", "valid": false, "rejected_as_expected": true, "error": "region 的 localization_target 在 Phase 2 必须为 null"}
-{"id": "REJECT_ATTRIBUTE_WITH_RELATION", "set": "negative_contract_probe", "valid": false, "rejected_as_expected": true, "error": "attribute/behavior 不得携带 relation"}
+{"id": "REJECT_UNSUPPORTED_RELATION_PREDICATE", "set": "negative_contract_probe", "valid": false, "rejected_as_expected": true, "error": "relation predicate 不在 Semantic IR V1 白名单"}

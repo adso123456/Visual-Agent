@@ -6,6 +6,12 @@
 
 `CONSTRAINT_ROUTES = attribute | behavior | object_relation | scene_relation`
 
+`RELATION_DIRECTION = target --predicate--> reference`
+
+`RELATION_PREDICATES_V1 = holding | riding | on_surface_of | floating_on | floating_in | under`
+
+`OPEN_SNAKE_CASE_PREDICATE = FORBIDDEN`
+
 `GLOBAL_CONTEXT_AS_SOURCE_OF_TRUTH = NO`
 
 `EXECUTION_POLICY_FIELDS_IN_IR = FORBIDDEN`
