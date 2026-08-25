@@ -1,0 +1,1506 @@
+{
+  "schema_version": 1,
+  "count": 36,
+  "cases": [
+    {
+      "selection_index": 1,
+      "case_id": "F1::fishing_001.jpeg",
+      "prompt_id": "F1",
+      "prompt_text": "框出正在钓鱼的人",
+      "ground_truth_class": "positive",
+      "human_local_grade": "DEGRADED",
+      "human_cloud_grade": "DEGRADED",
+      "human_note": "提着渔获不算正在钓鱼",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "human_note_semantics",
+      "selection_reason": "展示渔获，不等于当前垂钓。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_001.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F1\\fishing_001\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "人",
+        "constraints": [
+          {
+            "text": "正在钓鱼",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "box"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "F1::fishing_001.jpeg",
+        "prompt_id": "F1",
+        "human_local_grade": "DEGRADED",
+        "human_cloud_grade": "DEGRADED",
+        "primary_cause": "evidence_context_insufficient",
+        "secondary_causes": [
+          "vlm_semantic_reasoning"
+        ],
+        "earliest_failure_rationale": "候选人正确，但局部证据无法可靠区分展示渔获与正在垂钓。",
+        "static_attribution": true,
+        "static_primary_cause": "evidence_context_insufficient",
+        "post_probe_refined": false
+      },
+      "method_d_selected": true
+    },
+    {
+      "selection_index": 2,
+      "case_id": "F1::fishing_005.jpeg",
+      "prompt_id": "F1",
+      "prompt_text": "框出正在钓鱼的人",
+      "ground_truth_class": "negative",
+      "human_local_grade": "FP",
+      "human_cloud_grade": "FP",
+      "human_note": "应该是推断出来而不是直接肯定，此时此刻他没有钓鱼而是展示渔获",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "human_note_semantics",
+      "selection_reason": "展示渔获被误判为当前垂钓。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_005.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F1\\fishing_005\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "钓鱼的人",
+        "constraints": [
+          {
+            "text": "正在钓鱼",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "box"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "F1::fishing_005.jpeg",
+        "prompt_id": "F1",
+        "human_local_grade": "FP",
+        "human_cloud_grade": "FP",
+        "primary_cause": "vlm_semantic_reasoning",
+        "secondary_causes": [
+          "vlm_semantic_reasoning"
+        ],
+        "earliest_failure_rationale": "候选人正确；判断展示渔获而非正在垂钓需要完整动作场景。",
+        "static_attribution": true,
+        "static_primary_cause": "evidence_context_insufficient",
+        "post_probe_refined": true,
+        "post_probe_evidence": "完整原图仍把展示渔获判为正在垂钓；candidate composite 同样错误。"
+      },
+      "method_d_selected": true
+    },
+    {
+      "selection_index": 3,
+      "case_id": "F1::fishing_010.jpeg",
+      "prompt_id": "F1",
+      "prompt_text": "框出正在钓鱼的人",
+      "ground_truth_class": "positive",
+      "human_local_grade": "FAIL",
+      "human_cloud_grade": "FAIL",
+      "human_note": "捉鱼不等于钓鱼",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "human_note_semantics",
+      "selection_reason": "徒手捕鱼与垂钓边界。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_010.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F1\\fishing_010\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "人",
+        "constraints": [
+          {
+            "text": "正在钓鱼",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "box"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 3,
+      "attribution": {
+        "case_id": "F1::fishing_010.jpeg",
+        "prompt_id": "F1",
+        "human_local_grade": "FAIL",
+        "human_cloud_grade": "FAIL",
+        "primary_cause": "evidence_context_insufficient",
+        "secondary_causes": [
+          "vlm_semantic_reasoning"
+        ],
+        "earliest_failure_rationale": "徒手捉鱼与垂钓的区分依赖全局动作与工具上下文。",
+        "static_attribution": true,
+        "static_primary_cause": "evidence_context_insufficient",
+        "post_probe_refined": false
+      },
+      "method_d_selected": true
+    },
+    {
+      "selection_index": 4,
+      "case_id": "F1::fishing_014.jpeg",
+      "prompt_id": "F1",
+      "prompt_text": "框出正在钓鱼的人",
+      "ground_truth_class": "positive",
+      "human_local_grade": "FAIL",
+      "human_cloud_grade": "FAIL",
+      "human_note": "虽然有钓鱼竿但是明显没有进行钓鱼活动",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "human_note_semantics",
+      "selection_reason": "有鱼竿但当前未垂钓。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_014.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F1\\fishing_014\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "钓鱼的人",
+        "constraints": [
+          {
+            "text": "正在钓鱼",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "box"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 3,
+      "attribution": {
+        "case_id": "F1::fishing_014.jpeg",
+        "prompt_id": "F1",
+        "human_local_grade": "FAIL",
+        "human_cloud_grade": "FAIL",
+        "primary_cause": "evidence_context_insufficient",
+        "secondary_causes": [
+          "vlm_semantic_reasoning"
+        ],
+        "earliest_failure_rationale": "有鱼竿不等于正在垂钓，固定局部 crop 缺少完整活动状态。",
+        "static_attribution": true,
+        "static_primary_cause": "evidence_context_insufficient",
+        "post_probe_refined": false
+      },
+      "method_d_selected": true
+    },
+    {
+      "selection_index": 5,
+      "case_id": "F1::fishing_004.jpeg",
+      "prompt_id": "F1",
+      "prompt_text": "框出正在钓鱼的人",
+      "ground_truth_class": "positive",
+      "human_local_grade": "PASS",
+      "human_cloud_grade": "PASS",
+      "human_note": "",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "F1 positive PASS control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_004.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F1\\fishing_004\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "钓鱼的人",
+        "constraints": [
+          {
+            "text": "正在钓鱼",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "box"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": null,
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 6,
+      "case_id": "F1::fishing_018.jpeg",
+      "prompt_id": "F1",
+      "prompt_text": "框出正在钓鱼的人",
+      "ground_truth_class": "negative",
+      "human_local_grade": "TN",
+      "human_cloud_grade": "TN",
+      "human_note": "",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "F1 negative TN control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_018.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F1\\fishing_018\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "钓鱼的人",
+        "constraints": [
+          {
+            "text": "正在钓鱼",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "box"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": null,
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 7,
+      "case_id": "F2::fishing_008.jpeg",
+      "prompt_id": "F2",
+      "prompt_text": "把拿着鱼竿的人描边",
+      "ground_truth_class": "positive",
+      "human_local_grade": "DEGRADED",
+      "human_cloud_grade": "DEGRADED",
+      "human_note": "左边完整度较高，但漏掉了绿色衣服女孩，右边给电线和树叶也描边了，质量较低，同样也漏掉了绿色衣服女孩",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "多人持竿与漏人。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_008.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F2\\fishing_008\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "拿着鱼竿的人",
+        "constraints": [
+          {
+            "text": "持有鱼竿",
+            "route": "relation"
+          }
+        ],
+        "action": {
+          "type": "outline"
+        },
+        "related_objects": [
+          {
+            "object": "fishing rod",
+            "relation": "held_by_target"
+          }
+        ]
+      },
+      "frozen_candidate_count": 3,
+      "attribution": {
+        "case_id": "F2::fishing_008.jpeg",
+        "prompt_id": "F2",
+        "human_local_grade": "DEGRADED",
+        "human_cloud_grade": "DEGRADED",
+        "primary_cause": "detector_recall",
+        "secondary_causes": [
+          "sam_segmentation"
+        ],
+        "earliest_failure_rationale": "漏掉绿色衣服人物；树叶/电线描边是下游质量问题。",
+        "static_attribution": true,
+        "static_primary_cause": "detector_recall",
+        "post_probe_refined": false
+      },
+      "method_d_selected": true
+    },
+    {
+      "selection_index": 8,
+      "case_id": "F2::fishing_011.jpeg",
+      "prompt_id": "F2",
+      "prompt_text": "把拿着鱼竿的人描边",
+      "ground_truth_class": "negative",
+      "human_local_grade": "FP",
+      "human_cloud_grade": "FP",
+      "human_note": "不是鱼竿是笼子",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "human_note_semantics",
+      "selection_reason": "笼子不是鱼竿。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_011.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F2\\fishing_011\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "人",
+        "constraints": [
+          {
+            "text": "拿着鱼竿",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "outline"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "F2::fishing_011.jpeg",
+        "prompt_id": "F2",
+        "human_local_grade": "FP",
+        "human_cloud_grade": "FP",
+        "primary_cause": "detector_candidate_quality",
+        "secondary_causes": [
+          "vlm_semantic_reasoning"
+        ],
+        "earliest_failure_rationale": "被当作鱼竿的相关视觉对象实际是笼子。",
+        "static_attribution": true,
+        "static_primary_cause": "detector_candidate_quality",
+        "post_probe_refined": false
+      },
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 9,
+      "case_id": "F2::fishing_012.jpeg",
+      "prompt_id": "F2",
+      "prompt_text": "把拿着鱼竿的人描边",
+      "ground_truth_class": "positive",
+      "human_local_grade": "FAIL",
+      "human_cloud_grade": "FAIL",
+      "human_note": "鱼竿只是在他身边，并没有手持的动作",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "human_note_semantics",
+      "selection_reason": "鱼竿在身旁而非手持。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_012.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F2\\fishing_012\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "人",
+        "constraints": [
+          {
+            "text": "拿着鱼竿",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "outline"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "F2::fishing_012.jpeg",
+        "prompt_id": "F2",
+        "human_local_grade": "FAIL",
+        "human_cloud_grade": "FAIL",
+        "primary_cause": "vlm_semantic_reasoning",
+        "secondary_causes": [
+          "vlm_semantic_reasoning"
+        ],
+        "earliest_failure_rationale": "鱼竿仅在身旁而非手持，需要人物、手和鱼竿的完整空间上下文。",
+        "static_attribution": true,
+        "static_primary_cause": "evidence_context_insufficient",
+        "post_probe_refined": true,
+        "post_probe_evidence": "澄清 task_status 后，完整场景仍把身旁鱼竿判为手持；composite 同样错误。"
+      },
+      "method_d_selected": true
+    },
+    {
+      "selection_index": 10,
+      "case_id": "F2::fishing_009.jpeg",
+      "prompt_id": "F2",
+      "prompt_text": "把拿着鱼竿的人描边",
+      "ground_truth_class": "positive",
+      "human_local_grade": "FAIL",
+      "human_cloud_grade": "PASS",
+      "human_note": "",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "Local FAIL / Cloud PASS 分歧。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_009.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F2\\fishing_009\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "人",
+        "constraints": [
+          {
+            "text": "拿着鱼竿",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "outline"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "F2::fishing_009.jpeg",
+        "prompt_id": "F2",
+        "human_local_grade": "FAIL",
+        "human_cloud_grade": "PASS",
+        "primary_cause": "evidence_context_insufficient",
+        "secondary_causes": [
+          "vlm_semantic_reasoning"
+        ],
+        "earliest_failure_rationale": "持竿依赖手、人物与鱼竿的关系；当前 behavior 局部证据可能不足。",
+        "static_attribution": true,
+        "static_primary_cause": "evidence_context_insufficient",
+        "post_probe_refined": false
+      },
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 11,
+      "case_id": "F2::fishing_004.jpeg",
+      "prompt_id": "F2",
+      "prompt_text": "把拿着鱼竿的人描边",
+      "ground_truth_class": "positive",
+      "human_local_grade": "PASS",
+      "human_cloud_grade": "PASS",
+      "human_note": "",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "F2 positive PASS control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_004.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F2\\fishing_004\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "人",
+        "constraints": [
+          {
+            "text": "拿着鱼竿",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "outline"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": null,
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 12,
+      "case_id": "F2::fishing_010.jpeg",
+      "prompt_id": "F2",
+      "prompt_text": "把拿着鱼竿的人描边",
+      "ground_truth_class": "negative",
+      "human_local_grade": "TN",
+      "human_cloud_grade": "TN",
+      "human_note": "",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "F2 negative TN control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_010.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F2\\fishing_010\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "拿着鱼竿的人",
+        "constraints": [
+          {
+            "text": "拿着鱼竿",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "outline"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 3,
+      "attribution": null,
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 13,
+      "case_id": "F4::fishing_011.jpeg",
+      "prompt_id": "F4",
+      "prompt_text": "把拿着鱼的人标出来",
+      "ground_truth_class": "negative",
+      "human_local_grade": "FP",
+      "human_cloud_grade": "FP",
+      "human_note": "拿着笼子",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "human_note_semantics",
+      "selection_reason": "拿笼子，不是拿鱼。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_011.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F4\\fishing_011\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "人",
+        "constraints": [
+          {
+            "text": "拿着鱼",
+            "route": "relation"
+          }
+        ],
+        "action": {
+          "type": "highlight"
+        },
+        "related_objects": [
+          {
+            "object": "fish",
+            "relation": "held_by_target"
+          }
+        ]
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "F4::fishing_011.jpeg",
+        "prompt_id": "F4",
+        "human_local_grade": "FP",
+        "human_cloud_grade": "FP",
+        "primary_cause": "detector_candidate_quality",
+        "secondary_causes": [
+          "vlm_semantic_reasoning"
+        ],
+        "earliest_failure_rationale": "相关对象候选实际是笼子而非鱼。",
+        "static_attribution": true,
+        "static_primary_cause": "detector_candidate_quality",
+        "post_probe_refined": false
+      },
+      "method_d_selected": true
+    },
+    {
+      "selection_index": 14,
+      "case_id": "F4::fishing_020.jpeg",
+      "prompt_id": "F4",
+      "prompt_text": "把拿着鱼的人标出来",
+      "ground_truth_class": "positive",
+      "human_local_grade": "FAIL",
+      "human_cloud_grade": "FAIL",
+      "human_note": "明显是有人持鱼",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "明显持鱼但 relation 未通过。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_020.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F4\\fishing_020\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "拿着鱼的人",
+        "constraints": [
+          {
+            "text": "拿着鱼",
+            "route": "relation"
+          }
+        ],
+        "action": {
+          "type": "highlight"
+        },
+        "related_objects": [
+          {
+            "object": "fish",
+            "relation": "held_by_target"
+          }
+        ]
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "F4::fishing_020.jpeg",
+        "prompt_id": "F4",
+        "human_local_grade": "FAIL",
+        "human_cloud_grade": "FAIL",
+        "primary_cause": "vlm_semantic_reasoning",
+        "secondary_causes": [],
+        "earliest_failure_rationale": "人物和鱼候选已进入正式 held_by_target relation，但明显持鱼仍被拒绝。",
+        "static_attribution": true,
+        "static_primary_cause": "vlm_semantic_reasoning",
+        "post_probe_refined": false
+      },
+      "method_d_selected": true
+    },
+    {
+      "selection_index": 15,
+      "case_id": "F4::fishing_008.jpeg",
+      "prompt_id": "F4",
+      "prompt_text": "把拿着鱼的人标出来",
+      "ground_truth_class": "negative",
+      "human_local_grade": "TN",
+      "human_cloud_grade": "FP",
+      "human_note": "明显没拿鱼",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "无持鱼行为 TN control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_008.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F4\\fishing_008\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "拿着鱼的人",
+        "constraints": [
+          {
+            "text": "拿着鱼",
+            "route": "relation"
+          }
+        ],
+        "action": {
+          "type": "highlight"
+        },
+        "related_objects": [
+          {
+            "object": "fish",
+            "relation": "held_by_target"
+          }
+        ]
+      },
+      "frozen_candidate_count": 3,
+      "attribution": {
+        "case_id": "F4::fishing_008.jpeg",
+        "prompt_id": "F4",
+        "human_local_grade": "TN",
+        "human_cloud_grade": "FP",
+        "primary_cause": "unknown",
+        "secondary_causes": [],
+        "earliest_failure_rationale": "Local 裁决为正确；因 Cloud 分歧或 note 被纳入诊断全集，不把另一系统错误强加给 Local。",
+        "static_attribution": true,
+        "static_primary_cause": "unknown",
+        "post_probe_refined": false
+      },
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 16,
+      "case_id": "F4::fishing_026.jpeg",
+      "prompt_id": "F4",
+      "prompt_text": "把拿着鱼的人标出来",
+      "ground_truth_class": "negative",
+      "human_local_grade": "TN",
+      "human_cloud_grade": "FP",
+      "human_note": "没有持鱼行为",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "无持鱼行为 TN control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_026.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F4\\fishing_026\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "人",
+        "constraints": [
+          {
+            "text": "拿着鱼",
+            "route": "relation"
+          }
+        ],
+        "action": {
+          "type": "highlight"
+        },
+        "related_objects": [
+          {
+            "object": "fish",
+            "relation": "held_by_target"
+          }
+        ]
+      },
+      "frozen_candidate_count": 2,
+      "attribution": {
+        "case_id": "F4::fishing_026.jpeg",
+        "prompt_id": "F4",
+        "human_local_grade": "TN",
+        "human_cloud_grade": "FP",
+        "primary_cause": "unknown",
+        "secondary_causes": [],
+        "earliest_failure_rationale": "Local 裁决为正确；因 Cloud 分歧或 note 被纳入诊断全集，不把另一系统错误强加给 Local。",
+        "static_attribution": true,
+        "static_primary_cause": "unknown",
+        "post_probe_refined": false
+      },
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 17,
+      "case_id": "F4::fishing_001.jpeg",
+      "prompt_id": "F4",
+      "prompt_text": "把拿着鱼的人标出来",
+      "ground_truth_class": "positive",
+      "human_local_grade": "PASS",
+      "human_cloud_grade": "PASS",
+      "human_note": "",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "F4 positive PASS control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_001.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F4\\fishing_001\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "拿着鱼的人",
+        "constraints": [
+          {
+            "text": "拿着鱼",
+            "route": "relation"
+          }
+        ],
+        "action": {
+          "type": "highlight"
+        },
+        "related_objects": [
+          {
+            "object": "fish",
+            "relation": "held_by_target"
+          }
+        ]
+      },
+      "frozen_candidate_count": 1,
+      "attribution": null,
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 18,
+      "case_id": "F4::fishing_003.jpeg",
+      "prompt_id": "F4",
+      "prompt_text": "把拿着鱼的人标出来",
+      "ground_truth_class": "positive",
+      "human_local_grade": "PASS",
+      "human_cloud_grade": "PASS",
+      "human_note": "",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "第二个 F4 positive PASS control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_003.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\F4\\fishing_003\\result.json",
+      "current_plan": {
+        "target_object": "person",
+        "label": "拿着鱼的人",
+        "constraints": [
+          {
+            "text": "拿着鱼",
+            "route": "relation"
+          }
+        ],
+        "action": {
+          "type": "highlight"
+        },
+        "related_objects": [
+          {
+            "object": "fish",
+            "relation": "held_by_target"
+          }
+        ]
+      },
+      "frozen_candidate_count": 1,
+      "attribution": null,
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 19,
+      "case_id": "P1::pollution_001.jpeg",
+      "prompt_id": "P1",
+      "prompt_text": "框出水面上的垃圾",
+      "ground_truth_class": "positive",
+      "human_local_grade": "FAIL",
+      "human_cloud_grade": "FAIL",
+      "human_note": "垃圾在小筏上不是水面上",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "human_note_semantics",
+      "selection_reason": "垃圾在筏上而非直接位于水面。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_001.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P1\\pollution_001\\result.json",
+      "current_plan": {
+        "target_object": "garbage",
+        "label": "垃圾",
+        "constraints": [
+          {
+            "text": "在水面上",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "box"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "P1::pollution_001.jpeg",
+        "prompt_id": "P1",
+        "human_local_grade": "FAIL",
+        "human_cloud_grade": "FAIL",
+        "primary_cause": "scene_relation_contract_gap",
+        "secondary_causes": [
+          "evidence_context_insufficient"
+        ],
+        "earliest_failure_rationale": "垃圾在筏上而非水面；当前 behavior 文本没有正式 scene relation 表达。",
+        "static_attribution": true,
+        "static_primary_cause": "scene_relation_contract_gap",
+        "post_probe_refined": false
+      },
+      "method_d_selected": true
+    },
+    {
+      "selection_index": 20,
+      "case_id": "P1::pollution_002.jpeg",
+      "prompt_id": "P1",
+      "prompt_text": "框出水面上的垃圾",
+      "ground_truth_class": "positive",
+      "human_local_grade": "FAIL",
+      "human_cloud_grade": "FAIL",
+      "human_note": "水面上很多垃圾但是没有框",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "水面大量垃圾，Detector 召回不足。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_002.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P1\\pollution_002\\result.json",
+      "current_plan": {
+        "target_object": "garbage",
+        "label": "垃圾",
+        "constraints": [
+          {
+            "text": "在水面上",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "box"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "P1::pollution_002.jpeg",
+        "prompt_id": "P1",
+        "human_local_grade": "FAIL",
+        "human_cloud_grade": "FAIL",
+        "primary_cause": "detector_recall",
+        "secondary_causes": [
+          "scene_relation_contract_gap"
+        ],
+        "earliest_failure_rationale": "大量水面垃圾仅形成一个候选且无最终目标。",
+        "static_attribution": true,
+        "static_primary_cause": "detector_recall",
+        "post_probe_refined": false
+      },
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 21,
+      "case_id": "P1::pollution_005.jpeg",
+      "prompt_id": "P1",
+      "prompt_text": "框出水面上的垃圾",
+      "ground_truth_class": "positive",
+      "human_local_grade": "FAIL",
+      "human_cloud_grade": "FAIL",
+      "human_note": "不是垃圾是动物",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "human_note_semantics",
+      "selection_reason": "动物/植物不是垃圾。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_005.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P1\\pollution_005\\result.json",
+      "current_plan": {
+        "target_object": "garbage",
+        "label": "垃圾",
+        "constraints": [
+          {
+            "text": "在水面上",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "box"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "P1::pollution_005.jpeg",
+        "prompt_id": "P1",
+        "human_local_grade": "FAIL",
+        "human_cloud_grade": "FAIL",
+        "primary_cause": "detector_candidate_quality",
+        "secondary_causes": [
+          "ambiguous_human_requirement"
+        ],
+        "earliest_failure_rationale": "garbage query 命中动物；人工 note 明确否定垃圾语义。",
+        "static_attribution": true,
+        "static_primary_cause": "detector_candidate_quality",
+        "post_probe_refined": false
+      },
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 22,
+      "case_id": "P1::pollution_014.jpeg",
+      "prompt_id": "P1",
+      "prompt_text": "框出水面上的垃圾",
+      "ground_truth_class": "negative",
+      "human_local_grade": "FP",
+      "human_cloud_grade": "TN",
+      "human_note": "这是石头不是垃圾",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "human_note_semantics",
+      "selection_reason": "石头不是垃圾。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_014.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P1\\pollution_014\\result.json",
+      "current_plan": {
+        "target_object": "garbage",
+        "label": "垃圾",
+        "constraints": [
+          {
+            "text": "水面上",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "box"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 3,
+      "attribution": {
+        "case_id": "P1::pollution_014.jpeg",
+        "prompt_id": "P1",
+        "human_local_grade": "FP",
+        "human_cloud_grade": "TN",
+        "primary_cause": "detector_candidate_quality",
+        "secondary_causes": [
+          "vlm_semantic_reasoning"
+        ],
+        "earliest_failure_rationale": "garbage query 命中石头并被接受。",
+        "static_attribution": true,
+        "static_primary_cause": "detector_candidate_quality",
+        "post_probe_refined": false
+      },
+      "method_d_selected": true
+    },
+    {
+      "selection_index": 23,
+      "case_id": "P1::pollution_006.jpeg",
+      "prompt_id": "P1",
+      "prompt_text": "框出水面上的垃圾",
+      "ground_truth_class": "positive",
+      "human_local_grade": "PASS",
+      "human_cloud_grade": "PASS",
+      "human_note": "",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "P1 positive PASS control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_006.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P1\\pollution_006\\result.json",
+      "current_plan": {
+        "target_object": "garbage",
+        "label": "垃圾",
+        "constraints": [
+          {
+            "text": "在水面上",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "box"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": null,
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 24,
+      "case_id": "P1::pollution_013.jpeg",
+      "prompt_id": "P1",
+      "prompt_text": "框出水面上的垃圾",
+      "ground_truth_class": "negative",
+      "human_local_grade": "TN",
+      "human_cloud_grade": "TN",
+      "human_note": "",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "P1 negative TN control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_013.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P1\\pollution_013\\result.json",
+      "current_plan": {
+        "target_object": "trash",
+        "label": "垃圾",
+        "constraints": [
+          {
+            "text": "位于水面上",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "box"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": null,
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 25,
+      "case_id": "P3::pollution_006.jpeg",
+      "prompt_id": "P3",
+      "prompt_text": "描边水中的漂浮物",
+      "ground_truth_class": "positive",
+      "human_local_grade": "FAIL",
+      "human_cloud_grade": "DEGRADED",
+      "human_note": "荷叶不在飘吗，木棍不在飘吗",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "荷叶/木棍与 generic-object compile。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_006.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P3\\pollution_006\\result.json",
+      "current_plan": {
+        "target_object": "object",
+        "label": "漂浮物",
+        "constraints": [
+          {
+            "text": "水中",
+            "route": "attribute"
+          }
+        ],
+        "action": {
+          "type": "outline"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "P3::pollution_006.jpeg",
+        "prompt_id": "P3",
+        "human_local_grade": "FAIL",
+        "human_cloud_grade": "DEGRADED",
+        "primary_cause": "planner_or_concept_compile",
+        "secondary_causes": [
+          "detector_recall"
+        ],
+        "earliest_failure_rationale": "target_object 被退化为通用 object，荷叶和木棍语义在 DINO query 前已丢失。",
+        "static_attribution": true,
+        "static_primary_cause": "planner_or_concept_compile",
+        "post_probe_refined": false
+      },
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 26,
+      "case_id": "P3::pollution_014.jpeg",
+      "prompt_id": "P3",
+      "prompt_text": "描边水中的漂浮物",
+      "ground_truth_class": "positive",
+      "human_local_grade": "FAIL",
+      "human_cloud_grade": "FAIL",
+      "human_note": "石头压在石头上，不存在漂浮的条件",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "human_note_semantics",
+      "selection_reason": "石头固定支撑而非漂浮。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_014.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P3\\pollution_014\\result.json",
+      "current_plan": {
+        "target_object": "floating object",
+        "label": "漂浮物",
+        "constraints": [
+          {
+            "text": "水中",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "outline"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 3,
+      "attribution": {
+        "case_id": "P3::pollution_014.jpeg",
+        "prompt_id": "P3",
+        "human_local_grade": "FAIL",
+        "human_cloud_grade": "FAIL",
+        "primary_cause": "scene_relation_contract_gap",
+        "secondary_causes": [
+          "vlm_semantic_reasoning"
+        ],
+        "earliest_failure_rationale": "石头被压住/固定而非漂浮，需对象与支撑环境关系。",
+        "static_attribution": true,
+        "static_primary_cause": "scene_relation_contract_gap",
+        "post_probe_refined": false
+      },
+      "method_d_selected": true
+    },
+    {
+      "selection_index": 27,
+      "case_id": "P3::pollution_017.jpeg",
+      "prompt_id": "P3",
+      "prompt_text": "描边水中的漂浮物",
+      "ground_truth_class": "positive",
+      "human_local_grade": "FAIL",
+      "human_cloud_grade": "FAIL",
+      "human_note": "油污难道不是漂在水面吗",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "human_note_semantics",
+      "selection_reason": "油膜是 region/phenomenon。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_017.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P3\\pollution_017\\result.json",
+      "current_plan": {
+        "target_object": "floating object",
+        "label": "漂浮物",
+        "constraints": [
+          {
+            "text": "水中的漂浮物",
+            "route": "attribute"
+          }
+        ],
+        "action": {
+          "type": "outline"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "P3::pollution_017.jpeg",
+        "prompt_id": "P3",
+        "human_local_grade": "FAIL",
+        "human_cloud_grade": "FAIL",
+        "primary_cause": "region_or_phenomenon_routing_gap",
+        "secondary_causes": [],
+        "earliest_failure_rationale": "油污/油膜是水面现象区域，不是独立 object instance。",
+        "static_attribution": true,
+        "static_primary_cause": "region_or_phenomenon_routing_gap",
+        "post_probe_refined": false
+      },
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 28,
+      "case_id": "P3::pollution_021.jpeg",
+      "prompt_id": "P3",
+      "prompt_text": "描边水中的漂浮物",
+      "ground_truth_class": "positive",
+      "human_local_grade": "FAIL",
+      "human_cloud_grade": "PASS",
+      "human_note": "人是站着没有漂浮",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "human_note_semantics",
+      "selection_reason": "人站立而非漂浮。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_021.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P3\\pollution_021\\result.json",
+      "current_plan": {
+        "target_object": "floating object",
+        "label": "漂浮物",
+        "constraints": [
+          {
+            "text": "水中",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "outline"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 2,
+      "attribution": {
+        "case_id": "P3::pollution_021.jpeg",
+        "prompt_id": "P3",
+        "human_local_grade": "FAIL",
+        "human_cloud_grade": "PASS",
+        "primary_cause": "scene_relation_contract_gap",
+        "secondary_causes": [
+          "vlm_semantic_reasoning"
+        ],
+        "earliest_failure_rationale": "人物站立而非漂浮，需姿态与水体空间关系。",
+        "static_attribution": true,
+        "static_primary_cause": "scene_relation_contract_gap",
+        "post_probe_refined": false
+      },
+      "method_d_selected": true
+    },
+    {
+      "selection_index": 29,
+      "case_id": "P3::pollution_001.jpeg",
+      "prompt_id": "P3",
+      "prompt_text": "描边水中的漂浮物",
+      "ground_truth_class": "positive",
+      "human_local_grade": "PASS",
+      "human_cloud_grade": "PASS",
+      "human_note": "",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "P3 positive PASS control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_001.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P3\\pollution_001\\result.json",
+      "current_plan": {
+        "target_object": "floating object",
+        "label": "漂浮物",
+        "constraints": [
+          {
+            "text": "在水中",
+            "route": "attribute"
+          }
+        ],
+        "action": {
+          "type": "outline"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 2,
+      "attribution": null,
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 30,
+      "case_id": "P3::pollution_028.jpeg",
+      "prompt_id": "P3",
+      "prompt_text": "描边水中的漂浮物",
+      "ground_truth_class": "negative",
+      "human_local_grade": "TN",
+      "human_cloud_grade": "FP",
+      "human_note": "这是建筑没有漂浮",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "建筑不漂浮 TN control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_028.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P3\\pollution_028\\result.json",
+      "current_plan": {
+        "target_object": "object",
+        "label": "漂浮物",
+        "constraints": [
+          {
+            "text": "漂浮物",
+            "route": "attribute"
+          },
+          {
+            "text": "在水中",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "outline"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "P3::pollution_028.jpeg",
+        "prompt_id": "P3",
+        "human_local_grade": "TN",
+        "human_cloud_grade": "FP",
+        "primary_cause": "unknown",
+        "secondary_causes": [],
+        "earliest_failure_rationale": "Local 裁决为正确；因 Cloud 分歧或 note 被纳入诊断全集，不把另一系统错误强加给 Local。",
+        "static_attribution": true,
+        "static_primary_cause": "unknown",
+        "post_probe_refined": false
+      },
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 31,
+      "case_id": "P4::pollution_003.jpeg",
+      "prompt_id": "P4",
+      "prompt_text": "标出水面污染区域",
+      "ground_truth_class": "positive",
+      "human_local_grade": "FAIL",
+      "human_cloud_grade": "FAIL",
+      "human_note": "浮萍也是水污染",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "human_note_semantics",
+      "selection_reason": "浮萍覆盖与污染语义边界。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_003.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P4\\pollution_003\\result.json",
+      "current_plan": {
+        "target_object": "water pollution",
+        "label": "水面污染区域",
+        "constraints": [
+          {
+            "text": "水面污染区域",
+            "route": "attribute"
+          }
+        ],
+        "action": {
+          "type": "highlight"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 2,
+      "attribution": {
+        "case_id": "P4::pollution_003.jpeg",
+        "prompt_id": "P4",
+        "human_local_grade": "FAIL",
+        "human_cloud_grade": "FAIL",
+        "primary_cause": "region_or_phenomenon_routing_gap",
+        "secondary_causes": [],
+        "earliest_failure_rationale": "水面污染是 region/stuff/phenomenon，当前却进入 DINO object candidate + attribute route。",
+        "static_attribution": true,
+        "static_primary_cause": "region_or_phenomenon_routing_gap",
+        "post_probe_refined": false
+      },
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 32,
+      "case_id": "P4::pollution_015.png",
+      "prompt_id": "P4",
+      "prompt_text": "标出水面污染区域",
+      "ground_truth_class": "positive",
+      "human_local_grade": "FAIL",
+      "human_cloud_grade": "FAIL",
+      "human_note": "框树干什么",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "树/整图候选暴露 region-as-object。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_015.png",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P4\\pollution_015\\result.json",
+      "current_plan": {
+        "target_object": "water pollution",
+        "label": "水面污染区域",
+        "constraints": [
+          {
+            "text": "水面污染区域",
+            "route": "attribute"
+          }
+        ],
+        "action": {
+          "type": "outline"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "P4::pollution_015.png",
+        "prompt_id": "P4",
+        "human_local_grade": "FAIL",
+        "human_cloud_grade": "FAIL",
+        "primary_cause": "region_or_phenomenon_routing_gap",
+        "secondary_causes": [],
+        "earliest_failure_rationale": "水面污染是 region/stuff/phenomenon，当前却进入 DINO object candidate + attribute route。",
+        "static_attribution": true,
+        "static_primary_cause": "region_or_phenomenon_routing_gap",
+        "post_probe_refined": false
+      },
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 33,
+      "case_id": "P4::pollution_025.jpeg",
+      "prompt_id": "P4",
+      "prompt_text": "标出水面污染区域",
+      "ground_truth_class": "negative",
+      "human_local_grade": "TN",
+      "human_cloud_grade": "FP",
+      "human_note": "是水面吗你就标",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "human_note_semantics",
+      "selection_reason": "非水面区域 TN control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_025.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P4\\pollution_025\\result.json",
+      "current_plan": {
+        "target_object": "pollution",
+        "label": "水面污染区域",
+        "constraints": [
+          {
+            "text": "水面污染区域",
+            "route": "attribute"
+          }
+        ],
+        "action": {
+          "type": "highlight"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "P4::pollution_025.jpeg",
+        "prompt_id": "P4",
+        "human_local_grade": "TN",
+        "human_cloud_grade": "FP",
+        "primary_cause": "unknown",
+        "secondary_causes": [],
+        "earliest_failure_rationale": "Local 裁决为正确；因 Cloud 分歧或 note 被纳入诊断全集，不把另一系统错误强加给 Local。",
+        "static_attribution": true,
+        "static_primary_cause": "unknown",
+        "post_probe_refined": false
+      },
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 34,
+      "case_id": "P4::pollution_013.jpeg",
+      "prompt_id": "P4",
+      "prompt_text": "标出水面污染区域",
+      "ground_truth_class": "positive",
+      "human_local_grade": "PASS",
+      "human_cloud_grade": "PASS",
+      "human_note": "非常不错",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "藻类覆盖污染区 PASS control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_013.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P4\\pollution_013\\result.json",
+      "current_plan": {
+        "target_object": "water pollution",
+        "label": "水面污染区域",
+        "constraints": [
+          {
+            "text": "水面污染",
+            "route": "attribute"
+          }
+        ],
+        "action": {
+          "type": "outline"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": {
+        "case_id": "P4::pollution_013.jpeg",
+        "prompt_id": "P4",
+        "human_local_grade": "PASS",
+        "human_cloud_grade": "PASS",
+        "primary_cause": "unknown",
+        "secondary_causes": [],
+        "earliest_failure_rationale": "Local 裁决为正确；因 Cloud 分歧或 note 被纳入诊断全集，不把另一系统错误强加给 Local。",
+        "static_attribution": true,
+        "static_primary_cause": "unknown",
+        "post_probe_refined": false
+      },
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 35,
+      "case_id": "P4::pollution_008.jpeg",
+      "prompt_id": "P4",
+      "prompt_text": "标出水面污染区域",
+      "ground_truth_class": "negative",
+      "human_local_grade": "TN",
+      "human_cloud_grade": "TN",
+      "human_note": "",
+      "expected_task_status": "not_satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "正常水面 TN control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_008.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P4\\pollution_008\\result.json",
+      "current_plan": {
+        "target_object": "water pollution",
+        "label": "水面污染区域",
+        "constraints": [
+          {
+            "text": "水面污染区域",
+            "route": "attribute"
+          }
+        ],
+        "action": {
+          "type": "highlight"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 7,
+      "attribution": null,
+      "method_d_selected": false
+    },
+    {
+      "selection_index": 36,
+      "case_id": "P4::pollution_001.jpeg",
+      "prompt_id": "P4",
+      "prompt_text": "标出水面污染区域",
+      "ground_truth_class": "positive",
+      "human_local_grade": "PASS",
+      "human_cloud_grade": "PASS",
+      "human_note": "",
+      "expected_task_status": "satisfied",
+      "expected_status_source": "frozen_ground_truth_class",
+      "selection_reason": "P4 positive PASS control。",
+      "original_image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\water_pollution\\pollution_001.jpeg",
+      "local_result_json_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_local_vlm_quality_comparison_v1\\execution\\artifacts\\P4\\pollution_001\\result.json",
+      "current_plan": {
+        "target_object": "water",
+        "label": "水面污染区域",
+        "constraints": [
+          {
+            "text": "污染",
+            "route": "behavior"
+          }
+        ],
+        "action": {
+          "type": "outline"
+        },
+        "related_objects": []
+      },
+      "frozen_candidate_count": 1,
+      "attribution": null,
+      "method_d_selected": false
+    }
+  ]
+}

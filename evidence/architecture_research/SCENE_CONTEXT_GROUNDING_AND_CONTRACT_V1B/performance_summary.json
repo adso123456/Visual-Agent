@@ -1,0 +1,41 @@
+{
+  "frozen_model": "qwen3.8:27b-mtp-q4_K_M",
+  "frozen_endpoint": "http://192.168.250.9:11434/v1",
+  "selection_sha256": "80016b37ccb8456ccca193d7ff3c1e90f9efd3f69e763cf41242f7389e88448d",
+  "complex_b_phase_1": {
+    "logical_cases": 36,
+    "contract_attempts": 44,
+    "retry_count": 8,
+    "recovered": 5,
+    "final_contract_failures": 3,
+    "recorded_elapsed_seconds": 1310.997,
+    "recorded_tokens": 209439
+  },
+  "simplified_b": {
+    "logical_cases": 36,
+    "contract_attempts": 36,
+    "retry_count": 0,
+    "recovered": 0,
+    "final_contract_failures": 0,
+    "recorded_elapsed_seconds": 843.367,
+    "recorded_tokens": 157950,
+    "reasoning_in_content_responses": 0
+  },
+  "single_candidate_full_scene": {
+    "logical_cases": 36,
+    "frozen_candidates": 60,
+    "contract_attempts": 60,
+    "retry_count": 0,
+    "recovered": 0,
+    "final_contract_failures": 0,
+    "recorded_elapsed_seconds": 1264.765,
+    "recorded_tokens": 266642,
+    "reasoning_in_content_responses": 0
+  },
+  "phase_1b_total": {
+    "contract_attempts": 96,
+    "recorded_elapsed_seconds": 2108.133,
+    "recorded_tokens": 424592,
+    "transport_failures": 0
+  }
+}

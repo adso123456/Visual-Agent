@@ -1,0 +1,225 @@
+{
+  "metrics": {
+    "A": {
+      "correct": 18,
+      "total": 36,
+      "accuracy": 0.5,
+      "by_prompt": {
+        "F1": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        },
+        "F2": {
+          "correct": 4,
+          "total": 6,
+          "accuracy": 0.6667
+        },
+        "F4": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        },
+        "P1": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        },
+        "P3": {
+          "correct": 2,
+          "total": 6,
+          "accuracy": 0.3333
+        },
+        "P4": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        }
+      },
+      "error_type_counts": {
+        "false_positive_semantic": 9,
+        "false_negative_semantic": 6,
+        "uncertain_unresolved": 3
+      }
+    },
+    "B": {
+      "correct": 23,
+      "total": 36,
+      "accuracy": 0.6389,
+      "by_prompt": {
+        "F1": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        },
+        "F2": {
+          "correct": 4,
+          "total": 6,
+          "accuracy": 0.6667
+        },
+        "F4": {
+          "correct": 5,
+          "total": 6,
+          "accuracy": 0.8333
+        },
+        "P1": {
+          "correct": 5,
+          "total": 6,
+          "accuracy": 0.8333
+        },
+        "P3": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        },
+        "P4": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        }
+      },
+      "error_type_counts": {
+        "scene_context_wrong": 10,
+        "protocol_failure": 3
+      }
+    },
+    "C": {
+      "correct": 20,
+      "total": 36,
+      "accuracy": 0.5556,
+      "by_prompt": {
+        "F1": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        },
+        "F2": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        },
+        "F4": {
+          "correct": 5,
+          "total": 6,
+          "accuracy": 0.8333
+        },
+        "P1": {
+          "correct": 4,
+          "total": 6,
+          "accuracy": 0.6667
+        },
+        "P3": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        },
+        "P4": {
+          "correct": 2,
+          "total": 6,
+          "accuracy": 0.3333
+        }
+      },
+      "error_type_counts": {
+        "scene_context_wrong_propagated": 10,
+        "protocol_failure": 3,
+        "scene_context_correct_but_candidate_wrong": 3
+      }
+    },
+    "D": {
+      "correct": 5,
+      "total": 12,
+      "accuracy": 0.4167,
+      "by_prompt": {
+        "F1": {
+          "correct": 1,
+          "total": 4,
+          "accuracy": 0.25
+        },
+        "F2": {
+          "correct": 1,
+          "total": 2,
+          "accuracy": 0.5
+        },
+        "F4": {
+          "correct": 1,
+          "total": 2,
+          "accuracy": 0.5
+        },
+        "P1": {
+          "correct": 1,
+          "total": 2,
+          "accuracy": 0.5
+        },
+        "P3": {
+          "correct": 1,
+          "total": 2,
+          "accuracy": 0.5
+        }
+      },
+      "error_type_counts": {
+        "group_scene_semantic_wrong": 7
+      }
+    }
+  },
+  "transitions": {
+    "B": {
+      "previous_wrong_to_correct": [
+        "F2::fishing_009.jpeg",
+        "F4::fishing_020.jpeg",
+        "F4::fishing_008.jpeg",
+        "P1::pollution_002.jpeg",
+        "P1::pollution_014.jpeg",
+        "P3::pollution_006.jpeg",
+        "P3::pollution_014.jpeg",
+        "P4::pollution_008.jpeg"
+      ],
+      "previous_correct_to_wrong": [
+        "F2::fishing_008.jpeg",
+        "P3::pollution_001.jpeg",
+        "P4::pollution_015.png"
+      ],
+      "uncertain_to_correct": [
+        "F4::fishing_008.jpeg",
+        "P3::pollution_006.jpeg",
+        "P4::pollution_008.jpeg"
+      ]
+    },
+    "C": {
+      "previous_wrong_to_correct": [
+        "F4::fishing_020.jpeg",
+        "F4::fishing_008.jpeg",
+        "P1::pollution_014.jpeg",
+        "P3::pollution_006.jpeg",
+        "P3::pollution_014.jpeg"
+      ],
+      "previous_correct_to_wrong": [
+        "F2::fishing_008.jpeg",
+        "P3::pollution_001.jpeg",
+        "P4::pollution_015.png"
+      ],
+      "uncertain_to_correct": [
+        "F4::fishing_008.jpeg",
+        "P3::pollution_006.jpeg"
+      ]
+    },
+    "D": {
+      "previous_wrong_to_correct": [
+        "F4::fishing_020.jpeg",
+        "P1::pollution_014.jpeg",
+        "P3::pollution_014.jpeg"
+      ],
+      "previous_correct_to_wrong": [],
+      "uncertain_to_correct": []
+    }
+  },
+  "hallucination": {
+    "audited_cases": 25,
+    "auditable_fact_cases": 22,
+    "audited_facts": 77,
+    "hallucinated_facts": 1,
+    "per_fact_rate": 0.013,
+    "cases_with_hallucination": 1,
+    "per_auditable_case_rate": 0.0455,
+    "candidate_identity_confusion": 1
+  }
+}

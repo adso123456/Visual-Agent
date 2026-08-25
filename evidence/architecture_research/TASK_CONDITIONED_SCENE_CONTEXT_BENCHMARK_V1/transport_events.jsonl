@@ -1,0 +1,2 @@
+{"method":"B","case_id":"F1::fishing_001.jpeg","transport_attempt":0,"error_type":"InternalServerError","error":"HTTP 502 on initial pre-result run; endpoint temporarily became unreachable; exact frozen request later succeeded.","will_retry":true}
+{"method":"B","case_id":"F4::fishing_001.jpeg","transport_attempt":0,"error_type":"InternalServerError","error":"HTTP 502 after 120-second request; no result persisted; exact frozen request pending bounded retry.","will_retry":true}

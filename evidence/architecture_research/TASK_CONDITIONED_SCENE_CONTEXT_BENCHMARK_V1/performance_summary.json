@@ -1,0 +1,63 @@
+{
+  "current_method_a": {
+    "cases": 36,
+    "vlm_contract_attempts": 104,
+    "pipeline_total_seconds": 2260.585,
+    "pipeline_group_verification_seconds": 1805.205,
+    "note": "从既有 36 个 Production result.json 汇总；未重跑 Pipeline。"
+  },
+  "method_b": {
+    "logical_scene_contexts": 36,
+    "contract_attempts": 44,
+    "recorded_completion_attempts": 42,
+    "contract_retries": 8,
+    "recovered": 5,
+    "final_contract_failures": 3,
+    "transport_failures_retried": 2,
+    "vlm_elapsed_seconds_recorded": 1310.997,
+    "total_tokens_recorded": 209439
+  },
+  "method_c_incremental": {
+    "frozen_candidates_total": 60,
+    "candidate_contracts_executed": 54,
+    "contract_attempts": 56,
+    "contract_retries": 2,
+    "recovered": 2,
+    "cases_without_context": 3,
+    "vlm_elapsed_seconds": 1021.152,
+    "sam_regeneration_seconds": 69.867,
+    "total_tokens": 235129
+  },
+  "method_b_plus_c": {
+    "contract_attempts": 100,
+    "recorded_vlm_elapsed_seconds": 2332.149,
+    "recorded_vlm_plus_sam_seconds": 2402.016
+  },
+  "method_d": {
+    "cases": 12,
+    "contract_attempts": 12,
+    "recorded_completion_attempts": 12,
+    "vlm_elapsed_seconds": 249.267,
+    "total_tokens": 55568
+  },
+  "transport_events": [
+    {
+      "method": "B",
+      "case_id": "F1::fishing_001.jpeg",
+      "transport_attempt": 0,
+      "error_type": "InternalServerError",
+      "error": "HTTP 502 on initial pre-result run; endpoint temporarily became unreachable; exact frozen request later succeeded.",
+      "will_retry": true
+    },
+    {
+      "method": "B",
+      "case_id": "F4::fishing_001.jpeg",
+      "transport_attempt": 0,
+      "error_type": "InternalServerError",
+      "error": "HTTP 502 after 120-second request; no result persisted; exact frozen request pending bounded retry.",
+      "will_retry": true
+    }
+  ],
+  "model": "qwen3.8:27b-mtp-q4_K_M",
+  "endpoint": "http://192.168.250.9:11434/v1"
+}

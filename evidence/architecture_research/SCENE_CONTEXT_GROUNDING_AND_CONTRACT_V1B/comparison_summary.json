@@ -1,0 +1,345 @@
+{
+  "metrics": {
+    "A_CURRENT": {
+      "correct": 18,
+      "total": 36,
+      "accuracy": 0.5,
+      "by_prompt": {
+        "F1": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        },
+        "F2": {
+          "correct": 4,
+          "total": 6,
+          "accuracy": 0.6667
+        },
+        "F4": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        },
+        "P1": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        },
+        "P3": {
+          "correct": 2,
+          "total": 6,
+          "accuracy": 0.3333
+        },
+        "P4": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        }
+      }
+    },
+    "B_COMPLEX": {
+      "correct": 23,
+      "total": 36,
+      "accuracy": 0.6389,
+      "by_prompt": {
+        "F1": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        },
+        "F2": {
+          "correct": 4,
+          "total": 6,
+          "accuracy": 0.6667
+        },
+        "F4": {
+          "correct": 5,
+          "total": 6,
+          "accuracy": 0.8333
+        },
+        "P1": {
+          "correct": 5,
+          "total": 6,
+          "accuracy": 0.8333
+        },
+        "P3": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        },
+        "P4": {
+          "correct": 3,
+          "total": 6,
+          "accuracy": 0.5
+        }
+      }
+    },
+    "B_SIMPLIFIED": {
+      "correct": 25,
+      "total": 36,
+      "accuracy": 0.6944,
+      "by_prompt": {
+        "F1": {
+          "correct": 4,
+          "total": 6,
+          "accuracy": 0.6667
+        },
+        "F2": {
+          "correct": 5,
+          "total": 6,
+          "accuracy": 0.8333
+        },
+        "F4": {
+          "correct": 5,
+          "total": 6,
+          "accuracy": 0.8333
+        },
+        "P1": {
+          "correct": 5,
+          "total": 6,
+          "accuracy": 0.8333
+        },
+        "P3": {
+          "correct": 4,
+          "total": 6,
+          "accuracy": 0.6667
+        },
+        "P4": {
+          "correct": 2,
+          "total": 6,
+          "accuracy": 0.3333
+        }
+      }
+    },
+    "SINGLE_FULL_SCENE": {
+      "correct": 23,
+      "total": 36,
+      "accuracy": 0.6389,
+      "by_prompt": {
+        "F1": {
+          "correct": 2,
+          "total": 6,
+          "accuracy": 0.3333
+        },
+        "F2": {
+          "correct": 4,
+          "total": 6,
+          "accuracy": 0.6667
+        },
+        "F4": {
+          "correct": 4,
+          "total": 6,
+          "accuracy": 0.6667
+        },
+        "P1": {
+          "correct": 4,
+          "total": 6,
+          "accuracy": 0.6667
+        },
+        "P3": {
+          "correct": 4,
+          "total": 6,
+          "accuracy": 0.6667
+        },
+        "P4": {
+          "correct": 5,
+          "total": 6,
+          "accuracy": 0.8333
+        }
+      }
+    }
+  },
+  "transitions": {
+    "B_SIMPLIFIED_VS_CURRENT": {
+      "wrong_to_correct": [
+        "F1::fishing_014.jpeg",
+        "F2::fishing_009.jpeg",
+        "F4::fishing_020.jpeg",
+        "F4::fishing_008.jpeg",
+        "P1::pollution_002.jpeg",
+        "P1::pollution_014.jpeg",
+        "P3::pollution_006.jpeg",
+        "P3::pollution_014.jpeg",
+        "P4::pollution_008.jpeg"
+      ],
+      "correct_to_wrong": [
+        "P4::pollution_015.png",
+        "P4::pollution_025.jpeg"
+      ],
+      "changed_status": [
+        {
+          "case_id": "F1::fishing_014.jpeg",
+          "before": "satisfied",
+          "after": "not_satisfied"
+        },
+        {
+          "case_id": "F2::fishing_009.jpeg",
+          "before": "not_satisfied",
+          "after": "satisfied"
+        },
+        {
+          "case_id": "F4::fishing_011.jpeg",
+          "before": "satisfied",
+          "after": "uncertain"
+        },
+        {
+          "case_id": "F4::fishing_020.jpeg",
+          "before": "not_satisfied",
+          "after": "satisfied"
+        },
+        {
+          "case_id": "F4::fishing_008.jpeg",
+          "before": "uncertain",
+          "after": "not_satisfied"
+        },
+        {
+          "case_id": "P1::pollution_002.jpeg",
+          "before": "not_satisfied",
+          "after": "satisfied"
+        },
+        {
+          "case_id": "P1::pollution_014.jpeg",
+          "before": "satisfied",
+          "after": "not_satisfied"
+        },
+        {
+          "case_id": "P3::pollution_006.jpeg",
+          "before": "uncertain",
+          "after": "satisfied"
+        },
+        {
+          "case_id": "P3::pollution_014.jpeg",
+          "before": "satisfied",
+          "after": "not_satisfied"
+        },
+        {
+          "case_id": "P4::pollution_015.png",
+          "before": "satisfied",
+          "after": "not_satisfied"
+        },
+        {
+          "case_id": "P4::pollution_025.jpeg",
+          "before": "not_satisfied",
+          "after": "uncertain"
+        },
+        {
+          "case_id": "P4::pollution_008.jpeg",
+          "before": "uncertain",
+          "after": "not_satisfied"
+        }
+      ]
+    },
+    "B_SIMPLIFIED_VS_COMPLEX_B": {
+      "wrong_to_correct": [
+        "F1::fishing_014.jpeg",
+        "F2::fishing_008.jpeg",
+        "P3::pollution_001.jpeg"
+      ],
+      "correct_to_wrong": [
+        "P4::pollution_025.jpeg"
+      ],
+      "changed_status": [
+        {
+          "case_id": "F1::fishing_014.jpeg",
+          "before": "uncertain",
+          "after": "not_satisfied"
+        },
+        {
+          "case_id": "F2::fishing_008.jpeg",
+          "before": "protocol_failure",
+          "after": "satisfied"
+        },
+        {
+          "case_id": "P1::pollution_001.jpeg",
+          "before": "protocol_failure",
+          "after": "satisfied"
+        },
+        {
+          "case_id": "P3::pollution_001.jpeg",
+          "before": "protocol_failure",
+          "after": "satisfied"
+        },
+        {
+          "case_id": "P4::pollution_015.png",
+          "before": "uncertain",
+          "after": "not_satisfied"
+        },
+        {
+          "case_id": "P4::pollution_025.jpeg",
+          "before": "not_satisfied",
+          "after": "uncertain"
+        }
+      ]
+    },
+    "SINGLE_FULL_SCENE_VS_CURRENT": {
+      "wrong_to_correct": [
+        "F4::fishing_020.jpeg",
+        "P1::pollution_014.jpeg",
+        "P3::pollution_006.jpeg",
+        "P3::pollution_014.jpeg",
+        "P4::pollution_003.jpeg",
+        "P4::pollution_008.jpeg"
+      ],
+      "correct_to_wrong": [
+        "F1::fishing_010.jpeg"
+      ],
+      "changed_status": [
+        {
+          "case_id": "F1::fishing_010.jpeg",
+          "before": "not_satisfied",
+          "after": "uncertain"
+        },
+        {
+          "case_id": "F1::fishing_014.jpeg",
+          "before": "satisfied",
+          "after": "uncertain"
+        },
+        {
+          "case_id": "F4::fishing_011.jpeg",
+          "before": "satisfied",
+          "after": "uncertain"
+        },
+        {
+          "case_id": "F4::fishing_020.jpeg",
+          "before": "not_satisfied",
+          "after": "satisfied"
+        },
+        {
+          "case_id": "P1::pollution_014.jpeg",
+          "before": "satisfied",
+          "after": "not_satisfied"
+        },
+        {
+          "case_id": "P3::pollution_006.jpeg",
+          "before": "uncertain",
+          "after": "satisfied"
+        },
+        {
+          "case_id": "P3::pollution_014.jpeg",
+          "before": "satisfied",
+          "after": "not_satisfied"
+        },
+        {
+          "case_id": "P3::pollution_017.jpeg",
+          "before": "not_satisfied",
+          "after": "uncertain"
+        },
+        {
+          "case_id": "P4::pollution_003.jpeg",
+          "before": "not_satisfied",
+          "after": "satisfied"
+        },
+        {
+          "case_id": "P4::pollution_008.jpeg",
+          "before": "uncertain",
+          "after": "not_satisfied"
+        },
+        {
+          "case_id": "P4::pollution_001.jpeg",
+          "before": "not_satisfied",
+          "after": "uncertain"
+        }
+      ]
+    }
+  }
+}
