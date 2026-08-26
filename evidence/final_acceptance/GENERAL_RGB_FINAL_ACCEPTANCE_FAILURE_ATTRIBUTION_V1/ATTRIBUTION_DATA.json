@@ -1,0 +1,158 @@
+{
+  "schema_version": "GENERAL_RGB_FINAL_ACCEPTANCE_FAILURE_ATTRIBUTION_V1",
+  "status": "READ_ONLY_ATTRIBUTION_COMPLETE_REVIEW_REQUIRED",
+  "model_calls": 0,
+  "production_modified": false,
+  "reruns": 0,
+  "sources": {
+    "production_commit": "4dac9cb3823e22e90ff3bb8157c6544c6c6b88fd",
+    "historical_local_commit": "c2a784573dea313c3f80e714fbc4b7007563f9fa",
+    "historical_evidence_commit": "ed4ffacbb26b531d33cd2f2e49bb2f165afd9c7a",
+    "final_acceptance_evidence_commit": "e6b93b6668da52d78a400aca352c63c375696420"
+  },
+  "code_identity": {
+    "commits_compared": [
+      "c2a784573dea313c3f80e714fbc4b7007563f9fa",
+      "4dac9cb3823e22e90ff3bb8157c6544c6c6b88fd"
+    ],
+    "all_compared_blobs_identical": true,
+    "blobs": {
+      "visual_agent/deepseek_agent.py": "c950776790b5a4ec4f5797187e0e46e777a29291",
+      "visual_agent/pipeline.py": "c4f0dde2aef8aa5505eb57ff7667400c03d99bcb",
+      "visual_agent/relations.py": "d995007ac3e0cca984ef09b44fc336497437d381",
+      "visual_agent/vlm.py": "dbc638f10176196c254e24673528ea69d0b80afd",
+      "visual_agent/evidence.py": "6815c754814f5f9c44868bc583e90a0da451a5f7",
+      "visual_agent/qwen_protocol.py": "adb618683162e6ee1a74c2525bab72f44858cfab"
+    }
+  },
+  "changed_valid_outputs": {
+    "total": 23,
+    "plan_payload_changed": 14,
+    "route_transitions": {
+      "behavior_to_behavior": 8,
+      "behavior_to_relation": 7,
+      "relation_to_relation": 6,
+      "relation_to_behavior": 2
+    },
+    "grade_changes_in_F2_F4": [
+      {
+        "case_id": "F2::fishing_001.jpeg",
+        "historical_grade": "TN",
+        "final_grade": "FP"
+      },
+      {
+        "case_id": "F2::fishing_024.jpeg",
+        "historical_grade": "PASS",
+        "final_grade": "FAIL"
+      },
+      {
+        "case_id": "F2::fishing_027.jpeg",
+        "historical_grade": "DEGRADED",
+        "final_grade": "PASS",
+        "gate_blocker": false
+      },
+      {
+        "case_id": "F4::fishing_017.jpeg",
+        "historical_grade": "PASS",
+        "final_grade": "FAIL"
+      }
+    ]
+  },
+  "non_regression_blockers": [
+    {
+      "case_id": "F2::fishing_001.jpeg",
+      "ground_truth_class": "negative",
+      "original_sha256": "459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab",
+      "historical_result_json_sha256": "cfba0af899c720b94660a423758be5af142ce09d9ea42ba9dcd066f1fc7ced6b",
+      "current_result_json_sha256": "ab5a7f27768c2a73789e1d72c9a3ce7c24f6dda445d94e31381e21ef690b25f2",
+      "historical_artifact_sha256": "ce5f5bdbc18143d9f8340a667024b5ecc81f4223c26273423197029d6ed1f85f",
+      "current_artifact_sha256": "ec95ea19e53af832a798fe6a98f26dd53fbebab0fd80963007e529a0a744d051",
+      "historical_route": "behavior",
+      "final_route": "relation",
+      "subject_candidates": {"historical": 1, "final": 1, "bbox_max_abs_delta_pixels": 0.01},
+      "targets": {"historical": 0, "final": 1},
+      "final_relation": {"related_object": "fishing rod", "candidate_count": 1, "binding_statuses": ["satisfied"]},
+      "primary_attribution": "planner_route_variability",
+      "execution_mechanism": "related_object_grounding_false_positive_plus_relation_false_assignment"
+    },
+    {
+      "case_id": "F2::fishing_024.jpeg",
+      "ground_truth_class": "positive",
+      "original_sha256": "f70b44333494c9788b0747ac78847a3a8ed67692b1ff1b0edcdc6d15b32d60c6",
+      "historical_result_json_sha256": "05de5acd1ef5e5bdf50aff083594971cb5a686e7c3e580edfb4a8a43b62f31ad",
+      "current_result_json_sha256": "c0ffd0751d1280b71a6080d284f0a3a69814dd84e071fdbd99874e4a832a395a",
+      "historical_artifact_sha256": "60ece1a40cd82717e5c8a31df0cf0ac61f3985fa3e9b7ddfff61c97e014b97d9",
+      "current_artifact_sha256": "35b4ff5449226d432e3ac9ab1a6ecbaeb11d0c9f3b56bb4caa337ea626603abf",
+      "historical_route": "behavior",
+      "final_route": "relation",
+      "subject_candidates": {"historical": 1, "final": 1, "bbox_max_abs_delta_pixels": 0.01},
+      "targets": {"historical": 1, "final": 0},
+      "final_relation": {
+        "related_object": "fishing rod",
+        "candidate_count": 4,
+        "binding_statuses": ["satisfied", "uncertain", "uncertain", "satisfied"],
+        "completion_reason": "binding_conflict",
+        "duplicate_observation": "R1 and R4 were described as parts of the same fishing rod"
+      },
+      "primary_attribution": "planner_route_variability",
+      "execution_mechanism": "duplicate_related_detections_are_counted_as_conflicting_satisfied_bindings"
+    },
+    {
+      "case_id": "F4::fishing_017.jpeg",
+      "ground_truth_class": "positive",
+      "original_sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99",
+      "historical_result_json_sha256": "527f642eb65c80a5d1775d76d2d8eba9af0e4faec3bca5a509417786d2dd4826",
+      "current_result_json_sha256": "1dbd8bf37b521d727aead02aed030b833d7be25f67a2ab2c4659ebdce81c048c",
+      "historical_artifact_sha256": "b1fe0c70d97bf67e2beff70cbeb64b024257c983ef8267baa9663f0d08c46c09",
+      "current_artifact_sha256": "aef353cc4387a865ab55f3306eedec3fd19270873e2c69bc29496121d2de7dda",
+      "historical_route": "behavior",
+      "final_route": "relation",
+      "subject_candidates": {"historical": 1, "final": 1, "bbox_max_abs_delta_pixels": 0.01},
+      "targets": {"historical": 1, "final": 0},
+      "final_relation": {"related_object": "fish", "candidate_count": 4, "binding_statuses": ["not_satisfied", "not_satisfied", "not_satisfied", "not_satisfied"], "completion_reason": "binding_not_satisfied"},
+      "primary_attribution": "planner_route_variability",
+      "execution_mechanism": "related_object_detector_found_container_fish_but_missed_the_small_fish_in_the_subject_hand"
+    }
+  ],
+  "challenge_blockers": [
+    {
+      "case_id": "challenge_001",
+      "image_size": [235, 156],
+      "detector_candidate_count": 2,
+      "candidate_results": {"A": "satisfied", "B": "satisfied"},
+      "expected": "red-hat fisher retained; white-hat candidate not confidently assigned",
+      "behavior_crops": {
+        "A": {"crop": [166, 30, 235, 156], "size": [69, 126], "neighbor_bbox_covered_percent": 73.37},
+        "B": {"crop": [137, 0, 223, 156], "size": [86, 156], "neighbor_bbox_covered_percent": 77.04}
+      },
+      "historical_reproduction": "Context Hardening Arm A also returned satisfied for A and B",
+      "primary_attribution": "candidate_overlap_and_insufficient_identity_anchoring_in_low_resolution_behavior_evidence",
+      "detector_miss": false,
+      "protocol_failure": false
+    },
+    {
+      "case_id": "challenge_004",
+      "image_size": [598, 406],
+      "detector_candidate_count": 2,
+      "candidate_results": {"A_elder": "uncertain", "B_child": "not_satisfied"},
+      "expected": "elder retained; child not confidently falsely assigned",
+      "behavior_crops": {
+        "A_elder": {"crop": [445, 20, 571, 398], "size": [126, 378], "neighbor_bbox_covered_percent": 74.36},
+        "B_child": {"crop": [411, 113, 505, 396], "size": [94, 283], "neighbor_bbox_covered_percent": 42.58}
+      },
+      "historical_reproduction": "Context Hardening Arm A also returned uncertain for the elder",
+      "primary_attribution": "behavior_context_starvation",
+      "secondary_attribution": "candidate_overlap",
+      "detector_miss": false,
+      "protocol_failure": false
+    }
+  ],
+  "decision": {
+    "F2_F4_three_unit_drop": "planner semantic-route variability exposed three distinct latent relation-path failure modes; it is not a code change or subject-detector variation",
+    "challenge_001": "stable candidate-assignment failure caused by overlapping candidate-local crops and insufficient identity anchoring",
+    "challenge_004": "stable context-starvation failure after successful elder detection",
+    "single_margin_change_sufficient": false,
+    "production_change_authorized": false,
+    "next_step": "freeze a minimal remediation contract before any implementation"
+  }
+}
