@@ -1,4 +1,5 @@
 import json
+import tempfile
 import time
 from pathlib import Path
 
@@ -7,7 +8,9 @@ import numpy as np
 from visual_agent.deepseek_agent import MODEL_NAME, TOOL_NAME, DeepSeekAgent
 from visual_agent.evidence import (
     build_behavior_evidence,
+    build_candidate_marked_full_scene_evidence,
     build_isolated_instance_evidence,
+    build_subject_conditioned_grounding_view,
 )
 from visual_agent.grounding import MODEL_NAME as DETECTOR_MODEL_NAME
 from visual_agent.models import get_detector, get_segmenter
@@ -65,6 +68,52 @@ def _relation_evidence(bindings: list[dict], fallback: str) -> str:
     return evidence or fallback
 
 
+def _merge_protocol_metadata(protocols: list[dict]) -> dict:
+    """合并同一逻辑 route 的有界多次调用，保持既有 qwen_protocol 顶层合同。"""
+    merged = {
+        "attempts": sum(item.get("attempts", 0) for item in protocols),
+        "retry_count": sum(item.get("retry_count", 0) for item in protocols),
+        "recovered": any(item.get("recovered", False) for item in protocols),
+        "first_error_code": next(
+            (
+                item.get("first_error_code")
+                for item in protocols
+                if item.get("first_error_code") is not None
+            ),
+            None,
+        ),
+    }
+    payload_items = []
+    for protocol in protocols:
+        payload = protocol.get("evidence_payload")
+        if not payload:
+            continue
+        payload_items.extend(payload.get("items", [payload]))
+    if payload_items:
+        largest = max(
+            payload_items,
+            key=lambda item: item["normalized_payload_bytes"],
+        )
+        merged["evidence_payload"] = {
+            "normalization_triggered": any(
+                item["normalization_triggered"] for item in payload_items
+            ),
+            "original_dimensions": largest["original_dimensions"],
+            "original_payload_bytes": sum(
+                item["original_payload_bytes"] for item in payload_items
+            ),
+            "normalized_dimensions": largest["normalized_dimensions"],
+            "normalized_payload_bytes": sum(
+                item["normalized_payload_bytes"] for item in payload_items
+            ),
+            "target_pixels_first_pass": largest["target_pixels_first_pass"],
+            "unit": largest["unit"],
+            "evidence_count": len(payload_items),
+            "items": payload_items,
+        }
+    return merged
+
+
 def resolve_relation_outcomes(
     subjects: list[dict],
     related_candidates: list[dict],
@@ -79,10 +128,6 @@ def resolve_relation_outcomes(
     related_object = related_plan[0]["object"]
 
     satisfied = [item for item in relation_bindings if item["status"] == "satisfied"]
-    subject_counts = {
-        subject["id"]: sum(item["subject_id"] == subject["id"] for item in satisfied)
-        for subject in subjects
-    }
     related_counts = {
         related["id"]: sum(item["related_id"] == related["id"] for item in satisfied)
         for related in related_candidates
@@ -90,8 +135,7 @@ def resolve_relation_outcomes(
     conflict_subjects = {
         item["subject_id"]
         for item in satisfied
-        if subject_counts[item["subject_id"]] > 1
-        or related_counts[item["related_id"]] > 1
+        if related_counts[item["related_id"]] > 1
     }
     related_by_id = {item["id"]: item for item in related_candidates}
     outcomes = {}
@@ -116,8 +160,14 @@ def resolve_relation_outcomes(
                 subject_satisfied,
                 "存在多个相互冲突的明确关系绑定，无法唯一归属。",
             )
-        elif len(subject_satisfied) == 1:
-            binding = subject_satisfied[0]
+        elif subject_satisfied:
+            binding = sorted(
+                subject_satisfied,
+                key=lambda item: (
+                    -related_by_id[item["related_id"]].get("dino_confidence", 0.0),
+                    item["related_id"],
+                ),
+            )[0]
             related = related_by_id[binding["related_id"]]
             status = "satisfied"
             completion_reason = None
@@ -252,7 +302,7 @@ def run_pipeline(
     else:
         plan_seconds = 0.0
 
-    plan = DeepSeekAgent._validated_plan_arguments(plan)
+    plan = DeepSeekAgent._validated_plan_arguments(plan, prompt=prompt)
 
     constraints = plan["constraints"]
     relation_constraints = [
@@ -377,15 +427,15 @@ def run_pipeline(
                 if not indexed_constraints:
                     continue
                 route_items = [item for _, item in indexed_constraints]
-                evidence = (
-                    isolated
-                    if route == "attribute"
-                    else build_behavior_evidence(
+                behavior_evidence = None
+                evidence = isolated
+                if route == "behavior":
+                    behavior_evidence = build_behavior_evidence(
                         image_path,
                         candidate["bbox"],
                         candidate["mask"],
                     )
-                )
+                    evidence = [isolated, behavior_evidence]
                 started_at = time.perf_counter()
                 checks, protocol = verify_candidate_constraints(
                     {"id": candidate["id"], "bbox": candidate["bbox"]},
@@ -393,6 +443,32 @@ def run_pipeline(
                     evidence,
                     route,
                 )
+                if route == "behavior":
+                    uncertain = [
+                        (position, item, check)
+                        for position, (item, check) in enumerate(zip(route_items, checks))
+                        if check["status"] == "uncertain"
+                    ]
+                    if uncertain:
+                        fallback_items = [item for _, item, _ in uncertain]
+                        full_scene = build_candidate_marked_full_scene_evidence(
+                            image_path,
+                            candidate["mask"],
+                        )
+                        fallback_checks, fallback_protocol = verify_candidate_constraints(
+                            {"id": candidate["id"], "bbox": candidate["bbox"]},
+                            fallback_items,
+                            [isolated, behavior_evidence, full_scene],
+                            route,
+                        )
+                        for (position, _, _), fallback_check in zip(
+                            uncertain,
+                            fallback_checks,
+                        ):
+                            checks[position] = fallback_check
+                        protocol = _merge_protocol_metadata(
+                            [protocol, fallback_protocol]
+                        )
                 route_seconds[route] += time.perf_counter() - started_at
                 routed_protocols[candidate["id"]][route] = protocol
                 for (index, _), check in zip(indexed_constraints, checks):
@@ -468,9 +544,9 @@ def run_pipeline(
                 }
                 for candidate in relation_eligible
             ]
+            relation_protocols = []
+            relation_verification_started_at = time.perf_counter()
             if relation_candidates:
-                started_at = time.perf_counter()
-                relation_protocols = []
                 for relation_subject in relation_subjects:
                     subject_bindings, subject_protocol = verify_relations(
                         image_path,
@@ -482,7 +558,7 @@ def run_pipeline(
                     relation_bindings.extend(subject_bindings)
                     relation_protocols.append(subject_protocol)
 
-                # many-to-one satisfied conflict：按 related object 触发 focused ownership
+                # many-to-one satisfied conflict：按 related object 触发 focused ownership。
                 conflict_subjects_by_related: dict[str, set[str]] = {}
                 for binding in relation_bindings:
                     if binding["status"] == "satisfied":
@@ -528,20 +604,66 @@ def run_pipeline(
                         for binding in relation_bindings
                     ]
 
-                relation_protocol = {
-                    "attempts": sum(item.get("attempts", 0) for item in relation_protocols),
-                    "retry_count": sum(item.get("retry_count", 0) for item in relation_protocols),
-                    "recovered": any(item.get("recovered", False) for item in relation_protocols),
-                    "first_error_code": next(
-                        (
-                            item.get("first_error_code")
-                            for item in relation_protocols
-                            if item.get("first_error_code") is not None
-                        ),
-                        None,
-                    ),
-                }
-                relation_verification_seconds = time.perf_counter() - started_at
+            # R2.3：每个尚无 satisfied binding 的主体最多执行一次固定 35% subject-local grounding。
+            subjects_with_satisfied = {
+                binding["subject_id"]
+                for binding in relation_bindings
+                if binding["status"] == "satisfied"
+            }
+            for relation_subject in relation_subjects:
+                if relation_subject["id"] in subjects_with_satisfied:
+                    continue
+                view, crop_bbox = build_subject_conditioned_grounding_view(
+                    image_path,
+                    relation_subject["bbox"],
+                )
+                secondary_grounding_started_at = time.perf_counter()
+                with tempfile.TemporaryDirectory(
+                    prefix="visual_agent_relation_"
+                ) as temporary_dir:
+                    view_path = Path(temporary_dir) / "subject_context.png"
+                    view.save(view_path, format="PNG")
+                    secondary_detections = detector.detect(
+                        view_path,
+                        related_plan["object"],
+                    )
+                relation_grounding_seconds += (
+                    time.perf_counter() - secondary_grounding_started_at
+                )
+                secondary_candidates = []
+                for detection in secondary_detections:
+                    x1, y1, x2, y2 = detection["bbox"]
+                    secondary_candidates.append(
+                        {
+                            "id": f"R{len(relation_candidates) + 1}",
+                            "object": related_plan["object"],
+                            "text_label": detection["text_label"],
+                            "bbox": [
+                                x1 + crop_bbox[0],
+                                y1 + crop_bbox[1],
+                                x2 + crop_bbox[0],
+                                y2 + crop_bbox[1],
+                            ],
+                            "dino_confidence": detection["confidence"],
+                        }
+                    )
+                    relation_candidates.append(secondary_candidates[-1])
+                if secondary_candidates:
+                    secondary_bindings, secondary_protocol = verify_relations(
+                        image_path,
+                        [relation_subject],
+                        secondary_candidates,
+                        related_plan["object"],
+                        related_plan["relation"],
+                    )
+                    relation_bindings.extend(secondary_bindings)
+                    relation_protocols.append(secondary_protocol)
+
+            if relation_protocols:
+                relation_protocol = _merge_protocol_metadata(relation_protocols)
+            relation_verification_seconds = (
+                time.perf_counter() - relation_verification_started_at
+            )
             relation_outcomes = resolve_relation_outcomes(
                 relation_subjects,
                 relation_candidates,

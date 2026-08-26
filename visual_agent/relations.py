@@ -133,6 +133,8 @@ def verify_relations(
                 "content": (
                     "你是群组视觉关系验证器。红框 A/B/C 等是已验证主体，蓝框 R1/R2/R3 等是关联对象候选。"
                     "一次判断每个主体与每个关联候选的完整笛卡尔积。held_by_target 表示蓝框物体确实由指定红框主体持有。"
+                    "satisfied 必须同时满足：蓝框候选本身可确认是用户请求中指定的关联实体，且它明确由该红框主体持有。"
+                    "蓝框不是所请求实体时绝不能 satisfied；类别证据不足时使用 uncertain。"
                     "必须关注主体手部、物体手柄、直接抓握或接触和明确归属；物体仅靠近人物不能判定为持有，"
                     "不得把相邻人物的物体借给当前主体，不得根据常识猜测。证据不足必须使用 uncertain。"
                     "只返回 JSON，顶层仅 bindings。每项只能包含 subject_id、related_id、relation、status、evidence。"
@@ -218,6 +220,7 @@ def verify_focused_ownership(
             "content": (
                 f"你是对象级归属冲突裁决器。完整原图中红框 {subject_ids} 是潜在持有主体，"
                 f"蓝框 {related_id} 是唯一关联对象。你只裁决 {related_id} 究竟由这些主体中哪些明确持有，"
+                "satisfied 必须同时确认蓝框候选本身是用户请求中指定的关联实体；候选类别不符时绝不能 satisfied。"
                 "必须同时比较这些潜在持有者与关联对象的相对位置、手部、手柄或接触位置以及明确视觉归属。"
                 "只有能从手部、手柄或接触位置和明确视觉归属确认时才返回 satisfied；"
                 "相邻、遮挡或仅靠近不得判 satisfied；不能唯一确认时必须使用 uncertain。"

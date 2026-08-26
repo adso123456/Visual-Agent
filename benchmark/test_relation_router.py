@@ -52,6 +52,19 @@ def test_relation_resolver_freezes_all_status_mappings():
     assert unique["completion_reason"] is None
     assert unique["group"]["composite_complete"] is True
 
+    multiple_for_same_subject = pipeline.resolve_relation_outcomes(
+        SUBJECTS[:1],
+        [
+            {**RELATED[0], "dino_confidence": 0.7},
+            {**RELATED[1], "dino_confidence": 0.9},
+        ],
+        [_binding("A", "R1", "satisfied"), _binding("A", "R2", "satisfied")],
+        PLAN,
+    )["A"]
+    assert multiple_for_same_subject["status"] == "satisfied"
+    assert multiple_for_same_subject["completion_reason"] is None
+    assert multiple_for_same_subject["related_member"]["candidate_id"] == "R2"
+
     uncertain = pipeline.resolve_relation_outcomes(
         SUBJECTS[:1],
         RELATED,
@@ -251,7 +264,18 @@ def test_relation_verification_isolated_per_subject_with_all_related_candidates(
             }
         )
         subject_id = subjects[0]["id"]
-        return ([_binding(subject_id, "R1", "not_satisfied")], {"attempts": 1})
+        satisfied_id = "R1" if subject_id == "A" else "R2"
+        return (
+            [
+                _binding(
+                    subject_id,
+                    candidate["id"],
+                    "satisfied" if candidate["id"] == satisfied_id else "not_satisfied",
+                )
+                for candidate in related
+            ],
+            {"attempts": 1},
+        )
 
     monkeypatch.setattr(pipeline, "verify_relations", record_relation_call)
 
@@ -264,6 +288,77 @@ def test_relation_verification_isolated_per_subject_with_all_related_candidates(
         {"subjects": ["A"], "related": ["R1", "R2"]},
         {"subjects": ["B"], "related": ["R1", "R2"]},
     ]
+
+
+def test_relation_secondary_grounding_is_once_per_unsatisfied_subject_and_remaps_bbox(
+    tmp_path, monkeypatch
+):
+    class SecondaryDetector(DetectorStub):
+        def detect(self, image_path: Path, target_object: str):
+            self.calls.append((Path(image_path).name, target_object))
+            if target_object == "person":
+                return [
+                    {
+                        "bbox": [10, 4, 20, 28],
+                        "text_label": "person",
+                        "confidence": 0.9,
+                    }
+                ]
+            if Path(image_path).name == "input.jpg":
+                return [
+                    {
+                        "bbox": [2, 2, 6, 8],
+                        "text_label": "umbrella",
+                        "confidence": 0.7,
+                    }
+                ]
+            return [
+                {
+                    "bbox": [3, 5, 8, 14],
+                    "text_label": "umbrella",
+                    "confidence": 0.8,
+                }
+            ]
+
+    detector = SecondaryDetector()
+    segmenter = SegmenterStub()
+    monkeypatch.setattr(pipeline, "get_detector", lambda fresh=False: (detector, True))
+    monkeypatch.setattr(pipeline, "get_segmenter", lambda fresh=False: (segmenter, True))
+    monkeypatch.setattr(
+        pipeline,
+        "verify_subject_instance",
+        lambda candidate, target, evidence: (
+            {"candidate_id": candidate["id"], "target_object": target, "status": "valid", "evidence": "独立人物"},
+            {"attempts": 1},
+        ),
+    )
+    relation_calls = []
+
+    def verify(_image_path, subjects, related, *_args):
+        relation_calls.append([item["id"] for item in related])
+        status = "not_satisfied" if related[0]["id"] == "R1" else "satisfied"
+        return (
+            [_binding(subjects[0]["id"], item["id"], status) for item in related],
+            {"attempts": 1},
+        )
+
+    monkeypatch.setattr(pipeline, "verify_relations", verify)
+
+    _, result_path = pipeline.run_pipeline(
+        _image(tmp_path), "框出拿雨伞的人", plan=PLAN, verify=True,
+        final_response=False, output_dir=tmp_path / "out",
+    )
+    result = json.loads(result_path.read_text(encoding="utf-8"))
+
+    assert detector.calls == [
+        ("input.jpg", "person"),
+        ("input.jpg", "umbrella"),
+        ("subject_context.png", "umbrella"),
+    ]
+    assert relation_calls == [["R1"], ["R2"]]
+    # subject bbox [10,4,20,28] 的固定 35% crop 起点为 [6,0]。
+    assert result["relation_candidates"][1]["bbox"] == [9, 5, 14, 14]
+    assert result["candidates"][0]["verification_checks"][0]["status"] == "satisfied"
 
 
 def test_relation_mask_action_reuses_subject_and_segments_related_only_on_demand(

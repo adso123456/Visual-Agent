@@ -162,15 +162,20 @@ def test_behavior_prompt_preserves_frozen_evidence_contract(monkeypatch):
     vlm.verify_candidate_constraints(
         CANDIDATE,
         [{"text": "正在钓鱼", "route": "behavior"}],
-        _evidence(),
+        [_evidence(), _evidence(), _evidence()],
         "behavior",
     )
 
-    request_text = json.dumps(
-        client.chat.completions.calls[0]["messages"], ensure_ascii=False
-    )
-    assert "可以使用当前局部图中与该人物直接相关的物体、姿态和交互上下文作为证据" in request_text
-    assert "行为判断只能归属于当前轮廓对应的人物" in request_text
+    messages = client.chat.completions.calls[0]["messages"]
+    request_text = json.dumps(messages, ensure_ascii=False)
+    image_blocks = [
+        item for item in messages[1]["content"] if item["type"] == "image_url"
+    ]
+    assert len(image_blocks) == 3
+    assert "第 1 张是中性灰背景的当前候选身份图" in request_text
+    assert "第 2 张是带红色当前候选轮廓的固定 35% 局部图" in request_text
+    assert "第 3 张" in request_text
+    assert "行为判断只能归属于这些图中锚定的同一人物" in request_text
     assert "不得把附近其他人物的行为归给当前人物" in request_text
     assert "证据不足或归属不清必须 uncertain" in request_text
     assert "必须看到明确手握" not in request_text

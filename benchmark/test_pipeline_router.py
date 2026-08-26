@@ -90,7 +90,12 @@ def _install_common(monkeypatch, detector, segmenter, routed_calls, validity_cal
         }, {"attempts": 1, "retry_count": 0, "recovered": False, "first_error_code": None}
 
     def routed(candidate, constraints, evidence, route):
-        routed_calls.append((candidate["id"], route, [item["text"] for item in constraints], evidence.size))
+        sizes = (
+            [item.size for item in evidence]
+            if isinstance(evidence, list)
+            else [evidence.size]
+        )
+        routed_calls.append((candidate["id"], route, [item["text"] for item in constraints], sizes))
         return [
             {"constraint": item["text"], "status": "satisfied", "evidence": f"{route} 证据"}
             for item in constraints
@@ -233,3 +238,72 @@ def test_semantic_box_runs_subject_sam_but_not_render_sam(
     assert len(segmenter.calls) == 1
     assert len(result["targets"]) == 1
     assert "segmentation" not in result["targets"][0]
+
+
+def test_behavior_fallback_rechecks_only_uncertain_and_cannot_overturn_binary(
+    tmp_path, monkeypatch
+):
+    detector = DetectorStub()
+    segmenter = SegmenterStub()
+    monkeypatch.setattr(
+        "visual_agent.pipeline.get_detector", lambda fresh=False: (detector, True)
+    )
+    monkeypatch.setattr(
+        "visual_agent.pipeline.get_segmenter", lambda fresh=False: (segmenter, True)
+    )
+    monkeypatch.setattr(
+        "visual_agent.pipeline.verify_subject_instance",
+        lambda candidate, target, evidence: (
+            {
+                "candidate_id": candidate["id"],
+                "target_object": target,
+                "status": "valid",
+                "evidence": "有效实例",
+            },
+            {"attempts": 1},
+        ),
+    )
+    calls = []
+
+    def routed(candidate, constraints, evidence, route):
+        calls.append(
+            {
+                "constraints": [item["text"] for item in constraints],
+                "evidence_sizes": [item.size for item in evidence],
+            }
+        )
+        if len(calls) == 1:
+            return [
+                {"constraint": "正在跑步", "status": "satisfied", "evidence": "动作明确"},
+                {"constraint": "正在挥手", "status": "uncertain", "evidence": "局部不足"},
+            ], {"attempts": 1}
+        return [
+            {"constraint": "正在挥手", "status": "not_satisfied", "evidence": "全图仍未见"}
+        ], {"attempts": 1}
+
+    monkeypatch.setattr(
+        "visual_agent.pipeline.verify_candidate_constraints",
+        routed,
+    )
+    constraints = [
+        {"text": "正在跑步", "route": "behavior"},
+        {"text": "正在挥手", "route": "behavior"},
+    ]
+
+    _, result_path = run_pipeline(
+        _image(tmp_path),
+        "框出正在跑步且挥手的人",
+        plan=_plan(constraints, action="box"),
+        verify=True,
+        final_response=False,
+        output_dir=tmp_path / "out",
+    )
+    result = json.loads(result_path.read_text(encoding="utf-8"))
+
+    assert calls[0]["constraints"] == ["正在跑步", "正在挥手"]
+    assert len(calls[0]["evidence_sizes"]) == 2
+    assert calls[1]["constraints"] == ["正在挥手"]
+    assert len(calls[1]["evidence_sizes"]) == 3
+    checks = result["candidates"][0]["verification_checks"]
+    assert checks[0]["status"] == "satisfied"
+    assert checks[1]["status"] == "not_satisfied"

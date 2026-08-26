@@ -10,6 +10,7 @@ BASE_URL = "https://api.deepseek.com"
 TOOL_NAME = "execute_visual_task"
 ACTION_TYPES = {"highlight", "outline", "box", "blur_target", "dim_background", "cutout"}
 CONSTRAINT_ROUTES = {"attribute", "behavior", "relation"}
+HELD_BY_PROMPT_MARKERS = ("手持", "拿着", "撑着")
 
 EXECUTE_VISUAL_TASK_TOOL = {
     "type": "function",
@@ -152,7 +153,10 @@ class DeepSeekAgent:
                 extra_body={"thinking": {"type": "disabled"}},
             )
             try:
-                return self._validated_plan(response.choices[0].message.tool_calls)
+                return self._validated_plan(
+                    response.choices[0].message.tool_calls,
+                    prompt=prompt,
+                )
             except (json.JSONDecodeError, RuntimeError) as error:
                 validation_error = str(error)
         raise RuntimeError(f"DeepSeek Planner 两次均违反契约：{validation_error}")
@@ -179,7 +183,7 @@ class DeepSeekAgent:
         return content.strip()
 
     @staticmethod
-    def _validated_plan(tool_calls: list | None) -> dict:
+    def _validated_plan(tool_calls: list | None, prompt: str | None = None) -> dict:
         if not tool_calls or len(tool_calls) != 1:
             raise RuntimeError("必须且只能返回一个 tool call")
         tool_call = tool_calls[0]
@@ -188,10 +192,13 @@ class DeepSeekAgent:
         arguments = json.loads(tool_call.function.arguments)
         if not isinstance(arguments, dict):
             raise RuntimeError("tool arguments 必须是 JSON 对象")
-        return DeepSeekAgent._validated_plan_arguments(arguments)
+        return DeepSeekAgent._validated_plan_arguments(arguments, prompt=prompt)
 
     @staticmethod
-    def _validated_plan_arguments(arguments: dict) -> dict:
+    def _validated_plan_arguments(
+        arguments: dict,
+        prompt: str | None = None,
+    ) -> dict:
         """验证并规范化 Planner 或预编译 plan 的唯一正式契约。"""
         if not isinstance(arguments, dict):
             raise RuntimeError("plan 必须是 JSON 对象")
@@ -279,6 +286,18 @@ class DeepSeekAgent:
         if len(relation_constraints) != len(normalized_related_objects):
             raise RuntimeError(
                 "relation constraint 与 related_objects 必须保持 1:1 ownership"
+            )
+        if (
+            isinstance(prompt, str)
+            and any(marker in prompt for marker in HELD_BY_PROMPT_MARKERS)
+            and (
+                len(relation_constraints) != 1
+                or len(normalized_related_objects) != 1
+                or normalized_related_objects[0]["relation"] != "held_by_target"
+            )
+        ):
+            raise RuntimeError(
+                "显式手持语义（手持/拿着/撑着）必须编译为 relation + held_by_target"
             )
         normalized_action = {"type": action["type"]}
         if color is not None:

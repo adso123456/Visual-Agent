@@ -29,6 +29,10 @@ def _validate(plan: dict) -> dict:
     return DeepSeekAgent._validated_plan([_tool_call(plan)])
 
 
+def _validate_with_prompt(plan: dict, prompt: str) -> dict:
+    return DeepSeekAgent._validated_plan([_tool_call(plan)], prompt=prompt)
+
+
 def _must_fail(plan: dict, expected: str) -> None:
     with pytest.raises(RuntimeError, match=expected):
         _validate(plan)
@@ -96,4 +100,59 @@ def test_multiple_relation_constraints_are_rejected():
             [{"object": "umbrella", "relation": "held_by_target"}],
         ),
         "1:1",
+    )
+
+
+@pytest.mark.parametrize("marker", ["手持", "拿着", "撑着"])
+def test_explicit_held_by_prompt_requires_canonical_relation_route(marker):
+    invalid = _plan([{"text": f"{marker}雨伞", "route": "behavior"}])
+    with pytest.raises(RuntimeError, match="held_by_target"):
+        _validate_with_prompt(invalid, f"框出{marker}雨伞的人")
+
+    valid = _plan(
+        [{"text": f"{marker}雨伞", "route": "relation"}],
+        [{"object": "umbrella", "relation": "held_by_target"}],
+    )
+    assert _validate_with_prompt(valid, f"框出{marker}雨伞的人") == valid
+
+
+def test_non_held_behavior_prompt_is_not_forced_into_relation():
+    plan = _plan([{"text": "正在钓鱼", "route": "behavior"}])
+    assert _validate_with_prompt(plan, "框出正在钓鱼的人") == plan
+
+
+def test_planner_retries_invalid_held_by_route_and_accepts_canonical_correction():
+    invalid = _plan([{"text": "拿着雨伞", "route": "behavior"}])
+    valid = _plan(
+        [{"text": "拿着雨伞", "route": "relation"}],
+        [{"object": "umbrella", "relation": "held_by_target"}],
+    )
+    responses = [invalid, valid]
+    calls = []
+
+    def create(**kwargs):
+        calls.append(kwargs)
+        return SimpleNamespace(
+            choices=[
+                SimpleNamespace(
+                    message=SimpleNamespace(
+                        tool_calls=[_tool_call(responses.pop(0))]
+                    )
+                )
+            ]
+        )
+
+    agent = DeepSeekAgent.__new__(DeepSeekAgent)
+    agent.client = SimpleNamespace(
+        chat=SimpleNamespace(
+            completions=SimpleNamespace(create=create)
+        )
+    )
+    agent.plan_attempts = 0
+
+    assert agent.plan_request("框出拿着雨伞的人") == valid
+    assert agent.plan_attempts == 2
+    assert "held_by_target" in json.dumps(
+        calls[1]["messages"],
+        ensure_ascii=False,
     )

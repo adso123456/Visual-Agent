@@ -37,7 +37,7 @@ _DATA_URI_PNG_PREFIX = "data:image/png;base64,"
 EVIDENCE_PAYLOAD_SAFE_LIMIT = 18 * 1024 * 1024
 EVIDENCE_NORMALIZE_TARGET_PIXELS = 4_000_000
 
-_EVIDENCE_TELEMETRY: dict | None = None
+_EVIDENCE_TELEMETRY: list[dict] = []
 
 
 def _encode_png_data_url(image: Image.Image) -> tuple[str, int]:
@@ -123,15 +123,36 @@ def _normalize_evidence_payload(
 def _pil_image_data_url(image: Image.Image) -> str:
     global _EVIDENCE_TELEMETRY
     data_url, telemetry = _normalize_evidence_payload(image)
-    _EVIDENCE_TELEMETRY = telemetry
+    _EVIDENCE_TELEMETRY.append(telemetry)
     return data_url
 
 
 def _take_evidence_telemetry() -> dict | None:
     global _EVIDENCE_TELEMETRY
-    telemetry = _EVIDENCE_TELEMETRY
-    _EVIDENCE_TELEMETRY = None
-    return telemetry
+    items = _EVIDENCE_TELEMETRY
+    _EVIDENCE_TELEMETRY = []
+    if not items:
+        return None
+    if len(items) == 1:
+        return items[0]
+    largest = max(items, key=lambda item: item["normalized_payload_bytes"])
+    return {
+        "normalization_triggered": any(
+            item["normalization_triggered"] for item in items
+        ),
+        "original_dimensions": largest["original_dimensions"],
+        "original_payload_bytes": sum(
+            item["original_payload_bytes"] for item in items
+        ),
+        "normalized_dimensions": largest["normalized_dimensions"],
+        "normalized_payload_bytes": sum(
+            item["normalized_payload_bytes"] for item in items
+        ),
+        "target_pixels_first_pass": EVIDENCE_NORMALIZE_TARGET_PIXELS,
+        "unit": "base64_payload_chars",
+        "evidence_count": len(items),
+        "items": items,
+    }
 
 
 def _marked_candidates_data_url(image_path: Path, candidates: list[dict]) -> str:
@@ -308,10 +329,10 @@ def validate_candidate_constraints(
 def verify_candidate_constraints(
     candidate: dict,
     constraints: list[dict],
-    evidence_image: Image.Image,
+    evidence_image: Image.Image | list[Image.Image],
     route: str,
 ) -> tuple[list[dict], dict]:
-    """使用单候选、单 evidence route 判断同 route 下的多条约束。"""
+    """使用单候选 evidence route 判断同 route 下的多条约束；多图顺序由调用方冻结。"""
     if route not in SEMANTIC_ROUTES:
         raise ValueError(f"不支持的 semantic route：{route}")
     route_instruction = {
@@ -320,12 +341,21 @@ def verify_candidate_constraints(
             "不得使用灰色区域或想象相邻人物属性。"
         ),
         "behavior": (
-            "图中轮廓标出当前需要判断的人物实例。行为判断只能归属于当前轮廓对应的人物。"
-            "可以使用当前局部图中与该人物直接相关的物体、姿态和交互上下文作为证据，"
+            "输入顺序固定：第 1 张是中性灰背景的当前候选身份图，第 2 张是带红色当前候选轮廓的"
+            "固定 35% 局部图；若存在第 3 张，则它是仅标记同一候选的完整场景 fallback 图。"
+            "行为判断只能归属于这些图中锚定的同一人物。可以使用当前局部图或 fallback 完整场景中"
+            "与该人物直接相关的物体、姿态和交互上下文作为证据，"
             "不得把附近其他人物的行为归给当前人物。"
         ),
     }[route]
     constraint_texts = [item["text"] for item in constraints]
+    evidence_images = (
+        evidence_image if isinstance(evidence_image, list) else [evidence_image]
+    )
+    if not evidence_images or any(
+        not isinstance(image, Image.Image) for image in evidence_images
+    ):
+        raise ValueError("candidate evidence 必须包含至少一张 PIL Image")
     messages = [
         {
             "role": "system",
@@ -340,10 +370,13 @@ def verify_candidate_constraints(
         {
             "role": "user",
             "content": [
-                {
-                    "type": "image_url",
-                    "image_url": {"url": _pil_image_data_url(evidence_image)},
-                },
+                *[
+                    {
+                        "type": "image_url",
+                        "image_url": {"url": _pil_image_data_url(image)},
+                    }
+                    for image in evidence_images
+                ],
                 {
                     "type": "text",
                     "text": (
