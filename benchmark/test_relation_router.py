@@ -361,6 +361,138 @@ def test_relation_secondary_grounding_is_once_per_unsatisfied_subject_and_remaps
     assert result["candidates"][0]["verification_checks"][0]["status"] == "satisfied"
 
 
+def test_relation_secondary_candidate_enters_full_cross_subject_universe(
+    tmp_path, monkeypatch
+):
+    class SecondaryDetector(DetectorStub):
+        def detect(self, image_path: Path, target_object: str):
+            self.calls.append((Path(image_path).name, target_object))
+            if target_object == "person":
+                return [
+                    {
+                        "bbox": [2, 2, 14, 26],
+                        "text_label": "person",
+                        "confidence": 0.9,
+                    },
+                    {
+                        "bbox": [22, 2, 36, 26],
+                        "text_label": "person",
+                        "confidence": 0.85,
+                    },
+                ]
+            if Path(image_path).name == "input.jpg":
+                # full-scene related grounding 无发现
+                return []
+            # 只让第一个 subject 的 secondary crop 发现雨伞；第二个 crop 无发现
+            secondary_count = sum(
+                1
+                for name, target in self.calls
+                if name == "subject_context.png"
+            )
+            if secondary_count == 1:
+                return [
+                    {
+                        "bbox": [3, 5, 8, 14],
+                        "text_label": "umbrella",
+                        "confidence": 0.8,
+                    }
+                ]
+            return []
+
+    detector = SecondaryDetector()
+    segmenter = SegmenterStub()
+    monkeypatch.setattr(pipeline, "get_detector", lambda fresh=False: (detector, True))
+    monkeypatch.setattr(pipeline, "get_segmenter", lambda fresh=False: (segmenter, True))
+    monkeypatch.setattr(
+        pipeline,
+        "verify_subject_instance",
+        lambda candidate, target, evidence: (
+            {
+                "candidate_id": candidate["id"],
+                "target_object": target,
+                "status": "valid",
+                "evidence": "独立人物",
+            },
+            {"attempts": 1},
+        ),
+    )
+    relation_calls = []
+    focused_calls = []
+
+    def verify(_image_path, subjects, related, *_args):
+        subject_id = subjects[0]["id"]
+        related_ids = [item["id"] for item in related]
+        relation_calls.append((subject_id, related_ids))
+        return (
+            [
+                _binding(subject_id, related_id, "satisfied")
+                for related_id in related_ids
+            ],
+            {"attempts": 1},
+        )
+
+    def focused(_image_path, subjects, related, *_args):
+        focused_calls.append(
+            (
+                sorted(subject["id"] for subject in subjects),
+                related[0]["id"],
+            )
+        )
+        return (
+            [
+                _binding("A", related[0]["id"], "satisfied"),
+                _binding("B", related[0]["id"], "not_satisfied"),
+            ],
+            {"attempts": 1},
+        )
+
+    monkeypatch.setattr(pipeline, "verify_relations", verify)
+    monkeypatch.setattr(pipeline, "verify_focused_ownership", focused)
+
+    _, result_path = pipeline.run_pipeline(
+        _image(tmp_path),
+        "框出拿雨伞的人",
+        plan=PLAN,
+        verify=True,
+        final_response=False,
+        output_dir=tmp_path / "out",
+    )
+    result = json.loads(result_path.read_text(encoding="utf-8"))
+
+    # full-scene 无初始候选 → 两个 unsatisfied subject 各触发一次 secondary grounding
+    assert detector.calls == [
+        ("input.jpg", "person"),
+        ("input.jpg", "umbrella"),
+        ("subject_context.png", "umbrella"),
+        ("subject_context.png", "umbrella"),
+    ]
+    # 新增候选 R1 必须对 A、B 都完成关系判断（保持单 subject isolation）
+    assert relation_calls == [
+        ("A", ["R1"]),
+        ("B", ["R1"]),
+    ]
+    # A、B 均 satisfied R1 → focused ownership 必须被调用
+    assert focused_calls == [(["A", "B"], "R1")]
+    # 最终 binding matrix 不缺少任一应有 subject-R1 pair
+    pairs = {
+        (binding["subject_id"], binding["related_id"])
+        for binding in result["relation_bindings"]
+    }
+    assert pairs == {("A", "R1"), ("B", "R1")}
+    statuses = {
+        binding["subject_id"]: binding["status"]
+        for binding in result["relation_bindings"]
+    }
+    assert statuses == {"A": "satisfied", "B": "not_satisfied"}
+    checks = {
+        candidate["id"]: candidate["verification_checks"][0]["status"]
+        for candidate in result["candidates"]
+    }
+    assert checks == {"A": "satisfied", "B": "not_satisfied"}
+    # 只有 A 最终成为 target
+    assert [target["id"] for target in result["targets"]] == ["A"]
+
+
 def test_relation_mask_action_reuses_subject_and_segments_related_only_on_demand(
     tmp_path, monkeypatch
 ):

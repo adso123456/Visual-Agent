@@ -114,6 +114,68 @@ def _merge_protocol_metadata(protocols: list[dict]) -> dict:
     return merged
 
 
+def _resolve_focused_ownership(
+    image_path: Path,
+    relation_bindings: list[dict],
+    relation_candidates: list[dict],
+    relation_subjects: list[dict],
+    related_object: str,
+    relation: str,
+    relation_protocols: list[dict],
+    *,
+    only_related_ids: set[str] | None = None,
+) -> list[dict]:
+    """同一 related candidate 被多个 subjects satisfied 时执行 focused ownership 裁决。
+
+    这是 R2.1 唯一保留的跨主体 ownership conflict 路径；R2.3 secondary candidates
+    进入正式 universe 后必须经过同一裁决，不得绕过。only_related_ids 限定只裁决
+    指定候选，避免对已裁决过的初始候选重复触发。
+    """
+    conflict_subjects_by_related: dict[str, set[str]] = {}
+    for binding in relation_bindings:
+        if binding["status"] == "satisfied":
+            conflict_subjects_by_related.setdefault(
+                binding["related_id"], set()
+            ).add(binding["subject_id"])
+    related_by_id = {item["id"]: item for item in relation_candidates}
+    for related_id, subject_ids in conflict_subjects_by_related.items():
+        if only_related_ids is not None and related_id not in only_related_ids:
+            continue
+        if len(subject_ids) <= 1:
+            continue
+        conflict_subjects = [
+            subject
+            for subject in relation_subjects
+            if subject["id"] in subject_ids
+        ]
+        if len(conflict_subjects) != len(subject_ids):
+            raise RuntimeError(
+                "Focused conflict subjects 与 relation bindings 不一致"
+            )
+        focused_bindings, focused_protocol = verify_focused_ownership(
+            image_path,
+            conflict_subjects,
+            [related_by_id[related_id]],
+            related_object,
+            relation,
+        )
+        relation_protocols.append(focused_protocol)
+        focused_by_pair = {
+            (binding["subject_id"], binding["related_id"]): binding
+            for binding in focused_bindings
+        }
+        relation_bindings = [
+            focused_by_pair[(binding["subject_id"], binding["related_id"])]
+            if (
+                binding["related_id"] == related_id
+                and binding["subject_id"] in subject_ids
+            )
+            else binding
+            for binding in relation_bindings
+        ]
+    return relation_bindings
+
+
 def resolve_relation_outcomes(
     subjects: list[dict],
     related_candidates: list[dict],
@@ -559,57 +621,24 @@ def run_pipeline(
                     relation_protocols.append(subject_protocol)
 
                 # many-to-one satisfied conflict：按 related object 触发 focused ownership。
-                conflict_subjects_by_related: dict[str, set[str]] = {}
-                for binding in relation_bindings:
-                    if binding["status"] == "satisfied":
-                        conflict_subjects_by_related.setdefault(
-                            binding["related_id"], set()
-                        ).add(binding["subject_id"])
-                related_by_id = {
-                    item["id"]: item for item in relation_candidates
-                }
-                for related_id, subject_ids in conflict_subjects_by_related.items():
-                    if len(subject_ids) <= 1:
-                        continue
-                    conflict_subjects = [
-                        subject
-                        for subject in relation_subjects
-                        if subject["id"] in subject_ids
-                    ]
-                    if len(conflict_subjects) != len(subject_ids):
-                        raise RuntimeError(
-                            "Focused conflict subjects 与 relation bindings 不一致"
-                        )
-                    focused_bindings, focused_protocol = verify_focused_ownership(
-                        image_path,
-                        conflict_subjects,
-                        [related_by_id[related_id]],
-                        related_plan["object"],
-                        related_plan["relation"],
-                    )
-                    relation_protocols.append(focused_protocol)
-                    focused_by_pair = {
-                        (binding["subject_id"], binding["related_id"]): binding
-                        for binding in focused_bindings
-                    }
-                    relation_bindings = [
-                        focused_by_pair[
-                            (binding["subject_id"], binding["related_id"])
-                        ]
-                        if (
-                            binding["related_id"] == related_id
-                            and binding["subject_id"] in subject_ids
-                        )
-                        else binding
-                        for binding in relation_bindings
-                    ]
+                relation_bindings = _resolve_focused_ownership(
+                    image_path,
+                    relation_bindings,
+                    relation_candidates,
+                    relation_subjects,
+                    related_plan["object"],
+                    related_plan["relation"],
+                    relation_protocols,
+                )
 
-            # R2.3：每个尚无 satisfied binding 的主体最多执行一次固定 35% subject-local grounding。
+            # R2.3：每个尚无 satisfied binding 的主体最多执行一次固定 35% subject-local
+            # grounding；所有新增候选统一进入正式 candidate universe。
             subjects_with_satisfied = {
                 binding["subject_id"]
                 for binding in relation_bindings
                 if binding["status"] == "satisfied"
             }
+            secondary_candidates: list[dict] = []
             for relation_subject in relation_subjects:
                 if relation_subject["id"] in subjects_with_satisfied:
                     continue
@@ -630,25 +659,28 @@ def run_pipeline(
                 relation_grounding_seconds += (
                     time.perf_counter() - secondary_grounding_started_at
                 )
-                secondary_candidates = []
                 for detection in secondary_detections:
                     x1, y1, x2, y2 = detection["bbox"]
-                    secondary_candidates.append(
-                        {
-                            "id": f"R{len(relation_candidates) + 1}",
-                            "object": related_plan["object"],
-                            "text_label": detection["text_label"],
-                            "bbox": [
-                                x1 + crop_bbox[0],
-                                y1 + crop_bbox[1],
-                                x2 + crop_bbox[0],
-                                y2 + crop_bbox[1],
-                            ],
-                            "dino_confidence": detection["confidence"],
-                        }
-                    )
-                    relation_candidates.append(secondary_candidates[-1])
-                if secondary_candidates:
+                    candidate = {
+                        "id": f"R{len(relation_candidates) + 1}",
+                        "object": related_plan["object"],
+                        "text_label": detection["text_label"],
+                        "bbox": [
+                            x1 + crop_bbox[0],
+                            y1 + crop_bbox[1],
+                            x2 + crop_bbox[0],
+                            y2 + crop_bbox[1],
+                        ],
+                        "dino_confidence": detection["confidence"],
+                    }
+                    relation_candidates.append(candidate)
+                    secondary_candidates.append(candidate)
+
+            # R2.3：新增候选对全部 relation-eligible subjects 完成完整 binding matrix
+            # （保持每次只传一个 subject 的既有 isolation），并对新增跨 subject 冲突
+            # 执行同一 focused ownership，不得绕过跨主体 ownership 路径。
+            if secondary_candidates:
+                for relation_subject in relation_subjects:
                     secondary_bindings, secondary_protocol = verify_relations(
                         image_path,
                         [relation_subject],
@@ -658,6 +690,18 @@ def run_pipeline(
                     )
                     relation_bindings.extend(secondary_bindings)
                     relation_protocols.append(secondary_protocol)
+                relation_bindings = _resolve_focused_ownership(
+                    image_path,
+                    relation_bindings,
+                    relation_candidates,
+                    relation_subjects,
+                    related_plan["object"],
+                    related_plan["relation"],
+                    relation_protocols,
+                    only_related_ids={
+                        candidate["id"] for candidate in secondary_candidates
+                    },
+                )
 
             if relation_protocols:
                 relation_protocol = _merge_protocol_metadata(relation_protocols)

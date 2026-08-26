@@ -181,3 +181,52 @@ def test_behavior_prompt_preserves_frozen_evidence_contract(monkeypatch):
     assert "必须看到明确手握" not in request_text
     assert "必须看到直接接触" not in request_text
     assert "必须看到完整动作链" not in request_text
+
+
+def test_multi_image_evidence_telemetry_keeps_old_contract_and_per_item_safe_limit(
+    monkeypatch,
+):
+    response = json.dumps(
+        {
+            "candidate_id": "A",
+            "checks": [
+                {
+                    "constraint": "正在钓鱼",
+                    "status": "satisfied",
+                    "evidence": "姿态与鱼竿可见",
+                }
+            ],
+        },
+        ensure_ascii=False,
+    )
+    client = _Client([response])
+    monkeypatch.setattr(vlm, "_client", lambda: client)
+
+    _, metadata = vlm.verify_candidate_constraints(
+        CANDIDATE,
+        [{"text": "正在钓鱼", "route": "behavior"}],
+        [_evidence(), _evidence(), _evidence()],
+        "behavior",
+    )
+
+    # 旧顶层 qwen_protocol 合同字段仍存在
+    assert metadata["attempts"] == 1
+    assert metadata["retry_count"] == 0
+    assert metadata["recovered"] is False
+    assert metadata["first_error_code"] is None
+    payload = metadata["evidence_payload"]
+    assert payload["evidence_count"] == 3
+    assert len(payload["items"]) == 3
+    # 18 MiB normalization 仍逐图保证：每个 items[] 均满足 safe limit
+    assert all(
+        item["normalized_payload_bytes"] <= vlm.EVIDENCE_PAYLOAD_SAFE_LIMIT
+        for item in payload["items"]
+    )
+    # 顶层聚合值 = 各图 payload 合计，仅作展示，不代表单图超限
+    assert payload["normalized_payload_bytes"] == sum(
+        item["normalized_payload_bytes"] for item in payload["items"]
+    )
+    assert payload["normalization_triggered"] is False
+    assert payload["original_payload_bytes"] == sum(
+        item["original_payload_bytes"] for item in payload["items"]
+    )
