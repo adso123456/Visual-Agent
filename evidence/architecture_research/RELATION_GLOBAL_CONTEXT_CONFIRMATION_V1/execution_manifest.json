@@ -1,0 +1,54 @@
+{
+  "files": [
+    {
+      "path": "RELATION_GLOBAL_CONTEXT_CONFIRMATION_V1_CONTRACT.md",
+      "bytes": 4805,
+      "sha256": "67268c363082af45781e4f0ff13dca5dcffb34c4a77d299dc7c14c09d76bc5d1"
+    },
+    {
+      "path": "frozen_contract.json",
+      "bytes": 1511,
+      "sha256": "0b59c3fd15e7091e0011c4fbcbacd3f87e7ebbe3df7e1334099addbe382eee42"
+    },
+    {
+      "path": "frozen_schedule.json",
+      "bytes": 13129,
+      "sha256": "5b9469720656286da83eb9e49b287508f20a4e2df05974ea8636333b23a5972b"
+    },
+    {
+      "path": "frozen_relation_cases.json",
+      "bytes": 8228,
+      "sha256": "5f865a83e55244d3d8d12da7f5a7442cbe5977b78130f4c59179270322396f94"
+    },
+    {
+      "path": "raw_call_events.jsonl",
+      "bytes": 190126,
+      "sha256": "a060f5759d0bf0d6cd75696fc08da046e37a6d8fbbff7090b9b5a70dcdac1b2f"
+    },
+    {
+      "path": "paired_slot_validity.json",
+      "bytes": 11710,
+      "sha256": "792b0c24fbe6678e49b1cd418bd9472e89bfc5c79ea7edb989e83f6fbcd1fef5"
+    },
+    {
+      "path": "confirmation_summary.json",
+      "bytes": 15954,
+      "sha256": "a76a3503813145a1c4128728e9272f2dcace02a12dc3960feaff4a87a5c3bc80"
+    },
+    {
+      "path": "RELATION_GLOBAL_CONTEXT_CONFIRMATION_V1_REPORT.md",
+      "bytes": 2201,
+      "sha256": "21e7bf770312268a407bb44e4286c4501ba050e6ee11f0b130301bcaf8901086"
+    },
+    {
+      "path": "run_relation_global_context_confirmation_v1.py",
+      "bytes": 7714,
+      "sha256": "a7884b429adb6f1b55da8518c6574d7d644d565ff049716c0cc89e7f18b57da1"
+    },
+    {
+      "path": "finalize_relation_global_context_confirmation_v1.py",
+      "bytes": 18998,
+      "sha256": "79c25c0fa2863fee3e8c9f45ea7ebd83e1d12b1f92a39777010bc941bf605470"
+    }
+  ]
+}

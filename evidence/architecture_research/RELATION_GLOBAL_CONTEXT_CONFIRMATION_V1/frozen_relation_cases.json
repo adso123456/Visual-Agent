@@ -1,0 +1,357 @@
+{
+  "count": 7,
+  "binding_count": 16,
+  "cases": [
+    {
+      "case_id": "F2::fishing_008.jpeg",
+      "prompt_id": "F2",
+      "prompt": "把拿着鱼竿的人描边",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "related_object": "fishing rod",
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            2003.48,
+            2954.32,
+            2271.22,
+            3562.41
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            1896.9,
+            3771.48,
+            2213.55,
+            4184.3
+          ]
+        },
+        {
+          "id": "C",
+          "bbox": [
+            1848.99,
+            3960.5,
+            2158.52,
+            4446.36
+          ]
+        }
+      ],
+      "related_candidates": [
+        {
+          "id": "R1",
+          "bbox": [
+            -8.98,
+            3036.1,
+            2050.52,
+            3920.63
+          ]
+        },
+        {
+          "id": "R2",
+          "bbox": [
+            1414.71,
+            2300.13,
+            2118.15,
+            3111.84
+          ]
+        }
+      ],
+      "bindings": [
+        {
+          "binding_id": "A::R1",
+          "expected": "not_satisfied"
+        },
+        {
+          "binding_id": "A::R2",
+          "expected": "satisfied"
+        },
+        {
+          "binding_id": "B::R1",
+          "expected": "satisfied"
+        },
+        {
+          "binding_id": "B::R2",
+          "expected": "not_satisfied"
+        },
+        {
+          "binding_id": "C::R1",
+          "expected": "not_satisfied"
+        },
+        {
+          "binding_id": "C::R2",
+          "expected": "not_satisfied"
+        }
+      ]
+    },
+    {
+      "case_id": "F4::fishing_011.jpeg",
+      "prompt_id": "F4",
+      "prompt": "把拿着鱼的人标出来",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_011.jpeg",
+      "image_sha256": "1b8e03893472d5a5dbddb9c05e9c39032aeb34ff9b548e934ae27c92d23e226d",
+      "related_object": "fish",
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            1884.39,
+            1069.88,
+            5491.08,
+            3916.68
+          ]
+        }
+      ],
+      "related_candidates": [
+        {
+          "id": "R1",
+          "bbox": [
+            1421.59,
+            1464.9,
+            2319.92,
+            2002.44
+          ]
+        }
+      ],
+      "bindings": [
+        {
+          "binding_id": "A::R1",
+          "expected": "not_satisfied"
+        }
+      ]
+    },
+    {
+      "case_id": "F4::fishing_008.jpeg",
+      "prompt_id": "F4",
+      "prompt": "把拿着鱼的人标出来",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "related_object": "fish",
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            2003.48,
+            2954.32,
+            2271.22,
+            3562.41
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            1896.9,
+            3771.48,
+            2213.55,
+            4184.3
+          ]
+        },
+        {
+          "id": "C",
+          "bbox": [
+            1848.99,
+            3960.5,
+            2158.52,
+            4446.36
+          ]
+        }
+      ],
+      "related_candidates": [
+        {
+          "id": "R1",
+          "bbox": [
+            2512.01,
+            2769.98,
+            2592.08,
+            2849.52
+          ]
+        }
+      ],
+      "bindings": [
+        {
+          "binding_id": "A::R1",
+          "expected": "not_satisfied"
+        },
+        {
+          "binding_id": "B::R1",
+          "expected": "not_satisfied"
+        },
+        {
+          "binding_id": "C::R1",
+          "expected": "not_satisfied"
+        }
+      ]
+    },
+    {
+      "case_id": "F4::fishing_026.jpeg",
+      "prompt_id": "F4",
+      "prompt": "把拿着鱼的人标出来",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_026.jpeg",
+      "image_sha256": "a874180ba1ce174df2f6c25312db6b21aee8bccd172e688b5df1f5ca9c211868",
+      "related_object": "fish",
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            580.85,
+            1626.76,
+            1854.29,
+            3962.56
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            556.34,
+            1913.81,
+            613.54,
+            2055.59
+          ]
+        }
+      ],
+      "related_candidates": [
+        {
+          "id": "R1",
+          "bbox": [
+            1579.61,
+            2785.38,
+            1748.13,
+            2922.2
+          ]
+        }
+      ],
+      "bindings": [
+        {
+          "binding_id": "A::R1",
+          "expected": "not_satisfied"
+        },
+        {
+          "binding_id": "B::R1",
+          "expected": "not_satisfied"
+        }
+      ]
+    },
+    {
+      "case_id": "F4::fishing_001.jpeg",
+      "prompt_id": "F4",
+      "prompt": "把拿着鱼的人标出来",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_001.jpeg",
+      "image_sha256": "459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab",
+      "related_object": "fish",
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            82.09,
+            2516.94,
+            3674.46,
+            7719.49
+          ]
+        }
+      ],
+      "related_candidates": [
+        {
+          "id": "R1",
+          "bbox": [
+            3213.97,
+            4317.26,
+            3790.58,
+            6377.12
+          ]
+        }
+      ],
+      "bindings": [
+        {
+          "binding_id": "A::R1",
+          "expected": "satisfied"
+        }
+      ]
+    },
+    {
+      "case_id": "F4::fishing_003.jpeg",
+      "prompt_id": "F4",
+      "prompt": "把拿着鱼的人标出来",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_003.jpeg",
+      "image_sha256": "d62f2708ef6e36bd6b10c427ebd29398baecd4cfa203c4b2235238c19a06545e",
+      "related_object": "fish",
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            1089.57,
+            357.53,
+            2123.86,
+            1684.45
+          ]
+        }
+      ],
+      "related_candidates": [
+        {
+          "id": "R1",
+          "bbox": [
+            1395.1,
+            1601.36,
+            2376.9,
+            1809.92
+          ]
+        },
+        {
+          "id": "R2",
+          "bbox": [
+            975.88,
+            984.58,
+            1295.37,
+            1155.76
+          ]
+        }
+      ],
+      "bindings": [
+        {
+          "binding_id": "A::R1",
+          "expected": "not_satisfied"
+        },
+        {
+          "binding_id": "A::R2",
+          "expected": "satisfied"
+        }
+      ]
+    },
+    {
+      "case_id": "demo::core_003",
+      "prompt_id": "core_003",
+      "prompt": "只给手持雨伞的人描边",
+      "image_path": "E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\commons_umbrella.jpg",
+      "image_sha256": "5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0",
+      "related_object": "umbrella",
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            667.15,
+            662.65,
+            1003.39,
+            1412.13
+          ]
+        }
+      ],
+      "related_candidates": [
+        {
+          "id": "R1",
+          "bbox": [
+            636.04,
+            361.79,
+            1135.29,
+            719.8
+          ]
+        }
+      ],
+      "bindings": [
+        {
+          "binding_id": "A::R1",
+          "expected": "satisfied"
+        }
+      ]
+    }
+  ]
+}

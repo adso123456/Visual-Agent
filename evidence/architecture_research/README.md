@@ -19,6 +19,9 @@
 - `CONTEXT_EVIDENCE_POLICY_HARDENING_V1/`
   - 在 25 个冻结 General RGB 案例上比较 Current、全量 Global Facts 与 uncertain-only lazy fallback。
   - 阶段裁决：attribute/behavior 保持 Current；relation 的 Global Facts 方向正面但证据不足，保留为待确认研究候选，Production 修改未授权。
+- `RELATION_GLOBAL_CONTEXT_CONFIRMATION_V1/`
+  - 对 7 个 relation cases、16 个 bindings 做 5 次冻结 paired 重复，区分纯语义收益与协议偶然性。
+  - 阶段结论：仅确认 1 个稳定纯语义改善、覆盖 1 个独立图片 SHA group，未通过 Confirmation Gate；Relation 保持当前 Production。
 
 所有 JSONL 均为模型调用或离线评分的原始逐条记录；Markdown 报告不替代这些原始数据。
 

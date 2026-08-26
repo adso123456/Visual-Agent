@@ -1,0 +1,563 @@
+{
+  "stage": "RELATION_GLOBAL_CONTEXT_CONFIRMATION_V1",
+  "generated_at_utc": "2026-08-26T03:04:56.802224+00:00",
+  "execution": {
+    "code_commit": "c2a784573dea313c3f80e714fbc4b7007563f9fa",
+    "model": "qwen3.8:27b-mtp-q4_K_M",
+    "base_url": "http://192.168.250.9:11434/v1",
+    "temperature": 0,
+    "timeout_seconds": 120,
+    "concurrency": 1
+  },
+  "scheduled": {
+    "cases": 7,
+    "bindings": 16,
+    "repetitions": 5,
+    "paired_binding_slots": 80,
+    "logical_calls": 105
+  },
+  "actual": {
+    "raw_events": 105,
+    "executed_logical_calls": 105,
+    "paired_valid_case_repetitions": 30,
+    "valid_paired_semantic_observations": 70
+  },
+  "reliability": {
+    "a_relation": {
+      "scheduled": 35,
+      "executed": 35,
+      "skipped": 0,
+      "logical_final_failures": 5,
+      "logical_final_failure_rate": 0.142857,
+      "http_attempts": 70,
+      "retry_count": 35,
+      "recovered": 30,
+      "prompt_tokens": 298135,
+      "completion_tokens": 6585,
+      "total_tokens": 304720,
+      "model_elapsed_seconds": 1023.0914,
+      "reasoning_present_attempts": 0
+    },
+    "b_global": {
+      "scheduled": 35,
+      "executed": 35,
+      "skipped": 0,
+      "logical_final_failures": 0,
+      "logical_final_failure_rate": 0.0,
+      "http_attempts": 35,
+      "retry_count": 0,
+      "recovered": 0,
+      "prompt_tokens": 139040,
+      "completion_tokens": 2210,
+      "total_tokens": 141250,
+      "model_elapsed_seconds": 429.8053,
+      "reasoning_present_attempts": 0
+    },
+    "b_relation": {
+      "scheduled": 35,
+      "executed": 35,
+      "skipped": 0,
+      "logical_final_failures": 0,
+      "logical_final_failure_rate": 0.0,
+      "http_attempts": 70,
+      "retry_count": 35,
+      "recovered": 35,
+      "prompt_tokens": 306710,
+      "completion_tokens": 6975,
+      "total_tokens": 313685,
+      "model_elapsed_seconds": 1042.9321,
+      "reasoning_present_attempts": 0
+    },
+    "b_global_projection_contract_failures": 0,
+    "b_relation_skipped_due_global_failure": 0
+  },
+  "case_reliability": [
+    {
+      "case_id": "F2::fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "a_relation_final_failures": 0,
+      "b_global_final_failures": 0,
+      "b_relation_final_failures": 0,
+      "a_relation_retries": 5,
+      "b_relation_retries": 5
+    },
+    {
+      "case_id": "F4::fishing_011.jpeg",
+      "image_sha256": "1b8e03893472d5a5dbddb9c05e9c39032aeb34ff9b548e934ae27c92d23e226d",
+      "a_relation_final_failures": 0,
+      "b_global_final_failures": 0,
+      "b_relation_final_failures": 0,
+      "a_relation_retries": 5,
+      "b_relation_retries": 5
+    },
+    {
+      "case_id": "F4::fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "a_relation_final_failures": 0,
+      "b_global_final_failures": 0,
+      "b_relation_final_failures": 0,
+      "a_relation_retries": 5,
+      "b_relation_retries": 5
+    },
+    {
+      "case_id": "F4::fishing_026.jpeg",
+      "image_sha256": "a874180ba1ce174df2f6c25312db6b21aee8bccd172e688b5df1f5ca9c211868",
+      "a_relation_final_failures": 0,
+      "b_global_final_failures": 0,
+      "b_relation_final_failures": 0,
+      "a_relation_retries": 5,
+      "b_relation_retries": 5
+    },
+    {
+      "case_id": "F4::fishing_001.jpeg",
+      "image_sha256": "459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab",
+      "a_relation_final_failures": 0,
+      "b_global_final_failures": 0,
+      "b_relation_final_failures": 0,
+      "a_relation_retries": 5,
+      "b_relation_retries": 5
+    },
+    {
+      "case_id": "F4::fishing_003.jpeg",
+      "image_sha256": "d62f2708ef6e36bd6b10c427ebd29398baecd4cfa203c4b2235238c19a06545e",
+      "a_relation_final_failures": 5,
+      "b_global_final_failures": 0,
+      "b_relation_final_failures": 0,
+      "a_relation_retries": 5,
+      "b_relation_retries": 5
+    },
+    {
+      "case_id": "demo::core_003",
+      "image_sha256": "5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0",
+      "a_relation_final_failures": 0,
+      "b_global_final_failures": 0,
+      "b_relation_final_failures": 0,
+      "a_relation_retries": 5,
+      "b_relation_retries": 5
+    }
+  ],
+  "protocol_only_observations": [
+    {
+      "case_id": "F4::fishing_003.jpeg",
+      "image_sha256": "d62f2708ef6e36bd6b10c427ebd29398baecd4cfa203c4b2235238c19a06545e",
+      "a_relation_final_failures": 5,
+      "b_global_final_failures": 0,
+      "b_relation_final_failures": 0,
+      "a_relation_retries": 5,
+      "b_relation_retries": 5
+    }
+  ],
+  "binding_stability": [
+    {
+      "case_id": "F2::fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "binding_id": "A::R1",
+      "expected": "not_satisfied",
+      "A": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "B": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "outcome": "no_gate_change"
+    },
+    {
+      "case_id": "F2::fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "binding_id": "A::R2",
+      "expected": "satisfied",
+      "A": {
+        "classification": "STABLE",
+        "state": "satisfied",
+        "paired_valid": 5,
+        "counts": {
+          "satisfied": 5
+        }
+      },
+      "B": {
+        "classification": "STABLE",
+        "state": "satisfied",
+        "paired_valid": 5,
+        "counts": {
+          "satisfied": 5
+        }
+      },
+      "outcome": "no_gate_change"
+    },
+    {
+      "case_id": "F2::fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "binding_id": "B::R1",
+      "expected": "satisfied",
+      "A": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "B": {
+        "classification": "STABLE",
+        "state": "satisfied",
+        "paired_valid": 5,
+        "counts": {
+          "satisfied": 5
+        }
+      },
+      "outcome": "stable_pure_semantic_improvement"
+    },
+    {
+      "case_id": "F2::fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "binding_id": "B::R2",
+      "expected": "not_satisfied",
+      "A": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "B": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "outcome": "no_gate_change"
+    },
+    {
+      "case_id": "F2::fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "binding_id": "C::R1",
+      "expected": "not_satisfied",
+      "A": {
+        "classification": "STABLE",
+        "state": "satisfied",
+        "paired_valid": 5,
+        "counts": {
+          "satisfied": 5
+        }
+      },
+      "B": {
+        "classification": "STABLE",
+        "state": "satisfied",
+        "paired_valid": 5,
+        "counts": {
+          "satisfied": 5
+        }
+      },
+      "outcome": "no_gate_change"
+    },
+    {
+      "case_id": "F2::fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "binding_id": "C::R2",
+      "expected": "not_satisfied",
+      "A": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "B": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "outcome": "no_gate_change"
+    },
+    {
+      "case_id": "F4::fishing_011.jpeg",
+      "image_sha256": "1b8e03893472d5a5dbddb9c05e9c39032aeb34ff9b548e934ae27c92d23e226d",
+      "binding_id": "A::R1",
+      "expected": "not_satisfied",
+      "A": {
+        "classification": "STABLE",
+        "state": "satisfied",
+        "paired_valid": 5,
+        "counts": {
+          "satisfied": 5
+        }
+      },
+      "B": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "outcome": "no_gate_change"
+    },
+    {
+      "case_id": "F4::fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "binding_id": "A::R1",
+      "expected": "not_satisfied",
+      "A": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "B": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "outcome": "no_gate_change"
+    },
+    {
+      "case_id": "F4::fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "binding_id": "B::R1",
+      "expected": "not_satisfied",
+      "A": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "B": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "outcome": "no_gate_change"
+    },
+    {
+      "case_id": "F4::fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "binding_id": "C::R1",
+      "expected": "not_satisfied",
+      "A": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "B": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "outcome": "no_gate_change"
+    },
+    {
+      "case_id": "F4::fishing_026.jpeg",
+      "image_sha256": "a874180ba1ce174df2f6c25312db6b21aee8bccd172e688b5df1f5ca9c211868",
+      "binding_id": "A::R1",
+      "expected": "not_satisfied",
+      "A": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "B": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "outcome": "no_gate_change"
+    },
+    {
+      "case_id": "F4::fishing_026.jpeg",
+      "image_sha256": "a874180ba1ce174df2f6c25312db6b21aee8bccd172e688b5df1f5ca9c211868",
+      "binding_id": "B::R1",
+      "expected": "not_satisfied",
+      "A": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "B": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "outcome": "no_gate_change"
+    },
+    {
+      "case_id": "F4::fishing_001.jpeg",
+      "image_sha256": "459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab",
+      "binding_id": "A::R1",
+      "expected": "satisfied",
+      "A": {
+        "classification": "STABLE",
+        "state": "satisfied",
+        "paired_valid": 5,
+        "counts": {
+          "satisfied": 5
+        }
+      },
+      "B": {
+        "classification": "STABLE",
+        "state": "satisfied",
+        "paired_valid": 5,
+        "counts": {
+          "satisfied": 5
+        }
+      },
+      "outcome": "no_gate_change"
+    },
+    {
+      "case_id": "F4::fishing_003.jpeg",
+      "image_sha256": "d62f2708ef6e36bd6b10c427ebd29398baecd4cfa203c4b2235238c19a06545e",
+      "binding_id": "A::R1",
+      "expected": "not_satisfied",
+      "A": {
+        "classification": "INCONCLUSIVE",
+        "state": null,
+        "paired_valid": 0,
+        "counts": {}
+      },
+      "B": {
+        "classification": "INCONCLUSIVE",
+        "state": null,
+        "paired_valid": 0,
+        "counts": {}
+      },
+      "outcome": "inconclusive_or_unstable"
+    },
+    {
+      "case_id": "F4::fishing_003.jpeg",
+      "image_sha256": "d62f2708ef6e36bd6b10c427ebd29398baecd4cfa203c4b2235238c19a06545e",
+      "binding_id": "A::R2",
+      "expected": "satisfied",
+      "A": {
+        "classification": "INCONCLUSIVE",
+        "state": null,
+        "paired_valid": 0,
+        "counts": {}
+      },
+      "B": {
+        "classification": "INCONCLUSIVE",
+        "state": null,
+        "paired_valid": 0,
+        "counts": {}
+      },
+      "outcome": "inconclusive_or_unstable"
+    },
+    {
+      "case_id": "demo::core_003",
+      "image_sha256": "5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0",
+      "binding_id": "A::R1",
+      "expected": "satisfied",
+      "A": {
+        "classification": "STABLE",
+        "state": "satisfied",
+        "paired_valid": 5,
+        "counts": {
+          "satisfied": 5
+        }
+      },
+      "B": {
+        "classification": "STABLE",
+        "state": "satisfied",
+        "paired_valid": 5,
+        "counts": {
+          "satisfied": 5
+        }
+      },
+      "outcome": "no_gate_change"
+    }
+  ],
+  "stable_pure_semantic_improvements": [
+    {
+      "case_id": "F2::fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "binding_id": "B::R1",
+      "expected": "satisfied",
+      "A": {
+        "classification": "STABLE",
+        "state": "uncertain",
+        "paired_valid": 5,
+        "counts": {
+          "uncertain": 5
+        }
+      },
+      "B": {
+        "classification": "STABLE",
+        "state": "satisfied",
+        "paired_valid": 5,
+        "counts": {
+          "satisfied": 5
+        }
+      },
+      "outcome": "stable_pure_semantic_improvement"
+    }
+  ],
+  "stability_improvements": [],
+  "stable_semantic_regressions": [],
+  "distinct_improvement_image_sha256_groups": [
+    "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613"
+  ],
+  "stable_false_assignment": {
+    "A": 2,
+    "B": 1
+  },
+  "legitimate_uncertain_to_wrong_binary": [],
+  "gate_conditions": {
+    "stable_pure_semantic_improvements_gte_2": false,
+    "distinct_image_sha256_groups_gte_2": false,
+    "stable_semantic_regression_eq_0": true,
+    "b_false_assignment_lte_a": true,
+    "legitimate_uncertain_to_wrong_binary_eq_0": true,
+    "global_projection_contract_failure_eq_0": true,
+    "b_relation_failure_rate_lte_a": true,
+    "global_final_failures_recorded": true
+  },
+  "confirmed": false,
+  "decision": {
+    "relation_global_facts_candidate": "NOT_CONFIRMED",
+    "relation_evidence_policy": "KEEP_CURRENT_PRODUCTION",
+    "production_modification_authorized": false
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "stage": "RELATION_GLOBAL_CONTEXT_CONFIRMATION_V1",
+  "status": "CONTRACT_FROZEN",
+  "production_modification_authorized": false,
+  "evaluation": {
+    "relation_execution_cases": 7,
+    "frozen_bindings": 16,
+    "repetitions": 5,
+    "scheduled_paired_binding_slots": 80,
+    "valid_paired_semantic_observations_max": 80,
+    "scheduled_logical_calls": 105,
+    "independence_unit": "DISTINCT_IMAGE_SHA256_GROUP"
+  },
+  "execution": {
+    "model": "qwen3.8:27b-mtp-q4_K_M",
+    "base_url": "http://192.168.250.9:11434/v1",
+    "temperature": 0,
+    "timeout_seconds": 120,
+    "concurrency": 1,
+    "order_source": "frozen_schedule.json",
+    "a_first": 18,
+    "b_first": 17,
+    "protocol_failure": "RETAIN_NO_RERUN",
+    "global_context_reused_across_repetitions": false,
+    "downstream_fields": ["facts", "evidence"]
+  },
+  "stability": {
+    "five_paired_valid": "AT_LEAST_4_OF_5_SAME_STATUS",
+    "four_paired_valid": "4_OF_4_SAME_STATUS",
+    "less_than_four": "INCONCLUSIVE",
+    "a_unstable_b_stable_correct": "STABILITY_IMPROVEMENT_ONLY"
+  },
+  "confirmation_gate": {
+    "stable_pure_semantic_improvements_min": 2,
+    "distinct_image_sha256_groups_min": 2,
+    "stable_semantic_regression_max": 0,
+    "b_false_assignment_must_not_exceed_a": true,
+    "legitimate_uncertain_to_wrong_binary_max": 0,
+    "global_projection_contract_failure_max": 0,
+    "b_relation_validator_failure_rate_must_not_exceed_a": true,
+    "global_final_failures_must_remain_in_reliability_denominator": true
+  }
+}
