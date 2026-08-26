@@ -1,0 +1,67 @@
+{
+  "phase": "CONTEXT_EVIDENCE_POLICY_HARDENING_V1",
+  "status": "CONTRACT_FROZEN",
+  "production_modification_authorized": false,
+  "evaluation_set": {
+    "count": 25,
+    "pollution_excluded": true,
+    "frozen_general_rgb_prompts": ["F1", "F2", "F4"],
+    "frozen_general_rgb_case_count": 18,
+    "demo_acceptance_cases": [
+      "core_011",
+      "challenge_005",
+      "challenge_001",
+      "challenge_003",
+      "challenge_004",
+      "core_003",
+      "core_014"
+    ]
+  },
+  "arms": {
+    "A": {
+      "name": "CURRENT_PRODUCTION",
+      "attribute": "isolated_candidate_evidence",
+      "behavior": "35_percent_candidate_local_evidence",
+      "relation": "full_scene_marked_binding_evidence"
+    },
+    "B": {
+      "name": "A_PLUS_SIMPLIFIED_GLOBAL_FACTS",
+      "global_context_calls": "one_per_task_image",
+      "candidate_evidence": "unchanged_from_A",
+      "downstream_fields": ["facts", "evidence"],
+      "task_status_exposed": false
+    },
+    "C": {
+      "name": "ADAPTIVE_LOCAL_FIRST",
+      "first_pass": "A",
+      "fallback_trigger": "uncertain_only",
+      "fallback_eligible_uncertain": ["route_semantic", "relation_binding"],
+      "subject_validity_uncertain_fallback": false,
+      "global_context": "lazy_once_per_image_when_required",
+      "fallback_units": "uncertain_only",
+      "binary_results_immutable": true,
+      "same_image_context_reused": true
+    }
+  },
+  "anti_contamination": {
+    "candidate_identity_source": "candidate_specific_evidence",
+    "subject_validity_held_constant": true,
+    "global_context_role": "auxiliary_scene_level_context_only",
+    "global_context_candidate_ids_allowed": false,
+    "downstream_projection_is_deterministic": true
+  },
+  "required_metrics": [
+    "accuracy_by_route",
+    "regression_count",
+    "false_assignment",
+    "uncertain",
+    "protocol_failure",
+    "attempts_retry_recovered",
+    "calls",
+    "tokens",
+    "warm_latency",
+    "per_image_cost",
+    "uncertain_resolution",
+    "fallback_harm"
+  ]
+}

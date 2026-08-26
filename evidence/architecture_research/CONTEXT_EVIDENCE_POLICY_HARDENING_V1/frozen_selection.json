@@ -1,0 +1,1374 @@
+{
+  "count": 25,
+  "cases": [
+    {
+      "case_id": "F1::fishing_001.jpeg",
+      "prompt_id": "F1",
+      "prompt": "框出正在钓鱼的人",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_001.jpeg",
+      "image_sha256": "459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab",
+      "route": "behavior",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "expected_task_status": "not_satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            82.09,
+            2516.94,
+            3674.46,
+            7719.49
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            82.09,
+            2516.94,
+            3674.46,
+            7719.49
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "F1::fishing_005.jpeg",
+      "prompt_id": "F1",
+      "prompt": "框出正在钓鱼的人",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_005.jpeg",
+      "image_sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145",
+      "route": "behavior",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "expected_task_status": "not_satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            987.83,
+            567.11,
+            2230.0,
+            3493.44
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            987.83,
+            567.11,
+            2230.0,
+            3493.44
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "F1::fishing_010.jpeg",
+      "prompt_id": "F1",
+      "prompt": "框出正在钓鱼的人",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_010.jpeg",
+      "image_sha256": "acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4",
+      "route": "behavior",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "expected_task_status": "not_satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            1138.6,
+            792.96,
+            1835.15,
+            1718.76
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            234.44,
+            928.68,
+            1012.55,
+            1856.76
+          ]
+        },
+        {
+          "id": "C",
+          "bbox": [
+            2410.05,
+            854.47,
+            3121.58,
+            1894.21
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            1138.6,
+            792.96,
+            1835.15,
+            1718.76
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            234.44,
+            928.68,
+            1012.55,
+            1856.76
+          ]
+        },
+        {
+          "id": "C",
+          "bbox": [
+            2410.05,
+            854.47,
+            3121.58,
+            1894.21
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "F1::fishing_014.jpeg",
+      "prompt_id": "F1",
+      "prompt": "框出正在钓鱼的人",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_014.jpeg",
+      "image_sha256": "8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355",
+      "route": "behavior",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "expected_task_status": "not_satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            2695.03,
+            1846.72,
+            3228.39,
+            2889.21
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            4208.56,
+            2371.68,
+            4931.18,
+            3156.99
+          ]
+        },
+        {
+          "id": "C",
+          "bbox": [
+            3247.48,
+            2402.66,
+            4045.02,
+            3198.01
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            2695.03,
+            1846.72,
+            3228.39,
+            2889.21
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            4208.56,
+            2371.68,
+            4931.18,
+            3156.99
+          ]
+        },
+        {
+          "id": "C",
+          "bbox": [
+            3247.48,
+            2402.66,
+            4045.02,
+            3198.01
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "F1::fishing_004.jpeg",
+      "prompt_id": "F1",
+      "prompt": "框出正在钓鱼的人",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_004.jpeg",
+      "image_sha256": "b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9",
+      "route": "behavior",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "expected_task_status": "satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            3489.95,
+            1180.05,
+            4441.24,
+            3564.27
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            3489.95,
+            1180.05,
+            4441.24,
+            3564.27
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "F1::fishing_018.jpeg",
+      "prompt_id": "F1",
+      "prompt": "框出正在钓鱼的人",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_018.jpeg",
+      "image_sha256": "3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e",
+      "route": "behavior",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "expected_task_status": "not_satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            1875.39,
+            20.42,
+            6703.91,
+            4509.52
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            1875.39,
+            20.42,
+            6703.91,
+            4509.52
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "F2::fishing_008.jpeg",
+      "prompt_id": "F2",
+      "prompt": "把拿着鱼竿的人描边",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "route": "relation",
+      "constraints": [
+        {
+          "text": "持有鱼竿",
+          "route": "relation"
+        }
+      ],
+      "expected_task_status": "satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            2003.48,
+            2954.32,
+            2271.22,
+            3562.41
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            1896.9,
+            3771.48,
+            2213.55,
+            4184.3
+          ]
+        },
+        {
+          "id": "C",
+          "bbox": [
+            1848.99,
+            3960.5,
+            2158.52,
+            4446.36
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            2003.48,
+            2954.32,
+            2271.22,
+            3562.41
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            1896.9,
+            3771.48,
+            2213.55,
+            4184.3
+          ]
+        },
+        {
+          "id": "C",
+          "bbox": [
+            1848.99,
+            3960.5,
+            2158.52,
+            4446.36
+          ]
+        }
+      ],
+      "related_candidates": [
+        {
+          "id": "R1",
+          "bbox": [
+            -8.98,
+            3036.1,
+            2050.52,
+            3920.63
+          ]
+        },
+        {
+          "id": "R2",
+          "bbox": [
+            1414.71,
+            2300.13,
+            2118.15,
+            3111.84
+          ]
+        }
+      ],
+      "related_object": "fishing rod"
+    },
+    {
+      "case_id": "F2::fishing_011.jpeg",
+      "prompt_id": "F2",
+      "prompt": "把拿着鱼竿的人描边",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_011.jpeg",
+      "image_sha256": "1b8e03893472d5a5dbddb9c05e9c39032aeb34ff9b548e934ae27c92d23e226d",
+      "route": "behavior",
+      "constraints": [
+        {
+          "text": "拿着鱼竿",
+          "route": "behavior"
+        }
+      ],
+      "expected_task_status": "not_satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            1884.39,
+            1069.88,
+            5491.08,
+            3916.68
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            1884.39,
+            1069.88,
+            5491.08,
+            3916.68
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "F2::fishing_012.jpeg",
+      "prompt_id": "F2",
+      "prompt": "把拿着鱼竿的人描边",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_012.jpeg",
+      "image_sha256": "231b34abed735965efadf43a036bc23d7a11220bab4d63803ee0a14b691e0cec",
+      "route": "behavior",
+      "constraints": [
+        {
+          "text": "拿着鱼竿",
+          "route": "behavior"
+        }
+      ],
+      "expected_task_status": "not_satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            595.03,
+            2577.76,
+            2703.9,
+            6042.04
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            595.03,
+            2577.76,
+            2703.9,
+            6042.04
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "F2::fishing_009.jpeg",
+      "prompt_id": "F2",
+      "prompt": "把拿着鱼竿的人描边",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_009.jpeg",
+      "image_sha256": "944e8192903149190c59eaad751e06420bcaed4c76729e3e489375c0472aece6",
+      "route": "behavior",
+      "constraints": [
+        {
+          "text": "拿着鱼竿",
+          "route": "behavior"
+        }
+      ],
+      "expected_task_status": "satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            2047.97,
+            2.56,
+            4089.2,
+            2788.54
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            2047.97,
+            2.56,
+            4089.2,
+            2788.54
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "F2::fishing_004.jpeg",
+      "prompt_id": "F2",
+      "prompt": "把拿着鱼竿的人描边",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_004.jpeg",
+      "image_sha256": "b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9",
+      "route": "behavior",
+      "constraints": [
+        {
+          "text": "拿着鱼竿",
+          "route": "behavior"
+        }
+      ],
+      "expected_task_status": "satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            3489.95,
+            1180.05,
+            4441.24,
+            3564.27
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            3489.95,
+            1180.05,
+            4441.24,
+            3564.27
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "F2::fishing_010.jpeg",
+      "prompt_id": "F2",
+      "prompt": "把拿着鱼竿的人描边",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_010.jpeg",
+      "image_sha256": "acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4",
+      "route": "behavior",
+      "constraints": [
+        {
+          "text": "拿着鱼竿",
+          "route": "behavior"
+        }
+      ],
+      "expected_task_status": "not_satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            1138.6,
+            792.96,
+            1835.15,
+            1718.76
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            234.44,
+            928.68,
+            1012.55,
+            1856.76
+          ]
+        },
+        {
+          "id": "C",
+          "bbox": [
+            2410.05,
+            854.47,
+            3121.58,
+            1894.21
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            1138.6,
+            792.96,
+            1835.15,
+            1718.76
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            234.44,
+            928.68,
+            1012.55,
+            1856.76
+          ]
+        },
+        {
+          "id": "C",
+          "bbox": [
+            2410.05,
+            854.47,
+            3121.58,
+            1894.21
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "F4::fishing_011.jpeg",
+      "prompt_id": "F4",
+      "prompt": "把拿着鱼的人标出来",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_011.jpeg",
+      "image_sha256": "1b8e03893472d5a5dbddb9c05e9c39032aeb34ff9b548e934ae27c92d23e226d",
+      "route": "relation",
+      "constraints": [
+        {
+          "text": "拿着鱼",
+          "route": "relation"
+        }
+      ],
+      "expected_task_status": "not_satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            1884.39,
+            1069.88,
+            5491.08,
+            3916.68
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            1884.39,
+            1069.88,
+            5491.08,
+            3916.68
+          ]
+        }
+      ],
+      "related_candidates": [
+        {
+          "id": "R1",
+          "bbox": [
+            1421.59,
+            1464.9,
+            2319.92,
+            2002.44
+          ]
+        }
+      ],
+      "related_object": "fish"
+    },
+    {
+      "case_id": "F4::fishing_020.jpeg",
+      "prompt_id": "F4",
+      "prompt": "把拿着鱼的人标出来",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_020.jpeg",
+      "image_sha256": "c3179a25a12c012e194afd9e5163a360a4687b8527aeaf67205cad591eef44d5",
+      "route": "relation",
+      "constraints": [
+        {
+          "text": "拿着鱼",
+          "route": "relation"
+        }
+      ],
+      "expected_task_status": "satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            87.96,
+            14.52,
+            3826.89,
+            5734.23
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            87.96,
+            14.52,
+            3826.89,
+            5734.23
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": "fish"
+    },
+    {
+      "case_id": "F4::fishing_008.jpeg",
+      "prompt_id": "F4",
+      "prompt": "把拿着鱼的人标出来",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_008.jpeg",
+      "image_sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+      "route": "relation",
+      "constraints": [
+        {
+          "text": "拿着鱼",
+          "route": "relation"
+        }
+      ],
+      "expected_task_status": "not_satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            2003.48,
+            2954.32,
+            2271.22,
+            3562.41
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            1896.9,
+            3771.48,
+            2213.55,
+            4184.3
+          ]
+        },
+        {
+          "id": "C",
+          "bbox": [
+            1848.99,
+            3960.5,
+            2158.52,
+            4446.36
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            2003.48,
+            2954.32,
+            2271.22,
+            3562.41
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            1896.9,
+            3771.48,
+            2213.55,
+            4184.3
+          ]
+        },
+        {
+          "id": "C",
+          "bbox": [
+            1848.99,
+            3960.5,
+            2158.52,
+            4446.36
+          ]
+        }
+      ],
+      "related_candidates": [
+        {
+          "id": "R1",
+          "bbox": [
+            2512.01,
+            2769.98,
+            2592.08,
+            2849.52
+          ]
+        }
+      ],
+      "related_object": "fish"
+    },
+    {
+      "case_id": "F4::fishing_026.jpeg",
+      "prompt_id": "F4",
+      "prompt": "把拿着鱼的人标出来",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_026.jpeg",
+      "image_sha256": "a874180ba1ce174df2f6c25312db6b21aee8bccd172e688b5df1f5ca9c211868",
+      "route": "relation",
+      "constraints": [
+        {
+          "text": "拿着鱼",
+          "route": "relation"
+        }
+      ],
+      "expected_task_status": "not_satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            580.85,
+            1626.76,
+            1854.29,
+            3962.56
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            556.34,
+            1913.81,
+            613.54,
+            2055.59
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            580.85,
+            1626.76,
+            1854.29,
+            3962.56
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            556.34,
+            1913.81,
+            613.54,
+            2055.59
+          ]
+        }
+      ],
+      "related_candidates": [
+        {
+          "id": "R1",
+          "bbox": [
+            1579.61,
+            2785.38,
+            1748.13,
+            2922.2
+          ]
+        }
+      ],
+      "related_object": "fish"
+    },
+    {
+      "case_id": "F4::fishing_001.jpeg",
+      "prompt_id": "F4",
+      "prompt": "把拿着鱼的人标出来",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_001.jpeg",
+      "image_sha256": "459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab",
+      "route": "relation",
+      "constraints": [
+        {
+          "text": "拿着鱼",
+          "route": "relation"
+        }
+      ],
+      "expected_task_status": "satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            82.09,
+            2516.94,
+            3674.46,
+            7719.49
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            82.09,
+            2516.94,
+            3674.46,
+            7719.49
+          ]
+        }
+      ],
+      "related_candidates": [
+        {
+          "id": "R1",
+          "bbox": [
+            3213.97,
+            4317.26,
+            3790.58,
+            6377.12
+          ]
+        }
+      ],
+      "related_object": "fish"
+    },
+    {
+      "case_id": "F4::fishing_003.jpeg",
+      "prompt_id": "F4",
+      "prompt": "把拿着鱼的人标出来",
+      "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_003.jpeg",
+      "image_sha256": "d62f2708ef6e36bd6b10c427ebd29398baecd4cfa203c4b2235238c19a06545e",
+      "route": "relation",
+      "constraints": [
+        {
+          "text": "拿着鱼",
+          "route": "relation"
+        }
+      ],
+      "expected_task_status": "satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            1089.57,
+            357.53,
+            2123.86,
+            1684.45
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            1089.57,
+            357.53,
+            2123.86,
+            1684.45
+          ]
+        }
+      ],
+      "related_candidates": [
+        {
+          "id": "R1",
+          "bbox": [
+            1395.1,
+            1601.36,
+            2376.9,
+            1809.92
+          ]
+        },
+        {
+          "id": "R2",
+          "bbox": [
+            975.88,
+            984.58,
+            1295.37,
+            1155.76
+          ]
+        }
+      ],
+      "related_object": "fish"
+    },
+    {
+      "case_id": "demo::core_011",
+      "prompt_id": "core_011",
+      "prompt": "模糊戴帽子的人",
+      "image_path": "E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\benchmark_fishing_hats.png",
+      "image_sha256": "2cbac35729ad9a21d6a854bc5e4afaca8a75481521e336b0d269a1e887bf6081",
+      "route": "attribute",
+      "constraints": [
+        {
+          "text": "戴帽子",
+          "route": "attribute"
+        }
+      ],
+      "expected_task_status": "satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            122.68,
+            88.52,
+            290.56,
+            347.96
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            7.79,
+            145.29,
+            127.93,
+            347.25
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            122.68,
+            88.52,
+            290.56,
+            347.96
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            7.79,
+            145.29,
+            127.93,
+            347.25
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "demo::challenge_005",
+      "prompt_id": "challenge_005",
+      "prompt": "只给穿红色衣服的人描边",
+      "image_path": "E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\commons_red_shirts.jpg",
+      "image_sha256": "b3bddb365514caed18268db9703c006072e13f7a8cc4737219155b7544ce3a3e",
+      "route": "attribute",
+      "constraints": [
+        {
+          "text": "穿红色衣服",
+          "route": "attribute"
+        }
+      ],
+      "expected_task_status": "satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            383.16,
+            105.19,
+            1130.32,
+            861.9
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            1100.33,
+            361.34,
+            1278.31,
+            862.34
+          ]
+        },
+        {
+          "id": "C",
+          "bbox": [
+            1.87,
+            329.27,
+            165.4,
+            861.68
+          ]
+        },
+        {
+          "id": "D",
+          "bbox": [
+            933.26,
+            419.05,
+            1131.58,
+            830.5
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            383.16,
+            105.19,
+            1130.32,
+            861.9
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            1100.33,
+            361.34,
+            1278.31,
+            862.34
+          ]
+        },
+        {
+          "id": "C",
+          "bbox": [
+            1.87,
+            329.27,
+            165.4,
+            861.68
+          ]
+        },
+        {
+          "id": "D",
+          "bbox": [
+            933.26,
+            419.05,
+            1131.58,
+            830.5
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "demo::challenge_001",
+      "prompt_id": "challenge_001",
+      "prompt": "找到正在钓鱼的人",
+      "image_path": "E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\OIP-C.jpg",
+      "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+      "route": "behavior",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "expected_task_status": "satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            183.95,
+            60.79,
+            234.64,
+            148.47
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            155.37,
+            23.12,
+            205.32,
+            124.4
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            183.95,
+            60.79,
+            234.64,
+            148.47
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            155.37,
+            23.12,
+            205.32,
+            124.4
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "demo::challenge_003",
+      "prompt_id": "challenge_003",
+      "prompt": "把正在钓鱼的人标红",
+      "image_path": "E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\benchmark_fishing_lowlight.png",
+      "image_sha256": "717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6",
+      "route": "behavior",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "expected_task_status": "uncertain",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            260.7,
+            168.83,
+            309.72,
+            301.64
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            260.7,
+            168.83,
+            309.72,
+            301.64
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "demo::challenge_004",
+      "prompt_id": "challenge_004",
+      "prompt": "把正在钓鱼的人以外背景变暗",
+      "image_path": "E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\benchmark_fishing_two_people.png",
+      "image_sha256": "45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79",
+      "route": "behavior",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "expected_task_status": "satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            471.6,
+            98.27,
+            544.83,
+            320.23
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            430.95,
+            171.57,
+            485.74,
+            337.7
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            471.6,
+            98.27,
+            544.83,
+            320.23
+          ]
+        },
+        {
+          "id": "B",
+          "bbox": [
+            430.95,
+            171.57,
+            485.74,
+            337.7
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": null
+    },
+    {
+      "case_id": "demo::core_003",
+      "prompt_id": "core_003",
+      "prompt": "只给手持雨伞的人描边",
+      "image_path": "E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\commons_umbrella.jpg",
+      "image_sha256": "5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0",
+      "route": "relation",
+      "constraints": [
+        {
+          "text": "手持雨伞",
+          "route": "relation"
+        }
+      ],
+      "expected_task_status": "satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            667.15,
+            662.65,
+            1003.39,
+            1412.13
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            667.15,
+            662.65,
+            1003.39,
+            1412.13
+          ]
+        }
+      ],
+      "related_candidates": [
+        {
+          "id": "R1",
+          "bbox": [
+            636.04,
+            361.79,
+            1135.29,
+            719.8
+          ]
+        }
+      ],
+      "related_object": "umbrella"
+    },
+    {
+      "case_id": "demo::core_014",
+      "prompt_id": "core_014",
+      "prompt": "只给手持雨伞的人描边",
+      "image_path": "E:\\3\\Visual Agent\\Visual-Agent\\images\\test_images\\test_image.jpg",
+      "image_sha256": "9eeaa87013b4e800930e8a411b58ff9e2fd5383906b1a022f4a712720af34cc2",
+      "route": "relation",
+      "constraints": [
+        {
+          "text": "手持雨伞",
+          "route": "relation"
+        }
+      ],
+      "expected_task_status": "not_satisfied",
+      "candidates": [
+        {
+          "id": "A",
+          "bbox": [
+            924.56,
+            522.52,
+            1493.97,
+            1080.89
+          ]
+        }
+      ],
+      "subjects": [
+        {
+          "id": "A",
+          "bbox": [
+            924.56,
+            522.52,
+            1493.97,
+            1080.89
+          ]
+        }
+      ],
+      "related_candidates": [],
+      "related_object": "umbrella"
+    }
+  ]
+}

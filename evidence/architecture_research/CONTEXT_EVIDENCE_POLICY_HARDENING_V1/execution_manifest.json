@@ -1,0 +1,59 @@
+{
+  "files": [
+    {
+      "path": "CONTEXT_EVIDENCE_POLICY_HARDENING_V1_CONTRACT.md",
+      "bytes": 3043,
+      "sha256": "706e6a0f1e6ad87aff1455e6b158044401149a340438b6b814136dad696e2d97"
+    },
+    {
+      "path": "frozen_contract.json",
+      "bytes": 2003,
+      "sha256": "eedc5796920ba06ccf030492baf61e558c32d32189048dfb3652e9d42ba070b6"
+    },
+    {
+      "path": "frozen_selection.json",
+      "bytes": 31440,
+      "sha256": "d07edb99c68ef274ba1162f165ec7c630b5f8b48529ccaf70c2335d2206575e8"
+    },
+    {
+      "path": "arm_a.jsonl",
+      "bytes": 81368,
+      "sha256": "f8de800745d8cc803d8437a4915492b088dfd5168714abbbe4de01d75bca7987"
+    },
+    {
+      "path": "arm_b.jsonl",
+      "bytes": 113808,
+      "sha256": "d8015eab70c72c9c791a608b706821edf026214aa8219d3aa469c4525f89a802"
+    },
+    {
+      "path": "arm_c.jsonl",
+      "bytes": 115538,
+      "sha256": "1f4bf7236d5105622cea2bbc2fbc05734802198ab69bdb8264945783438ac0d9"
+    },
+    {
+      "path": "comparison_summary.json",
+      "bytes": 17129,
+      "sha256": "c3393c913129a9248c50df12504a33cb50f59bc497604dd779bc91916f92acef"
+    },
+    {
+      "path": "CONTEXT_EVIDENCE_POLICY_HARDENING_V1_REPORT.md",
+      "bytes": 3862,
+      "sha256": "bc53ca17ffbc56f79c8a2e434977c1aa41131f8bc635699b44b43511c8dda5c5"
+    },
+    {
+      "path": "POLICY_DECISION.md",
+      "bytes": 407,
+      "sha256": "e3cbc5b953710bfacec38893eda4bab683c2f838b7ef761eca8930342543b9a5"
+    },
+    {
+      "path": "run_context_evidence_policy_hardening_v1.py",
+      "bytes": 22814,
+      "sha256": "238013dd08f8ede21ade9bea524cd0cef22031eaee60c99709c3f71f4f88c06b"
+    },
+    {
+      "path": "finalize_context_evidence_policy_hardening_v1.py",
+      "bytes": 19475,
+      "sha256": "2717511034c95ed1c1bec0984cbd935a1441f834f59f1ee028625c16264e22aa"
+    }
+  ]
+}
