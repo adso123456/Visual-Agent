@@ -1,0 +1,67 @@
+{
+  "stage": "GENERAL_RGB_FINAL_ACCEPTANCE_V1",
+  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "model_execution_started": false,
+  "production": {
+    "commit": "4dac9cb3823e22e90ff3bb8157c6544c6c6b88fd",
+    "worktree": "CLEAN_DETACHED",
+    "vlm_model": "qwen3.8:27b-mtp-q4_K_M",
+    "vlm_base_url": "http://192.168.250.9:11434/v1",
+    "vlm_timeout_seconds": 120,
+    "concurrency": 1,
+    "cloud_vlm_calls_allowed": 0
+  },
+  "execution_set": {
+    "real_world_fishing": {"prompts": ["F1", "F2", "F3", "F4"], "images": 30, "units": 120},
+    "core": {"case_ids": "core_001..core_015", "units": 15},
+    "challenge": {"case_ids": "challenge_001..challenge_005", "units": 5},
+    "system_denominator": 140,
+    "pollution_units": 0
+  },
+  "real_world_visual_denominator": {
+    "raw": 120,
+    "frozen_invalid": 7,
+    "valid": 113,
+    "positive": 46,
+    "negative": 67
+  },
+  "system_gate": {
+    "pipeline_success": "140/140",
+    "system_failure_max": 0,
+    "provider_protocol_failure_max": 0,
+    "validator_final_failure_max": 0,
+    "cloud_vlm_calls_max": 0,
+    "result_json_required": 140,
+    "single_case_rerun_allowed": false
+  },
+  "core_gate": {
+    "plan_contract": "15/15",
+    "target_selection": "15/15",
+    "action": "15/15",
+    "manual_visual_pass": "15/15",
+    "degraded_allowed": 0,
+    "fail_allowed": 0
+  },
+  "real_world_gate": {
+    "positive_usable_min": "33/46",
+    "negative_tn_min": "58/67",
+    "per_prompt_positive_usable_max_drop": 1,
+    "f3_positive_usable_min": "1/3",
+    "per_prompt_tn_max_drop": 1,
+    "new_invalid_test_data_max": 0
+  },
+  "challenge_gate": {
+    "challenge_001_002": "PASS_OR_DEGRADED_WITHOUT_FALSE_ASSIGNMENT",
+    "challenge_003": "CONSERVATIVE_UNCERTAIN_OR_ZERO_TARGET",
+    "challenge_004": "CLEAR_ELDER_SELECTED_AMBIGUOUS_CHILD_NOT_CONFIDENTLY_ASSIGNED",
+    "challenge_005": "SYSTEM_AND_ARTIFACT_ONLY_DENSE_RECALL_NON_GOAL"
+  },
+  "frozen_source_sha256": {
+    "benchmark_cases_json": "6f56abbca54e7da8abe589881808d32801438e5e57bc0b69aa1929ca55b00acb",
+    "acceptance_contract_v1_json": "08ea636fd3335599ddb219653b3a6ac07dba6d53f87e7f7906e9ea97131d9c5d",
+    "manifest_json": "28a602012b06baef9fdeb798c26144fc6eca6bc1fdb4914864ac292bfdbefaa4",
+    "invalid_adjudication_json": "7729f2103d9319078a903d72734c1765d8928947da0efd924f09bec00d03e50f"
+  },
+  "next_state_if_accepted": "MODEL_EXECUTION_AUTHORIZED",
+  "remote_sensing_water_quality": "BLOCKED"
+}
