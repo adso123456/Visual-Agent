@@ -1,6 +1,6 @@
 {
   "stage": "CONTEXT_EVIDENCE_POLICY_HARDENING_V1",
-  "generated_at_utc": "2026-08-26T01:42:47.646264+00:00",
+  "generated_at_utc": "2026-08-26T01:52:39.791474+00:00",
   "execution": {
     "code_commit": "c2a784573dea313c3f80e714fbc4b7007563f9fa",
     "model": "qwen3.8:27b-mtp-q4_K_M",
@@ -568,19 +568,22 @@
         ]
       },
       "relation": {
-        "selected_arm": "B",
-        "policy": "FULL_SCENE_MARKED_BINDING_PLUS_SIMPLIFIED_GLOBAL_FACTS",
+        "selected_arm": "A",
+        "policy": "FULL_SCENE_MARKED_BINDING_EVIDENCE",
+        "research_candidate": "FULL_SCENE_MARKED_BINDING_PLUS_SIMPLIFIED_GLOBAL_FACTS",
+        "candidate_status": "NEEDS_CONFIRMATION",
         "reasons": [
-          "unit correct 3→5",
-          "task correct 4→5",
-          "false assignment 2→1",
-          "0 unit regression"
+          "B 的 unit correct 3→5、task correct 4→5、false assignment 2→1，方向正面",
+          "仅有 2 个 unit improvement，其中 1 个来自 A 的单次 logical protocol failure",
+          "纯语义改善基本只有 F2::fishing_008 一个 binding",
+          "B 的绝对 relation accuracy 仍为 5/16，uncertain 由 9 增至 10"
         ],
-        "qualification": "收益样本仅 2 个，其中 1 个是 A 单次协议失败；Production 实施前需代码审查授权"
+        "qualification": "B 是待确认研究候选，不是已通过 Production Gate 的 Evidence Policy"
       }
     },
-    "global_context_role": "AUXILIARY_CONTEXT_ONLY",
-    "production_change_recommended": true,
-    "production_modification_authorized": false
+    "global_context_role": "AUXILIARY_CONTEXT_RESEARCH_CANDIDATE_ONLY",
+    "production_change_recommended": false,
+    "production_modification_authorized": false,
+    "next_gate": "RELATION_GLOBAL_CONTEXT_CONFIRMATION_V1"
   }
 }

@@ -18,7 +18,7 @@
   - 阶段建议：bounded alias contract 可进入设计；Detector replacement benchmark 已具备证据基础。
 - `CONTEXT_EVIDENCE_POLICY_HARDENING_V1/`
   - 在 25 个冻结 General RGB 案例上比较 Current、全量 Global Facts 与 uncertain-only lazy fallback。
-  - 阶段裁决：attribute/behavior 保持 Current；relation 的研究赢家为 Full-scene Binding + Simplified Global Facts，但 Production 修改尚未授权。
+  - 阶段裁决：attribute/behavior 保持 Current；relation 的 Global Facts 方向正面但证据不足，保留为待确认研究候选，Production 修改未授权。
 
 所有 JSONL 均为模型调用或离线评分的原始逐条记录；Markdown 报告不替代这些原始数据。
 

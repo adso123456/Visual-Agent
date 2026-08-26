@@ -1,5 +1,11 @@
 # CONTEXT_EVIDENCE_POLICY_HARDENING_V1 结果报告
 
+```text
+CONTEXT_EVIDENCE_POLICY_HARDENING_V1 = CLOSED WITH RELATION FOLLOW-UP
+RELATION_GLOBAL_CONTEXT_CONFIRMATION_V1 = PENDING
+PRODUCTION MODIFICATION = NOT AUTHORIZED
+```
+
 ## 执行边界
 
 - 25 个冻结 General RGB 真实案例；F1/F2/F4 18 个，Demo Acceptance 7 个。
@@ -65,11 +71,14 @@
 
 - `attribute` → **ISOLATED_CANDIDATE_EVIDENCE / Arm A**（A/B/C 均为 5/6 unit、2/2 task；Global Facts 无质量增益，仅增加调用成本）
 - `behavior` → **35_PERCENT_CANDIDATE_LOCAL_EVIDENCE / Arm A**（B/C 都把合法 uncertain 的 challenge_003 强制改为 satisfied；C 仅净增 1 个正确 unit，且存在 fallback_harm；B 虽增益较大但存在 1 个明确回归；当前结果不支持安全启用 Global Context）
-- `relation` → **FULL_SCENE_MARKED_BINDING_PLUS_SIMPLIFIED_GLOBAL_FACTS / Arm B**（unit correct 3→5；task correct 4→5；false assignment 2→1；0 unit regression）
-  - 限定：收益样本仅 2 个，其中 1 个是 A 单次协议失败；Production 实施前需代码审查授权
-- `GLOBAL_CONTEXT_ROLE = AUXILIARY_CONTEXT_ONLY`
-- `PRODUCTION_CHANGE_RECOMMENDED = TRUE`
+- `relation` → **FULL_SCENE_MARKED_BINDING_EVIDENCE / Arm A**（B 的 unit correct 3→5、task correct 4→5、false assignment 2→1，方向正面；仅有 2 个 unit improvement，其中 1 个来自 A 的单次 logical protocol failure；纯语义改善基本只有 F2::fishing_008 一个 binding；B 的绝对 relation accuracy 仍为 5/16，uncertain 由 9 增至 10）
+  - 研究候选：`FULL_SCENE_MARKED_BINDING_PLUS_SIMPLIFIED_GLOBAL_FACTS = NEEDS_CONFIRMATION`
+  - 限定：B 是待确认研究候选，不是已通过 Production Gate 的 Evidence Policy
+- `GLOBAL_CONTEXT_ROLE = AUXILIARY_CONTEXT_RESEARCH_CANDIDATE_ONLY`
+- `PRODUCTION_CHANGE_RECOMMENDED = FALSE`
 
-本阶段没有修改 Production；上述 relation 结果是研究裁决，不构成实施授权。
+- `NEXT_GATE = RELATION_GLOBAL_CONTEXT_CONFIRMATION_V1`
+
+本阶段没有修改 Production；relation 的 B 结果只授权进入窄确认 Gate，不构成实施授权。
 
 完整逐 unit 修正/回归、成本和协议统计见 `comparison_summary.json`；原始模型输出见三个 `arm_*.jsonl`。

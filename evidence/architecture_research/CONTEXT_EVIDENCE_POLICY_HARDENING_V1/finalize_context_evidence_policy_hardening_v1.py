@@ -202,18 +202,25 @@ def policy_decision(scores: dict, comparisons: dict, resolutions: dict) -> dict:
             ],
         },
         "relation": {
-            "selected_arm": "B",
-            "policy": "FULL_SCENE_MARKED_BINDING_PLUS_SIMPLIFIED_GLOBAL_FACTS",
-            "reasons": ["unit correct 3→5", "task correct 4→5", "false assignment 2→1", "0 unit regression"],
-            "qualification": "收益样本仅 2 个，其中 1 个是 A 单次协议失败；Production 实施前需代码审查授权",
+            "selected_arm": "A",
+            "policy": "FULL_SCENE_MARKED_BINDING_EVIDENCE",
+            "research_candidate": "FULL_SCENE_MARKED_BINDING_PLUS_SIMPLIFIED_GLOBAL_FACTS",
+            "candidate_status": "NEEDS_CONFIRMATION",
+            "reasons": [
+                "B 的 unit correct 3→5、task correct 4→5、false assignment 2→1，方向正面",
+                "仅有 2 个 unit improvement，其中 1 个来自 A 的单次 logical protocol failure",
+                "纯语义改善基本只有 F2::fishing_008 一个 binding",
+                "B 的绝对 relation accuracy 仍为 5/16，uncertain 由 9 增至 10",
+            ],
+            "qualification": "B 是待确认研究候选，不是已通过 Production Gate 的 Evidence Policy",
         },
     }
-    any_global = True
     return {
         "route_policy": decisions,
-        "global_context_role": "AUXILIARY_CONTEXT_ONLY" if any_global else "NOT_AUTHORIZED_FOR_PRODUCTION",
-        "production_change_recommended": any_global,
+        "global_context_role": "AUXILIARY_CONTEXT_RESEARCH_CANDIDATE_ONLY",
+        "production_change_recommended": False,
         "production_modification_authorized": False,
+        "next_gate": "RELATION_GLOBAL_CONTEXT_CONFIRMATION_V1",
     }
 
 
@@ -290,6 +297,11 @@ def main() -> None:
     decision = summary["decision"]
     report = [
         "# CONTEXT_EVIDENCE_POLICY_HARDENING_V1 结果报告", "",
+        "```text",
+        "CONTEXT_EVIDENCE_POLICY_HARDENING_V1 = CLOSED WITH RELATION FOLLOW-UP",
+        "RELATION_GLOBAL_CONTEXT_CONFIRMATION_V1 = PENDING",
+        "PRODUCTION MODIFICATION = NOT AUTHORIZED",
+        "```", "",
         "## 执行边界", "",
         "- 25 个冻结 General RGB 真实案例；F1/F2/F4 18 个，Demo Acceptance 7 个。",
         "- P1–P4 为 0；未修改 Production；Local VLM 配置固定。",
@@ -337,12 +349,15 @@ def main() -> None:
     ]
     for route, item in decision["route_policy"].items():
         report.append(f"- `{route}` → **{item['policy']} / Arm {item['selected_arm']}**（{'；'.join(item['reasons'])}）")
+        if item.get("research_candidate"):
+            report.append(f"  - 研究候选：`{item['research_candidate']} = {item['candidate_status']}`")
         if item.get("qualification"):
             report.append(f"  - 限定：{item['qualification']}")
     report += [
         f"- `GLOBAL_CONTEXT_ROLE = {decision['global_context_role']}`",
         f"- `PRODUCTION_CHANGE_RECOMMENDED = {str(decision['production_change_recommended']).upper()}`", "",
-        "本阶段没有修改 Production；上述 relation 结果是研究裁决，不构成实施授权。", "",
+        f"- `NEXT_GATE = {decision['next_gate']}`", "",
+        "本阶段没有修改 Production；relation 的 B 结果只授权进入窄确认 Gate，不构成实施授权。", "",
         "完整逐 unit 修正/回归、成本和协议统计见 `comparison_summary.json`；原始模型输出见三个 `arm_*.jsonl`。", "",
     ]
     (ROOT / "CONTEXT_EVIDENCE_POLICY_HARDENING_V1_REPORT.md").write_text("\n".join(report), encoding="utf-8")
@@ -350,9 +365,13 @@ def main() -> None:
     decision_lines = ["# Policy Decision", ""]
     for route, item in decision["route_policy"].items():
         decision_lines.append(f"- `{route.upper()}_EVIDENCE_POLICY = {item['policy']}` (`ARM_{item['selected_arm']}`)")
+        if item.get("research_candidate"):
+            decision_lines.append(f"- `RELATION_GLOBAL_FACTS_CANDIDATE = PROMISING`")
+            decision_lines.append(f"- `{item['research_candidate']} = {item['candidate_status']}`")
     decision_lines += [f"- `GLOBAL_CONTEXT_ROLE = {decision['global_context_role']}`",
                        f"- `PRODUCTION_CHANGE_RECOMMENDED = {str(decision['production_change_recommended']).upper()}`", ""]
-    decision_lines += ["- `PRODUCTION_MODIFICATION = NOT AUTHORIZED`", ""]
+    decision_lines += ["- `PRODUCTION_MODIFICATION = NOT AUTHORIZED`",
+                       f"- `NEXT_GATE = {decision['next_gate']}`", ""]
     (ROOT / "POLICY_DECISION.md").write_text("\n".join(decision_lines), encoding="utf-8")
 
     for script_name in ("run_context_evidence_policy_hardening_v1.py", "finalize_context_evidence_policy_hardening_v1.py"):

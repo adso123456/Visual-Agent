@@ -32,18 +32,18 @@
     },
     {
       "path": "comparison_summary.json",
-      "bytes": 17129,
-      "sha256": "c3393c913129a9248c50df12504a33cb50f59bc497604dd779bc91916f92acef"
+      "bytes": 17530,
+      "sha256": "04a58b50787b3824ec8fbb751d8e71329272691cfdc1cd70225fb708cd157084"
     },
     {
       "path": "CONTEXT_EVIDENCE_POLICY_HARDENING_V1_REPORT.md",
-      "bytes": 3862,
-      "sha256": "bc53ca17ffbc56f79c8a2e434977c1aa41131f8bc635699b44b43511c8dda5c5"
+      "bytes": 4412,
+      "sha256": "94562ee606c4d948556f3ee1e2d4d5961602f2cf2828626f363ecfcba5f0b118"
     },
     {
       "path": "POLICY_DECISION.md",
-      "bytes": 407,
-      "sha256": "e3cbc5b953710bfacec38893eda4bab683c2f838b7ef761eca8930342543b9a5"
+      "bytes": 594,
+      "sha256": "02b662268311b976b4845061a2b77e32c90b87b1dfb3e575f908fe9f655617cd"
     },
     {
       "path": "run_context_evidence_policy_hardening_v1.py",
@@ -52,8 +52,8 @@
     },
     {
       "path": "finalize_context_evidence_policy_hardening_v1.py",
-      "bytes": 19475,
-      "sha256": "2717511034c95ed1c1bec0984cbd935a1441f834f59f1ee028625c16264e22aa"
+      "bytes": 20634,
+      "sha256": "479b4e48a545fe258014da877d5117a5c80f95265f65236ebf6451d78456c8a2"
     }
   ]
 }
