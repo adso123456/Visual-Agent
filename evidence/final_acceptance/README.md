@@ -13,3 +13,7 @@
   - 当前状态：`READ-ONLY ATTRIBUTION COMPLETE / REVIEW REQUIRED`。
   - 未调用模型、未补跑、未修改 Production。
   - 固化 F2/F4 三个 non-regression blocker 与 `challenge_001`、`challenge_004` 的逐层根因。
+- `GENERAL_RGB_FINAL_ACCEPTANCE_REMEDIATION_V1/`
+  - 当前状态：`CONTRACT FROZEN`。
+  - 只冻结 R1 Planner、R2 Relation、R3 Behavior 的最小修复边界与 targeted Gate。
+  - Production 修改与模型执行仍未授权。
