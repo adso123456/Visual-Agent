@@ -1,0 +1,74 @@
+{
+  "prompt": "框出正在钓鱼的人",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      {
+        "text": "正在钓鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "box"
+    },
+    "related_objects": []
+  },
+  "candidates": [],
+  "verified_subjects": [],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [],
+  "targets": [],
+  "qwen_protocol": {
+    "subject_validity": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "candidate_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 2.032,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 0.0
+    },
+    "grounding_dino_seconds": 7.236,
+    "subject_validity_seconds": 0.0,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 0.0,
+    "group_verification_seconds": 0.0,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": null,
+    "deepseek_final_response_seconds": 1.436,
+    "total_seconds": 10.924
+  },
+  "action_result": {
+    "type": "box",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v1/artifacts/F1__fishing_023/result_001.jpg"
+  },
+  "agent_response": "没有找到满足条件的目标。"
+}

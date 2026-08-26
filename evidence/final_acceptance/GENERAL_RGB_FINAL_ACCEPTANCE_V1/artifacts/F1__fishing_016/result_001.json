@@ -1,0 +1,198 @@
+{
+  "prompt": "框出正在钓鱼的人",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      {
+        "text": "正在钓鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "box"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        2475.14,
+        1642.49,
+        3341.06,
+        3675.66
+      ],
+      "dino_confidence": 0.7874,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "轮廓内的男孩双手握持一根带卷线器的钓竿，竿身向左上方延伸，背景为水面，符合钓鱼动作。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "轮廓内的男孩双手握持一根带卷线器的钓竿，竿身向左上方延伸，背景为水面，符合钓鱼动作。"
+    }
+  ],
+  "verified_subjects": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        2475.14,
+        1642.49,
+        3341.06,
+        3675.66
+      ],
+      "confidence": 0.7874,
+      "reason": "轮廓内的男孩双手握持一根带卷线器的钓竿，竿身向左上方延伸，背景为水面，符合钓鱼动作。"
+    }
+  ],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "subject": {
+        "candidate_id": "A",
+        "object": "person",
+        "bbox": [
+          2475.14,
+          1642.49,
+          3341.06,
+          3675.66
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        2475.14,
+        1642.49,
+        3341.06,
+        3675.66
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        2475.14,
+        1642.49,
+        3341.06,
+        3675.66
+      ],
+      "confidence": 0.7874,
+      "reason": "轮廓内的男孩双手握持一根带卷线器的钓竿，竿身向左上方延伸，背景为水面，符合钓鱼动作。",
+      "composite_bbox": [
+        2475.14,
+        1642.49,
+        3341.06,
+        3675.66
+      ]
+    }
+  ],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            5568,
+            3712
+          ],
+          "original_payload_bytes": 1597080,
+          "normalized_dimensions": [
+            5568,
+            3712
+          ],
+          "normalized_payload_bytes": 1597080,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "A": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              1473,
+              2782
+            ],
+            "original_payload_bytes": 4830624,
+            "normalized_dimensions": [
+              1473,
+              2782
+            ],
+            "normalized_payload_bytes": 4830624,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars"
+          }
+        }
+      }
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 1.87,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 0.0
+    },
+    "grounding_dino_seconds": 7.768,
+    "subject_validity_seconds": 19.102,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 17.958,
+    "group_verification_seconds": 40.056,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "inference_seconds": 2.159,
+      "memory_after_load_mb": 0.0,
+      "peak_memory_mb": 0.0,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 0.997,
+    "total_seconds": 50.829
+  },
+  "action_result": {
+    "type": "box",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v1/artifacts/F1__fishing_016/result_001.jpg"
+  },
+  "agent_response": "已框出正在钓鱼的人。"
+}

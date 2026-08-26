@@ -1,0 +1,445 @@
+{
+  "prompt": "框出正在钓鱼的人",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      {
+        "text": "正在钓鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "box"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        2003.48,
+        2954.33,
+        2271.22,
+        3562.41
+      ],
+      "dino_confidence": 0.6752,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "轮廓内男子站在水边栏杆旁，双手握持一根斜向上延伸的细长钓竿，面向水面，姿态与持竿垂钓动作一致，符合正在钓鱼的行为。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "轮廓内男子站在水边栏杆旁，双手握持一根斜向上延伸的细长钓竿，面向水面，姿态与持竿垂钓动作一致，符合正在钓鱼的行为。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        1896.91,
+        3771.48,
+        2213.55,
+        4184.3
+      ],
+      "dino_confidence": 0.6026,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "轮廓内穿黑衣戴帽的人物坐在水边，手中握持一根细长钓竿，竿身朝向水面方向，呈现垂钓姿态。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "轮廓内穿黑衣戴帽的人物坐在水边，手中握持一根细长钓竿，竿身朝向水面方向，呈现垂钓姿态。"
+    },
+    {
+      "id": "C",
+      "text_label": "person",
+      "bbox": [
+        1848.99,
+        3960.5,
+        2158.52,
+        4446.31
+      ],
+      "dino_confidence": 0.4445,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "not_satisfied",
+          "evidence": "轮廓内的绿裙女性坐着，双手放在腿前并未握持钓竿，钓竿及橙色物件由后方黑衣男性握持，钓鱼行为不属于当前人物。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "轮廓内的绿裙女性坐着，双手放在腿前并未握持钓竿，钓竿及橙色物件由后方黑衣男性握持，钓鱼行为不属于当前人物。"
+    },
+    {
+      "id": "D",
+      "text_label": "person",
+      "bbox": [
+        1731.32,
+        3957.72,
+        2149.14,
+        4507.34
+      ],
+      "dino_confidence": 0.3002,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "not_satisfied",
+          "evidence": "伸向水面的钓竿由旁边黑衣男性握持操作，轮廓内穿绿裙的女性低头手持一根红色细长物体（似手机），双手未接触钓竿，没有持竿垂钓的动作。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "伸向水面的钓竿由旁边黑衣男性握持操作，轮廓内穿绿裙的女性低头手持一根红色细长物体（似手机），双手未接触钓竿，没有持竿垂钓的动作。"
+    }
+  ],
+  "verified_subjects": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        2003.48,
+        2954.33,
+        2271.22,
+        3562.41
+      ],
+      "confidence": 0.6752,
+      "reason": "轮廓内男子站在水边栏杆旁，双手握持一根斜向上延伸的细长钓竿，面向水面，姿态与持竿垂钓动作一致，符合正在钓鱼的行为。"
+    },
+    {
+      "id": "B",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        1896.91,
+        3771.48,
+        2213.55,
+        4184.3
+      ],
+      "confidence": 0.6026,
+      "reason": "轮廓内穿黑衣戴帽的人物坐在水边，手中握持一根细长钓竿，竿身朝向水面方向，呈现垂钓姿态。"
+    }
+  ],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "subject": {
+        "candidate_id": "A",
+        "object": "person",
+        "bbox": [
+          2003.48,
+          2954.33,
+          2271.22,
+          3562.41
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        2003.48,
+        2954.33,
+        2271.22,
+        3562.41
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    },
+    {
+      "id": "B",
+      "label": "钓鱼的人",
+      "subject": {
+        "candidate_id": "B",
+        "object": "person",
+        "bbox": [
+          1896.91,
+          3771.48,
+          2213.55,
+          4184.3
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        1896.91,
+        3771.48,
+        2213.55,
+        4184.3
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        2003.48,
+        2954.33,
+        2271.22,
+        3562.41
+      ],
+      "confidence": 0.6752,
+      "reason": "轮廓内男子站在水边栏杆旁，双手握持一根斜向上延伸的细长钓竿，面向水面，姿态与持竿垂钓动作一致，符合正在钓鱼的行为。",
+      "composite_bbox": [
+        2003.48,
+        2954.33,
+        2271.22,
+        3562.41
+      ]
+    },
+    {
+      "id": "B",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        1896.91,
+        3771.48,
+        2213.55,
+        4184.3
+      ],
+      "confidence": 0.6026,
+      "reason": "轮廓内穿黑衣戴帽的人物坐在水边，手中握持一根细长钓竿，竿身朝向水面方向，呈现垂钓姿态。",
+      "composite_bbox": [
+        1896.91,
+        3771.48,
+        2213.55,
+        4184.3
+      ]
+    }
+  ],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            3916,
+            5894
+          ],
+          "original_payload_bytes": 262768,
+          "normalized_dimensions": [
+            3916,
+            5894
+          ],
+          "normalized_payload_bytes": 262768,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      },
+      "B": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            3916,
+            5894
+          ],
+          "original_payload_bytes": 220984,
+          "normalized_dimensions": [
+            3916,
+            5894
+          ],
+          "normalized_payload_bytes": 220984,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      },
+      "C": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            3916,
+            5894
+          ],
+          "original_payload_bytes": 254960,
+          "normalized_dimensions": [
+            3916,
+            5894
+          ],
+          "normalized_payload_bytes": 254960,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      },
+      "D": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            3916,
+            5894
+          ],
+          "original_payload_bytes": 275524,
+          "normalized_dimensions": [
+            3916,
+            5894
+          ],
+          "normalized_payload_bytes": 275524,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "A": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              456,
+              1035
+            ],
+            "original_payload_bytes": 979964,
+            "normalized_dimensions": [
+              456,
+              1035
+            ],
+            "normalized_payload_bytes": 979964,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars"
+          }
+        }
+      },
+      "B": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              539,
+              703
+            ],
+            "original_payload_bytes": 673324,
+            "normalized_dimensions": [
+              539,
+              703
+            ],
+            "normalized_payload_bytes": 673324,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars"
+          }
+        }
+      },
+      "C": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              527,
+              827
+            ],
+            "original_payload_bytes": 843192,
+            "normalized_dimensions": [
+              527,
+              827
+            ],
+            "normalized_payload_bytes": 843192,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars"
+          }
+        }
+      },
+      "D": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              711,
+              935
+            ],
+            "original_payload_bytes": 1200808,
+            "normalized_dimensions": [
+              711,
+              935
+            ],
+            "normalized_payload_bytes": 1200808,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars"
+          }
+        }
+      }
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 1.998,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 0.0
+    },
+    "grounding_dino_seconds": 7.675,
+    "subject_validity_seconds": 69.215,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 38.591,
+    "group_verification_seconds": 112.468,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "inference_seconds": 2.271,
+      "memory_after_load_mb": 0.0,
+      "peak_memory_mb": 0.0,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 2.087,
+    "total_seconds": 124.432
+  },
+  "action_result": {
+    "type": "box",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v1/artifacts/F1__fishing_008/result_001.jpg"
+  },
+  "agent_response": "已框出图中 2 位正在钓鱼的人。"
+}

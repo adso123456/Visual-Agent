@@ -1,0 +1,326 @@
+{
+  "prompt": "框出正在钓鱼的人",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      {
+        "text": "正在钓鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "box"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        2695.03,
+        1846.72,
+        3228.39,
+        2889.21
+      ],
+      "dino_confidence": 0.674,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该男子站在海面上的船上，身旁竖立着两根钓鱼竿，船舱内可见渔具等垂钓装备，整体处于海上垂钓场景，符合正在钓鱼的行为。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该男子站在海面上的船上，身旁竖立着两根钓鱼竿，船舱内可见渔具等垂钓装备，整体处于海上垂钓场景，符合正在钓鱼的行为。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        4208.56,
+        2371.68,
+        4931.18,
+        3156.99
+      ],
+      "dino_confidence": 0.6695,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "人物坐在船舷边，手臂前伸靠近栏杆，船右侧可见细长杆状物疑似钓竿，但人物手部未呈现握竿或收线动作，无法确认该钓竿由其操作，钓鱼行为归属不清。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "人物坐在船舷边，手臂前伸靠近栏杆，船右侧可见细长杆状物疑似钓竿，但人物手部未呈现握竿或收线动作，无法确认该钓竿由其操作，钓鱼行为归属不清。"
+    },
+    {
+      "id": "C",
+      "text_label": "person",
+      "bbox": [
+        3247.48,
+        2402.66,
+        4045.02,
+        3198.01
+      ],
+      "dino_confidence": 0.6635,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "轮廓人物C坐在船内，一只手搭在船舷栏杆上，并未握持任何钓具；画面左侧的红色钓竿及金色渔轮靠近穿白衣的人，无法确认归属C，故钓鱼行为归属不清。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "轮廓人物C坐在船内，一只手搭在船舷栏杆上，并未握持任何钓具；画面左侧的红色钓竿及金色渔轮靠近穿白衣的人，无法确认归属C，故钓鱼行为归属不清。"
+    }
+  ],
+  "verified_subjects": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        2695.03,
+        1846.72,
+        3228.39,
+        2889.21
+      ],
+      "confidence": 0.674,
+      "reason": "该男子站在海面上的船上，身旁竖立着两根钓鱼竿，船舱内可见渔具等垂钓装备，整体处于海上垂钓场景，符合正在钓鱼的行为。"
+    }
+  ],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "subject": {
+        "candidate_id": "A",
+        "object": "person",
+        "bbox": [
+          2695.03,
+          1846.72,
+          3228.39,
+          2889.21
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        2695.03,
+        1846.72,
+        3228.39,
+        2889.21
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        2695.03,
+        1846.72,
+        3228.39,
+        2889.21
+      ],
+      "confidence": 0.674,
+      "reason": "该男子站在海面上的船上，身旁竖立着两根钓鱼竿，船舱内可见渔具等垂钓装备，整体处于海上垂钓场景，符合正在钓鱼的行为。",
+      "composite_bbox": [
+        2695.03,
+        1846.72,
+        3228.39,
+        2889.21
+      ]
+    }
+  ],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            6720,
+            4480
+          ],
+          "original_payload_bytes": 511704,
+          "normalized_dimensions": [
+            6720,
+            4480
+          ],
+          "normalized_payload_bytes": 511704,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      },
+      "B": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            6720,
+            4480
+          ],
+          "original_payload_bytes": 693632,
+          "normalized_dimensions": [
+            6720,
+            4480
+          ],
+          "normalized_payload_bytes": 693632,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      },
+      "C": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            6720,
+            4480
+          ],
+          "original_payload_bytes": 649456,
+          "normalized_dimensions": [
+            6720,
+            4480
+          ],
+          "normalized_payload_bytes": 649456,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "A": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              908,
+              1774
+            ],
+            "original_payload_bytes": 3240316,
+            "normalized_dimensions": [
+              908,
+              1774
+            ],
+            "normalized_payload_bytes": 3240316,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars"
+          }
+        }
+      },
+      "B": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              1230,
+              1336
+            ],
+            "original_payload_bytes": 3341236,
+            "normalized_dimensions": [
+              1230,
+              1336
+            ],
+            "normalized_payload_bytes": 3341236,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars"
+          }
+        }
+      },
+      "C": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              1357,
+              1353
+            ],
+            "original_payload_bytes": 3548052,
+            "normalized_dimensions": [
+              1357,
+              1353
+            ],
+            "normalized_payload_bytes": 3548052,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars"
+          }
+        }
+      }
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 2.267,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 0.0
+    },
+    "grounding_dino_seconds": 7.687,
+    "subject_validity_seconds": 53.078,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 34.474,
+    "group_verification_seconds": 92.268,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "inference_seconds": 2.297,
+      "memory_after_load_mb": 0.0,
+      "peak_memory_mb": 0.0,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 1.098,
+    "total_seconds": 103.56
+  },
+  "action_result": {
+    "type": "box",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v1/artifacts/F1__fishing_014/result_001.jpg"
+  },
+  "agent_response": "已框出正在钓鱼的人。"
+}

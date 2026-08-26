@@ -1,0 +1,141 @@
+{
+  "prompt": "把正在钓鱼的人标红",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      {
+        "text": "正在钓鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "highlight",
+      "color": "#ff0000"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        260.7,
+        168.83,
+        309.72,
+        301.64
+      ],
+      "dino_confidence": 0.866,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "轮廓内人物呈站立姿态，但画面中未见鱼竿、鱼线等钓鱼工具，手部动作也不清晰，无法确认其正在钓鱼。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "轮廓内人物呈站立姿态，但画面中未见鱼竿、鱼线等钓鱼工具，手部动作也不清晰，无法确认其正在钓鱼。"
+    }
+  ],
+  "verified_subjects": [],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [],
+  "targets": [],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            597,
+            398
+          ],
+          "original_payload_bytes": 11660,
+          "normalized_dimensions": [
+            597,
+            398
+          ],
+          "normalized_payload_bytes": 11660,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "A": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              84,
+              227
+            ],
+            "original_payload_bytes": 26872,
+            "normalized_dimensions": [
+              84,
+              227
+            ],
+            "normalized_payload_bytes": 26872,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars"
+          }
+        }
+      }
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 1.967,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 0.0
+    },
+    "grounding_dino_seconds": 7.499,
+    "subject_validity_seconds": 5.017,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 6.302,
+    "group_verification_seconds": 13.466,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "inference_seconds": 2.116,
+      "memory_after_load_mb": 0.0,
+      "peak_memory_mb": 0.0,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 1.835,
+    "total_seconds": 24.796
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v1/artifacts/challenge_003/result_001.jpg"
+  },
+  "agent_response": "没有找到满足条件的目标。"
+}

@@ -1,0 +1,53 @@
+{
+  "submitted": 140,
+  "terminal": 140,
+  "pipeline_success": 140,
+  "system_failure": 0,
+  "provider_attempt_failure": 0,
+  "protocol_final_failure": 0,
+  "validator_final_failure": 0,
+  "result_json_present": 140,
+  "result_image_present": 140,
+  "actual_vlm_calls": 286,
+  "unexpected_model_calls": 0,
+  "unexpected_endpoint_calls": 0,
+  "qwen_protocol_attempts": 286,
+  "qwen_protocol_retry_count": 0,
+  "qwen_protocol_recovered": 0,
+  "prompt_tokens": 995313,
+  "completion_tokens": 20468,
+  "total_tokens": 1015781,
+  "summed_end_to_end_seconds": 6492.478,
+  "evidence_payload_records": 245,
+  "evidence_normalized_records": 7,
+  "max_original_payload_chars": 27343612,
+  "max_sent_payload_chars": 17190864,
+  "by_bucket": {
+    "CORE_CHALLENGE": {
+      "submitted": 20,
+      "success": 20,
+      "error": 0
+    },
+    "F1": {
+      "submitted": 30,
+      "success": 30,
+      "error": 0
+    },
+    "F2": {
+      "submitted": 30,
+      "success": 30,
+      "error": 0
+    },
+    "F3": {
+      "submitted": 30,
+      "success": 30,
+      "error": 0
+    },
+    "F4": {
+      "submitted": 30,
+      "success": 30,
+      "error": 0
+    }
+  },
+  "gate": "PASS"
+}

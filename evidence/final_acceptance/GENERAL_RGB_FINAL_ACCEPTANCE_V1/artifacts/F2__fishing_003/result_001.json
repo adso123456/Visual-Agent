@@ -1,0 +1,142 @@
+{
+  "prompt": "把拿着鱼竿的人描边",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "拿着鱼竿的人",
+    "constraints": [
+      {
+        "text": "拿着鱼竿",
+        "route": "relation"
+      }
+    ],
+    "action": {
+      "type": "outline"
+    },
+    "related_objects": [
+      {
+        "object": "fishing rod",
+        "relation": "held_by_target"
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        1089.57,
+        357.53,
+        2123.86,
+        1684.45
+      ],
+      "dino_confidence": 0.8164,
+      "verification_checks": [
+        {
+          "constraint": "拿着鱼竿",
+          "status": "uncertain",
+          "evidence": "未检测到关联对象 fishing rod，无法确认 held_by_target。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "未检测到关联对象 fishing rod，无法确认 held_by_target。"
+    }
+  ],
+  "verified_subjects": [],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "A",
+      "label": "拿着鱼竿的人",
+      "subject": {
+        "candidate_id": "A",
+        "object": "person",
+        "bbox": [
+          1089.57,
+          357.53,
+          2123.86,
+          1684.45
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": null,
+      "composite_complete": false,
+      "completion_reason": "related_object_not_detected"
+    }
+  ],
+  "targets": [],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            3008,
+            2000
+          ],
+          "original_payload_bytes": 1463896,
+          "normalized_dimensions": [
+            3008,
+            2000
+          ],
+          "normalized_payload_bytes": 1463896,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "A": {}
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 2.079,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 0.0
+    },
+    "grounding_dino_seconds": 7.28,
+    "subject_validity_seconds": 17.435,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 0.0,
+    "group_verification_seconds": 19.67,
+    "relation_grounding_seconds": 7.263,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "inference_seconds": 2.035,
+      "memory_after_load_mb": 0.0,
+      "peak_memory_mb": 0.0,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 1.746,
+    "total_seconds": 38.109
+  },
+  "action_result": {
+    "type": "outline",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v1/artifacts/F2__fishing_003/result_001.jpg"
+  },
+  "agent_response": "无法完成描边，因为检测到的候选人物关系中缺少“拿着鱼竿”的关联物体，未能确认满足条件的目标。"
+}

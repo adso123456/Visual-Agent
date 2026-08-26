@@ -1,0 +1,140 @@
+{
+  "prompt": "把拿着鱼的人标出来",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "人",
+    "constraints": [
+      {
+        "text": "拿着鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "highlight"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        1857.41,
+        4252.47,
+        2571.89,
+        6200.18
+      ],
+      "dino_confidence": 0.8038,
+      "verification_checks": [
+        {
+          "constraint": "拿着鱼",
+          "status": "uncertain",
+          "evidence": "人物站在水边持钓竿，身体左侧垂挂一块深色物体，疑似鱼或渔具袋，但无法清晰确认其为鱼且被握持，证据不足。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "人物站在水边持钓竿，身体左侧垂挂一块深色物体，疑似鱼或渔具袋，但无法清晰确认其为鱼且被握持，证据不足。"
+    }
+  ],
+  "verified_subjects": [],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [],
+  "targets": [],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            4160,
+            6240
+          ],
+          "original_payload_bytes": 1165296,
+          "normalized_dimensions": [
+            4160,
+            6240
+          ],
+          "normalized_payload_bytes": 1165296,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "A": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              1215,
+              2670
+            ],
+            "original_payload_bytes": 4034036,
+            "normalized_dimensions": [
+              1215,
+              2670
+            ],
+            "normalized_payload_bytes": 4034036,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars"
+          }
+        }
+      }
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 2.461,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 0.0
+    },
+    "grounding_dino_seconds": 7.401,
+    "subject_validity_seconds": 13.57,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 12.525,
+    "group_verification_seconds": 29.009,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "inference_seconds": 2.038,
+      "memory_after_load_mb": 0.0,
+      "peak_memory_mb": 0.0,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 1.081,
+    "total_seconds": 40.124
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v1/artifacts/F4__fishing_029/result_001.jpg"
+  },
+  "agent_response": "没有找到满足“拿着鱼的人”这一条件的目标。"
+}

@@ -5,6 +5,7 @@
 ## Stages
 
 - `GENERAL_RGB_FINAL_ACCEPTANCE_V1/`
-  - 当前状态：`CONTRACT FROZEN`。
+  - 当前状态：`FAIL`。
   - Production baseline：`master@4dac9cb3823e22e90ff3bb8157c6544c6c6b88fd`。
-  - 140-unit Local VLM 模型执行已获授权；Remote Sensing Water Quality 仍被阻塞。
+  - 140/140 Pipeline success；System 与 Core Gate 通过，Real-world Vision 与 Challenge Safety Gate 未通过。
+  - Remote Sensing Water Quality 继续保持 `BLOCKED`。

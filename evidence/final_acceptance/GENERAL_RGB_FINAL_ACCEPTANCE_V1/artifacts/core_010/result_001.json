@@ -1,0 +1,212 @@
+{
+  "prompt": "把正在钓鱼的人单独抠出来",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "垂钓者",
+    "constraints": [
+      {
+        "text": "正在钓鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "cutout"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        400.36,
+        77.84,
+        497.7,
+        336.44
+      ],
+      "dino_confidence": 0.8312,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该人物站在水边，手中握持一根斜向上延伸的细长钓竿，腰间挂有渔具包，面向水面呈垂钓姿态。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该人物站在水边，手中握持一根斜向上延伸的细长钓竿，腰间挂有渔具包，面向水面呈垂钓姿态。"
+    }
+  ],
+  "verified_subjects": [
+    {
+      "id": "A",
+      "label": "垂钓者",
+      "text_label": "person",
+      "bbox": [
+        400.36,
+        77.84,
+        497.7,
+        336.44
+      ],
+      "confidence": 0.8312,
+      "reason": "该人物站在水边，手中握持一根斜向上延伸的细长钓竿，腰间挂有渔具包，面向水面呈垂钓姿态。"
+    }
+  ],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "A",
+      "label": "垂钓者",
+      "subject": {
+        "candidate_id": "A",
+        "object": "person",
+        "bbox": [
+          400.36,
+          77.84,
+          497.7,
+          336.44
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        400.36,
+        77.84,
+        497.7,
+        336.44
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "垂钓者",
+      "text_label": "person",
+      "bbox": [
+        400.36,
+        77.84,
+        497.7,
+        336.44
+      ],
+      "confidence": 0.8312,
+      "reason": "该人物站在水边，手中握持一根斜向上延伸的细长钓竿，腰间挂有渔具包，面向水面呈垂钓姿态。",
+      "composite_bbox": [
+        400.36,
+        77.84,
+        497.7,
+        336.44
+      ],
+      "components": [
+        {
+          "role": "subject",
+          "object": "person",
+          "candidate_id": "A",
+          "mask_score": 0.9304,
+          "mask_area_pixels": 12231
+        }
+      ],
+      "segmentation": {
+        "mask_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v1/artifacts/core_010/result_001_mask_A.png",
+        "mask_score": 0.9304,
+        "mask_area_pixels": 12231
+      }
+    }
+  ],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            595,
+            396
+          ],
+          "original_payload_bytes": 42492,
+          "normalized_dimensions": [
+            595,
+            396
+          ],
+          "normalized_payload_bytes": 42492,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "A": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              166,
+              396
+            ],
+            "original_payload_bytes": 154424,
+            "normalized_dimensions": [
+              166,
+              396
+            ],
+            "normalized_payload_bytes": 154424,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars"
+          }
+        }
+      }
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 2.304,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 0.0
+    },
+    "grounding_dino_seconds": 7.68,
+    "subject_validity_seconds": 5.821,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 6.333,
+    "group_verification_seconds": 14.237,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "inference_seconds": 2.048,
+      "memory_after_load_mb": 0.0,
+      "peak_memory_mb": 0.0,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 2.347,
+    "total_seconds": 26.642
+  },
+  "action_result": {
+    "type": "cutout",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v1/artifacts/core_010/result_001.png"
+  },
+  "agent_response": "已根据“正在钓鱼”的语义条件将目标垂钓者单独抠出。"
+}

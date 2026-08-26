@@ -1,0 +1,1122 @@
+[
+  {
+    "unit_id": "core_001",
+    "case_id": "core_001",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\test_image.jpg",
+    "evidence_input_path": "inputs/by_sha256/9eeaa87013b4e800930e8a411b58ff9e2fd5383906b1a022f4a712720af34cc2.jpg",
+    "sha256": "9eeaa87013b4e800930e8a411b58ff9e2fd5383906b1a022f4a712720af34cc2",
+    "bytes": 496395
+  },
+  {
+    "unit_id": "core_002",
+    "case_id": "core_002",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\test_image.jpg",
+    "evidence_input_path": "inputs/by_sha256/9eeaa87013b4e800930e8a411b58ff9e2fd5383906b1a022f4a712720af34cc2.jpg",
+    "sha256": "9eeaa87013b4e800930e8a411b58ff9e2fd5383906b1a022f4a712720af34cc2",
+    "bytes": 496395
+  },
+  {
+    "unit_id": "core_003",
+    "case_id": "core_003",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\commons_umbrella.jpg",
+    "evidence_input_path": "inputs/by_sha256/5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0.jpg",
+    "sha256": "5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0",
+    "bytes": 747994
+  },
+  {
+    "unit_id": "core_004",
+    "case_id": "core_004",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\commons_umbrella.jpg",
+    "evidence_input_path": "inputs/by_sha256/5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0.jpg",
+    "sha256": "5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0",
+    "bytes": 747994
+  },
+  {
+    "unit_id": "core_005",
+    "case_id": "core_005",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\benchmark_fishing_clear.png",
+    "evidence_input_path": "inputs/by_sha256/8b216481119bf3507c4753edb461505438c9e8b2e38872c519fc6b40adb3237e.png",
+    "sha256": "8b216481119bf3507c4753edb461505438c9e8b2e38872c519fc6b40adb3237e",
+    "bytes": 457357
+  },
+  {
+    "unit_id": "core_006",
+    "case_id": "core_006",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\benchmark_fishing_clear.png",
+    "evidence_input_path": "inputs/by_sha256/8b216481119bf3507c4753edb461505438c9e8b2e38872c519fc6b40adb3237e.png",
+    "sha256": "8b216481119bf3507c4753edb461505438c9e8b2e38872c519fc6b40adb3237e",
+    "bytes": 457357
+  },
+  {
+    "unit_id": "core_007",
+    "case_id": "core_007",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\benchmark_fishing_clear.png",
+    "evidence_input_path": "inputs/by_sha256/8b216481119bf3507c4753edb461505438c9e8b2e38872c519fc6b40adb3237e.png",
+    "sha256": "8b216481119bf3507c4753edb461505438c9e8b2e38872c519fc6b40adb3237e",
+    "bytes": 457357
+  },
+  {
+    "unit_id": "core_008",
+    "case_id": "core_008",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\benchmark_fishing_clear.png",
+    "evidence_input_path": "inputs/by_sha256/8b216481119bf3507c4753edb461505438c9e8b2e38872c519fc6b40adb3237e.png",
+    "sha256": "8b216481119bf3507c4753edb461505438c9e8b2e38872c519fc6b40adb3237e",
+    "bytes": 457357
+  },
+  {
+    "unit_id": "core_009",
+    "case_id": "core_009",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\benchmark_fishing_clear.png",
+    "evidence_input_path": "inputs/by_sha256/8b216481119bf3507c4753edb461505438c9e8b2e38872c519fc6b40adb3237e.png",
+    "sha256": "8b216481119bf3507c4753edb461505438c9e8b2e38872c519fc6b40adb3237e",
+    "bytes": 457357
+  },
+  {
+    "unit_id": "core_010",
+    "case_id": "core_010",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\benchmark_fishing_clear.png",
+    "evidence_input_path": "inputs/by_sha256/8b216481119bf3507c4753edb461505438c9e8b2e38872c519fc6b40adb3237e.png",
+    "sha256": "8b216481119bf3507c4753edb461505438c9e8b2e38872c519fc6b40adb3237e",
+    "bytes": 457357
+  },
+  {
+    "unit_id": "core_011",
+    "case_id": "core_011",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\benchmark_fishing_hats.png",
+    "evidence_input_path": "inputs/by_sha256/2cbac35729ad9a21d6a854bc5e4afaca8a75481521e336b0d269a1e887bf6081.png",
+    "sha256": "2cbac35729ad9a21d6a854bc5e4afaca8a75481521e336b0d269a1e887bf6081",
+    "bytes": 340714
+  },
+  {
+    "unit_id": "core_012",
+    "case_id": "core_012",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\OIP-C.jpg",
+    "evidence_input_path": "inputs/by_sha256/179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c.jpg",
+    "sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+    "bytes": 9647
+  },
+  {
+    "unit_id": "core_013",
+    "case_id": "core_013",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\commons_umbrella.jpg",
+    "evidence_input_path": "inputs/by_sha256/5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0.jpg",
+    "sha256": "5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0",
+    "bytes": 747994
+  },
+  {
+    "unit_id": "core_014",
+    "case_id": "core_014",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\test_image.jpg",
+    "evidence_input_path": "inputs/by_sha256/9eeaa87013b4e800930e8a411b58ff9e2fd5383906b1a022f4a712720af34cc2.jpg",
+    "sha256": "9eeaa87013b4e800930e8a411b58ff9e2fd5383906b1a022f4a712720af34cc2",
+    "bytes": 496395
+  },
+  {
+    "unit_id": "core_015",
+    "case_id": "core_015",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\test_family_fishing.jpg",
+    "evidence_input_path": "inputs/by_sha256/b49b512888eb030251af27ce1136197de497fe6437eb080460ff2c5fe37a171f.jpg",
+    "sha256": "b49b512888eb030251af27ce1136197de497fe6437eb080460ff2c5fe37a171f",
+    "bytes": 337682
+  },
+  {
+    "unit_id": "challenge_001",
+    "case_id": "challenge_001",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\OIP-C.jpg",
+    "evidence_input_path": "inputs/by_sha256/179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c.jpg",
+    "sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+    "bytes": 9647
+  },
+  {
+    "unit_id": "challenge_002",
+    "case_id": "challenge_002",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\test_fishing.jpg",
+    "evidence_input_path": "inputs/by_sha256/e30752b1bfdf9de2657fd5f8e36f862ec23ea57a82541516730e78f4ac9c6b77.jpg",
+    "sha256": "e30752b1bfdf9de2657fd5f8e36f862ec23ea57a82541516730e78f4ac9c6b77",
+    "bytes": 341754
+  },
+  {
+    "unit_id": "challenge_003",
+    "case_id": "challenge_003",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\benchmark_fishing_lowlight.png",
+    "evidence_input_path": "inputs/by_sha256/717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6.png",
+    "sha256": "717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6",
+    "bytes": 346786
+  },
+  {
+    "unit_id": "challenge_004",
+    "case_id": "challenge_004",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\benchmark_fishing_two_people.png",
+    "evidence_input_path": "inputs/by_sha256/45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79.png",
+    "sha256": "45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79",
+    "bytes": 341491
+  },
+  {
+    "unit_id": "challenge_005",
+    "case_id": "challenge_005",
+    "original_source_path": "E:\\3\\Visual Agent\\_general_rgb_final_acceptance_contract\\images\\test_images\\commons_red_shirts.jpg",
+    "evidence_input_path": "inputs/by_sha256/b3bddb365514caed18268db9703c006072e13f7a8cc4737219155b7544ce3a3e.jpg",
+    "sha256": "b3bddb365514caed18268db9703c006072e13f7a8cc4737219155b7544ce3a3e",
+    "bytes": 351826
+  },
+  {
+    "unit_id": "F1__fishing_001",
+    "case_id": "F1::fishing_001.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_001.jpeg",
+    "evidence_input_path": "inputs/by_sha256/459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab.jpeg",
+    "sha256": "459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab",
+    "bytes": 2741409
+  },
+  {
+    "unit_id": "F1__fishing_002",
+    "case_id": "F1::fishing_002.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_002.jpeg",
+    "evidence_input_path": "inputs/by_sha256/52b4c7f691eae83eb2037f8f14cb899341b06a15df7ff74644d6650ae7d4f2c1.jpeg",
+    "sha256": "52b4c7f691eae83eb2037f8f14cb899341b06a15df7ff74644d6650ae7d4f2c1",
+    "bytes": 1673025
+  },
+  {
+    "unit_id": "F1__fishing_003",
+    "case_id": "F1::fishing_003.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_003.jpeg",
+    "evidence_input_path": "inputs/by_sha256/d62f2708ef6e36bd6b10c427ebd29398baecd4cfa203c4b2235238c19a06545e.jpeg",
+    "sha256": "d62f2708ef6e36bd6b10c427ebd29398baecd4cfa203c4b2235238c19a06545e",
+    "bytes": 701755
+  },
+  {
+    "unit_id": "F1__fishing_004",
+    "case_id": "F1::fishing_004.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_004.jpeg",
+    "evidence_input_path": "inputs/by_sha256/b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9.jpeg",
+    "sha256": "b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9",
+    "bytes": 1144884
+  },
+  {
+    "unit_id": "F1__fishing_005",
+    "case_id": "F1::fishing_005.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_005.jpeg",
+    "evidence_input_path": "inputs/by_sha256/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145.jpeg",
+    "sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145",
+    "bytes": 1111036
+  },
+  {
+    "unit_id": "F1__fishing_006",
+    "case_id": "F1::fishing_006.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_006.jpeg",
+    "evidence_input_path": "inputs/by_sha256/1bf368d9a4af31f4a8d2448d180f57fef9eb5c51876a35d65192d3bf33a7dd81.jpeg",
+    "sha256": "1bf368d9a4af31f4a8d2448d180f57fef9eb5c51876a35d65192d3bf33a7dd81",
+    "bytes": 2589025
+  },
+  {
+    "unit_id": "F1__fishing_007",
+    "case_id": "F1::fishing_007.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_007.jpeg",
+    "evidence_input_path": "inputs/by_sha256/260fddf0d705aa131a7f5a026d0ba009c367ccf7a3be9f7e76148b4b67092f40.jpeg",
+    "sha256": "260fddf0d705aa131a7f5a026d0ba009c367ccf7a3be9f7e76148b4b67092f40",
+    "bytes": 2847765
+  },
+  {
+    "unit_id": "F1__fishing_008",
+    "case_id": "F1::fishing_008.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_008.jpeg",
+    "evidence_input_path": "inputs/by_sha256/f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613.jpeg",
+    "sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+    "bytes": 4694494
+  },
+  {
+    "unit_id": "F1__fishing_009",
+    "case_id": "F1::fishing_009.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_009.jpeg",
+    "evidence_input_path": "inputs/by_sha256/944e8192903149190c59eaad751e06420bcaed4c76729e3e489375c0472aece6.jpeg",
+    "sha256": "944e8192903149190c59eaad751e06420bcaed4c76729e3e489375c0472aece6",
+    "bytes": 1944791
+  },
+  {
+    "unit_id": "F1__fishing_010",
+    "case_id": "F1::fishing_010.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_010.jpeg",
+    "evidence_input_path": "inputs/by_sha256/acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4.jpeg",
+    "sha256": "acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4",
+    "bytes": 724105
+  },
+  {
+    "unit_id": "F1__fishing_011",
+    "case_id": "F1::fishing_011.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_011.jpeg",
+    "evidence_input_path": "inputs/by_sha256/1b8e03893472d5a5dbddb9c05e9c39032aeb34ff9b548e934ae27c92d23e226d.jpeg",
+    "sha256": "1b8e03893472d5a5dbddb9c05e9c39032aeb34ff9b548e934ae27c92d23e226d",
+    "bytes": 1876432
+  },
+  {
+    "unit_id": "F1__fishing_012",
+    "case_id": "F1::fishing_012.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_012.jpeg",
+    "evidence_input_path": "inputs/by_sha256/231b34abed735965efadf43a036bc23d7a11220bab4d63803ee0a14b691e0cec.jpeg",
+    "sha256": "231b34abed735965efadf43a036bc23d7a11220bab4d63803ee0a14b691e0cec",
+    "bytes": 1689075
+  },
+  {
+    "unit_id": "F1__fishing_013",
+    "case_id": "F1::fishing_013.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_013.jpeg",
+    "evidence_input_path": "inputs/by_sha256/ea1e836152f56208b35186f13416ab9340a5cee3f852713596bf39813aaf42f7.jpeg",
+    "sha256": "ea1e836152f56208b35186f13416ab9340a5cee3f852713596bf39813aaf42f7",
+    "bytes": 997268
+  },
+  {
+    "unit_id": "F1__fishing_014",
+    "case_id": "F1::fishing_014.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_014.jpeg",
+    "evidence_input_path": "inputs/by_sha256/8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355.jpeg",
+    "sha256": "8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355",
+    "bytes": 4706237
+  },
+  {
+    "unit_id": "F1__fishing_015",
+    "case_id": "F1::fishing_015.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_015.jpeg",
+    "evidence_input_path": "inputs/by_sha256/b6c5c6369134f24fe7aeb3649bcf0a8da1301e78e4abd898f9f78a80e387653f.jpeg",
+    "sha256": "b6c5c6369134f24fe7aeb3649bcf0a8da1301e78e4abd898f9f78a80e387653f",
+    "bytes": 4043430
+  },
+  {
+    "unit_id": "F1__fishing_016",
+    "case_id": "F1::fishing_016.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_016.jpeg",
+    "evidence_input_path": "inputs/by_sha256/08ad1e6a1375608ba79de83ba207059d159b4d22d18aaa031ed21bbd012482a4.jpeg",
+    "sha256": "08ad1e6a1375608ba79de83ba207059d159b4d22d18aaa031ed21bbd012482a4",
+    "bytes": 1617769
+  },
+  {
+    "unit_id": "F1__fishing_017",
+    "case_id": "F1::fishing_017.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_017.jpeg",
+    "evidence_input_path": "inputs/by_sha256/2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99.jpeg",
+    "sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99",
+    "bytes": 835504
+  },
+  {
+    "unit_id": "F1__fishing_018",
+    "case_id": "F1::fishing_018.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_018.jpeg",
+    "evidence_input_path": "inputs/by_sha256/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e.jpeg",
+    "sha256": "3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e",
+    "bytes": 2848694
+  },
+  {
+    "unit_id": "F1__fishing_019",
+    "case_id": "F1::fishing_019.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_019.jpeg",
+    "evidence_input_path": "inputs/by_sha256/36591e58a9c7804eaeaddc606ce417ab416ca9d409a3d55d9a75acfc9381a8c8.jpeg",
+    "sha256": "36591e58a9c7804eaeaddc606ce417ab416ca9d409a3d55d9a75acfc9381a8c8",
+    "bytes": 2879929
+  },
+  {
+    "unit_id": "F1__fishing_020",
+    "case_id": "F1::fishing_020.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_020.jpeg",
+    "evidence_input_path": "inputs/by_sha256/c3179a25a12c012e194afd9e5163a360a4687b8527aeaf67205cad591eef44d5.jpeg",
+    "sha256": "c3179a25a12c012e194afd9e5163a360a4687b8527aeaf67205cad591eef44d5",
+    "bytes": 2193564
+  },
+  {
+    "unit_id": "F1__fishing_021",
+    "case_id": "F1::fishing_021.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_021.jpeg",
+    "evidence_input_path": "inputs/by_sha256/40933cf014d27847a10c1069fbb0d0880b7173243eb5b22346f37867af0644ab.jpeg",
+    "sha256": "40933cf014d27847a10c1069fbb0d0880b7173243eb5b22346f37867af0644ab",
+    "bytes": 245412
+  },
+  {
+    "unit_id": "F1__fishing_022",
+    "case_id": "F1::fishing_022.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_022.jpeg",
+    "evidence_input_path": "inputs/by_sha256/1e497e72eb7c34a8e712262709892afa87c34b023ec184ca6226eb3010cd53f2.jpeg",
+    "sha256": "1e497e72eb7c34a8e712262709892afa87c34b023ec184ca6226eb3010cd53f2",
+    "bytes": 2550806
+  },
+  {
+    "unit_id": "F1__fishing_023",
+    "case_id": "F1::fishing_023.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_023.jpeg",
+    "evidence_input_path": "inputs/by_sha256/76a428d5a2335c121286014a1931f43d5604fa0529a6d51109de8d944834b1e7.jpeg",
+    "sha256": "76a428d5a2335c121286014a1931f43d5604fa0529a6d51109de8d944834b1e7",
+    "bytes": 1996532
+  },
+  {
+    "unit_id": "F1__fishing_024",
+    "case_id": "F1::fishing_024.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_024.jpeg",
+    "evidence_input_path": "inputs/by_sha256/f70b44333494c9788b0747ac78847a3a8ed67692b1ff1b0edcdc6d15b32d60c6.jpeg",
+    "sha256": "f70b44333494c9788b0747ac78847a3a8ed67692b1ff1b0edcdc6d15b32d60c6",
+    "bytes": 1399135
+  },
+  {
+    "unit_id": "F1__fishing_025",
+    "case_id": "F1::fishing_025.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_025.jpeg",
+    "evidence_input_path": "inputs/by_sha256/980c2bae816d92cbc445d89272635ce9b571a23b9a87ad276be51dae4275c28b.jpeg",
+    "sha256": "980c2bae816d92cbc445d89272635ce9b571a23b9a87ad276be51dae4275c28b",
+    "bytes": 921530
+  },
+  {
+    "unit_id": "F1__fishing_026",
+    "case_id": "F1::fishing_026.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_026.jpeg",
+    "evidence_input_path": "inputs/by_sha256/a874180ba1ce174df2f6c25312db6b21aee8bccd172e688b5df1f5ca9c211868.jpeg",
+    "sha256": "a874180ba1ce174df2f6c25312db6b21aee8bccd172e688b5df1f5ca9c211868",
+    "bytes": 2789070
+  },
+  {
+    "unit_id": "F1__fishing_027",
+    "case_id": "F1::fishing_027.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_027.jpeg",
+    "evidence_input_path": "inputs/by_sha256/b103ac776e414fbbfdf434f63965b7270a9b89d122f5315c40a72b02366f29b8.jpeg",
+    "sha256": "b103ac776e414fbbfdf434f63965b7270a9b89d122f5315c40a72b02366f29b8",
+    "bytes": 689879
+  },
+  {
+    "unit_id": "F1__fishing_028",
+    "case_id": "F1::fishing_028.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_028.jpeg",
+    "evidence_input_path": "inputs/by_sha256/6686e7e76f26f89a10c620d735873059444666a6498ca6d91b94cbdb80351357.jpeg",
+    "sha256": "6686e7e76f26f89a10c620d735873059444666a6498ca6d91b94cbdb80351357",
+    "bytes": 480093
+  },
+  {
+    "unit_id": "F1__fishing_029",
+    "case_id": "F1::fishing_029.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_029.jpeg",
+    "evidence_input_path": "inputs/by_sha256/dda2eb83c5f655df87c76da0e23f45007880712d9c4fba9329ff9a39c8e4fecd.jpeg",
+    "sha256": "dda2eb83c5f655df87c76da0e23f45007880712d9c4fba9329ff9a39c8e4fecd",
+    "bytes": 2160178
+  },
+  {
+    "unit_id": "F1__fishing_030",
+    "case_id": "F1::fishing_030.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_030.jpeg",
+    "evidence_input_path": "inputs/by_sha256/7bf7016013ddb299db1b6718b8478ea3dfd6bbb6dbb79255de18e50b5ee0bc7d.jpeg",
+    "sha256": "7bf7016013ddb299db1b6718b8478ea3dfd6bbb6dbb79255de18e50b5ee0bc7d",
+    "bytes": 490842
+  },
+  {
+    "unit_id": "F2__fishing_001",
+    "case_id": "F2::fishing_001.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_001.jpeg",
+    "evidence_input_path": "inputs/by_sha256/459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab.jpeg",
+    "sha256": "459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab",
+    "bytes": 2741409
+  },
+  {
+    "unit_id": "F2__fishing_002",
+    "case_id": "F2::fishing_002.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_002.jpeg",
+    "evidence_input_path": "inputs/by_sha256/52b4c7f691eae83eb2037f8f14cb899341b06a15df7ff74644d6650ae7d4f2c1.jpeg",
+    "sha256": "52b4c7f691eae83eb2037f8f14cb899341b06a15df7ff74644d6650ae7d4f2c1",
+    "bytes": 1673025
+  },
+  {
+    "unit_id": "F2__fishing_003",
+    "case_id": "F2::fishing_003.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_003.jpeg",
+    "evidence_input_path": "inputs/by_sha256/d62f2708ef6e36bd6b10c427ebd29398baecd4cfa203c4b2235238c19a06545e.jpeg",
+    "sha256": "d62f2708ef6e36bd6b10c427ebd29398baecd4cfa203c4b2235238c19a06545e",
+    "bytes": 701755
+  },
+  {
+    "unit_id": "F2__fishing_004",
+    "case_id": "F2::fishing_004.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_004.jpeg",
+    "evidence_input_path": "inputs/by_sha256/b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9.jpeg",
+    "sha256": "b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9",
+    "bytes": 1144884
+  },
+  {
+    "unit_id": "F2__fishing_005",
+    "case_id": "F2::fishing_005.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_005.jpeg",
+    "evidence_input_path": "inputs/by_sha256/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145.jpeg",
+    "sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145",
+    "bytes": 1111036
+  },
+  {
+    "unit_id": "F2__fishing_006",
+    "case_id": "F2::fishing_006.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_006.jpeg",
+    "evidence_input_path": "inputs/by_sha256/1bf368d9a4af31f4a8d2448d180f57fef9eb5c51876a35d65192d3bf33a7dd81.jpeg",
+    "sha256": "1bf368d9a4af31f4a8d2448d180f57fef9eb5c51876a35d65192d3bf33a7dd81",
+    "bytes": 2589025
+  },
+  {
+    "unit_id": "F2__fishing_007",
+    "case_id": "F2::fishing_007.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_007.jpeg",
+    "evidence_input_path": "inputs/by_sha256/260fddf0d705aa131a7f5a026d0ba009c367ccf7a3be9f7e76148b4b67092f40.jpeg",
+    "sha256": "260fddf0d705aa131a7f5a026d0ba009c367ccf7a3be9f7e76148b4b67092f40",
+    "bytes": 2847765
+  },
+  {
+    "unit_id": "F2__fishing_008",
+    "case_id": "F2::fishing_008.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_008.jpeg",
+    "evidence_input_path": "inputs/by_sha256/f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613.jpeg",
+    "sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+    "bytes": 4694494
+  },
+  {
+    "unit_id": "F2__fishing_009",
+    "case_id": "F2::fishing_009.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_009.jpeg",
+    "evidence_input_path": "inputs/by_sha256/944e8192903149190c59eaad751e06420bcaed4c76729e3e489375c0472aece6.jpeg",
+    "sha256": "944e8192903149190c59eaad751e06420bcaed4c76729e3e489375c0472aece6",
+    "bytes": 1944791
+  },
+  {
+    "unit_id": "F2__fishing_010",
+    "case_id": "F2::fishing_010.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_010.jpeg",
+    "evidence_input_path": "inputs/by_sha256/acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4.jpeg",
+    "sha256": "acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4",
+    "bytes": 724105
+  },
+  {
+    "unit_id": "F2__fishing_011",
+    "case_id": "F2::fishing_011.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_011.jpeg",
+    "evidence_input_path": "inputs/by_sha256/1b8e03893472d5a5dbddb9c05e9c39032aeb34ff9b548e934ae27c92d23e226d.jpeg",
+    "sha256": "1b8e03893472d5a5dbddb9c05e9c39032aeb34ff9b548e934ae27c92d23e226d",
+    "bytes": 1876432
+  },
+  {
+    "unit_id": "F2__fishing_012",
+    "case_id": "F2::fishing_012.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_012.jpeg",
+    "evidence_input_path": "inputs/by_sha256/231b34abed735965efadf43a036bc23d7a11220bab4d63803ee0a14b691e0cec.jpeg",
+    "sha256": "231b34abed735965efadf43a036bc23d7a11220bab4d63803ee0a14b691e0cec",
+    "bytes": 1689075
+  },
+  {
+    "unit_id": "F2__fishing_013",
+    "case_id": "F2::fishing_013.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_013.jpeg",
+    "evidence_input_path": "inputs/by_sha256/ea1e836152f56208b35186f13416ab9340a5cee3f852713596bf39813aaf42f7.jpeg",
+    "sha256": "ea1e836152f56208b35186f13416ab9340a5cee3f852713596bf39813aaf42f7",
+    "bytes": 997268
+  },
+  {
+    "unit_id": "F2__fishing_014",
+    "case_id": "F2::fishing_014.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_014.jpeg",
+    "evidence_input_path": "inputs/by_sha256/8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355.jpeg",
+    "sha256": "8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355",
+    "bytes": 4706237
+  },
+  {
+    "unit_id": "F2__fishing_015",
+    "case_id": "F2::fishing_015.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_015.jpeg",
+    "evidence_input_path": "inputs/by_sha256/b6c5c6369134f24fe7aeb3649bcf0a8da1301e78e4abd898f9f78a80e387653f.jpeg",
+    "sha256": "b6c5c6369134f24fe7aeb3649bcf0a8da1301e78e4abd898f9f78a80e387653f",
+    "bytes": 4043430
+  },
+  {
+    "unit_id": "F2__fishing_016",
+    "case_id": "F2::fishing_016.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_016.jpeg",
+    "evidence_input_path": "inputs/by_sha256/08ad1e6a1375608ba79de83ba207059d159b4d22d18aaa031ed21bbd012482a4.jpeg",
+    "sha256": "08ad1e6a1375608ba79de83ba207059d159b4d22d18aaa031ed21bbd012482a4",
+    "bytes": 1617769
+  },
+  {
+    "unit_id": "F2__fishing_017",
+    "case_id": "F2::fishing_017.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_017.jpeg",
+    "evidence_input_path": "inputs/by_sha256/2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99.jpeg",
+    "sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99",
+    "bytes": 835504
+  },
+  {
+    "unit_id": "F2__fishing_018",
+    "case_id": "F2::fishing_018.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_018.jpeg",
+    "evidence_input_path": "inputs/by_sha256/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e.jpeg",
+    "sha256": "3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e",
+    "bytes": 2848694
+  },
+  {
+    "unit_id": "F2__fishing_019",
+    "case_id": "F2::fishing_019.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_019.jpeg",
+    "evidence_input_path": "inputs/by_sha256/36591e58a9c7804eaeaddc606ce417ab416ca9d409a3d55d9a75acfc9381a8c8.jpeg",
+    "sha256": "36591e58a9c7804eaeaddc606ce417ab416ca9d409a3d55d9a75acfc9381a8c8",
+    "bytes": 2879929
+  },
+  {
+    "unit_id": "F2__fishing_020",
+    "case_id": "F2::fishing_020.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_020.jpeg",
+    "evidence_input_path": "inputs/by_sha256/c3179a25a12c012e194afd9e5163a360a4687b8527aeaf67205cad591eef44d5.jpeg",
+    "sha256": "c3179a25a12c012e194afd9e5163a360a4687b8527aeaf67205cad591eef44d5",
+    "bytes": 2193564
+  },
+  {
+    "unit_id": "F2__fishing_021",
+    "case_id": "F2::fishing_021.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_021.jpeg",
+    "evidence_input_path": "inputs/by_sha256/40933cf014d27847a10c1069fbb0d0880b7173243eb5b22346f37867af0644ab.jpeg",
+    "sha256": "40933cf014d27847a10c1069fbb0d0880b7173243eb5b22346f37867af0644ab",
+    "bytes": 245412
+  },
+  {
+    "unit_id": "F2__fishing_022",
+    "case_id": "F2::fishing_022.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_022.jpeg",
+    "evidence_input_path": "inputs/by_sha256/1e497e72eb7c34a8e712262709892afa87c34b023ec184ca6226eb3010cd53f2.jpeg",
+    "sha256": "1e497e72eb7c34a8e712262709892afa87c34b023ec184ca6226eb3010cd53f2",
+    "bytes": 2550806
+  },
+  {
+    "unit_id": "F2__fishing_023",
+    "case_id": "F2::fishing_023.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_023.jpeg",
+    "evidence_input_path": "inputs/by_sha256/76a428d5a2335c121286014a1931f43d5604fa0529a6d51109de8d944834b1e7.jpeg",
+    "sha256": "76a428d5a2335c121286014a1931f43d5604fa0529a6d51109de8d944834b1e7",
+    "bytes": 1996532
+  },
+  {
+    "unit_id": "F2__fishing_024",
+    "case_id": "F2::fishing_024.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_024.jpeg",
+    "evidence_input_path": "inputs/by_sha256/f70b44333494c9788b0747ac78847a3a8ed67692b1ff1b0edcdc6d15b32d60c6.jpeg",
+    "sha256": "f70b44333494c9788b0747ac78847a3a8ed67692b1ff1b0edcdc6d15b32d60c6",
+    "bytes": 1399135
+  },
+  {
+    "unit_id": "F2__fishing_025",
+    "case_id": "F2::fishing_025.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_025.jpeg",
+    "evidence_input_path": "inputs/by_sha256/980c2bae816d92cbc445d89272635ce9b571a23b9a87ad276be51dae4275c28b.jpeg",
+    "sha256": "980c2bae816d92cbc445d89272635ce9b571a23b9a87ad276be51dae4275c28b",
+    "bytes": 921530
+  },
+  {
+    "unit_id": "F2__fishing_026",
+    "case_id": "F2::fishing_026.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_026.jpeg",
+    "evidence_input_path": "inputs/by_sha256/a874180ba1ce174df2f6c25312db6b21aee8bccd172e688b5df1f5ca9c211868.jpeg",
+    "sha256": "a874180ba1ce174df2f6c25312db6b21aee8bccd172e688b5df1f5ca9c211868",
+    "bytes": 2789070
+  },
+  {
+    "unit_id": "F2__fishing_027",
+    "case_id": "F2::fishing_027.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_027.jpeg",
+    "evidence_input_path": "inputs/by_sha256/b103ac776e414fbbfdf434f63965b7270a9b89d122f5315c40a72b02366f29b8.jpeg",
+    "sha256": "b103ac776e414fbbfdf434f63965b7270a9b89d122f5315c40a72b02366f29b8",
+    "bytes": 689879
+  },
+  {
+    "unit_id": "F2__fishing_028",
+    "case_id": "F2::fishing_028.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_028.jpeg",
+    "evidence_input_path": "inputs/by_sha256/6686e7e76f26f89a10c620d735873059444666a6498ca6d91b94cbdb80351357.jpeg",
+    "sha256": "6686e7e76f26f89a10c620d735873059444666a6498ca6d91b94cbdb80351357",
+    "bytes": 480093
+  },
+  {
+    "unit_id": "F2__fishing_029",
+    "case_id": "F2::fishing_029.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_029.jpeg",
+    "evidence_input_path": "inputs/by_sha256/dda2eb83c5f655df87c76da0e23f45007880712d9c4fba9329ff9a39c8e4fecd.jpeg",
+    "sha256": "dda2eb83c5f655df87c76da0e23f45007880712d9c4fba9329ff9a39c8e4fecd",
+    "bytes": 2160178
+  },
+  {
+    "unit_id": "F2__fishing_030",
+    "case_id": "F2::fishing_030.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_030.jpeg",
+    "evidence_input_path": "inputs/by_sha256/7bf7016013ddb299db1b6718b8478ea3dfd6bbb6dbb79255de18e50b5ee0bc7d.jpeg",
+    "sha256": "7bf7016013ddb299db1b6718b8478ea3dfd6bbb6dbb79255de18e50b5ee0bc7d",
+    "bytes": 490842
+  },
+  {
+    "unit_id": "F3__fishing_001",
+    "case_id": "F3::fishing_001.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_001.jpeg",
+    "evidence_input_path": "inputs/by_sha256/459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab.jpeg",
+    "sha256": "459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab",
+    "bytes": 2741409
+  },
+  {
+    "unit_id": "F3__fishing_002",
+    "case_id": "F3::fishing_002.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_002.jpeg",
+    "evidence_input_path": "inputs/by_sha256/52b4c7f691eae83eb2037f8f14cb899341b06a15df7ff74644d6650ae7d4f2c1.jpeg",
+    "sha256": "52b4c7f691eae83eb2037f8f14cb899341b06a15df7ff74644d6650ae7d4f2c1",
+    "bytes": 1673025
+  },
+  {
+    "unit_id": "F3__fishing_003",
+    "case_id": "F3::fishing_003.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_003.jpeg",
+    "evidence_input_path": "inputs/by_sha256/d62f2708ef6e36bd6b10c427ebd29398baecd4cfa203c4b2235238c19a06545e.jpeg",
+    "sha256": "d62f2708ef6e36bd6b10c427ebd29398baecd4cfa203c4b2235238c19a06545e",
+    "bytes": 701755
+  },
+  {
+    "unit_id": "F3__fishing_004",
+    "case_id": "F3::fishing_004.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_004.jpeg",
+    "evidence_input_path": "inputs/by_sha256/b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9.jpeg",
+    "sha256": "b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9",
+    "bytes": 1144884
+  },
+  {
+    "unit_id": "F3__fishing_005",
+    "case_id": "F3::fishing_005.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_005.jpeg",
+    "evidence_input_path": "inputs/by_sha256/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145.jpeg",
+    "sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145",
+    "bytes": 1111036
+  },
+  {
+    "unit_id": "F3__fishing_006",
+    "case_id": "F3::fishing_006.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_006.jpeg",
+    "evidence_input_path": "inputs/by_sha256/1bf368d9a4af31f4a8d2448d180f57fef9eb5c51876a35d65192d3bf33a7dd81.jpeg",
+    "sha256": "1bf368d9a4af31f4a8d2448d180f57fef9eb5c51876a35d65192d3bf33a7dd81",
+    "bytes": 2589025
+  },
+  {
+    "unit_id": "F3__fishing_007",
+    "case_id": "F3::fishing_007.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_007.jpeg",
+    "evidence_input_path": "inputs/by_sha256/260fddf0d705aa131a7f5a026d0ba009c367ccf7a3be9f7e76148b4b67092f40.jpeg",
+    "sha256": "260fddf0d705aa131a7f5a026d0ba009c367ccf7a3be9f7e76148b4b67092f40",
+    "bytes": 2847765
+  },
+  {
+    "unit_id": "F3__fishing_008",
+    "case_id": "F3::fishing_008.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_008.jpeg",
+    "evidence_input_path": "inputs/by_sha256/f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613.jpeg",
+    "sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+    "bytes": 4694494
+  },
+  {
+    "unit_id": "F3__fishing_009",
+    "case_id": "F3::fishing_009.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_009.jpeg",
+    "evidence_input_path": "inputs/by_sha256/944e8192903149190c59eaad751e06420bcaed4c76729e3e489375c0472aece6.jpeg",
+    "sha256": "944e8192903149190c59eaad751e06420bcaed4c76729e3e489375c0472aece6",
+    "bytes": 1944791
+  },
+  {
+    "unit_id": "F3__fishing_010",
+    "case_id": "F3::fishing_010.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_010.jpeg",
+    "evidence_input_path": "inputs/by_sha256/acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4.jpeg",
+    "sha256": "acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4",
+    "bytes": 724105
+  },
+  {
+    "unit_id": "F3__fishing_011",
+    "case_id": "F3::fishing_011.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_011.jpeg",
+    "evidence_input_path": "inputs/by_sha256/1b8e03893472d5a5dbddb9c05e9c39032aeb34ff9b548e934ae27c92d23e226d.jpeg",
+    "sha256": "1b8e03893472d5a5dbddb9c05e9c39032aeb34ff9b548e934ae27c92d23e226d",
+    "bytes": 1876432
+  },
+  {
+    "unit_id": "F3__fishing_012",
+    "case_id": "F3::fishing_012.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_012.jpeg",
+    "evidence_input_path": "inputs/by_sha256/231b34abed735965efadf43a036bc23d7a11220bab4d63803ee0a14b691e0cec.jpeg",
+    "sha256": "231b34abed735965efadf43a036bc23d7a11220bab4d63803ee0a14b691e0cec",
+    "bytes": 1689075
+  },
+  {
+    "unit_id": "F3__fishing_013",
+    "case_id": "F3::fishing_013.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_013.jpeg",
+    "evidence_input_path": "inputs/by_sha256/ea1e836152f56208b35186f13416ab9340a5cee3f852713596bf39813aaf42f7.jpeg",
+    "sha256": "ea1e836152f56208b35186f13416ab9340a5cee3f852713596bf39813aaf42f7",
+    "bytes": 997268
+  },
+  {
+    "unit_id": "F3__fishing_014",
+    "case_id": "F3::fishing_014.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_014.jpeg",
+    "evidence_input_path": "inputs/by_sha256/8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355.jpeg",
+    "sha256": "8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355",
+    "bytes": 4706237
+  },
+  {
+    "unit_id": "F3__fishing_015",
+    "case_id": "F3::fishing_015.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_015.jpeg",
+    "evidence_input_path": "inputs/by_sha256/b6c5c6369134f24fe7aeb3649bcf0a8da1301e78e4abd898f9f78a80e387653f.jpeg",
+    "sha256": "b6c5c6369134f24fe7aeb3649bcf0a8da1301e78e4abd898f9f78a80e387653f",
+    "bytes": 4043430
+  },
+  {
+    "unit_id": "F3__fishing_016",
+    "case_id": "F3::fishing_016.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_016.jpeg",
+    "evidence_input_path": "inputs/by_sha256/08ad1e6a1375608ba79de83ba207059d159b4d22d18aaa031ed21bbd012482a4.jpeg",
+    "sha256": "08ad1e6a1375608ba79de83ba207059d159b4d22d18aaa031ed21bbd012482a4",
+    "bytes": 1617769
+  },
+  {
+    "unit_id": "F3__fishing_017",
+    "case_id": "F3::fishing_017.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_017.jpeg",
+    "evidence_input_path": "inputs/by_sha256/2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99.jpeg",
+    "sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99",
+    "bytes": 835504
+  },
+  {
+    "unit_id": "F3__fishing_018",
+    "case_id": "F3::fishing_018.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_018.jpeg",
+    "evidence_input_path": "inputs/by_sha256/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e.jpeg",
+    "sha256": "3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e",
+    "bytes": 2848694
+  },
+  {
+    "unit_id": "F3__fishing_019",
+    "case_id": "F3::fishing_019.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_019.jpeg",
+    "evidence_input_path": "inputs/by_sha256/36591e58a9c7804eaeaddc606ce417ab416ca9d409a3d55d9a75acfc9381a8c8.jpeg",
+    "sha256": "36591e58a9c7804eaeaddc606ce417ab416ca9d409a3d55d9a75acfc9381a8c8",
+    "bytes": 2879929
+  },
+  {
+    "unit_id": "F3__fishing_020",
+    "case_id": "F3::fishing_020.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_020.jpeg",
+    "evidence_input_path": "inputs/by_sha256/c3179a25a12c012e194afd9e5163a360a4687b8527aeaf67205cad591eef44d5.jpeg",
+    "sha256": "c3179a25a12c012e194afd9e5163a360a4687b8527aeaf67205cad591eef44d5",
+    "bytes": 2193564
+  },
+  {
+    "unit_id": "F3__fishing_021",
+    "case_id": "F3::fishing_021.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_021.jpeg",
+    "evidence_input_path": "inputs/by_sha256/40933cf014d27847a10c1069fbb0d0880b7173243eb5b22346f37867af0644ab.jpeg",
+    "sha256": "40933cf014d27847a10c1069fbb0d0880b7173243eb5b22346f37867af0644ab",
+    "bytes": 245412
+  },
+  {
+    "unit_id": "F3__fishing_022",
+    "case_id": "F3::fishing_022.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_022.jpeg",
+    "evidence_input_path": "inputs/by_sha256/1e497e72eb7c34a8e712262709892afa87c34b023ec184ca6226eb3010cd53f2.jpeg",
+    "sha256": "1e497e72eb7c34a8e712262709892afa87c34b023ec184ca6226eb3010cd53f2",
+    "bytes": 2550806
+  },
+  {
+    "unit_id": "F3__fishing_023",
+    "case_id": "F3::fishing_023.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_023.jpeg",
+    "evidence_input_path": "inputs/by_sha256/76a428d5a2335c121286014a1931f43d5604fa0529a6d51109de8d944834b1e7.jpeg",
+    "sha256": "76a428d5a2335c121286014a1931f43d5604fa0529a6d51109de8d944834b1e7",
+    "bytes": 1996532
+  },
+  {
+    "unit_id": "F3__fishing_024",
+    "case_id": "F3::fishing_024.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_024.jpeg",
+    "evidence_input_path": "inputs/by_sha256/f70b44333494c9788b0747ac78847a3a8ed67692b1ff1b0edcdc6d15b32d60c6.jpeg",
+    "sha256": "f70b44333494c9788b0747ac78847a3a8ed67692b1ff1b0edcdc6d15b32d60c6",
+    "bytes": 1399135
+  },
+  {
+    "unit_id": "F3__fishing_025",
+    "case_id": "F3::fishing_025.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_025.jpeg",
+    "evidence_input_path": "inputs/by_sha256/980c2bae816d92cbc445d89272635ce9b571a23b9a87ad276be51dae4275c28b.jpeg",
+    "sha256": "980c2bae816d92cbc445d89272635ce9b571a23b9a87ad276be51dae4275c28b",
+    "bytes": 921530
+  },
+  {
+    "unit_id": "F3__fishing_026",
+    "case_id": "F3::fishing_026.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_026.jpeg",
+    "evidence_input_path": "inputs/by_sha256/a874180ba1ce174df2f6c25312db6b21aee8bccd172e688b5df1f5ca9c211868.jpeg",
+    "sha256": "a874180ba1ce174df2f6c25312db6b21aee8bccd172e688b5df1f5ca9c211868",
+    "bytes": 2789070
+  },
+  {
+    "unit_id": "F3__fishing_027",
+    "case_id": "F3::fishing_027.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_027.jpeg",
+    "evidence_input_path": "inputs/by_sha256/b103ac776e414fbbfdf434f63965b7270a9b89d122f5315c40a72b02366f29b8.jpeg",
+    "sha256": "b103ac776e414fbbfdf434f63965b7270a9b89d122f5315c40a72b02366f29b8",
+    "bytes": 689879
+  },
+  {
+    "unit_id": "F3__fishing_028",
+    "case_id": "F3::fishing_028.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_028.jpeg",
+    "evidence_input_path": "inputs/by_sha256/6686e7e76f26f89a10c620d735873059444666a6498ca6d91b94cbdb80351357.jpeg",
+    "sha256": "6686e7e76f26f89a10c620d735873059444666a6498ca6d91b94cbdb80351357",
+    "bytes": 480093
+  },
+  {
+    "unit_id": "F3__fishing_029",
+    "case_id": "F3::fishing_029.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_029.jpeg",
+    "evidence_input_path": "inputs/by_sha256/dda2eb83c5f655df87c76da0e23f45007880712d9c4fba9329ff9a39c8e4fecd.jpeg",
+    "sha256": "dda2eb83c5f655df87c76da0e23f45007880712d9c4fba9329ff9a39c8e4fecd",
+    "bytes": 2160178
+  },
+  {
+    "unit_id": "F3__fishing_030",
+    "case_id": "F3::fishing_030.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_030.jpeg",
+    "evidence_input_path": "inputs/by_sha256/7bf7016013ddb299db1b6718b8478ea3dfd6bbb6dbb79255de18e50b5ee0bc7d.jpeg",
+    "sha256": "7bf7016013ddb299db1b6718b8478ea3dfd6bbb6dbb79255de18e50b5ee0bc7d",
+    "bytes": 490842
+  },
+  {
+    "unit_id": "F4__fishing_001",
+    "case_id": "F4::fishing_001.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_001.jpeg",
+    "evidence_input_path": "inputs/by_sha256/459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab.jpeg",
+    "sha256": "459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab",
+    "bytes": 2741409
+  },
+  {
+    "unit_id": "F4__fishing_002",
+    "case_id": "F4::fishing_002.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_002.jpeg",
+    "evidence_input_path": "inputs/by_sha256/52b4c7f691eae83eb2037f8f14cb899341b06a15df7ff74644d6650ae7d4f2c1.jpeg",
+    "sha256": "52b4c7f691eae83eb2037f8f14cb899341b06a15df7ff74644d6650ae7d4f2c1",
+    "bytes": 1673025
+  },
+  {
+    "unit_id": "F4__fishing_003",
+    "case_id": "F4::fishing_003.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_003.jpeg",
+    "evidence_input_path": "inputs/by_sha256/d62f2708ef6e36bd6b10c427ebd29398baecd4cfa203c4b2235238c19a06545e.jpeg",
+    "sha256": "d62f2708ef6e36bd6b10c427ebd29398baecd4cfa203c4b2235238c19a06545e",
+    "bytes": 701755
+  },
+  {
+    "unit_id": "F4__fishing_004",
+    "case_id": "F4::fishing_004.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_004.jpeg",
+    "evidence_input_path": "inputs/by_sha256/b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9.jpeg",
+    "sha256": "b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9",
+    "bytes": 1144884
+  },
+  {
+    "unit_id": "F4__fishing_005",
+    "case_id": "F4::fishing_005.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_005.jpeg",
+    "evidence_input_path": "inputs/by_sha256/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145.jpeg",
+    "sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145",
+    "bytes": 1111036
+  },
+  {
+    "unit_id": "F4__fishing_006",
+    "case_id": "F4::fishing_006.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_006.jpeg",
+    "evidence_input_path": "inputs/by_sha256/1bf368d9a4af31f4a8d2448d180f57fef9eb5c51876a35d65192d3bf33a7dd81.jpeg",
+    "sha256": "1bf368d9a4af31f4a8d2448d180f57fef9eb5c51876a35d65192d3bf33a7dd81",
+    "bytes": 2589025
+  },
+  {
+    "unit_id": "F4__fishing_007",
+    "case_id": "F4::fishing_007.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_007.jpeg",
+    "evidence_input_path": "inputs/by_sha256/260fddf0d705aa131a7f5a026d0ba009c367ccf7a3be9f7e76148b4b67092f40.jpeg",
+    "sha256": "260fddf0d705aa131a7f5a026d0ba009c367ccf7a3be9f7e76148b4b67092f40",
+    "bytes": 2847765
+  },
+  {
+    "unit_id": "F4__fishing_008",
+    "case_id": "F4::fishing_008.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_008.jpeg",
+    "evidence_input_path": "inputs/by_sha256/f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613.jpeg",
+    "sha256": "f6a621f7fea548d882a61a489f7788beb4128d29e81493fd2ae2b023c4213613",
+    "bytes": 4694494
+  },
+  {
+    "unit_id": "F4__fishing_009",
+    "case_id": "F4::fishing_009.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_009.jpeg",
+    "evidence_input_path": "inputs/by_sha256/944e8192903149190c59eaad751e06420bcaed4c76729e3e489375c0472aece6.jpeg",
+    "sha256": "944e8192903149190c59eaad751e06420bcaed4c76729e3e489375c0472aece6",
+    "bytes": 1944791
+  },
+  {
+    "unit_id": "F4__fishing_010",
+    "case_id": "F4::fishing_010.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_010.jpeg",
+    "evidence_input_path": "inputs/by_sha256/acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4.jpeg",
+    "sha256": "acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4",
+    "bytes": 724105
+  },
+  {
+    "unit_id": "F4__fishing_011",
+    "case_id": "F4::fishing_011.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_011.jpeg",
+    "evidence_input_path": "inputs/by_sha256/1b8e03893472d5a5dbddb9c05e9c39032aeb34ff9b548e934ae27c92d23e226d.jpeg",
+    "sha256": "1b8e03893472d5a5dbddb9c05e9c39032aeb34ff9b548e934ae27c92d23e226d",
+    "bytes": 1876432
+  },
+  {
+    "unit_id": "F4__fishing_012",
+    "case_id": "F4::fishing_012.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_012.jpeg",
+    "evidence_input_path": "inputs/by_sha256/231b34abed735965efadf43a036bc23d7a11220bab4d63803ee0a14b691e0cec.jpeg",
+    "sha256": "231b34abed735965efadf43a036bc23d7a11220bab4d63803ee0a14b691e0cec",
+    "bytes": 1689075
+  },
+  {
+    "unit_id": "F4__fishing_013",
+    "case_id": "F4::fishing_013.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_013.jpeg",
+    "evidence_input_path": "inputs/by_sha256/ea1e836152f56208b35186f13416ab9340a5cee3f852713596bf39813aaf42f7.jpeg",
+    "sha256": "ea1e836152f56208b35186f13416ab9340a5cee3f852713596bf39813aaf42f7",
+    "bytes": 997268
+  },
+  {
+    "unit_id": "F4__fishing_014",
+    "case_id": "F4::fishing_014.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_014.jpeg",
+    "evidence_input_path": "inputs/by_sha256/8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355.jpeg",
+    "sha256": "8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355",
+    "bytes": 4706237
+  },
+  {
+    "unit_id": "F4__fishing_015",
+    "case_id": "F4::fishing_015.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_015.jpeg",
+    "evidence_input_path": "inputs/by_sha256/b6c5c6369134f24fe7aeb3649bcf0a8da1301e78e4abd898f9f78a80e387653f.jpeg",
+    "sha256": "b6c5c6369134f24fe7aeb3649bcf0a8da1301e78e4abd898f9f78a80e387653f",
+    "bytes": 4043430
+  },
+  {
+    "unit_id": "F4__fishing_016",
+    "case_id": "F4::fishing_016.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_016.jpeg",
+    "evidence_input_path": "inputs/by_sha256/08ad1e6a1375608ba79de83ba207059d159b4d22d18aaa031ed21bbd012482a4.jpeg",
+    "sha256": "08ad1e6a1375608ba79de83ba207059d159b4d22d18aaa031ed21bbd012482a4",
+    "bytes": 1617769
+  },
+  {
+    "unit_id": "F4__fishing_017",
+    "case_id": "F4::fishing_017.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_017.jpeg",
+    "evidence_input_path": "inputs/by_sha256/2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99.jpeg",
+    "sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99",
+    "bytes": 835504
+  },
+  {
+    "unit_id": "F4__fishing_018",
+    "case_id": "F4::fishing_018.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_018.jpeg",
+    "evidence_input_path": "inputs/by_sha256/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e.jpeg",
+    "sha256": "3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e",
+    "bytes": 2848694
+  },
+  {
+    "unit_id": "F4__fishing_019",
+    "case_id": "F4::fishing_019.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_019.jpeg",
+    "evidence_input_path": "inputs/by_sha256/36591e58a9c7804eaeaddc606ce417ab416ca9d409a3d55d9a75acfc9381a8c8.jpeg",
+    "sha256": "36591e58a9c7804eaeaddc606ce417ab416ca9d409a3d55d9a75acfc9381a8c8",
+    "bytes": 2879929
+  },
+  {
+    "unit_id": "F4__fishing_020",
+    "case_id": "F4::fishing_020.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_020.jpeg",
+    "evidence_input_path": "inputs/by_sha256/c3179a25a12c012e194afd9e5163a360a4687b8527aeaf67205cad591eef44d5.jpeg",
+    "sha256": "c3179a25a12c012e194afd9e5163a360a4687b8527aeaf67205cad591eef44d5",
+    "bytes": 2193564
+  },
+  {
+    "unit_id": "F4__fishing_021",
+    "case_id": "F4::fishing_021.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_021.jpeg",
+    "evidence_input_path": "inputs/by_sha256/40933cf014d27847a10c1069fbb0d0880b7173243eb5b22346f37867af0644ab.jpeg",
+    "sha256": "40933cf014d27847a10c1069fbb0d0880b7173243eb5b22346f37867af0644ab",
+    "bytes": 245412
+  },
+  {
+    "unit_id": "F4__fishing_022",
+    "case_id": "F4::fishing_022.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_022.jpeg",
+    "evidence_input_path": "inputs/by_sha256/1e497e72eb7c34a8e712262709892afa87c34b023ec184ca6226eb3010cd53f2.jpeg",
+    "sha256": "1e497e72eb7c34a8e712262709892afa87c34b023ec184ca6226eb3010cd53f2",
+    "bytes": 2550806
+  },
+  {
+    "unit_id": "F4__fishing_023",
+    "case_id": "F4::fishing_023.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_023.jpeg",
+    "evidence_input_path": "inputs/by_sha256/76a428d5a2335c121286014a1931f43d5604fa0529a6d51109de8d944834b1e7.jpeg",
+    "sha256": "76a428d5a2335c121286014a1931f43d5604fa0529a6d51109de8d944834b1e7",
+    "bytes": 1996532
+  },
+  {
+    "unit_id": "F4__fishing_024",
+    "case_id": "F4::fishing_024.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_024.jpeg",
+    "evidence_input_path": "inputs/by_sha256/f70b44333494c9788b0747ac78847a3a8ed67692b1ff1b0edcdc6d15b32d60c6.jpeg",
+    "sha256": "f70b44333494c9788b0747ac78847a3a8ed67692b1ff1b0edcdc6d15b32d60c6",
+    "bytes": 1399135
+  },
+  {
+    "unit_id": "F4__fishing_025",
+    "case_id": "F4::fishing_025.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_025.jpeg",
+    "evidence_input_path": "inputs/by_sha256/980c2bae816d92cbc445d89272635ce9b571a23b9a87ad276be51dae4275c28b.jpeg",
+    "sha256": "980c2bae816d92cbc445d89272635ce9b571a23b9a87ad276be51dae4275c28b",
+    "bytes": 921530
+  },
+  {
+    "unit_id": "F4__fishing_026",
+    "case_id": "F4::fishing_026.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_026.jpeg",
+    "evidence_input_path": "inputs/by_sha256/a874180ba1ce174df2f6c25312db6b21aee8bccd172e688b5df1f5ca9c211868.jpeg",
+    "sha256": "a874180ba1ce174df2f6c25312db6b21aee8bccd172e688b5df1f5ca9c211868",
+    "bytes": 2789070
+  },
+  {
+    "unit_id": "F4__fishing_027",
+    "case_id": "F4::fishing_027.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_027.jpeg",
+    "evidence_input_path": "inputs/by_sha256/b103ac776e414fbbfdf434f63965b7270a9b89d122f5315c40a72b02366f29b8.jpeg",
+    "sha256": "b103ac776e414fbbfdf434f63965b7270a9b89d122f5315c40a72b02366f29b8",
+    "bytes": 689879
+  },
+  {
+    "unit_id": "F4__fishing_028",
+    "case_id": "F4::fishing_028.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_028.jpeg",
+    "evidence_input_path": "inputs/by_sha256/6686e7e76f26f89a10c620d735873059444666a6498ca6d91b94cbdb80351357.jpeg",
+    "sha256": "6686e7e76f26f89a10c620d735873059444666a6498ca6d91b94cbdb80351357",
+    "bytes": 480093
+  },
+  {
+    "unit_id": "F4__fishing_029",
+    "case_id": "F4::fishing_029.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_029.jpeg",
+    "evidence_input_path": "inputs/by_sha256/dda2eb83c5f655df87c76da0e23f45007880712d9c4fba9329ff9a39c8e4fecd.jpeg",
+    "sha256": "dda2eb83c5f655df87c76da0e23f45007880712d9c4fba9329ff9a39c8e4fecd",
+    "bytes": 2160178
+  },
+  {
+    "unit_id": "F4__fishing_030",
+    "case_id": "F4::fishing_030.jpeg",
+    "original_source_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\fishing\\fishing_030.jpeg",
+    "evidence_input_path": "inputs/by_sha256/7bf7016013ddb299db1b6718b8478ea3dfd6bbb6dbb79255de18e50b5ee0bc7d.jpeg",
+    "sha256": "7bf7016013ddb299db1b6718b8478ea3dfd6bbb6dbb79255de18e50b5ee0bc7d",
+    "bytes": 490842
+  }
+]

@@ -1,0 +1,262 @@
+{
+  "prompt": "框出正在钓鱼的人",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      {
+        "text": "正在钓鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "box"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        3633.09,
+        1677.42,
+        4227.8,
+        3279.67
+      ],
+      "dino_confidence": 0.69,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "该人物背对镜头站在木质码头边，其右侧腰部高度有一根水平伸出的细长杆状物，疑似钓竿，但未见其手持竿身或抛竿、收线等明确垂钓动作，且画面左侧另有他人，钓具归属不清，证据不足。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该人物背对镜头站在木质码头边，其右侧腰部高度有一根水平伸出的细长杆状物，疑似钓竿，但未见其手持竿身或抛竿、收线等明确垂钓动作，且画面左侧另有他人，钓具归属不清，证据不足。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        3170.2,
+        2012.95,
+        3647.27,
+        3273.71
+      ],
+      "dino_confidence": 0.708,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该人物右手握持一根带有卷线器（渔轮）的鱼竿，鱼竿斜伸向湖面方向，且其站立于临水码头边，符合钓鱼的行为特征。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该人物右手握持一根带有卷线器（渔轮）的鱼竿，鱼竿斜伸向湖面方向，且其站立于临水码头边，符合钓鱼的行为特征。"
+    }
+  ],
+  "verified_subjects": [
+    {
+      "id": "B",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        3170.2,
+        2012.95,
+        3647.27,
+        3273.71
+      ],
+      "confidence": 0.708,
+      "reason": "该人物右手握持一根带有卷线器（渔轮）的鱼竿，鱼竿斜伸向湖面方向，且其站立于临水码头边，符合钓鱼的行为特征。"
+    }
+  ],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "B",
+      "label": "钓鱼的人",
+      "subject": {
+        "candidate_id": "B",
+        "object": "person",
+        "bbox": [
+          3170.2,
+          2012.95,
+          3647.27,
+          3273.71
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        3170.2,
+        2012.95,
+        3647.27,
+        3273.71
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "B",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        3170.2,
+        2012.95,
+        3647.27,
+        3273.71
+      ],
+      "confidence": 0.708,
+      "reason": "该人物右手握持一根带有卷线器（渔轮）的鱼竿，鱼竿斜伸向湖面方向，且其站立于临水码头边，符合钓鱼的行为特征。",
+      "composite_bbox": [
+        3170.2,
+        2012.95,
+        3647.27,
+        3273.71
+      ]
+    }
+  ],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            6165,
+            4110
+          ],
+          "original_payload_bytes": 857328,
+          "normalized_dimensions": [
+            6165,
+            4110
+          ],
+          "normalized_payload_bytes": 857328,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      },
+      "B": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            6165,
+            4110
+          ],
+          "original_payload_bytes": 455228,
+          "normalized_dimensions": [
+            6165,
+            4110
+          ],
+          "normalized_payload_bytes": 455228,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "A": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              1012,
+              2725
+            ],
+            "original_payload_bytes": 2212716,
+            "normalized_dimensions": [
+              1012,
+              2725
+            ],
+            "normalized_payload_bytes": 2212716,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars"
+          }
+        }
+      },
+      "B": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              812,
+              2144
+            ],
+            "original_payload_bytes": 1433308,
+            "normalized_dimensions": [
+              812,
+              2144
+            ],
+            "normalized_payload_bytes": 1433308,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars"
+          }
+        }
+      }
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 2.107,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 0.0
+    },
+    "grounding_dino_seconds": 7.642,
+    "subject_validity_seconds": 35.218,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 27.16,
+    "group_verification_seconds": 66.031,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "inference_seconds": 2.214,
+      "memory_after_load_mb": 0.0,
+      "peak_memory_mb": 0.0,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 1.076,
+    "total_seconds": 77.036
+  },
+  "action_result": {
+    "type": "box",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v1/artifacts/F1__fishing_002/result_001.jpg"
+  },
+  "agent_response": "已框出正在钓鱼的人。"
+}

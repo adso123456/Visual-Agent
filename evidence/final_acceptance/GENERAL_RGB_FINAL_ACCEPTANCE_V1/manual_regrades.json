@@ -1,0 +1,30 @@
+{
+  "schema_version": "GENERAL_RGB_FINAL_ACCEPTANCE_MANUAL_REGRADES_V1",
+  "review_scope": "23 valid real-world outputs whose current artifact SHA-256 differs from frozen historical Local evidence",
+  "historical_grade_visible_during_review": false,
+  "cases": [
+    {"case_id": "F1::fishing_002.jpeg", "grade": "DEGRADED", "note": "框到一名持竿人物，但同场另一名明显关联人物未覆盖。"},
+    {"case_id": "F1::fishing_027.jpeg", "grade": "PASS", "note": "正确框出正在持竿垂钓的前景人物。"},
+    {"case_id": "F2::fishing_001.jpeg", "grade": "FP", "note": "人物展示鱼但未拿鱼竿，属于错误关系归属。"},
+    {"case_id": "F2::fishing_002.jpeg", "grade": "DEGRADED", "note": "正确描边一名持竿人物，但遗漏同场另一名持竿人物。"},
+    {"case_id": "F2::fishing_004.jpeg", "grade": "PASS", "note": "正确描边持竿人物。"},
+    {"case_id": "F2::fishing_008.jpeg", "grade": "DEGRADED", "note": "正确绑定并描边一名持竿人物及鱼竿，但多人场景覆盖不完整。"},
+    {"case_id": "F2::fishing_012.jpeg", "grade": "FAIL", "note": "未输出目标。"},
+    {"case_id": "F2::fishing_013.jpeg", "grade": "PASS", "note": "正确描边持竿人物。"},
+    {"case_id": "F2::fishing_015.jpeg", "grade": "FAIL", "note": "未输出目标。"},
+    {"case_id": "F2::fishing_016.jpeg", "grade": "PASS", "note": "正确描边持竿儿童。"},
+    {"case_id": "F2::fishing_024.jpeg", "grade": "FAIL", "note": "未输出目标。"},
+    {"case_id": "F2::fishing_025.jpeg", "grade": "PASS", "note": "正确描边拿着鱼竿的人。"},
+    {"case_id": "F2::fishing_027.jpeg", "grade": "PASS", "note": "正确绑定并描边持竿人物及鱼竿。"},
+    {"case_id": "F2::fishing_029.jpeg", "grade": "PASS", "note": "正确描边持竿人物。"},
+    {"case_id": "F2::fishing_030.jpeg", "grade": "PASS", "note": "低光场景下正确描边持竿人物。"},
+    {"case_id": "F4::fishing_001.jpeg", "grade": "PASS", "note": "正确标出拿着鱼的人。"},
+    {"case_id": "F4::fishing_003.jpeg", "grade": "PASS", "note": "正确标出手持小鱼的人。"},
+    {"case_id": "F4::fishing_005.jpeg", "grade": "PASS", "note": "正确标出展示并拿着鱼的人。"},
+    {"case_id": "F4::fishing_006.jpeg", "grade": "PASS", "note": "正确标出拿着鱼的人。"},
+    {"case_id": "F4::fishing_007.jpeg", "grade": "PASS", "note": "多人场景中正确标出中央持鱼人物，未污染相邻人物。"},
+    {"case_id": "F4::fishing_009.jpeg", "grade": "PASS", "note": "正确标出手持鱼的人。"},
+    {"case_id": "F4::fishing_011.jpeg", "grade": "FP", "note": "人物拿的是装鱼笼具而非手持鱼，发生错误关系归属。"},
+    {"case_id": "F4::fishing_017.jpeg", "grade": "FAIL", "note": "未输出目标。"}
+  ]
+}

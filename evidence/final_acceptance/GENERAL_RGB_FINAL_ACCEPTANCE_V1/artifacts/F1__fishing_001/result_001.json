@@ -1,0 +1,198 @@
+{
+  "prompt": "框出正在钓鱼的人",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      {
+        "text": "正在钓鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "box"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        82.09,
+        2516.94,
+        3674.47,
+        7719.49
+      ],
+      "dino_confidence": 0.8445,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该人物左手捏着钓线，钓线上悬挂着两条鱼，背景为水面，符合钓鱼行为特征。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该人物左手捏着钓线，钓线上悬挂着两条鱼，背景为水面，符合钓鱼行为特征。"
+    }
+  ],
+  "verified_subjects": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        82.09,
+        2516.94,
+        3674.47,
+        7719.49
+      ],
+      "confidence": 0.8445,
+      "reason": "该人物左手捏着钓线，钓线上悬挂着两条鱼，背景为水面，符合钓鱼行为特征。"
+    }
+  ],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "subject": {
+        "candidate_id": "A",
+        "object": "person",
+        "bbox": [
+          82.09,
+          2516.94,
+          3674.47,
+          7719.49
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        82.09,
+        2516.94,
+        3674.47,
+        7719.49
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        82.09,
+        2516.94,
+        3674.47,
+        7719.49
+      ],
+      "confidence": 0.8445,
+      "reason": "该人物左手捏着钓线，钓线上悬挂着两条鱼，背景为水面，符合钓鱼行为特征。",
+      "composite_bbox": [
+        82.09,
+        2516.94,
+        3674.47,
+        7719.49
+      ]
+    }
+  ],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            5152,
+            7728
+          ],
+          "original_payload_bytes": 12113584,
+          "normalized_dimensions": [
+            5152,
+            7728
+          ],
+          "normalized_payload_bytes": 12113584,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "A": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": true,
+            "original_dimensions": [
+              4932,
+              7032
+            ],
+            "original_payload_bytes": 27343612,
+            "normalized_dimensions": [
+              1675,
+              2388
+            ],
+            "normalized_payload_bytes": 4171900,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars"
+          }
+        }
+      }
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 2.206,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 0.0
+    },
+    "grounding_dino_seconds": 7.666,
+    "subject_validity_seconds": 22.233,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 19.038,
+    "group_verification_seconds": 45.915,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "inference_seconds": 2.136,
+      "memory_after_load_mb": 0.0,
+      "peak_memory_mb": 0.0,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 1.506,
+    "total_seconds": 57.579
+  },
+  "action_result": {
+    "type": "box",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v1/artifacts/F1__fishing_001/result_001.jpg"
+  },
+  "agent_response": "已框出正在钓鱼的人。"
+}

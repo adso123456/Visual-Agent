@@ -1,0 +1,212 @@
+{
+  "prompt": "把拿着鱼的人标出来",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "人",
+    "constraints": [
+      {
+        "text": "拿着鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "highlight"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        987.83,
+        567.11,
+        2230.0,
+        3493.45
+      ],
+      "dino_confidence": 0.827,
+      "verification_checks": [
+        {
+          "constraint": "拿着鱼",
+          "status": "satisfied",
+          "evidence": "轮廓内人物双手持握一条鱼，一手托住鱼身、另一手捏住鱼嘴，鱼体与其手部直接交互，行为归属明确。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "轮廓内人物双手持握一条鱼，一手托住鱼身、另一手捏住鱼嘴，鱼体与其手部直接交互，行为归属明确。"
+    }
+  ],
+  "verified_subjects": [
+    {
+      "id": "A",
+      "label": "人",
+      "text_label": "person",
+      "bbox": [
+        987.83,
+        567.11,
+        2230.0,
+        3493.45
+      ],
+      "confidence": 0.827,
+      "reason": "轮廓内人物双手持握一条鱼，一手托住鱼身、另一手捏住鱼嘴，鱼体与其手部直接交互，行为归属明确。"
+    }
+  ],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "A",
+      "label": "人",
+      "subject": {
+        "candidate_id": "A",
+        "object": "person",
+        "bbox": [
+          987.83,
+          567.11,
+          2230.0,
+          3493.45
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        987.83,
+        567.11,
+        2230.0,
+        3493.45
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "人",
+      "text_label": "person",
+      "bbox": [
+        987.83,
+        567.11,
+        2230.0,
+        3493.45
+      ],
+      "confidence": 0.827,
+      "reason": "轮廓内人物双手持握一条鱼，一手托住鱼身、另一手捏住鱼嘴，鱼体与其手部直接交互，行为归属明确。",
+      "composite_bbox": [
+        987.83,
+        567.11,
+        2230.0,
+        3493.45
+      ],
+      "components": [
+        {
+          "role": "subject",
+          "object": "person",
+          "candidate_id": "A",
+          "mask_score": 0.9766,
+          "mask_area_pixels": 1909301
+        }
+      ],
+      "segmentation": {
+        "mask_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v1/artifacts/F4__fishing_005/result_001_mask_A.png",
+        "mask_score": 0.9766,
+        "mask_area_pixels": 1909301
+      }
+    }
+  ],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            3024,
+            4032
+          ],
+          "original_payload_bytes": 3339780,
+          "normalized_dimensions": [
+            3024,
+            4032
+          ],
+          "normalized_payload_bytes": 3339780,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "A": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              2112,
+              4032
+            ],
+            "original_payload_bytes": 10638916,
+            "normalized_dimensions": [
+              2112,
+              4032
+            ],
+            "normalized_payload_bytes": 10638916,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars"
+          }
+        }
+      }
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 1.866,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 0.0
+    },
+    "grounding_dino_seconds": 6.251,
+    "subject_validity_seconds": 14.689,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 16.492,
+    "group_verification_seconds": 33.691,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "inference_seconds": 2.022,
+      "memory_after_load_mb": 0.0,
+      "peak_memory_mb": 0.0,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 1.437,
+    "total_seconds": 43.576
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v1/artifacts/F4__fishing_005/result_001.jpg"
+  },
+  "agent_response": "已把拿着鱼的人标出。"
+}

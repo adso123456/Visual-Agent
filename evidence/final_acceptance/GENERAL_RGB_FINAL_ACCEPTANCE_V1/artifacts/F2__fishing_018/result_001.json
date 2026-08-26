@@ -1,0 +1,126 @@
+{
+  "prompt": "把拿着鱼竿的人描边",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "人",
+    "constraints": [
+      {
+        "text": "拿着鱼竿",
+        "route": "relation"
+      }
+    ],
+    "action": {
+      "type": "outline"
+    },
+    "related_objects": [
+      {
+        "object": "fishing rod",
+        "relation": "held_by_target"
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        1875.4,
+        20.43,
+        6703.92,
+        4509.53
+      ],
+      "dino_confidence": 0.3864,
+      "verification_checks": [
+        {
+          "constraint": "拿着鱼竿",
+          "status": "not_satisfied",
+          "evidence": "候选基础实例状态为 invalid：掩码区域内为一条被渔网罩住的鱼，可见鱼头、鱼眼、鱼鳃及鱼鳍，未出现任何人体或人肢部分，与目标对象person不符，属于明确非目标实例。；未执行该语义验证。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "候选基础实例状态为 invalid：掩码区域内为一条被渔网罩住的鱼，可见鱼头、鱼眼、鱼鳃及鱼鳍，未出现任何人体或人肢部分，与目标对象person不符，属于明确非目标实例。；未执行该语义验证。"
+    }
+  ],
+  "verified_subjects": [],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [],
+  "targets": [],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": true,
+          "original_dimensions": [
+            6784,
+            4525
+          ],
+          "original_payload_bytes": 19162160,
+          "normalized_dimensions": [
+            2449,
+            1633
+          ],
+          "normalized_payload_bytes": 3831172,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 1.74,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 0.0
+    },
+    "grounding_dino_seconds": 7.757,
+    "subject_validity_seconds": 18.981,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 0.0,
+    "group_verification_seconds": 22.716,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cpu",
+      "load_seconds": 0.0,
+      "inference_seconds": 2.048,
+      "memory_after_load_mb": 0.0,
+      "peak_memory_mb": 0.0,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 1.275,
+    "total_seconds": 33.753
+  },
+  "action_result": {
+    "type": "outline",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v1/artifacts/F2__fishing_018/result_001.jpg"
+  },
+  "agent_response": "没有找到满足“拿着鱼竿的人”这一条件的目标，因此未执行描边操作。"
+}

@@ -1,0 +1,27 @@
+{
+  "schema_version": "GENERAL_RGB_FINAL_ACCEPTANCE_CORE_CHALLENGE_REVIEW_V1",
+  "core": [
+    {"case_id": "core_001", "grade": "PASS", "note": "正确高亮狗。"},
+    {"case_id": "core_002", "grade": "PASS", "note": "正确保留人物并压暗背景。"},
+    {"case_id": "core_003", "grade": "PASS", "note": "人物与雨伞关系绑定正确，复合描边完整。"},
+    {"case_id": "core_004", "grade": "PASS", "note": "人物与雨伞复合 cutout 完整。"},
+    {"case_id": "core_005", "grade": "PASS", "note": "正确高亮钓鱼者。"},
+    {"case_id": "core_006", "grade": "PASS", "note": "正确高亮钓鱼者。"},
+    {"case_id": "core_007", "grade": "PASS", "note": "正确描边钓鱼者。"},
+    {"case_id": "core_008", "grade": "PASS", "note": "正确模糊钓鱼者。"},
+    {"case_id": "core_009", "grade": "PASS", "note": "正确保留钓鱼者并压暗背景。"},
+    {"case_id": "core_010", "grade": "PASS", "note": "正确抠出钓鱼者。"},
+    {"case_id": "core_011", "grade": "PASS", "note": "两名戴帽人物均正确模糊。"},
+    {"case_id": "core_012", "grade": "PASS", "note": "合法 0-target，未制造汽车。"},
+    {"case_id": "core_013", "grade": "PASS", "note": "合法 0-target，未制造狗。"},
+    {"case_id": "core_014", "grade": "PASS", "note": "合法 0-target，未制造持伞关系。"},
+    {"case_id": "core_015", "grade": "PASS", "note": "船上两名儿童均正确模糊。"}
+  ],
+  "challenge": [
+    {"case_id": "challenge_001", "gate": "FAIL", "note": "除红帽人物外还选入证据不足的白帽人物，违反 no false assignment。"},
+    {"case_id": "challenge_002", "gate": "PASS", "note": "只选择中央完整人物，未污染左侧局部人体。"},
+    {"case_id": "challenge_003", "gate": "PASS", "note": "保持保守 0-target，符合 legitimate ambiguity 合同。"},
+    {"case_id": "challenge_004", "gate": "FAIL", "note": "0-target 导致明确持竿老人未保留；虽未错误选择儿童，仍违反 elder retained。"},
+    {"case_id": "challenge_005", "gate": "OBSERVATION_ONLY", "note": "生成 3 个目标；按冻结合同不进入 Challenge visual PASS/FAIL。"}
+  ]
+}
