@@ -3,7 +3,11 @@ from types import SimpleNamespace
 
 import pytest
 
-from visual_agent.deepseek_agent import DeepSeekAgent, TOOL_NAME
+from visual_agent.deepseek_agent import (
+    HELD_BY_PROMPT_MARKERS,
+    DeepSeekAgent,
+    TOOL_NAME,
+)
 
 
 def _tool_call(plan: dict):
@@ -119,6 +123,33 @@ def test_explicit_held_by_prompt_requires_canonical_relation_route(marker):
 def test_non_held_behavior_prompt_is_not_forced_into_relation():
     plan = _plan([{"text": "正在钓鱼", "route": "behavior"}])
     assert _validate_with_prompt(plan, "框出正在钓鱼的人") == plan
+
+
+@pytest.mark.parametrize(
+    ("prompt", "constraint"),
+    [
+        ("框出穿着红衣的人", "穿着红衣"),
+        ("框出戴着帽子的人", "戴着帽子"),
+        ("框出站着的人", "站着"),
+        ("框出坐着的人", "坐着"),
+        ("框出看着水面的人", "看着水面"),
+        ("框出靠着墙的人", "靠着墙"),
+    ],
+)
+def test_non_held_prompts_containing_zhe_are_not_forced_into_relation(
+    prompt, constraint
+):
+    # 含“着”但非 supported held-by 语义的 prompt 不得触发 canonicalization。
+    plan = _plan([{"text": constraint, "route": "behavior"}])
+    assert _validate_with_prompt(plan, prompt) == plan
+
+
+def test_held_by_markers_are_frozen_complete_phrases():
+    # 守卫冻结合同边界：marker 必须是完整短语，不得拆成单字触发词。
+    assert HELD_BY_PROMPT_MARKERS == ("手持", "拿着", "撑着")
+    assert "拿" not in HELD_BY_PROMPT_MARKERS
+    assert "着" not in HELD_BY_PROMPT_MARKERS
+    assert all(len(marker) == 2 for marker in HELD_BY_PROMPT_MARKERS)
 
 
 def test_planner_retries_invalid_held_by_route_and_accepts_canonical_correction():
