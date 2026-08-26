@@ -1,10 +1,10 @@
-# GENERAL_RGB_FINAL_ACCEPTANCE_V1 — Contract Freeze Candidate
+# GENERAL_RGB_FINAL_ACCEPTANCE_V1 — Frozen Contract
 
 ## Status
 
 ```text
-GENERAL_RGB_FINAL_ACCEPTANCE_V1 = CONTRACT FREEZE CANDIDATE / REVIEW REQUIRED
-MODEL EXECUTION = NOT STARTED
+GENERAL_RGB_FINAL_ACCEPTANCE_V1 = CONTRACT FROZEN
+MODEL EXECUTION = AUTHORIZED
 PRODUCTION MODIFICATION = NOT AUTHORIZED
 REMOTE_SENSING_WATER_QUALITY = BLOCKED
 ```
@@ -135,7 +135,8 @@ SYSTEM DENOMINATOR = 140
 
 ## 6. Current-output adjudication
 
-- 新执行 artifact 与 evidence branch `ed4ffacbb26b531d33cd2f2e49bb2f165afd9c7a` 中对应 Local output 原始字节 SHA-256 完全一致时，可机械继承该 case 的冻结人工 grade/note。
+- 只有同时满足 `same case_id`、`same frozen historical Local evidence source`、`artifact/evidence SHA-256 byte-identical`，才允许机械继承该 case 的冻结人工 grade/note。
+- 映射缺失、SHA-256 不一致或无法唯一对应时，必须进入重新盲审；禁止仅凭视觉上“看起来一样”继承。
 - 输出字节不同的 valid real-world case 必须重新盲审；不得显示历史 grade，不得按期望结果自动评分。
 - Core 15 全部重新人工审查，不继承旧报告。
 - Challenge 按 §2C 的安全/限制合同独立审查。
@@ -163,7 +164,15 @@ SYSTEM DENOMINATOR = 140
 - 意外 Cloud VLM 调用；
 - 为得到 PASS 而改 prompt、模型参数、Detector、SAM、Pipeline、evidence、validator、评分或测试集。
 
-## 8. Final decision
+## 8. Challenge Safety Gate
+
+- `challenge_001`：no false assignment。
+- `challenge_002`：no false assignment。
+- `challenge_003`：接受 uncertain / 0-target；禁止 confident false assignment。
+- `challenge_004`：elder retained；child 不得被 confidently falsely assigned。
+- `challenge_005`：不参加 Challenge visual PASS/FAIL；仅参加 System + Artifact observation。
+
+## 9. Final decision
 
 只有 System Gate、Core Delivery Gate、Real-world Vision Gate 和 Challenge Safety Gate 全部通过：
 
@@ -181,7 +190,7 @@ REMOTE_SENSING_WATER_QUALITY = BLOCKED
 
 失败后只允许根据明确失败模块另开阶段；禁止在本批次中修复、补跑或重评分。
 
-## 9. Frozen sources
+## 10. Frozen sources
 
 - `master@4dac9cb3823e22e90ff3bb8157c6544c6c6b88fd`
 - `benchmark/cases.json` SHA-256：`6f56abbca54e7da8abe589881808d32801438e5e57bc0b69aa1929ca55b00acb`
@@ -190,9 +199,9 @@ REMOTE_SENSING_WATER_QUALITY = BLOCKED
 - Frozen invalid adjudication SHA-256：`7729f2103d9319078a903d72734c1765d8928947da0efd924f09bec00d03e50f`
 - Existing Local/Cloud evidence branch：`ed4ffacbb26b531d33cd2f2e49bb2f165afd9c7a`
 
-## 10. Prohibited in Contract Freeze
+## 11. Prohibited after Contract Freeze
 
-- 不调用模型，不运行 Pipeline。
+- 只允许执行本合同冻结的 140-unit Local VLM acceptance；不得进行合同外模型调用或 Pipeline 实验。
 - 不修改 Production、测试或环境变量。
 - 不运行 120/140 acceptance。
 - 不进入 Remote Sensing。

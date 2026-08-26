@@ -1,0 +1,14 @@
+{
+  "stage": "GENERAL_RGB_FINAL_ACCEPTANCE_V1",
+  "contract_status": "CONTRACT_FROZEN",
+  "production_commit": "4dac9cb3823e22e90ff3bb8157c6544c6c6b88fd",
+  "schedule_sha256": "830609d2f2cf29ec1bc88d7d7bae5df668d9ba0af11ece4f08b969a4d41341a8",
+  "scheduled_units": 140,
+  "system_denominator": 140,
+  "real_world_visual_denominator": 113,
+  "pollution_units": 0,
+  "vlm_model": "qwen3.8:27b-mtp-q4_K_M",
+  "vlm_base_url": "http://192.168.250.9:11434/v1",
+  "vlm_timeout_seconds": 120,
+  "concurrency": 1
+}
