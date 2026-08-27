@@ -23,13 +23,23 @@ from visual_agent.vlm_client import (
 )
 
 from .evidence_builder import ArmEvidence
-from .runner import ResultRecorder, Slot, VALID_STATUSES, classify_fallback
+from .runner import (
+    ResultRecorder,
+    Slot,
+    VALID_STATUSES,
+    classify_fallback,
+    expand_schedule,
+)
 
 
 BUILDER_IMPLEMENTATION_SHA = "0b32695dcd46d13cf22987f5347b2b212e7132c1"
+PRODUCTION_BASE_SHA = "be54f3c89171d8b16f53c82397e9f468fb4b4c97"
 FROZEN_CONTRACT_SHA256 = "7072d0a6acdbe0beeb9db6f048a35d5d2dc28488696286183887f6c84ef5dd73"
 FROZEN_SELECTION_SHA256 = "37fb7fcb97e5a324a4d76d81abe805e947e220420c97102eb6d690cc64c44563"
 FROZEN_SCHEDULE_SHA256 = "e531bc803758a0b4827787d619cbd3b4a62c71a0c4647f78cd6d6ada3d08ca84"
+FROZEN_VLM_MODEL = "qwen3.8:27b-mtp-q4_K_M"
+FROZEN_VLM_BASE_URL = "http://192.168.250.9:11434/v1"
+FROZEN_VLM_TIMEOUT = 120.0
 BUILDER_FILES = (
     "benchmark/r3_candidate_identity_v1/README.md",
     "benchmark/r3_candidate_identity_v1/__init__.py",
@@ -61,24 +71,60 @@ class ManifestBinding:
 
 
 @dataclass(frozen=True)
+class CaseBinding:
+    case_id: str
+    prompt: str
+    semantic_constraint: str
+    image_sha256: str
+    candidate_ids: tuple[str, ...]
+    mask_manifest: ManifestBinding
+    evidence_manifest: ManifestBinding
+
+
+@dataclass(frozen=True)
 class PreflightReceipt:
-    implementation_sha: str
+    builder_implementation_sha: str
+    harness_review_sha: str
+    harness_review_lock_sha256: str
     contract_sha256: str
     selection_sha256: str
     schedule_sha256: str
-    mask_manifest_sha256: tuple[str, ...]
-    evidence_manifest_sha256: tuple[str, ...]
-    image_sha256: tuple[str, ...]
+    execution_bindings_sha256: str
+    scheduled_slot_count: int
+    scheduled_slot_sequence_sha256: str
+    scheduled_slots: tuple[Slot, ...]
+    case_bindings: tuple[CaseBinding, ...]
 
     def as_record(self) -> dict[str, object]:
         return {
-            "implementation_sha": self.implementation_sha,
+            "builder_implementation_sha": self.builder_implementation_sha,
+            "harness_review_sha": self.harness_review_sha,
+            "harness_review_lock_sha256": self.harness_review_lock_sha256,
             "contract_sha256": self.contract_sha256,
             "selection_sha256": self.selection_sha256,
             "schedule_sha256": self.schedule_sha256,
-            "mask_manifest_sha256": list(self.mask_manifest_sha256),
-            "evidence_manifest_sha256": list(self.evidence_manifest_sha256),
-            "image_sha256": list(self.image_sha256),
+            "execution_bindings_sha256": self.execution_bindings_sha256,
+            "scheduled_slot_count": self.scheduled_slot_count,
+            "scheduled_slot_sequence_sha256": self.scheduled_slot_sequence_sha256,
+            "scheduled_slot_ids": [slot.slot_id for slot in self.scheduled_slots],
+            "case_bindings": [
+                {
+                    "case_id": binding.case_id,
+                    "prompt": binding.prompt,
+                    "semantic_constraint": binding.semantic_constraint,
+                    "image_sha256": binding.image_sha256,
+                    "candidate_ids": list(binding.candidate_ids),
+                    "mask_manifest": {
+                        "path": binding.mask_manifest.path.as_posix(),
+                        "sha256": binding.mask_manifest.sha256,
+                    },
+                    "evidence_manifest": {
+                        "path": binding.evidence_manifest.path.as_posix(),
+                        "sha256": binding.evidence_manifest.sha256,
+                    },
+                }
+                for binding in self.case_bindings
+            ],
         }
 
 
@@ -144,17 +190,54 @@ def _verify_manifest(binding: ManifestBinding) -> dict[str, object]:
     return payload
 
 
+def _slot_sequence_sha256(slots: tuple[Slot, ...] | list[Slot]) -> str:
+    payload = [
+        {
+            "slot_id": slot.slot_id,
+            "case_id": slot.case_id,
+            "repetition": slot.repetition,
+            "arm": slot.arm,
+            "candidate": slot.candidate,
+        }
+        for slot in slots
+    ]
+    encoded = json.dumps(
+        payload, ensure_ascii=False, separators=(",", ":"), sort_keys=True
+    ).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def _git_check(
+    git_runner: Callable[..., subprocess.CompletedProcess],
+    repo_root: Path,
+    command: list[str],
+    category: str,
+) -> None:
+    result = git_runner(
+        command,
+        cwd=repo_root,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if result.returncode != 0:
+        raise HarnessFailure("preflight", category, " ".join(command))
+
+
 def verify_execution_preflight(
     *,
     repo_root: Path,
+    review_lock_path: Path,
+    review_lock_sha256: str,
     contract_path: Path,
     selection_path: Path,
     schedule_path: Path,
-    mask_manifests: list[ManifestBinding],
-    evidence_manifests: list[ManifestBinding],
+    execution_bindings_path: Path,
+    mask_manifests: dict[str, ManifestBinding],
+    evidence_manifests: dict[str, ManifestBinding],
     git_runner: Callable[..., subprocess.CompletedProcess] = subprocess.run,
 ) -> PreflightReceipt:
-    """在任何模型调用前核验冻结合同、builder commit 及全部生成资产。"""
+    """在任何模型调用前核验代码、配置输入、case 绑定、资产与 schedule。"""
     expected_files = (
         (contract_path, FROZEN_CONTRACT_SHA256),
         (selection_path, FROZEN_SELECTION_SHA256),
@@ -163,65 +246,164 @@ def verify_execution_preflight(
     for path, expected in expected_files:
         if not path.is_file() or _sha256(path) != expected:
             raise HarnessFailure("preflight", "frozen_contract_sha", str(path))
-    selection = json.loads(selection_path.read_text(encoding="utf-8"))
-    expected_image_shas = {
-        str(case["image_sha256"]) for case in selection["cases"]
-    }
+    if not review_lock_path.is_file() or _sha256(review_lock_path) != review_lock_sha256:
+        raise HarnessFailure("preflight", "review_lock_sha", str(review_lock_path))
+    review_lock = json.loads(review_lock_path.read_text(encoding="utf-8"))
+    harness_review_sha = str(review_lock["harness_review_sha"])
+    if review_lock.get("builder_implementation_sha") != BUILDER_IMPLEMENTATION_SHA:
+        raise HarnessFailure("preflight", "builder_review_lock", BUILDER_IMPLEMENTATION_SHA)
+    if review_lock.get("production_base_sha") != PRODUCTION_BASE_SHA:
+        raise HarnessFailure("preflight", "production_review_lock", PRODUCTION_BASE_SHA)
+    for record in review_lock["files"]:
+        path = repo_root / record["path"]
+        if (
+            not path.is_file()
+            or _sha256(path) != record["sha256"]
+            or path.stat().st_size != record["bytes"]
+        ):
+            raise HarnessFailure("preflight", "harness_file_sha", str(path))
 
-    ancestor = git_runner(
+    _git_check(
+        git_runner,
+        repo_root,
         ["git", "merge-base", "--is-ancestor", BUILDER_IMPLEMENTATION_SHA, "HEAD"],
-        cwd=repo_root,
-        capture_output=True,
-        text=True,
-        check=False,
+        "builder_implementation_sha",
     )
-    if ancestor.returncode != 0:
-        raise HarnessFailure("preflight", "implementation_sha", BUILDER_IMPLEMENTATION_SHA)
-    unchanged = git_runner(
+    _git_check(
+        git_runner,
+        repo_root,
+        ["git", "merge-base", "--is-ancestor", harness_review_sha, "HEAD"],
+        "harness_review_sha",
+    )
+    _git_check(
+        git_runner,
+        repo_root,
+        ["git", "merge-base", "--is-ancestor", PRODUCTION_BASE_SHA, "HEAD"],
+        "production_base_sha",
+    )
+    _git_check(
+        git_runner,
+        repo_root,
         ["git", "diff", "--quiet", BUILDER_IMPLEMENTATION_SHA, "HEAD", "--", *BUILDER_FILES],
+        "builder_implementation_drift",
+    )
+    locked_harness_files = [str(record["path"]) for record in review_lock["files"]]
+    _git_check(
+        git_runner,
+        repo_root,
+        ["git", "diff", "--quiet", harness_review_sha, "HEAD", "--", *locked_harness_files],
+        "harness_implementation_drift",
+    )
+    _git_check(
+        git_runner,
+        repo_root,
+        ["git", "diff", "--quiet", PRODUCTION_BASE_SHA, "HEAD", "--", "visual_agent"],
+        "production_verifier_drift",
+    )
+    status = git_runner(
+        ["git", "status", "--porcelain", "--", "benchmark", "visual_agent"],
         cwd=repo_root,
         capture_output=True,
         text=True,
         check=False,
     )
-    if unchanged.returncode != 0:
-        raise HarnessFailure("preflight", "implementation_drift", BUILDER_IMPLEMENTATION_SHA)
+    if status.returncode != 0 or status.stdout.strip():
+        raise HarnessFailure("preflight", "working_tree_dirty", status.stdout.strip())
 
-    mask_payloads = [_verify_manifest(binding) for binding in mask_manifests]
-    evidence_payloads = [
-        _verify_manifest(binding) for binding in evidence_manifests
-    ]
-    mask_image_shas = {str(payload.get("image_sha256")) for payload in mask_payloads}
-    evidence_image_shas = {
-        str(payload.get("source_image", {}).get("sha256"))
-        for payload in evidence_payloads
-    }
-    if mask_image_shas != expected_image_shas:
-        raise HarnessFailure("preflight", "mask_manifest_coverage", "mask image SHA 集合不完整")
-    if evidence_image_shas != expected_image_shas:
-        raise HarnessFailure(
-            "preflight",
-            "evidence_manifest_coverage",
-            "evidence image SHA 集合不完整",
+    selection = json.loads(selection_path.read_text(encoding="utf-8"))
+    schedule = json.loads(schedule_path.read_text(encoding="utf-8"))
+    execution_bindings_sha = _sha256(execution_bindings_path)
+    if execution_bindings_sha != review_lock["execution_bindings_sha256"]:
+        raise HarnessFailure("preflight", "execution_bindings_sha", str(execution_bindings_path))
+    frozen_bindings = json.loads(
+        execution_bindings_path.read_text(encoding="utf-8")
+    )["cases"]
+    selection_by_id = {str(case["case_id"]): case for case in selection["cases"]}
+    binding_by_id = {str(case["case_id"]): case for case in frozen_bindings}
+    if set(binding_by_id) != set(selection_by_id):
+        raise HarnessFailure("preflight", "case_binding_coverage", "case_id 集合不一致")
+    if set(mask_manifests) != set(selection_by_id) or set(evidence_manifests) != set(
+        selection_by_id
+    ):
+        raise HarnessFailure("preflight", "case_manifest_coverage", "case manifest key 集合不一致")
+
+    case_bindings: list[CaseBinding] = []
+    for case_id, frozen in binding_by_id.items():
+        selected = selection_by_id[case_id]
+        selected_candidate_ids = tuple(str(row["id"]) for row in selected["candidates"])
+        if (
+            frozen["prompt"] != selected["prompt"]
+            or frozen["image_sha256"] != selected["image_sha256"]
+            or tuple(frozen["candidate_ids"]) != selected_candidate_ids
+        ):
+            raise HarnessFailure("preflight", "case_semantic_binding", case_id)
+
+        mask_binding = mask_manifests[case_id]
+        evidence_binding = evidence_manifests[case_id]
+        mask_payload = _verify_manifest(mask_binding)
+        evidence_payload = _verify_manifest(evidence_binding)
+        mask_candidate_ids = tuple(
+            str(row["candidate_id"]) for row in mask_payload["masks"]
         )
+        evidence_candidate_ids = {
+            str(row["candidate_id"]) for row in evidence_payload["artifacts"]
+        }
+        if (
+            mask_payload.get("case_id") != case_id
+            or mask_payload.get("image_sha256") != selected["image_sha256"]
+            or mask_candidate_ids != selected_candidate_ids
+            or any(
+                list(record["bbox"]) != list(candidate["bbox"])
+                for record, candidate in zip(
+                    mask_payload["masks"], selected["candidates"], strict=True
+                )
+            )
+        ):
+            raise HarnessFailure("preflight", "mask_case_binding", case_id)
+        if (
+            evidence_payload.get("case_id") != case_id
+            or evidence_payload.get("source_image", {}).get("sha256")
+            != selected["image_sha256"]
+            or evidence_candidate_ids != set(selected_candidate_ids)
+        ):
+            raise HarnessFailure("preflight", "evidence_case_binding", case_id)
+        case_bindings.append(
+            CaseBinding(
+                case_id=case_id,
+                prompt=str(frozen["prompt"]),
+                semantic_constraint=str(frozen["semantic_constraint"]),
+                image_sha256=str(frozen["image_sha256"]),
+                candidate_ids=selected_candidate_ids,
+                mask_manifest=mask_binding,
+                evidence_manifest=evidence_binding,
+            )
+        )
+
+    scheduled_slots = tuple(expand_schedule(selection, schedule))
+    scheduled_sequence_sha = _slot_sequence_sha256(scheduled_slots)
     return PreflightReceipt(
-        implementation_sha=BUILDER_IMPLEMENTATION_SHA,
+        builder_implementation_sha=BUILDER_IMPLEMENTATION_SHA,
+        harness_review_sha=harness_review_sha,
+        harness_review_lock_sha256=review_lock_sha256,
         contract_sha256=FROZEN_CONTRACT_SHA256,
         selection_sha256=FROZEN_SELECTION_SHA256,
         schedule_sha256=FROZEN_SCHEDULE_SHA256,
-        mask_manifest_sha256=tuple(sorted(binding.sha256 for binding in mask_manifests)),
-        evidence_manifest_sha256=tuple(
-            sorted(binding.sha256 for binding in evidence_manifests)
-        ),
-        image_sha256=tuple(sorted(expected_image_shas)),
+        execution_bindings_sha256=execution_bindings_sha,
+        scheduled_slot_count=len(scheduled_slots),
+        scheduled_slot_sequence_sha256=scheduled_sequence_sha,
+        scheduled_slots=scheduled_slots,
+        case_bindings=tuple(case_bindings),
     )
 
 
 class ManifestEvidenceProvider:
     """按已核验 case manifest 加载证据，并在每次调用前复核字节 SHA。"""
 
-    def __init__(self, case_manifests: dict[str, ManifestBinding]):
-        self.case_manifests = case_manifests
+    def __init__(self, preflight: PreflightReceipt):
+        self.case_manifests = {
+            binding.case_id: binding.evidence_manifest
+            for binding in preflight.case_bindings
+        }
 
     def __call__(self, slot: Slot) -> LoadedEvidence:
         try:
@@ -294,12 +476,14 @@ class ProductionBehaviorAdapter:
     def __init__(
         self,
         *,
-        prompts: dict[str, str],
+        preflight: PreflightReceipt,
         config_loader: Callable[[], VlmConfig] = load_vlm_config,
         client_factory: Callable[[VlmConfig], object] = create_vlm_client,
         verifier: Callable[..., tuple[list[dict], dict]] = vlm.verify_candidate_constraints,
     ):
-        self.prompts = prompts
+        self.case_bindings = {
+            binding.case_id: binding for binding in preflight.case_bindings
+        }
         self.config_loader = config_loader
         self.client_factory = client_factory
         self.verifier = verifier
@@ -310,9 +494,27 @@ class ProductionBehaviorAdapter:
         metered = None
         try:
             config = self.config_loader()
+            if (
+                config.model != FROZEN_VLM_MODEL
+                or config.base_url.rstrip("/") != FROZEN_VLM_BASE_URL.rstrip("/")
+                or config.timeout != FROZEN_VLM_TIMEOUT
+            ):
+                raise HarnessFailure(
+                    "preflight",
+                    "frozen_vlm_config",
+                    (
+                        f"model={config.model}, base_url={config.base_url}, "
+                        f"timeout={config.timeout}"
+                    ),
+                )
             metered = _MeteredClient(self.client_factory(config))
+            binding = self.case_bindings[slot.case_id]
+            if str(slot.candidate["id"]) not in binding.candidate_ids:
+                raise HarnessFailure(
+                    "preflight", "candidate_semantic_binding", slot.slot_id
+                )
             constraints = [
-                {"text": self.prompts[slot.case_id], "route": "behavior"}
+                {"text": binding.semantic_constraint, "route": "behavior"}
             ]
             with patch.object(vlm, "_client", return_value=metered):
                 checks, protocol = self.verifier(
@@ -410,7 +612,6 @@ HarnessVerifier = Callable[[Slot, tuple[Image.Image, ...]], VerificationOutcome]
 
 
 def run_harness_slots(
-    slots: list[Slot],
     *,
     preflight: PreflightReceipt,
     evidence_provider: Callable[[Slot], LoadedEvidence],
@@ -418,10 +619,19 @@ def run_harness_slots(
     recorder: ResultRecorder,
 ) -> None:
     """执行冻结 slot；preflight receipt 自动固化为结果 sidecar。"""
-    if preflight.implementation_sha != BUILDER_IMPLEMENTATION_SHA:
+    if preflight.builder_implementation_sha != BUILDER_IMPLEMENTATION_SHA:
         raise HarnessFailure(
-            "preflight", "implementation_sha", preflight.implementation_sha
+            "preflight",
+            "builder_implementation_sha",
+            preflight.builder_implementation_sha,
         )
+    slots = preflight.scheduled_slots
+    if (
+        len(slots) != preflight.scheduled_slot_count
+        or _slot_sequence_sha256(slots)
+        != preflight.scheduled_slot_sequence_sha256
+    ):
+        raise HarnessFailure("preflight", "scheduled_slot_sequence", "slot sequence 不一致")
     receipt_bytes = (
         json.dumps(
             preflight.as_record(), ensure_ascii=False, indent=2, sort_keys=True

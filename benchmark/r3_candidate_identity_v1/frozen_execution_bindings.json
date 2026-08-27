@@ -1,0 +1,68 @@
+{
+  "schema_version": "R3_FROZEN_EXECUTION_BINDINGS_V1",
+  "cases": [
+    {
+      "case_id": "challenge_001",
+      "prompt": "找到正在钓鱼的人",
+      "semantic_constraint": "正在钓鱼",
+      "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+      "candidate_ids": ["A", "B"]
+    },
+    {
+      "case_id": "challenge_003",
+      "prompt": "把正在钓鱼的人标红",
+      "semantic_constraint": "正在钓鱼",
+      "image_sha256": "717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6",
+      "candidate_ids": ["A"]
+    },
+    {
+      "case_id": "challenge_004",
+      "prompt": "把正在钓鱼的人以外背景变暗",
+      "semantic_constraint": "正在钓鱼",
+      "image_sha256": "45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79",
+      "candidate_ids": ["A", "B"]
+    },
+    {
+      "case_id": "F1::fishing_001.jpeg",
+      "prompt": "框出正在钓鱼的人",
+      "semantic_constraint": "正在钓鱼",
+      "image_sha256": "459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab",
+      "candidate_ids": ["A"]
+    },
+    {
+      "case_id": "F1::fishing_005.jpeg",
+      "prompt": "框出正在钓鱼的人",
+      "semantic_constraint": "正在钓鱼",
+      "image_sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145",
+      "candidate_ids": ["A"]
+    },
+    {
+      "case_id": "F1::fishing_010.jpeg",
+      "prompt": "框出正在钓鱼的人",
+      "semantic_constraint": "正在钓鱼",
+      "image_sha256": "acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4",
+      "candidate_ids": ["A", "B", "C"]
+    },
+    {
+      "case_id": "F1::fishing_014.jpeg",
+      "prompt": "框出正在钓鱼的人",
+      "semantic_constraint": "正在钓鱼",
+      "image_sha256": "8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355",
+      "candidate_ids": ["A", "B", "C"]
+    },
+    {
+      "case_id": "F1::fishing_004.jpeg",
+      "prompt": "框出正在钓鱼的人",
+      "semantic_constraint": "正在钓鱼",
+      "image_sha256": "b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9",
+      "candidate_ids": ["A"]
+    },
+    {
+      "case_id": "F1::fishing_018.jpeg",
+      "prompt": "框出正在钓鱼的人",
+      "semantic_constraint": "正在钓鱼",
+      "image_sha256": "3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e",
+      "candidate_ids": ["A"]
+    }
+  ]
+}
