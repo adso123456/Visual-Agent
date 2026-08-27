@@ -95,3 +95,56 @@ Gate 4 = PASS
   或增加 subject-local 更高相对尺度的二次视图规则
 - challenge_001 身份串扰 → R3 边界：behavior 首轮双视图下仍无法区分"持杆操作者 vs 旁观者"
 - F2::fishing_014 语义边界 → 冻结盲评与 R2.2"持有"定义需对齐（支架鱼竿是否算 held）
+---
+
+# 远程 diff 审查结论（追加，原始 execution evidence 未改动）
+
+审查日期：本报告归档后的一次正式远程 diff 审查。
+
+## 总裁决（审查后）
+
+```
+GENERAL_RGB_FINAL_ACCEPTANCE_REMEDIATION_V1
+= TARGETED GATES NOT PASSED
+FAILURE ATTRIBUTION = ACCEPTED FOR NEXT REMEDIATION DESIGN
+IMPLEMENTATION @41b7b46           = R1/R2/R3 CODE REVIEW PASSED
+IMPLEMENTATION HEAD @1960505      = CHANGES REQUIRED
+PLANNER SEAM SECURITY             = BLOCKING（已由 be54f3c 修复）
+GATE EXECUTION CONTRACT DEVIATION = MUST BE DOCUMENTED（本文档即记录）
+PRODUCTION MERGE                  = NOT AUTHORIZED
+NEW R REMEDIATION                 = NOT AUTHORIZED YET
+GENERAL_RGB_FINAL_ACCEPTANCE_V2   = NOT AUTHORIZED
+REMOTE_SENSING_WATER_QUALITY      = BLOCKED
+```
+
+## 合同执行偏差（必须记录，不改原始记录）
+
+冻结合同 failed_execution_replacement = false；但本轮执行对 502 / 空 completion /
+Planner tool-call 双重失败进行了补跑（补跑行保留于
+raw_execution_gate{2,3}_provider_or_planner_error_records.jsonl，未使用补跑替换原始行，
+但 Gate 3 system 口径按补跑后的 60/60 success、provider/protocol/validator final failure = 0 陈述）。
+
+因此：
+
+- Gate 3 system = 60/60 PASS 与 provider final failure = 0 不作为合同合规口径接受；
+- 正式 Gate 口径需保留 scheduled execution 中发生的失败；
+- 本偏差不影响 NOT PASSED 总裁决：F4::fishing_017 retained 0/5、challenge_001 false assignment 5/5、
+  F4 positive usable 6/8 三个失败项不依赖补跑，Gate 2/3 必然 FAIL；
+- 失败归因对下一轮 remediation design 有效；PASS 侧可靠性指标不作合同合规声明。
+
+## 1960505 Planner seam 审查发现（已由 be54f3c 收口）
+
+1. 安全 Blocking（原 1960505）：非默认 PLANNER_BASE_URL 时仍回退 DEEPSEEK_API_KEY，
+   会把 DeepSeek 密钥发送到自定义端点；与 VLM seam 规则不一致。
+   → be54f3c：非默认端点必须显式 PLANNER_API_KEY，禁止回退 DEEPSEEK_API_KEY；
+     默认端点才允许 PLANNER_API_KEY 或 DEEPSEEK_API_KEY。
+2. Final Response 共享语义显式化：plan_request 与 build_final_response 共用同一
+   configurable model（PLANNER_MODEL），不再以 "Planner seam" 名义隐式改变 Final Response；
+   本轮 Gate 执行中 Final Response 空 completion 噪声即该共享变更暴露。
+3. telemetry 修正：pipeline agent.provider/model 报告实际 provider（deepseek /
+   openai_compatible）与模型，不再写死 "provider": "deepseek"。
+
+## 完成状态
+
+- seam 收口提交：be54f3c（general-rgb-final-acceptance-remediation-v1，已推送，未 merge）
+- 原始 execution evidence 未改动；本结论仅追加此文档与 README 状态说明
