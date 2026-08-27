@@ -1,6 +1,6 @@
 {
   "schema_version": "GENERAL_RGB_R3_CANDIDATE_IDENTITY_CONTRACT_MANIFEST_V1",
-  "status": "CONTRACT_FROZEN",
+  "status": "CONTRACT_FROZEN_EXECUTION_COMPLETE_CANDIDATES_NOT_CONFIRMED",
   "files": [
     {
       "path": "GENERAL_RGB_R3_CANDIDATE_IDENTITY_REMEDIATION_V1_CONTRACT.md",
@@ -43,6 +43,58 @@
       "implementation_commit": "22b22570c5f9ac6bd5249dae8f70782f500fb810"
     }
   ],
+  "execution_evidence": {
+    "directory": "execution",
+    "artifact_manifest": {
+      "path": "execution/artifact_manifest.json",
+      "sha256": "1726e0bff1613a1cf132c6842e0b7ccced0b12a35010a938246180184c2a7905",
+      "bytes": 37424,
+      "covered_files": 163,
+      "covered_bytes": 785482149
+    },
+    "key_files": [
+      {
+        "path": "execution/execution_summary.json",
+        "sha256": "36804ead4254aeddecfaf94d97b7552500d932d11b9cc7ca2b47ed24859c4018",
+        "bytes": 1926
+      },
+      {
+        "path": "execution/gate_evaluation.json",
+        "sha256": "14edb00b902f2b87ee67f20841e832110fce222afc6d37c60af3e191eef1944f",
+        "bytes": 5430
+      },
+      {
+        "path": "execution/R3_A_B_C_EXECUTION_REPORT.md",
+        "sha256": "0ae58caeca6ebdaf206543ada0be680479213b336ae4194ff20ac0a1359943e9",
+        "bytes": 1922
+      },
+      {
+        "path": "execution/results.jsonl",
+        "sha256": "70ffbd79bd562dfe00cff10191c60a89e58021f7fd067b4fdce33ec3dd00715e",
+        "bytes": 236611
+      },
+      {
+        "path": "execution/results.preflight.json",
+        "sha256": "4eb00894b6fb566c7fb22b612fb762391e03badac670fd1bbf9958d6d36bdad7",
+        "bytes": 12327
+      },
+      {
+        "path": "execution/sam_materialization.json",
+        "sha256": "8b2aeea809e2dbd764cd8f524b50061aa77e5a2a68b504e5322e09fab271d307",
+        "bytes": 3888
+      }
+    ],
+    "scheduled_first_pass_slots": 105,
+    "terminal_success": 105,
+    "terminal_failure": 0,
+    "logical_model_calls": 130,
+    "fallback_calls": 25,
+    "retry_count": 0,
+    "recovered": 0,
+    "arm_B": "NOT_CONFIRMED",
+    "arm_C": "NOT_CONFIRMED",
+    "production_policy": "KEEP_CURRENT_PRODUCTION"
+  },
   "input_images_verified": 9,
   "input_image_sha256_mismatch": 0
 }

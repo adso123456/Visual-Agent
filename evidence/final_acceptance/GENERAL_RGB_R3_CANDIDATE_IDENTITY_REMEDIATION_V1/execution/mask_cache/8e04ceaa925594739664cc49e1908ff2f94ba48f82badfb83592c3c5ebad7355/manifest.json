@@ -1,0 +1,49 @@
+{
+  "bitorder": "little",
+  "case_id": "F1::fishing_014.jpeg",
+  "height": 4480,
+  "image_sha256": "8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355",
+  "masks": [
+    {
+      "bbox": [
+        2695.03,
+        1846.72,
+        3228.39,
+        2889.21
+      ],
+      "bytes": 3763200,
+      "candidate_id": "A",
+      "path": "candidate_A.bin",
+      "sha256": "69c8b796a03f0532af601556a4e30b1dba441c5bac5424a9c1d4bf25eeb81e7e",
+      "true_pixels": 199255
+    },
+    {
+      "bbox": [
+        4208.56,
+        2371.68,
+        4931.18,
+        3156.99
+      ],
+      "bytes": 3763200,
+      "candidate_id": "B",
+      "path": "candidate_B.bin",
+      "sha256": "4c934c88b094b678739dc3bfe7f856bdb1aa94c5b01e66ed138200414df601da",
+      "true_pixels": 261774
+    },
+    {
+      "bbox": [
+        3247.48,
+        2402.66,
+        4045.02,
+        3198.01
+      ],
+      "bytes": 3763200,
+      "candidate_id": "C",
+      "path": "candidate_C.bin",
+      "sha256": "758e6e8da79c56314adf46f22671a131f407d2127a937dbf8700027a85b4e763",
+      "true_pixels": 251913
+    }
+  ],
+  "schema_version": "R3_FIXED_MASK_CACHE_V1",
+  "width": 6720
+}

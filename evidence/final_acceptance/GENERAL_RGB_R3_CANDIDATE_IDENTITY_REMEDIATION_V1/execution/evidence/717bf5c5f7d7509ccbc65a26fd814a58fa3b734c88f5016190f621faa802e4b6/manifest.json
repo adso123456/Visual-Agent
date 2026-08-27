@@ -1,0 +1,98 @@
+{
+  "artifacts": [
+    {
+      "arm": "A",
+      "bytes": 8743,
+      "candidate_id": "A",
+      "evidence_type": "isolated",
+      "height": 398,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6/A/A/isolated.png",
+      "sha256": "4f60dd0f831b0da6dbb086152e2a396a99686fe7be74c18f806e2d45dfb16ff7",
+      "stage": "first_pass",
+      "width": 597
+    },
+    {
+      "arm": "A",
+      "bytes": 20153,
+      "candidate_id": "A",
+      "evidence_type": "local",
+      "height": 227,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6/A/A/local.png",
+      "sha256": "b2aebb49d1aceac6a4ab5faa07494a3633b21a9d7135bc3179ed4b8d8f60a6f4",
+      "stage": "first_pass",
+      "width": 84
+    },
+    {
+      "arm": "A",
+      "bytes": 275286,
+      "candidate_id": "A",
+      "evidence_type": "full_scene",
+      "height": 398,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6/A/A/fallback_full_scene.png",
+      "sha256": "5a135666c21232906f59c06fcab2cb4ffa985d8190d58b2ba6e05f5bc6d9fb67",
+      "stage": "fallback",
+      "width": 597
+    },
+    {
+      "arm": "B",
+      "bytes": 8743,
+      "candidate_id": "A",
+      "evidence_type": "isolated",
+      "height": 398,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6/A/B/isolated.png",
+      "sha256": "4f60dd0f831b0da6dbb086152e2a396a99686fe7be74c18f806e2d45dfb16ff7",
+      "stage": "first_pass",
+      "width": 597
+    },
+    {
+      "arm": "B",
+      "bytes": 20153,
+      "candidate_id": "A",
+      "evidence_type": "local",
+      "height": 227,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6/A/B/local.png",
+      "sha256": "b2aebb49d1aceac6a4ab5faa07494a3633b21a9d7135bc3179ed4b8d8f60a6f4",
+      "stage": "first_pass",
+      "width": 84
+    },
+    {
+      "arm": "C",
+      "bytes": 8743,
+      "candidate_id": "A",
+      "evidence_type": "isolated",
+      "height": 398,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6/A/C/isolated.png",
+      "sha256": "4f60dd0f831b0da6dbb086152e2a396a99686fe7be74c18f806e2d45dfb16ff7",
+      "stage": "first_pass",
+      "width": 597
+    },
+    {
+      "arm": "C",
+      "bytes": 20153,
+      "candidate_id": "A",
+      "evidence_type": "local",
+      "height": 227,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6/A/C/local.png",
+      "sha256": "b2aebb49d1aceac6a4ab5faa07494a3633b21a9d7135bc3179ed4b8d8f60a6f4",
+      "stage": "first_pass",
+      "width": 84
+    },
+    {
+      "arm": "C",
+      "bytes": 275286,
+      "candidate_id": "A",
+      "evidence_type": "full_scene",
+      "height": 398,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6/A/C/fallback_full_scene.png",
+      "sha256": "5a135666c21232906f59c06fcab2cb4ffa985d8190d58b2ba6e05f5bc6d9fb67",
+      "stage": "fallback",
+      "width": 597
+    }
+  ],
+  "case_id": "challenge_003",
+  "schema_version": "R3_CANDIDATE_EVIDENCE_MANIFEST_V1",
+  "source_image": {
+    "path": "E:/3/Visual Agent/_evidence_worktree/evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6.png",
+    "sha256": "717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6"
+  }
+}

@@ -1,0 +1,82 @@
+[transformers] You are using a model of type `sam2_video` to instantiate a model of type `sam2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+
+Loading weights:   0%|          | 0/453 [00:00<?, ?it/s]
+Loading weights: 100%|��������������������| 453/453 [00:00<00:00, 5105.00it/s]
+SAM_EVIDENCE 1/9 challenge_001
+SAM_EVIDENCE 2/9 challenge_003
+SAM_EVIDENCE 3/9 challenge_004
+SAM_EVIDENCE 4/9 F1::fishing_001.jpeg
+SAM_EVIDENCE 5/9 F1::fishing_005.jpeg
+SAM_EVIDENCE 6/9 F1::fishing_010.jpeg
+SAM_EVIDENCE 7/9 F1::fishing_014.jpeg
+SAM_EVIDENCE 8/9 F1::fishing_004.jpeg
+SAM_EVIDENCE 9/9 F1::fishing_018.jpeg
+PREFLIGHT PASS slots=105 sequence_sha=adb3a2704b696213da887ab5407a95adc78e8480a395832aff3a5150921654d6
+{
+  "schema_version": "R3_FROZEN_EXECUTION_SUMMARY_V1",
+  "scheduled_first_pass_slots": 105,
+  "terminal_records": 105,
+  "terminal": {
+    "success": 105
+  },
+  "failures": {},
+  "by_arm": {
+    "A": {
+      "success": 35
+    },
+    "B": {
+      "success": 35
+    },
+    "C": {
+      "success": 35
+    }
+  },
+  "logical_model_calls": 130,
+  "protocol_attempts": 130,
+  "retry_count": 0,
+  "recovered": 0,
+  "fallback_calls": 25,
+  "prompt_tokens": 339836,
+  "completion_tokens": 9480,
+  "total_tokens": 349316,
+  "model_latency_seconds": 1826.263,
+  "wall_seconds": 1979.669,
+  "gate_observations": {
+    "A": {
+      "challenge_001_bystander_false_assignment": 5,
+      "challenge_001_true_operator_retained": 5,
+      "challenge_003_uncertain_preserved": 0,
+      "challenge_003_confident_binary": 5,
+      "challenge_004_elder_retained": 0,
+      "challenge_004_child_false_assignment": 0,
+      "F1_candidate_correct": 5,
+      "F1_candidate_total": 10,
+      "F1_task_correct": 3,
+      "F1_task_total": 6
+    },
+    "B": {
+      "challenge_001_bystander_false_assignment": 0,
+      "challenge_001_true_operator_retained": 5,
+      "challenge_003_uncertain_preserved": 5,
+      "challenge_003_confident_binary": 0,
+      "challenge_004_elder_retained": 0,
+      "challenge_004_child_false_assignment": 0,
+      "F1_candidate_correct": 4,
+      "F1_candidate_total": 10,
+      "F1_task_correct": 2,
+      "F1_task_total": 6
+    },
+    "C": {
+      "challenge_001_bystander_false_assignment": 0,
+      "challenge_001_true_operator_retained": 5,
+      "challenge_003_uncertain_preserved": 0,
+      "challenge_003_confident_binary": 5,
+      "challenge_004_elder_retained": 0,
+      "challenge_004_child_false_assignment": 0,
+      "F1_candidate_correct": 5,
+      "F1_candidate_total": 10,
+      "F1_task_correct": 3,
+      "F1_task_total": 6
+    }
+  }
+}

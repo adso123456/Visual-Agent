@@ -1,0 +1,279 @@
+{
+  "builder_implementation_sha": "0b32695dcd46d13cf22987f5347b2b212e7132c1",
+  "case_bindings": [
+    {
+      "candidate_ids": [
+        "A",
+        "B"
+      ],
+      "case_id": "challenge_001",
+      "evidence_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c/manifest.json",
+        "sha256": "de4b613561a9e6f047528bd429907116a8ad888c771b9c7af14452bc0304b120"
+      },
+      "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+      "mask_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/mask_cache/179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c/manifest.json",
+        "sha256": "c4aa10def52008f376762c2491e8683a7bf2058f11b7508eb5a6ca290ec8a7bb"
+      },
+      "prompt": "找到正在钓鱼的人",
+      "semantic_constraint": "正在钓鱼"
+    },
+    {
+      "candidate_ids": [
+        "A"
+      ],
+      "case_id": "challenge_003",
+      "evidence_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6/manifest.json",
+        "sha256": "4adf45c02dab746c559162b0571d2da63b63c24a81748ea2b5de4d668ae2551e"
+      },
+      "image_sha256": "717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6",
+      "mask_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/mask_cache/717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6/manifest.json",
+        "sha256": "28d547d40dc71f50e4d188fdb6ec882f8f9ace5769037f6249cb3a19ae77e4b3"
+      },
+      "prompt": "把正在钓鱼的人标红",
+      "semantic_constraint": "正在钓鱼"
+    },
+    {
+      "candidate_ids": [
+        "A",
+        "B"
+      ],
+      "case_id": "challenge_004",
+      "evidence_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79/manifest.json",
+        "sha256": "105f33e94f7b7ab4e95c024ebddecf767fa7e2df0826b02351fa0d21ba10b198"
+      },
+      "image_sha256": "45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79",
+      "mask_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/mask_cache/45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79/manifest.json",
+        "sha256": "d839508c8d528f79bf4324031a53dae967a6413c6f93ce10d33dc311aa459260"
+      },
+      "prompt": "把正在钓鱼的人以外背景变暗",
+      "semantic_constraint": "正在钓鱼"
+    },
+    {
+      "candidate_ids": [
+        "A"
+      ],
+      "case_id": "F1::fishing_001.jpeg",
+      "evidence_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab/manifest.json",
+        "sha256": "2d5fccc51e2b6c1f7738f5046b7dc0dff651f94b22e11c25e82f2a3c0d2680be"
+      },
+      "image_sha256": "459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab",
+      "mask_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/mask_cache/459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab/manifest.json",
+        "sha256": "6a28d0ff81fb9a5e62e1b6c4ec838bb56dae7ea3bcdb78513a08521070278ba1"
+      },
+      "prompt": "框出正在钓鱼的人",
+      "semantic_constraint": "正在钓鱼"
+    },
+    {
+      "candidate_ids": [
+        "A"
+      ],
+      "case_id": "F1::fishing_005.jpeg",
+      "evidence_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145/manifest.json",
+        "sha256": "95dfe0eedf9efc6cf8125e4f37ec02102d1ff2d163cde3de85787113caf18895"
+      },
+      "image_sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145",
+      "mask_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/mask_cache/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145/manifest.json",
+        "sha256": "cdf3a03e602e4ddb86e6d56a7947f39b8c4bf084e7473303778ed060ace29c24"
+      },
+      "prompt": "框出正在钓鱼的人",
+      "semantic_constraint": "正在钓鱼"
+    },
+    {
+      "candidate_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "case_id": "F1::fishing_010.jpeg",
+      "evidence_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4/manifest.json",
+        "sha256": "d1ef387abadedd68b4987a8bc061fcb8d12fce52f994b0a9c5291bd35e7a3293"
+      },
+      "image_sha256": "acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4",
+      "mask_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/mask_cache/acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4/manifest.json",
+        "sha256": "d387252bd43061b30f64dbf808902c8a28606010530e3a6efa19f6529df2f30c"
+      },
+      "prompt": "框出正在钓鱼的人",
+      "semantic_constraint": "正在钓鱼"
+    },
+    {
+      "candidate_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "case_id": "F1::fishing_014.jpeg",
+      "evidence_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355/manifest.json",
+        "sha256": "71de5c5c59b7375893eee91136bc5eb162dd028e87eb5af265a73226ab51e52c"
+      },
+      "image_sha256": "8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355",
+      "mask_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/mask_cache/8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355/manifest.json",
+        "sha256": "010068e2f50c8c5cb48729213fc959317689c7932609b8b014910fb9493c89d6"
+      },
+      "prompt": "框出正在钓鱼的人",
+      "semantic_constraint": "正在钓鱼"
+    },
+    {
+      "candidate_ids": [
+        "A"
+      ],
+      "case_id": "F1::fishing_004.jpeg",
+      "evidence_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9/manifest.json",
+        "sha256": "2ba45a6637893ddfbc66f813050b1a0c457f03cea14c64cd43131d95ed6efe88"
+      },
+      "image_sha256": "b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9",
+      "mask_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/mask_cache/b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9/manifest.json",
+        "sha256": "aaedd1ad33729c4d33423564b21509c70fa1b6cd7b6ac328f2ba2b6fcf87908e"
+      },
+      "prompt": "框出正在钓鱼的人",
+      "semantic_constraint": "正在钓鱼"
+    },
+    {
+      "candidate_ids": [
+        "A"
+      ],
+      "case_id": "F1::fishing_018.jpeg",
+      "evidence_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e/manifest.json",
+        "sha256": "d3d10cf22d9226af4bf036455337b927d86599750759389ebd55e98afd3c7dd2"
+      },
+      "image_sha256": "3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e",
+      "mask_manifest": {
+        "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/mask_cache/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e/manifest.json",
+        "sha256": "fc717ab2c0af98e1dad9bdca876be50bd5a674a21db188950561ddaa072e0f07"
+      },
+      "prompt": "框出正在钓鱼的人",
+      "semantic_constraint": "正在钓鱼"
+    }
+  ],
+  "contract_sha256": "7072d0a6acdbe0beeb9db6f048a35d5d2dc28488696286183887f6c84ef5dd73",
+  "execution_bindings_sha256": "098fa4b6448faca5312c0293e12bc53daa5cc2cfee972cd17b72a9f93e4fd38f",
+  "harness_review_lock_sha256": "eff9212667c79ec6fe14c36cad1f43e847f59a200de052823a1e8f319e07c10f",
+  "harness_review_sha": "b35bde57ca8f60699d95edc64101451695eacdc1",
+  "schedule_sha256": "e531bc803758a0b4827787d619cbd3b4a62c71a0c4647f78cd6d6ada3d08ca84",
+  "scheduled_slot_count": 105,
+  "scheduled_slot_ids": [
+    "challenge_001|r1|A|A",
+    "challenge_001|r1|A|B",
+    "challenge_001|r1|B|A",
+    "challenge_001|r1|B|B",
+    "challenge_001|r1|C|A",
+    "challenge_001|r1|C|B",
+    "challenge_001|r2|B|A",
+    "challenge_001|r2|B|B",
+    "challenge_001|r2|C|A",
+    "challenge_001|r2|C|B",
+    "challenge_001|r2|A|A",
+    "challenge_001|r2|A|B",
+    "challenge_001|r3|C|A",
+    "challenge_001|r3|C|B",
+    "challenge_001|r3|A|A",
+    "challenge_001|r3|A|B",
+    "challenge_001|r3|B|A",
+    "challenge_001|r3|B|B",
+    "challenge_001|r4|A|A",
+    "challenge_001|r4|A|B",
+    "challenge_001|r4|C|A",
+    "challenge_001|r4|C|B",
+    "challenge_001|r4|B|A",
+    "challenge_001|r4|B|B",
+    "challenge_001|r5|C|A",
+    "challenge_001|r5|C|B",
+    "challenge_001|r5|B|A",
+    "challenge_001|r5|B|B",
+    "challenge_001|r5|A|A",
+    "challenge_001|r5|A|B",
+    "challenge_003|r1|B|A",
+    "challenge_003|r1|A|A",
+    "challenge_003|r1|C|A",
+    "challenge_003|r2|A|A",
+    "challenge_003|r2|B|A",
+    "challenge_003|r2|C|A",
+    "challenge_003|r3|B|A",
+    "challenge_003|r3|C|A",
+    "challenge_003|r3|A|A",
+    "challenge_003|r4|C|A",
+    "challenge_003|r4|A|A",
+    "challenge_003|r4|B|A",
+    "challenge_003|r5|A|A",
+    "challenge_003|r5|C|A",
+    "challenge_003|r5|B|A",
+    "challenge_004|r1|C|A",
+    "challenge_004|r1|C|B",
+    "challenge_004|r1|B|A",
+    "challenge_004|r1|B|B",
+    "challenge_004|r1|A|A",
+    "challenge_004|r1|A|B",
+    "challenge_004|r2|B|A",
+    "challenge_004|r2|B|B",
+    "challenge_004|r2|A|A",
+    "challenge_004|r2|A|B",
+    "challenge_004|r2|C|A",
+    "challenge_004|r2|C|B",
+    "challenge_004|r3|A|A",
+    "challenge_004|r3|A|B",
+    "challenge_004|r3|B|A",
+    "challenge_004|r3|B|B",
+    "challenge_004|r3|C|A",
+    "challenge_004|r3|C|B",
+    "challenge_004|r4|B|A",
+    "challenge_004|r4|B|B",
+    "challenge_004|r4|C|A",
+    "challenge_004|r4|C|B",
+    "challenge_004|r4|A|A",
+    "challenge_004|r4|A|B",
+    "challenge_004|r5|C|A",
+    "challenge_004|r5|C|B",
+    "challenge_004|r5|A|A",
+    "challenge_004|r5|A|B",
+    "challenge_004|r5|B|A",
+    "challenge_004|r5|B|B",
+    "F1::fishing_001.jpeg|r1|A|A",
+    "F1::fishing_001.jpeg|r1|B|A",
+    "F1::fishing_001.jpeg|r1|C|A",
+    "F1::fishing_005.jpeg|r1|B|A",
+    "F1::fishing_005.jpeg|r1|C|A",
+    "F1::fishing_005.jpeg|r1|A|A",
+    "F1::fishing_010.jpeg|r1|C|A",
+    "F1::fishing_010.jpeg|r1|C|B",
+    "F1::fishing_010.jpeg|r1|C|C",
+    "F1::fishing_010.jpeg|r1|A|A",
+    "F1::fishing_010.jpeg|r1|A|B",
+    "F1::fishing_010.jpeg|r1|A|C",
+    "F1::fishing_010.jpeg|r1|B|A",
+    "F1::fishing_010.jpeg|r1|B|B",
+    "F1::fishing_010.jpeg|r1|B|C",
+    "F1::fishing_014.jpeg|r1|A|A",
+    "F1::fishing_014.jpeg|r1|A|B",
+    "F1::fishing_014.jpeg|r1|A|C",
+    "F1::fishing_014.jpeg|r1|C|A",
+    "F1::fishing_014.jpeg|r1|C|B",
+    "F1::fishing_014.jpeg|r1|C|C",
+    "F1::fishing_014.jpeg|r1|B|A",
+    "F1::fishing_014.jpeg|r1|B|B",
+    "F1::fishing_014.jpeg|r1|B|C",
+    "F1::fishing_004.jpeg|r1|C|A",
+    "F1::fishing_004.jpeg|r1|B|A",
+    "F1::fishing_004.jpeg|r1|A|A",
+    "F1::fishing_018.jpeg|r1|B|A",
+    "F1::fishing_018.jpeg|r1|A|A",
+    "F1::fishing_018.jpeg|r1|C|A"
+  ],
+  "scheduled_slot_sequence_sha256": "adb3a2704b696213da887ab5407a95adc78e8480a395832aff3a5150921654d6",
+  "selection_sha256": "37fb7fcb97e5a324a4d76d81abe805e947e220420c97102eb6d690cc64c44563"
+}

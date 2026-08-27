@@ -1,0 +1,98 @@
+{
+  "artifacts": [
+    {
+      "arm": "A",
+      "bytes": 2504833,
+      "candidate_id": "A",
+      "evidence_type": "isolated",
+      "height": 4032,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145/A/A/isolated.png",
+      "sha256": "59f4622045288f0f0e3bb32f81403b4ec6c373beef25d4feb40e1f981ddca213",
+      "stage": "first_pass",
+      "width": 3024
+    },
+    {
+      "arm": "A",
+      "bytes": 7979186,
+      "candidate_id": "A",
+      "evidence_type": "local",
+      "height": 4032,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145/A/A/local.png",
+      "sha256": "adb05532031ac32155541b9636be47a2d2f9709bbe812b1d8c7805c7dfbceb0c",
+      "stage": "first_pass",
+      "width": 2112
+    },
+    {
+      "arm": "A",
+      "bytes": 11180087,
+      "candidate_id": "A",
+      "evidence_type": "full_scene",
+      "height": 4032,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145/A/A/fallback_full_scene.png",
+      "sha256": "c58c9bd8b1014584f4b1894826e539e2326ee0f689725ec78555673604da7a59",
+      "stage": "fallback",
+      "width": 3024
+    },
+    {
+      "arm": "B",
+      "bytes": 2504833,
+      "candidate_id": "A",
+      "evidence_type": "isolated",
+      "height": 4032,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145/A/B/isolated.png",
+      "sha256": "59f4622045288f0f0e3bb32f81403b4ec6c373beef25d4feb40e1f981ddca213",
+      "stage": "first_pass",
+      "width": 3024
+    },
+    {
+      "arm": "B",
+      "bytes": 7979186,
+      "candidate_id": "A",
+      "evidence_type": "local",
+      "height": 4032,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145/A/B/local.png",
+      "sha256": "adb05532031ac32155541b9636be47a2d2f9709bbe812b1d8c7805c7dfbceb0c",
+      "stage": "first_pass",
+      "width": 2112
+    },
+    {
+      "arm": "C",
+      "bytes": 2504833,
+      "candidate_id": "A",
+      "evidence_type": "isolated",
+      "height": 4032,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145/A/C/isolated.png",
+      "sha256": "59f4622045288f0f0e3bb32f81403b4ec6c373beef25d4feb40e1f981ddca213",
+      "stage": "first_pass",
+      "width": 3024
+    },
+    {
+      "arm": "C",
+      "bytes": 7979186,
+      "candidate_id": "A",
+      "evidence_type": "local",
+      "height": 4032,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145/A/C/local.png",
+      "sha256": "adb05532031ac32155541b9636be47a2d2f9709bbe812b1d8c7805c7dfbceb0c",
+      "stage": "first_pass",
+      "width": 2112
+    },
+    {
+      "arm": "C",
+      "bytes": 11180087,
+      "candidate_id": "A",
+      "evidence_type": "full_scene",
+      "height": 4032,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145/A/C/fallback_full_scene.png",
+      "sha256": "c58c9bd8b1014584f4b1894826e539e2326ee0f689725ec78555673604da7a59",
+      "stage": "fallback",
+      "width": 3024
+    }
+  ],
+  "case_id": "F1::fishing_005.jpeg",
+  "schema_version": "R3_CANDIDATE_EVIDENCE_MANIFEST_V1",
+  "source_image": {
+    "path": "E:/3/Visual Agent/_evidence_worktree/evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145.jpeg",
+    "sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145"
+  }
+}

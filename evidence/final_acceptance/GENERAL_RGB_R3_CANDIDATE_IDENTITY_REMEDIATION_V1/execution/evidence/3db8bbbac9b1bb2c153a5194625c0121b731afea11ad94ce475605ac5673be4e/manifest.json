@@ -1,0 +1,98 @@
+{
+  "artifacts": [
+    {
+      "arm": "A",
+      "bytes": 14371605,
+      "candidate_id": "A",
+      "evidence_type": "isolated",
+      "height": 4525,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e/A/A/isolated.png",
+      "sha256": "917b29f0a8fc8b4f2208a2bf6078533ac52f264f2e5c78150a9a9ce45da5f7d2",
+      "stage": "first_pass",
+      "width": 6784
+    },
+    {
+      "arm": "A",
+      "bytes": 29968729,
+      "candidate_id": "A",
+      "evidence_type": "local",
+      "height": 4525,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e/A/A/local.png",
+      "sha256": "52aea530e5bef3e1e56b0af85b2d0a4c87ede61d4e275ad6e249b1da30aeae6d",
+      "stage": "first_pass",
+      "width": 6599
+    },
+    {
+      "arm": "A",
+      "bytes": 30931719,
+      "candidate_id": "A",
+      "evidence_type": "full_scene",
+      "height": 4525,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e/A/A/fallback_full_scene.png",
+      "sha256": "6458cfc749bdc076a5871273a0ef5852a85056437e3b4f6da09623e450affe62",
+      "stage": "fallback",
+      "width": 6784
+    },
+    {
+      "arm": "B",
+      "bytes": 14371605,
+      "candidate_id": "A",
+      "evidence_type": "isolated",
+      "height": 4525,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e/A/B/isolated.png",
+      "sha256": "917b29f0a8fc8b4f2208a2bf6078533ac52f264f2e5c78150a9a9ce45da5f7d2",
+      "stage": "first_pass",
+      "width": 6784
+    },
+    {
+      "arm": "B",
+      "bytes": 29968729,
+      "candidate_id": "A",
+      "evidence_type": "local",
+      "height": 4525,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e/A/B/local.png",
+      "sha256": "52aea530e5bef3e1e56b0af85b2d0a4c87ede61d4e275ad6e249b1da30aeae6d",
+      "stage": "first_pass",
+      "width": 6599
+    },
+    {
+      "arm": "C",
+      "bytes": 14371605,
+      "candidate_id": "A",
+      "evidence_type": "isolated",
+      "height": 4525,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e/A/C/isolated.png",
+      "sha256": "917b29f0a8fc8b4f2208a2bf6078533ac52f264f2e5c78150a9a9ce45da5f7d2",
+      "stage": "first_pass",
+      "width": 6784
+    },
+    {
+      "arm": "C",
+      "bytes": 29968729,
+      "candidate_id": "A",
+      "evidence_type": "local",
+      "height": 4525,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e/A/C/local.png",
+      "sha256": "52aea530e5bef3e1e56b0af85b2d0a4c87ede61d4e275ad6e249b1da30aeae6d",
+      "stage": "first_pass",
+      "width": 6599
+    },
+    {
+      "arm": "C",
+      "bytes": 30931719,
+      "candidate_id": "A",
+      "evidence_type": "full_scene",
+      "height": 4525,
+      "path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_r3_candidate_identity_remediation_v1/evidence/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e/A/C/fallback_full_scene.png",
+      "sha256": "6458cfc749bdc076a5871273a0ef5852a85056437e3b4f6da09623e450affe62",
+      "stage": "fallback",
+      "width": 6784
+    }
+  ],
+  "case_id": "F1::fishing_018.jpeg",
+  "schema_version": "R3_CANDIDATE_EVIDENCE_MANIFEST_V1",
+  "source_image": {
+    "path": "E:/3/Visual Agent/_evidence_worktree/evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e.jpeg",
+    "sha256": "3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e"
+  }
+}

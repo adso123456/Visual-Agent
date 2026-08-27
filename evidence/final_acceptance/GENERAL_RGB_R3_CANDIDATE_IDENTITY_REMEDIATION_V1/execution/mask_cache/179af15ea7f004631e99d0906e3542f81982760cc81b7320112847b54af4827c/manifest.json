@@ -1,0 +1,36 @@
+{
+  "bitorder": "little",
+  "case_id": "challenge_001",
+  "height": 156,
+  "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+  "masks": [
+    {
+      "bbox": [
+        183.95,
+        60.79,
+        234.64,
+        148.47
+      ],
+      "bytes": 4583,
+      "candidate_id": "A",
+      "path": "candidate_A.bin",
+      "sha256": "9edfb5a96ab2f5b1e6c1d655234e08a879c5d53beb7538b2ef3b3272389b99e2",
+      "true_pixels": 1763
+    },
+    {
+      "bbox": [
+        155.37,
+        23.12,
+        205.32,
+        124.4
+      ],
+      "bytes": 4583,
+      "candidate_id": "B",
+      "path": "candidate_B.bin",
+      "sha256": "063ee4e5652da810df54f26fff759ee76a01cc6da15dec93cb7d831b9ed4b451",
+      "true_pixels": 1655
+    }
+  ],
+  "schema_version": "R3_FIXED_MASK_CACHE_V1",
+  "width": 235
+}

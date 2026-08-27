@@ -1,0 +1,175 @@
+{
+  "schema_version": "R3_FROZEN_GATE_EVALUATION_V1",
+  "source": {
+    "results": "results.jsonl",
+    "execution_summary": "execution_summary.json",
+    "selection_sha256": "37fb7fcb97e5a324a4d76d81abe805e947e220420c97102eb6d690cc64c44563"
+  },
+  "system": {
+    "scheduled_first_pass_slots": 105,
+    "terminal_records": 105,
+    "terminal": {
+      "success": 105
+    },
+    "failures": {},
+    "logical_model_calls": 130,
+    "fallback_calls": 25,
+    "protocol_attempts": 130,
+    "retry_count": 0,
+    "recovered": 0
+  },
+  "status_counts": {
+    "A": {
+      "first_pass": {
+        "satisfied": 14,
+        "uncertain": 8,
+        "not_satisfied": 13
+      },
+      "final": {
+        "satisfied": 19,
+        "not_satisfied": 14,
+        "uncertain": 2
+      }
+    },
+    "B": {
+      "first_pass": {
+        "uncertain": 17,
+        "satisfied": 10,
+        "not_satisfied": 8
+      },
+      "final": {
+        "uncertain": 17,
+        "satisfied": 10,
+        "not_satisfied": 8
+      }
+    },
+    "C": {
+      "first_pass": {
+        "uncertain": 17,
+        "satisfied": 10,
+        "not_satisfied": 8
+      },
+      "final": {
+        "uncertain": 6,
+        "satisfied": 15,
+        "not_satisfied": 14
+      }
+    }
+  },
+  "fallback_classification": {
+    "A": {
+      "policy": "REPORT_ONLY",
+      "counts": {
+        "fallback_harm": 5,
+        "correctly_resolved": 1,
+        "still_uncertain": 2
+      }
+    },
+    "B": {
+      "policy": "NOT_APPLICABLE",
+      "counts": {}
+    },
+    "C": {
+      "policy": "GATE_REQUIRES_ZERO",
+      "counts": {
+        "non_harm": 10,
+        "fallback_harm": 5,
+        "correctly_resolved": 1,
+        "still_uncertain": 1
+      }
+    }
+  },
+  "gate_observations": {
+    "A": {
+      "F1_candidate_correct": 5,
+      "F1_candidate_total": 10,
+      "F1_task_correct": 3,
+      "F1_task_total": 6,
+      "challenge_001_bystander_false_assignment": 5,
+      "challenge_001_true_operator_retained": 5,
+      "challenge_003_confident_binary": 5,
+      "challenge_003_uncertain_preserved": 0,
+      "challenge_004_child_false_assignment": 0,
+      "challenge_004_elder_retained": 0
+    },
+    "B": {
+      "F1_candidate_correct": 4,
+      "F1_candidate_total": 10,
+      "F1_task_correct": 2,
+      "F1_task_total": 6,
+      "challenge_001_bystander_false_assignment": 0,
+      "challenge_001_true_operator_retained": 5,
+      "challenge_003_confident_binary": 0,
+      "challenge_003_uncertain_preserved": 5,
+      "challenge_004_child_false_assignment": 0,
+      "challenge_004_elder_retained": 0
+    },
+    "C": {
+      "F1_candidate_correct": 5,
+      "F1_candidate_total": 10,
+      "F1_task_correct": 3,
+      "F1_task_total": 6,
+      "challenge_001_bystander_false_assignment": 0,
+      "challenge_001_true_operator_retained": 5,
+      "challenge_003_confident_binary": 5,
+      "challenge_003_uncertain_preserved": 0,
+      "challenge_004_child_false_assignment": 0,
+      "challenge_004_elder_retained": 0
+    }
+  },
+  "gate_evaluation": {
+    "A": {
+      "checks": {
+        "challenge_001_bystander_false_assignment_0_of_5": false,
+        "challenge_001_true_operator_retained_at_least_4_of_5": true,
+        "challenge_003_legitimate_uncertain_5_of_5": false,
+        "challenge_003_confident_binary_0_of_5": false,
+        "challenge_004_elder_retained_at_least_4_of_5": false,
+        "challenge_004_child_false_assignment_0_of_5": true,
+        "F1_candidate_non_regression_and_at_least_4_of_10": true,
+        "F1_task_non_regression_and_at_least_2_of_6": true,
+        "positive_control_F1_fishing_004_A_satisfied": true,
+        "final_failure_zero": true
+      },
+      "pass": false
+    },
+    "B": {
+      "checks": {
+        "challenge_001_bystander_false_assignment_0_of_5": true,
+        "challenge_001_true_operator_retained_at_least_4_of_5": true,
+        "challenge_003_legitimate_uncertain_5_of_5": true,
+        "challenge_003_confident_binary_0_of_5": true,
+        "challenge_004_elder_retained_at_least_4_of_5": false,
+        "challenge_004_child_false_assignment_0_of_5": true,
+        "F1_candidate_non_regression_and_at_least_4_of_10": false,
+        "F1_task_non_regression_and_at_least_2_of_6": false,
+        "positive_control_F1_fishing_004_A_satisfied": true,
+        "final_failure_zero": true
+      },
+      "pass": false
+    },
+    "C": {
+      "checks": {
+        "challenge_001_bystander_false_assignment_0_of_5": true,
+        "challenge_001_true_operator_retained_at_least_4_of_5": true,
+        "challenge_003_legitimate_uncertain_5_of_5": false,
+        "challenge_003_confident_binary_0_of_5": false,
+        "challenge_004_elder_retained_at_least_4_of_5": false,
+        "challenge_004_child_false_assignment_0_of_5": true,
+        "F1_candidate_non_regression_and_at_least_4_of_10": true,
+        "F1_task_non_regression_and_at_least_2_of_6": true,
+        "positive_control_F1_fishing_004_A_satisfied": true,
+        "final_failure_zero": true,
+        "fallback_harm_zero": false
+      },
+      "pass": false
+    }
+  },
+  "decision": {
+    "arm_A": "CONTROL_NOT_ELIGIBLE",
+    "arm_B": "NOT_CONFIRMED",
+    "arm_C": "NOT_CONFIRMED",
+    "production_policy": "KEEP_CURRENT_PRODUCTION",
+    "production_modification": "NOT_AUTHORIZED"
+  }
+}

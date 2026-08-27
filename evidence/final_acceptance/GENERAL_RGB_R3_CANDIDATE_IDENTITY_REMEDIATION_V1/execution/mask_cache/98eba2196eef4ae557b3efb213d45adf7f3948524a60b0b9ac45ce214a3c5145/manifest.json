@@ -1,0 +1,23 @@
+{
+  "bitorder": "little",
+  "case_id": "F1::fishing_005.jpeg",
+  "height": 4032,
+  "image_sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145",
+  "masks": [
+    {
+      "bbox": [
+        987.83,
+        567.11,
+        2230.0,
+        3493.44
+      ],
+      "bytes": 1524096,
+      "candidate_id": "A",
+      "path": "candidate_A.bin",
+      "sha256": "9a855554c064f84e40a0f5fc03a43ceb15f1f39f9a33dec6a15add7826849811",
+      "true_pixels": 1909301
+    }
+  ],
+  "schema_version": "R3_FIXED_MASK_CACHE_V1",
+  "width": 3024
+}

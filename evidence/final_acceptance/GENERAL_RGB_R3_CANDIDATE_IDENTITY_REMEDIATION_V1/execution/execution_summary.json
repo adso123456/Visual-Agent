@@ -1,0 +1,68 @@
+{
+  "by_arm": {
+    "A": {
+      "success": 35
+    },
+    "B": {
+      "success": 35
+    },
+    "C": {
+      "success": 35
+    }
+  },
+  "completion_tokens": 9480,
+  "failures": {},
+  "fallback_calls": 25,
+  "gate_observations": {
+    "A": {
+      "F1_candidate_correct": 5,
+      "F1_candidate_total": 10,
+      "F1_task_correct": 3,
+      "F1_task_total": 6,
+      "challenge_001_bystander_false_assignment": 5,
+      "challenge_001_true_operator_retained": 5,
+      "challenge_003_confident_binary": 5,
+      "challenge_003_uncertain_preserved": 0,
+      "challenge_004_child_false_assignment": 0,
+      "challenge_004_elder_retained": 0
+    },
+    "B": {
+      "F1_candidate_correct": 4,
+      "F1_candidate_total": 10,
+      "F1_task_correct": 2,
+      "F1_task_total": 6,
+      "challenge_001_bystander_false_assignment": 0,
+      "challenge_001_true_operator_retained": 5,
+      "challenge_003_confident_binary": 0,
+      "challenge_003_uncertain_preserved": 5,
+      "challenge_004_child_false_assignment": 0,
+      "challenge_004_elder_retained": 0
+    },
+    "C": {
+      "F1_candidate_correct": 5,
+      "F1_candidate_total": 10,
+      "F1_task_correct": 3,
+      "F1_task_total": 6,
+      "challenge_001_bystander_false_assignment": 0,
+      "challenge_001_true_operator_retained": 5,
+      "challenge_003_confident_binary": 5,
+      "challenge_003_uncertain_preserved": 0,
+      "challenge_004_child_false_assignment": 0,
+      "challenge_004_elder_retained": 0
+    }
+  },
+  "logical_model_calls": 130,
+  "model_latency_seconds": 1826.263,
+  "prompt_tokens": 339836,
+  "protocol_attempts": 130,
+  "recovered": 0,
+  "retry_count": 0,
+  "scheduled_first_pass_slots": 105,
+  "schema_version": "R3_FROZEN_EXECUTION_SUMMARY_V1",
+  "terminal": {
+    "success": 105
+  },
+  "terminal_records": 105,
+  "total_tokens": 349316,
+  "wall_seconds": 1979.669
+}
