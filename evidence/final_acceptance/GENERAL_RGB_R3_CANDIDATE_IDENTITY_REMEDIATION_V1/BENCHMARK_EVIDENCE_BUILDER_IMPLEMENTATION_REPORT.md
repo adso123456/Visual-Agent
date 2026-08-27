@@ -53,4 +53,3 @@ python -m pytest benchmark -q
 - 未 merge Production；
 - 未授权 `GENERAL_RGB_FINAL_ACCEPTANCE_V2`；
 - `REMOTE_SENSING_WATER_QUALITY` 继续保持 `BLOCKED`。
-
