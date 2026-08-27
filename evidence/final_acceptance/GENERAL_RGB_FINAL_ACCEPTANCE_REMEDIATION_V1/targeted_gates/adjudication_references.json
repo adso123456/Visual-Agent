@@ -1,0 +1,4 @@
+{
+  "F2_REF": {},
+  "note": "R1 marker 负例、R2.3 确定性 35% 规则、R3 双视图等判定参考框见 runner/adjudicate_remediation_gates.py 常量。"
+}

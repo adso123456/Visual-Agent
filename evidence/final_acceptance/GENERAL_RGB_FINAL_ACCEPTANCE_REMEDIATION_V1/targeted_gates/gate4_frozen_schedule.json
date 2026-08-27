@@ -1,0 +1,59 @@
+[
+  {
+    "ordinal": 1,
+    "unit_id": "core_003",
+    "gate": 4,
+    "case_id": "core_003",
+    "prompt": "只给手持雨伞的人描边",
+    "image_path": "E:\\3\\Visual Agent\\_remediation_v1\\images\\test_images\\commons_umbrella.jpg",
+    "image_name": "commons_umbrella.jpg",
+    "image_sha256": "5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0",
+    "expected": {
+      "target_object": "person",
+      "action": "outline",
+      "target_count": 1,
+      "target_description": "街上手持黑色雨伞的人",
+      "constraints_semantics": [
+        "手持雨伞"
+      ]
+    }
+  },
+  {
+    "ordinal": 2,
+    "unit_id": "core_004",
+    "gate": 4,
+    "case_id": "core_004",
+    "prompt": "把手持雨伞的人单独抠出来",
+    "image_path": "E:\\3\\Visual Agent\\_remediation_v1\\images\\test_images\\commons_umbrella.jpg",
+    "image_name": "commons_umbrella.jpg",
+    "image_sha256": "5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0",
+    "expected": {
+      "target_object": "person",
+      "action": "cutout",
+      "target_count": 1,
+      "target_description": "街上手持黑色雨伞的人",
+      "constraints_semantics": [
+        "手持雨伞"
+      ]
+    }
+  },
+  {
+    "ordinal": 3,
+    "unit_id": "core_014",
+    "gate": 4,
+    "case_id": "core_014",
+    "prompt": "只给手持雨伞的人描边",
+    "image_path": "E:\\3\\Visual Agent\\_remediation_v1\\images\\test_images\\test_image.jpg",
+    "image_name": "test_image.jpg",
+    "image_sha256": "9eeaa87013b4e800930e8a411b58ff9e2fd5383906b1a022f4a712720af34cc2",
+    "expected": {
+      "target_object": "person",
+      "action": "outline",
+      "target_count": 0,
+      "target_description": "图片中无人持伞",
+      "constraints_semantics": [
+        "手持雨伞"
+      ]
+    }
+  }
+]

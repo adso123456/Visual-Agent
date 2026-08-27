@@ -1,0 +1,142 @@
+[
+  {
+    "ordinal": 1,
+    "unit_id": "G1_F2_01",
+    "gate": 1,
+    "prompt_id": "F2",
+    "prompt": "把拿着鱼竿的人描边"
+  },
+  {
+    "ordinal": 2,
+    "unit_id": "G1_F2_02",
+    "gate": 1,
+    "prompt_id": "F2",
+    "prompt": "把拿着鱼竿的人描边"
+  },
+  {
+    "ordinal": 3,
+    "unit_id": "G1_F2_03",
+    "gate": 1,
+    "prompt_id": "F2",
+    "prompt": "把拿着鱼竿的人描边"
+  },
+  {
+    "ordinal": 4,
+    "unit_id": "G1_F2_04",
+    "gate": 1,
+    "prompt_id": "F2",
+    "prompt": "把拿着鱼竿的人描边"
+  },
+  {
+    "ordinal": 5,
+    "unit_id": "G1_F2_05",
+    "gate": 1,
+    "prompt_id": "F2",
+    "prompt": "把拿着鱼竿的人描边"
+  },
+  {
+    "ordinal": 6,
+    "unit_id": "G1_F2_06",
+    "gate": 1,
+    "prompt_id": "F2",
+    "prompt": "把拿着鱼竿的人描边"
+  },
+  {
+    "ordinal": 7,
+    "unit_id": "G1_F2_07",
+    "gate": 1,
+    "prompt_id": "F2",
+    "prompt": "把拿着鱼竿的人描边"
+  },
+  {
+    "ordinal": 8,
+    "unit_id": "G1_F2_08",
+    "gate": 1,
+    "prompt_id": "F2",
+    "prompt": "把拿着鱼竿的人描边"
+  },
+  {
+    "ordinal": 9,
+    "unit_id": "G1_F2_09",
+    "gate": 1,
+    "prompt_id": "F2",
+    "prompt": "把拿着鱼竿的人描边"
+  },
+  {
+    "ordinal": 10,
+    "unit_id": "G1_F2_10",
+    "gate": 1,
+    "prompt_id": "F2",
+    "prompt": "把拿着鱼竿的人描边"
+  },
+  {
+    "ordinal": 11,
+    "unit_id": "G1_F4_01",
+    "gate": 1,
+    "prompt_id": "F4",
+    "prompt": "把拿着鱼的人标出来"
+  },
+  {
+    "ordinal": 12,
+    "unit_id": "G1_F4_02",
+    "gate": 1,
+    "prompt_id": "F4",
+    "prompt": "把拿着鱼的人标出来"
+  },
+  {
+    "ordinal": 13,
+    "unit_id": "G1_F4_03",
+    "gate": 1,
+    "prompt_id": "F4",
+    "prompt": "把拿着鱼的人标出来"
+  },
+  {
+    "ordinal": 14,
+    "unit_id": "G1_F4_04",
+    "gate": 1,
+    "prompt_id": "F4",
+    "prompt": "把拿着鱼的人标出来"
+  },
+  {
+    "ordinal": 15,
+    "unit_id": "G1_F4_05",
+    "gate": 1,
+    "prompt_id": "F4",
+    "prompt": "把拿着鱼的人标出来"
+  },
+  {
+    "ordinal": 16,
+    "unit_id": "G1_F4_06",
+    "gate": 1,
+    "prompt_id": "F4",
+    "prompt": "把拿着鱼的人标出来"
+  },
+  {
+    "ordinal": 17,
+    "unit_id": "G1_F4_07",
+    "gate": 1,
+    "prompt_id": "F4",
+    "prompt": "把拿着鱼的人标出来"
+  },
+  {
+    "ordinal": 18,
+    "unit_id": "G1_F4_08",
+    "gate": 1,
+    "prompt_id": "F4",
+    "prompt": "把拿着鱼的人标出来"
+  },
+  {
+    "ordinal": 19,
+    "unit_id": "G1_F4_09",
+    "gate": 1,
+    "prompt_id": "F4",
+    "prompt": "把拿着鱼的人标出来"
+  },
+  {
+    "ordinal": 20,
+    "unit_id": "G1_F4_10",
+    "gate": 1,
+    "prompt_id": "F4",
+    "prompt": "把拿着鱼的人标出来"
+  }
+]

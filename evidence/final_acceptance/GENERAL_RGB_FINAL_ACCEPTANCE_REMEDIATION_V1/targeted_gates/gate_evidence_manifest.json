@@ -1,0 +1,95 @@
+{
+  "schema_version": "GENERAL_RGB_FINAL_ACCEPTANCE_REMEDIATION_TARGETED_GATES_EVIDENCE_V1",
+  "implementation_commit": "41b7b46cd076af7943c14eb421bd4662150fa2fb",
+  "contract_commit": "919fcf200fefebbe10f7c87a579def9c8d3f9348",
+  "vlm_model": "qwen3.8:27b-mtp-q4_K_M",
+  "vlm_base_url": "http://192.168.250.9:11434/v1",
+  "concurrency": 1,
+  "entries": [
+    {
+      "path": "targeted_gates\\gate1_frozen_schedule.json",
+      "sha256": "78f754f2e901f6c525dea2570e146082820cbcd0a26e02232699d8509da4661c",
+      "bytes": 2876
+    },
+    {
+      "path": "targeted_gates\\gate2_frozen_schedule.json",
+      "sha256": "0c0d10964752455bef81726308029cb40d0516512618b4a91ba0a6c69457aec0",
+      "bytes": 13291
+    },
+    {
+      "path": "targeted_gates\\gate3_frozen_schedule.json",
+      "sha256": "e721488915c868f98a8684d0603f1bca54f212a2e9f3d4efe4a109956bf65bc4",
+      "bytes": 29031
+    },
+    {
+      "path": "targeted_gates\\gate4_frozen_schedule.json",
+      "sha256": "d991a9c0b0369e4702dae4432d2ebbf47139efd49194cf02e3996f90311ec053",
+      "bytes": 1876
+    },
+    {
+      "path": "targeted_gates\\raw_execution_gate1.jsonl",
+      "sha256": "452ef11c351e64a26c3c23017377f31d50b5ae2048940b0d29554c48fe3afbf3",
+      "bytes": 8403
+    },
+    {
+      "path": "targeted_gates\\raw_execution_gate2.jsonl",
+      "sha256": "ee83183c9c919f62ad9f22f0eeee905e613e92dc3a905641bceee8cb8878fe78",
+      "bytes": 200387
+    },
+    {
+      "path": "targeted_gates\\raw_execution_gate2_provider_or_planner_error_records.jsonl",
+      "sha256": "987059ac9bf51249e712e072fe3a6923a6553f1c5fc36389ddd5c28ea9655fdc",
+      "bytes": 12303
+    },
+    {
+      "path": "targeted_gates\\raw_execution_gate3.jsonl",
+      "sha256": "a100b2b37061ed44b11808bc33cbd9a6ac224f29c4bc21e50736119751c178af",
+      "bytes": 361643
+    },
+    {
+      "path": "targeted_gates\\raw_execution_gate3_provider_or_planner_error_records.jsonl",
+      "sha256": "7a2aea70f969e974cc23d37a2f827c9a7905542e6c7169f0602b42457746b116",
+      "bytes": 19716
+    },
+    {
+      "path": "targeted_gates\\raw_execution_gate4.jsonl",
+      "sha256": "be6dec6de5b36828429d6adbae75942f55b2f72689f5ca91f4ef4a48c510a9d6",
+      "bytes": 13358
+    },
+    {
+      "path": "targeted_gates\\gate_adjudication.json",
+      "sha256": "34b1e3f691b66b76ea7041eb240934d6385cee8d1fd8b1f34f0e9801a0ceb91b",
+      "bytes": 12570
+    },
+    {
+      "path": "targeted_gates\\gate_adjudication.md",
+      "sha256": "1905fc6474b93cb096f0a5772e54c5c2e18956e8c10680feabc3a8a35d42ddfc",
+      "bytes": 9719
+    },
+    {
+      "path": "targeted_gates\\runner\\run_remediation_gates.py",
+      "sha256": "bfd9c51d0b694c905dde319df336fa2bc272785af41b32e9334a18a014c2400d",
+      "bytes": 18095
+    },
+    {
+      "path": "targeted_gates\\runner\\adjudicate_remediation_gates.py",
+      "sha256": "1918d04696aa4cd6d8963473e66e389f90586477feceb4fd6e7b9d372dbe12c5",
+      "bytes": 15970
+    },
+    {
+      "path": "targeted_gates\\runner\\assemble_evidence.py",
+      "sha256": "bd276332423fb9c1c3187fadba140bd7b770e724a3c6f60c3af367dc482cee71",
+      "bytes": 3089
+    },
+    {
+      "path": "targeted_gates\\GENERAL_RGB_FINAL_ACCEPTANCE_REMEDIATION_V1_GATES_REPORT.md",
+      "sha256": "84ed58fddc5902430e629e22f5a2c37cb3452ab46315c8049b9ac687ef66a4a6",
+      "bytes": 5962
+    },
+    {
+      "path": "targeted_gates\\adjudication_references.json",
+      "sha256": "de4d9d3a41830604e2df79c21382f4ba34111ecd2875ce5aa4c5c2ccc4b16ac2",
+      "bytes": 166
+    }
+  ]
+}

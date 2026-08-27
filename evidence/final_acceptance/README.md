@@ -14,6 +14,7 @@
   - 未调用模型、未补跑、未修改 Production。
   - 固化 F2/F4 三个 non-regression blocker 与 `challenge_001`、`challenge_004` 的逐层根因。
 - `GENERAL_RGB_FINAL_ACCEPTANCE_REMEDIATION_V1/`
-  - 当前状态：`CONTRACT FROZEN`。
-  - 只冻结 R1 Planner、R2 Relation、R3 Behavior 的最小修复边界与 targeted Gate。
-  - Production 修改与模型执行仍未授权。
+  - 当前状态：`CONTRACT FROZEN / TARGETED GATES EXECUTED / DECISION: NOT PASSED`。
+  - 冻结合同：`919fcf2`；implementation：`1960505b`（R1/R2/R3 + planner seam，本地 qwen3.8:27b 规划器/VLM）。
+  - Targeted Gates 证据见 `targeted_gates/`；总裁决与失败逐案证据见 `targeted_gates/GENERAL_RGB_FINAL_ACCEPTANCE_REMEDIATION_V1_GATES_REPORT.md`。
+  - Production 修改仍未授权（按合同：任一 Gate 失败不 merge、不建 V2 批次）。
