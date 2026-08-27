@@ -128,29 +128,48 @@ FINAL_SYSTEM_PROMPT = (
 
 def build_planner_client(
     environ: Mapping[str, str] | None = None,
-) -> tuple[OpenAI, str, str]:
-    """Planner 最小可配置 seam：PLANNER_MODEL / PLANNER_BASE_URL / PLANNER_API_KEY。
+) -> tuple[OpenAI, str, str, str]:
+    """Agent LLM 最小可配置 seam：PLANNER_MODEL / PLANNER_BASE_URL / PLANNER_API_KEY。
 
-    未设置时回退到既有冻结默认（deepseek-v4-pro @ api.deepseek.com，DEEPSEEK_API_KEY），
-    保持 V1 以来的兼容行为；显式设置后允许切换本地 Qwen 等 OpenAI 兼容端点。
+    该 seam 同时决定 Planner（plan_request）与 Final Response（build_final_response）
+    的 provider/model —— 两者共用同一可配置模型，避免“Planner seam”隐式改变 Final Response。
+
+    安全边界与 VLM seam 一致：
+    - PLANNER_BASE_URL == 默认 DeepSeek：可使用 PLANNER_API_KEY 或 DEEPSEEK_API_KEY；
+    - PLANNER_BASE_URL != 默认 DeepSeek：必须显式 PLANNER_API_KEY，
+      禁止回退 DEEPSEEK_API_KEY（不得把 DeepSeek 密钥发送到自定义端点）。
     """
     values = os.environ if environ is None else environ
     model = values.get(PLANNER_MODEL_ENV, "").strip() or DEFAULT_PLANNER_MODEL
     base_url = (
         values.get(PLANNER_BASE_URL_ENV, "").strip() or DEFAULT_PLANNER_BASE_URL
     )
-    api_key = (
-        values.get(PLANNER_API_KEY_ENV, "").strip()
-        or values.get("DEEPSEEK_API_KEY", "").strip()
-    )
+    explicit_api_key = values.get(PLANNER_API_KEY_ENV, "").strip()
+    deepseek_api_key = values.get("DEEPSEEK_API_KEY", "").strip()
+    if base_url.rstrip("/") == DEFAULT_PLANNER_BASE_URL.rstrip("/"):
+        api_key = explicit_api_key or deepseek_api_key
+    else:
+        if not explicit_api_key:
+            raise RuntimeError(
+                "非默认 PLANNER_BASE_URL 必须显式设置 PLANNER_API_KEY，"
+                "禁止回退 DEEPSEEK_API_KEY"
+            )
+        api_key = explicit_api_key
     if not api_key:
         raise RuntimeError("未设置环境变量 PLANNER_API_KEY 或 DEEPSEEK_API_KEY")
-    return OpenAI(api_key=api_key, base_url=base_url), model, base_url
+    provider = (
+        "deepseek"
+        if base_url.rstrip("/") == DEFAULT_PLANNER_BASE_URL.rstrip("/")
+        else "openai_compatible"
+    )
+    return OpenAI(api_key=api_key, base_url=base_url), model, base_url, provider
 
 
 class DeepSeekAgent:
     def __init__(self) -> None:
-        self.client, self.model, self.base_url = build_planner_client()
+        self.client, self.model, self.base_url, self.provider = (
+            build_planner_client()
+        )
         self.plan_attempts = 0
 
     def plan_request(self, prompt: str) -> dict:
