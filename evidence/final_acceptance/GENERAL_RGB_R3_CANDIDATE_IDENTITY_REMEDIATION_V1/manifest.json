@@ -29,6 +29,12 @@
       "sha256": "1844628a4182eff58dbe62aa0f454ca7b5c9cf1ce7be5f368fd66f8c875bd342",
       "bytes": 1967,
       "implementation_commit": "0b32695dcd46d13cf22987f5347b2b212e7132c1"
+    },
+    {
+      "path": "MODEL_EXECUTION_HARNESS_IMPLEMENTATION_REPORT.md",
+      "sha256": "3db0413b3dbeb0141d8a427136928b2403ec15df256768d78f92c3045e9d79c1",
+      "bytes": 2366,
+      "implementation_commit": "9a9e8f7e1a86317b91e5fc5ca232f60f769ed0b0"
     }
   ],
   "input_images_verified": 9,
