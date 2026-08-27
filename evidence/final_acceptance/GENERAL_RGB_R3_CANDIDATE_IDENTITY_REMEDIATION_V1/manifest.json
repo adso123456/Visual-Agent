@@ -1,0 +1,28 @@
+{
+  "schema_version": "GENERAL_RGB_R3_CANDIDATE_IDENTITY_CONTRACT_MANIFEST_V1",
+  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "files": [
+    {
+      "path": "GENERAL_RGB_R3_CANDIDATE_IDENTITY_REMEDIATION_V1_CONTRACT.md",
+      "sha256": "8e6d28096a21204d22e70415be756cadd96c8e561994ba5143bd38b90bbeaf9e",
+      "bytes": 9183
+    },
+    {
+      "path": "contract_candidate.json",
+      "sha256": "5cbaccea10c66e827ec2fc74473fe512f8b424e0608b7278c610390e0fa01aa0",
+      "bytes": 3201
+    },
+    {
+      "path": "frozen_selection.json",
+      "sha256": "971ae3afe29fb253e73f79b1bd94d3ceba1e7790a3497a507ebf3140ae5947d7",
+      "bytes": 6223
+    },
+    {
+      "path": "frozen_schedule.json",
+      "sha256": "e28dbfb176493d087c4488b3ab5fe1b865be55fdd65d93094d30a2f7238c6025",
+      "bytes": 2614
+    }
+  ],
+  "input_images_verified": 9,
+  "input_image_sha256_mismatch": 0
+}

@@ -1,0 +1,87 @@
+{
+  "schema_version": "GENERAL_RGB_R3_CANDIDATE_IDENTITY_REMEDIATION_CONTRACT_V1",
+  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "read_only_design": true,
+  "production_modification": "NOT_AUTHORIZED",
+  "model_execution": "NOT_AUTHORIZED",
+  "production_merge": "NOT_AUTHORIZED",
+  "remote_sensing_water_quality": "BLOCKED",
+  "implementation_source": "be54f3c89171d8b16f53c82397e9f468fb4b4c97",
+  "scope": {
+    "route": "behavior",
+    "problem": "candidate_identity_assignment_under_context_overlap",
+    "R2_2": "OUT_OF_SCOPE",
+    "R2_3": "OUT_OF_SCOPE",
+    "global_facts_allowed": false
+  },
+  "arms": {
+    "A": {
+      "name": "CURRENT_R3_CONTROL",
+      "first_pass": ["isolated_candidate_identity", "existing_35_percent_local_red_target_contour"],
+      "fallback": "existing_candidate_marked_full_scene_on_uncertain_only"
+    },
+    "B": {
+      "name": "TARGET_ANCHORED_LOCAL",
+      "first_pass": ["isolated_candidate_identity", "target_anchored_35_percent_local"],
+      "fallback": null
+    },
+    "C": {
+      "name": "TARGET_ANCHORED_LOCAL_AND_FALLBACK",
+      "first_pass": ["isolated_candidate_identity", "target_anchored_35_percent_local"],
+      "fallback": "target_anchored_full_scene_on_uncertain_only"
+    }
+  },
+  "target_anchoring": {
+    "crop_margin": 0.35,
+    "non_target_person_blend": {
+      "original_weight": 0.45,
+      "neutral_gray_weight": 0.55,
+      "neutral_gray_rgb": [128, 128, 128],
+      "rounding": "floor((45*original+55*128+50)/100)"
+    },
+    "target_mask_original_rgb": true,
+    "target_wins_mask_overlap": true,
+    "target_contour_rgb": [255, 0, 0],
+    "target_contour_width_pixels": 5,
+    "non_target_text_box_or_colored_contour": false,
+    "non_person_scene_pixels_unchanged": true,
+    "context_deletion": false
+  },
+  "evaluation": {
+    "unique_images": 9,
+    "frozen_candidate_units": 15,
+    "challenge_cases": ["challenge_001", "challenge_003", "challenge_004"],
+    "challenge_repetitions_per_arm": 5,
+    "F1_cases": 6,
+    "F1_repetitions_per_arm": 1,
+    "scheduled_arm_image_slots": 63,
+    "scheduled_first_pass_candidate_calls": 105,
+    "maximum_fallback_calls": 70,
+    "concurrency": 1,
+    "failed_execution_replacement": false
+  },
+  "future_execution_config": {
+    "model": "qwen3.8:27b-mtp-q4_K_M",
+    "base_url": "http://192.168.250.9:11434/v1",
+    "temperature": 0,
+    "timeout_seconds": 120,
+    "concurrency": 1,
+    "planner_calls": 0,
+    "final_response_calls": 0
+  },
+  "gate": {
+    "challenge_001": {"bystander_false_assignment": "0/5", "true_operator_retained": ">=4/5"},
+    "challenge_003": {"legitimate_uncertain": "5/5", "confident_binary": "0/5"},
+    "challenge_004": {"elder_retained": ">=4/5", "child_false_assignment": "0/5"},
+    "F1": {
+      "candidate_correct": ">=paired_A_and_>=4/10",
+      "task_correct": ">=paired_A_and_>=2/6",
+      "positive_control_F1_fishing_004_A": "satisfied"
+    },
+    "new_false_assignment": 0,
+    "fallback_harm": 0,
+    "provider_protocol_validator_evidence_final_failure": 0,
+    "manifest_integrity_required": true
+  },
+  "next_after_review": "CONTRACT_FROZEN_THEN_BENCHMARK_ONLY_IMPLEMENTATION_AND_MODEL_EXECUTION_SEPARATE_AUTHORIZATION"
+}

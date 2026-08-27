@@ -1,0 +1,106 @@
+{
+  "schema_version": "GENERAL_RGB_R3_CANDIDATE_IDENTITY_SELECTION_V1",
+  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "source_refs": {
+    "context_hardening_selection": "evidence/architecture_research/CONTEXT_EVIDENCE_POLICY_HARDENING_V1/frozen_selection.json",
+    "context_hardening_selection_sha256": "d07edb99c68ef274ba1162f165ec7c630b5f8b48529ccaf70c2335d2206575e8",
+    "final_acceptance_input_map": "evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V1/input_evidence_map.json",
+    "final_acceptance_input_map_sha256": "f312e315f7380ffdde4f5542d4844be93d6ca7ae66263e4b7881d760194c4f7a"
+  },
+  "cases": [
+    {
+      "case_id": "challenge_001",
+      "prompt": "找到正在钓鱼的人",
+      "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+      "image_path": "evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c.jpg",
+      "repetitions_per_arm": 5,
+      "candidates": [
+        {"id": "A", "role": "bystander_white_hat", "bbox": [183.95, 60.79, 234.64, 148.47], "allowed": ["not_satisfied", "uncertain"], "forbidden": ["satisfied"]},
+        {"id": "B", "role": "true_red_hat_operator", "bbox": [155.37, 23.12, 205.32, 124.4], "expected": "satisfied"}
+      ]
+    },
+    {
+      "case_id": "challenge_003",
+      "prompt": "把正在钓鱼的人标红",
+      "image_sha256": "717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6",
+      "image_path": "evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6.png",
+      "repetitions_per_arm": 5,
+      "candidates": [
+        {"id": "A", "role": "legitimate_ambiguity", "bbox": [260.7, 168.83, 309.72, 301.64], "expected": "uncertain"}
+      ]
+    },
+    {
+      "case_id": "challenge_004",
+      "prompt": "把正在钓鱼的人以外背景变暗",
+      "image_sha256": "45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79",
+      "image_path": "evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79.png",
+      "repetitions_per_arm": 5,
+      "candidates": [
+        {"id": "A", "role": "true_elder_operator", "bbox": [471.6, 98.27, 544.83, 320.23], "expected": "satisfied"},
+        {"id": "B", "role": "child_non_operator", "bbox": [430.95, 171.57, 485.74, 337.7], "allowed": ["not_satisfied", "uncertain"], "forbidden": ["satisfied"]}
+      ]
+    },
+    {
+      "case_id": "F1::fishing_001.jpeg",
+      "prompt": "框出正在钓鱼的人",
+      "image_sha256": "459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab",
+      "image_path": "evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab.jpeg",
+      "expected_task_status": "not_satisfied",
+      "repetitions_per_arm": 1,
+      "candidates": [{"id": "A", "bbox": [82.09, 2516.94, 3674.46, 7719.49], "expected": "not_satisfied"}]
+    },
+    {
+      "case_id": "F1::fishing_005.jpeg",
+      "prompt": "框出正在钓鱼的人",
+      "image_sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145",
+      "image_path": "evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145.jpeg",
+      "expected_task_status": "not_satisfied",
+      "repetitions_per_arm": 1,
+      "candidates": [{"id": "A", "bbox": [987.83, 567.11, 2230.0, 3493.44], "expected": "not_satisfied"}]
+    },
+    {
+      "case_id": "F1::fishing_010.jpeg",
+      "prompt": "框出正在钓鱼的人",
+      "image_sha256": "acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4",
+      "image_path": "evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4.jpeg",
+      "expected_task_status": "not_satisfied",
+      "repetitions_per_arm": 1,
+      "candidates": [
+        {"id": "A", "bbox": [1138.6, 792.96, 1835.15, 1718.76], "expected": "not_satisfied"},
+        {"id": "B", "bbox": [234.44, 928.68, 1012.55, 1856.76], "expected": "not_satisfied"},
+        {"id": "C", "bbox": [2410.05, 854.47, 3121.58, 1894.21], "expected": "not_satisfied"}
+      ]
+    },
+    {
+      "case_id": "F1::fishing_014.jpeg",
+      "prompt": "框出正在钓鱼的人",
+      "image_sha256": "8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355",
+      "image_path": "evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355.jpeg",
+      "expected_task_status": "not_satisfied",
+      "repetitions_per_arm": 1,
+      "candidates": [
+        {"id": "A", "bbox": [2695.03, 1846.72, 3228.39, 2889.21], "expected": "not_satisfied"},
+        {"id": "B", "bbox": [4208.56, 2371.68, 4931.18, 3156.99], "expected": "not_satisfied"},
+        {"id": "C", "bbox": [3247.48, 2402.66, 4045.02, 3198.01], "expected": "not_satisfied"}
+      ]
+    },
+    {
+      "case_id": "F1::fishing_004.jpeg",
+      "prompt": "框出正在钓鱼的人",
+      "image_sha256": "b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9",
+      "image_path": "evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9.jpeg",
+      "expected_task_status": "satisfied",
+      "repetitions_per_arm": 1,
+      "candidates": [{"id": "A", "bbox": [3489.95, 1180.05, 4441.24, 3564.27], "expected": "satisfied"}]
+    },
+    {
+      "case_id": "F1::fishing_018.jpeg",
+      "prompt": "框出正在钓鱼的人",
+      "image_sha256": "3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e",
+      "image_path": "evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e.jpeg",
+      "expected_task_status": "not_satisfied",
+      "repetitions_per_arm": 1,
+      "candidates": [{"id": "A", "bbox": [1875.39, 20.42, 6703.91, 4509.52], "expected": "not_satisfied"}]
+    }
+  ]
+}

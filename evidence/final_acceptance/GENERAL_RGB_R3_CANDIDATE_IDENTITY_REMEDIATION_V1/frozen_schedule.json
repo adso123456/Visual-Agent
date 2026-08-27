@@ -1,0 +1,49 @@
+{
+  "schema_version": "GENERAL_RGB_R3_CANDIDATE_IDENTITY_SCHEDULE_V1",
+  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "concurrency": 1,
+  "arm_order_must_not_change_after_start": true,
+  "failed_execution_replacement": false,
+  "challenge_schedule": [
+    {"case_id": "challenge_001", "repetition": 1, "arm_order": ["A", "B", "C"]},
+    {"case_id": "challenge_001", "repetition": 2, "arm_order": ["B", "C", "A"]},
+    {"case_id": "challenge_001", "repetition": 3, "arm_order": ["C", "A", "B"]},
+    {"case_id": "challenge_001", "repetition": 4, "arm_order": ["A", "C", "B"]},
+    {"case_id": "challenge_001", "repetition": 5, "arm_order": ["C", "B", "A"]},
+    {"case_id": "challenge_003", "repetition": 1, "arm_order": ["B", "A", "C"]},
+    {"case_id": "challenge_003", "repetition": 2, "arm_order": ["A", "B", "C"]},
+    {"case_id": "challenge_003", "repetition": 3, "arm_order": ["B", "C", "A"]},
+    {"case_id": "challenge_003", "repetition": 4, "arm_order": ["C", "A", "B"]},
+    {"case_id": "challenge_003", "repetition": 5, "arm_order": ["A", "C", "B"]},
+    {"case_id": "challenge_004", "repetition": 1, "arm_order": ["C", "B", "A"]},
+    {"case_id": "challenge_004", "repetition": 2, "arm_order": ["B", "A", "C"]},
+    {"case_id": "challenge_004", "repetition": 3, "arm_order": ["A", "B", "C"]},
+    {"case_id": "challenge_004", "repetition": 4, "arm_order": ["B", "C", "A"]},
+    {"case_id": "challenge_004", "repetition": 5, "arm_order": ["C", "A", "B"]}
+  ],
+  "F1_schedule": [
+    {"case_id": "F1::fishing_001.jpeg", "repetition": 1, "arm_order": ["A", "B", "C"]},
+    {"case_id": "F1::fishing_005.jpeg", "repetition": 1, "arm_order": ["B", "C", "A"]},
+    {"case_id": "F1::fishing_010.jpeg", "repetition": 1, "arm_order": ["C", "A", "B"]},
+    {"case_id": "F1::fishing_014.jpeg", "repetition": 1, "arm_order": ["A", "C", "B"]},
+    {"case_id": "F1::fishing_004.jpeg", "repetition": 1, "arm_order": ["C", "B", "A"]},
+    {"case_id": "F1::fishing_018.jpeg", "repetition": 1, "arm_order": ["B", "A", "C"]}
+  ],
+  "totals": {
+    "unique_images": 9,
+    "frozen_candidate_units": 15,
+    "scheduled_arm_image_slots": 63,
+    "scheduled_first_pass_candidate_calls": 105,
+    "maximum_fallback_calls": 70,
+    "challenge_arm_position_counts": {
+      "A": {"first": 5, "second": 5, "third": 5},
+      "B": {"first": 5, "second": 5, "third": 5},
+      "C": {"first": 5, "second": 5, "third": 5}
+    },
+    "F1_arm_position_counts": {
+      "A": {"first": 2, "second": 2, "third": 2},
+      "B": {"first": 2, "second": 2, "third": 2},
+      "C": {"first": 2, "second": 2, "third": 2}
+    }
+  }
+}

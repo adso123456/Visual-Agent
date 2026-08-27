@@ -19,3 +19,8 @@
   - Targeted Gates 证据见 `targeted_gates/`；总裁决、失败逐案证据与远程审查结论见 `targeted_gates/GENERAL_RGB_FINAL_ACCEPTANCE_REMEDIATION_V1_GATES_REPORT.md`。
   - 合同执行偏差（failed_execution_replacement 违规补跑）已在该报告记录，原始 execution evidence 未改动；PASS 侧可靠性指标不作合同合规口径。
   - 失败归因对下一轮 remediation design 有效；Production 修改仍未授权（不 merge、不建 V2 批次）；REMOTE_SENSING_WATER_QUALITY = BLOCKED。
+- `GENERAL_RGB_R3_CANDIDATE_IDENTITY_REMEDIATION_V1/`
+  - 当前状态：`CONTRACT FREEZE CANDIDATE / REVIEW REQUIRED`。
+  - 只比较 current R3、target-anchored local、target-anchored local + fallback 三种 candidate-specific behavior evidence；不使用 Global Facts。
+  - 冻结 3 个 challenge（各 5 次）与既有 6 条 F1 behavior 子集；固定 bbox、共享 SAM mask cache、A/B/C 顺序与 failure-retention 规则。
+  - 当前只读设计；Production code、模型执行、merge、R2.2/R2.3 与 Final Acceptance V2 均未授权。
