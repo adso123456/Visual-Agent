@@ -23,6 +23,14 @@
       "bytes": 2588
     }
   ],
+  "implementation_reports": [
+    {
+      "path": "BENCHMARK_EVIDENCE_BUILDER_IMPLEMENTATION_REPORT.md",
+      "sha256": "9f18379ed2b7b52797737532b3166cb0b3dcef0f65e9a51bd1f4d4cde5993397",
+      "bytes": 1968,
+      "implementation_commit": "0b32695dcd46d13cf22987f5347b2b212e7132c1"
+    }
+  ],
   "input_images_verified": 9,
   "input_image_sha256_mismatch": 0
 }
