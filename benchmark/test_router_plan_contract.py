@@ -179,6 +179,7 @@ def test_planner_retries_invalid_held_by_route_and_accepts_canonical_correction(
             completions=SimpleNamespace(create=create)
         )
     )
+    agent.model = "deepseek-v4-pro"
     agent.plan_attempts = 0
 
     assert agent.plan_request("框出拿着雨伞的人") == valid

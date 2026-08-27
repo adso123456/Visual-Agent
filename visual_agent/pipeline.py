@@ -866,7 +866,7 @@ def run_pipeline(
         "prompt": prompt,
         "agent": {
             "provider": "deepseek",
-            "model": MODEL_NAME,
+            "model": agent.model if agent is not None else MODEL_NAME,
             "planner_tool": TOOL_NAME,
             "plan_attempts": agent.plan_attempts if agent is not None else 0,
         },

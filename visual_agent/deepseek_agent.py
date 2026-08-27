@@ -1,12 +1,18 @@
 import json
 import os
 import re
+from collections.abc import Mapping
 
 from openai import OpenAI
 
 
-MODEL_NAME = "deepseek-v4-pro"
-BASE_URL = "https://api.deepseek.com"
+PLANNER_MODEL_ENV = "PLANNER_MODEL"
+PLANNER_BASE_URL_ENV = "PLANNER_BASE_URL"
+PLANNER_API_KEY_ENV = "PLANNER_API_KEY"
+DEFAULT_PLANNER_MODEL = "deepseek-v4-pro"
+DEFAULT_PLANNER_BASE_URL = "https://api.deepseek.com"
+MODEL_NAME = DEFAULT_PLANNER_MODEL
+BASE_URL = DEFAULT_PLANNER_BASE_URL
 TOOL_NAME = "execute_visual_task"
 ACTION_TYPES = {"highlight", "outline", "box", "blur_target", "dim_background", "cutout"}
 CONSTRAINT_ROUTES = {"attribute", "behavior", "relation"}
@@ -120,12 +126,31 @@ FINAL_SYSTEM_PROMPT = (
 )
 
 
+def build_planner_client(
+    environ: Mapping[str, str] | None = None,
+) -> tuple[OpenAI, str, str]:
+    """Planner 最小可配置 seam：PLANNER_MODEL / PLANNER_BASE_URL / PLANNER_API_KEY。
+
+    未设置时回退到既有冻结默认（deepseek-v4-pro @ api.deepseek.com，DEEPSEEK_API_KEY），
+    保持 V1 以来的兼容行为；显式设置后允许切换本地 Qwen 等 OpenAI 兼容端点。
+    """
+    values = os.environ if environ is None else environ
+    model = values.get(PLANNER_MODEL_ENV, "").strip() or DEFAULT_PLANNER_MODEL
+    base_url = (
+        values.get(PLANNER_BASE_URL_ENV, "").strip() or DEFAULT_PLANNER_BASE_URL
+    )
+    api_key = (
+        values.get(PLANNER_API_KEY_ENV, "").strip()
+        or values.get("DEEPSEEK_API_KEY", "").strip()
+    )
+    if not api_key:
+        raise RuntimeError("未设置环境变量 PLANNER_API_KEY 或 DEEPSEEK_API_KEY")
+    return OpenAI(api_key=api_key, base_url=base_url), model, base_url
+
+
 class DeepSeekAgent:
     def __init__(self) -> None:
-        api_key = os.getenv("DEEPSEEK_API_KEY")
-        if not api_key:
-            raise RuntimeError("未设置环境变量 DEEPSEEK_API_KEY")
-        self.client = OpenAI(api_key=api_key, base_url=BASE_URL)
+        self.client, self.model, self.base_url = build_planner_client()
         self.plan_attempts = 0
 
     def plan_request(self, prompt: str) -> dict:
@@ -145,7 +170,7 @@ class DeepSeekAgent:
                 )
             messages.append({"role": "user", "content": prompt})
             response = self.client.chat.completions.create(
-                model=MODEL_NAME,
+                model=self.model,
                 messages=messages,
                 tools=[EXECUTE_VISUAL_TASK_TOOL],
                 tool_choice={"type": "function", "function": {"name": TOOL_NAME}},
@@ -163,7 +188,7 @@ class DeepSeekAgent:
 
     def build_final_response(self, prompt: str, visual_result: dict) -> str:
         response = self.client.chat.completions.create(
-            model=MODEL_NAME,
+            model=self.model,
             messages=[
                 {"role": "system", "content": FINAL_SYSTEM_PROMPT},
                 {
