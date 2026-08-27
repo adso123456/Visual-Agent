@@ -1,6 +1,6 @@
 {
   "schema_version": "GENERAL_RGB_R3_CANDIDATE_IDENTITY_SCHEDULE_V1",
-  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "status": "CONTRACT_FROZEN",
   "concurrency": 1,
   "arm_order_must_not_change_after_start": true,
   "failed_execution_replacement": false,

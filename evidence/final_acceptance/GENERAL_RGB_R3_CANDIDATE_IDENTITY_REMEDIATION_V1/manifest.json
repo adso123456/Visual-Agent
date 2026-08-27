@@ -1,26 +1,26 @@
 {
   "schema_version": "GENERAL_RGB_R3_CANDIDATE_IDENTITY_CONTRACT_MANIFEST_V1",
-  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "status": "CONTRACT_FROZEN",
   "files": [
     {
       "path": "GENERAL_RGB_R3_CANDIDATE_IDENTITY_REMEDIATION_V1_CONTRACT.md",
-      "sha256": "8e6d28096a21204d22e70415be756cadd96c8e561994ba5143bd38b90bbeaf9e",
-      "bytes": 9183
+      "sha256": "538f88705c8ef2cebd3ef75684e4f89e1cba2aee6862f86b5a1bd2ae4a7f835b",
+      "bytes": 10519
     },
     {
       "path": "contract_candidate.json",
-      "sha256": "5cbaccea10c66e827ec2fc74473fe512f8b424e0608b7278c610390e0fa01aa0",
-      "bytes": 3201
+      "sha256": "7072d0a6acdbe0beeb9db6f048a35d5d2dc28488696286183887f6c84ef5dd73",
+      "bytes": 4213
     },
     {
       "path": "frozen_selection.json",
-      "sha256": "971ae3afe29fb253e73f79b1bd94d3ceba1e7790a3497a507ebf3140ae5947d7",
-      "bytes": 6223
+      "sha256": "37fb7fcb97e5a324a4d76d81abe805e947e220420c97102eb6d690cc64c44563",
+      "bytes": 6197
     },
     {
       "path": "frozen_schedule.json",
-      "sha256": "e28dbfb176493d087c4488b3ab5fe1b865be55fdd65d93094d30a2f7238c6025",
-      "bytes": 2614
+      "sha256": "e531bc803758a0b4827787d619cbd3b4a62c71a0c4647f78cd6d6ada3d08ca84",
+      "bytes": 2588
     }
   ],
   "input_images_verified": 9,

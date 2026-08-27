@@ -2,7 +2,7 @@
 
 ## 状态
 
-`CONTRACT FREEZE CANDIDATE / REVIEW REQUIRED`
+`CONTRACT FROZEN`
 
 - 阶段性质：`READ-ONLY DESIGN ONLY`
 - Production code modification：`NOT AUTHORIZED`
@@ -128,6 +128,32 @@ Task aggregation 固定为：任一 candidate `satisfied` → task `satisfied`�
 
 `new false assignment` 定义为：相同 paired observation 中，Arm A 未对 expected-non-satisfied candidate 输出 `satisfied`，但 B/C 输出 `satisfied`。既有错误与新增回归必须分开报告。
 
+### 6.1 fallback_harm 冻结定义
+
+Fallback 只允许从 first-pass `uncertain` 进入。根据 candidate 的冻结 expected，状态变化必须机械归类为：
+
+| Frozen expected | Final status | Classification |
+|---|---|---|
+| `satisfied` | `satisfied` | `correctly_resolved` |
+| `satisfied` | `uncertain` | `still_uncertain` |
+| `satisfied` | `not_satisfied` | `fallback_harm` |
+| `not_satisfied` | `not_satisfied` | `correctly_resolved` |
+| `not_satisfied` | `uncertain` | `still_uncertain` |
+| `not_satisfied` | `satisfied` | `fallback_harm` |
+| `uncertain` | `uncertain` | `correctly_preserved` |
+| `uncertain` | `satisfied` 或 `not_satisfied` | `fallback_harm` |
+
+对于 `challenge_001/A`、`challenge_004/B` 这类冻结为 `allowed=[not_satisfied, uncertain]`、`forbidden=[satisfied]` 的 candidate：
+
+- first-pass `uncertain` → final `satisfied`：`fallback_harm`；
+- first-pass `uncertain` → final `uncertain` 或 `not_satisfied`：`non_harm`。
+
+不得根据 evidence 文本、task aggregation 或最终图片对以上分类作人工改写。Arm 口径固定为：
+
+- Arm A：报告 `fallback_harm`，仅作为 control observation，不作为 A 的 Confirmation Gate；
+- Arm B：无 fallback，`fallback_harm = N/A`；
+- Arm C：进入 Confirmation Gate，要求 `fallback_harm = 0`。
+
 ## 7. Confirmation Gate
 
 某候选 Arm（B 或 C）只有同时满足全部条件才可成为下一步 implementation candidate：
@@ -136,7 +162,7 @@ Task aggregation 固定为：任一 candidate `satisfied` → task `satisfied`�
 2. `challenge_003`：合法 ambiguity safe=`5/5`，即 A candidate 保持 `uncertain`；confident binary=`0/5`。
 3. `challenge_004`：老人 retained `>=4/5`；儿童 confident false assignment=`0/5`。
 4. F1 frozen subset：candidate-unit correct 不低于同批 Arm A，且不得低于历史冻结 Arm A 的 `4/10`；task correct 不低于同批 Arm A，且不得低于历史 `2/6`；`F1::fishing_004/A` 必须为 `satisfied`。
-5. 所有评测：new false assignment=`0`；fallback harm=`0`。
+5. 所有评测：new false assignment=`0`；Arm C fallback harm=`0`。Arm A 仅报告，Arm B=`N/A`。
 6. provider/protocol/validator/evidence final failure=`0`；不得通过补跑获得 5/5。
 7. 输入 image/bbox/mask/evidence manifest 完整，所有声明 SHA-256 可复核。
 
@@ -165,4 +191,4 @@ Arm A 是 control，不因单批随机通过而自动成为新政策。B/C 必�
 - 不把 non-target person 从视觉上下文删除。
 - 不 merge remediation branch，不建立 Final Acceptance V2。
 
-合同经人工审查改为 `CONTRACT FROZEN` 后，才允许另行实现 benchmark-only evidence builder 并执行模型对照；该授权不等于 Production modification authorization。
+本合同冻结提交经窄审查确认后，才允许另行授权实现 benchmark-only evidence builder；模型对照仍需单独授权，且两者均不等于 Production modification authorization。

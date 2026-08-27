@@ -1,6 +1,6 @@
 {
   "schema_version": "GENERAL_RGB_R3_CANDIDATE_IDENTITY_SELECTION_V1",
-  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "status": "CONTRACT_FROZEN",
   "source_refs": {
     "context_hardening_selection": "evidence/architecture_research/CONTEXT_EVIDENCE_POLICY_HARDENING_V1/frozen_selection.json",
     "context_hardening_selection_sha256": "d07edb99c68ef274ba1162f165ec7c630b5f8b48529ccaf70c2335d2206575e8",

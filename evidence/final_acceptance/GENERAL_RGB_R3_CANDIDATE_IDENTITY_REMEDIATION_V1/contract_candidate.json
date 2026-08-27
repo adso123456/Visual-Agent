@@ -1,6 +1,6 @@
 {
   "schema_version": "GENERAL_RGB_R3_CANDIDATE_IDENTITY_REMEDIATION_CONTRACT_V1",
-  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "status": "CONTRACT_FROZEN",
   "read_only_design": true,
   "production_modification": "NOT_AUTHORIZED",
   "model_execution": "NOT_AUTHORIZED",
@@ -69,6 +69,37 @@
     "planner_calls": 0,
     "final_response_calls": 0
   },
+  "fallback_harm_definition": {
+    "trigger": "FIRST_PASS_UNCERTAIN_ONLY",
+    "by_expected": {
+      "satisfied": {
+        "satisfied": "correctly_resolved",
+        "uncertain": "still_uncertain",
+        "not_satisfied": "fallback_harm"
+      },
+      "not_satisfied": {
+        "not_satisfied": "correctly_resolved",
+        "uncertain": "still_uncertain",
+        "satisfied": "fallback_harm"
+      },
+      "uncertain": {
+        "uncertain": "correctly_preserved",
+        "satisfied": "fallback_harm",
+        "not_satisfied": "fallback_harm"
+      }
+    },
+    "allowed_not_satisfied_or_uncertain_candidate": {
+      "uncertain_to_satisfied": "fallback_harm",
+      "uncertain_to_uncertain": "non_harm",
+      "uncertain_to_not_satisfied": "non_harm"
+    },
+    "arm_policy": {
+      "A": "REPORT_CONTROL_OBSERVATION_ONLY",
+      "B": "NOT_APPLICABLE_NO_FALLBACK",
+      "C": "GATE_REQUIRES_ZERO"
+    },
+    "manual_reinterpretation_allowed": false
+  },
   "gate": {
     "challenge_001": {"bystander_false_assignment": "0/5", "true_operator_retained": ">=4/5"},
     "challenge_003": {"legitimate_uncertain": "5/5", "confident_binary": "0/5"},
@@ -79,9 +110,13 @@
       "positive_control_F1_fishing_004_A": "satisfied"
     },
     "new_false_assignment": 0,
-    "fallback_harm": 0,
+    "fallback_harm": {
+      "A": "REPORT_ONLY",
+      "B": "NOT_APPLICABLE",
+      "C": 0
+    },
     "provider_protocol_validator_evidence_final_failure": 0,
     "manifest_integrity_required": true
   },
-  "next_after_review": "CONTRACT_FROZEN_THEN_BENCHMARK_ONLY_IMPLEMENTATION_AND_MODEL_EXECUTION_SEPARATE_AUTHORIZATION"
+  "next_after_review": "NARROW_CONFIRMATION_THEN_BENCHMARK_ONLY_IMPLEMENTATION_MODEL_EXECUTION_SEPARATELY_AUTHORIZED"
 }
