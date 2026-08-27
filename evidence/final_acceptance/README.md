@@ -20,9 +20,10 @@
   - 合同执行偏差（failed_execution_replacement 违规补跑）已在该报告记录，原始 execution evidence 未改动；PASS 侧可靠性指标不作合同合规口径。
   - 失败归因对下一轮 remediation design 有效；Production 修改仍未授权（不 merge、不建 V2 批次）；REMOTE_SENSING_WATER_QUALITY = BLOCKED。
 - `GENERAL_RGB_R3_CANDIDATE_IDENTITY_REMEDIATION_V1/`
-  - 当前状态：`CONTRACT FROZEN / BUILDER CODE REVIEW APPROVED / MODEL EXECUTION HARNESS IMPLEMENTED / NARROW CODE REVIEW REQUIRED`。
+  - 当前状态：`CONTRACT FROZEN / BUILDER CODE REVIEW APPROVED / HARNESS AUDIT FIX IMPLEMENTED / NARROW RE-REVIEW REQUIRED`。
   - Builder implementation：`general-rgb-r3-candidate-identity-benchmark-v1@0b32695d`；实现与离线测试记录见 `BENCHMARK_EVIDENCE_BUILDER_IMPLEMENTATION_REPORT.md`。
   - Harness implementation：同分支 `9a9e8f7`；实现与 stub/mock 测试记录见 `MODEL_EXECUTION_HARNESS_IMPLEMENTATION_REPORT.md`。
+  - 4 个 harness audit Blocking 的修复：`b35bde5` + review-lock `22b2257`；见 `MODEL_EXECUTION_HARNESS_AUDIT_FIX_REPORT.md`。
   - 只比较 current R3、target-anchored local、target-anchored local + fallback 三种 candidate-specific behavior evidence；不使用 Global Facts。
   - 冻结 3 个 challenge（各 5 次）与既有 6 条 F1 behavior 子集；固定 bbox、共享 SAM mask cache、A/B/C 顺序与 failure-retention 规则。
   - 当前只读设计；Production code、模型执行、merge、R2.2/R2.3 与 Final Acceptance V2 均未授权。

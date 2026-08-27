@@ -35,6 +35,12 @@
       "sha256": "3db0413b3dbeb0141d8a427136928b2403ec15df256768d78f92c3045e9d79c1",
       "bytes": 2366,
       "implementation_commit": "9a9e8f7e1a86317b91e5fc5ca232f60f769ed0b0"
+    },
+    {
+      "path": "MODEL_EXECUTION_HARNESS_AUDIT_FIX_REPORT.md",
+      "sha256": "6c3e2373496df44e600f41d746f48a36a07d5832eb465d9399368e90a14ed586",
+      "bytes": 2832,
+      "implementation_commit": "22b22570c5f9ac6bd5249dae8f70782f500fb810"
     }
   ],
   "input_images_verified": 9,
