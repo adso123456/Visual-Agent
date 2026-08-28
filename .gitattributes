@@ -49,6 +49,7 @@ evidence/final_acceptance/GENERAL_RGB_RELATION_SMALL_HELD_OBJECT_MECHANISM_ANALY
 # F4 small held-object 窄合同候选材料使用稳定 LF。
 evidence/final_acceptance/GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_V1/*.md text eol=lf
 evidence/final_acceptance/GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_V1/*.json text eol=lf
+evidence/final_acceptance/GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_V1/**/*.jsonl text eol=lf
 
 # F4 Gate L 的 Detector 输入视图与 overlay 保留生成原始字节并走 Git LFS。
 evidence/final_acceptance/GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_V1/gate_l_execution/**/*.png filter=lfs diff=lfs merge=lfs -text
