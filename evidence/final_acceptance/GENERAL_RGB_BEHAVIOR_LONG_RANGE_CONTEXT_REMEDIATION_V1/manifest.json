@@ -1,0 +1,20 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_LONG_RANGE_CONTEXT_MECHANISM_ANALYSIS_MANIFEST_V1",
+  "status": "READ_ONLY_MECHANISM_ANALYSIS_COMPLETE",
+  "files": [
+    {
+      "path": "READ_ONLY_MECHANISM_ANALYSIS.md",
+      "sha256": "33ecd2a44e7c588241f759ab421c778622c2fafe995cb7d9ff3f08b5cf948ef8",
+      "bytes": 4802
+    },
+    {
+      "path": "mechanism_analysis.json",
+      "sha256": "3d459fa6948d06d8309a6d905b0f88054a56da6b55c037e41e5025d1cbe68c7c",
+      "bytes": 1967
+    }
+  ],
+  "source_execution_commit": "8e3bd28a86342b35bcab5d8600be4aa858712599",
+  "source_results_sha256": "70ffbd79bd562dfe00cff10191c60a89e58021f7fd067b4fdce33ec3dd00715e",
+  "model_calls": 0,
+  "production_code_modifications": 0
+}

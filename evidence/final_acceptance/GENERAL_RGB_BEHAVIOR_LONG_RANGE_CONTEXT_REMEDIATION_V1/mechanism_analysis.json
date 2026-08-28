@@ -1,0 +1,49 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_LONG_RANGE_CONTEXT_MECHANISM_ANALYSIS_V1",
+  "status": "READ_ONLY_MECHANISM_ANALYSIS_COMPLETE",
+  "case_id": "challenge_004",
+  "image_sha256": "45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79",
+  "model_calls": 0,
+  "production_code_modifications": 0,
+  "reruns": 0,
+  "denominators": {
+    "elder_candidate_records": 15,
+    "child_candidate_records": 15,
+    "total_challenge_004_candidate_records": 30
+  },
+  "elder_candidate": {
+    "A": {"first_not_satisfied": 5, "fallback_calls": 0, "final_not_satisfied": 5},
+    "B": {"first_not_satisfied": 5, "fallback_calls": 0, "final_not_satisfied": 5},
+    "C": {"first_not_satisfied": 5, "fallback_calls": 0, "final_not_satisfied": 5}
+  },
+  "child_candidate": {
+    "A": {"first_not_satisfied": 5, "fallback_calls": 0, "final_not_satisfied": 5},
+    "B": {"first_uncertain": 5, "fallback_calls": 0, "final_uncertain": 5},
+    "C": {
+      "first_uncertain": 5,
+      "fallback_calls": 5,
+      "fallback_not_satisfied": 5,
+      "final_not_satisfied": 5,
+      "fallback_non_harm": 5,
+      "full_scene_recognized_adult_operator": 5
+    }
+  },
+  "evidence_visibility": {
+    "isolated": "TARGET_VISIBLE_LONG_RANGE_CONTEXT_REMOVED",
+    "local_35_percent": "TARGET_AND_CHILD_VISIBLE_WATER_AND_FULL_ROD_GEOMETRY_NOT_VISIBLE",
+    "candidate_marked_full_scene": "ELDER_CHILD_WATER_AND_FULL_ROD_GEOMETRY_VISIBLE",
+    "elder_full_scene_model_calls": 0
+  },
+  "attribution": {
+    "primary_failure_class": "CONTEXT_NOT_VISIBLE_IN_FIRST_PASS",
+    "secondary_mechanism": "BINARY_NOT_SATISFIED_PREVENTS_FALLBACK",
+    "context_visible_but_semantic_reasoning_failed": "NOT_SUPPORTED_BY_CURRENT_EVIDENCE",
+    "confidence": "HIGH"
+  },
+  "decision": {
+    "long_range_context_remediation": "WORTH_NARROW_CONTRACT_DESIGN",
+    "production_modification": "NOT_AUTHORIZED",
+    "model_execution": "NOT_AUTHORIZED",
+    "remote_sensing_water_quality": "BLOCKED"
+  }
+}

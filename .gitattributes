@@ -29,3 +29,7 @@ evidence/final_acceptance/**/inputs/by_sha256/* filter=lfs diff=lfs merge=lfs -t
 # R3 candidate identity 冻结执行生成的 PNG evidence 与 SAM mask 保留原始字节并走 Git LFS。
 evidence/final_acceptance/GENERAL_RGB_R3_CANDIDATE_IDENTITY_REMEDIATION_V1/execution/evidence/**/*.png filter=lfs diff=lfs merge=lfs -text
 evidence/final_acceptance/GENERAL_RGB_R3_CANDIDATE_IDENTITY_REMEDIATION_V1/execution/mask_cache/**/*.bin filter=lfs diff=lfs merge=lfs -text
+
+# Behavior long-range context 只读归因材料使用稳定 LF，便于逐字节审计。
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_LONG_RANGE_CONTEXT_REMEDIATION_V1/*.md text eol=lf
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_LONG_RANGE_CONTEXT_REMEDIATION_V1/*.json text eol=lf
