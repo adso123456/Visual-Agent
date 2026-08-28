@@ -120,7 +120,12 @@ def _historical_candidates(path: Path) -> tuple[dict, ...]:
     canonical = matches[0]["relation_candidates"]
     if any(row["relation_candidates"] != canonical for row in matches[1:]):
         raise GateRFailure("preflight", "historical_candidate_drift", "F4::017")
-    return tuple(dict(candidate) for candidate in canonical)
+    if [candidate["id"] for candidate in canonical] != [
+        "R1", "R2", "R3", "R4", "R5", "R6", "R7"
+    ]:
+        raise GateRFailure("preflight", "historical_candidate_ids", "F4::017")
+    # Gate R 替换失败的 secondary localization，只保留 initial full-scene R1–R4。
+    return tuple(dict(candidate) for candidate in canonical[:4])
 
 
 def build_candidate_universe(
@@ -325,13 +330,17 @@ def verify_slot(
         for row in bindings
         if row["related_id"] not in target_ids and row["status"] == "satisfied"
     ]
+    subject_retained = any(
+        row["subject_id"] == "A" and row["status"] == "satisfied"
+        for row in bindings
+    )
     return {
         "bindings": bindings,
         "protocol": protocol,
         "target_ids": sorted(target_ids),
         "target_satisfied": target_satisfied,
         "non_target_satisfied_ids": non_target_satisfied,
-        "subject_retained": target_satisfied,
+        "subject_retained": subject_retained,
         "model": config.model,
         "base_url": config.base_url,
         "timeout": config.timeout,
@@ -463,12 +472,15 @@ def summarize(records: list[dict]) -> dict:
                 and failures == 0
             ),
         }
+    confirmed_arms = [arm for arm in ("B", "C") if arms[arm]["gate_pass"]]
     return {
         "schema_version": "GENERAL_RGB_F4_SMALL_HELD_OBJECT_GATE_R_SUMMARY_V1",
         "scheduled_calls": 10,
         "failed_execution_replacement": False,
         "arms": arms,
-        "gate_R_pass": arms["B"]["gate_pass"] and arms["C"]["gate_pass"],
+        "confirmed_arms": confirmed_arms,
+        "mechanism_confirmed": bool(confirmed_arms),
+        "all_arms_pass": len(confirmed_arms) == 2,
     }
 
 

@@ -7,6 +7,7 @@ from benchmark.f4_small_held_object_localization_v1.run_gate_r import (
     FrozenInputs,
     GateRFailure,
     Slot,
+    _historical_candidates,
     build_candidate_universe,
     frozen_slots,
     run_slots,
@@ -48,6 +49,30 @@ def test_candidate_universe_keeps_historical_and_marks_only_gate_l_target():
     assert [row["id"] for row in candidates] == ["R1", "R2", "R3"]
     assert target_ids == {"R2"}
     assert candidates[0] == HISTORICAL[0]
+
+
+def test_historical_universe_keeps_only_initial_full_scene_r1_to_r4(tmp_path):
+    candidates = [
+        {"id": f"R{index}", "bbox": [index, index, index + 1, index + 1]}
+        for index in range(1, 8)
+    ]
+    path = tmp_path / "gate2.jsonl"
+    path.write_text(
+        "\n".join(
+            json.dumps(
+                {
+                    "case_id": "F4::fishing_017.jpeg",
+                    "relation_candidates": candidates,
+                }
+            )
+            for _ in range(5)
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    assert [row["id"] for row in _historical_candidates(path)] == [
+        "R1", "R2", "R3", "R4"
+    ]
 
 
 def test_schedule_is_exactly_five_independent_calls_per_successful_arm():
@@ -122,6 +147,36 @@ def test_verify_slot_reuses_production_signature_and_classifies_bindings(tmp_pat
     assert result["subject_retained"] is True
 
 
+def test_subject_retained_is_independent_from_correct_target_binding(tmp_path):
+    frozen = inputs(tmp_path)
+
+    def wrong_object_satisfied(_image_path, _subjects, candidates, _object, relation):
+        return (
+            [
+                {"subject_id": "A", "related_id": row["id"], "relation": relation,
+                 "status": "satisfied" if row["id"] == "R1" else "not_satisfied", "evidence": "e"}
+                for row in candidates
+            ],
+            {"attempts": 1, "retry_count": 0, "recovered": False, "first_error_code": None},
+        )
+
+    class Client:
+        chat = type("Chat", (), {"completions": object()})()
+
+    result = verify_slot(
+        frozen,
+        Slot("slot", "B", 1),
+        config_loader=lambda: VlmConfig(
+            "qwen3.8:27b-mtp-q4_K_M", "http://192.168.250.9:11434/v1", "ollama", 120.0
+        ),
+        client_factory=lambda config: Client(),
+        verifier=wrong_object_satisfied,
+    )
+    assert result["target_satisfied"] is False
+    assert result["subject_retained"] is True
+    assert result["non_target_satisfied_ids"] == ["R1"]
+
+
 def test_wrong_vlm_config_is_rejected_before_client_creation(tmp_path):
     called = False
 
@@ -177,6 +232,12 @@ def test_summary_applies_gate_per_arm():
             }
         )
     summary = summarize(records)
-    assert summary["gate_R_pass"] is True
+    assert summary["confirmed_arms"] == ["B", "C"]
+    assert summary["mechanism_confirmed"] is True
+    assert summary["all_arms_pass"] is True
     records[0]["result"]["non_target_satisfied_ids"] = ["R1"]
-    assert summarize(records)["arms"]["B"]["gate_pass"] is False
+    summary = summarize(records)
+    assert summary["arms"]["B"]["gate_pass"] is False
+    assert summary["confirmed_arms"] == ["C"]
+    assert summary["mechanism_confirmed"] is True
+    assert summary["all_arms_pass"] is False
