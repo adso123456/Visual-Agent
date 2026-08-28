@@ -1,0 +1,7 @@
+command: E:\3\Visual Agent\Visual-Agent\.venv\Scripts\python.exe benchmark\f4_small_held_object_localization_v1\run_gate_l.py --evidence-root E:\3\Visual Agent\_evidence_worktree --output-root E:\3\_visual_agent_real_world_acceptance\v1\_general_rgb_f4_small_held_object_localization_v1\gate_l
+exit_code: 1
+stage: PYTHON_IMPORT_BEFORE_PREFLIGHT
+detector_calls: 0
+output_directory_created: false
+error: ModuleNotFoundError: No module named 'visual_agent'
+resolution: invoked the same reviewed runner through its Python module entry point; no code, parameter, evidence, model, or schedule change

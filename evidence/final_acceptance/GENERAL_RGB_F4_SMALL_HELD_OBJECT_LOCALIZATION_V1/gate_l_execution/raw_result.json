@@ -1,0 +1,1332 @@
+{
+  "schema_version": "GENERAL_RGB_F4_SMALL_HELD_OBJECT_GATE_L_RESULT_V1",
+  "terminal_status": "success",
+  "case_id": "F4::fishing_017.jpeg",
+  "model": "IDEA-Research/grounding-dino-base",
+  "threshold": 0.3,
+  "reference": {
+    "status": "APPROVED_FROZEN",
+    "bbox": [
+      820,
+      690,
+      945,
+      780
+    ],
+    "center": [
+      885,
+      735
+    ],
+    "meaning": "small fish visibly held in subject A hand"
+  },
+  "arms": {
+    "A": {
+      "calls": [
+        {
+          "call_id": "A_fish_1",
+          "query": "fish",
+          "threshold": 0.3,
+          "view": {
+            "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\A_base.png",
+            "sha256": "a3ae3d2920bc05933a0dc161fac2a466658a7213ea068ff38b5275447725abd5",
+            "bytes": 2374940,
+            "dimensions": [
+              1538,
+              2811
+            ],
+            "crop_bbox": [
+              0,
+              0,
+              1538,
+              2811
+            ]
+          },
+          "elapsed_seconds": 1.715725,
+          "raw_detections": [
+            {
+              "bbox": [
+                960.46,
+                2191.52,
+                1534.32,
+                2590.98
+              ],
+              "confidence": 0.4612,
+              "text_label": "fish"
+            },
+            {
+              "bbox": [
+                650.71,
+                2185.36,
+                1186.82,
+                2425.77
+              ],
+              "confidence": 0.4302,
+              "text_label": "fish"
+            },
+            {
+              "bbox": [
+                857.28,
+                1961.88,
+                1526.91,
+                2277.6
+              ],
+              "confidence": 0.3683,
+              "text_label": "fish"
+            }
+          ],
+          "remapped_detections": [
+            {
+              "bbox": [
+                960.46,
+                2191.52,
+                1534.32,
+                2590.98
+              ],
+              "confidence": 0.4612,
+              "text_label": "fish",
+              "localization": {
+                "contains_reference_center": false,
+                "candidate_center_inside_reference_bbox": false,
+                "iou_with_reference_bbox": 0.0,
+                "localized": false
+              }
+            },
+            {
+              "bbox": [
+                650.71,
+                2185.36,
+                1186.82,
+                2425.77
+              ],
+              "confidence": 0.4302,
+              "text_label": "fish",
+              "localization": {
+                "contains_reference_center": false,
+                "candidate_center_inside_reference_bbox": false,
+                "iou_with_reference_bbox": 0.0,
+                "localized": false
+              }
+            },
+            {
+              "bbox": [
+                857.28,
+                1961.88,
+                1526.91,
+                2277.6
+              ],
+              "confidence": 0.3683,
+              "text_label": "fish",
+              "localization": {
+                "contains_reference_center": false,
+                "candidate_center_inside_reference_bbox": false,
+                "iou_with_reference_bbox": 0.0,
+                "localized": false
+              }
+            }
+          ]
+        }
+      ],
+      "deduplicated_detections": [
+        {
+          "bbox": [
+            960.46,
+            2191.52,
+            1534.32,
+            2590.98
+          ],
+          "confidence": 0.4612,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        },
+        {
+          "bbox": [
+            650.71,
+            2185.36,
+            1186.82,
+            2425.77
+          ],
+          "confidence": 0.4302,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        },
+        {
+          "bbox": [
+            857.28,
+            1961.88,
+            1526.91,
+            2277.6
+          ],
+          "confidence": 0.3683,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        }
+      ],
+      "target_localized": false,
+      "detector_call_count": 1
+    },
+    "B": {
+      "calls": [
+        {
+          "call_id": "B_fish_1",
+          "query": "fish",
+          "threshold": 0.3,
+          "view": {
+            "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\B_tile_1.png",
+            "sha256": "305b5b288a3c9201bb7eba78da1a7c0c297c7349051218718c189212e8a43420",
+            "bytes": 590223,
+            "dimensions": [
+              923,
+              1687
+            ],
+            "crop_bbox": [
+              0,
+              0,
+              923,
+              1687
+            ]
+          },
+          "elapsed_seconds": 0.482781,
+          "raw_detections": [
+            {
+              "bbox": [
+                812.72,
+                692.52,
+                922.31,
+                798.0
+              ],
+              "confidence": 0.4694,
+              "text_label": "fish"
+            }
+          ],
+          "remapped_detections": [
+            {
+              "bbox": [
+                812.72,
+                692.52,
+                922.31,
+                798.0
+              ],
+              "confidence": 0.4694,
+              "text_label": "fish",
+              "localization": {
+                "contains_reference_center": true,
+                "candidate_center_inside_reference_bbox": true,
+                "iou_with_reference_bbox": 0.645773,
+                "localized": true
+              }
+            }
+          ]
+        },
+        {
+          "call_id": "B_fish_2",
+          "query": "fish",
+          "threshold": 0.3,
+          "view": {
+            "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\B_tile_2.png",
+            "sha256": "7acde5dc9418385daf56597f028c4b412946d07b9d72fb86cf69cab93dbea9b9",
+            "bytes": 926864,
+            "dimensions": [
+              923,
+              1687
+            ],
+            "crop_bbox": [
+              615,
+              0,
+              1538,
+              1687
+            ]
+          },
+          "elapsed_seconds": 0.447644,
+          "raw_detections": [
+            {
+              "bbox": [
+                199.11,
+                688.52,
+                348.71,
+                799.0
+              ],
+              "confidence": 0.5126,
+              "text_label": "fish"
+            }
+          ],
+          "remapped_detections": [
+            {
+              "bbox": [
+                814.11,
+                688.52,
+                963.71,
+                799.0
+              ],
+              "confidence": 0.5126,
+              "text_label": "fish",
+              "localization": {
+                "contains_reference_center": true,
+                "candidate_center_inside_reference_bbox": true,
+                "iou_with_reference_bbox": 0.680671,
+                "localized": true
+              }
+            }
+          ]
+        },
+        {
+          "call_id": "B_fish_3",
+          "query": "fish",
+          "threshold": 0.3,
+          "view": {
+            "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\B_tile_3.png",
+            "sha256": "e3c8d87ab94e06a0991b98f4a04af056f95406990b4884b586b8ff131b27c655",
+            "bytes": 980177,
+            "dimensions": [
+              923,
+              1687
+            ],
+            "crop_bbox": [
+              0,
+              1124,
+              923,
+              2811
+            ]
+          },
+          "elapsed_seconds": 0.457405,
+          "raw_detections": [
+            {
+              "bbox": [
+                651.7,
+                1057.44,
+                920.18,
+                1262.07
+              ],
+              "confidence": 0.5869,
+              "text_label": "fish"
+            }
+          ],
+          "remapped_detections": [
+            {
+              "bbox": [
+                651.7,
+                2181.44,
+                920.18,
+                2386.07
+              ],
+              "confidence": 0.5869,
+              "text_label": "fish",
+              "localization": {
+                "contains_reference_center": false,
+                "candidate_center_inside_reference_bbox": false,
+                "iou_with_reference_bbox": 0.0,
+                "localized": false
+              }
+            }
+          ]
+        },
+        {
+          "call_id": "B_fish_4",
+          "query": "fish",
+          "threshold": 0.3,
+          "view": {
+            "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\B_tile_4.png",
+            "sha256": "693b1e0fa267906e2d81429df3b02b2dba9d7739055bea882d8d75f9bd994538",
+            "bytes": 1076639,
+            "dimensions": [
+              923,
+              1687
+            ],
+            "crop_bbox": [
+              615,
+              1124,
+              1538,
+              2811
+            ]
+          },
+          "elapsed_seconds": 0.45091,
+          "raw_detections": [
+            {
+              "bbox": [
+                347.61,
+                1062.65,
+                918.44,
+                1469.01
+              ],
+              "confidence": 0.4764,
+              "text_label": "fish"
+            },
+            {
+              "bbox": [
+                42.51,
+                1063.18,
+                565.44,
+                1300.77
+              ],
+              "confidence": 0.3924,
+              "text_label": "fish"
+            },
+            {
+              "bbox": [
+                484.56,
+                401.17,
+                924.46,
+                696.2
+              ],
+              "confidence": 0.3096,
+              "text_label": "fish"
+            },
+            {
+              "bbox": [
+                226.8,
+                956.97,
+                735.34,
+                1131.59
+              ],
+              "confidence": 0.3083,
+              "text_label": "fish"
+            }
+          ],
+          "remapped_detections": [
+            {
+              "bbox": [
+                962.61,
+                2186.65,
+                1533.44,
+                2593.01
+              ],
+              "confidence": 0.4764,
+              "text_label": "fish",
+              "localization": {
+                "contains_reference_center": false,
+                "candidate_center_inside_reference_bbox": false,
+                "iou_with_reference_bbox": 0.0,
+                "localized": false
+              }
+            },
+            {
+              "bbox": [
+                657.51,
+                2187.18,
+                1180.44,
+                2424.77
+              ],
+              "confidence": 0.3924,
+              "text_label": "fish",
+              "localization": {
+                "contains_reference_center": false,
+                "candidate_center_inside_reference_bbox": false,
+                "iou_with_reference_bbox": 0.0,
+                "localized": false
+              }
+            },
+            {
+              "bbox": [
+                1099.56,
+                1525.17,
+                1539.46,
+                1820.2
+              ],
+              "confidence": 0.3096,
+              "text_label": "fish",
+              "localization": {
+                "contains_reference_center": false,
+                "candidate_center_inside_reference_bbox": false,
+                "iou_with_reference_bbox": 0.0,
+                "localized": false
+              }
+            },
+            {
+              "bbox": [
+                841.8,
+                2080.97,
+                1350.34,
+                2255.59
+              ],
+              "confidence": 0.3083,
+              "text_label": "fish",
+              "localization": {
+                "contains_reference_center": false,
+                "candidate_center_inside_reference_bbox": false,
+                "iou_with_reference_bbox": 0.0,
+                "localized": false
+              }
+            }
+          ]
+        }
+      ],
+      "deduplicated_detections": [
+        {
+          "bbox": [
+            651.7,
+            2181.44,
+            920.18,
+            2386.07
+          ],
+          "confidence": 0.5869,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        },
+        {
+          "bbox": [
+            814.11,
+            688.52,
+            963.71,
+            799.0
+          ],
+          "confidence": 0.5126,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": true,
+            "candidate_center_inside_reference_bbox": true,
+            "iou_with_reference_bbox": 0.680671,
+            "localized": true
+          }
+        },
+        {
+          "bbox": [
+            962.61,
+            2186.65,
+            1533.44,
+            2593.01
+          ],
+          "confidence": 0.4764,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        },
+        {
+          "bbox": [
+            812.72,
+            692.52,
+            922.31,
+            798.0
+          ],
+          "confidence": 0.4694,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": true,
+            "candidate_center_inside_reference_bbox": true,
+            "iou_with_reference_bbox": 0.645773,
+            "localized": true
+          }
+        },
+        {
+          "bbox": [
+            657.51,
+            2187.18,
+            1180.44,
+            2424.77
+          ],
+          "confidence": 0.3924,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        },
+        {
+          "bbox": [
+            1099.56,
+            1525.17,
+            1539.46,
+            1820.2
+          ],
+          "confidence": 0.3096,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        },
+        {
+          "bbox": [
+            841.8,
+            2080.97,
+            1350.34,
+            2255.59
+          ],
+          "confidence": 0.3083,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        }
+      ],
+      "target_localized": true,
+      "detector_call_count": 4
+    },
+    "C": {
+      "hand_call": {
+        "call_id": "C_hand_1",
+        "query": "hand",
+        "threshold": 0.3,
+        "view": {
+          "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\C_hand_query_base.png",
+          "sha256": "a3ae3d2920bc05933a0dc161fac2a466658a7213ea068ff38b5275447725abd5",
+          "bytes": 2374940,
+          "dimensions": [
+            1538,
+            2811
+          ],
+          "crop_bbox": [
+            0,
+            0,
+            1538,
+            2811
+          ]
+        },
+        "elapsed_seconds": 0.528902,
+        "raw_detections": [
+          {
+            "bbox": [
+              705.34,
+              369.88,
+              1160.2,
+              938.93
+            ],
+            "confidence": 0.8431,
+            "text_label": "hand"
+          },
+          {
+            "bbox": [
+              5.85,
+              294.58,
+              239.23,
+              649.87
+            ],
+            "confidence": 0.3245,
+            "text_label": "hand"
+          },
+          {
+            "bbox": [
+              6.76,
+              292.82,
+              239.78,
+              777.29
+            ],
+            "confidence": 0.32,
+            "text_label": "hand"
+          }
+        ],
+        "remapped_detections": [
+          {
+            "bbox": [
+              705.34,
+              369.88,
+              1160.2,
+              938.93
+            ],
+            "confidence": 0.8431,
+            "text_label": "hand"
+          },
+          {
+            "bbox": [
+              5.85,
+              294.58,
+              239.23,
+              649.87
+            ],
+            "confidence": 0.3245,
+            "text_label": "hand"
+          },
+          {
+            "bbox": [
+              6.76,
+              292.82,
+              239.78,
+              777.29
+            ],
+            "confidence": 0.32,
+            "text_label": "hand"
+          }
+        ]
+      },
+      "hand_crops": [
+        [
+          250,
+          0,
+          1538,
+          1508
+        ],
+        [
+          0,
+          0,
+          473,
+          1006
+        ]
+      ],
+      "fish_calls": [
+        {
+          "call_id": "C_fish_1",
+          "query": "fish",
+          "threshold": 0.3,
+          "view": {
+            "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\C_hand_1.png",
+            "sha256": "cc6f403137a608dfd6dbb83933891d07400af60a16b93fe609f2f134f3875534",
+            "bytes": 964889,
+            "dimensions": [
+              1288,
+              1508
+            ],
+            "crop_bbox": [
+              250,
+              0,
+              1538,
+              1508
+            ]
+          },
+          "elapsed_seconds": 0.402672,
+          "raw_detections": [
+            {
+              "bbox": [
+                565.61,
+                689.04,
+                714.03,
+                798.15
+              ],
+              "confidence": 0.4539,
+              "text_label": "fish"
+            }
+          ],
+          "remapped_detections": [
+            {
+              "bbox": [
+                815.61,
+                689.04,
+                964.03,
+                798.15
+              ],
+              "confidence": 0.4539,
+              "text_label": "fish",
+              "localization": {
+                "contains_reference_center": true,
+                "candidate_center_inside_reference_bbox": true,
+                "iou_with_reference_bbox": 0.694697,
+                "localized": true
+              }
+            }
+          ]
+        },
+        {
+          "call_id": "C_fish_2",
+          "query": "fish",
+          "threshold": 0.3,
+          "view": {
+            "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\C_hand_2.png",
+            "sha256": "0f28747bf48d33886c2d38abad3ac95f43005a7e4ceac34ce7cd4dfe3205d6e9",
+            "bytes": 69711,
+            "dimensions": [
+              473,
+              1006
+            ],
+            "crop_bbox": [
+              0,
+              0,
+              473,
+              1006
+            ]
+          },
+          "elapsed_seconds": 0.39149,
+          "raw_detections": [],
+          "remapped_detections": []
+        }
+      ],
+      "deduplicated_detections": [
+        {
+          "bbox": [
+            815.61,
+            689.04,
+            964.03,
+            798.15
+          ],
+          "confidence": 0.4539,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": true,
+            "candidate_center_inside_reference_bbox": true,
+            "iou_with_reference_bbox": 0.694697,
+            "localized": true
+          }
+        }
+      ],
+      "target_localized": true,
+      "detector_call_count": 3
+    }
+  },
+  "detector_calls": [
+    {
+      "call_id": "A_fish_1",
+      "query": "fish",
+      "threshold": 0.3,
+      "view": {
+        "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\A_base.png",
+        "sha256": "a3ae3d2920bc05933a0dc161fac2a466658a7213ea068ff38b5275447725abd5",
+        "bytes": 2374940,
+        "dimensions": [
+          1538,
+          2811
+        ],
+        "crop_bbox": [
+          0,
+          0,
+          1538,
+          2811
+        ]
+      },
+      "elapsed_seconds": 1.715725,
+      "raw_detections": [
+        {
+          "bbox": [
+            960.46,
+            2191.52,
+            1534.32,
+            2590.98
+          ],
+          "confidence": 0.4612,
+          "text_label": "fish"
+        },
+        {
+          "bbox": [
+            650.71,
+            2185.36,
+            1186.82,
+            2425.77
+          ],
+          "confidence": 0.4302,
+          "text_label": "fish"
+        },
+        {
+          "bbox": [
+            857.28,
+            1961.88,
+            1526.91,
+            2277.6
+          ],
+          "confidence": 0.3683,
+          "text_label": "fish"
+        }
+      ],
+      "remapped_detections": [
+        {
+          "bbox": [
+            960.46,
+            2191.52,
+            1534.32,
+            2590.98
+          ],
+          "confidence": 0.4612,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        },
+        {
+          "bbox": [
+            650.71,
+            2185.36,
+            1186.82,
+            2425.77
+          ],
+          "confidence": 0.4302,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        },
+        {
+          "bbox": [
+            857.28,
+            1961.88,
+            1526.91,
+            2277.6
+          ],
+          "confidence": 0.3683,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        }
+      ]
+    },
+    {
+      "call_id": "B_fish_1",
+      "query": "fish",
+      "threshold": 0.3,
+      "view": {
+        "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\B_tile_1.png",
+        "sha256": "305b5b288a3c9201bb7eba78da1a7c0c297c7349051218718c189212e8a43420",
+        "bytes": 590223,
+        "dimensions": [
+          923,
+          1687
+        ],
+        "crop_bbox": [
+          0,
+          0,
+          923,
+          1687
+        ]
+      },
+      "elapsed_seconds": 0.482781,
+      "raw_detections": [
+        {
+          "bbox": [
+            812.72,
+            692.52,
+            922.31,
+            798.0
+          ],
+          "confidence": 0.4694,
+          "text_label": "fish"
+        }
+      ],
+      "remapped_detections": [
+        {
+          "bbox": [
+            812.72,
+            692.52,
+            922.31,
+            798.0
+          ],
+          "confidence": 0.4694,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": true,
+            "candidate_center_inside_reference_bbox": true,
+            "iou_with_reference_bbox": 0.645773,
+            "localized": true
+          }
+        }
+      ]
+    },
+    {
+      "call_id": "B_fish_2",
+      "query": "fish",
+      "threshold": 0.3,
+      "view": {
+        "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\B_tile_2.png",
+        "sha256": "7acde5dc9418385daf56597f028c4b412946d07b9d72fb86cf69cab93dbea9b9",
+        "bytes": 926864,
+        "dimensions": [
+          923,
+          1687
+        ],
+        "crop_bbox": [
+          615,
+          0,
+          1538,
+          1687
+        ]
+      },
+      "elapsed_seconds": 0.447644,
+      "raw_detections": [
+        {
+          "bbox": [
+            199.11,
+            688.52,
+            348.71,
+            799.0
+          ],
+          "confidence": 0.5126,
+          "text_label": "fish"
+        }
+      ],
+      "remapped_detections": [
+        {
+          "bbox": [
+            814.11,
+            688.52,
+            963.71,
+            799.0
+          ],
+          "confidence": 0.5126,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": true,
+            "candidate_center_inside_reference_bbox": true,
+            "iou_with_reference_bbox": 0.680671,
+            "localized": true
+          }
+        }
+      ]
+    },
+    {
+      "call_id": "B_fish_3",
+      "query": "fish",
+      "threshold": 0.3,
+      "view": {
+        "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\B_tile_3.png",
+        "sha256": "e3c8d87ab94e06a0991b98f4a04af056f95406990b4884b586b8ff131b27c655",
+        "bytes": 980177,
+        "dimensions": [
+          923,
+          1687
+        ],
+        "crop_bbox": [
+          0,
+          1124,
+          923,
+          2811
+        ]
+      },
+      "elapsed_seconds": 0.457405,
+      "raw_detections": [
+        {
+          "bbox": [
+            651.7,
+            1057.44,
+            920.18,
+            1262.07
+          ],
+          "confidence": 0.5869,
+          "text_label": "fish"
+        }
+      ],
+      "remapped_detections": [
+        {
+          "bbox": [
+            651.7,
+            2181.44,
+            920.18,
+            2386.07
+          ],
+          "confidence": 0.5869,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        }
+      ]
+    },
+    {
+      "call_id": "B_fish_4",
+      "query": "fish",
+      "threshold": 0.3,
+      "view": {
+        "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\B_tile_4.png",
+        "sha256": "693b1e0fa267906e2d81429df3b02b2dba9d7739055bea882d8d75f9bd994538",
+        "bytes": 1076639,
+        "dimensions": [
+          923,
+          1687
+        ],
+        "crop_bbox": [
+          615,
+          1124,
+          1538,
+          2811
+        ]
+      },
+      "elapsed_seconds": 0.45091,
+      "raw_detections": [
+        {
+          "bbox": [
+            347.61,
+            1062.65,
+            918.44,
+            1469.01
+          ],
+          "confidence": 0.4764,
+          "text_label": "fish"
+        },
+        {
+          "bbox": [
+            42.51,
+            1063.18,
+            565.44,
+            1300.77
+          ],
+          "confidence": 0.3924,
+          "text_label": "fish"
+        },
+        {
+          "bbox": [
+            484.56,
+            401.17,
+            924.46,
+            696.2
+          ],
+          "confidence": 0.3096,
+          "text_label": "fish"
+        },
+        {
+          "bbox": [
+            226.8,
+            956.97,
+            735.34,
+            1131.59
+          ],
+          "confidence": 0.3083,
+          "text_label": "fish"
+        }
+      ],
+      "remapped_detections": [
+        {
+          "bbox": [
+            962.61,
+            2186.65,
+            1533.44,
+            2593.01
+          ],
+          "confidence": 0.4764,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        },
+        {
+          "bbox": [
+            657.51,
+            2187.18,
+            1180.44,
+            2424.77
+          ],
+          "confidence": 0.3924,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        },
+        {
+          "bbox": [
+            1099.56,
+            1525.17,
+            1539.46,
+            1820.2
+          ],
+          "confidence": 0.3096,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        },
+        {
+          "bbox": [
+            841.8,
+            2080.97,
+            1350.34,
+            2255.59
+          ],
+          "confidence": 0.3083,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": false,
+            "candidate_center_inside_reference_bbox": false,
+            "iou_with_reference_bbox": 0.0,
+            "localized": false
+          }
+        }
+      ]
+    },
+    {
+      "call_id": "C_hand_1",
+      "query": "hand",
+      "threshold": 0.3,
+      "view": {
+        "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\C_hand_query_base.png",
+        "sha256": "a3ae3d2920bc05933a0dc161fac2a466658a7213ea068ff38b5275447725abd5",
+        "bytes": 2374940,
+        "dimensions": [
+          1538,
+          2811
+        ],
+        "crop_bbox": [
+          0,
+          0,
+          1538,
+          2811
+        ]
+      },
+      "elapsed_seconds": 0.528902,
+      "raw_detections": [
+        {
+          "bbox": [
+            705.34,
+            369.88,
+            1160.2,
+            938.93
+          ],
+          "confidence": 0.8431,
+          "text_label": "hand"
+        },
+        {
+          "bbox": [
+            5.85,
+            294.58,
+            239.23,
+            649.87
+          ],
+          "confidence": 0.3245,
+          "text_label": "hand"
+        },
+        {
+          "bbox": [
+            6.76,
+            292.82,
+            239.78,
+            777.29
+          ],
+          "confidence": 0.32,
+          "text_label": "hand"
+        }
+      ],
+      "remapped_detections": [
+        {
+          "bbox": [
+            705.34,
+            369.88,
+            1160.2,
+            938.93
+          ],
+          "confidence": 0.8431,
+          "text_label": "hand"
+        },
+        {
+          "bbox": [
+            5.85,
+            294.58,
+            239.23,
+            649.87
+          ],
+          "confidence": 0.3245,
+          "text_label": "hand"
+        },
+        {
+          "bbox": [
+            6.76,
+            292.82,
+            239.78,
+            777.29
+          ],
+          "confidence": 0.32,
+          "text_label": "hand"
+        }
+      ]
+    },
+    {
+      "call_id": "C_fish_1",
+      "query": "fish",
+      "threshold": 0.3,
+      "view": {
+        "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\C_hand_1.png",
+        "sha256": "cc6f403137a608dfd6dbb83933891d07400af60a16b93fe609f2f134f3875534",
+        "bytes": 964889,
+        "dimensions": [
+          1288,
+          1508
+        ],
+        "crop_bbox": [
+          250,
+          0,
+          1538,
+          1508
+        ]
+      },
+      "elapsed_seconds": 0.402672,
+      "raw_detections": [
+        {
+          "bbox": [
+            565.61,
+            689.04,
+            714.03,
+            798.15
+          ],
+          "confidence": 0.4539,
+          "text_label": "fish"
+        }
+      ],
+      "remapped_detections": [
+        {
+          "bbox": [
+            815.61,
+            689.04,
+            964.03,
+            798.15
+          ],
+          "confidence": 0.4539,
+          "text_label": "fish",
+          "localization": {
+            "contains_reference_center": true,
+            "candidate_center_inside_reference_bbox": true,
+            "iou_with_reference_bbox": 0.694697,
+            "localized": true
+          }
+        }
+      ]
+    },
+    {
+      "call_id": "C_fish_2",
+      "query": "fish",
+      "threshold": 0.3,
+      "view": {
+        "path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_f4_small_held_object_localization_v1\\gate_l\\views\\C_hand_2.png",
+        "sha256": "0f28747bf48d33886c2d38abad3ac95f43005a7e4ceac34ce7cd4dfe3205d6e9",
+        "bytes": 69711,
+        "dimensions": [
+          473,
+          1006
+        ],
+        "crop_bbox": [
+          0,
+          0,
+          473,
+          1006
+        ]
+      },
+      "elapsed_seconds": 0.39149,
+      "raw_detections": [],
+      "remapped_detections": []
+    }
+  ],
+  "relation_vlm_calls": 0,
+  "gate_L": {
+    "B_or_C_success": true,
+    "decision": "LOCALIZATION_MECHANISM_FOUND"
+  }
+}

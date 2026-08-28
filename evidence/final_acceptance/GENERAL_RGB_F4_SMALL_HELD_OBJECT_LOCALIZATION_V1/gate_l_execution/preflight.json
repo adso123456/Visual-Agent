@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "evidence_head": "cad109b37b119b159644967a10b6fb143d229432",
+  "production_reference": "be54f3c89171d8b16f53c82397e9f468fb4b4c97",
+  "contract_manifest_sha256": "d4dbd2ff1425610e01e44f1056af55f1838ec5c2f815a460fc0e3c85d07eac1b",
+  "contract_sha256": "747a65b7221c64f35141656f57028e1e6c6aa554d6ba61e7762c4157761ac03d",
+  "selection_sha256": "7d8e89cbac9371883d2013276632965b18243cae3d57c23810c7761a2d583a22",
+  "runner_sha256": "953c05fa906b33476c9ffb1a8147799a534aaf2916576f28fc1386fbd59313b8",
+  "relation_vlm_calls_authorized": false
+}

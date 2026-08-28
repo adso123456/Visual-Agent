@@ -1,6 +1,6 @@
 {
   "schema_version": "GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_MANIFEST_V1",
-  "status": "CONTRACT_APPROVED_FROZEN",
+  "status": "GATE_L_EXECUTION_COMPLETE_LOCALIZATION_MECHANISM_FOUND",
   "files": [
     {
       "path": "NARROW_CONTRACT_CANDIDATE.md",
@@ -16,6 +16,76 @@
       "path": "selection_candidate.json",
       "sha256": "7d8e89cbac9371883d2013276632965b18243cae3d57c23810c7761a2d583a22",
       "bytes": 822
+    },
+    {
+      "path": "GATE_L_EXECUTION_REPORT.md",
+      "sha256": "81fff8f0b0a9a1eeabce6c42984b356f06f1d3b3819b7590051f370633ef8a67",
+      "bytes": 3361
+    },
+    {
+      "path": "gate_l_execution/artifact_manifest.json",
+      "sha256": "00a8532fdeaad8aaa97e004260d3feaaa537d742e6dd0c0ce105667b72b5c5d7",
+      "bytes": 1898
+    },
+    {
+      "path": "gate_l_execution/preflight.json",
+      "sha256": "82a2a0d8e39af27ac117c2856bdadf59bc8d5431b0d6fe3a492078ee46f3e662",
+      "bytes": 572
+    },
+    {
+      "path": "gate_l_execution/startup_attempt_1.txt",
+      "sha256": "295da05044cc20dd76ce9a4c69d5a1312034e9b6071bb1833014613cf5b785aa",
+      "bytes": 594
+    },
+    {
+      "path": "gate_l_execution/raw_result.json",
+      "sha256": "6ee778a3af13c410eeb255946460ac3fee27c2860a12f4bc9ffafc6da76244be",
+      "bytes": 35354
+    },
+    {
+      "path": "gate_l_execution/overlay.png",
+      "sha256": "023d3015c3ccfa35a54d1fcb1f60112a2aafae04a04c61fc57fc1678ac0675e9",
+      "bytes": 4330885
+    },
+    {
+      "path": "gate_l_execution/views/A_base.png",
+      "sha256": "a3ae3d2920bc05933a0dc161fac2a466658a7213ea068ff38b5275447725abd5",
+      "bytes": 2374940
+    },
+    {
+      "path": "gate_l_execution/views/B_tile_1.png",
+      "sha256": "305b5b288a3c9201bb7eba78da1a7c0c297c7349051218718c189212e8a43420",
+      "bytes": 590223
+    },
+    {
+      "path": "gate_l_execution/views/B_tile_2.png",
+      "sha256": "7acde5dc9418385daf56597f028c4b412946d07b9d72fb86cf69cab93dbea9b9",
+      "bytes": 926864
+    },
+    {
+      "path": "gate_l_execution/views/B_tile_3.png",
+      "sha256": "e3c8d87ab94e06a0991b98f4a04af056f95406990b4884b586b8ff131b27c655",
+      "bytes": 980177
+    },
+    {
+      "path": "gate_l_execution/views/B_tile_4.png",
+      "sha256": "693b1e0fa267906e2d81429df3b02b2dba9d7739055bea882d8d75f9bd994538",
+      "bytes": 1076639
+    },
+    {
+      "path": "gate_l_execution/views/C_hand_1.png",
+      "sha256": "cc6f403137a608dfd6dbb83933891d07400af60a16b93fe609f2f134f3875534",
+      "bytes": 964889
+    },
+    {
+      "path": "gate_l_execution/views/C_hand_2.png",
+      "sha256": "0f28747bf48d33886c2d38abad3ac95f43005a7e4ceac34ce7cd4dfe3205d6e9",
+      "bytes": 69711
+    },
+    {
+      "path": "gate_l_execution/views/C_hand_query_base.png",
+      "sha256": "a3ae3d2920bc05933a0dc161fac2a466658a7213ea068ff38b5275447725abd5",
+      "bytes": 2374940
     }
   ],
   "source_assets": [
@@ -38,16 +108,27 @@
   "evidence_source_commit": "87c19200402d1f0889a5f8b9048689e7c4055d82",
   "production_reference_commit": "be54f3c89171d8b16f53c82397e9f468fb4b4c97",
   "model_calls": 0,
-  "detector_calls": 0,
+  "detector_calls": 8,
   "production_code_modifications": 0,
-  "benchmark_code_modifications": 0,
+  "benchmark_code_modifications": 2,
+  "benchmark_runner_commit": "984d882dd3f9246403cb10a0be4d738840511963",
+  "gate_L_result": {
+    "terminal_status": "success",
+    "arm_A_target_localized": false,
+    "arm_B_target_localized": true,
+    "arm_C_target_localized": true,
+    "B_or_C_success": true,
+    "decision": "LOCALIZATION_MECHANISM_FOUND",
+    "relation_vlm_calls": 0
+  },
   "decision": {
     "contract_frozen": true,
     "review_required": false,
     "F4_017_only": true,
     "F4_020_excluded": true,
     "held_verifier_relaxation": "FORBIDDEN",
-    "execution": "GATE_L_DETECTOR_ONLY",
+    "execution": "GATE_L_COMPLETE",
+    "gate_R": "NOT_AUTHORIZED",
     "production_modification": "NOT_AUTHORIZED",
     "general_rgb_final_acceptance_v2": "NOT_AUTHORIZED",
     "remote_sensing_water_quality": "BLOCKED"

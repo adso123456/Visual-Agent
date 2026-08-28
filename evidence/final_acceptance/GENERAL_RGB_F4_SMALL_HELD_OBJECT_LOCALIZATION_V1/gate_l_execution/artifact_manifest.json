@@ -1,0 +1,61 @@
+{
+  "schema_version": "GENERAL_RGB_F4_SMALL_HELD_OBJECT_GATE_L_ARTIFACT_MANIFEST_V1",
+  "terminal_status": "success",
+  "artifacts": [
+    {
+      "path": "overlay.png",
+      "sha256": "023d3015c3ccfa35a54d1fcb1f60112a2aafae04a04c61fc57fc1678ac0675e9",
+      "bytes": 4330885
+    },
+    {
+      "path": "preflight.json",
+      "sha256": "82a2a0d8e39af27ac117c2856bdadf59bc8d5431b0d6fe3a492078ee46f3e662",
+      "bytes": 572
+    },
+    {
+      "path": "raw_result.json",
+      "sha256": "6ee778a3af13c410eeb255946460ac3fee27c2860a12f4bc9ffafc6da76244be",
+      "bytes": 35354
+    },
+    {
+      "path": "views/A_base.png",
+      "sha256": "a3ae3d2920bc05933a0dc161fac2a466658a7213ea068ff38b5275447725abd5",
+      "bytes": 2374940
+    },
+    {
+      "path": "views/B_tile_1.png",
+      "sha256": "305b5b288a3c9201bb7eba78da1a7c0c297c7349051218718c189212e8a43420",
+      "bytes": 590223
+    },
+    {
+      "path": "views/B_tile_2.png",
+      "sha256": "7acde5dc9418385daf56597f028c4b412946d07b9d72fb86cf69cab93dbea9b9",
+      "bytes": 926864
+    },
+    {
+      "path": "views/B_tile_3.png",
+      "sha256": "e3c8d87ab94e06a0991b98f4a04af056f95406990b4884b586b8ff131b27c655",
+      "bytes": 980177
+    },
+    {
+      "path": "views/B_tile_4.png",
+      "sha256": "693b1e0fa267906e2d81429df3b02b2dba9d7739055bea882d8d75f9bd994538",
+      "bytes": 1076639
+    },
+    {
+      "path": "views/C_hand_1.png",
+      "sha256": "cc6f403137a608dfd6dbb83933891d07400af60a16b93fe609f2f134f3875534",
+      "bytes": 964889
+    },
+    {
+      "path": "views/C_hand_2.png",
+      "sha256": "0f28747bf48d33886c2d38abad3ac95f43005a7e4ceac34ce7cd4dfe3205d6e9",
+      "bytes": 69711
+    },
+    {
+      "path": "views/C_hand_query_base.png",
+      "sha256": "a3ae3d2920bc05933a0dc161fac2a466658a7213ea068ff38b5275447725abd5",
+      "bytes": 2374940
+    }
+  ]
+}

@@ -55,7 +55,8 @@
   - 两案根因不同；不支持用一个统一 small-held-object remediation 处理 017+020，也不授权放宽 held binding。
   - 产品决策：`fishing_020` 是 V1 known limitation；partial-person / implicit existential subject support 移出 V1，且不得追溯改写 V1 denominator 或失败历史。
 - `GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_V1/`
-  - 当前状态：`NARROW CONTRACT FREEZE CANDIDATE / REVIEW REQUIRED`；没有执行 Detector/VLM，没有代码修改。
+  - 当前状态：`CONTRACT APPROVED / FROZEN; GATE L COMPLETE / LOCALIZATION MECHANISM FOUND`。
   - 只包含 `F4::fishing_017`，比较 current 35% crop、固定 2×2 overlapping fine-scale tiles、deterministic hand-conditioned view。
-  - Gate L 只判正确手中小鱼能否进入 candidate universe；B/C 都失败则关闭且不调用 Relation VLM。
-  - Gate R 仅为后续单独授权预定义：成功定位 Arm 继续使用原样 Production held verifier，不允许放宽 relation contract。
+  - Gate L：A 未定位；B/C 均按冻结机械条件定位正确手中小鱼，8 次 Detector call 全部成功；Relation VLM call 为 0。
+  - 原始 detection、视图、overlay、逐文件 SHA 和裁决见 `gate_l_execution/` 与 `GATE_L_EXECUTION_REPORT.md`。
+  - Gate R 仍未授权：成功定位 Arm 如进入后续 Gate，只能继续使用原样 Production held verifier，不允许放宽 relation contract。
