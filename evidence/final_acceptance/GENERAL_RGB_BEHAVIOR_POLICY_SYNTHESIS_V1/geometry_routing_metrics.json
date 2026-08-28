@@ -1,0 +1,39 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_IDENTITY_GEOMETRY_METRICS_V1",
+  "status": "READ_ONLY",
+  "source_selection_sha256": "37fb7fcb97e5a324a4d76d81abe805e947e220420c97102eb6d690cc64c44563",
+  "crop_margin": 0.35,
+  "rule": {
+    "candidate_level": true,
+    "minimum_candidate_count": 2,
+    "minimum_neighbor_bbox_coverage": 0.70,
+    "neighbor_center_inside_crop": true,
+    "case_specific_override": false
+  },
+  "summary": {
+    "images": 9,
+    "candidates": 15,
+    "triggered_candidates": 3,
+    "F1_candidates": 10,
+    "F1_triggered": 0,
+    "minimum_triggered_coverage": 0.733713,
+    "maximum_non_triggered_coverage": 0.425829
+  },
+  "candidates": [
+    {"case_id": "challenge_001", "candidate_id": "A", "candidate_count": 2, "max_neighbor_bbox_coverage": 0.733713, "neighbor_center_inside": true, "trigger": true},
+    {"case_id": "challenge_001", "candidate_id": "B", "candidate_count": 2, "max_neighbor_bbox_coverage": 0.770369, "neighbor_center_inside": true, "trigger": true},
+    {"case_id": "challenge_003", "candidate_id": "A", "candidate_count": 1, "max_neighbor_bbox_coverage": 0.0, "neighbor_center_inside": false, "trigger": false},
+    {"case_id": "challenge_004", "candidate_id": "A", "candidate_count": 2, "max_neighbor_bbox_coverage": 0.743566, "neighbor_center_inside": true, "trigger": true},
+    {"case_id": "challenge_004", "candidate_id": "B", "candidate_count": 2, "max_neighbor_bbox_coverage": 0.425829, "neighbor_center_inside": false, "trigger": false},
+    {"case_id": "F1::fishing_001.jpeg", "candidate_id": "A", "candidate_count": 1, "max_neighbor_bbox_coverage": 0.0, "neighbor_center_inside": false, "trigger": false},
+    {"case_id": "F1::fishing_005.jpeg", "candidate_id": "A", "candidate_count": 1, "max_neighbor_bbox_coverage": 0.0, "neighbor_center_inside": false, "trigger": false},
+    {"case_id": "F1::fishing_010.jpeg", "candidate_id": "A", "candidate_count": 3, "max_neighbor_bbox_coverage": 0.152356, "neighbor_center_inside": false, "trigger": false},
+    {"case_id": "F1::fishing_010.jpeg", "candidate_id": "B", "candidate_count": 3, "max_neighbor_bbox_coverage": 0.210179, "neighbor_center_inside": false, "trigger": false},
+    {"case_id": "F1::fishing_010.jpeg", "candidate_id": "C", "candidate_count": 3, "max_neighbor_bbox_coverage": 0.0, "neighbor_center_inside": false, "trigger": false},
+    {"case_id": "F1::fishing_014.jpeg", "candidate_id": "A", "candidate_count": 3, "max_neighbor_bbox_coverage": 0.211300, "neighbor_center_inside": false, "trigger": false},
+    {"case_id": "F1::fishing_014.jpeg", "candidate_id": "B", "candidate_count": 3, "max_neighbor_bbox_coverage": 0.112872, "neighbor_center_inside": false, "trigger": false},
+    {"case_id": "F1::fishing_014.jpeg", "candidate_id": "C", "candidate_count": 3, "max_neighbor_bbox_coverage": 0.358354, "neighbor_center_inside": false, "trigger": false},
+    {"case_id": "F1::fishing_004.jpeg", "candidate_id": "A", "candidate_count": 1, "max_neighbor_bbox_coverage": 0.0, "neighbor_center_inside": false, "trigger": false},
+    {"case_id": "F1::fishing_018.jpeg", "candidate_id": "A", "candidate_count": 1, "max_neighbor_bbox_coverage": 0.0, "neighbor_center_inside": false, "trigger": false}
+  ]
+}

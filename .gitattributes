@@ -33,3 +33,7 @@ evidence/final_acceptance/GENERAL_RGB_R3_CANDIDATE_IDENTITY_REMEDIATION_V1/execu
 # Behavior long-range context 只读归因材料使用稳定 LF，便于逐字节审计。
 evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_LONG_RANGE_CONTEXT_REMEDIATION_V1/*.md text eol=lf
 evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_LONG_RANGE_CONTEXT_REMEDIATION_V1/*.json text eol=lf
+
+# Behavior Production Policy Synthesis 只读材料使用稳定 LF。
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_POLICY_SYNTHESIS_V1/*.md text eol=lf
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_POLICY_SYNTHESIS_V1/*.json text eol=lf

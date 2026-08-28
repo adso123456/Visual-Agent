@@ -1,0 +1,54 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_POLICY_SYNTHESIS_SIMULATION_V1",
+  "status": "READ_ONLY_COMPLETE_POLICY_NOT_CONFIRMED",
+  "model_calls": 0,
+  "production_code_modifications": 0,
+  "source": {
+    "R3_execution_commit": "8e3bd28a86342b35bcab5d8600be4aa858712599",
+    "R3_results_sha256": "70ffbd79bd562dfe00cff10191c60a89e58021f7fd067b4fdce33ec3dd00715e",
+    "long_range_execution_commit": "5ec286973f8f5bb3b487419ed5595d874c140a34",
+    "long_range_results_sha256": "8eba102c3afdb74460bec69777a8ea9b7253cced7792498adfc35a60d55a21f7"
+  },
+  "policy": {
+    "identity_risk_true": "TARGET_ANCHORED_FIRST_PASS",
+    "identity_risk_false": "CURRENT_PRODUCTION_FIRST_PASS",
+    "satisfied": "IMMUTABLE",
+    "uncertain": "IMMUTABLE",
+    "object_mediated_scene_interaction_not_satisfied": "ONE_TARGET_ANCHORED_FULL_SCENE_ESCALATION"
+  },
+  "identity_first_pass_changes_A_to_B": [
+    {"case_id": "challenge_001", "candidate_id": "A", "A": "satisfied", "B": "uncertain", "effect": "BENEFIT", "geometry_trigger": true},
+    {"case_id": "challenge_004", "candidate_id": "B", "A": "not_satisfied", "B": "uncertain", "effect": "SAFE_BUT_UNNECESSARY", "geometry_trigger": false},
+    {"case_id": "F1::fishing_014.jpeg", "candidate_id": "C", "A": "uncertain", "B": "satisfied", "effect": "FALSE_ASSIGNMENT_HARM", "geometry_trigger": false}
+  ],
+  "challenge_simulation": {
+    "challenge_001_bystander": "uncertain_5_of_5",
+    "challenge_001_true_operator": "satisfied_5_of_5",
+    "challenge_003": "uncertain_5_of_5",
+    "challenge_004_elder": "satisfied_5_of_5_after_long_range_escalation",
+    "challenge_004_child": "not_satisfied_5_of_5_after_existing_byte_identical_target_anchored_full_scene_input"
+  },
+  "F1": {
+    "production_A_candidate_correct": "5/10",
+    "production_A_task_correct": "3/6",
+    "synthesized_candidate_correct": "4/10",
+    "synthesized_task_correct": "2/6",
+    "de_emphasis_triggered": "0/10",
+    "new_de_emphasis_false_assignment": 0,
+    "regression_source": {
+      "case_id": "F1::fishing_010.jpeg",
+      "candidate_id": "C",
+      "production": "uncertain_then_not_satisfied",
+      "synthesized": "uncertain_immutable"
+    }
+  },
+  "decision": {
+    "deterministic_identity_geometry_seam": "FOUND_AS_RESEARCH_CANDIDATE",
+    "geometry_gated_de_emphasis": "ROUTABLE_ON_FROZEN_SET",
+    "full_behavior_production_policy": "NOT_CONFIRMED",
+    "production_modification": "NOT_AUTHORIZED",
+    "production_merge": "NOT_AUTHORIZED",
+    "general_rgb_final_acceptance_v2": "NOT_AUTHORIZED",
+    "remote_sensing_water_quality": "BLOCKED"
+  }
+}

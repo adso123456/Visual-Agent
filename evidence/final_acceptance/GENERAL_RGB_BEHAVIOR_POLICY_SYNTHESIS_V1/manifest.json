@@ -1,0 +1,27 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_POLICY_SYNTHESIS_MANIFEST_V1",
+  "status": "READ_ONLY_COMPLETE_FULL_POLICY_NOT_CONFIRMED",
+  "files": [
+    {
+      "path": "READ_ONLY_POLICY_SYNTHESIS.md",
+      "sha256": "37c179803f4a038ca5830ed0b3c2a4a03a34358f4dd604bdbbe6ea6e84b696e3",
+      "bytes": 5619
+    },
+    {
+      "path": "geometry_routing_metrics.json",
+      "sha256": "04680774013a64fc054d3a5be747e71d663e247c3c8c3b2f9ba681d4032200e9",
+      "bytes": 3227
+    },
+    {
+      "path": "policy_simulation.json",
+      "sha256": "1205b5fede28a440748869e8ebb16e678d871058593824b749cb65ea74ed2e12",
+      "bytes": 2582
+    }
+  ],
+  "model_calls": 0,
+  "production_code_modifications": 0,
+  "decision": {
+    "deterministic_identity_geometry_seam": "FOUND_AS_RESEARCH_CANDIDATE",
+    "full_behavior_production_policy": "NOT_CONFIRMED"
+  }
+}

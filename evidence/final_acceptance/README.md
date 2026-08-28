@@ -38,3 +38,8 @@
   - `NARROW_MECHANISM_CONTRACT.md` 已正式冻结：复用 R3 Arm B 的 target-anchored frozen first pass，仅对 `not_satisfied + OBJECT_MEDIATED_SCENE_INTERACTION` 增加 8 次 full-scene 调用；satisfied/uncertain immutable。
   - `execution_8_calls/` 已按冻结顺序执行：8/8 success，0 final failure，0 retry；老人 5/5 satisfied，三个 F1 negative 3/3 保持 not_satisfied。
   - 正式裁决：`LONG_RANGE_NOT_SATISFIED_ESCALATION_MECHANISM = CONFIRMED`；不得写成 Production policy confirmed，Production modification/merge 仍未授权。
+- `GENERAL_RGB_BEHAVIOR_POLICY_SYNTHESIS_V1/`
+  - 当前状态：`READ-ONLY COMPLETE / DETERMINISTIC IDENTITY GEOMETRY SEAM FOUND / FULL POLICY NOT CONFIRMED`。
+  - 35% target crop 对邻人 bbox 覆盖 >=70% 且邻人中心进入 crop 的 candidate-level 候选规则，在冻结 15 units 中只触发 `challenge_001` A/B 与 `challenge_004` elder，F1 触发 0/10。
+  - 该规则隔离了 identity de-emphasis 收益并避开 F1 de-emphasis harm；但 global uncertain immutable 仍令 `F1::fishing_010.jpeg` candidate C 从 Production 可解析的 not_satisfied 退化为 uncertain。
+  - 机械组合结果 F1 从 5/10、3/6 降至 4/10、2/6，因此完整 Behavior Production policy 仍未确认。
