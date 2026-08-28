@@ -1,6 +1,6 @@
 {
   "schema_version": "GENERAL_RGB_BEHAVIOR_LONG_RANGE_CONTEXT_MECHANISM_ANALYSIS_MANIFEST_V1",
-  "status": "NARROW_MECHANISM_CONTRACT_FROZEN",
+  "status": "LONG_RANGE_NOT_SATISFIED_ESCALATION_MECHANISM_CONFIRMED",
   "files": [
     {
       "path": "READ_ONLY_MECHANISM_ANALYSIS.md",
@@ -40,6 +40,19 @@
   ],
   "source_execution_commit": "8e3bd28a86342b35bcab5d8600be4aa858712599",
   "source_results_sha256": "70ffbd79bd562dfe00cff10191c60a89e58021f7fd067b4fdce33ec3dd00715e",
-  "model_calls": 0,
+  "execution_evidence": {
+    "directory": "execution_8_calls",
+    "artifact_manifest_sha256": "8e6dac2dfdbf0dd540a5d5c23facbe37a1f2a06847eaa69e1005a4c3dfd22b4e",
+    "terminal_records": 8,
+    "logical_model_calls": 8,
+    "success": 8,
+    "final_failure": 0,
+    "retry_count": 0,
+    "elder_satisfied": "5/5",
+    "F1_negative_not_satisfied": "3/3",
+    "verdict": "LONG_RANGE_NOT_SATISFIED_ESCALATION_MECHANISM_CONFIRMED",
+    "production_policy_confirmed": false
+  },
+  "read_only_attribution_model_calls": 0,
   "production_code_modifications": 0
 }

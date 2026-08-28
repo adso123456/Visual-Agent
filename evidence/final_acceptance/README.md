@@ -36,4 +36,5 @@
   - 儿童 C fallback 5/5 在 full scene 中识别成年钓鱼者，当前证据不支持 `CONTEXT_VISIBLE_BUT_SEMANTIC_REASONING_FAILED`。
   - 原始 A/B 提案存在两个执行前已知矛盾：当前 Production 的 `challenge_001` satisfied false assignment 不会触发新增 fallback；现有 uncertain fallback 已在 `challenge_003` 产生 5/5 harm。
   - `NARROW_MECHANISM_CONTRACT.md` 已正式冻结：复用 R3 Arm B 的 target-anchored frozen first pass，仅对 `not_satisfied + OBJECT_MEDIATED_SCENE_INTERACTION` 增加 8 次 full-scene 调用；satisfied/uncertain immutable。
-  - 通过时只允许裁决 `LONG_RANGE_NOT_SATISFIED_ESCALATION_MECHANISM = CONFIRMED`，不得写成 Production policy confirmed；Production modification/merge 仍未授权。
+  - `execution_8_calls/` 已按冻结顺序执行：8/8 success，0 final failure，0 retry；老人 5/5 satisfied，三个 F1 negative 3/3 保持 not_satisfied。
+  - 正式裁决：`LONG_RANGE_NOT_SATISFIED_ESCALATION_MECHANISM = CONFIRMED`；不得写成 Production policy confirmed，Production modification/merge 仍未授权。

@@ -1,0 +1,31 @@
+{
+  "F1_negative_not_satisfied": 3,
+  "F1_negative_total": 3,
+  "completion_tokens": 474,
+  "confirmed": true,
+  "elder_satisfied": 5,
+  "elder_total": 5,
+  "failure": 0,
+  "gate": {
+    "F1_negative_not_satisfied_3_of_3": true,
+    "elder_satisfied_at_least_4_of_5": true,
+    "final_failure_zero": true,
+    "inherited_controls_verified": true,
+    "logical_model_calls_8": true,
+    "new_false_assignment_zero": true,
+    "terminal_records_8": true
+  },
+  "logical_model_calls": 8,
+  "model_latency_seconds": 147.7641179999996,
+  "production_policy_confirmed": false,
+  "prompt_tokens": 38072,
+  "protocol_attempts": 8,
+  "recovered": 0,
+  "retry_count": 0,
+  "schema_version": "LONG_RANGE_8_EXECUTION_SUMMARY_V1",
+  "success": 8,
+  "terminal_records": 8,
+  "total_tokens": 38546,
+  "verdict": "LONG_RANGE_NOT_SATISFIED_ESCALATION_MECHANISM_CONFIRMED",
+  "wall_seconds": 147.82839608192444
+}

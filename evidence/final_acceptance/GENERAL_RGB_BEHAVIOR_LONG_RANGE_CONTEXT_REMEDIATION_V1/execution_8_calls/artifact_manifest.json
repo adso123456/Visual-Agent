@@ -1,0 +1,36 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_LONG_RANGE_CONTEXT_EXECUTION_MANIFEST_V1",
+  "status": "EXECUTION_COMPLETE",
+  "files": [
+    {
+      "path": "execution_summary.json",
+      "sha256": "121e2780186f08c79e2c84ddcd9c29b00d8eb0b2f4932a1ddeb68c9e81461bcc",
+      "bytes": 926
+    },
+    {
+      "path": "LONG_RANGE_8_EXECUTION_REPORT.md",
+      "sha256": "8a0da9cc8e639b5d0e3b9a715c3aac57885f877a08c293f7644b1a2326d8dcb6",
+      "bytes": 2697
+    },
+    {
+      "path": "preflight_receipt.json",
+      "sha256": "3a09f3a0adff5e4fcb736d0046e53e068628266ab01caa74be556c2ee8c85c35",
+      "bytes": 738
+    },
+    {
+      "path": "results.jsonl",
+      "sha256": "8eba102c3afdb74460bec69777a8ea9b7253cced7792498adfc35a60d55a21f7",
+      "bytes": 18106
+    },
+    {
+      "path": "run_frozen_8.py",
+      "sha256": "c9aefb1aa2ab958a32f2c3de310be5365fbb64ca9a59ce958b7cb3355ada15e4",
+      "bytes": 12640
+    }
+  ],
+  "terminal_records": 8,
+  "logical_model_calls": 8,
+  "final_failure": 0,
+  "verdict": "LONG_RANGE_NOT_SATISFIED_ESCALATION_MECHANISM_CONFIRMED",
+  "production_policy_confirmed": false
+}

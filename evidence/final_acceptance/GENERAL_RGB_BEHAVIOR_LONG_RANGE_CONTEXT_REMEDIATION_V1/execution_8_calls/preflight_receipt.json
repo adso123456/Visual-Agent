@@ -1,0 +1,14 @@
+{
+  "base_url": "http://192.168.250.9:11434/v1",
+  "benchmark_head": "22b22570c5f9ac6bd5249dae8f70782f500fb810",
+  "contract_sha256": "72669d329adb3cb0907eff9fdfb0dc8667add59b029bcb2fd90cca1c0dd8db57",
+  "evidence_head": "16d48bbe74b9d297ac66748d7bf39a75cfea42e9",
+  "inherited_controls_verified": 20,
+  "model": "qwen3.8:27b-mtp-q4_K_M",
+  "scheduled_logical_calls": 8,
+  "schema_version": "LONG_RANGE_8_PREFLIGHT_V1",
+  "slot_sequence_sha256": "2eb24f569fecd157d338ee83b830b69ddc0aff234d8655b5208a389bcb03785c",
+  "slots_sha256": "c7fbb627ac597293c5bea6284fc1f0af9066c6caa5472823af5762f0e736585c",
+  "source_results_sha256": "70ffbd79bd562dfe00cff10191c60a89e58021f7fd067b4fdce33ec3dd00715e",
+  "timeout_seconds": 120.0
+}
