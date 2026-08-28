@@ -45,3 +45,7 @@ evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_UNCERTAIN_ROUTING_SYNTHESIS_V1/*.
 # Relation small held-object 只读归因材料使用稳定 LF。
 evidence/final_acceptance/GENERAL_RGB_RELATION_SMALL_HELD_OBJECT_MECHANISM_ANALYSIS_V1/*.md text eol=lf
 evidence/final_acceptance/GENERAL_RGB_RELATION_SMALL_HELD_OBJECT_MECHANISM_ANALYSIS_V1/*.json text eol=lf
+
+# F4 small held-object 窄合同候选材料使用稳定 LF。
+evidence/final_acceptance/GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_V1/*.md text eol=lf
+evidence/final_acceptance/GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_V1/*.json text eol=lf

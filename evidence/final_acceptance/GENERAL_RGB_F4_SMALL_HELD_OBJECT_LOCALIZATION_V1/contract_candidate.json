@@ -1,0 +1,93 @@
+{
+  "schema_version": "GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_CONTRACT_V1",
+  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "execution_authorized": false,
+  "production_modification_authorized": false,
+  "case_id": "F4::fishing_017.jpeg",
+  "prompt": "把拿着鱼的人标出来",
+  "image_sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99",
+  "image_size": [2260, 3390],
+  "subject": {
+    "id": "A",
+    "bbox": [3.93, -13.14, 1140.06, 2078.16]
+  },
+  "related_object": "fish",
+  "relation": "held_by_target",
+  "detector": {
+    "model": "IDEA-Research/grounding-dino-base",
+    "box_threshold": 0.3,
+    "text_threshold": 0.3,
+    "parameter_tuning": false
+  },
+  "reference": {
+    "status": "CANDIDATE_REQUIRES_CONTRACT_REVIEW",
+    "bbox": [880, 680, 1040, 860],
+    "center": [960, 770],
+    "meaning": "small fish visibly held in subject A hand"
+  },
+  "arms": {
+    "A": {
+      "name": "CURRENT_CONTROL",
+      "base_crop": [0, 0, 1538, 2811],
+      "queries": ["fish"],
+      "detector_calls": 1
+    },
+    "B": {
+      "name": "FIXED_OVERLAPPING_FINE_SCALE_TILES",
+      "tiles": [
+        [0, 0, 923, 1687],
+        [615, 0, 1538, 1687],
+        [0, 1124, 923, 2811],
+        [615, 1124, 1538, 2811]
+      ],
+      "queries": ["fish", "fish", "fish", "fish"],
+      "detector_calls": 4
+    },
+    "C": {
+      "name": "DETERMINISTIC_HAND_CONDITIONED_VIEW",
+      "base_crop": [0, 0, 1538, 2811],
+      "hand_query": "hand",
+      "hand_filter": "bbox_center_inside_subject_bbox",
+      "hand_sort": ["confidence_desc", "x1", "y1", "x2", "y2"],
+      "hand_top_k": 2,
+      "hand_crop_margin_each_side": 1.0,
+      "fish_query": "fish",
+      "detector_calls_maximum": 3,
+      "no_hand_fallback": false
+    }
+  },
+  "deduplication": {
+    "scope": "WITHIN_ARM",
+    "iou_threshold": 0.8,
+    "keep": "stable_sorted_first"
+  },
+  "localization_success": {
+    "contains_reference_center": true,
+    "candidate_center_inside_reference_bbox": true,
+    "minimum_iou_with_reference_bbox": 0.1
+  },
+  "gate_L": {
+    "repetitions_per_arm": 1,
+    "failed_execution_replacement": false,
+    "B_or_C_success_required": true,
+    "if_no_success": "CLOSE_WITHOUT_RELATION_VLM_CALLS"
+  },
+  "gate_R": {
+    "authorized": false,
+    "calls_per_gate_L_successful_arm": 5,
+    "target_satisfied_minimum": "4/5",
+    "non_target_satisfied_maximum": 0,
+    "subject_retained_minimum": "4/5",
+    "final_failure_maximum": 0,
+    "failed_execution_replacement": false,
+    "verifier": "UNCHANGED_PRODUCTION_VERIFY_RELATIONS"
+  },
+  "excluded": [
+    "F4::fishing_020.jpeg",
+    "planner_changes",
+    "subject_validity_changes",
+    "ownership_resolver_changes",
+    "held_by_target_relaxation",
+    "production_detector_main_path_changes"
+  ]
+}

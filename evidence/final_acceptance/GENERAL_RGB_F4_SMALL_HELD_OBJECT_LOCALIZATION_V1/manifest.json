@@ -1,0 +1,55 @@
+{
+  "schema_version": "GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_MANIFEST_V1",
+  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "files": [
+    {
+      "path": "NARROW_CONTRACT_CANDIDATE.md",
+      "sha256": "ef04692e4bc2fac763ecbba7ba3839d8a7cd108b572ccef0a06450242e9d5f46",
+      "bytes": 5974
+    },
+    {
+      "path": "contract_candidate.json",
+      "sha256": "d0c4dd2493dced61b7e9a77e6c980e846f0279361d57446f7a2ba5d4bd5f44cb",
+      "bytes": 2787
+    },
+    {
+      "path": "selection_candidate.json",
+      "sha256": "57f4c6a5f0da7b29c61702a5691ff3218ca898a827cb5b821d9aabcbee5f6a38",
+      "bytes": 840
+    }
+  ],
+  "source_assets": [
+    {
+      "path": "../../F4/fishing_017/original.jpeg",
+      "sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99",
+      "bytes": 835504
+    },
+    {
+      "path": "../GENERAL_RGB_FINAL_ACCEPTANCE_REMEDIATION_V1/targeted_gates/raw_execution_gate2.jsonl",
+      "sha256": "ee83183c9c919f62ad9f22f0eeee905e613e92dc3a905641bceee8cb8878fe78",
+      "bytes": 200387
+    },
+    {
+      "path": "../GENERAL_RGB_RELATION_SMALL_HELD_OBJECT_MECHANISM_ANALYSIS_V1/mechanical_attribution.json",
+      "sha256": "b46242d7add5e7ba98962e30a85c5f33e29d9337205a6bd43283960076fc580e",
+      "bytes": 2663
+    }
+  ],
+  "evidence_source_commit": "87c19200402d1f0889a5f8b9048689e7c4055d82",
+  "production_reference_commit": "be54f3c89171d8b16f53c82397e9f468fb4b4c97",
+  "model_calls": 0,
+  "detector_calls": 0,
+  "production_code_modifications": 0,
+  "benchmark_code_modifications": 0,
+  "decision": {
+    "contract_frozen": false,
+    "review_required": true,
+    "F4_017_only": true,
+    "F4_020_excluded": true,
+    "held_verifier_relaxation": "FORBIDDEN",
+    "execution": "NOT_AUTHORIZED",
+    "production_modification": "NOT_AUTHORIZED",
+    "general_rgb_final_acceptance_v2": "NOT_AUTHORIZED",
+    "remote_sensing_water_quality": "BLOCKED"
+  }
+}

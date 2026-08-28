@@ -1,0 +1,23 @@
+{
+  "schema_version": "GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_SELECTION_V1",
+  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "cases": [
+    {
+      "case_id": "F4::fishing_017.jpeg",
+      "image_path": "evidence/F4/fishing_017/original.jpeg",
+      "image_sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99",
+      "image_size": [2260, 3390],
+      "prompt": "把拿着鱼的人标出来",
+      "subject_id": "A",
+      "subject_bbox": [3.93, -13.14, 1140.06, 2078.16],
+      "subject_context_crop": [0, 0, 1538, 2811],
+      "requested_related_object": "fish",
+      "relation": "held_by_target",
+      "reference_bbox_candidate": [880, 680, 1040, 860],
+      "reference_center_candidate": [960, 770]
+    }
+  ],
+  "case_count": 1,
+  "pollution_case_count": 0,
+  "partial_person_case_count": 0
+}

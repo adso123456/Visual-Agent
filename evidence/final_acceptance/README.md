@@ -49,7 +49,13 @@
   - 机械复用既有字节锁定结果后：challenge_001 无 false assignment、challenge_003 uncertain 5/5、challenge_004 elder satisfied 5/5、child 安全，F1 恢复至 5/10 candidate、3/6 task，冻结集回归为 0。
   - 仍需独立 targeted confirmation 或实现候选审查；Production modification/merge 与 Final Acceptance V2 未授权。
 - `GENERAL_RGB_RELATION_SMALL_HELD_OBJECT_MECHANISM_ANALYSIS_V1/`
-  - 当前状态：`READ-ONLY COMPLETE`；模型调用 0，Production/benchmark 代码修改 0。
+  - 当前状态：`ACCEPTED / CLOSED`；模型调用 0，Production/benchmark 代码修改 0。
   - `F4::fishing_017`：手中目标小鱼未进入 related candidate universe；两轮 grounding 的 R1–R7 均为桶内/桶边鱼，7/7 held binding 稳定 `not_satisfied`。首因是 requested small held object 未 grounding，不是 verifier 拒绝了正确目标。
   - `F4::fishing_020`：subject validity 在 relation 之前将手/前臂局部人物判为 invalid；relation candidates/bindings/attempts 均为 0。首因是 partial-person / existential-subject contract mismatch。
   - 两案根因不同；不支持用一个统一 small-held-object remediation 处理 017+020，也不授权放宽 held binding。
+  - 产品决策：`fishing_020` 是 V1 known limitation；partial-person / implicit existential subject support 移出 V1，且不得追溯改写 V1 denominator 或失败历史。
+- `GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_V1/`
+  - 当前状态：`NARROW CONTRACT FREEZE CANDIDATE / REVIEW REQUIRED`；没有执行 Detector/VLM，没有代码修改。
+  - 只包含 `F4::fishing_017`，比较 current 35% crop、固定 2×2 overlapping fine-scale tiles、deterministic hand-conditioned view。
+  - Gate L 只判正确手中小鱼能否进入 candidate universe；B/C 都失败则关闭且不调用 Relation VLM。
+  - Gate R 仅为后续单独授权预定义：成功定位 Arm 继续使用原样 Production held verifier，不允许放宽 relation contract。

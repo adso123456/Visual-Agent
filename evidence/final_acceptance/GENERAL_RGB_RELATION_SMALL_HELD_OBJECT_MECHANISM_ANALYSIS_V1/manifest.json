@@ -1,6 +1,6 @@
 {
   "schema_version": "GENERAL_RGB_RELATION_SMALL_HELD_OBJECT_MECHANISM_ANALYSIS_MANIFEST_V1",
-  "status": "READ_ONLY_COMPLETE",
+  "status": "ACCEPTED_CLOSED",
   "files": [
     {
       "path": "READ_ONLY_MECHANISM_ANALYSIS.md",
@@ -11,6 +11,11 @@
       "path": "mechanical_attribution.json",
       "sha256": "b46242d7add5e7ba98962e30a85c5f33e29d9337205a6bd43283960076fc580e",
       "bytes": 2663
+    },
+    {
+      "path": "REVIEW_AND_PRODUCT_DECISION_ADDENDUM.md",
+      "sha256": "04db34b833fe5173b5444d4437ed1e073dc98a4908277ea83fe00331064755a4",
+      "bytes": 1193
     }
   ],
   "source_assets": [
@@ -61,6 +66,9 @@
   "decision": {
     "F4_017": "RELATED_OBJECT_NOT_GROUNDED",
     "F4_020": "SUBJECT_VALIDITY_REJECTED_BEFORE_RELATION",
+    "F4_020_product_status": "V1_KNOWN_LIMITATION",
+    "partial_person_implicit_existential_subject_support": "OUT_OF_V1_SCOPE",
+    "V1_historical_denominator_rewrite": "FORBIDDEN",
     "same_root_cause": false,
     "unified_remediation_supported": false,
     "production_modification": "NOT_AUTHORIZED",
