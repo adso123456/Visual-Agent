@@ -1,6 +1,6 @@
 {
   "schema_version": "GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_SELECTION_V1",
-  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "status": "CONTRACT_APPROVED_FROZEN",
   "cases": [
     {
       "case_id": "F4::fishing_017.jpeg",
@@ -13,8 +13,8 @@
       "subject_context_crop": [0, 0, 1538, 2811],
       "requested_related_object": "fish",
       "relation": "held_by_target",
-      "reference_bbox_candidate": [880, 680, 1040, 860],
-      "reference_center_candidate": [960, 770]
+      "reference_bbox_candidate": [820, 690, 945, 780],
+      "reference_center_candidate": [885, 735]
     }
   ],
   "case_count": 1,

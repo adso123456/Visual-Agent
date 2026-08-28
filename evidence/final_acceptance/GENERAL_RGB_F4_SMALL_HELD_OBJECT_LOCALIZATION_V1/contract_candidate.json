@@ -1,7 +1,8 @@
 {
   "schema_version": "GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_CONTRACT_V1",
-  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
-  "execution_authorized": false,
+  "status": "CONTRACT_APPROVED_FROZEN",
+  "execution_authorized": true,
+  "authorized_scope": "GATE_L_DETECTOR_ONLY",
   "production_modification_authorized": false,
   "case_id": "F4::fishing_017.jpeg",
   "prompt": "把拿着鱼的人标出来",
@@ -20,9 +21,9 @@
     "parameter_tuning": false
   },
   "reference": {
-    "status": "CANDIDATE_REQUIRES_CONTRACT_REVIEW",
-    "bbox": [880, 680, 1040, 860],
-    "center": [960, 770],
+    "status": "APPROVED_FROZEN",
+    "bbox": [820, 690, 945, 780],
+    "center": [885, 735],
     "meaning": "small fish visibly held in subject A hand"
   },
   "arms": {
@@ -67,6 +68,7 @@
     "minimum_iou_with_reference_bbox": 0.1
   },
   "gate_L": {
+    "authorized": true,
     "repetitions_per_arm": 1,
     "failed_execution_replacement": false,
     "B_or_C_success_required": true,

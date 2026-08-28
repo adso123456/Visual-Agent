@@ -3,13 +3,16 @@
 ## 状态
 
 ```text
-NARROW CONTRACT FREEZE CANDIDATE
-= REVIEW REQUIRED
+CONTRACT
+= APPROVED / FROZEN
 
 CODE MODIFICATION
 = NOT AUTHORIZED
 
-DETECTOR / VLM EXECUTION
+GATE L DETECTOR EXECUTION
+= AUTHORIZED
+
+RELATION VLM EXECUTION
 = NOT AUTHORIZED
 
 PRODUCTION MODIFICATION / MERGE
@@ -21,7 +24,7 @@ PRODUCTION MODIFICATION / MERGE
 
 它不修改 `held_by_target` 语义，不研究 `fishing_020`，也不确认完整 Relation Production policy。
 
-## Frozen input candidate
+## Frozen input
 
 - Case：`F4::fishing_017.jpeg`。
 - Prompt：`把拿着鱼的人标出来`。
@@ -31,9 +34,10 @@ PRODUCTION MODIFICATION / MERGE
 - Requested related object：`fish`。
 - Relation：`held_by_target`。
 - Current fixed 35% subject crop：`[0, 0, 1538, 2811]`。
-- 人工 reference region 候选：`[880, 680, 1040, 860]`；reference center：`[960, 770]`。
+- 人工 reference region：`[820, 690, 945, 780]`；reference center：`[885, 735]`。
 
-reference region 只标识手中目标小鱼，不包含桶内鱼。它属于本次合同审查项；合同冻结后不得根据检测结果移动。
+reference region 只标识手中目标小鱼，不包含桶内鱼。该 annotation 已通过人工审查并冻结，
+不得根据检测结果移动。
 
 ## Common detector contract
 
@@ -82,8 +86,8 @@ Detector calls 最大为 3：1 次 `hand` 加最多 2 次 `fish`。hand 未检�
 
 一个 remapped fish detection 只有同时满足以下机械条件，才记为 `TARGET_SMALL_FISH_LOCALIZED`：
 
-1. bbox 包含 reference center `[960, 770]`；
-2. bbox 与 reference region `[880, 680, 1040, 860]` 的 IoU `>= 0.10`；
+1. bbox 包含 reference center `[885, 735]`；
+2. bbox 与 reference region `[820, 690, 945, 780]` 的 IoU `>= 0.10`；
 3. bbox center 位于 reference region 内。
 
 所有其他 fish detections 记录为 non-target candidates；不得因视觉上“接近手”人工升级为 target。
