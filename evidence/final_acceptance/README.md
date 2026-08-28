@@ -30,7 +30,9 @@
   - B 消除了 `challenge_001` false assignment 并保留 `challenge_003` uncertain，但未保留 `challenge_004` elder，且 F1 相对 A 回归；C 消除了 `challenge_001` false assignment并保持 F1，但破坏 `challenge_003` uncertain、产生 5 次 fallback harm，且未保留 elder。
   - B/C 均未通过全部冻结 Gate；R3 Production evidence policy 保持不变，Production modification/merge 与 Final Acceptance V2 均未授权。
 - `GENERAL_RGB_BEHAVIOR_LONG_RANGE_CONTEXT_REMEDIATION_V1/`
-  - 当前状态：`READ_ONLY_MECHANISM_ANALYSIS_COMPLETE / NARROW CONTRACT DESIGN NOT YET AUTHORIZED`。
+  - 当前状态：`READ_ONLY ATTRIBUTION ACCEPTED / CLOSED; NARROW CONTRACT DESIGN CHANGES REQUIRED`。
   - 只读分析 `challenge_004` 的 15 条老人候选与 15 条儿童候选既有执行记录；模型调用 0、Production 修改 0、补跑 0。
   - 主归因：`CONTEXT_NOT_VISIBLE_IN_FIRST_PASS`；次级机制：first-pass binary `not_satisfied` 使老人 0/15 进入 full-scene fallback。
   - 儿童 C fallback 5/5 在 full scene 中识别成年钓鱼者，当前证据不支持 `CONTEXT_VISIBLE_BUT_SEMANTIC_REASONING_FAILED`。
+  - 原始 A/B 提案存在两个执行前已知矛盾：当前 Production 的 `challenge_001` satisfied false assignment 不会触发新增 fallback；现有 uncertain fallback 已在 `challenge_003` 产生 5/5 harm。
+  - `NARROW_CONTRACT_FEASIBILITY_REVIEW.md` 建议复用 R3 Arm B 的 target-anchored frozen first pass，仅对 `not_satisfied + frozen long-range class` 增加 8 次 full-scene 调用；等待合同决策，尚未冻结或执行。

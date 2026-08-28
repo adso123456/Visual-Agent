@@ -1,0 +1,51 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_LONG_RANGE_CONTEXT_CONTRACT_FEASIBILITY_V1",
+  "status": "CONTRACT_DESIGN_CHANGES_REQUIRED",
+  "model_calls": 0,
+  "production_code_modifications": 0,
+  "blocking": [
+    {
+      "id": "CURRENT_SATISFIED_FALSE_ASSIGNMENT_NOT_REVIEWED",
+      "case_id": "challenge_001",
+      "fact": "production_first_pass_bystander_satisfied_5_of_5",
+      "reason": "proposed_B_does_not_review_satisfied",
+      "conflicting_gate": "bystander_false_assignment_0_of_5"
+    },
+    {
+      "id": "UNCERTAIN_FALLBACK_ALREADY_HARMS_LEGITIMATE_AMBIGUITY",
+      "case_id": "challenge_003",
+      "fact": "arms_A_and_C_uncertain_to_satisfied_5_of_5",
+      "reason": "proposed_B_retains_uncertain_fallback",
+      "conflicting_gate": "legitimate_uncertain_5_of_5"
+    }
+  ],
+  "recommended_contract": {
+    "control": "FROZEN_R3_ARM_B_TARGET_ANCHORED_FIRST_PASS",
+    "reuse_first_pass_records": true,
+    "satisfied": "IMMUTABLE",
+    "uncertain": "IMMUTABLE",
+    "not_satisfied": "ESCALATE_ONCE_IF_FROZEN_LONG_RANGE_CLASS",
+    "long_range_class": {
+      "enum": "OBJECT_MEDIATED_SCENE_INTERACTION",
+      "definition": "behavior truth may require visual continuity between the target and an interaction object or environmental endpoint outside the 35 percent candidate-local crop",
+      "classification_time": "BEFORE_FIRST_PASS_RESULT_IS_READ",
+      "case_specific_override": false
+    },
+    "fallback_evidence": "TARGET_ANCHORED_FULL_SCENE",
+    "new_model_calls": 8,
+    "new_call_slots": {
+      "challenge_004_elder": 5,
+      "F1_fishing_010_candidate_A": 1,
+      "F1_fishing_010_candidate_B": 1,
+      "F1_fishing_018_candidate_A": 1
+    }
+  },
+  "decision": {
+    "recommended": "APPROVE_CORRECTED_MINIMAL_CONTRACT",
+    "contract_frozen": false,
+    "code_modification": "NOT_AUTHORIZED",
+    "model_execution": "NOT_AUTHORIZED",
+    "production_merge": "NOT_AUTHORIZED",
+    "remote_sensing_water_quality": "BLOCKED"
+  }
+}

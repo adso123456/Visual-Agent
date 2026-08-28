@@ -1,6 +1,6 @@
 {
   "schema_version": "GENERAL_RGB_BEHAVIOR_LONG_RANGE_CONTEXT_MECHANISM_ANALYSIS_MANIFEST_V1",
-  "status": "READ_ONLY_MECHANISM_ANALYSIS_COMPLETE",
+  "status": "READ_ONLY_ATTRIBUTION_ACCEPTED_CONTRACT_DESIGN_CHANGES_REQUIRED",
   "files": [
     {
       "path": "READ_ONLY_MECHANISM_ANALYSIS.md",
@@ -11,6 +11,16 @@
       "path": "mechanism_analysis.json",
       "sha256": "3d459fa6948d06d8309a6d905b0f88054a56da6b55c037e41e5025d1cbe68c7c",
       "bytes": 1967
+    },
+    {
+      "path": "NARROW_CONTRACT_FEASIBILITY_REVIEW.md",
+      "sha256": "6941a2a757ac90ae2c716498bb0f85d77d89c51cf100a7185fa35683d8364b1c",
+      "bytes": 4986
+    },
+    {
+      "path": "narrow_contract_feasibility.json",
+      "sha256": "f7adb43f69531986c3bcd4f121ec5a7fdda5dc042bad5d112c1b16a8fa4f0ebe",
+      "bytes": 1965
     }
   ],
   "source_execution_commit": "8e3bd28a86342b35bcab5d8600be4aa858712599",
