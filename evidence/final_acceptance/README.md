@@ -43,3 +43,8 @@
   - 35% target crop 对邻人 bbox 覆盖 >=70% 且邻人中心进入 crop 的 candidate-level 候选规则，在冻结 15 units 中只触发 `challenge_001` A/B 与 `challenge_004` elder，F1 触发 0/10。
   - 该规则隔离了 identity de-emphasis 收益并避开 F1 de-emphasis harm；但 global uncertain immutable 仍令 `F1::fishing_010.jpeg` candidate C 从 Production 可解析的 not_satisfied 退化为 uncertain。
   - 机械组合结果 F1 从 5/10、3/6 降至 4/10、2/6，因此完整 Behavior Production policy 仍未确认。
+- `GENERAL_RGB_BEHAVIOR_UNCERTAIN_ROUTING_SYNTHESIS_V1/`
+  - 当前状态：`READ-ONLY COMPLETE / BEHAVIOR PRODUCTION POLICY CANDIDATE SYNTHESIZED / NOT PRODUCTION CONFIRMED`。
+  - single-candidate uncertain 保持 immutable；multi-candidate uncertain 允许一次 full-scene，identity-risk 使用 target-anchored view，ordinary 使用当前 Production view。
+  - 机械复用既有字节锁定结果后：challenge_001 无 false assignment、challenge_003 uncertain 5/5、challenge_004 elder satisfied 5/5、child 安全，F1 恢复至 5/10 candidate、3/6 task，冻结集回归为 0。
+  - 仍需独立 targeted confirmation 或实现候选审查；Production modification/merge 与 Final Acceptance V2 未授权。

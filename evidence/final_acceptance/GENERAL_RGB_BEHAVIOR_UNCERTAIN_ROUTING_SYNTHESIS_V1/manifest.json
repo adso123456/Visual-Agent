@@ -1,0 +1,24 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_UNCERTAIN_ROUTING_SYNTHESIS_MANIFEST_V1",
+  "status": "READ_ONLY_COMPLETE_POLICY_CANDIDATE_SYNTHESIZED_NOT_PRODUCTION_CONFIRMED",
+  "files": [
+    {
+      "path": "READ_ONLY_UNCERTAIN_ROUTING_SIMULATION.md",
+      "sha256": "ab1c75c184937f874b03cc1ca5c1e7910757937c9578c21d1eb1d4e0c45ccda6",
+      "bytes": 4470
+    },
+    {
+      "path": "mechanical_simulation.json",
+      "sha256": "a206c0d8dbde3f11ef9cbff57b036d8a595d99d29d5fd2d6593d7caa5ae18562",
+      "bytes": 2595
+    }
+  ],
+  "model_calls": 0,
+  "production_code_modifications": 0,
+  "decision": {
+    "behavior_production_policy_candidate": "SYNTHESIZED_NO_KNOWN_FROZEN_SET_REGRESSION",
+    "production_policy_confirmed": false,
+    "relation_small_held_object_blocker": "PENDING",
+    "remote_sensing_water_quality": "BLOCKED"
+  }
+}

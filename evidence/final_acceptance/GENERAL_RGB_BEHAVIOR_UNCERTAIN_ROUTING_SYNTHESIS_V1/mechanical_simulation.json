@@ -1,0 +1,60 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_UNCERTAIN_ROUTING_MECHANICAL_SIMULATION_V1",
+  "status": "READ_ONLY_COMPLETE_POLICY_CANDIDATE_SYNTHESIZED",
+  "model_calls": 0,
+  "production_code_modifications": 0,
+  "source": {
+    "R3_results_sha256": "70ffbd79bd562dfe00cff10191c60a89e58021f7fd067b4fdce33ec3dd00715e",
+    "identity_geometry_metrics_sha256": "04680774013a64fc054d3a5be747e71d663e247c3c8c3b2f9ba681d4032200e9",
+    "long_range_results_sha256": "8eba102c3afdb74460bec69777a8ea9b7253cced7792498adfc35a60d55a21f7"
+  },
+  "policy": {
+    "identity_risk_true": "R3_ARM_B_TARGET_ANCHORED_FIRST_PASS",
+    "identity_risk_false": "R3_ARM_A_CURRENT_PRODUCTION_FIRST_PASS",
+    "satisfied": "IMMUTABLE",
+    "single_candidate_uncertain": "IMMUTABLE",
+    "multi_candidate_uncertain_identity_risk": "R3_ARM_C_TARGET_ANCHORED_FULL_SCENE",
+    "multi_candidate_uncertain_ordinary": "R3_ARM_A_CURRENT_PRODUCTION_FULL_SCENE",
+    "object_mediated_not_satisfied": "TARGET_ANCHORED_FULL_SCENE_ESCALATION"
+  },
+  "challenge_results": {
+    "challenge_001_bystander": {"status": "uncertain", "count": 5, "false_assignment": 0},
+    "challenge_001_true_operator": {"status": "satisfied", "count": 5},
+    "challenge_003": {"status": "uncertain", "count": 5, "confident_binary": 0},
+    "challenge_004_elder": {"status": "satisfied", "count": 5},
+    "challenge_004_child": {"status": "not_satisfied", "count": 5, "false_assignment": 0}
+  },
+  "F1": {
+    "candidate_correct": "5/10",
+    "task_correct": "3/6",
+    "production_A_candidate_correct": "5/10",
+    "production_A_task_correct": "3/6",
+    "candidate_regression": 0,
+    "task_regression": 0,
+    "task_status": {
+      "F1::fishing_001.jpeg": "satisfied",
+      "F1::fishing_005.jpeg": "satisfied",
+      "F1::fishing_010.jpeg": "not_satisfied",
+      "F1::fishing_014.jpeg": "satisfied",
+      "F1::fishing_004.jpeg": "satisfied",
+      "F1::fishing_018.jpeg": "not_satisfied"
+    }
+  },
+  "provenance_counts": {
+    "candidate_observations": 35,
+    "no_escalation": 14,
+    "long_range_8_call": 8,
+    "R3_C_identity_uncertain_full_scene": 5,
+    "R3_C_long_range_child_full_scene": 5,
+    "R3_A_ordinary_uncertain_full_scene": 3
+  },
+  "decision": {
+    "behavior_production_policy_candidate": "SYNTHESIZED_NO_KNOWN_FROZEN_SET_REGRESSION",
+    "production_policy_confirmed": false,
+    "production_modification": "NOT_AUTHORIZED",
+    "production_merge": "NOT_AUTHORIZED",
+    "general_rgb_final_acceptance_v2": "NOT_AUTHORIZED",
+    "relation_small_held_object_blocker": "PENDING",
+    "remote_sensing_water_quality": "BLOCKED"
+  }
+}
