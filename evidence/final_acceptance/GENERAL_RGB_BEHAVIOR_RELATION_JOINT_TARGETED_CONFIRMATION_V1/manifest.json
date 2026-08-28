@@ -1,16 +1,16 @@
 {
   "schema_version": "GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_MANIFEST_V1",
-  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "status": "CONTRACT_FROZEN",
   "files": [
     {
       "path": "JOINT_TARGETED_CONFIRMATION_CONTRACT_CANDIDATE.md",
-      "sha256": "52a55ff6c81b51f73fa7e9b6a4a2c4dc64f4c1d532247fd810f8b133a0eb9ffd",
-      "bytes": 7558
+      "sha256": "e0491d5865fffd718ee1f3a87308d70229fe58b879e5d5fbcc8212ce25a482c0",
+      "bytes": 7530
     },
     {
       "path": "contract_candidate.json",
-      "sha256": "196274c59d970f01c56913d2ff34058a0a6bca5309649267e155813dd93ba67f",
-      "bytes": 5283
+      "sha256": "eb2bc508a32b8e7d3ee74776ca01923d5741d6c57bf03d9faf6dd7f4f3ffd780",
+      "bytes": 5257
     },
     {
       "path": "selection_candidate.json",
@@ -43,8 +43,8 @@
   "model_calls": 0,
   "production_code_modifications": 0,
   "decision": {
-    "contract_frozen": false,
-    "review_required": true,
+    "contract_frozen": true,
+    "review_required": false,
     "model_execution": "NOT_AUTHORIZED",
     "production_modification": "NOT_AUTHORIZED",
     "production_merge": "NOT_AUTHORIZED",

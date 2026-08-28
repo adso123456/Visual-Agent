@@ -1,6 +1,6 @@
 # GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_V1
 
-状态：`CONTRACT FREEZE CANDIDATE / REVIEW REQUIRED`
+状态：`CONTRACT FROZEN`
 
 本阶段只确认两个已经由历史证据合成或确认的 General RGB policy candidate：Behavior deterministic routing 与 Relation hand-conditioned fallback activation。它不再研究新 evidence Arm，不包含 `F4::fishing_020`，不修改 Production，也不执行模型。
 
