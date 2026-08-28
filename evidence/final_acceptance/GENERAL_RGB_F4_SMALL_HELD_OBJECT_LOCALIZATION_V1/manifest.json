@@ -1,6 +1,6 @@
 {
   "schema_version": "GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_MANIFEST_V1",
-  "status": "GATE_R_EXECUTION_AUTHORIZED",
+  "status": "GATE_R_EXECUTION_COMPLETE_ARM_C_CONFIRMED",
   "files": [
     {
       "path": "NARROW_CONTRACT_CANDIDATE.md",
@@ -96,6 +96,26 @@
       "path": "GATE_R_CONTRACT_CLARIFICATION.md",
       "sha256": "4b559555f4fd730971447b146fe3740e6eadee271c68e7e61ccf1eba8fa4b379",
       "bytes": 1133
+    },
+    {
+      "path": "GATE_R_EXECUTION_REPORT.md",
+      "sha256": "4874fad81de2efa96ae96014a7c7e969bc6d0c3a22320c16029da4fbf40413bc",
+      "bytes": 2761
+    },
+    {
+      "path": "gate_r_execution/raw_results.jsonl",
+      "sha256": "e8cd91d7584594fac3fee39dd9793a9042cbbe990770f43257483d6455c46917",
+      "bytes": 20823
+    },
+    {
+      "path": "gate_r_execution/raw_results.preflight.json",
+      "sha256": "14c448cc603cee6376602fc3ea3c9b70b9d52fee38dd916bf3947bed471ef57d",
+      "bytes": 943
+    },
+    {
+      "path": "gate_r_execution/raw_results.summary.json",
+      "sha256": "d9fe1415da0eee40da72c152db1fb9c0325b08655039e18e345d9e86bd6c3cf4",
+      "bytes": 710
     }
   ],
   "source_assets": [
@@ -117,11 +137,12 @@
   ],
   "evidence_source_commit": "87c19200402d1f0889a5f8b9048689e7c4055d82",
   "production_reference_commit": "be54f3c89171d8b16f53c82397e9f468fb4b4c97",
-  "model_calls": 0,
+  "model_calls": 10,
   "detector_calls": 8,
   "production_code_modifications": 0,
   "benchmark_code_modifications": 2,
   "benchmark_runner_commit": "984d882dd3f9246403cb10a0be4d738840511963",
+  "gate_R_runner_review_commit": "c6451a710e929116ee0941b2befc1ce223128232",
   "gate_L_result": {
     "terminal_status": "success",
     "arm_A_target_localized": false,
@@ -131,14 +152,27 @@
     "decision": "LOCALIZATION_MECHANISM_FOUND",
     "relation_vlm_calls": 0
   },
+  "gate_R_result": {
+    "terminal_success": 10,
+    "final_failure": 0,
+    "retry_count": 0,
+    "recovered": 0,
+    "arm_B_gate_pass": false,
+    "arm_C_gate_pass": true,
+    "confirmed_arms": ["C"],
+    "mechanism_confirmed": true,
+    "all_arms_pass": false,
+    "non_target_satisfied": 0
+  },
   "decision": {
     "contract_frozen": true,
     "review_required": false,
     "F4_017_only": true,
     "F4_020_excluded": true,
     "held_verifier_relaxation": "FORBIDDEN",
-    "execution": "GATE_L_COMPLETE",
-    "gate_R": "AUTHORIZED_BY_SEPARATE_ARTIFACT",
+    "execution": "GATE_L_AND_GATE_R_COMPLETE",
+    "gate_R": "ARM_C_CONFIRMED_ARM_B_NOT_CONFIRMED",
+    "production_policy": "NOT_CONFIRMED",
     "production_modification": "NOT_AUTHORIZED",
     "general_rgb_final_acceptance_v2": "NOT_AUTHORIZED",
     "remote_sensing_water_quality": "BLOCKED"

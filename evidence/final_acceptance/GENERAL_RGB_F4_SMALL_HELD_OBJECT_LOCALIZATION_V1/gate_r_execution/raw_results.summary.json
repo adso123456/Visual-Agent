@@ -1,0 +1,30 @@
+{
+  "schema_version": "GENERAL_RGB_F4_SMALL_HELD_OBJECT_GATE_R_SUMMARY_V1",
+  "scheduled_calls": 10,
+  "failed_execution_replacement": false,
+  "arms": {
+    "B": {
+      "scheduled": 5,
+      "success": 5,
+      "final_failure": 0,
+      "target_small_fish_satisfied": 0,
+      "subject_A_retained": 0,
+      "non_target_satisfied": 0,
+      "gate_pass": false
+    },
+    "C": {
+      "scheduled": 5,
+      "success": 5,
+      "final_failure": 0,
+      "target_small_fish_satisfied": 5,
+      "subject_A_retained": 5,
+      "non_target_satisfied": 0,
+      "gate_pass": true
+    }
+  },
+  "confirmed_arms": [
+    "C"
+  ],
+  "mechanism_confirmed": true,
+  "all_arms_pass": false
+}

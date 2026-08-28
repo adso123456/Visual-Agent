@@ -55,8 +55,11 @@
   - 两案根因不同；不支持用一个统一 small-held-object remediation 处理 017+020，也不授权放宽 held binding。
   - 产品决策：`fishing_020` 是 V1 known limitation；partial-person / implicit existential subject support 移出 V1，且不得追溯改写 V1 denominator 或失败历史。
 - `GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_V1/`
-  - 当前状态：`CONTRACT APPROVED / FROZEN; GATE L COMPLETE / LOCALIZATION MECHANISM FOUND`。
+  - 当前状态：`GATE L PASS / CLOSED; GATE R COMPLETE; ARM C CONFIRMED`。
   - 只包含 `F4::fishing_017`，比较 current 35% crop、固定 2×2 overlapping fine-scale tiles、deterministic hand-conditioned view。
   - Gate L：A 未定位；B/C 均按冻结机械条件定位正确手中小鱼，8 次 Detector call 全部成功；Relation VLM call 为 0。
   - 原始 detection、视图、overlay、逐文件 SHA 和裁决见 `gate_l_execution/` 与 `GATE_L_EXECUTION_REPORT.md`。
-  - Gate R 仍未授权：成功定位 Arm 如进入后续 Gate，只能继续使用原样 Production held verifier，不允许放宽 relation contract。
+  - Gate R：B/C 各 5 次，10/10 terminal success、0 retry、0 false binding、0 final failure；B target 0/5，C target 5/5 且 subject A retained 5/5。
+  - 正式机制结论：Arm C 的 hand-conditioned localization + 原样 Production held verifier 已确认；Arm B 未确认。
+  - 原始 Gate R 结果、逐 Arm summary、authorization provenance 与报告见 `gate_r_execution/`、`GATE_R_EXECUTION_AUTHORIZATION.json` 和 `GATE_R_EXECUTION_REPORT.md`。
+  - Production policy、Production modification/merge 与 Final Acceptance V2 仍未授权。
