@@ -1,0 +1,54 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_MANIFEST_V1",
+  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "files": [
+    {
+      "path": "JOINT_TARGETED_CONFIRMATION_CONTRACT_CANDIDATE.md",
+      "sha256": "e11918fba219b687b46934a0a96c98664b4754a5cb690d42359effee2cc91b64",
+      "bytes": 6331
+    },
+    {
+      "path": "contract_candidate.json",
+      "sha256": "e5c4a084f0b31be81212f78d2e3ccbc5c6eddf41e6a17a7e2acb967bfb4c3caa",
+      "bytes": 3927
+    },
+    {
+      "path": "selection_candidate.json",
+      "sha256": "383b9742b31ec7c92d53f46c041bb6cdf58b92fdda8b640f62570a89a6074a2f",
+      "bytes": 3961
+    }
+  ],
+  "source_assets": [
+    {
+      "path": "../GENERAL_RGB_BEHAVIOR_UNCERTAIN_ROUTING_SYNTHESIS_V1/mechanical_simulation.json",
+      "sha256": "a206c0d8dbde3f11ef9cbff57b036d8a595d99d29d5fd2d6593d7caa5ae18562",
+      "bytes": 2595
+    },
+    {
+      "path": "../GENERAL_RGB_BEHAVIOR_POLICY_SYNTHESIS_V1/geometry_routing_metrics.json",
+      "sha256": "04680774013a64fc054d3a5be747e71d663e247c3c8c3b2f9ba681d4032200e9",
+      "bytes": 3227
+    },
+    {
+      "path": "../GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_V1/gate_r_execution/raw_results.summary.json",
+      "sha256": "d9fe1415da0eee40da72c152db1fb9c0325b08655039e18e345d9e86bd6c3cf4",
+      "bytes": 710
+    },
+    {
+      "path": "../GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_V1/gate_r_execution/raw_results.jsonl",
+      "sha256": "e8cd91d7584594fac3fee39dd9793a9042cbbe990770f43257483d6455c46917",
+      "bytes": 20823
+    }
+  ],
+  "model_calls": 0,
+  "production_code_modifications": 0,
+  "decision": {
+    "contract_frozen": false,
+    "review_required": true,
+    "model_execution": "NOT_AUTHORIZED",
+    "production_modification": "NOT_AUTHORIZED",
+    "production_merge": "NOT_AUTHORIZED",
+    "general_rgb_final_acceptance_v2": "NOT_AUTHORIZED",
+    "remote_sensing_water_quality": "BLOCKED"
+  }
+}

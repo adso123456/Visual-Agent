@@ -1,0 +1,83 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_SELECTION_V1",
+  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "behavior_source": {
+    "selection": "../GENERAL_RGB_R3_CANDIDATE_IDENTITY_REMEDIATION_V1/frozen_selection.json",
+    "selection_sha256": "37fb7fcb97e5a324a4d76d81abe805e947e220420c97102eb6d690cc64c44563",
+    "cases": [
+      {"case_id": "challenge_001", "candidate_ids": ["A", "B"], "repetitions": 5},
+      {"case_id": "challenge_003", "candidate_ids": ["A"], "repetitions": 5},
+      {"case_id": "challenge_004", "candidate_ids": ["A", "B"], "repetitions": 5},
+      {"case_id": "F1::fishing_001.jpeg", "candidate_ids": ["A"], "repetitions": 1},
+      {"case_id": "F1::fishing_005.jpeg", "candidate_ids": ["A"], "repetitions": 1},
+      {"case_id": "F1::fishing_010.jpeg", "candidate_ids": ["A", "B", "C"], "repetitions": 1},
+      {"case_id": "F1::fishing_014.jpeg", "candidate_ids": ["A", "B", "C"], "repetitions": 1},
+      {"case_id": "F1::fishing_004.jpeg", "candidate_ids": ["A"], "repetitions": 1},
+      {"case_id": "F1::fishing_018.jpeg", "candidate_ids": ["A"], "repetitions": 1}
+    ],
+    "unique_images": 9,
+    "candidate_units": 15,
+    "first_pass_observations": 35
+  },
+  "relation_cases": [
+    {
+      "case_id": "F4::fishing_017.jpeg",
+      "prompt": "把拿着鱼的人标出来",
+      "image_path": "../GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99.jpeg",
+      "image_sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99",
+      "related_object": "fish",
+      "relation": "held_by_target",
+      "expected": "satisfied",
+      "repetitions": 5,
+      "role": "HAND_FALLBACK_POSITIVE"
+    },
+    {
+      "case_id": "F2::fishing_005.jpeg",
+      "prompt": "把拿着鱼竿的人描边",
+      "image_path": "../GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145.jpeg",
+      "image_sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145",
+      "related_object": "fishing rod",
+      "relation": "held_by_target",
+      "expected": "not_satisfied",
+      "repetitions": 5,
+      "role": "HAND_FALLBACK_NEGATIVE"
+    },
+    {
+      "case_id": "F2::fishing_024.jpeg",
+      "prompt": "把拿着鱼竿的人描边",
+      "image_path": "../GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/f70b44333494c9788b0747ac78847a3a8ed67692b1ff1b0edcdc6d15b32d60c6.jpeg",
+      "image_sha256": "f70b44333494c9788b0747ac78847a3a8ed67692b1ff1b0edcdc6d15b32d60c6",
+      "related_object": "fishing rod",
+      "relation": "held_by_target",
+      "expected": "satisfied",
+      "repetitions": 1,
+      "role": "EXISTING_PATH_POSITIVE_NO_HAND_FALLBACK"
+    },
+    {
+      "case_id": "core_003",
+      "prompt": "只给手持雨伞的人描边",
+      "image_path": "../GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0.jpg",
+      "image_sha256": "5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0",
+      "related_object": "umbrella",
+      "relation": "held_by_target",
+      "expected": "satisfied",
+      "repetitions": 1,
+      "role": "DOMAIN_NEUTRAL_EXISTING_PATH_POSITIVE_NO_HAND_FALLBACK"
+    },
+    {
+      "case_id": "core_014",
+      "prompt": "只给手持雨伞的人描边",
+      "image_path": "../GENERAL_RGB_FINAL_ACCEPTANCE_V1/inputs/by_sha256/9eeaa87013b4e800930e8a411b58ff9e2fd5383906b1a022f4a712720af34cc2.jpg",
+      "image_sha256": "9eeaa87013b4e800930e8a411b58ff9e2fd5383906b1a022f4a712720af34cc2",
+      "related_object": "umbrella",
+      "relation": "held_by_target",
+      "expected": "not_satisfied",
+      "repetitions": 1,
+      "role": "DOMAIN_NEUTRAL_ZERO_TARGET_SAFETY"
+    }
+  ],
+  "relation_case_count": 5,
+  "relation_policy_executions": 13,
+  "pollution_case_count": 0,
+  "partial_person_case_count": 0
+}

@@ -1,0 +1,111 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_CONTRACT_V1",
+  "status": "CONTRACT_FREEZE_CANDIDATE_REVIEW_REQUIRED",
+  "contract_frozen": false,
+  "review_required": true,
+  "model_execution_authorized": false,
+  "production_modification_authorized": false,
+  "behavior_policy": {
+    "identity_risk": {
+      "candidate_count_minimum": 2,
+      "neighbor_bbox_coverage_minimum": 0.70,
+      "neighbor_center_inside_crop": true,
+      "crop_margin": 0.35,
+      "decision_time": "BEFORE_VLM"
+    },
+    "first_pass": {
+      "identity_risk_true": "TARGET_ANCHORED_LOCAL",
+      "identity_risk_false": "CURRENT_PRODUCTION"
+    },
+    "status_routing": {
+      "satisfied": "IMMUTABLE",
+      "uncertain_single_candidate": "IMMUTABLE",
+      "uncertain_multi_candidate": "ONE_FULL_SCENE_DISAMBIGUATION",
+      "not_satisfied_object_mediated_scene_interaction": "ONE_TARGET_ANCHORED_FULL_SCENE_ESCALATION"
+    },
+    "target_anchoring": {
+      "non_target_original_weight": 0.45,
+      "non_target_gray_weight": 0.55,
+      "gray_rgb": [128, 128, 128],
+      "target_overlap_wins": true,
+      "target_contour_rgb": [255, 0, 0],
+      "target_contour_width": 5,
+      "context_deletion": false
+    }
+  },
+  "relation_policy": {
+    "relation": "held_by_target",
+    "activation_all_required": [
+      "RELATION_ELIGIBLE_SUBJECT",
+      "INITIAL_FULL_SCENE_EXECUTED_NO_SATISFIED",
+      "EXISTING_SUBJECT_CONDITIONED_EXECUTED_NO_SATISFIED"
+    ],
+    "maximum_hand_fallbacks_per_subject": 1,
+    "hand_conditioned_localization": {
+      "base_view": "EXISTING_35_PERCENT_SUBJECT_CONTEXT",
+      "detector": "IDEA-Research/grounding-dino-base",
+      "hand_query": "hand",
+      "threshold": 0.30,
+      "hand_filter": "CENTER_INSIDE_SUBJECT_BBOX",
+      "hand_sort": ["confidence_desc", "x1", "y1", "x2", "y2"],
+      "hand_top_k": 2,
+      "hand_crop_margin_each_side": 1.0,
+      "related_query": "UNCHANGED_RELATED_OBJECT_CANONICAL",
+      "dedup_iou": 0.80
+    },
+    "new_candidates_only_verification": true,
+    "verifier": "UNCHANGED_PRODUCTION_VERIFY_RELATIONS",
+    "old_candidate_reverification": false,
+    "held_contract_relaxation": false,
+    "ownership_resolver_change": false,
+    "relation_evidence": "FULL_SCENE_MARKED_JPEG",
+    "png_18_mib_normalization": "NOT_APPLICABLE"
+  },
+  "evaluation": {
+    "behavior_unique_images": 9,
+    "behavior_candidate_units": 15,
+    "behavior_first_pass_observations": 35,
+    "behavior_maximum_fallback_calls": 35,
+    "relation_case_count": 5,
+    "relation_policy_executions": 13,
+    "relation_maximum_verifier_calls": 39,
+    "concurrency": 1,
+    "failed_execution_replacement": false
+  },
+  "gate": {
+    "behavior": {
+      "challenge_001_bystander_satisfied_max": 0,
+      "challenge_001_operator_retained_min": "4/5",
+      "challenge_003_uncertain": "5/5",
+      "challenge_003_confident_binary_max": 0,
+      "challenge_004_elder_retained_min": "4/5",
+      "challenge_004_child_satisfied_max": 0,
+      "F1_candidate_correct_min": "5/10",
+      "F1_task_correct_min": "3/6",
+      "F1_candidate_regression_max": 0,
+      "F1_task_regression_max": 0,
+      "new_false_assignment_max": 0,
+      "fallback_harm_max": 0
+    },
+    "relation": {
+      "F4_017_target_satisfied_min": "4/5",
+      "F4_017_subject_retained_min": "4/5",
+      "F4_017_non_target_satisfied_max": 0,
+      "F2_005_subject_retained": "0/5",
+      "F2_005_hand_candidate_satisfied_max": 0,
+      "existing_positive_hand_detector_calls": 0,
+      "existing_positive_hand_relation_calls": 0,
+      "core_014_target_count": 0,
+      "new_false_binding_max": 0
+    },
+    "provider_protocol_validator_evidence_final_failure_max": 0
+  },
+  "future_execution": {
+    "model": "qwen3.8:27b-mtp-q4_K_M",
+    "base_url": "http://192.168.250.9:11434/v1",
+    "timeout_seconds": 120,
+    "temperature": 0,
+    "planner_calls": 0,
+    "final_response_calls": 0
+  }
+}

@@ -63,3 +63,8 @@
   - 正式机制结论：Arm C 的 hand-conditioned localization + 原样 Production held verifier 已确认；Arm B 未确认。
   - 原始 Gate R 结果、逐 Arm summary、authorization provenance 与报告见 `gate_r_execution/`、`GATE_R_EXECUTION_AUTHORIZATION.json` 和 `GATE_R_EXECUTION_REPORT.md`。
   - Production policy、Production modification/merge 与 Final Acceptance V2 仍未授权。
+- `GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_V1/`
+  - 当前状态：`CONTRACT FREEZE CANDIDATE / REVIEW REQUIRED`；模型调用 0，Production 修改 0。
+  - 联合 Behavior synthesized policy candidate 与 F4 Arm C hand-conditioned Relation activation fallback，不新增 evidence Arm。
+  - 候选 selection：Behavior 9图/15 candidates/35 observations；Relation 5 cases/13 policy executions；不包含 pollution 或 `F4::fishing_020`。
+  - Model execution、Production modification/merge 与 Final Acceptance V2 均未授权。
