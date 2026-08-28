@@ -1,6 +1,6 @@
 {
   "schema_version": "GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_MANIFEST_V1",
-  "status": "GATE_L_EXECUTION_COMPLETE_LOCALIZATION_MECHANISM_FOUND",
+  "status": "GATE_R_EXECUTION_AUTHORIZED",
   "files": [
     {
       "path": "NARROW_CONTRACT_CANDIDATE.md",
@@ -86,6 +86,16 @@
       "path": "gate_l_execution/views/C_hand_query_base.png",
       "sha256": "a3ae3d2920bc05933a0dc161fac2a466658a7213ea068ff38b5275447725abd5",
       "bytes": 2374940
+    },
+    {
+      "path": "GATE_R_EXECUTION_AUTHORIZATION.json",
+      "sha256": "9ae5258a4cb6a31baec5aa4db5099094d63a4ee4c91cdc47803c69477690c71a",
+      "bytes": 425
+    },
+    {
+      "path": "GATE_R_CONTRACT_CLARIFICATION.md",
+      "sha256": "4b559555f4fd730971447b146fe3740e6eadee271c68e7e61ccf1eba8fa4b379",
+      "bytes": 1133
     }
   ],
   "source_assets": [
@@ -128,7 +138,7 @@
     "F4_020_excluded": true,
     "held_verifier_relaxation": "FORBIDDEN",
     "execution": "GATE_L_COMPLETE",
-    "gate_R": "NOT_AUTHORIZED",
+    "gate_R": "AUTHORIZED_BY_SEPARATE_ARTIFACT",
     "production_modification": "NOT_AUTHORIZED",
     "general_rgb_final_acceptance_v2": "NOT_AUTHORIZED",
     "remote_sensing_water_quality": "BLOCKED"
