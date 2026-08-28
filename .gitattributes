@@ -41,3 +41,7 @@ evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_POLICY_SYNTHESIS_V1/*.json text e
 # Behavior uncertain routing 只读机械模拟材料使用稳定 LF。
 evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_UNCERTAIN_ROUTING_SYNTHESIS_V1/*.md text eol=lf
 evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_UNCERTAIN_ROUTING_SYNTHESIS_V1/*.json text eol=lf
+
+# Relation small held-object 只读归因材料使用稳定 LF。
+evidence/final_acceptance/GENERAL_RGB_RELATION_SMALL_HELD_OBJECT_MECHANISM_ANALYSIS_V1/*.md text eol=lf
+evidence/final_acceptance/GENERAL_RGB_RELATION_SMALL_HELD_OBJECT_MECHANISM_ANALYSIS_V1/*.json text eol=lf

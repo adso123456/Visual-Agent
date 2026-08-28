@@ -1,0 +1,69 @@
+{
+  "schema_version": "GENERAL_RGB_RELATION_SMALL_HELD_OBJECT_MECHANISM_ANALYSIS_MANIFEST_V1",
+  "status": "READ_ONLY_COMPLETE",
+  "files": [
+    {
+      "path": "READ_ONLY_MECHANISM_ANALYSIS.md",
+      "sha256": "e5c89597477a93902da6b5d50ef9e0fad1fa8be3fe4beefff2e65f87e9b71644",
+      "bytes": 6038
+    },
+    {
+      "path": "mechanical_attribution.json",
+      "sha256": "b46242d7add5e7ba98962e30a85c5f33e29d9337205a6bd43283960076fc580e",
+      "bytes": 2663
+    }
+  ],
+  "source_assets": [
+    {
+      "path": "../GENERAL_RGB_FINAL_ACCEPTANCE_REMEDIATION_V1/targeted_gates/raw_execution_gate2.jsonl",
+      "sha256": "ee83183c9c919f62ad9f22f0eeee905e613e92dc3a905641bceee8cb8878fe78",
+      "bytes": 200387
+    },
+    {
+      "path": "../GENERAL_RGB_FINAL_ACCEPTANCE_REMEDIATION_V1/targeted_gates/raw_execution_gate3.jsonl",
+      "sha256": "a100b2b37061ed44b11808bc33cbd9a6ac224f29c4bc21e50736119751c178af",
+      "bytes": 361643
+    },
+    {
+      "path": "../GENERAL_RGB_FINAL_ACCEPTANCE_V1/artifacts/F4__fishing_017/result_001.json",
+      "sha256": "1dbd8bf37b521d727aead02aed030b833d7be25f67a2ab2c4659ebdce81c048c",
+      "bytes": 6099
+    },
+    {
+      "path": "../GENERAL_RGB_FINAL_ACCEPTANCE_V1/artifacts/F4__fishing_020/result_001.json",
+      "sha256": "402730a82127f7593bae1faec2a4d140f27c12f35ff3fc9c457fb9c6dfdbcf61",
+      "bytes": 3787
+    },
+    {
+      "path": "../../F4/fishing_017/evaluation.json",
+      "sha256": "e7e0b68e69f56be23dd479849b9197bd4b7b3690bf5f4acbfe632ac0fe92fadf",
+      "bytes": 585
+    },
+    {
+      "path": "../../F4/fishing_020/evaluation.json",
+      "sha256": "b14a6207938042738df6ed475f93f899c9d74dd42c10fbb3cc34c7e4527e167f",
+      "bytes": 580
+    },
+    {
+      "path": "../../architecture_research/SCENE_CONTEXT_GROUNDING_AND_CONTRACT_V1B/method_b_simplified.jsonl",
+      "sha256": "e46eaa8a9ee42c8b934ab580bacef7f7cf4598e407b6fa9f38005f1c9765c493",
+      "bytes": 41434
+    },
+    {
+      "path": "../../architecture_research/SCENE_CONTEXT_GROUNDING_AND_CONTRACT_V1B/single_candidate_full_scene.jsonl",
+      "sha256": "d8209e90722f4f8f6f145f6b98f3195973070696ae74cb5fc1199ba43d342cca",
+      "bytes": 56576
+    }
+  ],
+  "model_calls": 0,
+  "production_code_modifications": 0,
+  "benchmark_code_modifications": 0,
+  "decision": {
+    "F4_017": "RELATED_OBJECT_NOT_GROUNDED",
+    "F4_020": "SUBJECT_VALIDITY_REJECTED_BEFORE_RELATION",
+    "same_root_cause": false,
+    "unified_remediation_supported": false,
+    "production_modification": "NOT_AUTHORIZED",
+    "remote_sensing_water_quality": "BLOCKED"
+  }
+}

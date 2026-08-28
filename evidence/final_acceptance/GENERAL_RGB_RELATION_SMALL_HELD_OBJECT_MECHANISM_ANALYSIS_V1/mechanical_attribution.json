@@ -1,0 +1,56 @@
+{
+  "schema_version": "GENERAL_RGB_RELATION_SMALL_HELD_OBJECT_MECHANISM_ATTRIBUTION_V1",
+  "status": "READ_ONLY_COMPLETE",
+  "model_calls": 0,
+  "production_code_modifications": 0,
+  "benchmark_code_modifications": 0,
+  "cases": {
+    "F4::fishing_017.jpeg": {
+      "image_sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99",
+      "primary_attribution": "RELATED_OBJECT_NOT_GROUNDED",
+      "qualified_object": "requested small fish held in subject hand",
+      "supported_mechanism": "SMALL_OBJECT_EVIDENCE_SCALE_OR_LOCALIZATION_INSUFFICIENT",
+      "subject_relation_context_insufficient": false,
+      "target_object_grounded_but_binding_rejected": false,
+      "gate2_repetitions": 5,
+      "gate2_terminal_success": 5,
+      "initial_related_candidates_per_repetition": 4,
+      "secondary_related_candidates_per_repetition": 3,
+      "total_related_candidates_per_repetition": 7,
+      "binding_status_per_repetition": {
+        "satisfied": 0,
+        "uncertain": 0,
+        "not_satisfied": 7
+      },
+      "retained": "0/5",
+      "protocol_retry_count": 0,
+      "mechanical_observation": "All R1-R7 evidence identifies bucket/container fish; no candidate anchors the small fish visibly held in the hand."
+    },
+    "F4::fishing_020.jpeg": {
+      "image_sha256": "c3179a25a12c012e194afd9e5163a360a4687b8527aeaf67205cad591eef44d5",
+      "primary_attribution": "SUBJECT_VALIDITY_REJECTED_BEFORE_RELATION",
+      "contract_boundary": "PARTIAL_PERSON_EXISTENTIAL_SUBJECT_MISMATCH",
+      "subject_candidate_count": 1,
+      "subject_bbox": [87.97, 14.53, 3826.89, 5734.23],
+      "subject_dino_confidence": 0.5861,
+      "subject_validity": "invalid",
+      "related_candidate_count": 0,
+      "relation_binding_count": 0,
+      "relation_verification_attempts": 0,
+      "relation_internal_category_applicable": false,
+      "existing_research_full_scene_task_status": "satisfied",
+      "mechanical_observation": "Production rejects the hands/forearms-only person candidate before any related-object grounding or held binding call."
+    }
+  },
+  "decision": {
+    "same_root_cause": false,
+    "unified_small_held_object_remediation_supported": false,
+    "F4_017_next_boundary": "NARROW_SMALL_OBJECT_LOCALIZATION_OR_EVIDENCE_SCALE_CONTRACT_DESIGN",
+    "F4_020_next_boundary": "HUMAN_DECISION_ON_PARTIAL_PERSON_EXISTENTIAL_SUBJECT_PRODUCT_SUPPORT",
+    "behavior_policy_candidate": "UNCHANGED_NOT_INDEPENDENTLY_CONFIRMED",
+    "production_modification": "NOT_AUTHORIZED",
+    "production_merge": "NOT_AUTHORIZED",
+    "general_rgb_final_acceptance_v2": "NOT_AUTHORIZED",
+    "remote_sensing_water_quality": "BLOCKED"
+  }
+}
