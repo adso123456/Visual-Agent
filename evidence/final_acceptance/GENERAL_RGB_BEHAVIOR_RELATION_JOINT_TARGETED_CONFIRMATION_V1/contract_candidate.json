@@ -5,6 +5,10 @@
   "review_required": true,
   "model_execution_authorized": false,
   "production_modification_authorized": false,
+  "formal_production_master": "4dac9cb3823e22e90ff3bb8157c6544c6c6b88fd",
+  "joint_confirmation_execution_base": "be54f3c89171d8b16f53c82397e9f468fb4b4c97",
+  "execution_base_role": "REVIEWED_REMEDIATION_EXECUTION_BASE_NOT_MERGED_PRODUCTION",
+  "runner_preflight_must_lock_execution_base_and_production_file_sha": true,
   "behavior_policy": {
     "identity_risk": {
       "candidate_count_minimum": 2,
@@ -37,9 +41,12 @@
     "relation": "held_by_target",
     "activation_all_required": [
       "RELATION_ELIGIBLE_SUBJECT",
-      "INITIAL_FULL_SCENE_EXECUTED_NO_SATISFIED",
-      "EXISTING_SUBJECT_CONDITIONED_EXECUTED_NO_SATISFIED"
+      "INITIAL_STAGE_FINISHED_NO_SATISFIED",
+      "EXISTING_SUBJECT_CONDITIONED_LOCALIZATION_ATTEMPTED",
+      "AFTER_EXISTING_SECONDARY_STAGE_NO_SATISFIED"
     ],
+    "existing_secondary_verification": "OPTIONAL_ONLY_WHEN_SECONDARY_CANDIDATES_NONEMPTY",
+    "zero_secondary_candidates_are_hand_fallback_eligible": true,
     "maximum_hand_fallbacks_per_subject": 1,
     "hand_conditioned_localization": {
       "base_view": "EXISTING_35_PERCENT_SUBJECT_CONTEXT",
@@ -51,7 +58,22 @@
       "hand_top_k": 2,
       "hand_crop_margin_each_side": 1.0,
       "related_query": "UNCHANGED_RELATED_OBJECT_CANONICAL",
-      "dedup_iou": 0.80
+      "admission": {
+        "sequence": [
+          "REMAP_HAND_DETECTIONS_TO_ORIGINAL",
+          "COMPARE_WITH_ALL_INITIAL_AND_EXISTING_SECONDARY_CANDIDATES",
+          "REJECT_OLD_CANDIDATE_MATCH_IF_IOU_GTE_0_80",
+          "STABLE_DEDUP_REMAINING_HAND_CANDIDATES",
+          "ASSIGN_NEW_IDS_TO_GENUINE_ADMISSIONS_ONLY",
+          "VERIFY_GENUINE_ADMISSIONS_ONLY"
+        ],
+        "old_candidate_scope": [
+          "INITIAL_FULL_SCENE",
+          "EXISTING_SUBJECT_CONDITIONED_SECONDARY"
+        ],
+        "old_candidate_match_iou_threshold": 0.80,
+        "remaining_hand_candidate_dedup_iou_threshold": 0.80
+      }
     },
     "new_candidates_only_verification": true,
     "verifier": "UNCHANGED_PRODUCTION_VERIFY_RELATIONS",
@@ -84,6 +106,7 @@
       "F1_task_correct_min": "3/6",
       "F1_candidate_regression_max": 0,
       "F1_task_regression_max": 0,
+      "F1_fishing_004_A_satisfied": true,
       "new_false_assignment_max": 0,
       "fallback_harm_max": 0
     },
@@ -91,8 +114,12 @@
       "F4_017_target_satisfied_min": "4/5",
       "F4_017_subject_retained_min": "4/5",
       "F4_017_non_target_satisfied_max": 0,
+      "F4_017_hand_fallback_attempts": "5/5",
       "F2_005_subject_retained": "0/5",
       "F2_005_hand_candidate_satisfied_max": 0,
+      "F2_005_hand_fallback_attempts": "5/5",
+      "F2_024_final_positive_retained": true,
+      "core_003_final_positive_retained": true,
       "existing_positive_hand_detector_calls": 0,
       "existing_positive_hand_relation_calls": 0,
       "core_014_target_count": 0,

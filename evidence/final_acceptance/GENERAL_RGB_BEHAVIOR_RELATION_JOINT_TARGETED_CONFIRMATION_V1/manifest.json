@@ -4,13 +4,13 @@
   "files": [
     {
       "path": "JOINT_TARGETED_CONFIRMATION_CONTRACT_CANDIDATE.md",
-      "sha256": "e11918fba219b687b46934a0a96c98664b4754a5cb690d42359effee2cc91b64",
-      "bytes": 6331
+      "sha256": "52a55ff6c81b51f73fa7e9b6a4a2c4dc64f4c1d532247fd810f8b133a0eb9ffd",
+      "bytes": 7558
     },
     {
       "path": "contract_candidate.json",
-      "sha256": "e5c4a084f0b31be81212f78d2e3ccbc5c6eddf41e6a17a7e2acb967bfb4c3caa",
-      "bytes": 3927
+      "sha256": "196274c59d970f01c56913d2ff34058a0a6bca5309649267e155813dd93ba67f",
+      "bytes": 5283
     },
     {
       "path": "selection_candidate.json",

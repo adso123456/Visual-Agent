@@ -4,6 +4,13 @@
 
 本阶段只确认两个已经由历史证据合成或确认的 General RGB policy candidate：Behavior deterministic routing 与 Relation hand-conditioned fallback activation。它不再研究新 evidence Arm，不包含 `F4::fishing_020`，不修改 Production，也不执行模型。
 
+## 0. Execution base
+
+- Formal Production master：`4dac9cb3823e22e90ff3bb8157c6544c6c6b88fd`。
+- Joint confirmation execution base：`be54f3c89171d8b16f53c82397e9f468fb4b4c97`。
+- `be54f3c...` 是已审查的 remediation execution base，不是已合入的 Production。
+- 后续 runner preflight 必须锁定 execution base，并锁定本轮依赖的 Production 文件 SHA；不得在 `master@4dac9cb...` 或其他代码状态执行本合同。
+
 ## 1. Behavior policy candidate
 
 ```text
@@ -41,10 +48,12 @@ Target anchoring 沿用冻结 R3 算法：不删除其他人物；`non-target ma
 ```text
 relation == held_by_target
 AND subject is relation-eligible
-AND initial full-scene relation verification has no satisfied binding for subject
-AND existing 35% subject-conditioned secondary localization + verification
-    has executed once and still has no satisfied binding for subject
+AND initial full-scene stage has finished with no satisfied binding for subject
+AND existing 35% subject-conditioned secondary localization has been attempted exactly once
+AND after the existing secondary stage there is still no satisfied binding for subject
 ```
+
+Existing secondary verification 仅在 secondary candidates 非空时执行；secondary localization 返回0个 candidate 时仍满足“secondary stage 已完成”，因此仍有资格进入 hand-conditioned fallback。
 
 满足以上全部条件时，每个 subject 最多执行一次 hand-conditioned related-object localization：
 
@@ -54,9 +63,12 @@ AND existing 35% subject-conditioned secondary localization + verification
 4. 固定排序：confidence desc，然后 x1/y1/x2/y2；最多2个 hand。
 5. 每个 hand bbox 四侧按自身宽高扩展100%，并 clamp 到 view。
 6. 在该 view 中使用原 `related_object` canonical query 和 threshold `0.30`。
-7. remap 到原图坐标；IoU `>=0.80` 稳定去重；不得改 query、阈值或 Detector。
-8. 只把新 admission candidates 送入原样 Production `verify_relations()`；不重判旧 candidates，不放宽 `held_by_target`。
-9. 新 bindings 进入既有 relation outcome / ownership resolver；不改 resolver。
+7. 将 hand-conditioned detections remap 到原图坐标。
+8. 与 initial full-scene + existing subject-conditioned secondary 的全部旧 relation candidates 比较；IoU `>=0.80` 即视为已有 candidate，不得重新 admission。
+9. 剩余 hand candidates 再按固定顺序彼此执行稳定 IoU `>=0.80` 去重；不得改 query、阈值或 Detector。
+10. 只有真正新增的 candidates 才分配新 ID。
+11. 只把这些 admission candidates 送入原样 Production `verify_relations()`；不重判旧 candidates，不放宽 `held_by_target`。
+12. 新 bindings 进入既有 relation outcome / ownership resolver；不改 resolver。
 
 若 initial 或 existing secondary 已产生 satisfied，hand-conditioned Detector/VLM 调用必须为0。若没有有效 hand 或没有新增 related candidate，则不调用新的 Relation VLM，并保留既有 outcome。
 
@@ -90,14 +102,15 @@ Relation 仍使用 Production full-scene marked JPEG。18 MiB PNG normalization 
 - `challenge_003`：legitimate uncertain `5/5`；confident binary `0/5`。
 - `challenge_004`：elder retained `>=4/5`；child satisfied `0/5`。
 - F1：candidate correct `>=5/10`；task correct `>=3/6`；相对冻结 Production A candidate/task regression 均为0。
-- `F1::fishing_004` A 必须 satisfied。
+- `F1::fishing_004` A 必须 satisfied（独立 machine gate）。
 - New false assignment、fallback harm、provider/protocol/validator/evidence final failure 均为0。
 
 ### Relation
 
-- `F4::017`：final A retained `>=4/5`；hand-conditioned target fish satisfied `>=4/5`；所有 non-target bucket/bucket-edge fish satisfied = 0；hand fallback 每个 repetition 最多一次。
-- `F2::005`：final A retained `0/5`；任何 hand-conditioned candidate satisfied = 0。
-- `F2::024`、`core_003`：final positive retained；hand-conditioned Detector calls = 0，Relation VLM fallback calls = 0。
+- `F4::017`：final A retained `>=4/5`；hand-conditioned target fish satisfied `>=4/5`；所有 non-target bucket/bucket-edge fish satisfied = 0；hand fallback 必须实际执行 `5/5`，每个 repetition 最多一次。
+- `F2::005`：final A retained `0/5`；任何 hand-conditioned candidate satisfied = 0；hand fallback 必须实际执行 `5/5`。
+- `F2::024`：final positive retained；hand-conditioned Detector calls = 0，Relation VLM fallback calls = 0。
+- `core_003`：final positive retained；hand-conditioned Detector calls = 0，Relation VLM fallback calls = 0。
 - `core_014`：final target count = 0；任何新增 false binding = 0。
 - 所有13 executions final failure = 0；failed execution replacement = false。
 
