@@ -35,4 +35,5 @@
   - 主归因：`CONTEXT_NOT_VISIBLE_IN_FIRST_PASS`；次级机制：first-pass binary `not_satisfied` 使老人 0/15 进入 full-scene fallback。
   - 儿童 C fallback 5/5 在 full scene 中识别成年钓鱼者，当前证据不支持 `CONTEXT_VISIBLE_BUT_SEMANTIC_REASONING_FAILED`。
   - 原始 A/B 提案存在两个执行前已知矛盾：当前 Production 的 `challenge_001` satisfied false assignment 不会触发新增 fallback；现有 uncertain fallback 已在 `challenge_003` 产生 5/5 harm。
-  - `NARROW_CONTRACT_FEASIBILITY_REVIEW.md` 建议复用 R3 Arm B 的 target-anchored frozen first pass，仅对 `not_satisfied + frozen long-range class` 增加 8 次 full-scene 调用；等待合同决策，尚未冻结或执行。
+  - `NARROW_MECHANISM_CONTRACT.md` 已正式冻结：复用 R3 Arm B 的 target-anchored frozen first pass，仅对 `not_satisfied + OBJECT_MEDIATED_SCENE_INTERACTION` 增加 8 次 full-scene 调用；satisfied/uncertain immutable。
+  - 通过时只允许裁决 `LONG_RANGE_NOT_SATISFIED_ESCALATION_MECHANISM = CONFIRMED`，不得写成 Production policy confirmed；Production modification/merge 仍未授权。

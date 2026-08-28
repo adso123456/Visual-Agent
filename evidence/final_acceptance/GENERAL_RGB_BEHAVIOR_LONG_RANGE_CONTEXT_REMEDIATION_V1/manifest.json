@@ -1,6 +1,6 @@
 {
   "schema_version": "GENERAL_RGB_BEHAVIOR_LONG_RANGE_CONTEXT_MECHANISM_ANALYSIS_MANIFEST_V1",
-  "status": "READ_ONLY_ATTRIBUTION_ACCEPTED_CONTRACT_DESIGN_CHANGES_REQUIRED",
+  "status": "NARROW_MECHANISM_CONTRACT_FROZEN",
   "files": [
     {
       "path": "READ_ONLY_MECHANISM_ANALYSIS.md",
@@ -21,6 +21,21 @@
       "path": "narrow_contract_feasibility.json",
       "sha256": "f7adb43f69531986c3bcd4f121ec5a7fdda5dc042bad5d112c1b16a8fa4f0ebe",
       "bytes": 1965
+    },
+    {
+      "path": "NARROW_MECHANISM_CONTRACT.md",
+      "sha256": "4bdae2ec6a793261848574e2f3503cb489370177cb6c04abb7f4014d3b06ce9a",
+      "bytes": 4394
+    },
+    {
+      "path": "narrow_mechanism_contract.json",
+      "sha256": "72669d329adb3cb0907eff9fdfb0dc8667add59b029bcb2fd90cca1c0dd8db57",
+      "bytes": 3062
+    },
+    {
+      "path": "frozen_long_range_slots.json",
+      "sha256": "c7fbb627ac597293c5bea6284fc1f0af9066c6caa5472823af5762f0e736585c",
+      "bytes": 5966
     }
   ],
   "source_execution_commit": "8e3bd28a86342b35bcab5d8600be4aa858712599",

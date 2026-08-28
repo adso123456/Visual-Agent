@@ -1,0 +1,64 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_LONG_RANGE_CONTEXT_NARROW_MECHANISM_CONTRACT_V1",
+  "status": "CONTRACT_FROZEN",
+  "source": {
+    "evidence_commit": "8e3bd28a86342b35bcab5d8600be4aa858712599",
+    "builder_implementation_sha": "0b32695dcd46d13cf22987f5347b2b212e7132c1",
+    "reviewed_harness_head": "22b22570c5f9ac6bd5249dae8f70782f500fb810",
+    "results_sha256": "70ffbd79bd562dfe00cff10191c60a89e58021f7fd067b4fdce33ec3dd00715e",
+    "preflight_receipt_sha256": "4eb00894b6fb566c7fb22b612fb762391e03badac670fd1bbf9958d6d36bdad7",
+    "selection_sha256": "37fb7fcb97e5a324a4d76d81abe805e947e220420c97102eb6d690cc64c44563",
+    "artifact_manifest_sha256": "1726e0bff1613a1cf132c6842e0b7ccced0b12a35010a938246180184c2a7905"
+  },
+  "base_control": "FROZEN_R3_ARM_B_TARGET_ANCHORED_FIRST_PASS",
+  "state_policy": {
+    "satisfied": "IMMUTABLE",
+    "uncertain": "IMMUTABLE",
+    "not_satisfied": "ONE_ESCALATION_IF_OBJECT_MEDIATED_SCENE_INTERACTION"
+  },
+  "long_range_class": {
+    "enum": ["OBJECT_MEDIATED_SCENE_INTERACTION"],
+    "definition": "behavior truth may require visual continuity between the target and an interaction object or environmental endpoint outside the 35 percent candidate-local crop",
+    "classification_time": "BEFORE_FIRST_PASS_RESULT_IS_READ",
+    "case_specific_override": false,
+    "frozen_semantic_constraint": "正在钓鱼"
+  },
+  "execution": {
+    "new_logical_model_calls": 8,
+    "slot_sequence_sha256": "2eb24f569fecd157d338ee83b830b69ddc0aff234d8655b5208a389bcb03785c",
+    "concurrency": 1,
+    "failed_execution_replacement": false,
+    "first_pass_rerun": false,
+    "evidence_tuple": [
+      "R3_ARM_C_ISOLATED_BYTE_IDENTICAL_TO_ARM_B",
+      "R3_ARM_C_TARGET_ANCHORED_LOCAL_BYTE_IDENTICAL_TO_ARM_B",
+      "R3_ARM_C_TARGET_ANCHORED_FULL_SCENE"
+    ],
+    "production_verifier": "visual_agent.vlm.verify_candidate_constraints",
+    "route": "behavior",
+    "model": "qwen3.8:27b-mtp-q4_K_M",
+    "base_url": "http://192.168.250.9:11434/v1",
+    "timeout_seconds": 120,
+    "temperature": 0
+  },
+  "inherited_controls": [
+    {"case_id": "challenge_001", "candidate_id": "A", "source_arm": "B", "repetitions": 5, "status": "uncertain"},
+    {"case_id": "challenge_001", "candidate_id": "B", "source_arm": "B", "repetitions": 5, "status": "satisfied"},
+    {"case_id": "challenge_003", "candidate_id": "A", "source_arm": "B", "repetitions": 5, "status": "uncertain"},
+    {"case_id": "challenge_004", "candidate_id": "B", "source_arm": "B", "repetitions": 5, "status": "uncertain"}
+  ],
+  "gate": {
+    "challenge_004_elder_satisfied": ">=4/5",
+    "F1_negative_not_satisfied": "3/3",
+    "new_false_assignment": 0,
+    "inherited_control_sha_and_status_match": true,
+    "final_failure": 0,
+    "terminal_records": 8,
+    "logical_model_calls": 8
+  },
+  "pass_verdict": "LONG_RANGE_NOT_SATISFIED_ESCALATION_MECHANISM_CONFIRMED",
+  "production_policy_confirmation": false,
+  "production_modification": "NOT_AUTHORIZED",
+  "production_merge": "NOT_AUTHORIZED",
+  "remote_sensing_water_quality": "BLOCKED"
+}
