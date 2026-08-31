@@ -177,6 +177,9 @@ def test_behavior_prompt_preserves_frozen_evidence_contract(monkeypatch):
     assert "第 3 张" in request_text
     assert "行为判断只能归属于这些图中锚定的同一人物" in request_text
     assert "不得把附近其他人物的行为归给当前人物" in request_text
+    assert "工具在附近、身处该活动场景或面向相关环境，均不能单独构成 satisfied" in request_text
+    assert "必须有当前锚定人物直接操作、持有、操控或实施该行为的可见证据" in request_text
+    assert "无法确认行为属于当前人物，必须返回 uncertain" in request_text
     assert "证据不足或归属不清必须 uncertain" in request_text
     assert "必须看到明确手握" not in request_text
     assert "必须看到直接接触" not in request_text
