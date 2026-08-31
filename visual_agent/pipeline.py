@@ -1,4 +1,5 @@
 import json
+import math
 import tempfile
 import time
 from pathlib import Path
@@ -176,10 +177,10 @@ def _hand_conditioned_candidates(
         width = hand_box[2] - hand_box[0]
         height = hand_box[3] - hand_box[1]
         hand_view_box = [
-            max(0, int(hand_box[0] - HAND_VIEW_EXPANSION * width)),
-            max(0, int(hand_box[1] - HAND_VIEW_EXPANSION * height)),
-            min(view_width, int(hand_box[2] + HAND_VIEW_EXPANSION * width)),
-            min(view_height, int(hand_box[3] + HAND_VIEW_EXPANSION * height)),
+            max(0, math.floor(hand_box[0] - HAND_VIEW_EXPANSION * width)),
+            max(0, math.floor(hand_box[1] - HAND_VIEW_EXPANSION * height)),
+            min(view_width, math.ceil(hand_box[2] + HAND_VIEW_EXPANSION * width)),
+            min(view_height, math.ceil(hand_box[3] + HAND_VIEW_EXPANSION * height)),
         ]
         if hand_view_box[0] >= hand_view_box[2] or hand_view_box[1] >= hand_view_box[3]:
             continue

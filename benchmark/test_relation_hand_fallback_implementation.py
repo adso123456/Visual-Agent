@@ -12,8 +12,10 @@ from pathlib import Path
 
 import cv2
 import numpy as np
+from PIL import Image
 
 from visual_agent.pipeline import (
+    _hand_conditioned_candidates,
     _run_hand_conditioned_fallback,
     _stable_hand_candidate_admission,
 )
@@ -58,6 +60,60 @@ class HandDetectorStub:
             {"bbox": list(box), "text_label": target_text, "confidence": 0.8}
             for box in self.related_boxes
         ]
+
+
+def test_hand_crop_fractional_bbox_uses_floor_ceil_and_exact_remap(tmp_path):
+    """非整数 hand bbox 必须按 floor/floor/ceil/ceil 扩展并精确 remap。"""
+    image_path = tmp_path / "coordinate_image.png"
+    pixels = np.zeros((128, 128, 3), dtype=np.uint8)
+    pixels[:, :, 0] = np.arange(128, dtype=np.uint8)[None, :]
+    pixels[:, :, 1] = np.arange(128, dtype=np.uint8)[:, None]
+    Image.fromarray(pixels, mode="RGB").save(image_path)
+
+    class FractionalDetector:
+        def __init__(self):
+            self.hand_crop_bbox = None
+            self.hand_crop_size = None
+
+        def detect(self, detection_path, target_text, threshold=0.3):
+            with Image.open(detection_path).convert("RGB") as evidence:
+                if target_text == "hand":
+                    assert evidence.size == (69, 120)
+                    return [
+                        {
+                            "bbox": [20.25, 30.25, 30.75, 40.75],
+                            "text_label": "hand",
+                            "confidence": 0.9,
+                        }
+                    ]
+                top_left = evidence.getpixel((0, 0))
+                self.hand_crop_size = evidence.size
+                self.hand_crop_bbox = [
+                    top_left[0],
+                    top_left[1],
+                    top_left[0] + evidence.width,
+                    top_left[1] + evidence.height,
+                ]
+                return [
+                    {
+                        "bbox": [1.25, 2.5, 8.75, 9.5],
+                        "text_label": target_text,
+                        "confidence": 0.8,
+                    }
+                ]
+
+    detector = FractionalDetector()
+    admitted, _ = _hand_conditioned_candidates(
+        image_path,
+        _subject("A", [40.2, 30.4, 80.2, 100.4]),
+        "fish",
+        [],
+        detector,
+    )
+
+    assert detector.hand_crop_bbox == [35, 24, 68, 57]
+    assert detector.hand_crop_size == (33, 33)
+    assert admitted[0]["bbox"] == [36.25, 26.5, 43.75, 33.5]
 
 
 def test_stable_admission_ordering_dedupe_and_rejection():
