@@ -1,0 +1,276 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_IMPLEMENTATION_CONTRACT_V1",
+  "status": "CONTRACT_FROZEN",
+  "contract_frozen": true,
+  "review_required": false,
+  "production_code_modification_authorized": false,
+  "model_execution_authorized": false,
+  "phase": "READ_ONLY_DESIGN_ONLY",
+  "formal_production_master": "4dac9cb3823e22e90ff3bb8157c6544c6c6b88fd",
+  "implementation_target_tree": "be54f3c89171d8b16f53c82397e9f468fb4b4c97",
+  "implementation_target_role": "REVIEWED_REMEDIATION_EXECUTION_BASE_NOT_MERGED_PRODUCTION",
+  "joint_frozen_evidence_head": "30fa9cddd851f376831b2bd3d940f6ab1165c084",
+  "v2_evidence_head": "60a1da895dd9f330006adb9362a2a925181e3858",
+  "reviewed_runner_sha": "a1c61c3b4d38c25bafd841fc3b8c52fecbdbb897",
+  "joint_contract_sha256": "eb2bc508a32b8e7d3ee74776ca01923d5741d6c57bf03d9faf6dd7f4f3ffd780",
+  "joint_selection_sha256": "383b9742b31ec7c92d53f46c041bb6cdf58b92fdda8b640f62570a89a6074a2f",
+  "v2_authorization_sha256": "c3f8c4b0f88490cee35924a24b105b6d81dcb2e60a5c2033bf38a8dd4337f1cc",
+  "frozen_production_file_sha256": {
+    "visual_agent/pipeline.py": "531903d340e64faa6e745c9fb83d65532d553ff604a87789f2057a57aadb0452",
+    "visual_agent/evidence.py": "8dc4f1d6a62f1873b1479a78c08130d0c4d79286a2afcaa24d11f93cb5749747",
+    "visual_agent/vlm.py": "a2df5c9605deb3ee9d5e7803eab0effa83e5c6c21cc928633a0460f54ae6d83e",
+    "visual_agent/relations.py": "293f2c983f792d541ec0c6021ef49e82ae0d0b8553963bc925424b555286f968",
+    "visual_agent/grounding.py": "ac56602ecd1c4d09286784fc17eb79c18fe3ebb4c7f98f62ae96e0167c28f3be",
+    "visual_agent/qwen_protocol.py": "89ccd004b9738804ecace48478044af660d5497aafa4d7753bc5e4a4c46ebfb3",
+    "visual_agent/vlm_client.py": "a36782166b41fde299cb3cd328fb145bc0597ae8bd49c0510f1eb6d832a82c88",
+    "visual_agent/deepseek_agent.py": "cdc6be9cdc4b518734b014ca9e44144d7b4da1895da6bdb74de9fed5290f1f12"
+  },
+  "behavior_policy": {
+    "identity_risk": {
+      "candidate_count_minimum": 2,
+      "neighbor_bbox_coverage_minimum": 0.7,
+      "neighbor_center_inside_crop": true,
+      "crop_margin": 0.35,
+      "decision_time": "BEFORE_VLM",
+      "coverage_definition": "intersection(neighbor, crop) / area(neighbor)"
+    },
+    "first_pass": {
+      "identity_risk_true": "TARGET_ANCHORED_35_PERCENT_LOCAL",
+      "identity_risk_false": "CURRENT_PRODUCTION_LOCAL"
+    },
+    "status_routing": {
+      "satisfied": "IMMUTABLE",
+      "uncertain_single_candidate": "IMMUTABLE",
+      "uncertain_multi_candidate": "ONE_FULL_SCENE_DISAMBIGUATION",
+      "not_satisfied_object_mediated_scene_interaction": "ONE_TARGET_ANCHORED_FULL_SCENE_ESCALATION"
+    },
+    "multi_candidate_fallback_arm": {
+      "identity_risk": "TARGET_ANCHORED_FULL_SCENE",
+      "ordinary": "CURRENT_PRODUCTION_FULL_SCENE"
+    },
+    "max_fallback_per_candidate": 1,
+    "object_mediated_marker": [
+      "正在钓鱼"
+    ],
+    "object_mediated_determination": "EXACT_MATCH_ON_NORMALIZED_BEHAVIOR_CONSTRAINT_TEXT_ONCE_PER_PLAN_BEFORE_FIRST_PASS",
+    "target_anchoring": {
+      "non_target_original_weight": 45,
+      "non_target_gray_weight": 55,
+      "gray_rgb": [
+        128,
+        128,
+        128
+      ],
+      "rounding": "FLOOR_ROUND_HALF_UP_45_55_128_PLUS_50_DIV_100",
+      "target_overlap_wins": true,
+      "target_contour_rgb": [
+        255,
+        0,
+        0
+      ],
+      "target_contour_width": 5,
+      "local_crop": "FULL_IMAGE_DEEMPHASIS_THEN_35_PERCENT_CROP",
+      "context_deletion": false,
+      "extra_sam_calls": 0
+    },
+    "frozen_identity_risk_vector": {
+      "challenge_001": {
+        "A": true,
+        "B": true
+      },
+      "challenge_003": {
+        "A": false
+      },
+      "challenge_004": {
+        "A": true,
+        "B": false
+      },
+      "F1::fishing_001.jpeg": {
+        "A": false
+      },
+      "F1::fishing_005.jpeg": {
+        "A": false
+      },
+      "F1::fishing_010.jpeg": {
+        "A": false,
+        "B": false,
+        "C": false
+      },
+      "F1::fishing_014.jpeg": {
+        "A": false,
+        "B": false,
+        "C": false
+      },
+      "F1::fishing_004.jpeg": {
+        "A": false
+      },
+      "F1::fishing_018.jpeg": {
+        "A": false
+      }
+    }
+  },
+  "relation_policy": {
+    "relation": "held_by_target",
+    "activation_all_required": [
+      "RELATION_ELIGIBLE_SUBJECT",
+      "INITIAL_STAGE_FINISHED_NO_SATISFIED",
+      "EXISTING_SUBJECT_CONDITIONED_LOCALIZATION_ATTEMPTED_EXACTLY_ONCE",
+      "AFTER_EXISTING_SECONDARY_STAGE_NO_SATISFIED"
+    ],
+    "existing_secondary_verification": "OPTIONAL_ONLY_WHEN_SECONDARY_CANDIDATES_NONEMPTY",
+    "zero_secondary_candidates_are_hand_fallback_eligible": true,
+    "maximum_hand_fallbacks_per_subject": 1,
+    "hand_conditioned_localization": {
+      "base_view": "EXISTING_35_PERCENT_SUBJECT_CONTEXT",
+      "detector": "IDEA-Research/grounding-dino-base",
+      "hand_query": "hand",
+      "threshold": 0.3,
+      "hand_filter": "CENTER_INSIDE_SUBJECT_BBOX",
+      "hand_sort": [
+        "confidence_desc",
+        "x1",
+        "y1",
+        "x2",
+        "y2"
+      ],
+      "hand_top_k": 2,
+      "hand_crop_margin_each_side": 1,
+      "related_query": "UNCHANGED_RELATED_OBJECT_CANONICAL",
+      "detection_remap": "VIEW_AND_BASE_OFFSET_TO_ORIGINAL"
+    },
+    "admission": {
+      "sequence": [
+        "SORT_CONFIDENCE_DESC_THEN_BBOX",
+        "REJECT_OLD_CANDIDATE_MATCH_IF_IOU_GTE_0_80",
+        "STABLE_DEDUP_REMAINING_HAND_CANDIDATES_IOU_GTE_0_80",
+        "ASSIGN_NEW_IDS_GLOBALLY_UNIQUE_ONLY",
+        "VERIFY_GENUINE_ADMISSIONS_ONLY"
+      ],
+      "old_candidate_scope": [
+        "INITIAL_FULL_SCENE",
+        "EXISTING_SUBJECT_CONDITIONED_SECONDARY",
+        "PREVIOUS_SUBJECT_HAND_ADMISSIONS"
+      ],
+      "old_candidate_match_iou_threshold": 0.8,
+      "remaining_hand_candidate_dedup_iou_threshold": 0.8
+    },
+    "new_candidates_only_verification": true,
+    "verification_matrix": "ALL_RELATION_ELIGIBLE_SUBJECTS_ONE_SUBJECT_PER_CALL",
+    "verifier": "UNCHANGED_PRODUCTION_VERIFY_RELATIONS",
+    "old_candidate_reverification": false,
+    "held_contract_relaxation": false,
+    "ownership_resolver_change": false,
+    "relation_evidence": "FULL_SCENE_MARKED_JPEG",
+    "png_18_mib_normalization": "NOT_APPLICABLE",
+    "satisfied_blocks_hand_fallback": true
+  },
+  "implementation_surface": {
+    "modified_files": [
+      "visual_agent/evidence.py",
+      "visual_agent/pipeline.py"
+    ],
+    "unchanged_files": [
+      "visual_agent/vlm.py",
+      "visual_agent/relations.py",
+      "visual_agent/grounding.py",
+      "visual_agent/vlm_client.py",
+      "visual_agent/qwen_protocol.py",
+      "visual_agent/deepseek_agent.py",
+      "visual_agent/segmentation.py",
+      "visual_agent/models.py",
+      "visual_agent/renderer.py",
+      "visual_agent/actions.py",
+      "api/server.py",
+      "api/jobs.py",
+      "api/schemas.py",
+      "demo_ui/server.py",
+      "demo_ui/static/app.js",
+      "demo_ui/static/index.html",
+      "demo_showcase.py",
+      "main.py"
+    ],
+    "evidence_py_new_functions": [
+      "identity_contamination_risk",
+      "blend_non_target_people",
+      "build_target_anchored_behavior_evidence",
+      "build_target_anchored_full_scene_evidence"
+    ],
+    "pipeline_py_insertions": [
+      {
+        "id": "P1",
+        "location": "BEHAVIOR_ROUTE_IN_CANDIDATE_LOOP",
+        "be54f3c_line_anchor": "494-533",
+        "description": "identity-risk first-pass arm selection + status routing with immutable/one-fallback/object-mediated escalation"
+      },
+      {
+        "id": "P2",
+        "location": "AFTER_R2_3_SECONDARY_OWNERSHIP_BEFORE_RELATION_PROTOCOL_MERGE",
+        "be54f3c_line_anchor": "704-706",
+        "description": "hand-conditioned fallback orchestration for unsatisfied relation-eligible subjects"
+      }
+    ],
+    "pipeline_py_new_helpers": [
+      "_object_mediated_behavior_constraint",
+      "_stable_hand_candidate_admission",
+      "_hand_conditioned_candidates",
+      "_run_hand_conditioned_fallback"
+    ],
+    "result_additions": {
+      "relation_hand_fallback": "PER_SUBJECT_AND_AGGREGATE_TELEMETRY",
+      "behavior_routing": "PER_CANDIDATE_ROUTING_RECORD"
+    }
+  },
+  "targeted_regression_gates": {
+    "existing_tests_keep_green": [
+      "benchmark/test_planner_config.py",
+      "benchmark/test_router_plan_contract.py",
+      "benchmark/test_vlm_client_config.py",
+      "benchmark/test_evidence_builders.py",
+      "benchmark/test_evidence_payload_limit.py",
+      "benchmark/test_box_action.py",
+      "benchmark/test_pipeline_router.py",
+      "benchmark/test_relation_router.py",
+      "benchmark/test_relation_identity_contract.py",
+      "benchmark/test_phase7_relations.py",
+      "benchmark/test_phase7_composite.py",
+      "benchmark/test_phase6_planner.py",
+      "benchmark/test_phase7_planner.py",
+      "benchmark/test_phase8_candidate_contract.py",
+      "benchmark/test_phase8_protocol_retry.py",
+      "benchmark/test_router_vlm.py"
+    ],
+    "permitted_stub_changes": [
+      "DETECTOR_STUB_RETURN_EMPTY_FOR_HAND_QUERY",
+      "DETECTOR_CALLS_COMPARISON_MAY_FILTER_HAND"
+    ],
+    "new_tests": [
+      "benchmark/test_behavior_policy_implementation.py",
+      "benchmark/test_relation_hand_fallback_implementation.py",
+      "benchmark/test_production_implementation_contract_preflight.py"
+    ],
+    "hand_fallback_limits": {
+      "localizations_per_subject": 1,
+      "hands_per_subject": 2,
+      "related_detector_calls_per_hand": 1,
+      "new_relation_vlm_calls": "LEN_RELATION_ELIGIBLE_SUBJECTS_WHEN_ADMITTED_NONEMPTY",
+      "existing_satisfied_detector_calls": 0,
+      "existing_satisfied_relation_calls": 0
+    },
+    "must_not_change": [
+      "NON_BEHAVIOR_ROUTES",
+      "R2_3_SECONDARY_TIMING",
+      "FOCUSED_OWNERSHIP",
+      "RESOLVE_RELATION_OUTCOMES_TRISTATE",
+      "FINAL_SUBJECTS_TARGETS_SAVE_RESULTS_SCHEMA",
+      "PLANNER_FINAL_RESPONSE"
+    ]
+  },
+  "authorization_boundary": {
+    "production_code_modification": "NOT_AUTHORIZED",
+    "production_merge": "NOT_AUTHORIZED",
+    "general_rgb_final_acceptance_v2": "NOT_AUTHORIZED",
+    "real_model_targeted_regression": "NOT_AUTHORIZED",
+    "stub_unit_tests_on_implementation": "ALLOWED_AFTER_SEPARATE_IMPLEMENTATION_AUTHORIZATION",
+    "remote_sensing_water_quality": "BLOCKED"
+  }
+}

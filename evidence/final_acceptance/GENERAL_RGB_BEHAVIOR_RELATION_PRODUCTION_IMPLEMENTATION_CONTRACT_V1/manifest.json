@@ -1,0 +1,73 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_IMPLEMENTATION_CONTRACT_MANIFEST_V1",
+  "status": "PRODUCTION_IMPLEMENTATION_CONTRACT_FROZEN",
+  "files": [
+    {
+      "path": "PRODUCTION_IMPLEMENTATION_CONTRACT.md",
+      "sha256": "f894f6a80b25c242ecd2f5032c0c3aa7410ff719ff887e9b8b06818991c918f1",
+      "bytes": 20943
+    },
+    {
+      "path": "contract_candidate.json",
+      "sha256": "ff88364a291fcb5d6c72eae07c0cc32914d32adfd1b785fa275dde462fd6cefb",
+      "bytes": 10291
+    }
+  ],
+  "source_assets": [
+    {
+      "path": "../GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_V1/contract_candidate.json",
+      "sha256": "eb2bc508a32b8e7d3ee74776ca01923d5741d6c57bf03d9faf6dd7f4f3ffd780"
+    },
+    {
+      "path": "../GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_V1/selection_candidate.json",
+      "sha256": "383b9742b31ec7c92d53f46c041bb6cdf58b92fdda8b640f62570a89a6074a2f"
+    },
+    {
+      "path": "../GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_V1/execution_v2/summary.json",
+      "sha256": "486f010c9b78b4491a10cf3e0e53f972feb5281b4d5d6a87af8847272718e238"
+    },
+    {
+      "path": "../GENERAL_RGB_R3_CANDIDATE_IDENTITY_REMEDIATION_V1/frozen_selection.json",
+      "sha256": "37fb7fcb97e5a324a4d76d81abe805e947e220420c97102eb6d690cc64c44563"
+    },
+    {
+      "path": "runner_reference_be54f3c_visual_agent_pipeline.py",
+      "sha256": "531903d340e64faa6e745c9fb83d65532d553ff604a87789f2057a57aadb0452",
+      "note": "FROZEN_PRODUCTION_BASELINE_SHA_AT_be54f3c"
+    },
+    {
+      "path": "runner_reference_be54f3c_visual_agent_evidence.py",
+      "sha256": "8dc4f1d6a62f1873b1479a78c08130d0c4d79286a2afcaa24d11f93cb5749747",
+      "note": "FROZEN_PRODUCTION_BASELINE_SHA_AT_be54f3c"
+    }
+  ],
+  "provenance": {
+    "formal_production_master": "4dac9cb3823e22e90ff3bb8157c6544c6c6b88fd",
+    "implementation_target_tree": "be54f3c89171d8b16f53c82397e9f468fb4b4c97",
+    "joint_frozen_evidence_head": "30fa9cddd851f376831b2bd3d940f6ab1165c084",
+    "v2_evidence_head": "60a1da895dd9f330006adb9362a2a925181e3858",
+    "reviewed_runner_sha": "a1c61c3b4d38c25bafd841fc3b8c52fecbdbb897",
+    "joint_v2": {
+      "scheduled": 48,
+      "terminal_success": 48,
+      "terminal_failure": 0,
+      "behavior_gate": "PASS",
+      "relation_gate": "PASS",
+      "joint_policy_candidate_confirmed": true,
+      "failed_execution_replacement": false
+    }
+  },
+  "decision": {
+    "contract_frozen": true,
+    "review_required": false,
+    "implementation_phase": "READ_ONLY_DESIGN_ONLY",
+    "behavior_policy_candidate": "CONFIRMED_BY_TARGETED_GATE",
+    "relation_activation_policy_candidate": "CONFIRMED_BY_TARGETED_GATE",
+    "joint_policy_candidate": "CONFIRMED",
+    "production_code_modification": "NOT_AUTHORIZED",
+    "production_merge": "NOT_AUTHORIZED",
+    "general_rgb_final_acceptance_v2": "NOT_AUTHORIZED",
+    "remote_sensing_water_quality": "BLOCKED"
+  },
+  "production_code_modifications": 0
+}
