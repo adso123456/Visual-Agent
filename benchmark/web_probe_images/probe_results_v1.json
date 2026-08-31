@@ -1,0 +1,15 @@
+{
+  "tag": "v1-pre-prompt-fix",
+  "definition": "钓鱼=手持钓竿垂钓；撒网/收网=捕鱼；插竿守钓不在场景内。人工预核 GT 后运行。",
+  "results": [
+    {"image": "probe_angling_lake.jpg", "prompt": "框出正在钓鱼的人", "ground_truth": "3-4", "targets": 2, "seconds": 107.6, "attribution": "Detector 提满 4 候选；候选 A（持竿者）证据裁剪未含水面被判 uncertain，候选 D 遮挡 uncertain。失败在证据裁剪(35% margin)+VLM 严格倾向，非 Detector 漏检。"},
+    {"image": "probe_angling_lake.jpg", "prompt": "把拿着鱼竿的人描边", "ground_truth": "3-4", "targets": 1, "seconds": 207.3, "attribution": "仅 C(双手握竿清晰) satisfied；A/B/D 因手部接触不可见或竿归属争议 uncertain。关系验证+证据可见性限制。"},
+    {"image": "probe_burkina_rods.jpg", "prompt": "框出正在钓鱼的人", "ground_truth": "0-1(边界)", "targets": 1, "seconds": 28.4, "attribution": "按宽松'垂钓活动'口径正确；按严格'手持'口径为 FP。语义定义缺失。"},
+    {"image": "probe_ice_fishing.jpg", "prompt": "框出正在钓鱼的人", "ground_truth": "0", "targets": 0, "seconds": 30.5, "attribution": "无人在场，正确拒绝。"},
+    {"image": "probe_chair_rods_snow.jpg", "prompt": "框出正在钓鱼的人", "ground_truth": "0", "targets": 0, "seconds": 205.9, "attribution": "无人在场，正确拒绝。"},
+    {"image": "probe_fishing_misc.jpg", "prompt": "框出正在钓鱼的人", "ground_truth": "0", "targets": 1, "seconds": 65.4, "attribution": "FP：VLM 判'撒网捕鱼…属于钓鱼/捕鱼行为'——语义混淆，验证 prompt 无'钓鱼'负面定义。"},
+    {"image": "probe_cast_net_1.jpg", "prompt": "框出正在钓鱼的人", "ground_truth": "0", "targets": 1, "seconds": 81.2, "attribution": "FP：证据里无竿仍称'手持长杆操控渔具'（幻觉证据）。语义混淆+证据幻觉。"},
+    {"image": "probe_cast_net_2.jpg", "prompt": "框出正在钓鱼的人", "ground_truth": "0", "targets": 0, "seconds": 40.9, "attribution": "正确拒绝。"}
+  ],
+  "summary": "8 例：正确 4、边界 1、召回不足 2（证据裁剪+VLM 严格）、撒网误报 2 与正确拒绝 1 交叉。核心结论：撒网/钓鱼语义混淆是纯 prompt 问题；召回不足是证据裁剪(代码)+prompt 混合问题；Detector 在全部案例中候选提满，不是瓶颈。"
+}
