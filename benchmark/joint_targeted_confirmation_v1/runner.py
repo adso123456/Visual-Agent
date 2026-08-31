@@ -46,6 +46,25 @@ R3_PREFLIGHT_SHA256 = "4eb00894b6fb566c7fb22b612fb762391e03badac670fd1bbf9958d6d
 F4_CONTRACT_SHA256 = "747a65b7221c64f35141656f57028e1e6c6aa554d6ba61e7762c4157761ac03d"
 FROZEN_BEHAVIOR_SLOT_SEQUENCE_SHA256 = "67dc2d897f627258354d5fe6a57656a42469b10e6393a1d1129dd47273503622"
 FROZEN_RELATION_SLOT_SEQUENCE_SHA256 = "5d3bf015b8d17ec4c2806f4ea4e208cb6411147c5319a5936a1ce411d4c754c7"
+FROZEN_F1_CANDIDATE_CORRECT = 5
+FROZEN_F1_TASK_CORRECT = 3
+FROZEN_BEHAVIOR_BASELINE_STATUS = {
+    ("challenge_001", "A"): "uncertain",
+    ("challenge_001", "B"): "satisfied",
+    ("challenge_003", "A"): "uncertain",
+    ("challenge_004", "A"): "satisfied",
+    ("challenge_004", "B"): "not_satisfied",
+    ("F1::fishing_001.jpeg", "A"): "satisfied",
+    ("F1::fishing_005.jpeg", "A"): "satisfied",
+    ("F1::fishing_010.jpeg", "A"): "not_satisfied",
+    ("F1::fishing_010.jpeg", "B"): "not_satisfied",
+    ("F1::fishing_010.jpeg", "C"): "not_satisfied",
+    ("F1::fishing_014.jpeg", "A"): "satisfied",
+    ("F1::fishing_014.jpeg", "B"): "uncertain",
+    ("F1::fishing_014.jpeg", "C"): "uncertain",
+    ("F1::fishing_004.jpeg", "A"): "satisfied",
+    ("F1::fishing_018.jpeg", "A"): "not_satisfied",
+}
 
 PRODUCTION_FILE_SHA256 = {
     "visual_agent/pipeline.py": "531903d340e64faa6e745c9fb83d65532d553ff604a87789f2057a57aadb0452",
@@ -114,6 +133,38 @@ class PreflightReceipt:
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def windows_safe_artifact_slug(slot_id: str) -> str:
+    invalid = '<>:"/\\|?*'
+    slug = "".join("_" if char in invalid or ord(char) < 32 else char for char in slot_id)
+    slug = slug.rstrip(" .")
+    if not slug:
+        raise JointFailure("evidence", "artifact_slug", slot_id)
+    return slug
+
+
+def behavior_adjudication(slot: BehaviorSlot, final_status: str, fallback_attempted: bool) -> dict:
+    key = (slot.case_id, slot.candidate["id"])
+    if key not in FROZEN_BEHAVIOR_BASELINE_STATUS:
+        raise JointFailure("adjudication", "behavior_baseline_missing", "|".join(key))
+    baseline_status = FROZEN_BEHAVIOR_BASELINE_STATUS[key]
+    allowed = set(slot.candidate.get("allowed", [slot.candidate.get("expected")]))
+    return {
+        "baseline_status": baseline_status,
+        "expected_statuses": sorted(item for item in allowed if item),
+        "candidate_correct": final_status in allowed,
+        "new_false_assignment": (
+            final_status == "satisfied"
+            and "satisfied" not in allowed
+            and baseline_status != "satisfied"
+        ),
+        "fallback_harm": bool(
+            fallback_attempted
+            and baseline_status in allowed
+            and final_status not in allowed
+        ),
+    }
 
 
 def _json(path: Path) -> dict:
@@ -546,18 +597,14 @@ def run_behavior_slot(
             }
         )
         final = fallback
-    allowed = set(slot.candidate.get("allowed", [slot.candidate.get("expected")]))
+    adjudication = behavior_adjudication(
+        slot, final["status"], record["fallback_attempted"]
+    )
     record.update(
         {
             "routing": route,
             "final_status": final["status"],
-            "expected_statuses": sorted(item for item in allowed if item),
-            "candidate_correct": final["status"] in allowed,
-            "false_assignment": (
-                final["status"] == "satisfied"
-                and "satisfied" not in allowed
-            ),
-            "fallback_harm": bool(fallback_arm and final["status"] not in allowed),
+            **adjudication,
         }
     )
     return record
@@ -679,7 +726,7 @@ def run_relation_slot(
 ) -> dict:
     config = frozen_vlm_config(config_loader)
     case = slot.case
-    artifact_dir = output_root / slot.slot_id.replace("|", "__")
+    artifact_dir = output_root / windows_safe_artifact_slug(slot.slot_id)
     image_path = Path(case["resolved_image_path"])
     image_output, json_output = pipeline_runner(
         image_path,
@@ -879,7 +926,8 @@ def summarize(records: list[dict]) -> dict:
     }
     f4 = relation_by_case["F4::fishing_017.jpeg"]
     f2_negative = relation_by_case["F2::fishing_005.jpeg"]
-    existing_positive = relation_by_case["F2::fishing_024.jpeg"] + relation_by_case["core_003"]
+    f2_positive = relation_by_case["F2::fishing_024.jpeg"]
+    core_003 = relation_by_case["core_003"]
     core_014 = relation_by_case["core_014"]
     behavior_gate = {
         "challenge_001_bystander_satisfied": sum(row["result"]["final_status"] == "satisfied" for row in behavior_rows("challenge_001", "A")),
@@ -889,18 +937,33 @@ def summarize(records: list[dict]) -> dict:
         "challenge_004_child_satisfied": sum(row["result"]["final_status"] == "satisfied" for row in behavior_rows("challenge_004", "B")),
         "F1_candidate_correct": sum(bool(row["result"]["candidate_correct"]) for row in f1),
         "F1_task_correct": f1_task_correct,
-        "F1_fishing_004_A_satisfied": all(row["result"]["final_status"] == "satisfied" for row in behavior_rows("F1::fishing_004.jpeg", "A")),
-        "new_false_assignment": sum(bool(row["result"]["false_assignment"]) for row in behavior),
+        "F1_candidate_regression": max(
+            0,
+            FROZEN_F1_CANDIDATE_CORRECT
+            - sum(bool(row["result"]["candidate_correct"]) for row in f1),
+        ),
+        "F1_task_regression": max(0, FROZEN_F1_TASK_CORRECT - f1_task_correct),
+        "F1_fishing_004_A_satisfied": (
+            len(behavior_rows("F1::fishing_004.jpeg", "A")) == 1
+            and all(
+                row["result"]["final_status"] == "satisfied"
+                for row in behavior_rows("F1::fishing_004.jpeg", "A")
+            )
+        ),
+        "new_false_assignment": sum(bool(row["result"]["new_false_assignment"]) for row in behavior),
         "fallback_harm": sum(bool(row["result"]["fallback_harm"]) for row in behavior),
     }
     behavior_gate["pass"] = (
-        behavior_gate["challenge_001_bystander_satisfied"] == 0
+        len(behavior) == 35
+        and behavior_gate["challenge_001_bystander_satisfied"] == 0
         and behavior_gate["challenge_001_operator_retained"] >= 4
         and behavior_gate["challenge_003_uncertain"] == 5
         and behavior_gate["challenge_004_elder_retained"] >= 4
         and behavior_gate["challenge_004_child_satisfied"] == 0
         and behavior_gate["F1_candidate_correct"] >= 5
         and behavior_gate["F1_task_correct"] >= 3
+        and behavior_gate["F1_candidate_regression"] == 0
+        and behavior_gate["F1_task_regression"] == 0
         and behavior_gate["F1_fishing_004_A_satisfied"]
         and behavior_gate["new_false_assignment"] == 0
         and behavior_gate["fallback_harm"] == 0
@@ -913,21 +976,34 @@ def summarize(records: list[dict]) -> dict:
         "F2_005_hand_fallback_attempts": sum(row["result"]["fallback_attempts"] == 1 for row in f2_negative),
         "F2_005_subject_retained": sum(bool(row["result"]["final_retained_subject_ids"]) for row in f2_negative),
         "F2_005_hand_candidate_satisfied": sum(len(row["result"]["hand_satisfied_related_ids"]) for row in f2_negative),
-        "existing_positive_retained": all(bool(row["result"]["final_retained_subject_ids"]) for row in existing_positive),
-        "existing_positive_hand_detector_calls": sum(row["result"]["hand_detector_calls"] for row in existing_positive),
-        "existing_positive_hand_relation_calls": sum(row["result"]["hand_relation_calls"] for row in existing_positive),
+        "F2_024_final_positive_retained": (
+            len(f2_positive) == 1
+            and bool(f2_positive[0]["result"]["final_retained_subject_ids"])
+        ),
+        "core_003_final_positive_retained": (
+            len(core_003) == 1
+            and bool(core_003[0]["result"]["final_retained_subject_ids"])
+        ),
+        "existing_positive_hand_detector_calls": sum(
+            row["result"]["hand_detector_calls"] for row in f2_positive + core_003
+        ),
+        "existing_positive_hand_relation_calls": sum(
+            row["result"]["hand_relation_calls"] for row in f2_positive + core_003
+        ),
         "core_014_final_target_count": sum(len(row["result"]["final_retained_subject_ids"]) for row in core_014),
         "core_014_new_false_binding": sum(len(row["result"]["hand_satisfied_related_ids"]) for row in core_014),
     }
     relation_gate["pass"] = (
-        relation_gate["F4_017_hand_fallback_attempts"] == 5
+        len(relation) == 13
+        and relation_gate["F4_017_hand_fallback_attempts"] == 5
         and relation_gate["F4_017_target_satisfied"] >= 4
         and relation_gate["F4_017_subject_retained"] >= 4
         and relation_gate["F4_017_non_target_satisfied"] == 0
         and relation_gate["F2_005_hand_fallback_attempts"] == 5
         and relation_gate["F2_005_subject_retained"] == 0
         and relation_gate["F2_005_hand_candidate_satisfied"] == 0
-        and relation_gate["existing_positive_retained"]
+        and relation_gate["F2_024_final_positive_retained"]
+        and relation_gate["core_003_final_positive_retained"]
         and relation_gate["existing_positive_hand_detector_calls"] == 0
         and relation_gate["existing_positive_hand_relation_calls"] == 0
         and relation_gate["core_014_final_target_count"] == 0

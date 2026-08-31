@@ -62,7 +62,7 @@ def _behavior_manifest(tmp_path: Path):
 
 def _behavior_slot(*, risk=False, count=2, expected="satisfied"):
     return BehaviorSlot(
-        "slot", "case", 1,
+        "slot", "challenge_004", 1,
         {"id": "A", "bbox": [1, 1, 5, 7], "expected": expected},
         count, risk, "正在钓鱼",
     )
@@ -178,6 +178,43 @@ def test_behavior_routing_is_state_and_geometry_deterministic(
         assert result["first_pass_arm"] == "B"
 
 
+def test_behavior_adjudication_uses_frozen_baseline_not_absolute_errors():
+    existing_fp = BehaviorSlot(
+        "slot", "F1::fishing_001.jpeg", 1,
+        {"id": "A", "expected": "not_satisfied"}, 1, False, "正在钓鱼",
+    )
+    unchanged_uncertain = BehaviorSlot(
+        "slot", "F1::fishing_014.jpeg", 1,
+        {"id": "B", "expected": "not_satisfied"}, 3, False, "正在钓鱼",
+    )
+    assert runner.behavior_adjudication(existing_fp, "satisfied", False) == {
+        "baseline_status": "satisfied",
+        "expected_statuses": ["not_satisfied"],
+        "candidate_correct": False,
+        "new_false_assignment": False,
+        "fallback_harm": False,
+    }
+    result = runner.behavior_adjudication(unchanged_uncertain, "uncertain", True)
+    assert result["new_false_assignment"] is False
+    assert result["fallback_harm"] is False
+
+
+def test_behavior_adjudication_detects_new_assignment_and_fallback_regression():
+    slot = BehaviorSlot(
+        "slot", "challenge_003", 1,
+        {"id": "A", "expected": "uncertain"}, 1, False, "正在钓鱼",
+    )
+    result = runner.behavior_adjudication(slot, "satisfied", True)
+    assert result["new_false_assignment"] is True
+    assert result["fallback_harm"] is True
+
+
+def test_windows_safe_artifact_slug_removes_all_windows_invalid_characters():
+    slug = runner.windows_safe_artifact_slug("RELATION|F4::fishing_017.jpeg|r1")
+    assert slug == "RELATION_F4__fishing_017.jpeg_r1"
+    assert not any(char in slug for char in '<>:"/\\|?*')
+
+
 def test_admission_rejects_all_old_candidates_then_stably_deduplicates_new():
     old = [{"id": "R1", "bbox": [0, 0, 10, 10]}]
     detected = [
@@ -222,7 +259,7 @@ def _relation_slot(tmp_path, case_id="F2::fishing_024.jpeg"):
     image.write_bytes(b"input")
     related = "fish" if case_id.startswith("F4") else "fishing rod"
     return RelationSlot(
-        "relation-slot",
+        f"RELATION|{case_id}|r1",
         {
             "case_id": case_id,
             "prompt": "prompt",
@@ -256,6 +293,24 @@ def test_relation_existing_positive_blocks_hand_detector_and_fallback_client(tmp
     assert result["hand_relation_calls"] == 0
     assert result["final_retained_subject_ids"] == ["A"]
     assert calls == []
+
+
+def test_relation_slot_passes_windows_safe_artifact_directory(tmp_path):
+    output_dirs = []
+
+    def pipeline_runner(*_args, **kwargs):
+        output_dirs.append(kwargs["output_dir"])
+        return _pipeline_result(tmp_path, complete=True)
+
+    runner.run_relation_slot(
+        _relation_slot(tmp_path),
+        tmp_path / "out",
+        {"bbox": [1, 1, 2, 2], "center": [1.5, 1.5]},
+        pipeline_runner=pipeline_runner,
+        config_loader=_good_config,
+    )
+    assert output_dirs[0].name == "RELATION_F2__fishing_024.jpeg_r1"
+    assert not any(char in output_dirs[0].name for char in '<>:"/\\|?*')
 
 
 def test_relation_incomplete_stage_runs_one_hand_fallback_and_existing_verifier(
@@ -449,7 +504,7 @@ def test_joint_runner_is_sequential_retains_terminal_records_and_writes_gate_sum
         return {
             "final_status": status,
             "candidate_correct": True,
-            "false_assignment": False,
+            "new_false_assignment": False,
             "fallback_harm": False,
         }
 
@@ -472,7 +527,59 @@ def test_joint_runner_is_sequential_retains_terminal_records_and_writes_gate_sum
     assert len(first_calls) == 48
     summary = json.loads((output / "summary.json").read_text(encoding="utf-8"))
     assert summary["terminal_failure"] == 0
+    assert summary["behavior"]["F1_candidate_regression"] == 0
+    assert summary["behavior"]["F1_task_regression"] == 0
+    assert summary["relation"]["F2_024_final_positive_retained"] is True
+    assert summary["relation"]["core_003_final_positive_retained"] is True
     assert summary["joint_policy_candidate_confirmed"] is True
+
+
+def test_summary_does_not_treat_missing_existing_positive_as_retained(tmp_path):
+    receipt = _joint_receipt(tmp_path)
+    behavior = []
+    for slot in receipt.behavior_slots:
+        behavior.append({
+            "slot_id": slot.slot_id,
+            "terminal_status": "success",
+            "result": {
+                "kind": "behavior",
+                "case_id": slot.case_id,
+                "candidate_id": slot.candidate["id"],
+                "final_status": slot.candidate["expected"],
+                "candidate_correct": True,
+                "new_false_assignment": False,
+                "fallback_harm": False,
+            },
+        })
+    relation = []
+    for slot in receipt.relation_slots:
+        if slot.case["case_id"] == "F2::fishing_024.jpeg":
+            relation.append({
+                "slot_id": slot.slot_id,
+                "terminal_status": "failure",
+                "failure_stage": "unexpected",
+                "failure_category": "OSError",
+            })
+            continue
+        retained = ["A"] if slot.case["case_id"] == "core_003" else []
+        relation.append({
+            "slot_id": slot.slot_id,
+            "terminal_status": "success",
+            "result": {
+                "kind": "relation",
+                "case_id": slot.case["case_id"],
+                "fallback_attempts": 0,
+                "target_satisfied": False,
+                "final_retained_subject_ids": retained,
+                "hand_satisfied_related_ids": [],
+                "target_candidate_ids": [],
+                "hand_detector_calls": 0,
+                "hand_relation_calls": 0,
+            },
+        })
+    summary = runner.summarize(behavior + relation)
+    assert summary["relation"]["F2_024_final_positive_retained"] is False
+    assert summary["relation"]["core_003_final_positive_retained"] is True
 
 
 def test_joint_runner_rejects_tampered_actual_slot_sequence_before_execution(
