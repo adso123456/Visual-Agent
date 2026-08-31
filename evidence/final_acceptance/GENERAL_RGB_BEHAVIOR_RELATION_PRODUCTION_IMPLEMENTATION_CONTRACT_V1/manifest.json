@@ -1,16 +1,48 @@
 {
   "schema_version": "GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_IMPLEMENTATION_CONTRACT_MANIFEST_V1",
+  "contract_revision": 2,
   "status": "PRODUCTION_IMPLEMENTATION_CONTRACT_FROZEN",
+  "review_round": "CHANGES_REQUIRED",
+  "resolved_review_blockers": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "revision_1_commit": "968e8c07140d2c3de73c628ec0839066d247e836",
   "files": [
     {
       "path": "PRODUCTION_IMPLEMENTATION_CONTRACT.md",
-      "sha256": "f894f6a80b25c242ecd2f5032c0c3aa7410ff719ff887e9b8b06818991c918f1",
-      "bytes": 20943
+      "sha256": "74366e06a02fdc724f13f9f10d7a95670c75ad52853bb1a7d0377e6231f8f0ea",
+      "bytes": 26038
     },
     {
       "path": "contract_candidate.json",
-      "sha256": "ff88364a291fcb5d6c72eae07c0cc32914d32adfd1b785fa275dde462fd6cefb",
-      "bytes": 10291
+      "sha256": "f5264b0d2652e46002a51d79837667d482a8235be1af733057f81b3778bd015a",
+      "bytes": 13312
+    }
+  ],
+  "amendments": [
+    {
+      "blocker": 1,
+      "resolution": "OBJECT_MEDIATED escalation 复用 first-pass isolated/local 同一对象，只替换第 3 张为 target-anchored full scene；禁止重建/替换 first-pass local"
+    },
+    {
+      "blocker": 2,
+      "resolution": "机械 write-back：disambiguation→uncertain positions；escalation→arming 集内 not_satisfied positions；_object_mediated_behavior_constraint_indices 返回 index 集；activation guard 要求单一 behavior 约束且 indices==(0,)"
+    },
+    {
+      "blocker": 3,
+      "resolution": "identity_contamination_risk(image_size, candidate_id, candidates) 按 ID 排除当前 candidate，不依赖 bbox equality"
+    },
+    {
+      "blocker": 4,
+      "resolution": "satisfied subject：hand localization=0（per-subject）；admission 存在时仍参加全部 relation-eligible subjects 的 new-candidate matrix；F2::024/core_003 的 Detector=0/VLM=0 仅为单主体 positive control 的 case 级 gate"
+    },
+    {
+      "blocker": 5,
+      "resolution": "preflight SHA 测试两时点分离：BEFORE 8/8 当前文件==冻结 SHA；AFTER 6 个不变文件==冻结 SHA + pipeline/evidence 证明 base=be54f3c 且 diff scope 受限（或对 git show be54f3c:<path> 复算旧 SHA）"
     }
   ],
   "source_assets": [
@@ -58,7 +90,10 @@
     }
   },
   "decision": {
-    "contract_frozen": true,
+    "design_approval": "APPROVED_IN_PRINCIPLE",
+    "implementation_surface": "APPROVED",
+    "targeted_regression_scope": "APPROVED",
+    "contract_freeze": "FROZEN_REVISION_2_AFTER_CHANGES_REQUIRED",
     "review_required": false,
     "implementation_phase": "READ_ONLY_DESIGN_ONLY",
     "behavior_policy_candidate": "CONFIRMED_BY_TARGETED_GATE",
@@ -66,6 +101,7 @@
     "joint_policy_candidate": "CONFIRMED",
     "production_code_modification": "NOT_AUTHORIZED",
     "production_merge": "NOT_AUTHORIZED",
+    "real_model_targeted_regression": "NOT_AUTHORIZED",
     "general_rgb_final_acceptance_v2": "NOT_AUTHORIZED",
     "remote_sensing_water_quality": "BLOCKED"
   },

@@ -1,8 +1,18 @@
 {
   "schema_version": "GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_IMPLEMENTATION_CONTRACT_V1",
+  "contract_revision": 2,
   "status": "CONTRACT_FROZEN",
   "contract_frozen": true,
   "review_required": false,
+  "review_round": "CHANGES_REQUIRED",
+  "resolved_review_blockers": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "amendment_note": "revision 2 收口 FORMAL REVIEW 的 5 个 Blocker；revision 1 commit 968e8c0 保持不可变",
   "production_code_modification_authorized": false,
   "model_execution_authorized": false,
   "phase": "READ_ONLY_DESIGN_ONLY",
@@ -11,6 +21,7 @@
   "implementation_target_role": "REVIEWED_REMEDIATION_EXECUTION_BASE_NOT_MERGED_PRODUCTION",
   "joint_frozen_evidence_head": "30fa9cddd851f376831b2bd3d940f6ab1165c084",
   "v2_evidence_head": "60a1da895dd9f330006adb9362a2a925181e3858",
+  "revision_1_commit": "968e8c07140d2c3de73c628ec0839066d247e836",
   "reviewed_runner_sha": "a1c61c3b4d38c25bafd841fc3b8c52fecbdbb897",
   "joint_contract_sha256": "eb2bc508a32b8e7d3ee74776ca01923d5741d6c57bf03d9faf6dd7f4f3ffd780",
   "joint_selection_sha256": "383b9742b31ec7c92d53f46c041bb6cdf58b92fdda8b640f62570a89a6074a2f",
@@ -27,6 +38,9 @@
   },
   "behavior_policy": {
     "identity_risk": {
+      "signature": "identity_contamination_risk(image_size, candidate_id, candidates)",
+      "candidates_schema": "SEQUENCE_OF_DICTS_WITH_ID_AND_BBOX",
+      "current_exclusion": "BY_CANDIDATE_ID_NEVER_BBOX_EQUALITY",
       "candidate_count_minimum": 2,
       "neighbor_bbox_coverage_minimum": 0.7,
       "neighbor_center_inside_crop": true,
@@ -44,15 +58,40 @@
       "uncertain_multi_candidate": "ONE_FULL_SCENE_DISAMBIGUATION",
       "not_satisfied_object_mediated_scene_interaction": "ONE_TARGET_ANCHORED_FULL_SCENE_ESCALATION"
     },
-    "multi_candidate_fallback_arm": {
-      "identity_risk": "TARGET_ANCHORED_FULL_SCENE",
-      "ordinary": "CURRENT_PRODUCTION_FULL_SCENE"
+    "fallback_evidence": {
+      "sequence": "ISOLATED_PLUS_SAME_FIRST_PASS_LOCAL_PLUS_FALLBACK_FULL_SCENE",
+      "reuse_first_pass_isolated": true,
+      "reuse_first_pass_local": true,
+      "rebuild_or_replace_first_pass_local": false,
+      "full_scene_source_by_route": {
+        "disambiguation_identity_risk": "TARGET_ANCHORED_FULL_SCENE",
+        "disambiguation_ordinary": "CURRENT_PRODUCTION_FULL_SCENE",
+        "object_mediated_escalation": "TARGET_ANCHORED_FULL_SCENE_ALWAYS"
+      }
     },
-    "max_fallback_per_candidate": 1,
-    "object_mediated_marker": [
-      "正在钓鱼"
-    ],
-    "object_mediated_determination": "EXACT_MATCH_ON_NORMALIZED_BEHAVIOR_CONSTRAINT_TEXT_ONCE_PER_PLAN_BEFORE_FIRST_PASS",
+    "write_back": {
+      "disambiguation_positions": "UNCERTAIN_POSITIONS_WRITE_BACK_1_1_ZIP",
+      "escalation_positions": "ARMED_OBJECT_MEDIATED_NOT_SATISFIED_POSITIONS_WRITE_BACK_1_1_ZIP",
+      "max_behavior_fallback_calls_per_candidate": 1,
+      "mutual_exclusivity": "ARMED_IMPLIES_SINGLE_CONSTRAINT_AND_SINGLE_STATUS"
+    },
+    "object_mediated": {
+      "predicate": "_object_mediated_behavior_constraint_indices(plan) -> tuple[int, ...]",
+      "marker_set": [
+        "正在钓鱼"
+      ],
+      "match": "EXACT_MATCH_ON_NORMALIZED_BEHAVIOR_CONSTRAINT_TEXT",
+      "determination_scope": "ONCE_PER_PLAN_BEFORE_FIRST_PASS_FIXED_FOR_ALL_CANDIDATES_AND_IMAGES",
+      "activation_guard": "ARMED_ONLY_WHEN_BEHAVIOR_ROUTE_HAS_EXACTLY_ONE_CONSTRAINT_AND_INDICES_EQ_(0)",
+      "multi_constraint_plan": "OUT_OF_CONFIRMED_SCOPE_NO_ESCALATION",
+      "forbidden": [
+        "KEYWORD_MATCH",
+        "FUZZY_MATCH",
+        "MODEL_TEXT",
+        "CASE_ID_OVERRIDE",
+        "PER_IMAGE_OR_PER_CANDIDATE_OVERRIDE"
+      ]
+    },
     "target_anchoring": {
       "non_target_original_weight": 45,
       "non_target_gray_weight": 55,
@@ -119,7 +158,23 @@
     ],
     "existing_secondary_verification": "OPTIONAL_ONLY_WHEN_SECONDARY_CANDIDATES_NONEMPTY",
     "zero_secondary_candidates_are_hand_fallback_eligible": true,
-    "maximum_hand_fallbacks_per_subject": 1,
+    "maximum_hand_fallbacks_per_incomplete_subject": 1,
+    "satisfied_subject_hand_localization": "SKIPPED_PER_SUBJECT_HAND_DETECTOR_CALLS_0",
+    "satisfied_subject_in_matrix_when_admissions_exist": true,
+    "admission_matrix_covers_all_relation_eligible_subjects_including_satisfied": true,
+    "case_level_positive_control_gates": {
+      "F2::fishing_024.jpeg": {
+        "hand_detector_calls": 0,
+        "hand_relation_calls": 0,
+        "rule": "SINGLE_SUBJECT_POSITIVE_CONTROL_WHOLE_CASE_NO_ADMISSION"
+      },
+      "core_003": {
+        "hand_detector_calls": 0,
+        "hand_relation_calls": 0,
+        "rule": "SINGLE_SUBJECT_POSITIVE_CONTROL_WHOLE_CASE_NO_ADMISSION"
+      }
+    },
+    "positive_control_gate_scope": "CASE_LEVEL_NOT_PER_SUBJECT_UNIVERSAL_RULE",
     "hand_conditioned_localization": {
       "base_view": "EXISTING_35_PERCENT_SUBJECT_CONTEXT",
       "detector": "IDEA-Research/grounding-dino-base",
@@ -161,8 +216,7 @@
     "held_contract_relaxation": false,
     "ownership_resolver_change": false,
     "relation_evidence": "FULL_SCENE_MARKED_JPEG",
-    "png_18_mib_normalization": "NOT_APPLICABLE",
-    "satisfied_blocks_hand_fallback": true
+    "png_18_mib_normalization": "NOT_APPLICABLE"
   },
   "implementation_surface": {
     "modified_files": [
@@ -200,24 +254,24 @@
         "id": "P1",
         "location": "BEHAVIOR_ROUTE_IN_CANDIDATE_LOOP",
         "be54f3c_line_anchor": "494-533",
-        "description": "identity-risk first-pass arm selection + status routing with immutable/one-fallback/object-mediated escalation"
+        "description": "identity-risk first-pass arm selection by (image_size, candidate_id, candidates) + status routing + mechanical write-back"
       },
       {
         "id": "P2",
         "location": "AFTER_R2_3_SECONDARY_OWNERSHIP_BEFORE_RELATION_PROTOCOL_MERGE",
         "be54f3c_line_anchor": "704-706",
-        "description": "hand-conditioned fallback orchestration for unsatisfied relation-eligible subjects"
+        "description": "hand-conditioned fallback orchestration; satisfied-subject per-subject skip + full matrix when admissions exist"
       }
     ],
     "pipeline_py_new_helpers": [
-      "_object_mediated_behavior_constraint",
+      "_object_mediated_behavior_constraint_indices",
       "_stable_hand_candidate_admission",
       "_hand_conditioned_candidates",
       "_run_hand_conditioned_fallback"
     ],
     "result_additions": {
       "relation_hand_fallback": "PER_SUBJECT_AND_AGGREGATE_TELEMETRY",
-      "behavior_routing": "PER_CANDIDATE_ROUTING_RECORD"
+      "behavior_routing": "PER_CANDIDATE_ROUTING_RECORD_WITH_WRITE_BACK_POSITIONS"
     }
   },
   "targeted_regression_gates": {
@@ -248,13 +302,21 @@
       "benchmark/test_relation_hand_fallback_implementation.py",
       "benchmark/test_production_implementation_contract_preflight.py"
     ],
+    "preflight_sha_test": {
+      "before_implementation": "8_OF_8_CURRENT_FILES_EQUAL_FROZEN_SHA",
+      "after_implementation": {
+        "unchanged_files": "6_OF_8_EQUAL_FROZEN_SHA",
+        "modified_files_proof": "PARENT_BASE_EQ_be54f3c_AND_DIFF_SCOPE_ONLY_CONTRACT_ALLOWED",
+        "alternative_old_sha_recompute": "GIT_SHOW_be54f3c_COLON_PATH_NOT_CURRENT_WORKTREE_FILE"
+      }
+    },
     "hand_fallback_limits": {
-      "localizations_per_subject": 1,
+      "localizations_per_incomplete_subject": 1,
       "hands_per_subject": 2,
       "related_detector_calls_per_hand": 1,
       "new_relation_vlm_calls": "LEN_RELATION_ELIGIBLE_SUBJECTS_WHEN_ADMITTED_NONEMPTY",
-      "existing_satisfied_detector_calls": 0,
-      "existing_satisfied_relation_calls": 0
+      "satisfied_subject_own_hand_detector_calls": 0,
+      "satisfied_subject_participates_in_matrix_when_admissions_exist": true
     },
     "must_not_change": [
       "NON_BEHAVIOR_ROUTES",
@@ -271,6 +333,9 @@
     "general_rgb_final_acceptance_v2": "NOT_AUTHORIZED",
     "real_model_targeted_regression": "NOT_AUTHORIZED",
     "stub_unit_tests_on_implementation": "ALLOWED_AFTER_SEPARATE_IMPLEMENTATION_AUTHORIZATION",
-    "remote_sensing_water_quality": "BLOCKED"
+    "remote_sensing_water_quality": "BLOCKED",
+    "selection_change": "FORBIDDEN",
+    "new_case_addition": "FORBIDDEN",
+    "model_rerun": "FORBIDDEN"
   }
 }
