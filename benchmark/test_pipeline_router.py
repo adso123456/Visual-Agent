@@ -27,8 +27,10 @@ class DetectorStub:
         self.count = count
         self.calls = []
 
-    def detect(self, _image_path: Path, target_object: str):
+    def detect(self, _image_path: Path, target_object: str, threshold: float = 0.3):
         self.calls.append(target_object)
+        if target_object == "hand":
+            return []
         return [
             {
                 "bbox": [2 + 10 * index, 3, 10 + 10 * index, 20],
@@ -243,7 +245,7 @@ def test_semantic_box_runs_subject_sam_but_not_render_sam(
 def test_behavior_fallback_rechecks_only_uncertain_and_cannot_overturn_binary(
     tmp_path, monkeypatch
 ):
-    detector = DetectorStub()
+    detector = DetectorStub(count=2)
     segmenter = SegmenterStub()
     monkeypatch.setattr(
         "visual_agent.pipeline.get_detector", lambda fresh=False: (detector, True)

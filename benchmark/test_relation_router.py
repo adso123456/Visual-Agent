@@ -108,16 +108,20 @@ class DetectorStub:
     def __init__(self):
         self.calls = []
 
-    def detect(self, _image_path: Path, target_object: str):
+    def detect(self, _image_path: Path, target_object: str, threshold: float = 0.3):
         self.calls.append(target_object)
+        if target_object == "hand":
+            return []
         if target_object == "person":
             return [{"bbox": [2, 2, 14, 26], "text_label": "person", "confidence": 0.9}]
         return [{"bbox": [10, 8, 20, 22], "text_label": "umbrella", "confidence": 0.8}]
 
 
 class TwoSubjectDetectorStub(DetectorStub):
-    def detect(self, _image_path: Path, target_object: str):
+    def detect(self, _image_path: Path, target_object: str, threshold: float = 0.3):
         self.calls.append(target_object)
+        if target_object == "hand":
+            return []
         if target_object == "person":
             return [
                 {"bbox": [2, 2, 14, 26], "text_label": "person", "confidence": 0.9},
@@ -294,8 +298,10 @@ def test_relation_secondary_grounding_is_once_per_unsatisfied_subject_and_remaps
     tmp_path, monkeypatch
 ):
     class SecondaryDetector(DetectorStub):
-        def detect(self, image_path: Path, target_object: str):
+        def detect(self, image_path: Path, target_object: str, threshold: float = 0.3):
             self.calls.append((Path(image_path).name, target_object))
+            if target_object == "hand":
+                return []
             if target_object == "person":
                 return [
                     {
@@ -365,8 +371,10 @@ def test_relation_secondary_candidate_enters_full_cross_subject_universe(
     tmp_path, monkeypatch
 ):
     class SecondaryDetector(DetectorStub):
-        def detect(self, image_path: Path, target_object: str):
+        def detect(self, image_path: Path, target_object: str, threshold: float = 0.3):
             self.calls.append((Path(image_path).name, target_object))
+            if target_object == "hand":
+                return []
             if target_object == "person":
                 return [
                     {
@@ -460,11 +468,13 @@ def test_relation_secondary_candidate_enters_full_cross_subject_universe(
     result = json.loads(result_path.read_text(encoding="utf-8"))
 
     # full-scene 无初始候选 → 两个 unsatisfied subject 各触发一次 secondary grounding
+    # （合同 §3.1.2：允许在精确 calls 断言中追加 hand fallback 的 "hand" 探测）
     assert detector.calls == [
         ("input.jpg", "person"),
         ("input.jpg", "umbrella"),
         ("subject_context.png", "umbrella"),
         ("subject_context.png", "umbrella"),
+        ("subject_context.png", "hand"),
     ]
     # 新增候选 R1 必须对 A、B 都完成关系判断（保持单 subject isolation）
     assert relation_calls == [
