@@ -61,6 +61,11 @@
       "path": "RUNNER_ADJUDICATION_AND_WINDOWS_PATH_FIX_REPORT.md",
       "sha256": "f0453549b3c9ce4acbf8b27a10e193861886f531020b6dd72efd70018e3e68f6",
       "bytes": 2667
+    },
+    {
+      "path": "EXECUTION_AUTHORIZATION_V2.json",
+      "sha256": "c3f8c4b0f88490cee35924a24b105b6d81dcb2e60a5c2033bf38a8dd4337f1cc",
+      "bytes": 835
     }
   ],
   "source_assets": [
@@ -98,6 +103,13 @@
     "review": "PENDING",
     "tests": "22_PASSED",
     "model_calls": 0
+  },
+  "next_execution_authorization": {
+    "authorization_id": "GENERAL_RGB_BEHAVIOR_RELATION_JOINT_EXECUTION_BATCH_V2",
+    "runner_review_sha": "a1c61c3b4d38c25bafd841fc3b8c52fecbdbb897",
+    "scheduled_slots": 48,
+    "batch_semantics": "NEW_INDEPENDENT_COMPLETE_BATCH",
+    "execution_status": "AUTHORIZED_NOT_STARTED"
   },
   "decision": {
     "contract_frozen": true,
