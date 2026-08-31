@@ -64,10 +64,12 @@
   - 原始 Gate R 结果、逐 Arm summary、authorization provenance 与报告见 `gate_r_execution/`、`GATE_R_EXECUTION_AUTHORIZATION.json` 和 `GATE_R_EXECUTION_REPORT.md`。
   - Production policy、Production modification/merge 与 Final Acceptance V2 仍未授权。
 - `GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_V1/`
-  - 当前状态：`EXECUTION COMPLETE / FAIL`；48/48 terminal，37 success、11 failure，失败未补跑或替换，Production 修改 0。
+  - 首次批次：`EXECUTION COMPLETE / FAIL`；48/48 terminal，37 success、11 Windows path failure，原始记录不可变且未补跑替换。
   - Behavior 35/35 raw execution 有效；原 runner 将 3 个冻结 baseline 已有 FP 误计为 new false assignment，并把 2 个 unchanged uncertain 误计为 fallback harm，因此首次 Behavior adjudication 无效，既不能判 PASS，也不能判 NOT CONFIRMED。
   - Relation 的 `F4::017`、`F2::005`、`F2::024` 共 11 个 slot 因 runner 将含 `::` 的 case ID 用作 Windows artifact 目录而触发 `WinError 123`；原始失败全部保留，Relation candidate 因执行失败无法确认。
   - 两个不含 `::` 的 control（`core_003`、`core_014`）成功；完整 preflight、raw terminal records、summary、成功 artifacts 与逐文件 SHA 见 `execution/`。
   - Adjudication clarification 已冻结：new false assignment / fallback harm 必须相对既有 synthesis baseline 判定，F1 regression 必须机械比较 5/10、3/6；详见 `ADJUDICATION_CLARIFICATION.md` 与 `adjudication_clarification.json`。
-  - Corrected runner=`a1c61c3...`：修复 Windows artifact slug、baseline-relative adjudication、F1 regression gates 与 existing-positive 空集合问题；22 tests passed，等待代码审查，模型执行未授权。
-  - Joint Policy Candidate=`NOT CONFIRMED`；Production modification/merge 与 Final Acceptance V2 均未授权。
+  - Corrected runner=`a1c61c3...` 已审查通过：修复 Windows artifact slug、baseline-relative adjudication、F1 regression gates 与 existing-positive 空集合问题；22 tests passed。
+  - V2 独立完整批次：48/48 success、0 final failure；Behavior 与 Relation Gate 均 PASS，Joint Policy Candidate=`CONFIRMED`。
+  - V2 原始 preflight、raw results、summary、13 个 Relation artifacts 与逐文件 SHA 见 `execution_v2/`；正式报告见 `V2_EXECUTION_REPORT.md`。
+  - Production implementation/merge 与 Final Acceptance V2 仍未授权。

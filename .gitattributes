@@ -61,6 +61,10 @@ evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMAT
 # 原始 execution JSON/JSONL 保留运行时字节，确保 manifest SHA 可按 checkout 文件复核。
 evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_V1/execution/**/*.json -text -diff
 evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_V1/execution/**/*.jsonl -text -diff
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_V1/execution_v2/**/*.json -text -diff
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_V1/execution_v2/**/*.jsonl -text -diff
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_V1/execution_v2/relation_artifacts/**/*.jpg filter=lfs diff=lfs merge=lfs -text
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_V1/execution_v2/relation_artifacts/**/*.png filter=lfs diff=lfs merge=lfs -text
 
 # F4 Gate L 的 Detector 输入视图与 overlay 保留生成原始字节并走 Git LFS。
 evidence/final_acceptance/GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_V1/gate_l_execution/**/*.png filter=lfs diff=lfs merge=lfs -text

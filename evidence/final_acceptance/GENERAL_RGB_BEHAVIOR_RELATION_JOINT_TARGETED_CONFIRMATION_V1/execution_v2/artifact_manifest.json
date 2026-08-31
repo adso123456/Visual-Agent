@@ -1,0 +1,170 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_RELATION_JOINT_EXECUTION_ARTIFACT_MANIFEST_V2",
+  "status": "EXECUTION_COMPLETE_PASS",
+  "batch_id": "GENERAL_RGB_BEHAVIOR_RELATION_JOINT_EXECUTION_BATCH_V2",
+  "frozen_evidence_head": "30fa9cddd851f376831b2bd3d940f6ab1165c084",
+  "authorization_sha256": "c3f8c4b0f88490cee35924a24b105b6d81dcb2e60a5c2033bf38a8dd4337f1cc",
+  "execution_base": "be54f3c89171d8b16f53c82397e9f468fb4b4c97",
+  "runner_review_sha": "a1c61c3b4d38c25bafd841fc3b8c52fecbdbb897",
+  "scheduled_slots": 48,
+  "terminal_success": 48,
+  "terminal_failure": 0,
+  "failed_execution_replacement": false,
+  "files": [
+    {
+      "path": "preflight.json",
+      "sha256": "375c0d07967d8801ee6f62bf18f4721373d0d03b55c5ef5ed99b12dfc5ffbd12",
+      "bytes": 2739
+    },
+    {
+      "path": "raw_results.jsonl",
+      "sha256": "cd79db8321c79890881a661ab8b80ef608f7cf45b49bf6861c62038ee14b766d",
+      "bytes": 137966
+    },
+    {
+      "path": "relation_artifacts/RELATION_core_003_r1/result_001_mask_A.png",
+      "sha256": "5a2c5d9d2e254611d21054e576eff9fb307f44637157194b24753360e20ced81",
+      "bytes": 11659
+    },
+    {
+      "path": "relation_artifacts/RELATION_core_003_r1/result_001.jpg",
+      "sha256": "75173e70823b13f42464cf78b6881bab176700c57fd58c5107f7131efa4d1d68",
+      "bytes": 1115933
+    },
+    {
+      "path": "relation_artifacts/RELATION_core_003_r1/result_001.json",
+      "sha256": "50ddf6e64b5498ea460e4607c2f7b5b1237c9b3e6e1a11b42e28cc128c18e931",
+      "bytes": 6465
+    },
+    {
+      "path": "relation_artifacts/RELATION_core_014_r1/result_001.jpg",
+      "sha256": "475f8dac5017b7abd39bca9527956f922d7a0756ec56e02ef9c66d674a4a5ce8",
+      "bytes": 531516
+    },
+    {
+      "path": "relation_artifacts/RELATION_core_014_r1/result_001.json",
+      "sha256": "c284b3375b585a1a219f26b2015a7d5c58c43134005404664d6900fd48fd014d",
+      "bytes": 3782
+    },
+    {
+      "path": "relation_artifacts/RELATION_F2__fishing_005.jpeg_r1/result_001.jpg",
+      "sha256": "2105f413303eb84628aa996a371bc0df9b92c675822b33394bc68d3b5e707283",
+      "bytes": 1970878
+    },
+    {
+      "path": "relation_artifacts/RELATION_F2__fishing_005.jpeg_r1/result_001.json",
+      "sha256": "c660c0c272f71afeb63fa99dd5d3e56cd9f3f1dabf063553a225c046220a2884",
+      "bytes": 5704
+    },
+    {
+      "path": "relation_artifacts/RELATION_F2__fishing_005.jpeg_r2/result_001.jpg",
+      "sha256": "2105f413303eb84628aa996a371bc0df9b92c675822b33394bc68d3b5e707283",
+      "bytes": 1970878
+    },
+    {
+      "path": "relation_artifacts/RELATION_F2__fishing_005.jpeg_r2/result_001.json",
+      "sha256": "2afc9414441636bcae692c6bbffce5115cba5d69fb12aaf5e88d7c114fe1b5f0",
+      "bytes": 5703
+    },
+    {
+      "path": "relation_artifacts/RELATION_F2__fishing_005.jpeg_r3/result_001.jpg",
+      "sha256": "2105f413303eb84628aa996a371bc0df9b92c675822b33394bc68d3b5e707283",
+      "bytes": 1970878
+    },
+    {
+      "path": "relation_artifacts/RELATION_F2__fishing_005.jpeg_r3/result_001.json",
+      "sha256": "39bde6fdde40c2f4946970c618d50b988367189f182a8af1b28bcaa2b4f02b2f",
+      "bytes": 5704
+    },
+    {
+      "path": "relation_artifacts/RELATION_F2__fishing_005.jpeg_r4/result_001.jpg",
+      "sha256": "2105f413303eb84628aa996a371bc0df9b92c675822b33394bc68d3b5e707283",
+      "bytes": 1970878
+    },
+    {
+      "path": "relation_artifacts/RELATION_F2__fishing_005.jpeg_r4/result_001.json",
+      "sha256": "fa360e53a3f947f2452f064783119b1e830a25e312ba6d917af0e19e4ef8df54",
+      "bytes": 5701
+    },
+    {
+      "path": "relation_artifacts/RELATION_F2__fishing_005.jpeg_r5/result_001.jpg",
+      "sha256": "2105f413303eb84628aa996a371bc0df9b92c675822b33394bc68d3b5e707283",
+      "bytes": 1970878
+    },
+    {
+      "path": "relation_artifacts/RELATION_F2__fishing_005.jpeg_r5/result_001.json",
+      "sha256": "294740a53f160b57c6557a29777a885948143db706f31419ea7193bc900ae7b1",
+      "bytes": 5703
+    },
+    {
+      "path": "relation_artifacts/RELATION_F2__fishing_024.jpeg_r1/result_001_mask_A.png",
+      "sha256": "a09f31e124857a39eb2ec483d37c37e131da07d4a57c93272697afeecc1bf812",
+      "bytes": 29417
+    },
+    {
+      "path": "relation_artifacts/RELATION_F2__fishing_024.jpeg_r1/result_001.jpg",
+      "sha256": "969ef3525a364a1679830b7393b82627b60ff6b27af8b85272baa2f0e1dfb565",
+      "bytes": 2592603
+    },
+    {
+      "path": "relation_artifacts/RELATION_F2__fishing_024.jpeg_r1/result_001.json",
+      "sha256": "3c1922f708e530a56221fb52c72085d90a62a6114f3b10539abe64b098589ecf",
+      "bytes": 8027
+    },
+    {
+      "path": "relation_artifacts/RELATION_F4__fishing_017.jpeg_r1/result_001.jpg",
+      "sha256": "aef353cc4387a865ab55f3306eedec3fd19270873e2c69bc29496121d2de7dda",
+      "bytes": 1499871
+    },
+    {
+      "path": "relation_artifacts/RELATION_F4__fishing_017.jpeg_r1/result_001.json",
+      "sha256": "7a18f468db3ff2a34afac9c3e6bc974ac1ab8512d8815cba9daa520cb71f8ea0",
+      "bytes": 8411
+    },
+    {
+      "path": "relation_artifacts/RELATION_F4__fishing_017.jpeg_r2/result_001.jpg",
+      "sha256": "aef353cc4387a865ab55f3306eedec3fd19270873e2c69bc29496121d2de7dda",
+      "bytes": 1499871
+    },
+    {
+      "path": "relation_artifacts/RELATION_F4__fishing_017.jpeg_r2/result_001.json",
+      "sha256": "2b9db7c82613ec0f4cd9e0b8919e5832e051e6489206a904ed08007b31aac221",
+      "bytes": 8401
+    },
+    {
+      "path": "relation_artifacts/RELATION_F4__fishing_017.jpeg_r3/result_001.jpg",
+      "sha256": "aef353cc4387a865ab55f3306eedec3fd19270873e2c69bc29496121d2de7dda",
+      "bytes": 1499871
+    },
+    {
+      "path": "relation_artifacts/RELATION_F4__fishing_017.jpeg_r3/result_001.json",
+      "sha256": "8218b8506a83519eb22311143b0a95fae3362556472bbd72f81b542950cb9ba6",
+      "bytes": 8402
+    },
+    {
+      "path": "relation_artifacts/RELATION_F4__fishing_017.jpeg_r4/result_001.jpg",
+      "sha256": "aef353cc4387a865ab55f3306eedec3fd19270873e2c69bc29496121d2de7dda",
+      "bytes": 1499871
+    },
+    {
+      "path": "relation_artifacts/RELATION_F4__fishing_017.jpeg_r4/result_001.json",
+      "sha256": "611ab8c9716c915d7878a3d05b090ed20989ee03d54f76b7312c2b2c32ca39f8",
+      "bytes": 8402
+    },
+    {
+      "path": "relation_artifacts/RELATION_F4__fishing_017.jpeg_r5/result_001.jpg",
+      "sha256": "aef353cc4387a865ab55f3306eedec3fd19270873e2c69bc29496121d2de7dda",
+      "bytes": 1499871
+    },
+    {
+      "path": "relation_artifacts/RELATION_F4__fishing_017.jpeg_r5/result_001.json",
+      "sha256": "ecc5e67d9bd5aa950d3573ddf812d6a953dada74eaa732f744a7fd1d18b45d5c",
+      "bytes": 8401
+    },
+    {
+      "path": "summary.json",
+      "sha256": "486f010c9b78b4491a10cf3e0e53f972feb5281b4d5d6a87af8847272718e238",
+      "bytes": 1302
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": "GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_MANIFEST_V1",
-  "status": "EXECUTION_COMPLETE_FAIL",
+  "status": "V2_EXECUTION_COMPLETE_PASS",
   "files": [
     {
       "path": "JOINT_TARGETED_CONFIRMATION_CONTRACT_CANDIDATE.md",
@@ -66,6 +66,31 @@
       "path": "EXECUTION_AUTHORIZATION_V2.json",
       "sha256": "c3f8c4b0f88490cee35924a24b105b6d81dcb2e60a5c2033bf38a8dd4337f1cc",
       "bytes": 835
+    },
+    {
+      "path": "V2_EXECUTION_REPORT.md",
+      "sha256": "ccf95309065ee7bb72ea1c5eac86c9154d2107a6fba2571e52e61ea5fb5be571",
+      "bytes": 3969
+    },
+    {
+      "path": "execution_v2/artifact_manifest.json",
+      "sha256": "dc7804552b421812695f7b9a05e0b31d895806806094a46249fde130ad7b1320",
+      "bytes": 6887
+    },
+    {
+      "path": "execution_v2/preflight.json",
+      "sha256": "375c0d07967d8801ee6f62bf18f4721373d0d03b55c5ef5ed99b12dfc5ffbd12",
+      "bytes": 2739
+    },
+    {
+      "path": "execution_v2/raw_results.jsonl",
+      "sha256": "cd79db8321c79890881a661ab8b80ef608f7cf45b49bf6861c62038ee14b766d",
+      "bytes": 137966
+    },
+    {
+      "path": "execution_v2/summary.json",
+      "sha256": "486f010c9b78b4491a10cf3e0e53f972feb5281b4d5d6a87af8847272718e238",
+      "bytes": 1302
     }
   ],
   "source_assets": [
@@ -91,6 +116,7 @@
     }
   ],
   "execution_observation": {
+    "batch_id": "FIRST_JOINT_BATCH_IMMUTABLE_EXECUTION_FAIL",
     "scheduled_slots": 48,
     "terminal_success": 37,
     "terminal_failure": 11,
@@ -100,7 +126,7 @@
   "production_code_modifications": 0,
   "corrected_runner": {
     "sha": "a1c61c3b4d38c25bafd841fc3b8c52fecbdbb897",
-    "review": "PENDING",
+    "review": "APPROVED",
     "tests": "22_PASSED",
     "model_calls": 0
   },
@@ -109,16 +135,25 @@
     "runner_review_sha": "a1c61c3b4d38c25bafd841fc3b8c52fecbdbb897",
     "scheduled_slots": 48,
     "batch_semantics": "NEW_INDEPENDENT_COMPLETE_BATCH",
-    "execution_status": "AUTHORIZED_NOT_STARTED"
+    "execution_status": "COMPLETE_PASS"
+  },
+  "v2_execution_observation": {
+    "batch_id": "GENERAL_RGB_BEHAVIOR_RELATION_JOINT_EXECUTION_BATCH_V2",
+    "scheduled_slots": 48,
+    "terminal_success": 48,
+    "terminal_failure": 0,
+    "behavior_gate": "PASS",
+    "relation_gate": "PASS",
+    "joint_policy_candidate_confirmed": true,
+    "failed_execution_replacement": false
   },
   "decision": {
     "contract_frozen": true,
     "review_required": false,
-    "model_execution": "COMPLETE_FAIL",
-    "behavior_raw_execution": "35_OF_35_VALID",
-    "behavior_policy_adjudication": "INVALID_PENDING_CORRECTED_RUNNER",
-    "relation_activation_policy_candidate": "INCONCLUSIVE_EXECUTION_FAILURE",
-    "joint_policy_candidate": "NOT_CONFIRMED",
+    "model_execution": "V2_COMPLETE_PASS",
+    "behavior_policy_candidate": "CONFIRMED_BY_TARGETED_GATE",
+    "relation_activation_policy_candidate": "CONFIRMED_BY_TARGETED_GATE",
+    "joint_policy_candidate": "CONFIRMED",
     "production_modification": "NOT_AUTHORIZED",
     "production_merge": "NOT_AUTHORIZED",
     "general_rgb_final_acceptance_v2": "NOT_AUTHORIZED",
