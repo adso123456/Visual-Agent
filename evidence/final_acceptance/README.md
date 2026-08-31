@@ -69,4 +69,5 @@
   - Relation 的 `F4::017`、`F2::005`、`F2::024` 共 11 个 slot 因 runner 将含 `::` 的 case ID 用作 Windows artifact 目录而触发 `WinError 123`；原始失败全部保留，Relation candidate 因执行失败无法确认。
   - 两个不含 `::` 的 control（`core_003`、`core_014`）成功；完整 preflight、raw terminal records、summary、成功 artifacts 与逐文件 SHA 见 `execution/`。
   - Adjudication clarification 已冻结：new false assignment / fallback harm 必须相对既有 synthesis baseline 判定，F1 regression 必须机械比较 5/10、3/6；详见 `ADJUDICATION_CLARIFICATION.md` 与 `adjudication_clarification.json`。
+  - Corrected runner=`a1c61c3...`：修复 Windows artifact slug、baseline-relative adjudication、F1 regression gates 与 existing-positive 空集合问题；22 tests passed，等待代码审查，模型执行未授权。
   - Joint Policy Candidate=`NOT CONFIRMED`；Production modification/merge 与 Final Acceptance V2 均未授权。

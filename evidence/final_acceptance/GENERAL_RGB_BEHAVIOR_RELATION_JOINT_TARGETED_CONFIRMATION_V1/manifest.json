@@ -56,6 +56,11 @@
       "path": "adjudication_clarification.json",
       "sha256": "feb1bbf9fb8a381d199f2b7a892bbd06498679bb9b43481ed1ca95bc81354def",
       "bytes": 1962
+    },
+    {
+      "path": "RUNNER_ADJUDICATION_AND_WINDOWS_PATH_FIX_REPORT.md",
+      "sha256": "f0453549b3c9ce4acbf8b27a10e193861886f531020b6dd72efd70018e3e68f6",
+      "bytes": 2667
     }
   ],
   "source_assets": [
@@ -88,6 +93,12 @@
     "failed_relation_slot_model_calls": "NOT_RECOVERABLE_FROM_TERMINAL_RECORDS"
   },
   "production_code_modifications": 0,
+  "corrected_runner": {
+    "sha": "a1c61c3b4d38c25bafd841fc3b8c52fecbdbb897",
+    "review": "PENDING",
+    "tests": "22_PASSED",
+    "model_calls": 0
+  },
   "decision": {
     "contract_frozen": true,
     "review_required": false,
