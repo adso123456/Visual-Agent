@@ -57,14 +57,6 @@ PRODUCTION_FILE_SHA256 = {
     "visual_agent/vlm_client.py": "a36782166b41fde299cb3cd328fb145bc0597ae8bd49c0510f1eb6d832a82c88",
     "visual_agent/deepseek_agent.py": "cdc6be9cdc4b518734b014ca9e44144d7b4da1895da6bdb74de9fed5290f1f12",
 }
-RUNNER_PATHS = (
-    "benchmark/joint_targeted_confirmation_v1/__init__.py",
-    "benchmark/joint_targeted_confirmation_v1/runner.py",
-    "benchmark/joint_targeted_confirmation_v1/README.md",
-    "benchmark/test_joint_targeted_confirmation_runner.py",
-)
-
-
 class JointFailure(RuntimeError):
     def __init__(self, stage: str, category: str, message: str, details=None):
         super().__init__(message)
@@ -178,6 +170,16 @@ def _require_git(repo: Path, category: str, *args: str) -> str:
     if result.returncode:
         raise JointFailure("preflight", category, "git " + " ".join(args))
     return result.stdout.strip()
+
+
+def _require_exact_reviewed_head(repo: Path, review_sha: str) -> None:
+    actual = _require_git(repo, "runner_review_head", "rev-parse", "HEAD")
+    if actual != review_sha:
+        raise JointFailure(
+            "preflight",
+            "runner_review_head",
+            f"HEAD={actual}, reviewed={review_sha}",
+        )
 
 
 def validate_authorization(payload: dict) -> str:
@@ -335,11 +337,8 @@ def verify_preflight(
     review_sha = validate_authorization(_json(authorization_path))
 
     _require_git(repo_root, "execution_base", "merge-base", "--is-ancestor", EXECUTION_BASE, "HEAD")
-    _require_git(repo_root, "runner_review_sha", "merge-base", "--is-ancestor", review_sha, "HEAD")
-    drift = _git(repo_root, "diff", "--quiet", review_sha, "HEAD", "--", *RUNNER_PATHS)
-    if drift.returncode:
-        raise JointFailure("preflight", "runner_review_drift", review_sha)
-    dirty = _git(repo_root, "status", "--porcelain", "--", "benchmark/joint_targeted_confirmation_v1", "benchmark/test_joint_targeted_confirmation_runner.py", "visual_agent")
+    _require_exact_reviewed_head(repo_root, review_sha)
+    dirty = _git(repo_root, "status", "--porcelain")
     if dirty.returncode or dirty.stdout.strip():
         raise JointFailure("preflight", "working_tree_dirty", dirty.stdout.strip())
     for relative, expected in PRODUCTION_FILE_SHA256.items():
@@ -690,56 +689,105 @@ def run_relation_slot(
         output_dir=artifact_dir,
     )
     result = _json(json_output)
-    incomplete = [group for group in result["semantic_groups"] if not group["composite_complete"]]
+    plan = relation_plan(case)
+    groups = list(result["semantic_groups"])
+    incomplete_ids = {
+        group["id"] for group in groups if not group["composite_complete"]
+    }
+    candidates_by_id = {row["id"]: row for row in result["candidates"]}
+    relation_subjects = []
+    for group in groups:
+        subject_row = candidates_by_id.get(group["id"])
+        if subject_row is None:
+            raise JointFailure(
+                "pipeline", "relation_subject_binding", str(group["id"])
+            )
+        relation_subjects.append(
+            {
+                "id": group["id"],
+                "label": plan["label"],
+                "text_label": subject_row["text_label"],
+                "bbox": subject_row["bbox"],
+                "confidence": subject_row["dino_confidence"],
+            }
+        )
     fallback_attempts = 0
     hand_detector_calls = 0
     hand_relation_calls = 0
-    fallback_bindings = []
+    focused_ownership_calls = 0
     admitted_all = []
-    old_candidates = [dict(item) for item in result["relation_candidates"]]
+    global_candidates = [dict(item) for item in result["relation_candidates"]]
     metered = None
     detector = None
-    for group in incomplete:
-        subject_id = group["id"]
-        subject_row = next((row for row in result["candidates"] if row["id"] == subject_id), None)
-        if subject_row is None:
+    for subject in relation_subjects:
+        if subject["id"] not in incomplete_ids:
             continue
         fallback_attempts += 1
         if detector is None:
             detector = detector_factory()
-        subject = {
-            "id": subject_id,
-            "label": relation_plan(case)["label"],
-            "text_label": subject_row["text_label"],
-            "bbox": subject_row["bbox"],
-            "confidence": subject_row["dino_confidence"],
-        }
         admitted, telemetry = hand_conditioned_candidates(
-            image_path, subject, case["related_object"], old_candidates, detector
+            image_path,
+            subject,
+            case["related_object"],
+            global_candidates,
+            detector,
         )
         hand_detector_calls += len(telemetry["calls"])
         admitted_all.extend(admitted)
-        if not admitted:
-            continue
+        # 后一个 subject 的 admission 必须看到前一个 subject 已新增的全局候选，
+        # 从而保证跨主体去重与 R ID 全局唯一。
+        global_candidates.extend(admitted)
+
+    relation_protocols = []
+    combined_bindings = [dict(row) for row in result["relation_bindings"]]
+    if admitted_all:
         if metered is None:
             metered = MeteredClient(client_factory(config))
         with patch.object(relations, "_client", return_value=metered):
-            bindings, protocol = relation_verifier(
+            # 与 Production R2.3 相同：新增 candidates 对全部 relation-eligible
+            # subjects 建立完整 binding matrix，而不是只验证产生 candidate 的主体。
+            for subject in relation_subjects:
+                bindings, protocol = relation_verifier(
+                    image_path,
+                    [subject],
+                    admitted_all,
+                    case["related_object"],
+                    "held_by_target",
+                )
+                hand_relation_calls += 1
+                combined_bindings.extend(bindings)
+                relation_protocols.append(protocol)
+            matrix_protocol_count = len(relation_protocols)
+            combined_bindings = pipeline._resolve_focused_ownership(
                 image_path,
-                [subject],
-                admitted,
+                combined_bindings,
+                global_candidates,
+                relation_subjects,
                 case["related_object"],
                 "held_by_target",
+                relation_protocols,
+                only_related_ids={row["id"] for row in admitted_all},
             )
-        hand_relation_calls += 1
-        fallback_bindings.extend(bindings)
-    combined_bindings = [*result["relation_bindings"], *fallback_bindings]
+            focused_ownership_calls = len(relation_protocols) - matrix_protocol_count
+
+    outcomes = pipeline.resolve_relation_outcomes(
+        relation_subjects,
+        global_candidates,
+        combined_bindings,
+        plan,
+    )
     satisfied_subjects = {
-        row["subject_id"] for row in combined_bindings if row["status"] == "satisfied"
+        subject_id
+        for subject_id, outcome in outcomes.items()
+        if outcome["status"] == "satisfied"
     }
     target_ids = {
         row["id"] for row in admitted_all if case["case_id"] == "F4::fishing_017.jpeg" and _target_reference_match(row, reference)
     }
+    new_ids = {row["id"] for row in admitted_all}
+    fallback_bindings = [
+        row for row in combined_bindings if row["related_id"] in new_ids
+    ]
     hand_satisfied = [row for row in fallback_bindings if row["status"] == "satisfied"]
     return {
         "pipeline_result_json": str(json_output),
@@ -750,8 +798,10 @@ def run_relation_slot(
         "fallback_attempts": fallback_attempts,
         "hand_detector_calls": hand_detector_calls,
         "hand_relation_calls": hand_relation_calls,
+        "focused_ownership_calls": focused_ownership_calls,
         "admitted_candidates": admitted_all,
         "fallback_bindings": fallback_bindings,
+        "relation_outcomes": outcomes,
         "final_retained_subject_ids": sorted(satisfied_subjects),
         "target_candidate_ids": sorted(target_ids),
         "target_satisfied": any(row["related_id"] in target_ids for row in hand_satisfied),

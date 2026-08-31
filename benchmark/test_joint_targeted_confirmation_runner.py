@@ -114,6 +114,18 @@ def test_frozen_manifest_is_verified_from_reviewed_git_blob_not_mutable_head(
     assert calls == [["git", "show", "frozen-head:path/manifest.json"]]
 
 
+def test_preflight_requires_head_to_equal_authorized_review_commit(monkeypatch, tmp_path):
+    monkeypatch.setattr(
+        runner,
+        "_require_git",
+        lambda *_args: "b" * 40,
+    )
+    runner._require_exact_reviewed_head(tmp_path, "b" * 40)
+    with pytest.raises(JointFailure) as error:
+        runner._require_exact_reviewed_head(tmp_path, "c" * 40)
+    assert error.value.category == "runner_review_head"
+
+
 def test_frozen_vlm_config_rejects_wrong_endpoint_before_client_creation():
     bad = VlmConfig(runner.FROZEN_MODEL, "https://dashscope.example/v1", "secret", 120)
     with pytest.raises(JointFailure) as error:
@@ -187,8 +199,17 @@ def _pipeline_result(tmp_path, *, complete):
         "candidates": [
             {"id": "A", "text_label": "person", "bbox": [10, 10, 40, 70], "dino_confidence": 0.9}
         ],
-        "relation_candidates": [{"id": "R1", "bbox": [60, 10, 80, 50]}],
-        "relation_bindings": ([{"subject_id": "A", "related_id": "R1", "status": "satisfied"}] if complete else []),
+        "relation_candidates": [
+            {
+                "id": "R1", "object": "fishing rod", "text_label": "rod",
+                "bbox": [60, 10, 80, 50], "dino_confidence": 0.8,
+            }
+        ],
+        "relation_bindings": ([{
+            "subject_id": "A", "related_id": "R1",
+            "relation": "held_by_target", "status": "satisfied",
+            "evidence": "existing binding",
+        }] if complete else []),
         "semantic_groups": [{"id": "A", "composite_complete": complete}],
     }
     data = tmp_path / "result.json"
@@ -274,6 +295,96 @@ def test_relation_incomplete_stage_runs_one_hand_fallback_and_existing_verifier(
     assert result["target_satisfied"] is True
     assert result["final_retained_subject_ids"] == ["A"]
     assert len(verifier_calls) == 1
+
+
+def test_relation_new_candidates_use_global_ids_full_subject_matrix_and_production_resolvers(
+    tmp_path, monkeypatch
+):
+    slot = _relation_slot(tmp_path, "F4::fishing_017.jpeg")
+    result_image = tmp_path / "result_multi.jpg"
+    result_image.write_bytes(b"image")
+    result_json = tmp_path / "result_multi.json"
+    result_json.write_text(
+        json.dumps(
+            {
+                "targets": [],
+                "candidates": [
+                    {"id": "A", "text_label": "person", "bbox": [10, 10, 40, 70], "dino_confidence": 0.9},
+                    {"id": "B", "text_label": "person", "bbox": [35, 10, 65, 70], "dino_confidence": 0.8},
+                ],
+                "relation_candidates": [
+                    {"id": "R1", "object": "fish", "text_label": "fish", "bbox": [70, 10, 90, 40], "dino_confidence": 0.6}
+                ],
+                "relation_bindings": [],
+                "semantic_groups": [
+                    {"id": "A", "composite_complete": False},
+                    {"id": "B", "composite_complete": False},
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    localization_calls = []
+
+    def hand_candidates(_image, subject, _object, old_candidates, _detector):
+        localization_calls.append((subject["id"], [row["id"] for row in old_candidates]))
+        if subject["id"] == "A":
+            return (
+                [{"id": "R2", "object": "fish", "text_label": "fish", "bbox": [10, 10, 20, 20], "dino_confidence": 0.9}],
+                {"calls": [{}, {}]},
+            )
+        return ([], {"calls": [{}]})
+
+    monkeypatch.setattr(runner, "hand_conditioned_candidates", hand_candidates)
+    verifier_subjects = []
+
+    def relation_verifier(_image, subjects, _candidates, _object, relation):
+        subject_id = subjects[0]["id"]
+        verifier_subjects.append(subject_id)
+        return (
+            [{
+                "subject_id": subject_id,
+                "related_id": "R2",
+                "relation": relation,
+                "status": "satisfied",
+                "evidence": f"raw {subject_id}",
+            }],
+            {"attempts": 1},
+        )
+
+    focused_calls = []
+
+    def focused(_image, subjects, candidates, _object, relation):
+        focused_calls.append(([row["id"] for row in subjects], [row["id"] for row in candidates]))
+        return (
+            [
+                {"subject_id": "A", "related_id": "R2", "relation": relation, "status": "satisfied", "evidence": "A owns"},
+                {"subject_id": "B", "related_id": "R2", "relation": relation, "status": "not_satisfied", "evidence": "B does not own"},
+            ],
+            {"attempts": 1},
+        )
+
+    monkeypatch.setattr(runner.pipeline, "verify_focused_ownership", focused)
+    fake_client = SimpleNamespace(
+        chat=SimpleNamespace(completions=SimpleNamespace(create=lambda **_kwargs: None))
+    )
+    result = runner.run_relation_slot(
+        slot,
+        tmp_path / "out",
+        {"bbox": [9, 9, 21, 21], "center": [15, 15]},
+        pipeline_runner=lambda *_args, **_kwargs: (result_image, result_json),
+        detector_factory=lambda: object(),
+        relation_verifier=relation_verifier,
+        config_loader=_good_config,
+        client_factory=lambda _config: fake_client,
+    )
+    assert localization_calls == [("A", ["R1"]), ("B", ["R1", "R2"])]
+    assert verifier_subjects == ["A", "B"]
+    assert focused_calls == [(["A", "B"], ["R2"])]
+    assert result["hand_relation_calls"] == 2
+    assert result["focused_ownership_calls"] == 1
+    assert result["final_retained_subject_ids"] == ["A"]
+    assert result["relation_outcomes"]["B"]["status"] == "not_satisfied"
 
 
 def _joint_receipt(tmp_path):
