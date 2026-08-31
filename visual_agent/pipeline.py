@@ -4,6 +4,7 @@ import time
 from pathlib import Path
 
 import numpy as np
+from PIL import Image
 
 from visual_agent.deepseek_agent import MODEL_NAME, TOOL_NAME, DeepSeekAgent
 from visual_agent.evidence import (
@@ -11,6 +12,9 @@ from visual_agent.evidence import (
     build_candidate_marked_full_scene_evidence,
     build_isolated_instance_evidence,
     build_subject_conditioned_grounding_view,
+    build_target_anchored_behavior_evidence,
+    build_target_anchored_full_scene_evidence,
+    identity_contamination_risk,
 )
 from visual_agent.grounding import MODEL_NAME as DETECTOR_MODEL_NAME
 from visual_agent.models import get_detector, get_segmenter
@@ -40,6 +44,297 @@ def _union_bbox(boxes: list[list[float]]) -> list[float]:
         max(box[2] for box in boxes),
         max(box[3] for box in boxes),
     ]
+
+
+OBJECT_MEDIATED_BEHAVIOR_MARKER = "正在钓鱼"
+HAND_CONDITIONED_THRESHOLD = 0.30
+HAND_MAX_CANDIDATES = 2
+HAND_VIEW_EXPANSION = 1.0
+HAND_ADMISSION_IOU = 0.80
+
+
+def _object_mediated_behavior_constraint_indices(plan: dict) -> tuple[int, ...]:
+    """冻结 marker：normalized behavior constraint text 与 '正在钓鱼' 精确相等（合同 §1.2）。
+
+    返回 behavior route 约束列表中命中的 positions；与 case id、模型文本、关键词
+    模糊匹配无关。每个 plan 在 first-pass 前计算一次并固化。
+    """
+    behavior_items = [
+        item
+        for item in plan.get("constraints", [])
+        if item.get("route") == "behavior"
+    ]
+    return tuple(
+        index
+        for index, item in enumerate(behavior_items)
+        if item.get("text", "").strip() == OBJECT_MEDIATED_BEHAVIOR_MARKER
+    )
+
+
+def _person_masks_for(
+    candidate: dict,
+    runtime_candidates: list[dict],
+    mask_cache: dict,
+) -> list[np.ndarray]:
+    """target-anchored 证据的 person_masks：同图其余全部 runtime candidate 的 SAM masks。"""
+    return [
+        mask_cache[("subject", other["id"])]["mask"]
+        for other in runtime_candidates
+        if other["id"] != candidate["id"]
+    ]
+
+
+def _bbox_iou(box_a: list[float], box_b: list[float]) -> float:
+    """IoU（合同 §1.5 去重与 admission 判定）。"""
+    inter_width = max(0.0, min(box_a[2], box_b[2]) - max(box_a[0], box_b[0]))
+    inter_height = max(0.0, min(box_a[3], box_b[3]) - max(box_a[1], box_b[1]))
+    intersection = inter_width * inter_height
+    area_a = max(0.0, box_a[2] - box_a[0]) * max(0.0, box_a[3] - box_a[1])
+    area_b = max(0.0, box_b[2] - box_b[0]) * max(0.0, box_b[3] - box_b[1])
+    union = area_a + area_b - intersection
+    if union <= 0:
+        return 0.0
+    return intersection / union
+
+
+def _stable_hand_candidate_admission(
+    hand_candidates: list[dict],
+    old_candidates: list[dict],
+) -> list[dict]:
+    """冻结 admission：按 (-confidence, *bbox) 排序；与全部旧候选任一 IoU>=0.80 拒绝；
+    再对保留候选按同样顺序做稳定 IoU>=0.80 去重（合同 §2.2 P2.1）。"""
+    ordered = sorted(
+        hand_candidates,
+        key=lambda item: (-item["dino_confidence"], *item["bbox"]),
+    )
+    admitted: list[dict] = []
+    for candidate in ordered:
+        if any(
+            _bbox_iou(candidate["bbox"], old["bbox"]) >= HAND_ADMISSION_IOU
+            for old in old_candidates
+        ):
+            continue
+        if any(
+            _bbox_iou(candidate["bbox"], kept["bbox"]) >= HAND_ADMISSION_IOU
+            for kept in admitted
+        ):
+            continue
+        admitted.append(candidate)
+    return admitted
+
+
+def _hand_conditioned_candidates(
+    image_path: Path,
+    subject: dict,
+    related_object: str,
+    old_candidates: list[dict],
+    detector,
+) -> tuple[list[dict], dict]:
+    """对单个 incomplete subject 执行一次 hand-conditioned related-object
+    localization（合同 §1.5 步骤 1-10）。返回 (admitted, telemetry)。"""
+    telemetry = {"hand_detector_calls": 1, "admitted_count": 0, "new_candidate_ids": []}
+    view, crop_bbox = build_subject_conditioned_grounding_view(
+        image_path,
+        subject["bbox"],
+    )
+    view_width, view_height = view.size
+    subject_box = subject["bbox"]
+    subject_view_box = [
+        subject_box[0] - crop_bbox[0],
+        subject_box[1] - crop_bbox[1],
+        subject_box[2] - crop_bbox[0],
+        subject_box[3] - crop_bbox[1],
+    ]
+
+    with tempfile.TemporaryDirectory(prefix="visual_agent_relation_") as temporary_dir:
+        subject_view_path = Path(temporary_dir) / "subject_context.png"
+        view.save(subject_view_path, format="PNG")
+        hand_detections = detector.detect(
+            subject_view_path,
+            "hand",
+            threshold=HAND_CONDITIONED_THRESHOLD,
+        )
+
+    filtered_hands = []
+    for detection in hand_detections:
+        box = detection["bbox"]
+        center_x = (box[0] + box[2]) / 2.0
+        center_y = (box[1] + box[3]) / 2.0
+        if (
+            subject_view_box[0] <= center_x <= subject_view_box[2]
+            and subject_view_box[1] <= center_y <= subject_view_box[3]
+        ):
+            filtered_hands.append(detection)
+    filtered_hands.sort(
+        key=lambda item: (-item["confidence"], *item["bbox"])
+    )
+    filtered_hands = filtered_hands[:HAND_MAX_CANDIDATES]
+
+    raw_related: list[dict] = []
+    for hand in filtered_hands:
+        hand_box = hand["bbox"]
+        width = hand_box[2] - hand_box[0]
+        height = hand_box[3] - hand_box[1]
+        hand_view_box = [
+            max(0, int(hand_box[0] - HAND_VIEW_EXPANSION * width)),
+            max(0, int(hand_box[1] - HAND_VIEW_EXPANSION * height)),
+            min(view_width, int(hand_box[2] + HAND_VIEW_EXPANSION * width)),
+            min(view_height, int(hand_box[3] + HAND_VIEW_EXPANSION * height)),
+        ]
+        if hand_view_box[0] >= hand_view_box[2] or hand_view_box[1] >= hand_view_box[3]:
+            continue
+        hand_view_image = view.crop(tuple(hand_view_box))
+        with tempfile.TemporaryDirectory(
+            prefix="visual_agent_relation_"
+        ) as temporary_dir:
+            hand_view_path = Path(temporary_dir) / "hand_context.png"
+            hand_view_image.save(hand_view_path, format="PNG")
+            related_detections = detector.detect(
+                hand_view_path,
+                related_object,
+                threshold=HAND_CONDITIONED_THRESHOLD,
+            )
+        for detection in related_detections:
+            x1, y1, x2, y2 = detection["bbox"]
+            raw_related.append(
+                {
+                    "object": related_object,
+                    "text_label": detection["text_label"],
+                    "bbox": [
+                        x1 + hand_view_box[0] + crop_bbox[0],
+                        y1 + hand_view_box[1] + crop_bbox[1],
+                        x2 + hand_view_box[0] + crop_bbox[0],
+                        y2 + hand_view_box[1] + crop_bbox[1],
+                    ],
+                    "dino_confidence": detection["confidence"],
+                }
+            )
+
+    admitted = _stable_hand_candidate_admission(raw_related, old_candidates)
+    telemetry["admitted_count"] = len(admitted)
+    return admitted, telemetry
+
+
+def _run_hand_conditioned_fallback(
+    *,
+    image_path: Path,
+    relation_subjects: list[dict],
+    relation_candidates: list[dict],
+    relation_bindings: list[dict],
+    related_plan: dict,
+    detector,
+    relation_protocols: list[dict],
+) -> dict:
+    """合同 §1.5 / §2.2 P2 编排：每个 incomplete subject 至多一次 hand-conditioned
+    localization；admission 全局累积；有新增时对全部 relation-eligible subjects
+    建立完整 binding matrix（含已 satisfied subject，且不触发其 hand Detector）。"""
+    subjects_with_satisfied = {
+        binding["subject_id"]
+        for binding in relation_bindings
+        if binding["status"] == "satisfied"
+    }
+    incomplete_subjects = [
+        subject
+        for subject in relation_subjects
+        if subject["id"] not in subjects_with_satisfied
+    ]
+    related_object = related_plan["object"]
+    relation = related_plan["relation"]
+
+    fallback = {
+        "relation_candidates": relation_candidates,
+        "relation_bindings": relation_bindings,
+        "relation_protocols": relation_protocols,
+        "telemetry": {
+            "attempts": 0,
+            "detector_calls": 0,
+            "admitted_count": 0,
+            "hand_relation_calls": 0,
+            "max_per_subject": 1,
+            "subjects": {},
+        },
+    }
+    for subject in relation_subjects:
+        fallback["telemetry"]["subjects"][subject["id"]] = {
+            "attempted": False,
+            "hand_detector_calls": 0,
+            "admitted_count": 0,
+            "new_candidate_ids": [],
+            "hand_relation_calls": 0,
+        }
+    if not incomplete_subjects:
+        return fallback
+
+    working_candidates = list(relation_candidates)
+    admitted_by_subject: dict[str, list[dict]] = {}
+    for subject in incomplete_subjects:
+        admitted, telemetry = _hand_conditioned_candidates(
+            image_path,
+            subject,
+            related_object,
+            working_candidates,
+            detector,
+        )
+        fallback["telemetry"]["attempts"] += 1
+        fallback["telemetry"]["detector_calls"] += telemetry["hand_detector_calls"]
+        fallback["telemetry"]["subjects"][subject["id"]]["attempted"] = True
+        fallback["telemetry"]["subjects"][subject["id"]][
+            "hand_detector_calls"
+        ] = telemetry["hand_detector_calls"]
+        fallback["telemetry"]["subjects"][subject["id"]][
+            "admitted_count"
+        ] = telemetry["admitted_count"]
+        if admitted:
+            for candidate in admitted:
+                candidate["id"] = f"R{len(working_candidates) + 1}"
+                working_candidates.append(candidate)
+            admitted_by_subject[subject["id"]] = admitted
+            fallback["telemetry"]["subjects"][subject["id"]][
+                "new_candidate_ids"
+            ] = [candidate["id"] for candidate in admitted]
+
+    new_candidates = [
+        candidate
+        for candidate in working_candidates
+        if candidate["id"] not in {
+            item["id"] for item in relation_candidates
+        }
+    ]
+    if not new_candidates:
+        fallback["telemetry"]["admitted_count"] = 0
+        return fallback
+
+    fallback["telemetry"]["admitted_count"] = len(new_candidates)
+    working_bindings = list(relation_bindings)
+    working_protocols = list(relation_protocols)
+    for relation_subject in relation_subjects:
+        subject_bindings, subject_protocol = verify_relations(
+            image_path,
+            [relation_subject],
+            new_candidates,
+            related_object,
+            relation,
+        )
+        working_bindings.extend(subject_bindings)
+        working_protocols.append(subject_protocol)
+        fallback["telemetry"]["subjects"][relation_subject["id"]][
+            "hand_relation_calls"
+        ] = 1
+        fallback["telemetry"]["hand_relation_calls"] += 1
+    working_bindings = _resolve_focused_ownership(
+        image_path,
+        working_bindings,
+        working_candidates,
+        relation_subjects,
+        related_object,
+        relation,
+        working_protocols,
+        only_related_ids={candidate["id"] for candidate in new_candidates},
+    )
+    fallback["relation_candidates"] = working_candidates
+    fallback["relation_bindings"] = working_bindings
+    fallback["relation_protocols"] = working_protocols
+    return fallback
 
 
 def _local_summary(public_visual_result: dict) -> str:
@@ -355,6 +650,8 @@ def run_pipeline(
     if not image_path.is_file():
         raise FileNotFoundError(f"图片不存在：{image_path}")
     total_started_at = time.perf_counter()
+    with Image.open(image_path) as _image_handle:
+        pipeline_image_size = _image_handle.size
 
     agent = DeepSeekAgent() if (plan is None or final_response) else None
     if plan is None:
@@ -435,6 +732,10 @@ def run_pipeline(
     validity_protocols = {}
     routed_protocols = {}
     validity_seconds = 0.0
+    behavior_routing: dict[str, dict] = {}
+    object_mediated_behavior_indices = _object_mediated_behavior_constraint_indices(
+        plan
+    )
     route_seconds = {"attribute": 0.0, "behavior": 0.0}
     verification_started_at = time.perf_counter()
 
@@ -491,12 +792,31 @@ def run_pipeline(
                 route_items = [item for _, item in indexed_constraints]
                 behavior_evidence = None
                 evidence = isolated
+                identity_risk = False
+                first_pass_arm = None
                 if route == "behavior":
-                    behavior_evidence = build_behavior_evidence(
-                        image_path,
-                        candidate["bbox"],
-                        candidate["mask"],
+                    identity_risk = identity_contamination_risk(
+                        pipeline_image_size,
+                        candidate["id"],
+                        runtime_candidates,
                     )
+                    if identity_risk:
+                        behavior_evidence = build_target_anchored_behavior_evidence(
+                            image_path,
+                            candidate["bbox"],
+                            candidate["mask"],
+                            _person_masks_for(
+                                candidate, runtime_candidates, mask_cache
+                            ),
+                        )
+                        first_pass_arm = "B"
+                    else:
+                        behavior_evidence = build_behavior_evidence(
+                            image_path,
+                            candidate["bbox"],
+                            candidate["mask"],
+                        )
+                        first_pass_arm = "A"
                     evidence = [isolated, behavior_evidence]
                 started_at = time.perf_counter()
                 checks, protocol = verify_candidate_constraints(
@@ -506,16 +826,27 @@ def run_pipeline(
                     route,
                 )
                 if route == "behavior":
-                    uncertain = [
-                        (position, item, check)
-                        for position, (item, check) in enumerate(zip(route_items, checks))
+                    fallback_arm = None
+                    fallback_attempted = False
+                    write_back_positions: list[int] = []
+                    uncertain_positions = [
+                        position
+                        for position, check in enumerate(checks)
                         if check["status"] == "uncertain"
                     ]
-                    if uncertain:
-                        fallback_items = [item for _, item, _ in uncertain]
-                        full_scene = build_candidate_marked_full_scene_evidence(
+                    armed_escalation = (
+                        len(route_items) == 1
+                        and object_mediated_behavior_indices == (0,)
+                        and checks[0]["status"] == "not_satisfied"
+                    )
+                    if armed_escalation:
+                        fallback_items = [route_items[0]]
+                        full_scene = build_target_anchored_full_scene_evidence(
                             image_path,
                             candidate["mask"],
+                            _person_masks_for(
+                                candidate, runtime_candidates, mask_cache
+                            ),
                         )
                         fallback_checks, fallback_protocol = verify_candidate_constraints(
                             {"id": candidate["id"], "bbox": candidate["bbox"]},
@@ -523,14 +854,61 @@ def run_pipeline(
                             [isolated, behavior_evidence, full_scene],
                             route,
                         )
-                        for (position, _, _), fallback_check in zip(
-                            uncertain,
-                            fallback_checks,
-                        ):
-                            checks[position] = fallback_check
+                        checks[0] = fallback_checks[0]
+                        write_back_positions = [0]
+                        fallback_arm = "C"
+                        fallback_attempted = True
                         protocol = _merge_protocol_metadata(
                             [protocol, fallback_protocol]
                         )
+                    elif uncertain_positions and len(runtime_candidates) >= 2:
+                        fallback_items = [
+                            route_items[position]
+                            for position in uncertain_positions
+                        ]
+                        if identity_risk:
+                            full_scene = (
+                                build_target_anchored_full_scene_evidence(
+                                    image_path,
+                                    candidate["mask"],
+                                    _person_masks_for(
+                                        candidate,
+                                        runtime_candidates,
+                                        mask_cache,
+                                    ),
+                                )
+                            )
+                            fallback_arm = "C"
+                        else:
+                            full_scene = build_candidate_marked_full_scene_evidence(
+                                image_path,
+                                candidate["mask"],
+                            )
+                            fallback_arm = "A"
+                        fallback_checks, fallback_protocol = verify_candidate_constraints(
+                            {"id": candidate["id"], "bbox": candidate["bbox"]},
+                            fallback_items,
+                            [isolated, behavior_evidence, full_scene],
+                            route,
+                        )
+                        for position, fallback_check in zip(
+                            uncertain_positions,
+                            fallback_checks,
+                        ):
+                            checks[position] = fallback_check
+                        write_back_positions = uncertain_positions
+                        fallback_attempted = True
+                        protocol = _merge_protocol_metadata(
+                            [protocol, fallback_protocol]
+                        )
+                    behavior_routing[candidate["id"]] = {
+                        "identity_risk": identity_risk,
+                        "first_pass_arm": first_pass_arm,
+                        "route": route,
+                        "fallback_arm": fallback_arm,
+                        "fallback_attempted": fallback_attempted,
+                        "write_back_positions": write_back_positions,
+                    }
                 route_seconds[route] += time.perf_counter() - started_at
                 routed_protocols[candidate["id"]][route] = protocol
                 for (index, _), check in zip(indexed_constraints, checks):
@@ -563,6 +941,14 @@ def run_pipeline(
     relation_grounding_seconds = 0.0
     relation_verification_seconds = 0.0
     relation_protocol = skipped_protocol_metadata()
+    relation_hand_fallback = {
+        "attempts": 0,
+        "detector_calls": 0,
+        "admitted_count": 0,
+        "hand_relation_calls": 0,
+        "max_per_subject": 1,
+        "subjects": {},
+    }
     relation_eligible = [
         candidate
         for candidate in runtime_candidates
@@ -702,6 +1088,22 @@ def run_pipeline(
                         candidate["id"] for candidate in secondary_candidates
                     },
                 )
+
+            # Production Implementation Contract §1.5 / §2.2 P2：
+            # hand-conditioned related-object localization fallback。
+            hand_fallback = _run_hand_conditioned_fallback(
+                image_path=image_path,
+                relation_subjects=relation_subjects,
+                relation_candidates=relation_candidates,
+                relation_bindings=relation_bindings,
+                related_plan=related_plan,
+                detector=detector,
+                relation_protocols=relation_protocols,
+            )
+            relation_candidates = hand_fallback["relation_candidates"]
+            relation_bindings = hand_fallback["relation_bindings"]
+            relation_protocols = hand_fallback["relation_protocols"]
+            relation_hand_fallback = hand_fallback["telemetry"]
 
             if relation_protocols:
                 relation_protocol = _merge_protocol_metadata(relation_protocols)
@@ -872,6 +1274,8 @@ def run_pipeline(
         },
         "plan": plan,
         "candidates": candidates,
+        "behavior_routing": behavior_routing,
+        "relation_hand_fallback": relation_hand_fallback,
         "verified_subjects": final_subjects,
         "relation_candidates": relation_candidates,
         "relation_bindings": relation_bindings,
