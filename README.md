@@ -4,7 +4,18 @@ Visual Agent 是一个自然语言驱动的通用视觉执行 Demo。开发者�
 
 项目的核心目标是减少“每出现一个新视觉业务需求，就重新收集数据、标注并训练专项 Detector”的需要。它是 best-effort open-world perception Demo，不宣称完全替代专项训练，也不保证所有场景零样本完美识别。
 
-当前架构：`deepseek-v4-pro` 通过受控 Tool Call 将指令拆成基础目标、语义约束和操作，Grounding DINO Base 定位候选，`qwen3-vl-flash` 群组验证完整视觉语义，SAM 2.1 Base Plus 根据验证通过的 bbox 生成像素级 mask，OpenCV 确定性执行操作，最后由 DeepSeek 汇总结构化结果。关系组合目标 v1 仅支持一个主体与最多一个 `held_by_target` 手持物体，组件 mask 使用 OR 合并，组合分数取组件最低 SAM score（不是重新预测的 composite IoU）。
+当前架构：Planner 通过受控 Tool Call 将指令拆成基础目标、语义约束和操作，Grounding DINO Base 定位候选，VLM 群组验证完整视觉语义，SAM 2.1 Base Plus 根据验证通过的 bbox 生成像素级 mask，OpenCV 确定性执行操作，最后由 Planner 汇总结构化结果。关系组合目标 v1 仅支持一个主体与最多一个 `held_by_target` 手持物体，组件 mask 使用 OR 合并，组合分数取组件最低 SAM score（不是重新预测的 composite IoU）。
+
+## 模型端点配置（Planner 与 VLM 均可 Cloud/Local 切换）
+
+两个 LLM 端点都遵循同一模式：**默认走本地 Ollama 端点，环境变量可切回云端**；非默认自定义端点必须显式设置对应 API key，禁止凭据回退。
+
+| 角色 | 环境变量 | 默认值 | 云端切换 |
+|---|---|---|---|
+| Agent 规划 / 汇总 | `PLANNER_MODEL` / `PLANNER_BASE_URL` / `PLANNER_API_KEY` / `PLANNER_TIMEOUT` | `qwen3.8:27b-mtp-q4_K_M` @ `http://192.168.250.9:11434/v1`（本地 Ollama，无需密钥） | `PLANNER_BASE_URL=https://api.deepseek.com` + `DEEPSEEK_API_KEY`（模型 `deepseek-v4-pro`） |
+| 语义验证 VLM | `VLM_MODEL` / `VLM_BASE_URL` / `VLM_API_KEY` / `VLM_TIMEOUT` | `qwen3-vl-flash` @ DashScope（需 `DASHSCOPE_API_KEY`） | 默认即云端；切本地示例：`VLM_MODEL=qwen3.8:27b-mtp-q4_K_M` + `VLM_BASE_URL=http://192.168.250.9:11434/v1` + `VLM_API_KEY=ollama` + `VLM_TIMEOUT=120` |
+
+本地 240 例 Cloud vs Local 质量对比口径见分支 `local-vlm-quality-evidence-v1` 的 `evidence/FROZEN_CONTRACT.md`。
 
 当前仅支持图片，操作白名单为：目标标红 `highlight`、目标描边 `outline`、模糊目标 `blur_target`、背景变暗 `dim_background`、透明背景抠图 `cutout`。输出按编号保存；抠图为透明 PNG，其余操作为 JPG，同时保留 JSON 和 binary mask PNG。
 
@@ -17,7 +28,10 @@ Qwen结构化输出使用严格Python契约校验；仅空响应、非法JSON或
 V1 默认 `MAX_CONCURRENT_JOBS=1`，先保证接口、状态、失败隔离和产物正确。
 
 ```powershell
-$env:DEEPSEEK_API_KEY = "你的 DeepSeek API Key"
+# 规划端默认本地 qwen3.8:27b（Ollama），无需密钥；如需云端 DeepSeek：
+# $env:PLANNER_BASE_URL = "https://api.deepseek.com"
+# $env:DEEPSEEK_API_KEY = "你的 DeepSeek API Key"
+# 语义验证默认 Cloud Qwen，需要凭据（切本地见上表）：
 $env:DASHSCOPE_API_KEY = "你的 DashScope API Key"
 $env:MAX_CONCURRENT_JOBS = "1"
 python -m api.server --host 0.0.0.0 --port 8000
@@ -41,13 +55,12 @@ V1 上传边界：单图最大 64 MiB，单次 batch 最多 32 张；图片按�
 
 ### 1. 配置环境
 
-设置环境变量 `DEEPSEEK_API_KEY` 和 `DASHSCOPE_API_KEY`，安装依赖后执行：
+设置环境变量后安装依赖。完整链路需要语义验证凭据（规划端默认本地）：
 
 ```powershell
 python -m venv .venv
 .venv\Scripts\python -m pip install torch==2.11.0 torchvision==0.26.0 --index-url https://download.pytorch.org/whl/cu130
 .venv\Scripts\python -m pip install -r requirements.txt
-$env:DEEPSEEK_API_KEY = "你的 DeepSeek API Key"
 $env:DASHSCOPE_API_KEY = "你的 DashScope API Key"
 ```
 
@@ -59,7 +72,7 @@ $env:DASHSCOPE_API_KEY = "你的 DashScope API Key"
 
 浏览器打开 `http://127.0.0.1:8080`，选择 Full Chain，上传图片、输入 Prompt、点击 Run，等待 `Queued → Running → Completed`，即可查看 Original / Result、Agent Plan、Detector Candidates、Semantic Verification、Relation、Final Targets 和 Timing。
 
-Full Chain 必须同时配置 `DEEPSEEK_API_KEY` 和 `DASHSCOPE_API_KEY`。缺少凭据时页面会显示真实错误，不会自动降级并冒充完整链路。
+Full Chain 要求规划端与语义验证端配置均可解析（规划端默认本地即满足；语义验证默认 Cloud 需 `DASHSCOPE_API_KEY`）。缺少配置时页面会显示真实错误，不会自动降级并冒充完整链路。
 
 三个示例：
 
@@ -95,7 +108,7 @@ Local Debug 使用预编译 Plan，只运行 Detector → SAM2 → Action；Agen
     --json benchmark/latency_report.json
 ```
 
-全链路（含 DeepSeek/Qwen API）需设置 `DEEPSEEK_API_KEY` 与 `DASHSCOPE_API_KEY` 后，去掉 `--plan-map` 并传 `--prompt`。
+全链路（含 Planner/VLM 端点）需按「模型端点配置」表设置凭据后，去掉 `--plan-map` 并传 `--prompt`。
 `main.py --profile` 可输出单次运行各阶段耗时。
 ## Instance Quality Benchmark v1（Research / Diagnostic Artifact）
 

@@ -1,12 +1,18 @@
 import json
-import os
 import re
 
-from openai import OpenAI
+from visual_agent.planner_client import (
+    DEEPSEEK_BASE_URL,
+    DEFAULT_PLANNER_BASE_URL,
+    DEFAULT_PLANNER_MODEL,
+    PlannerConfig,
+    create_planner_client,
+    load_planner_config,
+)
 
 
-MODEL_NAME = "deepseek-v4-pro"
-BASE_URL = "https://api.deepseek.com"
+MODEL_NAME = DEFAULT_PLANNER_MODEL
+BASE_URL = DEFAULT_PLANNER_BASE_URL
 TOOL_NAME = "execute_visual_task"
 ACTION_TYPES = {"highlight", "outline", "box", "blur_target", "dim_background", "cutout"}
 CONSTRAINT_ROUTES = {"attribute", "behavior", "relation"}
@@ -120,11 +126,14 @@ FINAL_SYSTEM_PROMPT = (
 
 
 class DeepSeekAgent:
-    def __init__(self) -> None:
-        api_key = os.getenv("DEEPSEEK_API_KEY")
-        if not api_key:
-            raise RuntimeError("未设置环境变量 DEEPSEEK_API_KEY")
-        self.client = OpenAI(api_key=api_key, base_url=BASE_URL)
+    """语言规划器客户端。名字保留历史兼容，实际端点由 planner 配置决定。"""
+
+    def __init__(self, config: PlannerConfig | None = None) -> None:
+        self.config = config or load_planner_config()
+        self.client = create_planner_client(self.config)
+        self.is_deepseek = (
+            self.config.base_url.rstrip("/") == DEEPSEEK_BASE_URL.rstrip("/")
+        )
         self.plan_attempts = 0
 
     def plan_request(self, prompt: str) -> dict:
@@ -144,22 +153,22 @@ class DeepSeekAgent:
                 )
             messages.append({"role": "user", "content": prompt})
             response = self.client.chat.completions.create(
-                model=MODEL_NAME,
+                model=self.config.model,
                 messages=messages,
                 tools=[EXECUTE_VISUAL_TASK_TOOL],
                 tool_choice={"type": "function", "function": {"name": TOOL_NAME}},
                 max_tokens=1024,
-                extra_body={"thinking": {"type": "disabled"}},
+                **self._thinking_extra_body(),
             )
             try:
                 return self._validated_plan(response.choices[0].message.tool_calls)
             except (json.JSONDecodeError, RuntimeError) as error:
                 validation_error = str(error)
-        raise RuntimeError(f"DeepSeek Planner 两次均违反契约：{validation_error}")
+        raise RuntimeError(f"Planner 两次均违反契约：{validation_error}")
 
     def build_final_response(self, prompt: str, visual_result: dict) -> str:
         response = self.client.chat.completions.create(
-            model=MODEL_NAME,
+            model=self.config.model,
             messages=[
                 {"role": "system", "content": FINAL_SYSTEM_PROMPT},
                 {
@@ -171,12 +180,18 @@ class DeepSeekAgent:
                 },
             ],
             max_tokens=256,
-            extra_body={"thinking": {"type": "disabled"}},
+            **self._thinking_extra_body(),
         )
         content = response.choices[0].message.content
         if not isinstance(content, str) or not content.strip():
-            raise RuntimeError("DeepSeek Final Response 返回了空内容")
+            raise RuntimeError("Planner Final Response 返回了空内容")
         return content.strip()
+
+    def _thinking_extra_body(self) -> dict:
+        """DeepSeek 云端需要显式关闭思考模式；本地端点不发送该私有参数。"""
+        if self.is_deepseek:
+            return {"extra_body": {"thinking": {"type": "disabled"}}}
+        return {}
 
     @staticmethod
     def _validated_plan(tool_calls: list | None) -> dict:

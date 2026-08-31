@@ -11,7 +11,9 @@ API：
     GET  /api/job/<job_id>/<file>   获取任务产物（result.jpg / result.json / masks / candidates.png）
 
 模式：
-- 完整链路：未传 plan，需要 DEEPSEEK_API_KEY（规划）与 DASHSCOPE_API_KEY（验证）。
+- 完整链路：未传 plan，规划端默认本地 qwen3.8:27b（可用 PLANNER_* 切回
+  云端 DeepSeek），语义验证端由 VLM_* 配置决定（默认 Cloud Qwen，
+  需 DASHSCOPE_API_KEY 或 VLM_API_KEY）。
 - 本地调试：传 plan JSON（或示例计划），仅运行 Detector → SAM2 → Action，
   不需要任何 API Key（verify=False）。UI 中明确标注，不改变生产语义。
 """
@@ -33,8 +35,40 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 from visual_agent.pipeline import run_pipeline
+from visual_agent.planner_client import load_planner_config
+from visual_agent.vlm_client import load_vlm_config
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
+
+
+def _planner_available() -> bool:
+    try:
+        load_planner_config()
+        return True
+    except RuntimeError:
+        return False
+
+
+def _vlm_available() -> bool:
+    try:
+        load_vlm_config()
+        return True
+    except RuntimeError:
+        return False
+
+
+def _unavailable_service_messages() -> list[str]:
+    messages = []
+    if not _planner_available():
+        messages.append(
+            "Agent 规划服务不可用：请设置 PLANNER_API_KEY"
+            "（使用云端 DeepSeek 时设置 DEEPSEEK_API_KEY）"
+        )
+    if not _vlm_available():
+        messages.append(
+            "语义验证服务不可用：请设置 VLM_API_KEY 或 DASHSCOPE_API_KEY"
+        )
+    return messages
 
 ROOT = Path(__file__).resolve().parent
 UPLOAD_DIR = ROOT / "uploads"
@@ -409,9 +443,7 @@ class Handler(BaseHTTPRequestHandler):
             self._send_json({
                 "ok": True,
                 "jobs": len(_jobs),
-                "full_chain_available": bool(
-                    os.getenv("DEEPSEEK_API_KEY") and os.getenv("DASHSCOPE_API_KEY")
-                ),
+                "full_chain_available": not _unavailable_service_messages(),
             })
             return
         if path.startswith("/static/"):
@@ -504,16 +536,13 @@ class Handler(BaseHTTPRequestHandler):
                 self._send_json({"error": f"plan 契约校验失败：{validation_error}"}, 400)
                 return
         else:
-            missing_keys = [
-                key for key in ("DEEPSEEK_API_KEY", "DASHSCOPE_API_KEY")
-                if not os.getenv(key)
-            ]
-            if missing_keys:
+            unavailable = _unavailable_service_messages()
+            if unavailable:
                 self._send_json(
                     {
                         "error": (
-                            f"缺少 {', '.join(missing_keys)}，无法使用自然语言完整链路。"
-                            "请配置 DeepSeek（规划）与 DashScope（语义验证）凭据，"
+                            "当前环境未启用完整链路服务，无法使用通用视觉链路；"
+                            f"{';'.join(unavailable)}。"
                             "或切换到「本地调试模式」并提供预编译计划 JSON。"
                         )
                     },
@@ -567,12 +596,17 @@ def main() -> None:
     worker = threading.Thread(target=_worker, daemon=True, name="visual-agent-worker")
     worker.start()
     server = ThreadingHTTPServer((args.host, args.port), Handler)
-    has_deepseek = bool(os.getenv("DEEPSEEK_API_KEY"))
-    has_dashscope = bool(os.getenv("DASHSCOPE_API_KEY"))
+    def describe_service(name: str, loader) -> str:
+        try:
+            config = loader()
+        except RuntimeError as error:
+            return f"{name}：未配置（{error}）"
+        return f"{name}：{config.model} @ {config.base_url}"
+
     print("Visual Agent Demo UI 已启动：")
     print(f"  地址：http://{args.host}:{args.port}")
-    print(f"  DeepSeek API：{'已配置' if has_deepseek else '未配置（自然语言链路不可用，可用本地调试模式）'}")
-    print(f"  DashScope API：{'已配置' if has_dashscope else '未配置（语义验证不可用）'}")
+    print(f"  {describe_service('Agent 规划服务', load_planner_config)}")
+    print(f"  {describe_service('语义验证服务', load_vlm_config)}")
     print(f"  产物保留：24 小时（启动时已清理 {len(removed)} 个过期任务）")
     print("  按 Ctrl+C 停止。")
     try:

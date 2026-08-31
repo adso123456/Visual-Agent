@@ -6,7 +6,7 @@
 
 Visual Agent 已具备“开发者打开页面即可上传图片、输入自然语言、等待并查看结果”的完整 Full Chain：
 
-Natural Language → DeepSeek Agent → Grounding DINO Base → Qwen3-VL-Flash → Relation → SAM2 → deterministic Action
+Natural Language → Planner（默认本地 qwen3.8:27b-mtp-q4_K_M，可切云端 DeepSeek）→ Grounding DINO Base → Semantic VLM（VLM_* 配置决定 Cloud/Local）→ Relation → SAM2 → deterministic Action
 
 它验证了无需针对每个新视觉任务重新训练专项 Detector，也能通过通用视觉模型组合完成多类真实图片处理任务；这不代表完全替代专项训练或保证所有场景零样本完美识别。
 

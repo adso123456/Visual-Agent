@@ -4,7 +4,8 @@ from pathlib import Path
 
 import numpy as np
 
-from visual_agent.deepseek_agent import MODEL_NAME, TOOL_NAME, DeepSeekAgent
+from visual_agent.planner_client import get_planner_model_name
+from visual_agent.deepseek_agent import TOOL_NAME, DeepSeekAgent
 from visual_agent.evidence import (
     build_behavior_evidence,
     build_isolated_instance_evidence,
@@ -699,8 +700,16 @@ def run_pipeline(
     result = {
         "prompt": prompt,
         "agent": {
-            "provider": "deepseek",
-            "model": MODEL_NAME,
+            "provider": (
+                "deepseek"
+                if agent is not None and agent.is_deepseek
+                else "local_ollama"
+                if agent is not None
+                else "skipped"
+            ),
+            "model": (
+                agent.config.model if agent is not None else get_planner_model_name()
+            ),
             "planner_tool": TOOL_NAME,
             "plan_attempts": agent.plan_attempts if agent is not None else 0,
         },
