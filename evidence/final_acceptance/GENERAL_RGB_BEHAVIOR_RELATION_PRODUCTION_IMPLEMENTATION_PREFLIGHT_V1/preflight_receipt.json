@@ -1,0 +1,156 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_IMPLEMENTATION_PREFLIGHT_V1",
+  "status": "PREFLIGHT_EXECUTED_READ_ONLY",
+  "contract_reference": {
+    "stage": "GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_IMPLEMENTATION_CONTRACT_V1",
+    "revision": 2,
+    "evidence_head": "071b3590a1db193da560cda8b058953d8cbbe5b2",
+    "contract_candidate_sha256": "f5264b0d2652e46002a51d79837667d482a8235be1af733057f81b3778bd015a",
+    "md_sha256": "74366e06a02fdc724f13f9f10d7a95670c75ad52853bb1a7d0377e6231f8f0ea"
+  },
+  "implementation_worktree": {
+    "path": "E:/3/Visual Agent/_implementation_worktree",
+    "branch": "general-rgb-behavior-relation-production-implementation-v1",
+    "head": "be54f3c89171d8b16f53c82397e9f468fb4b4c97",
+    "expected_base": "be54f3c89171d8b16f53c82397e9f468fb4b4c97",
+    "creation_note": "fresh canonical CRLF checkout of be54f3c; frozen SHAs are byte-hashes of autocrlf checkout (see report §1)"
+  },
+  "checks": {
+    "c1_worktree_head": {
+      "result": "PASS",
+      "observed": "be54f3c89171d8b16f53c82397e9f468fb4b4c97"
+    },
+    "c2_git_status_empty": {
+      "result": "PASS",
+      "porcelain_entries": 0,
+      "diff_exit_code": 0
+    },
+    "c3_production_sha_8_of_8": {
+      "result": "PASS",
+      "matched": [
+        "visual_agent/pipeline.py",
+        "visual_agent/evidence.py",
+        "visual_agent/vlm.py",
+        "visual_agent/relations.py",
+        "visual_agent/grounding.py",
+        "visual_agent/qwen_protocol.py",
+        "visual_agent/vlm_client.py",
+        "visual_agent/deepseek_agent.py"
+      ]
+    },
+    "c4_existing_tests": {
+      "result": "PASS_WITH_SCRIPT_FINDING",
+      "pytest": {
+        "files": 10,
+        "tests": 88,
+        "passed": 88,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "run_1": "88 passed in 51.06s",
+        "run_2": "88 passed in 49.94s",
+        "junit_artifact": "pytest_junit_88tests.xml"
+      },
+      "scripts": {
+        "executed_pure_logic": {
+          "pass": [
+            "test_phase8_candidate_contract.py",
+            "test_phase8_protocol_retry.py"
+          ],
+          "fail": [
+            "test_phase7_relations.py"
+          ]
+        },
+        "excluded_real_model_by_design": [
+          {
+            "file": "test_phase6_planner.py",
+            "reason": "DeepSeek Planner real calls",
+            "artifact_evidence": "benchmark/phase6_planner_contract_results.json"
+          },
+          {
+            "file": "test_phase7_planner.py",
+            "reason": "DeepSeek Planner real calls",
+            "artifact_evidence": "benchmark/phase7_planner_contract_results.json"
+          },
+          {
+            "file": "test_phase7_composite.py",
+            "reason": "Sam2Segmenter real inference"
+          }
+        ]
+      },
+      "finding": {
+        "test_phase7_relations_fails_at_baseline": {
+          "assertion": "subject with two satisfied related bindings expects completion_reason == binding_conflict",
+          "cause": "stale phase-7 semantics superseded by frozen resolver semantics (highest-confidence satisfied retained; binding_conflict reserved for cross-subject same-related conflicts) locked by passing test_relation_router.py::test_relation_resolver_freezes_all_status_mappings",
+          "relation_to_implementation": "orthogonal; resolve_relation_outcomes/_build_semantic_groups in contract must_not_change list"
+        }
+      }
+    },
+    "c5_zero_model_calls": {
+      "result": "PASS",
+      "executed_subset": "10 pytest files + 3 pure-logic scripts",
+      "guards": {
+        "vlm_endpoint": "http://127.0.0.1:9 unreachable",
+        "hf_offline": true,
+        "transformers_offline": true,
+        "torch": "2.11.0+cpu cuda=False"
+      },
+      "grep_evidence": "only test_phase7_composite.py instantiates real Sam2Segmenter; test_vlm_client_config.create_vlm_client monkeypatched; executed files contain no real Detector/Segmenter/VLM instantiation",
+      "real_model_scripts_not_executed": [
+        "test_phase6_planner.py",
+        "test_phase7_planner.py",
+        "test_phase7_composite.py"
+      ]
+    }
+  },
+  "production_file_sha256": {
+    "visual_agent/pipeline.py": {
+      "frozen": "531903d340e64faa6e745c9fb83d65532d553ff604a87789f2057a57aadb0452",
+      "observed": "531903d340e64faa6e745c9fb83d65532d553ff604a87789f2057a57aadb0452",
+      "match": true
+    },
+    "visual_agent/evidence.py": {
+      "frozen": "8dc4f1d6a62f1873b1479a78c08130d0c4d79286a2afcaa24d11f93cb5749747",
+      "observed": "8dc4f1d6a62f1873b1479a78c08130d0c4d79286a2afcaa24d11f93cb5749747",
+      "match": true
+    },
+    "visual_agent/vlm.py": {
+      "frozen": "a2df5c9605deb3ee9d5e7803eab0effa83e5c6c21cc928633a0460f54ae6d83e",
+      "observed": "a2df5c9605deb3ee9d5e7803eab0effa83e5c6c21cc928633a0460f54ae6d83e",
+      "match": true
+    },
+    "visual_agent/relations.py": {
+      "frozen": "293f2c983f792d541ec0c6021ef49e82ae0d0b8553963bc925424b555286f968",
+      "observed": "293f2c983f792d541ec0c6021ef49e82ae0d0b8553963bc925424b555286f968",
+      "match": true
+    },
+    "visual_agent/grounding.py": {
+      "frozen": "ac56602ecd1c4d09286784fc17eb79c18fe3ebb4c7f98f62ae96e0167c28f3be",
+      "observed": "ac56602ecd1c4d09286784fc17eb79c18fe3ebb4c7f98f62ae96e0167c28f3be",
+      "match": true
+    },
+    "visual_agent/qwen_protocol.py": {
+      "frozen": "89ccd004b9738804ecace48478044af660d5497aafa4d7753bc5e4a4c46ebfb3",
+      "observed": "89ccd004b9738804ecace48478044af660d5497aafa4d7753bc5e4a4c46ebfb3",
+      "match": true
+    },
+    "visual_agent/vlm_client.py": {
+      "frozen": "a36782166b41fde299cb3cd328fb145bc0597ae8bd49c0510f1eb6d832a82c88",
+      "observed": "a36782166b41fde299cb3cd328fb145bc0597ae8bd49c0510f1eb6d832a82c88",
+      "match": true
+    },
+    "visual_agent/deepseek_agent.py": {
+      "frozen": "cdc6be9cdc4b518734b014ca9e44144d7b4da1895da6bdb74de9fed5290f1f12",
+      "observed": "cdc6be9cdc4b518734b014ca9e44144d7b4da1895da6bdb74de9fed5290f1f12",
+      "match": true
+    }
+  },
+  "conclusion": {
+    "preflight": "PASS",
+    "contract_31_corrigendum_requested": true,
+    "production_code_modification": "NOT_AUTHORIZED",
+    "implementation": "NOT_AUTHORIZED",
+    "real_model_targeted_regression": "NOT_AUTHORIZED",
+    "general_rgb_final_acceptance_v2": "NOT_AUTHORIZED"
+  }
+}

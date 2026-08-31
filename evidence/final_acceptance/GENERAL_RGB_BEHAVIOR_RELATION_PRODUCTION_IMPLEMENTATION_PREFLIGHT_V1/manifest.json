@@ -1,0 +1,60 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_IMPLEMENTATION_PREFLIGHT_MANIFEST_V1",
+  "status": "PREFLIGHT_EXECUTED_READ_ONLY",
+  "files": [
+    {
+      "path": "IMPLEMENTATION_PREFLIGHT_REPORT.md",
+      "sha256": "7cc9bb1736824a4fe6ddf6c381d39776af8e01b531f2910e22102d7fbc59dc2f",
+      "bytes": 8790
+    },
+    {
+      "path": "preflight_receipt.json",
+      "sha256": "d79bc6cd59465c01b0a19d60b8c462b28f6a3cb9f0638c6b1050e294405a1f20",
+      "bytes": 6320
+    },
+    {
+      "path": "pytest_junit_88tests.xml",
+      "sha256": "8bc1479725e5ba56c2fafdd45f20c2b52b67df2686e039203c8918e52dd8cf61",
+      "bytes": 12426
+    }
+  ],
+  "contract_stage_ref": {
+    "stage": "GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_IMPLEMENTATION_CONTRACT_V1",
+    "contract_revision": 2,
+    "evidence_head_at_contract": "071b3590a1db193da560cda8b058953d8cbbe5b2"
+  },
+  "environment": {
+    "python": "3.12.4",
+    "pytest": "7.4.4",
+    "torch": "2.11.0+cpu",
+    "cuda": false,
+    "lockdown": {
+      "HF_HUB_OFFLINE": true,
+      "TRANSFORMERS_OFFLINE": true,
+      "VLM_BASE_URL": "http://127.0.0.1:9",
+      "VLM_API_KEY": "dummy",
+      "DASHSCOPE_API_KEY": "dummy"
+    }
+  },
+  "summary": {
+    "worktree": "E:/3/Visual Agent/_implementation_worktree (general-rgb-behavior-relation-production-implementation-v1 @ be54f3c)",
+    "checks_1_to_3": "PASS",
+    "pytest": "88 passed / 88 (10 files, 0 failures)",
+    "scripts": "phase8_candidate_contract=PASS, phase8_protocol_retry=PASS, phase7_relations=FAIL(stale baseline semantics)",
+    "real_model_scripts_excluded": [
+      "test_phase6_planner.py",
+      "test_phase7_planner.py",
+      "test_phase7_composite.py"
+    ],
+    "model_calls": 0,
+    "finding": "CONTRACT_31_CORRIGENDUM_REQUESTED: test_phase7_relations.py fails at be54f3c baseline (stale pre-resolver semantics; superseded by passing test_relation_router.py)"
+  },
+  "decision": {
+    "implementation_preflight": "PASS",
+    "production_code_modification": "NOT_AUTHORIZED",
+    "implementation": "NOT_AUTHORIZED",
+    "real_model_targeted_regression": "NOT_AUTHORIZED",
+    "general_rgb_final_acceptance_v2": "NOT_AUTHORIZED"
+  },
+  "production_code_modifications": 0
+}
