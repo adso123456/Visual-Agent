@@ -1,0 +1,13 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_RELATION_JOINT_EXECUTION_AUTHORIZATION_V1",
+  "status": "MODEL_EXECUTION_AUTHORIZED",
+  "frozen_evidence_head": "30fa9cddd851f376831b2bd3d940f6ab1165c084",
+  "execution_base": "be54f3c89171d8b16f53c82397e9f468fb4b4c97",
+  "runner_review_sha": "0aa9e45766dcaa846b4f22b1eea6d66ebe27e546",
+  "model": "qwen3.8:27b-mtp-q4_K_M",
+  "base_url": "http://192.168.250.9:11434/v1",
+  "timeout_seconds": 120,
+  "concurrency": 1,
+  "failed_execution_replacement": false,
+  "production_modification_authorized": false
+}
