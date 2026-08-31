@@ -1,0 +1,36 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_RELATION_JOINT_TARGETED_CONFIRMATION_SUMMARY_V1",
+  "scheduled": 48,
+  "terminal_success": 37,
+  "terminal_failure": 11,
+  "failed_execution_replacement": false,
+  "behavior": {
+    "challenge_001_bystander_satisfied": 0,
+    "challenge_001_operator_retained": 5,
+    "challenge_003_uncertain": 5,
+    "challenge_004_elder_retained": 5,
+    "challenge_004_child_satisfied": 0,
+    "F1_candidate_correct": 5,
+    "F1_task_correct": 3,
+    "F1_fishing_004_A_satisfied": true,
+    "new_false_assignment": 3,
+    "fallback_harm": 2,
+    "pass": false
+  },
+  "relation": {
+    "F4_017_hand_fallback_attempts": 0,
+    "F4_017_target_satisfied": 0,
+    "F4_017_subject_retained": 0,
+    "F4_017_non_target_satisfied": 0,
+    "F2_005_hand_fallback_attempts": 0,
+    "F2_005_subject_retained": 0,
+    "F2_005_hand_candidate_satisfied": 0,
+    "existing_positive_retained": true,
+    "existing_positive_hand_detector_calls": 0,
+    "existing_positive_hand_relation_calls": 0,
+    "core_014_final_target_count": 0,
+    "core_014_new_false_binding": 0,
+    "pass": false
+  },
+  "joint_policy_candidate_confirmed": false
+}
