@@ -46,6 +46,16 @@
       "path": "execution/summary.json",
       "sha256": "b72d3032278373a9508ac8bdd2c8d18b089605132a8286cd37c91a6b621ba886",
       "bytes": 1190
+    },
+    {
+      "path": "ADJUDICATION_CLARIFICATION.md",
+      "sha256": "d3efe2e79d7ad792ca3eb7b9f5c613787c139913eaeaa093af9a9720cd45e7e9",
+      "bytes": 2480
+    },
+    {
+      "path": "adjudication_clarification.json",
+      "sha256": "feb1bbf9fb8a381d199f2b7a892bbd06498679bb9b43481ed1ca95bc81354def",
+      "bytes": 1962
     }
   ],
   "source_assets": [
@@ -82,7 +92,8 @@
     "contract_frozen": true,
     "review_required": false,
     "model_execution": "COMPLETE_FAIL",
-    "behavior_policy_candidate": "NOT_CONFIRMED",
+    "behavior_raw_execution": "35_OF_35_VALID",
+    "behavior_policy_adjudication": "INVALID_PENDING_CORRECTED_RUNNER",
     "relation_activation_policy_candidate": "INCONCLUSIVE_EXECUTION_FAILURE",
     "joint_policy_candidate": "NOT_CONFIRMED",
     "production_modification": "NOT_AUTHORIZED",

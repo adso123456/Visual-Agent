@@ -1,0 +1,44 @@
+{
+  "schema_version": "GENERAL_RGB_BEHAVIOR_RELATION_JOINT_ADJUDICATION_CLARIFICATION_V1",
+  "status": "ADJUDICATION_CLARIFIED_NO_MODEL_CALLS",
+  "immutable_execution_evidence_commit": "469914a02903d4d11ef687ffcca06c9bc47fcf81",
+  "frozen_behavior_baseline": {
+    "candidate_status": {
+      "challenge_001|A": "uncertain",
+      "challenge_001|B": "satisfied",
+      "challenge_003|A": "uncertain",
+      "challenge_004|A": "satisfied",
+      "challenge_004|B": "not_satisfied",
+      "F1::fishing_001.jpeg|A": "satisfied",
+      "F1::fishing_005.jpeg|A": "satisfied",
+      "F1::fishing_010.jpeg|A": "not_satisfied",
+      "F1::fishing_010.jpeg|B": "not_satisfied",
+      "F1::fishing_010.jpeg|C": "not_satisfied",
+      "F1::fishing_014.jpeg|A": "satisfied",
+      "F1::fishing_014.jpeg|B": "uncertain",
+      "F1::fishing_014.jpeg|C": "uncertain",
+      "F1::fishing_004.jpeg|A": "satisfied",
+      "F1::fishing_018.jpeg|A": "not_satisfied"
+    },
+    "F1_candidate_correct": 5,
+    "F1_candidate_denominator": 10,
+    "F1_task_correct": 3,
+    "F1_task_denominator": 6
+  },
+  "definitions": {
+    "new_false_assignment": "final is wrong satisfied and frozen candidate baseline was not satisfied",
+    "fallback_harm": "fallback executed; frozen baseline was allowed/correct; current final is not allowed/correct",
+    "F1_candidate_regression": "max(0, 5 - current_F1_candidate_correct)",
+    "F1_task_regression": "max(0, 3 - current_F1_task_correct)",
+    "existing_positive": "F2::fishing_024 and core_003 are independently required; missing/failure is false"
+  },
+  "decision": {
+    "behavior_raw_execution": "35_OF_35_VALID",
+    "behavior_policy_adjudication": "INVALID_PENDING_CORRECTED_RUNNER",
+    "relation_activation_policy": "INCONCLUSIVE_EXECUTION_FAILURE",
+    "joint_policy_candidate": "NOT_CONFIRMED",
+    "model_execution": "NOT_AUTHORIZED",
+    "production_modification": "NOT_AUTHORIZED",
+    "production_merge": "NOT_AUTHORIZED"
+  }
+}
