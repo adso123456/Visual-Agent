@@ -32,6 +32,11 @@ evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V2/**/*.jsonl -text -diff
 evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V2/**/*.md text eol=lf
 evidence/final_acceptance/GENERAL_RGB_FINAL_ACCEPTANCE_V2/**/*.py text eol=lf
 
+# Qwen Agent seam canary 原始结果保持运行时字节。
+evidence/final_acceptance/QWEN_AGENT_SEAM_CANARY_V1/**/*.json -text -diff
+evidence/final_acceptance/QWEN_AGENT_SEAM_CANARY_V1/**/*.jsonl -text -diff
+evidence/final_acceptance/QWEN_AGENT_SEAM_CANARY_V1/**/*.py text eol=lf
+
 # R3 candidate identity 冻结执行生成的 PNG evidence 与 SAM mask 保留原始字节并走 Git LFS。
 evidence/final_acceptance/GENERAL_RGB_R3_CANDIDATE_IDENTITY_REMEDIATION_V1/execution/evidence/**/*.png filter=lfs diff=lfs merge=lfs -text
 evidence/final_acceptance/GENERAL_RGB_R3_CANDIDATE_IDENTITY_REMEDIATION_V1/execution/mask_cache/**/*.bin filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,12 @@
+{
+  "stage": "QWEN_AGENT_SEAM_CANARY_V1",
+  "implementation_head": "aed1e3e6acb537480664b89531a9bc12a29d708f",
+  "model": "qwen3.8:27b-mtp-q4_K_M",
+  "base_url": "http://192.168.250.9:11434/v1",
+  "deepseek_api_key_present": false,
+  "scheduled": 3,
+  "success": 3,
+  "error": 0,
+  "planner_attempts": 4,
+  "gate_pass": true
+}

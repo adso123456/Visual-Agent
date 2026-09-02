@@ -1,0 +1,19 @@
+{
+  "files": [
+    {
+      "path": "raw_execution.jsonl",
+      "bytes": 1453,
+      "sha256": "d73193383dc176d24cb4a830bbc68ea26898fa1959f6a949bb1dd7d1a4b48b16"
+    },
+    {
+      "path": "run_qwen_agent_seam_canary.py",
+      "bytes": 6535,
+      "sha256": "6628e8bd8f9b8db5d01c0af1bb9f8ebcf36fb9244990de5aeea4f9926e052624"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 327,
+      "sha256": "c2bf3568e888f3cd6a169a14ae8ed6834f119fda60fc57c5fa1d83a700357c23"
+    }
+  ]
+}
