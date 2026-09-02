@@ -1,0 +1,13 @@
+{
+  "stage": "GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGRESSION_V2",
+  "implementation_head": "d0fe68576d3d613c52a4f28011c0f8fa8a0f421c",
+  "model": "qwen3.8:27b-mtp-q4_K_M",
+  "base_url": "http://192.168.250.9:11434/v1",
+  "timeout_seconds": 120,
+  "concurrency": 1,
+  "pipeline_executions": 34,
+  "behavior_executions": 21,
+  "relation_executions": 13,
+  "failed_execution_replacement": false,
+  "schedule_sha256": "ca4a94401adf3db3cbaca4ca410e89f773cbc7d23d50ebf1a6d63210df6a0a38"
+}

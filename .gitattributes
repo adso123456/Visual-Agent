@@ -72,5 +72,11 @@ evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGR
 evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGRESSION_V1/**/*.md text eol=lf
 evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGRESSION_V1/**/*.py text eol=lf
 
+# Production targeted regression V2 原始结果保持运行时字节，图片证据沿用 artifacts LFS 规则。
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGRESSION_V2/**/*.json -text -diff
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGRESSION_V2/**/*.jsonl -text -diff
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGRESSION_V2/**/*.md text eol=lf
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGRESSION_V2/**/*.py text eol=lf
+
 # F4 Gate L 的 Detector 输入视图与 overlay 保留生成原始字节并走 Git LFS。
 evidence/final_acceptance/GENERAL_RGB_F4_SMALL_HELD_OBJECT_LOCALIZATION_V1/gate_l_execution/**/*.png filter=lfs diff=lfs merge=lfs -text

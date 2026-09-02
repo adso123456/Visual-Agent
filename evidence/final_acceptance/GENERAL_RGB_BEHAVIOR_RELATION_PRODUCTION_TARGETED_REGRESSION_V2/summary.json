@@ -1,0 +1,650 @@
+{
+  "stage": "GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGRESSION_V2",
+  "implementation_head": "d0fe68576d3d613c52a4f28011c0f8fa8a0f421c",
+  "execution": {
+    "scheduled": 34,
+    "completed": 34,
+    "success": 34,
+    "error": 0,
+    "provider_failures": 0,
+    "protocol_final_failures": 0,
+    "validator_final_failures": 0,
+    "unexpected_endpoints": [],
+    "vlm_calls": 129,
+    "prompt_tokens": 403841,
+    "completion_tokens": 10486,
+    "total_tokens": 414327,
+    "protocol_attempts": 129,
+    "protocol_retries": 0,
+    "protocol_recovered": 0,
+    "elapsed_seconds_sum": 2029.768
+  },
+  "behavior": {
+    "pipeline_executions": 21,
+    "candidate_observations": 35,
+    "challenge_safety_pass": false,
+    "F1_candidate_correct": 4,
+    "F1_candidate_denominator": 10,
+    "F1_task_correct": 3,
+    "F1_task_denominator": 6,
+    "F1_candidate_regression": 1,
+    "F1_task_regression": 0,
+    "new_false_assignments": [
+      {
+        "case_id": "challenge_001",
+        "repetition": 1,
+        "candidate_id": "A",
+        "baseline_status": "uncertain",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "not_satisfied",
+          "uncertain"
+        ],
+        "correct": false,
+        "fallback_attempted": false,
+        "new_false_assignment": true,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_001",
+        "repetition": 2,
+        "candidate_id": "A",
+        "baseline_status": "uncertain",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "not_satisfied",
+          "uncertain"
+        ],
+        "correct": false,
+        "fallback_attempted": false,
+        "new_false_assignment": true,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_001",
+        "repetition": 3,
+        "candidate_id": "A",
+        "baseline_status": "uncertain",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "not_satisfied",
+          "uncertain"
+        ],
+        "correct": false,
+        "fallback_attempted": false,
+        "new_false_assignment": true,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_001",
+        "repetition": 4,
+        "candidate_id": "A",
+        "baseline_status": "uncertain",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "not_satisfied",
+          "uncertain"
+        ],
+        "correct": false,
+        "fallback_attempted": false,
+        "new_false_assignment": true,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_001",
+        "repetition": 5,
+        "candidate_id": "A",
+        "baseline_status": "uncertain",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "not_satisfied",
+          "uncertain"
+        ],
+        "correct": false,
+        "fallback_attempted": false,
+        "new_false_assignment": true,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "F1::fishing_010.jpeg",
+        "repetition": 1,
+        "candidate_id": "C",
+        "baseline_status": "not_satisfied",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "not_satisfied"
+        ],
+        "correct": false,
+        "fallback_attempted": false,
+        "new_false_assignment": true,
+        "fallback_harm": false
+      }
+    ],
+    "fallback_harm": [],
+    "gate_pass": false,
+    "observations": [
+      {
+        "case_id": "challenge_001",
+        "repetition": 1,
+        "candidate_id": "A",
+        "baseline_status": "uncertain",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "not_satisfied",
+          "uncertain"
+        ],
+        "correct": false,
+        "fallback_attempted": false,
+        "new_false_assignment": true,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_001",
+        "repetition": 1,
+        "candidate_id": "B",
+        "baseline_status": "satisfied",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "satisfied"
+        ],
+        "correct": true,
+        "fallback_attempted": false,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_001",
+        "repetition": 2,
+        "candidate_id": "A",
+        "baseline_status": "uncertain",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "not_satisfied",
+          "uncertain"
+        ],
+        "correct": false,
+        "fallback_attempted": false,
+        "new_false_assignment": true,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_001",
+        "repetition": 2,
+        "candidate_id": "B",
+        "baseline_status": "satisfied",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "satisfied"
+        ],
+        "correct": true,
+        "fallback_attempted": false,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_001",
+        "repetition": 3,
+        "candidate_id": "A",
+        "baseline_status": "uncertain",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "not_satisfied",
+          "uncertain"
+        ],
+        "correct": false,
+        "fallback_attempted": false,
+        "new_false_assignment": true,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_001",
+        "repetition": 3,
+        "candidate_id": "B",
+        "baseline_status": "satisfied",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "satisfied"
+        ],
+        "correct": true,
+        "fallback_attempted": false,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_001",
+        "repetition": 4,
+        "candidate_id": "A",
+        "baseline_status": "uncertain",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "not_satisfied",
+          "uncertain"
+        ],
+        "correct": false,
+        "fallback_attempted": false,
+        "new_false_assignment": true,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_001",
+        "repetition": 4,
+        "candidate_id": "B",
+        "baseline_status": "satisfied",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "satisfied"
+        ],
+        "correct": true,
+        "fallback_attempted": false,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_001",
+        "repetition": 5,
+        "candidate_id": "A",
+        "baseline_status": "uncertain",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "not_satisfied",
+          "uncertain"
+        ],
+        "correct": false,
+        "fallback_attempted": false,
+        "new_false_assignment": true,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_001",
+        "repetition": 5,
+        "candidate_id": "B",
+        "baseline_status": "satisfied",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "satisfied"
+        ],
+        "correct": true,
+        "fallback_attempted": false,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_003",
+        "repetition": 1,
+        "candidate_id": "A",
+        "baseline_status": "uncertain",
+        "final_status": "uncertain",
+        "expected_statuses": [
+          "uncertain"
+        ],
+        "correct": true,
+        "fallback_attempted": false,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_003",
+        "repetition": 2,
+        "candidate_id": "A",
+        "baseline_status": "uncertain",
+        "final_status": "uncertain",
+        "expected_statuses": [
+          "uncertain"
+        ],
+        "correct": true,
+        "fallback_attempted": false,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_003",
+        "repetition": 3,
+        "candidate_id": "A",
+        "baseline_status": "uncertain",
+        "final_status": "uncertain",
+        "expected_statuses": [
+          "uncertain"
+        ],
+        "correct": true,
+        "fallback_attempted": false,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_003",
+        "repetition": 4,
+        "candidate_id": "A",
+        "baseline_status": "uncertain",
+        "final_status": "uncertain",
+        "expected_statuses": [
+          "uncertain"
+        ],
+        "correct": true,
+        "fallback_attempted": false,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_003",
+        "repetition": 5,
+        "candidate_id": "A",
+        "baseline_status": "uncertain",
+        "final_status": "uncertain",
+        "expected_statuses": [
+          "uncertain"
+        ],
+        "correct": true,
+        "fallback_attempted": false,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_004",
+        "repetition": 1,
+        "candidate_id": "A",
+        "baseline_status": "satisfied",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "satisfied"
+        ],
+        "correct": true,
+        "fallback_attempted": true,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_004",
+        "repetition": 1,
+        "candidate_id": "B",
+        "baseline_status": "not_satisfied",
+        "final_status": "uncertain",
+        "expected_statuses": [
+          "not_satisfied",
+          "uncertain"
+        ],
+        "correct": true,
+        "fallback_attempted": true,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_004",
+        "repetition": 2,
+        "candidate_id": "A",
+        "baseline_status": "satisfied",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "satisfied"
+        ],
+        "correct": true,
+        "fallback_attempted": true,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_004",
+        "repetition": 2,
+        "candidate_id": "B",
+        "baseline_status": "not_satisfied",
+        "final_status": "uncertain",
+        "expected_statuses": [
+          "not_satisfied",
+          "uncertain"
+        ],
+        "correct": true,
+        "fallback_attempted": true,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_004",
+        "repetition": 3,
+        "candidate_id": "A",
+        "baseline_status": "satisfied",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "satisfied"
+        ],
+        "correct": true,
+        "fallback_attempted": true,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_004",
+        "repetition": 3,
+        "candidate_id": "B",
+        "baseline_status": "not_satisfied",
+        "final_status": "uncertain",
+        "expected_statuses": [
+          "not_satisfied",
+          "uncertain"
+        ],
+        "correct": true,
+        "fallback_attempted": true,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_004",
+        "repetition": 4,
+        "candidate_id": "A",
+        "baseline_status": "satisfied",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "satisfied"
+        ],
+        "correct": true,
+        "fallback_attempted": true,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_004",
+        "repetition": 4,
+        "candidate_id": "B",
+        "baseline_status": "not_satisfied",
+        "final_status": "uncertain",
+        "expected_statuses": [
+          "not_satisfied",
+          "uncertain"
+        ],
+        "correct": true,
+        "fallback_attempted": true,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_004",
+        "repetition": 5,
+        "candidate_id": "A",
+        "baseline_status": "satisfied",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "satisfied"
+        ],
+        "correct": true,
+        "fallback_attempted": true,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "challenge_004",
+        "repetition": 5,
+        "candidate_id": "B",
+        "baseline_status": "not_satisfied",
+        "final_status": "not_satisfied",
+        "expected_statuses": [
+          "not_satisfied",
+          "uncertain"
+        ],
+        "correct": true,
+        "fallback_attempted": true,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "F1::fishing_001.jpeg",
+        "repetition": 1,
+        "candidate_id": "A",
+        "baseline_status": "satisfied",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "not_satisfied"
+        ],
+        "correct": false,
+        "fallback_attempted": false,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "F1::fishing_005.jpeg",
+        "repetition": 1,
+        "candidate_id": "A",
+        "baseline_status": "satisfied",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "not_satisfied"
+        ],
+        "correct": false,
+        "fallback_attempted": false,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "F1::fishing_010.jpeg",
+        "repetition": 1,
+        "candidate_id": "A",
+        "baseline_status": "not_satisfied",
+        "final_status": "not_satisfied",
+        "expected_statuses": [
+          "not_satisfied"
+        ],
+        "correct": true,
+        "fallback_attempted": true,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "F1::fishing_010.jpeg",
+        "repetition": 1,
+        "candidate_id": "B",
+        "baseline_status": "not_satisfied",
+        "final_status": "not_satisfied",
+        "expected_statuses": [
+          "not_satisfied"
+        ],
+        "correct": true,
+        "fallback_attempted": true,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "F1::fishing_010.jpeg",
+        "repetition": 1,
+        "candidate_id": "C",
+        "baseline_status": "not_satisfied",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "not_satisfied"
+        ],
+        "correct": false,
+        "fallback_attempted": false,
+        "new_false_assignment": true,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "F1::fishing_014.jpeg",
+        "repetition": 1,
+        "candidate_id": "A",
+        "baseline_status": "satisfied",
+        "final_status": "uncertain",
+        "expected_statuses": [
+          "not_satisfied"
+        ],
+        "correct": false,
+        "fallback_attempted": true,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "F1::fishing_014.jpeg",
+        "repetition": 1,
+        "candidate_id": "B",
+        "baseline_status": "uncertain",
+        "final_status": "uncertain",
+        "expected_statuses": [
+          "not_satisfied"
+        ],
+        "correct": false,
+        "fallback_attempted": true,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "F1::fishing_014.jpeg",
+        "repetition": 1,
+        "candidate_id": "C",
+        "baseline_status": "uncertain",
+        "final_status": "uncertain",
+        "expected_statuses": [
+          "not_satisfied"
+        ],
+        "correct": false,
+        "fallback_attempted": true,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "F1::fishing_004.jpeg",
+        "repetition": 1,
+        "candidate_id": "A",
+        "baseline_status": "satisfied",
+        "final_status": "satisfied",
+        "expected_statuses": [
+          "satisfied"
+        ],
+        "correct": true,
+        "fallback_attempted": false,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      },
+      {
+        "case_id": "F1::fishing_018.jpeg",
+        "repetition": 1,
+        "candidate_id": "A",
+        "baseline_status": "not_satisfied",
+        "final_status": "not_satisfied",
+        "expected_statuses": [
+          "not_satisfied"
+        ],
+        "correct": true,
+        "fallback_attempted": false,
+        "new_false_assignment": false,
+        "fallback_harm": false
+      }
+    ]
+  },
+  "relation": {
+    "pipeline_executions": 13,
+    "F4_017_subject_retained": 5,
+    "F4_017_hand_fallback_attempts": 5,
+    "F4_017_non_target_satisfied": 0,
+    "F2_005_hand_fallback_attempts": 5,
+    "F2_005_subject_retained": 0,
+    "F2_005_satisfied_bindings": 0,
+    "F2_024_final_positive_retained": true,
+    "F2_024_hand_calls": 0,
+    "core_003_final_positive_retained": true,
+    "core_003_hand_calls": 0,
+    "core_014_final_target_count": 0,
+    "core_014_satisfied_bindings": 0,
+    "gate_pass": true
+  },
+  "gates": {
+    "system": true,
+    "behavior": false,
+    "relation": true,
+    "joint": false
+  }
+}

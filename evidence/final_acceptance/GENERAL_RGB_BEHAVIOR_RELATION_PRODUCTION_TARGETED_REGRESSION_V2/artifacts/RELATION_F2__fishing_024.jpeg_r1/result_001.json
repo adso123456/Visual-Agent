@@ -1,0 +1,310 @@
+{
+  "prompt": "把拿着鱼竿的人描边",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 0
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "人",
+    "constraints": [
+      {
+        "text": "拿着鱼竿",
+        "route": "relation"
+      }
+    ],
+    "action": {
+      "type": "outline"
+    },
+    "related_objects": [
+      {
+        "object": "fishing rod",
+        "relation": "held_by_target"
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        1333.66,
+        1486.82,
+        1896.49,
+        2668.99
+      ],
+      "dino_confidence": 0.8425,
+      "verification_checks": [
+        {
+          "constraint": "拿着鱼竿",
+          "status": "satisfied",
+          "evidence": "R4 框内为带导环的竖直钓鱼竿，其下端延伸至 A 举起并握持的手部位置，可确认该竿由主体 A 持有。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "R4 框内为带导环的竖直钓鱼竿，其下端延伸至 A 举起并握持的手部位置，可确认该竿由主体 A 持有。"
+    }
+  ],
+  "behavior_routing": {},
+  "relation_hand_fallback": {
+    "attempts": 0,
+    "detector_calls": 0,
+    "admitted_count": 0,
+    "hand_relation_calls": 0,
+    "max_per_subject": 1,
+    "subjects": {
+      "A": {
+        "attempted": false,
+        "hand_detector_calls": 0,
+        "admitted_count": 0,
+        "new_candidate_ids": [],
+        "hand_relation_calls": 0
+      }
+    }
+  },
+  "verified_subjects": [
+    {
+      "id": "A",
+      "label": "人",
+      "text_label": "person",
+      "bbox": [
+        1333.66,
+        1486.82,
+        1896.49,
+        2668.99
+      ],
+      "confidence": 0.8425,
+      "reason": "R4 框内为带导环的竖直钓鱼竿，其下端延伸至 A 举起并握持的手部位置，可确认该竿由主体 A 持有。"
+    }
+  ],
+  "relation_candidates": [
+    {
+      "id": "R1",
+      "object": "fishing rod",
+      "text_label": "fishing rod",
+      "bbox": [
+        1357.11,
+        152.81,
+        1654.26,
+        1538.36
+      ],
+      "dino_confidence": 0.3594
+    },
+    {
+      "id": "R2",
+      "object": "fishing rod",
+      "text_label": "fishing rod",
+      "bbox": [
+        483.99,
+        151.1,
+        1383.55,
+        2254.16
+      ],
+      "dino_confidence": 0.3541
+    },
+    {
+      "id": "R3",
+      "object": "fishing rod",
+      "text_label": "fishing rod",
+      "bbox": [
+        922.71,
+        158.27,
+        1380.55,
+        1193.77
+      ],
+      "dino_confidence": 0.3304
+    },
+    {
+      "id": "R4",
+      "object": "fishing rod",
+      "text_label": "fishing rod",
+      "bbox": [
+        1365.97,
+        148.02,
+        1689.12,
+        1700.48
+      ],
+      "dino_confidence": 0.3178
+    }
+  ],
+  "relation_bindings": [
+    {
+      "subject_id": "A",
+      "related_id": "R1",
+      "relation": "held_by_target",
+      "status": "uncertain",
+      "evidence": "R1 框主要覆盖主体 A 的头部与肩部区域，仅边缘触及一根竖直竿的下段，无法确认该框本身即为被 A 握持的钓鱼竿实体。"
+    },
+    {
+      "subject_id": "A",
+      "related_id": "R2",
+      "relation": "held_by_target",
+      "status": "uncertain",
+      "evidence": "R2 框内为一根倾斜的细线/竿，未观察到与 A 手部直接抓握或接触的证据，归属不明。"
+    },
+    {
+      "subject_id": "A",
+      "related_id": "R3",
+      "relation": "held_by_target",
+      "status": "uncertain",
+      "evidence": "R3 框内为倾斜的钓线/竿段，缺乏与 A 手部直接握持的明确接触证据，不能判定由 A 持有。"
+    },
+    {
+      "subject_id": "A",
+      "related_id": "R4",
+      "relation": "held_by_target",
+      "status": "satisfied",
+      "evidence": "R4 框内为带导环的竖直钓鱼竿，其下端延伸至 A 举起并握持的手部位置，可确认该竿由主体 A 持有。"
+    }
+  ],
+  "semantic_groups": [
+    {
+      "id": "A",
+      "label": "人",
+      "subject": {
+        "candidate_id": "A",
+        "object": "person",
+        "bbox": [
+          1333.66,
+          1486.82,
+          1896.49,
+          2668.99
+        ]
+      },
+      "related_members": [
+        {
+          "candidate_id": "R4",
+          "object": "fishing rod",
+          "relation": "held_by_target",
+          "bbox": [
+            1365.97,
+            148.02,
+            1689.12,
+            1700.48
+          ]
+        }
+      ],
+      "composite_bbox": [
+        1333.66,
+        148.02,
+        1896.49,
+        2668.99
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "人",
+      "text_label": "person",
+      "bbox": [
+        1333.66,
+        1486.82,
+        1896.49,
+        2668.99
+      ],
+      "confidence": 0.8425,
+      "reason": "R4 框内为带导环的竖直钓鱼竿，其下端延伸至 A 举起并握持的手部位置，可确认该竿由主体 A 持有。",
+      "composite_bbox": [
+        1333.66,
+        148.02,
+        1896.49,
+        2668.99
+      ],
+      "components": [
+        {
+          "role": "subject",
+          "object": "person",
+          "candidate_id": "A",
+          "mask_score": 0.9869,
+          "mask_area_pixels": 438572
+        },
+        {
+          "role": "related",
+          "candidate_id": "R4",
+          "object": "fishing rod",
+          "relation": "held_by_target",
+          "mask_score": 0.8277,
+          "mask_area_pixels": 25263
+        }
+      ],
+      "segmentation": {
+        "mask_path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_behavior_relation_production_targeted_regression_v2/artifacts/RELATION_F2__fishing_024.jpeg_r1/result_001_mask_A.png",
+        "mask_score": 0.8277,
+        "mask_area_pixels": 463768
+      }
+    }
+  ],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            3456,
+            3456
+          ],
+          "original_payload_bytes": 919004,
+          "normalized_dimensions": [
+            3456,
+            3456
+          ],
+          "normalized_payload_bytes": 919004,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "A": {}
+    },
+    "relation_verification": {
+      "attempts": 1,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 0.0,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 892.1
+    },
+    "grounding_dino_seconds": 0.68,
+    "subject_validity_seconds": 14.173,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 0.0,
+    "group_verification_seconds": 14.726,
+    "relation_grounding_seconds": 0.673,
+    "relation_verification_seconds": 31.968,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "inference_seconds": 0.67,
+      "memory_after_load_mb": 1185.8,
+      "peak_memory_mb": 1605.8,
+      "cached": true,
+      "batch_calls": 2
+    },
+    "deepseek_final_response_seconds": 0.0,
+    "total_seconds": 48.926
+  },
+  "action_result": {
+    "type": "outline",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/general_rgb_behavior_relation_production_targeted_regression_v2/artifacts/RELATION_F2__fishing_024.jpeg_r1/result_001.jpg"
+  },
+  "agent_response": "已在图片中找到 1 个满足条件的目标，并完成描边。"
+}
