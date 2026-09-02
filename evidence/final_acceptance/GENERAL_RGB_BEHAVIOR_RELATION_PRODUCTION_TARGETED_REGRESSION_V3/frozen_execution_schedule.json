@@ -1,0 +1,888 @@
+[
+  {
+    "ordinal": 1,
+    "component": "behavior",
+    "case_id": "challenge_001",
+    "repetition": 1,
+    "slot_id": "BEHAVIOR|challenge_001|r1",
+    "prompt": "找到正在钓鱼的人",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "highlight"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c.jpg",
+    "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c"
+  },
+  {
+    "ordinal": 2,
+    "component": "behavior",
+    "case_id": "challenge_001",
+    "repetition": 2,
+    "slot_id": "BEHAVIOR|challenge_001|r2",
+    "prompt": "找到正在钓鱼的人",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "highlight"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c.jpg",
+    "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c"
+  },
+  {
+    "ordinal": 3,
+    "component": "behavior",
+    "case_id": "challenge_001",
+    "repetition": 3,
+    "slot_id": "BEHAVIOR|challenge_001|r3",
+    "prompt": "找到正在钓鱼的人",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "highlight"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c.jpg",
+    "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c"
+  },
+  {
+    "ordinal": 4,
+    "component": "behavior",
+    "case_id": "challenge_001",
+    "repetition": 4,
+    "slot_id": "BEHAVIOR|challenge_001|r4",
+    "prompt": "找到正在钓鱼的人",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "highlight"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c.jpg",
+    "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c"
+  },
+  {
+    "ordinal": 5,
+    "component": "behavior",
+    "case_id": "challenge_001",
+    "repetition": 5,
+    "slot_id": "BEHAVIOR|challenge_001|r5",
+    "prompt": "找到正在钓鱼的人",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "highlight"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c.jpg",
+    "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c"
+  },
+  {
+    "ordinal": 6,
+    "component": "behavior",
+    "case_id": "challenge_003",
+    "repetition": 1,
+    "slot_id": "BEHAVIOR|challenge_003|r1",
+    "prompt": "把正在钓鱼的人标红",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "highlight",
+        "color": "#ff0000"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6.png",
+    "image_sha256": "717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6"
+  },
+  {
+    "ordinal": 7,
+    "component": "behavior",
+    "case_id": "challenge_003",
+    "repetition": 2,
+    "slot_id": "BEHAVIOR|challenge_003|r2",
+    "prompt": "把正在钓鱼的人标红",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "highlight",
+        "color": "#ff0000"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6.png",
+    "image_sha256": "717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6"
+  },
+  {
+    "ordinal": 8,
+    "component": "behavior",
+    "case_id": "challenge_003",
+    "repetition": 3,
+    "slot_id": "BEHAVIOR|challenge_003|r3",
+    "prompt": "把正在钓鱼的人标红",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "highlight",
+        "color": "#ff0000"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6.png",
+    "image_sha256": "717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6"
+  },
+  {
+    "ordinal": 9,
+    "component": "behavior",
+    "case_id": "challenge_003",
+    "repetition": 4,
+    "slot_id": "BEHAVIOR|challenge_003|r4",
+    "prompt": "把正在钓鱼的人标红",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "highlight",
+        "color": "#ff0000"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6.png",
+    "image_sha256": "717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6"
+  },
+  {
+    "ordinal": 10,
+    "component": "behavior",
+    "case_id": "challenge_003",
+    "repetition": 5,
+    "slot_id": "BEHAVIOR|challenge_003|r5",
+    "prompt": "把正在钓鱼的人标红",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "highlight",
+        "color": "#ff0000"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6.png",
+    "image_sha256": "717bf5c5f7d7509ccbc65a26fd814a58fa3b734c88f5016190f621faa802e4b6"
+  },
+  {
+    "ordinal": 11,
+    "component": "behavior",
+    "case_id": "challenge_004",
+    "repetition": 1,
+    "slot_id": "BEHAVIOR|challenge_004|r1",
+    "prompt": "把正在钓鱼的人以外背景变暗",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "dim_background"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79.png",
+    "image_sha256": "45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79"
+  },
+  {
+    "ordinal": 12,
+    "component": "behavior",
+    "case_id": "challenge_004",
+    "repetition": 2,
+    "slot_id": "BEHAVIOR|challenge_004|r2",
+    "prompt": "把正在钓鱼的人以外背景变暗",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "dim_background"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79.png",
+    "image_sha256": "45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79"
+  },
+  {
+    "ordinal": 13,
+    "component": "behavior",
+    "case_id": "challenge_004",
+    "repetition": 3,
+    "slot_id": "BEHAVIOR|challenge_004|r3",
+    "prompt": "把正在钓鱼的人以外背景变暗",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "dim_background"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79.png",
+    "image_sha256": "45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79"
+  },
+  {
+    "ordinal": 14,
+    "component": "behavior",
+    "case_id": "challenge_004",
+    "repetition": 4,
+    "slot_id": "BEHAVIOR|challenge_004|r4",
+    "prompt": "把正在钓鱼的人以外背景变暗",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "dim_background"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79.png",
+    "image_sha256": "45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79"
+  },
+  {
+    "ordinal": 15,
+    "component": "behavior",
+    "case_id": "challenge_004",
+    "repetition": 5,
+    "slot_id": "BEHAVIOR|challenge_004|r5",
+    "prompt": "把正在钓鱼的人以外背景变暗",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "dim_background"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79.png",
+    "image_sha256": "45cc200746762868a2a51afafa362fb212cbfbeaa350f523f7d0a353aa044a79"
+  },
+  {
+    "ordinal": 16,
+    "component": "behavior",
+    "case_id": "F1::fishing_001.jpeg",
+    "repetition": 1,
+    "slot_id": "BEHAVIOR|F1::fishing_001.jpeg|r1",
+    "prompt": "框出正在钓鱼的人",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "box"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab.jpeg",
+    "image_sha256": "459b89b0993cb0227aa528695ef1ef1f906507f57af5ad222ebab9ea0df9ecab"
+  },
+  {
+    "ordinal": 17,
+    "component": "behavior",
+    "case_id": "F1::fishing_005.jpeg",
+    "repetition": 1,
+    "slot_id": "BEHAVIOR|F1::fishing_005.jpeg|r1",
+    "prompt": "框出正在钓鱼的人",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "box"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145.jpeg",
+    "image_sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145"
+  },
+  {
+    "ordinal": 18,
+    "component": "behavior",
+    "case_id": "F1::fishing_010.jpeg",
+    "repetition": 1,
+    "slot_id": "BEHAVIOR|F1::fishing_010.jpeg|r1",
+    "prompt": "框出正在钓鱼的人",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "box"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4.jpeg",
+    "image_sha256": "acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4"
+  },
+  {
+    "ordinal": 19,
+    "component": "behavior",
+    "case_id": "F1::fishing_014.jpeg",
+    "repetition": 1,
+    "slot_id": "BEHAVIOR|F1::fishing_014.jpeg|r1",
+    "prompt": "框出正在钓鱼的人",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "box"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355.jpeg",
+    "image_sha256": "8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355"
+  },
+  {
+    "ordinal": 20,
+    "component": "behavior",
+    "case_id": "F1::fishing_004.jpeg",
+    "repetition": 1,
+    "slot_id": "BEHAVIOR|F1::fishing_004.jpeg|r1",
+    "prompt": "框出正在钓鱼的人",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "box"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9.jpeg",
+    "image_sha256": "b79fef93535b1eee45c9355135b3e8053a8bb0fd94be3031832e024bce0e34a9"
+  },
+  {
+    "ordinal": 21,
+    "component": "behavior",
+    "case_id": "F1::fishing_018.jpeg",
+    "repetition": 1,
+    "slot_id": "BEHAVIOR|F1::fishing_018.jpeg|r1",
+    "prompt": "框出正在钓鱼的人",
+    "plan": {
+      "target_object": "person",
+      "label": "钓鱼的人",
+      "constraints": [
+        {
+          "text": "正在钓鱼",
+          "route": "behavior"
+        }
+      ],
+      "action": {
+        "type": "box"
+      },
+      "related_objects": []
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e.jpeg",
+    "image_sha256": "3db8bbbac9b1bb2c153a5194625c0121b731afea11ad94ce475605ac5673be4e"
+  },
+  {
+    "ordinal": 22,
+    "component": "relation",
+    "case_id": "F4::fishing_017.jpeg",
+    "repetition": 1,
+    "slot_id": "RELATION|F4::fishing_017.jpeg|r1",
+    "prompt": "把拿着鱼的人标出来",
+    "plan": {
+      "target_object": "person",
+      "label": "拿鱼的人",
+      "constraints": [
+        {
+          "text": "拿着鱼",
+          "route": "relation"
+        }
+      ],
+      "action": {
+        "type": "highlight"
+      },
+      "related_objects": [
+        {
+          "object": "fish",
+          "relation": "held_by_target"
+        }
+      ]
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99.jpeg",
+    "image_sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99"
+  },
+  {
+    "ordinal": 23,
+    "component": "relation",
+    "case_id": "F4::fishing_017.jpeg",
+    "repetition": 2,
+    "slot_id": "RELATION|F4::fishing_017.jpeg|r2",
+    "prompt": "把拿着鱼的人标出来",
+    "plan": {
+      "target_object": "person",
+      "label": "拿鱼的人",
+      "constraints": [
+        {
+          "text": "拿着鱼",
+          "route": "relation"
+        }
+      ],
+      "action": {
+        "type": "highlight"
+      },
+      "related_objects": [
+        {
+          "object": "fish",
+          "relation": "held_by_target"
+        }
+      ]
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99.jpeg",
+    "image_sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99"
+  },
+  {
+    "ordinal": 24,
+    "component": "relation",
+    "case_id": "F4::fishing_017.jpeg",
+    "repetition": 3,
+    "slot_id": "RELATION|F4::fishing_017.jpeg|r3",
+    "prompt": "把拿着鱼的人标出来",
+    "plan": {
+      "target_object": "person",
+      "label": "拿鱼的人",
+      "constraints": [
+        {
+          "text": "拿着鱼",
+          "route": "relation"
+        }
+      ],
+      "action": {
+        "type": "highlight"
+      },
+      "related_objects": [
+        {
+          "object": "fish",
+          "relation": "held_by_target"
+        }
+      ]
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99.jpeg",
+    "image_sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99"
+  },
+  {
+    "ordinal": 25,
+    "component": "relation",
+    "case_id": "F4::fishing_017.jpeg",
+    "repetition": 4,
+    "slot_id": "RELATION|F4::fishing_017.jpeg|r4",
+    "prompt": "把拿着鱼的人标出来",
+    "plan": {
+      "target_object": "person",
+      "label": "拿鱼的人",
+      "constraints": [
+        {
+          "text": "拿着鱼",
+          "route": "relation"
+        }
+      ],
+      "action": {
+        "type": "highlight"
+      },
+      "related_objects": [
+        {
+          "object": "fish",
+          "relation": "held_by_target"
+        }
+      ]
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99.jpeg",
+    "image_sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99"
+  },
+  {
+    "ordinal": 26,
+    "component": "relation",
+    "case_id": "F4::fishing_017.jpeg",
+    "repetition": 5,
+    "slot_id": "RELATION|F4::fishing_017.jpeg|r5",
+    "prompt": "把拿着鱼的人标出来",
+    "plan": {
+      "target_object": "person",
+      "label": "拿鱼的人",
+      "constraints": [
+        {
+          "text": "拿着鱼",
+          "route": "relation"
+        }
+      ],
+      "action": {
+        "type": "highlight"
+      },
+      "related_objects": [
+        {
+          "object": "fish",
+          "relation": "held_by_target"
+        }
+      ]
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99.jpeg",
+    "image_sha256": "2ca02d15f8799d620598751ef299851915f91fe094d863a5f7cf51f6b50f0c99"
+  },
+  {
+    "ordinal": 27,
+    "component": "relation",
+    "case_id": "F2::fishing_005.jpeg",
+    "repetition": 1,
+    "slot_id": "RELATION|F2::fishing_005.jpeg|r1",
+    "prompt": "把拿着鱼竿的人描边",
+    "plan": {
+      "target_object": "person",
+      "label": "拿着鱼竿的人",
+      "constraints": [
+        {
+          "text": "拿着鱼竿",
+          "route": "relation"
+        }
+      ],
+      "action": {
+        "type": "outline"
+      },
+      "related_objects": [
+        {
+          "object": "fishing rod",
+          "relation": "held_by_target"
+        }
+      ]
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145.jpeg",
+    "image_sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145"
+  },
+  {
+    "ordinal": 28,
+    "component": "relation",
+    "case_id": "F2::fishing_005.jpeg",
+    "repetition": 2,
+    "slot_id": "RELATION|F2::fishing_005.jpeg|r2",
+    "prompt": "把拿着鱼竿的人描边",
+    "plan": {
+      "target_object": "person",
+      "label": "拿着鱼竿的人",
+      "constraints": [
+        {
+          "text": "拿着鱼竿",
+          "route": "relation"
+        }
+      ],
+      "action": {
+        "type": "outline"
+      },
+      "related_objects": [
+        {
+          "object": "fishing rod",
+          "relation": "held_by_target"
+        }
+      ]
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145.jpeg",
+    "image_sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145"
+  },
+  {
+    "ordinal": 29,
+    "component": "relation",
+    "case_id": "F2::fishing_005.jpeg",
+    "repetition": 3,
+    "slot_id": "RELATION|F2::fishing_005.jpeg|r3",
+    "prompt": "把拿着鱼竿的人描边",
+    "plan": {
+      "target_object": "person",
+      "label": "拿着鱼竿的人",
+      "constraints": [
+        {
+          "text": "拿着鱼竿",
+          "route": "relation"
+        }
+      ],
+      "action": {
+        "type": "outline"
+      },
+      "related_objects": [
+        {
+          "object": "fishing rod",
+          "relation": "held_by_target"
+        }
+      ]
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145.jpeg",
+    "image_sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145"
+  },
+  {
+    "ordinal": 30,
+    "component": "relation",
+    "case_id": "F2::fishing_005.jpeg",
+    "repetition": 4,
+    "slot_id": "RELATION|F2::fishing_005.jpeg|r4",
+    "prompt": "把拿着鱼竿的人描边",
+    "plan": {
+      "target_object": "person",
+      "label": "拿着鱼竿的人",
+      "constraints": [
+        {
+          "text": "拿着鱼竿",
+          "route": "relation"
+        }
+      ],
+      "action": {
+        "type": "outline"
+      },
+      "related_objects": [
+        {
+          "object": "fishing rod",
+          "relation": "held_by_target"
+        }
+      ]
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145.jpeg",
+    "image_sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145"
+  },
+  {
+    "ordinal": 31,
+    "component": "relation",
+    "case_id": "F2::fishing_005.jpeg",
+    "repetition": 5,
+    "slot_id": "RELATION|F2::fishing_005.jpeg|r5",
+    "prompt": "把拿着鱼竿的人描边",
+    "plan": {
+      "target_object": "person",
+      "label": "拿着鱼竿的人",
+      "constraints": [
+        {
+          "text": "拿着鱼竿",
+          "route": "relation"
+        }
+      ],
+      "action": {
+        "type": "outline"
+      },
+      "related_objects": [
+        {
+          "object": "fishing rod",
+          "relation": "held_by_target"
+        }
+      ]
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145.jpeg",
+    "image_sha256": "98eba2196eef4ae557b3efb213d45adf7f3948524a60b0b9ac45ce214a3c5145"
+  },
+  {
+    "ordinal": 32,
+    "component": "relation",
+    "case_id": "F2::fishing_024.jpeg",
+    "repetition": 1,
+    "slot_id": "RELATION|F2::fishing_024.jpeg|r1",
+    "prompt": "把拿着鱼竿的人描边",
+    "plan": {
+      "target_object": "person",
+      "label": "人",
+      "constraints": [
+        {
+          "text": "拿着鱼竿",
+          "route": "relation"
+        }
+      ],
+      "action": {
+        "type": "outline"
+      },
+      "related_objects": [
+        {
+          "object": "fishing rod",
+          "relation": "held_by_target"
+        }
+      ]
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\f70b44333494c9788b0747ac78847a3a8ed67692b1ff1b0edcdc6d15b32d60c6.jpeg",
+    "image_sha256": "f70b44333494c9788b0747ac78847a3a8ed67692b1ff1b0edcdc6d15b32d60c6"
+  },
+  {
+    "ordinal": 33,
+    "component": "relation",
+    "case_id": "core_003",
+    "repetition": 1,
+    "slot_id": "RELATION|core_003|r1",
+    "prompt": "只给手持雨伞的人描边",
+    "plan": {
+      "target_object": "person",
+      "label": "手持雨伞的人",
+      "constraints": [
+        {
+          "text": "手持雨伞",
+          "route": "relation"
+        }
+      ],
+      "action": {
+        "type": "outline"
+      },
+      "related_objects": [
+        {
+          "object": "umbrella",
+          "relation": "held_by_target"
+        }
+      ]
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0.jpg",
+    "image_sha256": "5fc835cd84d2acf4d24c15dba16d2f706df71f02cf28e3927ee2e5c7b78db4f0"
+  },
+  {
+    "ordinal": 34,
+    "component": "relation",
+    "case_id": "core_014",
+    "repetition": 1,
+    "slot_id": "RELATION|core_014|r1",
+    "prompt": "只给手持雨伞的人描边",
+    "plan": {
+      "target_object": "person",
+      "label": "人",
+      "constraints": [
+        {
+          "text": "手持雨伞",
+          "route": "relation"
+        }
+      ],
+      "action": {
+        "type": "outline"
+      },
+      "related_objects": [
+        {
+          "object": "umbrella",
+          "relation": "held_by_target"
+        }
+      ]
+    },
+    "image_path": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v1\\inputs\\by_sha256\\9eeaa87013b4e800930e8a411b58ff9e2fd5383906b1a022f4a712720af34cc2.jpg",
+    "image_sha256": "9eeaa87013b4e800930e8a411b58ff9e2fd5383906b1a022f4a712720af34cc2"
+  }
+]

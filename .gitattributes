@@ -78,6 +78,12 @@ evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGR
 evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGRESSION_V2/**/*.md text eol=lf
 evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGRESSION_V2/**/*.py text eol=lf
 
+# Production targeted regression V3 原始结果保持运行时字节，图片证据沿用 artifacts LFS 规则。
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGRESSION_V3/**/*.json -text -diff
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGRESSION_V3/**/*.jsonl -text -diff
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGRESSION_V3/**/*.md text eol=lf
+evidence/final_acceptance/GENERAL_RGB_BEHAVIOR_RELATION_PRODUCTION_TARGETED_REGRESSION_V3/**/*.py text eol=lf
+
 # Multi-candidate satisfied ownership Gate 原始结果保持运行时字节。
 evidence/final_acceptance/GENERAL_RGB_MULTI_CANDIDATE_SATISFIED_OWNERSHIP_CONFIRMATION_GATE_V1/**/*.json -text -diff
 evidence/final_acceptance/GENERAL_RGB_MULTI_CANDIDATE_SATISFIED_OWNERSHIP_CONFIRMATION_GATE_V1/**/*.jsonl -text -diff
