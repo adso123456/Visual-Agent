@@ -1,0 +1,503 @@
+{
+  "prompt": "框出正在钓鱼的人",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      {
+        "text": "正在钓鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "box"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        1758.92,
+        218.87,
+        3228.11,
+        2583.82
+      ],
+      "dino_confidence": 0.7202,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "局部图与完整场景图中，一根钓竿从候选A所在的右侧斜伸向蓝色水面，钓线上悬挂着两条鱼，候选A背对镜头面向水面，钓竿与钓线的延伸方向均与其位置和朝向一致，构成钓鱼行为上下文。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "局部图与完整场景图中，一根钓竿从候选A所在的右侧斜伸向蓝色水面，钓线上悬挂着两条鱼，候选A背对镜头面向水面，钓竿与钓线的延伸方向均与其位置和朝向一致，构成钓鱼行为上下文。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        1.77,
+        83.25,
+        1367.14,
+        2583.08
+      ],
+      "dino_confidence": 0.7456,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "候选人物面向蓝色海面，场景中可见钓竿、钓线以及挂在钓线上的两条鱼，人物处于钓鱼活动环境中并朝向钓获物，符合正在钓鱼的行为。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "候选人物面向蓝色海面，场景中可见钓竿、钓线以及挂在钓线上的两条鱼，人物处于钓鱼活动环境中并朝向钓获物，符合正在钓鱼的行为。"
+    }
+  ],
+  "behavior_routing": {
+    "A": {
+      "identity_risk": false,
+      "first_pass_arm": "A",
+      "route": "behavior",
+      "fallback_arm": "A",
+      "fallback_attempted": true,
+      "write_back_positions": [
+        0
+      ]
+    },
+    "B": {
+      "identity_risk": false,
+      "first_pass_arm": "A",
+      "route": "behavior",
+      "fallback_arm": "A",
+      "fallback_attempted": true,
+      "write_back_positions": [
+        0
+      ]
+    }
+  },
+  "relation_hand_fallback": {
+    "attempts": 0,
+    "detector_calls": 0,
+    "admitted_count": 0,
+    "hand_relation_calls": 0,
+    "max_per_subject": 1,
+    "subjects": {}
+  },
+  "verified_subjects": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        1758.92,
+        218.87,
+        3228.11,
+        2583.82
+      ],
+      "confidence": 0.7202,
+      "reason": "局部图与完整场景图中，一根钓竿从候选A所在的右侧斜伸向蓝色水面，钓线上悬挂着两条鱼，候选A背对镜头面向水面，钓竿与钓线的延伸方向均与其位置和朝向一致，构成钓鱼行为上下文。"
+    },
+    {
+      "id": "B",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        1.77,
+        83.25,
+        1367.14,
+        2583.08
+      ],
+      "confidence": 0.7456,
+      "reason": "候选人物面向蓝色海面，场景中可见钓竿、钓线以及挂在钓线上的两条鱼，人物处于钓鱼活动环境中并朝向钓获物，符合正在钓鱼的行为。"
+    }
+  ],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "subject": {
+        "candidate_id": "A",
+        "object": "person",
+        "bbox": [
+          1758.92,
+          218.87,
+          3228.11,
+          2583.82
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        1758.92,
+        218.87,
+        3228.11,
+        2583.82
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    },
+    {
+      "id": "B",
+      "label": "钓鱼的人",
+      "subject": {
+        "candidate_id": "B",
+        "object": "person",
+        "bbox": [
+          1.77,
+          83.25,
+          1367.14,
+          2583.08
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        1.77,
+        83.25,
+        1367.14,
+        2583.08
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        1758.92,
+        218.87,
+        3228.11,
+        2583.82
+      ],
+      "confidence": 0.7202,
+      "reason": "局部图与完整场景图中，一根钓竿从候选A所在的右侧斜伸向蓝色水面，钓线上悬挂着两条鱼，候选A背对镜头面向水面，钓竿与钓线的延伸方向均与其位置和朝向一致，构成钓鱼行为上下文。",
+      "composite_bbox": [
+        1758.92,
+        218.87,
+        3228.11,
+        2583.82
+      ]
+    },
+    {
+      "id": "B",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        1.77,
+        83.25,
+        1367.14,
+        2583.08
+      ],
+      "confidence": 0.7456,
+      "reason": "候选人物面向蓝色海面，场景中可见钓竿、钓线以及挂在钓线上的两条鱼，人物处于钓鱼活动环境中并朝向钓获物，符合正在钓鱼的行为。",
+      "composite_bbox": [
+        1.77,
+        83.25,
+        1367.14,
+        2583.08
+      ]
+    }
+  ],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            3240,
+            2592
+          ],
+          "original_payload_bytes": 723048,
+          "normalized_dimensions": [
+            3240,
+            2592
+          ],
+          "normalized_payload_bytes": 723048,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      },
+      "B": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            3240,
+            2592
+          ],
+          "original_payload_bytes": 1347292,
+          "normalized_dimensions": [
+            3240,
+            2592
+          ],
+          "normalized_payload_bytes": 1347292,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "A": {
+        "behavior": {
+          "attempts": 2,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              3240,
+              2592
+            ],
+            "original_payload_bytes": 9730360,
+            "normalized_dimensions": [
+              3240,
+              2592
+            ],
+            "normalized_payload_bytes": 9730360,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars",
+            "evidence_count": 5,
+            "items": [
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  3240,
+                  2592
+                ],
+                "original_payload_bytes": 723048,
+                "normalized_dimensions": [
+                  3240,
+                  2592
+                ],
+                "normalized_payload_bytes": 723048,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  1996,
+                  2592
+                ],
+                "original_payload_bytes": 2172072,
+                "normalized_dimensions": [
+                  1996,
+                  2592
+                ],
+                "normalized_payload_bytes": 2172072,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  3240,
+                  2592
+                ],
+                "original_payload_bytes": 723048,
+                "normalized_dimensions": [
+                  3240,
+                  2592
+                ],
+                "normalized_payload_bytes": 723048,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  1996,
+                  2592
+                ],
+                "original_payload_bytes": 2172072,
+                "normalized_dimensions": [
+                  1996,
+                  2592
+                ],
+                "normalized_payload_bytes": 2172072,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  3240,
+                  2592
+                ],
+                "original_payload_bytes": 3940120,
+                "normalized_dimensions": [
+                  3240,
+                  2592
+                ],
+                "normalized_payload_bytes": 3940120,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              }
+            ]
+          }
+        }
+      },
+      "B": {
+        "behavior": {
+          "attempts": 2,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              3240,
+              2592
+            ],
+            "original_payload_bytes": 11615908,
+            "normalized_dimensions": [
+              3240,
+              2592
+            ],
+            "normalized_payload_bytes": 11615908,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars",
+            "evidence_count": 5,
+            "items": [
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  3240,
+                  2592
+                ],
+                "original_payload_bytes": 1347292,
+                "normalized_dimensions": [
+                  3240,
+                  2592
+                ],
+                "normalized_payload_bytes": 1347292,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  1846,
+                  2592
+                ],
+                "original_payload_bytes": 2492608,
+                "normalized_dimensions": [
+                  1846,
+                  2592
+                ],
+                "normalized_payload_bytes": 2492608,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  3240,
+                  2592
+                ],
+                "original_payload_bytes": 1347292,
+                "normalized_dimensions": [
+                  3240,
+                  2592
+                ],
+                "normalized_payload_bytes": 1347292,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  1846,
+                  2592
+                ],
+                "original_payload_bytes": 2492608,
+                "normalized_dimensions": [
+                  1846,
+                  2592
+                ],
+                "normalized_payload_bytes": 2492608,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  3240,
+                  2592
+                ],
+                "original_payload_bytes": 3936108,
+                "normalized_dimensions": [
+                  3240,
+                  2592
+                ],
+                "normalized_payload_bytes": 3936108,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 3.015,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 892.1
+    },
+    "grounding_dino_seconds": 0.776,
+    "subject_validity_seconds": 28.544,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 117.195,
+    "group_verification_seconds": 146.563,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "inference_seconds": 0.151,
+      "memory_after_load_mb": 1185.8,
+      "peak_memory_mb": 1605.8,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 5.34,
+    "total_seconds": 155.766
+  },
+  "action_result": {
+    "type": "box",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v2/artifacts/F1__fishing_021/result_001.jpg"
+  },
+  "agent_response": "已框出2位正在钓鱼的人。"
+}

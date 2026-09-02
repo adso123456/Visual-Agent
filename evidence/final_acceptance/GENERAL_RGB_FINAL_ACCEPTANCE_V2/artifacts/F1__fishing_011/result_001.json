@@ -1,0 +1,238 @@
+{
+  "prompt": "框出正在钓鱼的人",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      {
+        "text": "正在钓鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "box"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        1884.39,
+        1069.88,
+        5491.08,
+        3916.68
+      ],
+      "dino_confidence": 0.8363,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "not_satisfied",
+          "evidence": "该人物左臂伸出，手中握持的是一个方形网状捕捞笼（捕蟹/捕虾笼），背景为海面与船舷栏杆，全程未见钓竿、钓线或鱼饵等钓鱼工具，其行为属于投放或提起捕捞笼具，而非钓鱼。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "该人物左臂伸出，手中握持的是一个方形网状捕捞笼（捕蟹/捕虾笼），背景为海面与船舷栏杆，全程未见钓竿、钓线或鱼饵等钓鱼工具，其行为属于投放或提起捕捞笼具，而非钓鱼。"
+    }
+  ],
+  "behavior_routing": {
+    "A": {
+      "identity_risk": false,
+      "first_pass_arm": "A",
+      "route": "behavior",
+      "fallback_arm": "C",
+      "fallback_attempted": true,
+      "write_back_positions": [
+        0
+      ]
+    }
+  },
+  "relation_hand_fallback": {
+    "attempts": 0,
+    "detector_calls": 0,
+    "admitted_count": 0,
+    "hand_relation_calls": 0,
+    "max_per_subject": 1,
+    "subjects": {}
+  },
+  "verified_subjects": [],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [],
+  "targets": [],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            5907,
+            3938
+          ],
+          "original_payload_bytes": 5215584,
+          "normalized_dimensions": [
+            5907,
+            3938
+          ],
+          "normalized_payload_bytes": 5215584,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "A": {
+        "behavior": {
+          "attempts": 2,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": true,
+            "original_dimensions": [
+              5285,
+              3865
+            ],
+            "original_payload_bytes": 64204908,
+            "normalized_dimensions": [
+              5285,
+              3865
+            ],
+            "normalized_payload_bytes": 49892616,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars",
+            "evidence_count": 5,
+            "items": [
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  5907,
+                  3938
+                ],
+                "original_payload_bytes": 5215584,
+                "normalized_dimensions": [
+                  5907,
+                  3938
+                ],
+                "normalized_payload_bytes": 5215584,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  5285,
+                  3865
+                ],
+                "original_payload_bytes": 17190872,
+                "normalized_dimensions": [
+                  5285,
+                  3865
+                ],
+                "normalized_payload_bytes": 17190872,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  5907,
+                  3938
+                ],
+                "original_payload_bytes": 5215584,
+                "normalized_dimensions": [
+                  5907,
+                  3938
+                ],
+                "normalized_payload_bytes": 5215584,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  5285,
+                  3865
+                ],
+                "original_payload_bytes": 17190872,
+                "normalized_dimensions": [
+                  5285,
+                  3865
+                ],
+                "normalized_payload_bytes": 17190872,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": true,
+                "original_dimensions": [
+                  5907,
+                  3938
+                ],
+                "original_payload_bytes": 19391996,
+                "normalized_dimensions": [
+                  2449,
+                  1633
+                ],
+                "normalized_payload_bytes": 5079704,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 1.324,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 892.1
+    },
+    "grounding_dino_seconds": 0.765,
+    "subject_validity_seconds": 15.74,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 79.639,
+    "group_verification_seconds": 96.584,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "inference_seconds": 0.147,
+      "memory_after_load_mb": 1185.8,
+      "peak_memory_mb": 1605.8,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 1.083,
+    "total_seconds": 99.928
+  },
+  "action_result": {
+    "type": "box",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v2/artifacts/F1__fishing_011/result_001.jpg"
+  },
+  "agent_response": "没有找到满足条件的目标。"
+}

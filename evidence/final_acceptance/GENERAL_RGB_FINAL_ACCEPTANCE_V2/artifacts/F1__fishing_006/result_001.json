@@ -1,0 +1,249 @@
+{
+  "prompt": "框出正在钓鱼的人",
+  "agent": {
+    "provider": "deepseek",
+    "model": "deepseek-v4-pro",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      {
+        "text": "正在钓鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "box"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        865.87,
+        132.62,
+        3278.81,
+        2930.63
+      ],
+      "dino_confidence": 0.8343,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "该人物身穿带鱼骨图案和“FLAT METHOD”字样的钓鱼背心，身处芦苇丛水边，双手托着一条刚捕获的鲤鱼，鱼身置于黑色鱼护垫上，整体上下文符合钓鱼行为。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "该人物身穿带鱼骨图案和“FLAT METHOD”字样的钓鱼背心，身处芦苇丛水边，双手托着一条刚捕获的鲤鱼，鱼身置于黑色鱼护垫上，整体上下文符合钓鱼行为。"
+    }
+  ],
+  "behavior_routing": {
+    "A": {
+      "identity_risk": false,
+      "first_pass_arm": "A",
+      "route": "behavior",
+      "fallback_arm": null,
+      "fallback_attempted": false,
+      "write_back_positions": []
+    }
+  },
+  "relation_hand_fallback": {
+    "attempts": 0,
+    "detector_calls": 0,
+    "admitted_count": 0,
+    "hand_relation_calls": 0,
+    "max_per_subject": 1,
+    "subjects": {}
+  },
+  "verified_subjects": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        865.87,
+        132.62,
+        3278.81,
+        2930.63
+      ],
+      "confidence": 0.8343,
+      "reason": "该人物身穿带鱼骨图案和“FLAT METHOD”字样的钓鱼背心，身处芦苇丛水边，双手托着一条刚捕获的鲤鱼，鱼身置于黑色鱼护垫上，整体上下文符合钓鱼行为。"
+    }
+  ],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "subject": {
+        "candidate_id": "A",
+        "object": "person",
+        "bbox": [
+          865.87,
+          132.62,
+          3278.81,
+          2930.63
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        865.87,
+        132.62,
+        3278.81,
+        2930.63
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        865.87,
+        132.62,
+        3278.81,
+        2930.63
+      ],
+      "confidence": 0.8343,
+      "reason": "该人物身穿带鱼骨图案和“FLAT METHOD”字样的钓鱼背心，身处芦苇丛水边，双手托着一条刚捕获的鲤鱼，鱼身置于黑色鱼护垫上，整体上下文符合钓鱼行为。",
+      "composite_bbox": [
+        865.87,
+        132.62,
+        3278.81,
+        2930.63
+      ]
+    }
+  ],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            6459,
+            4306
+          ],
+          "original_payload_bytes": 3530928,
+          "normalized_dimensions": [
+            6459,
+            4306
+          ],
+          "normalized_payload_bytes": 3530928,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "A": {
+        "behavior": {
+          "attempts": 1,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": true,
+            "original_dimensions": [
+              4103,
+              3910
+            ],
+            "original_payload_bytes": 24364228,
+            "normalized_dimensions": [
+              2049,
+              1952
+            ],
+            "normalized_payload_bytes": 11079696,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars",
+            "evidence_count": 2,
+            "items": [
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  6459,
+                  4306
+                ],
+                "original_payload_bytes": 3530928,
+                "normalized_dimensions": [
+                  6459,
+                  4306
+                ],
+                "normalized_payload_bytes": 3530928,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": true,
+                "original_dimensions": [
+                  4103,
+                  3910
+                ],
+                "original_payload_bytes": 20833300,
+                "normalized_dimensions": [
+                  2049,
+                  1952
+                ],
+                "normalized_payload_bytes": 7548768,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 2.167,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 892.1
+    },
+    "grounding_dino_seconds": 0.925,
+    "subject_validity_seconds": 14.977,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 27.969,
+    "group_verification_seconds": 44.383,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "inference_seconds": 0.15,
+      "memory_after_load_mb": 1185.8,
+      "peak_memory_mb": 1605.8,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 0.966,
+    "total_seconds": 48.64
+  },
+  "action_result": {
+    "type": "box",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v2/artifacts/F1__fishing_006/result_001.jpg"
+  },
+  "agent_response": "已框出正在钓鱼的人。"
+}

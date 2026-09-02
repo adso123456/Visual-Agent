@@ -1,0 +1,461 @@
+{
+  "stage": "GENERAL_RGB_FINAL_ACCEPTANCE_V2",
+  "implementation_head": "aed1e3e6acb537480664b89531a9bc12a29d708f",
+  "final_decision": "FAIL",
+  "system_gate": "FAIL",
+  "visual_adjudication": "NOT_PERFORMED_SYSTEM_GATE_FAILED",
+  "execution": {
+    "submitted": 140,
+    "terminal": 140,
+    "pipeline_success": 62,
+    "system_failure": 78,
+    "result_json_present": 62,
+    "result_image_present": 62,
+    "provider_final_failures": 77,
+    "planner_contract_final_failures": 1,
+    "vlm_provider_failures": 0,
+    "vlm_protocol_final_failures": 0,
+    "vlm_validator_final_failures": 0,
+    "error_classes": {
+      "planner_contract_final_failure": 1,
+      "deepseek_final_response_invalid_none": 1,
+      "deepseek_http_503": 74,
+      "deepseek_http_500": 2
+    },
+    "by_bucket": {
+      "CORE_CHALLENGE": {
+        "submitted": 20,
+        "success": 20,
+        "error": 0
+      },
+      "F1": {
+        "submitted": 30,
+        "success": 30,
+        "error": 0
+      },
+      "F2": {
+        "submitted": 30,
+        "success": 12,
+        "error": 18
+      },
+      "F3": {
+        "submitted": 30,
+        "success": 0,
+        "error": 30
+      },
+      "F4": {
+        "submitted": 30,
+        "success": 0,
+        "error": 30
+      }
+    },
+    "vlm_calls": 227,
+    "unexpected_vlm_models": 0,
+    "unexpected_vlm_endpoints": 0,
+    "protocol_attempts": 215,
+    "protocol_retries": 0,
+    "protocol_recovered": 0,
+    "prompt_tokens": 1084216,
+    "completion_tokens": 18107,
+    "total_tokens": 1102323,
+    "summed_end_to_end_seconds": 5612.163
+  },
+  "failed_units": [
+    {
+      "unit_id": "F2__fishing_004",
+      "error_type": "RuntimeError",
+      "error": "DeepSeek Planner 两次均违反契约：显式手持语义（手持/拿着/撑着）必须编译为 relation + held_by_target"
+    },
+    {
+      "unit_id": "F2__fishing_014",
+      "error_type": "AttributeError",
+      "error": "'NoneType' object has no attribute 'choices'"
+    },
+    {
+      "unit_id": "F2__fishing_015",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Service is too busy. We advise users to temporarily switch to alternative LLM API service providers.', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F2__fishing_016",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Service is too busy. We advise users to temporarily switch to alternative LLM API service providers.', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F2__fishing_017",
+      "error_type": "InternalServerError",
+      "error": "Error code: 500 - {'error': {'message': 'Internal Server Error', 'type': 'internal_error', 'param': None, 'code': 'internal_error'}}"
+    },
+    {
+      "unit_id": "F2__fishing_018",
+      "error_type": "InternalServerError",
+      "error": "Error code: 500 - {'error': {'message': 'Internal Server Error', 'type': 'internal_error', 'param': None, 'code': 'internal_error'}}"
+    },
+    {
+      "unit_id": "F2__fishing_019",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Service is too busy. We advise users to temporarily switch to alternative LLM API service providers.', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F2__fishing_020",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Service is too busy. We advise users to temporarily switch to alternative LLM API service providers.', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F2__fishing_021",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F2__fishing_022",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F2__fishing_023",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F2__fishing_024",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F2__fishing_025",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F2__fishing_026",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F2__fishing_027",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F2__fishing_028",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F2__fishing_029",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F2__fishing_030",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_001",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_002",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_003",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_004",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_005",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_006",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_007",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_008",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_009",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_010",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_011",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_012",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_013",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_014",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_015",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_016",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_017",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_018",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_019",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_020",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_021",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_022",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_023",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_024",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_025",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_026",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_027",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_028",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_029",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F3__fishing_030",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_001",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_002",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_003",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_004",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_005",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_006",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_007",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_008",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_009",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_010",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_011",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_012",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_013",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_014",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_015",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_016",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_017",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_018",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_019",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_020",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_021",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_022",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_023",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_024",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_025",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_026",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_027",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_028",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_029",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    },
+    {
+      "unit_id": "F4__fishing_030",
+      "error_type": "InternalServerError",
+      "error": "Error code: 503 - {'error': {'message': 'Server Overloaded', 'type': 'service_unavailable_error', 'param': None, 'code': 'service_unavailable_error'}}"
+    }
+  ],
+  "audit_boundary": {
+    "failed_execution_replacement": false,
+    "terminal_results_overwritten": false,
+    "production_modified_during_execution": false,
+    "v1_evidence_modified": false
+  }
+}
