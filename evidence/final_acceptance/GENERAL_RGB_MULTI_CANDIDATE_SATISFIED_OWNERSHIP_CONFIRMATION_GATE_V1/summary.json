@@ -1,0 +1,23 @@
+{
+  "execution": {
+    "scheduled": 20,
+    "completed": 20,
+    "success": 20,
+    "error": 0
+  },
+  "final_satisfied_counts": {
+    "challenge_001|A": 0,
+    "challenge_001|B": 5,
+    "F1::fishing_014.jpeg|B": 0,
+    "F1::fishing_010.jpeg|C": 0
+  },
+  "confirmation_attempts": 5,
+  "gates": {
+    "all_terminal_success": true,
+    "challenge_001_A_final_satisfied_zero": true,
+    "challenge_001_B_final_satisfied_at_least_4": true,
+    "F1_014_B_final_satisfied_zero": true,
+    "F1_010_C_final_satisfied_zero": true,
+    "gate_pass": true
+  }
+}

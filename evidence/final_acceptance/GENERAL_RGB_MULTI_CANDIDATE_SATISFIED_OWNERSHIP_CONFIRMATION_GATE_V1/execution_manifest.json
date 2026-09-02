@@ -1,0 +1,11 @@
+{
+  "stage": "MULTI_CANDIDATE_SATISFIED_OWNERSHIP_CONFIRMATION_GATE_V1",
+  "implementation_head": "e829315f33b7c41175726f10c53554d2be1d7a64",
+  "model": "qwen3.8:27b-mtp-q4_K_M",
+  "base_url": "http://192.168.250.9:11434/v1",
+  "timeout_seconds": 120,
+  "concurrency": 1,
+  "scheduled_slots": 20,
+  "failed_execution_replacement": false,
+  "production_modification_authorized": false
+}

@@ -1,0 +1,35 @@
+{
+  "file_count": 6,
+  "files": [
+    {
+      "path": "execution_manifest.json",
+      "bytes": 386,
+      "sha256": "7107d2e15ad7a62446b700a7281130168da630d616793c291ca35ab05848f558"
+    },
+    {
+      "path": "EXECUTION_REPORT.md",
+      "bytes": 230,
+      "sha256": "acb5777a145bcafe3cc0a6a58689297ecd923c0594964a1746995ea1bd0b7006"
+    },
+    {
+      "path": "frozen_schedule.json",
+      "bytes": 8384,
+      "sha256": "c6108542bee04d1073a6f696958701ac7f2cf0aa1ad660a87000216f66e81212"
+    },
+    {
+      "path": "raw_execution.jsonl",
+      "bytes": 57389,
+      "sha256": "e8536ffc8a40177e54cab95f72979c9ebaee6e9b2eda92b653e3e98e9f7d7d7b"
+    },
+    {
+      "path": "run_gate.py",
+      "bytes": 12259,
+      "sha256": "1031b792dcad27f9ef04188029713ea48c440e5a7e21b09e9a09f9a77e5c2135"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 549,
+      "sha256": "40f955470af666587da91994de66e085fd7146bef257712b456ce95e89eff636"
+    }
+  ]
+}

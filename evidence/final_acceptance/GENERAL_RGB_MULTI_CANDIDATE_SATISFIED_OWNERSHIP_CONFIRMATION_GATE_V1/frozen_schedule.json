@@ -1,0 +1,362 @@
+[
+  {
+    "ordinal": 1,
+    "slot_id": "challenge_001|A|r1",
+    "repetition": 1,
+    "case_id": "challenge_001",
+    "candidate_id": "A",
+    "bbox": [
+      183.95,
+      60.79,
+      234.64,
+      148.47
+    ],
+    "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+    "candidate_count": 2,
+    "identity_risk": true,
+    "first_arm": "B",
+    "ordinary_full_arm": "C"
+  },
+  {
+    "ordinal": 2,
+    "slot_id": "challenge_001|A|r2",
+    "repetition": 2,
+    "case_id": "challenge_001",
+    "candidate_id": "A",
+    "bbox": [
+      183.95,
+      60.79,
+      234.64,
+      148.47
+    ],
+    "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+    "candidate_count": 2,
+    "identity_risk": true,
+    "first_arm": "B",
+    "ordinary_full_arm": "C"
+  },
+  {
+    "ordinal": 3,
+    "slot_id": "challenge_001|A|r3",
+    "repetition": 3,
+    "case_id": "challenge_001",
+    "candidate_id": "A",
+    "bbox": [
+      183.95,
+      60.79,
+      234.64,
+      148.47
+    ],
+    "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+    "candidate_count": 2,
+    "identity_risk": true,
+    "first_arm": "B",
+    "ordinary_full_arm": "C"
+  },
+  {
+    "ordinal": 4,
+    "slot_id": "challenge_001|A|r4",
+    "repetition": 4,
+    "case_id": "challenge_001",
+    "candidate_id": "A",
+    "bbox": [
+      183.95,
+      60.79,
+      234.64,
+      148.47
+    ],
+    "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+    "candidate_count": 2,
+    "identity_risk": true,
+    "first_arm": "B",
+    "ordinary_full_arm": "C"
+  },
+  {
+    "ordinal": 5,
+    "slot_id": "challenge_001|A|r5",
+    "repetition": 5,
+    "case_id": "challenge_001",
+    "candidate_id": "A",
+    "bbox": [
+      183.95,
+      60.79,
+      234.64,
+      148.47
+    ],
+    "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+    "candidate_count": 2,
+    "identity_risk": true,
+    "first_arm": "B",
+    "ordinary_full_arm": "C"
+  },
+  {
+    "ordinal": 6,
+    "slot_id": "challenge_001|B|r1",
+    "repetition": 1,
+    "case_id": "challenge_001",
+    "candidate_id": "B",
+    "bbox": [
+      155.37,
+      23.12,
+      205.32,
+      124.4
+    ],
+    "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+    "candidate_count": 2,
+    "identity_risk": true,
+    "first_arm": "B",
+    "ordinary_full_arm": "C"
+  },
+  {
+    "ordinal": 7,
+    "slot_id": "challenge_001|B|r2",
+    "repetition": 2,
+    "case_id": "challenge_001",
+    "candidate_id": "B",
+    "bbox": [
+      155.37,
+      23.12,
+      205.32,
+      124.4
+    ],
+    "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+    "candidate_count": 2,
+    "identity_risk": true,
+    "first_arm": "B",
+    "ordinary_full_arm": "C"
+  },
+  {
+    "ordinal": 8,
+    "slot_id": "challenge_001|B|r3",
+    "repetition": 3,
+    "case_id": "challenge_001",
+    "candidate_id": "B",
+    "bbox": [
+      155.37,
+      23.12,
+      205.32,
+      124.4
+    ],
+    "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+    "candidate_count": 2,
+    "identity_risk": true,
+    "first_arm": "B",
+    "ordinary_full_arm": "C"
+  },
+  {
+    "ordinal": 9,
+    "slot_id": "challenge_001|B|r4",
+    "repetition": 4,
+    "case_id": "challenge_001",
+    "candidate_id": "B",
+    "bbox": [
+      155.37,
+      23.12,
+      205.32,
+      124.4
+    ],
+    "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+    "candidate_count": 2,
+    "identity_risk": true,
+    "first_arm": "B",
+    "ordinary_full_arm": "C"
+  },
+  {
+    "ordinal": 10,
+    "slot_id": "challenge_001|B|r5",
+    "repetition": 5,
+    "case_id": "challenge_001",
+    "candidate_id": "B",
+    "bbox": [
+      155.37,
+      23.12,
+      205.32,
+      124.4
+    ],
+    "image_sha256": "179af15ea7f004631e99d0906e3542f81982760cc81b7320112847b54af4827c",
+    "candidate_count": 2,
+    "identity_risk": true,
+    "first_arm": "B",
+    "ordinary_full_arm": "C"
+  },
+  {
+    "ordinal": 11,
+    "slot_id": "F1::fishing_014.jpeg|B|r1",
+    "repetition": 1,
+    "case_id": "F1::fishing_014.jpeg",
+    "candidate_id": "B",
+    "bbox": [
+      4208.56,
+      2371.68,
+      4931.18,
+      3156.99
+    ],
+    "image_sha256": "8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355",
+    "candidate_count": 3,
+    "identity_risk": false,
+    "first_arm": "A",
+    "ordinary_full_arm": "A"
+  },
+  {
+    "ordinal": 12,
+    "slot_id": "F1::fishing_014.jpeg|B|r2",
+    "repetition": 2,
+    "case_id": "F1::fishing_014.jpeg",
+    "candidate_id": "B",
+    "bbox": [
+      4208.56,
+      2371.68,
+      4931.18,
+      3156.99
+    ],
+    "image_sha256": "8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355",
+    "candidate_count": 3,
+    "identity_risk": false,
+    "first_arm": "A",
+    "ordinary_full_arm": "A"
+  },
+  {
+    "ordinal": 13,
+    "slot_id": "F1::fishing_014.jpeg|B|r3",
+    "repetition": 3,
+    "case_id": "F1::fishing_014.jpeg",
+    "candidate_id": "B",
+    "bbox": [
+      4208.56,
+      2371.68,
+      4931.18,
+      3156.99
+    ],
+    "image_sha256": "8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355",
+    "candidate_count": 3,
+    "identity_risk": false,
+    "first_arm": "A",
+    "ordinary_full_arm": "A"
+  },
+  {
+    "ordinal": 14,
+    "slot_id": "F1::fishing_014.jpeg|B|r4",
+    "repetition": 4,
+    "case_id": "F1::fishing_014.jpeg",
+    "candidate_id": "B",
+    "bbox": [
+      4208.56,
+      2371.68,
+      4931.18,
+      3156.99
+    ],
+    "image_sha256": "8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355",
+    "candidate_count": 3,
+    "identity_risk": false,
+    "first_arm": "A",
+    "ordinary_full_arm": "A"
+  },
+  {
+    "ordinal": 15,
+    "slot_id": "F1::fishing_014.jpeg|B|r5",
+    "repetition": 5,
+    "case_id": "F1::fishing_014.jpeg",
+    "candidate_id": "B",
+    "bbox": [
+      4208.56,
+      2371.68,
+      4931.18,
+      3156.99
+    ],
+    "image_sha256": "8e04ceaa925594739664cc49e1908ff2f94ba48f82badfb83592c3c5ebad7355",
+    "candidate_count": 3,
+    "identity_risk": false,
+    "first_arm": "A",
+    "ordinary_full_arm": "A"
+  },
+  {
+    "ordinal": 16,
+    "slot_id": "F1::fishing_010.jpeg|C|r1",
+    "repetition": 1,
+    "case_id": "F1::fishing_010.jpeg",
+    "candidate_id": "C",
+    "bbox": [
+      2410.05,
+      854.47,
+      3121.58,
+      1894.21
+    ],
+    "image_sha256": "acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4",
+    "candidate_count": 3,
+    "identity_risk": false,
+    "first_arm": "A",
+    "ordinary_full_arm": "A"
+  },
+  {
+    "ordinal": 17,
+    "slot_id": "F1::fishing_010.jpeg|C|r2",
+    "repetition": 2,
+    "case_id": "F1::fishing_010.jpeg",
+    "candidate_id": "C",
+    "bbox": [
+      2410.05,
+      854.47,
+      3121.58,
+      1894.21
+    ],
+    "image_sha256": "acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4",
+    "candidate_count": 3,
+    "identity_risk": false,
+    "first_arm": "A",
+    "ordinary_full_arm": "A"
+  },
+  {
+    "ordinal": 18,
+    "slot_id": "F1::fishing_010.jpeg|C|r3",
+    "repetition": 3,
+    "case_id": "F1::fishing_010.jpeg",
+    "candidate_id": "C",
+    "bbox": [
+      2410.05,
+      854.47,
+      3121.58,
+      1894.21
+    ],
+    "image_sha256": "acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4",
+    "candidate_count": 3,
+    "identity_risk": false,
+    "first_arm": "A",
+    "ordinary_full_arm": "A"
+  },
+  {
+    "ordinal": 19,
+    "slot_id": "F1::fishing_010.jpeg|C|r4",
+    "repetition": 4,
+    "case_id": "F1::fishing_010.jpeg",
+    "candidate_id": "C",
+    "bbox": [
+      2410.05,
+      854.47,
+      3121.58,
+      1894.21
+    ],
+    "image_sha256": "acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4",
+    "candidate_count": 3,
+    "identity_risk": false,
+    "first_arm": "A",
+    "ordinary_full_arm": "A"
+  },
+  {
+    "ordinal": 20,
+    "slot_id": "F1::fishing_010.jpeg|C|r5",
+    "repetition": 5,
+    "case_id": "F1::fishing_010.jpeg",
+    "candidate_id": "C",
+    "bbox": [
+      2410.05,
+      854.47,
+      3121.58,
+      1894.21
+    ],
+    "image_sha256": "acaa943cb04cf5a94bdf56632add1b324dbc46f9354a0b774e837936ac4653f4",
+    "candidate_count": 3,
+    "identity_risk": false,
+    "first_arm": "A",
+    "ordinary_full_arm": "A"
+  }
+]
