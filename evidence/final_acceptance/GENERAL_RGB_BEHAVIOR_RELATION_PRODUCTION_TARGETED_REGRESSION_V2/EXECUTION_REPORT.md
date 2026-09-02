@@ -10,7 +10,7 @@
 - System: PASS
 - Behavior: FAIL
   - Challenge safety: FAIL
-  - F1 candidate/task: 4/10, 3/6; regression 0/0
+  - F1 candidate/task: 4/10, 3/6; regression 1/0
   - New false assignment: 6
     - `challenge_001` candidate `A`: uncertain -> satisfied
   - Fallback harm: 0

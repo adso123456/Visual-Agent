@@ -239,7 +239,11 @@ def main() -> None:
     report += f"- System: {'PASS' if system_gate else 'FAIL'}\n"
     report += f"- Behavior: {'PASS' if behavior_gate else 'FAIL'}\n"
     report += f"  - Challenge safety: {'PASS' if challenge_gate else 'FAIL'}\n"
-    report += f"  - F1 candidate/task: {f1_candidate_correct}/10, {f1_task_correct}/6; regression 0/0\n"
+    report += (
+        f"  - F1 candidate/task: {f1_candidate_correct}/10, {f1_task_correct}/6; "
+        f"regression {summary['behavior']['F1_candidate_regression']}/"
+        f"{summary['behavior']['F1_task_regression']}\n"
+    )
     report += f"  - New false assignment: {len(new_false)}\n"
     if new_false:
         item = new_false[0]
