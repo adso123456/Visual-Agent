@@ -223,9 +223,11 @@ def test_blend_preserves_scene_pixels():
     assert int(result[1, 1][0]) == 77  # target 原样
 
 
-def test_behavior_routing_satisfied_no_fallback(tmp_path, monkeypatch):
+def test_behavior_routing_satisfied_single_candidate_no_confirmation(
+    tmp_path, monkeypatch
+):
     calls = []
-    detector = DetectorStub(count=2)
+    detector = DetectorStub(count=1)
 
     def routed(candidate, constraints, evidence, route):
         calls.append((candidate["id"], len(evidence)))
@@ -251,9 +253,122 @@ def test_behavior_routing_satisfied_no_fallback(tmp_path, monkeypatch):
         output_dir=tmp_path / "out",
     )
     result = json.loads(result_path.read_text(encoding="utf-8"))
-    assert len(calls) == 2  # 两个候选各一次 first-pass，无 fallback
+    assert calls == [("A", 2)]  # 单候选 satisfied 保持 immutable
     for entry in result["behavior_routing"].values():
         assert entry["fallback_attempted"] is False
+
+
+def test_behavior_routing_satisfied_multi_candidate_requires_confirmation(
+    tmp_path, monkeypatch
+):
+    calls = []
+    detector = DetectorStub(count=2)
+
+    def routed(candidate, constraints, evidence, route):
+        calls.append((candidate["id"], len(evidence)))
+        status = "satisfied" if len(evidence) == 2 else "not_satisfied"
+        return (
+            [
+                {
+                    "constraint": item["text"],
+                    "status": status,
+                    "evidence": "第一遍确认" if len(evidence) == 2 else "全图否定",
+                }
+                for item in constraints
+            ],
+            {"attempts": 1},
+        )
+
+    _install(monkeypatch, detector, routed)
+    _, result_path = run_pipeline(
+        _image(tmp_path),
+        "框出正在钓鱼的人",
+        plan=_plan([{"text": "正在钓鱼", "route": "behavior"}]),
+        verify=True,
+        final_response=False,
+        output_dir=tmp_path / "out",
+    )
+    result = json.loads(result_path.read_text(encoding="utf-8"))
+    assert calls == [("A", 2), ("A", 3), ("B", 2), ("B", 3)]
+    for candidate in result["candidates"]:
+        assert candidate["verification_checks"][0]["status"] == "not_satisfied"
+    for entry in result["behavior_routing"].values():
+        assert entry["fallback_attempted"] is True
+        assert entry["write_back_positions"] == [0]
+
+
+@pytest.mark.parametrize(
+    ("identity_risk", "expected_arm", "expected_builder"),
+    [(False, "A", "ordinary"), (True, "C", "anchored")],
+)
+def test_behavior_satisfied_confirmation_reuses_first_pass_evidence_and_routes_arm(
+    tmp_path,
+    monkeypatch,
+    identity_risk,
+    expected_arm,
+    expected_builder,
+):
+    detector = DetectorStub(count=2)
+    first_pass_evidence_ids = {}
+    builder_calls = []
+
+    monkeypatch.setattr(
+        "visual_agent.pipeline.identity_contamination_risk",
+        lambda image_size, candidate_id, candidates: identity_risk,
+    )
+
+    def ordinary(*args):
+        builder_calls.append("ordinary")
+        return object()
+
+    def anchored(*args):
+        builder_calls.append("anchored")
+        return object()
+
+    monkeypatch.setattr(
+        "visual_agent.pipeline.build_candidate_marked_full_scene_evidence",
+        ordinary,
+    )
+    monkeypatch.setattr(
+        "visual_agent.pipeline.build_target_anchored_full_scene_evidence",
+        anchored,
+    )
+
+    def routed(candidate, constraints, evidence, route):
+        if len(evidence) == 2:
+            first_pass_evidence_ids[candidate["id"]] = (
+                id(evidence[0]),
+                id(evidence[1]),
+            )
+        else:
+            assert id(evidence[0]) == first_pass_evidence_ids[candidate["id"]][0]
+            assert id(evidence[1]) == first_pass_evidence_ids[candidate["id"]][1]
+        return (
+            [
+                {
+                    "constraint": item["text"],
+                    "status": "satisfied",
+                    "evidence": "确认",
+                }
+                for item in constraints
+            ],
+            {"attempts": 1},
+        )
+
+    _install(monkeypatch, detector, routed)
+    _, result_path = run_pipeline(
+        _image(tmp_path),
+        "框出正在钓鱼的人",
+        plan=_plan([{"text": "正在钓鱼", "route": "behavior"}]),
+        verify=True,
+        final_response=False,
+        output_dir=tmp_path / "out",
+    )
+    result = json.loads(result_path.read_text(encoding="utf-8"))
+    assert builder_calls == [expected_builder, expected_builder]
+    for entry in result["behavior_routing"].values():
+        assert entry["fallback_arm"] == expected_arm
+        assert entry["fallback_attempted"] is True
 
 
 def test_behavior_routing_uncertain_single_candidate_immutable(
