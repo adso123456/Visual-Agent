@@ -1,0 +1,392 @@
+{
+  "prompt": "找到正在钓鱼的人",
+  "agent": {
+    "provider": "openai_compatible",
+    "model": "qwen3.8:27b-mtp-q4_K_M",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      {
+        "text": "正在钓鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "highlight"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        457.35,
+        283.43,
+        989.8,
+        848.91
+      ],
+      "dino_confidence": 0.7678,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "候选人物蹲坐于河边钓位，身旁架有钓竿且钓线伸入水面，整体构成垂钓场景，行为可归属于该人物。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "候选人物蹲坐于河边钓位，身旁架有钓竿且钓线伸入水面，整体构成垂钓场景，行为可归属于该人物。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        0.95,
+        387.55,
+        97.77,
+        570.88
+      ],
+      "dino_confidence": 0.3681,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "not_satisfied",
+          "evidence": "候选基础实例状态为 invalid：图像左侧边缘仅可见一小段绿色条纹衣物和一只手及前臂的局部碎片，没有躯干、头部等可独立识别为完整人物的部分，属于明确的手/手臂局部碎片，无法构成一个独立、合理的人物实例。；未执行该语义验证。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "候选基础实例状态为 invalid：图像左侧边缘仅可见一小段绿色条纹衣物和一只手及前臂的局部碎片，没有躯干、头部等可独立识别为完整人物的部分，属于明确的手/手臂局部碎片，无法构成一个独立、合理的人物实例。；未执行该语义验证。"
+    },
+    {
+      "id": "C",
+      "text_label": "person",
+      "bbox": [
+        0.64,
+        385.97,
+        97.36,
+        525.08
+      ],
+      "dino_confidence": 0.4242,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "not_satisfied",
+          "evidence": "候选基础实例状态为 invalid：图像左侧边缘仅露出极小一块疑似手部或手臂的局部像素碎片，无法构成完整、独立、可识别的人体实例，属于局部碎片，不能作为有效的person目标实例。；未执行该语义验证。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "候选基础实例状态为 invalid：图像左侧边缘仅露出极小一块疑似手部或手臂的局部像素碎片，无法构成完整、独立、可识别的人体实例，属于局部碎片，不能作为有效的person目标实例。；未执行该语义验证。"
+    }
+  ],
+  "behavior_routing": {
+    "A": {
+      "identity_risk": false,
+      "first_pass_arm": "A",
+      "route": "behavior",
+      "fallback_arm": "A",
+      "fallback_attempted": true,
+      "write_back_positions": [
+        0
+      ]
+    }
+  },
+  "relation_hand_fallback": {
+    "attempts": 0,
+    "detector_calls": 0,
+    "admitted_count": 0,
+    "hand_relation_calls": 0,
+    "max_per_subject": 1,
+    "subjects": {}
+  },
+  "verified_subjects": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        457.35,
+        283.43,
+        989.8,
+        848.91
+      ],
+      "confidence": 0.7678,
+      "reason": "候选人物蹲坐于河边钓位，身旁架有钓竿且钓线伸入水面，整体构成垂钓场景，行为可归属于该人物。"
+    }
+  ],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "subject": {
+        "candidate_id": "A",
+        "object": "person",
+        "bbox": [
+          457.35,
+          283.43,
+          989.8,
+          848.91
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        457.35,
+        283.43,
+        989.8,
+        848.91
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        457.35,
+        283.43,
+        989.8,
+        848.91
+      ],
+      "confidence": 0.7678,
+      "reason": "候选人物蹲坐于河边钓位，身旁架有钓竿且钓线伸入水面，整体构成垂钓场景，行为可归属于该人物。",
+      "composite_bbox": [
+        457.35,
+        283.43,
+        989.8,
+        848.91
+      ],
+      "components": [
+        {
+          "role": "subject",
+          "object": "person",
+          "candidate_id": "A",
+          "mask_score": 0.9851,
+          "mask_area_pixels": 136314
+        }
+      ],
+      "segmentation": {
+        "mask_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v3/artifacts/challenge_002/result_001_mask_A.png",
+        "mask_score": 0.9851,
+        "mask_area_pixels": 136314
+      }
+    }
+  ],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            1280,
+            853
+          ],
+          "original_payload_bytes": 419564,
+          "normalized_dimensions": [
+            1280,
+            853
+          ],
+          "normalized_payload_bytes": 419564,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      },
+      "B": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            1280,
+            853
+          ],
+          "original_payload_bytes": 26876,
+          "normalized_dimensions": [
+            1280,
+            853
+          ],
+          "normalized_payload_bytes": 26876,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      },
+      "C": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            1280,
+            853
+          ],
+          "original_payload_bytes": 20516,
+          "normalized_dimensions": [
+            1280,
+            853
+          ],
+          "normalized_payload_bytes": 20516,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "A": {
+        "behavior": {
+          "attempts": 2,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              1280,
+              853
+            ],
+            "original_payload_bytes": 7072256,
+            "normalized_dimensions": [
+              1280,
+              853
+            ],
+            "normalized_payload_bytes": 7072256,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars",
+            "evidence_count": 5,
+            "items": [
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  1280,
+                  853
+                ],
+                "original_payload_bytes": 419564,
+                "normalized_dimensions": [
+                  1280,
+                  853
+                ],
+                "normalized_payload_bytes": 419564,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  907,
+                  768
+                ],
+                "original_payload_bytes": 1793532,
+                "normalized_dimensions": [
+                  907,
+                  768
+                ],
+                "normalized_payload_bytes": 1793532,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  1280,
+                  853
+                ],
+                "original_payload_bytes": 419564,
+                "normalized_dimensions": [
+                  1280,
+                  853
+                ],
+                "normalized_payload_bytes": 419564,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  907,
+                  768
+                ],
+                "original_payload_bytes": 1793532,
+                "normalized_dimensions": [
+                  907,
+                  768
+                ],
+                "normalized_payload_bytes": 1793532,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  1280,
+                  853
+                ],
+                "original_payload_bytes": 2646064,
+                "normalized_dimensions": [
+                  1280,
+                  853
+                ],
+                "normalized_payload_bytes": 2646064,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 7.177,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 892.1
+    },
+    "grounding_dino_seconds": 0.742,
+    "subject_validity_seconds": 20.778,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 25.336,
+    "group_verification_seconds": 46.398,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "inference_seconds": 0.178,
+      "memory_after_load_mb": 1185.8,
+      "peak_memory_mb": 1605.8,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 4.476,
+    "total_seconds": 58.847
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v3/artifacts/challenge_002/result_001.jpg"
+  },
+  "agent_response": "已找到并高亮标记了1位正在钓鱼的人，其蹲坐在河边钓位，身旁架有钓竿且钓线伸入水面。"
+}

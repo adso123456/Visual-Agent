@@ -1,0 +1,118 @@
+{
+  "stage": "GENERAL_RGB_FINAL_ACCEPTANCE_V3",
+  "implementation_head": "aed1e3e6acb537480664b89531a9bc12a29d708f",
+  "final_decision": "FAIL",
+  "system_gate": "FAIL",
+  "visual_adjudication": "NOT_PERFORMED_SYSTEM_GATE_FAILED",
+  "execution": {
+    "submitted": 140,
+    "terminal": 140,
+    "pipeline_success": 132,
+    "system_failure": 8,
+    "result_json_present": 132,
+    "result_image_present": 132,
+    "agent_provider_final_failures": 4,
+    "agent_final_response_contract_failures": 2,
+    "planner_contract_final_failures": 0,
+    "vlm_provider_final_failures": 1,
+    "vlm_protocol_final_failures": 0,
+    "vlm_validator_final_failures": 0,
+    "evidence_final_failures": 1,
+    "error_classes": {
+      "local_vlm_http_502": 1,
+      "local_agent_planner_http_502": 4,
+      "evidence_memory_allocation_failure": 1,
+      "local_agent_final_response_empty": 2
+    },
+    "by_bucket": {
+      "CORE_CHALLENGE": {
+        "submitted": 20,
+        "success": 20,
+        "error": 0
+      },
+      "F1": {
+        "submitted": 30,
+        "success": 25,
+        "error": 5
+      },
+      "F2": {
+        "submitted": 30,
+        "success": 28,
+        "error": 2
+      },
+      "F3": {
+        "submitted": 30,
+        "success": 30,
+        "error": 0
+      },
+      "F4": {
+        "submitted": 30,
+        "success": 29,
+        "error": 1
+      }
+    },
+    "vlm_calls": 372,
+    "unexpected_vlm_models": 0,
+    "unexpected_vlm_endpoints": 0,
+    "agent_model": "qwen3.8:27b-mtp-q4_K_M",
+    "agent_base_url": "http://192.168.250.9:11434/v1",
+    "agent_provider": "openai_compatible",
+    "vlm_model": "qwen3.8:27b-mtp-q4_K_M",
+    "vlm_base_url": "http://192.168.250.9:11434/v1",
+    "protocol_attempts": 351,
+    "protocol_retries": 0,
+    "protocol_recovered": 0,
+    "prompt_tokens": 1715783,
+    "completion_tokens": 32297,
+    "total_tokens": 1748080,
+    "summed_end_to_end_seconds": 9191.077
+  },
+  "failed_units": [
+    {
+      "unit_id": "F1__fishing_015",
+      "error_type": "InternalServerError",
+      "error": "Error code: 502"
+    },
+    {
+      "unit_id": "F1__fishing_016",
+      "error_type": "InternalServerError",
+      "error": "Error code: 502"
+    },
+    {
+      "unit_id": "F1__fishing_017",
+      "error_type": "InternalServerError",
+      "error": "Error code: 502"
+    },
+    {
+      "unit_id": "F1__fishing_018",
+      "error_type": "InternalServerError",
+      "error": "Error code: 502"
+    },
+    {
+      "unit_id": "F1__fishing_019",
+      "error_type": "InternalServerError",
+      "error": "Error code: 502"
+    },
+    {
+      "unit_id": "F2__fishing_001",
+      "error_type": "MemoryError",
+      "error": "Unable to allocate 99.2 MiB for an array with shape (7032, 4932, 3) and data type uint8"
+    },
+    {
+      "unit_id": "F2__fishing_002",
+      "error_type": "RuntimeError",
+      "error": "DeepSeek Final Response 返回了空内容"
+    },
+    {
+      "unit_id": "F4__fishing_007",
+      "error_type": "RuntimeError",
+      "error": "DeepSeek Final Response 返回了空内容"
+    }
+  ],
+  "audit_boundary": {
+    "failed_execution_replacement": false,
+    "terminal_results_overwritten": false,
+    "production_modified_during_execution": false,
+    "v1_evidence_modified": false
+  }
+}

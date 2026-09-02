@@ -1,0 +1,174 @@
+{
+  "prompt": "找到图片里的狗",
+  "agent": {
+    "provider": "openai_compatible",
+    "model": "qwen3.8:27b-mtp-q4_K_M",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "dog",
+    "label": "狗",
+    "constraints": [],
+    "action": {
+      "type": "highlight"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "dog",
+      "bbox": [
+        461.48,
+        581.66,
+        1177.17,
+        1203.13
+      ],
+      "dino_confidence": 0.8197,
+      "verification_checks": [],
+      "verified": true,
+      "verification_reason": ""
+    }
+  ],
+  "behavior_routing": {},
+  "relation_hand_fallback": {
+    "attempts": 0,
+    "detector_calls": 0,
+    "admitted_count": 0,
+    "hand_relation_calls": 0,
+    "max_per_subject": 1,
+    "subjects": {}
+  },
+  "verified_subjects": [
+    {
+      "id": "A",
+      "label": "狗",
+      "text_label": "dog",
+      "bbox": [
+        461.48,
+        581.66,
+        1177.17,
+        1203.13
+      ],
+      "confidence": 0.8197,
+      "reason": ""
+    }
+  ],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "A",
+      "label": "狗",
+      "subject": {
+        "candidate_id": "A",
+        "object": "dog",
+        "bbox": [
+          461.48,
+          581.66,
+          1177.17,
+          1203.13
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        461.48,
+        581.66,
+        1177.17,
+        1203.13
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "狗",
+      "text_label": "dog",
+      "bbox": [
+        461.48,
+        581.66,
+        1177.17,
+        1203.13
+      ],
+      "confidence": 0.8197,
+      "reason": "",
+      "composite_bbox": [
+        461.48,
+        581.66,
+        1177.17,
+        1203.13
+      ],
+      "components": [
+        {
+          "role": "subject",
+          "object": "dog",
+          "candidate_id": "A",
+          "mask_score": 0.9561,
+          "mask_area_pixels": 144314
+        }
+      ],
+      "segmentation": {
+        "mask_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v3/artifacts/core_001/result_001_mask_A.png",
+        "mask_score": 0.9561,
+        "mask_area_pixels": 144314
+      }
+    }
+  ],
+  "qwen_protocol": {
+    "subject_validity": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "candidate_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 8.593,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cuda",
+      "load_seconds": 16.247,
+      "cached": false,
+      "memory_after_load_mb": 892.1
+    },
+    "grounding_dino_seconds": 1.905,
+    "subject_validity_seconds": 0.0,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 0.0,
+    "group_verification_seconds": 0.0,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 7.525,
+      "inference_seconds": 0.583,
+      "memory_after_load_mb": 1185.8,
+      "peak_memory_mb": 1541.8,
+      "cached": false,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 4.31,
+    "total_seconds": 39.631
+  },
+  "action_result": {
+    "type": "highlight",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v3/artifacts/core_001/result_001.jpg"
+  },
+  "agent_response": "已找到图片中的狗并完成高亮标记。"
+}

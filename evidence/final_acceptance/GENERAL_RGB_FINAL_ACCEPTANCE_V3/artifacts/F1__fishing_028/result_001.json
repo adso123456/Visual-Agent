@@ -1,0 +1,130 @@
+{
+  "prompt": "框出正在钓鱼的人",
+  "agent": {
+    "provider": "openai_compatible",
+    "model": "qwen3.8:27b-mtp-q4_K_M",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      {
+        "text": "正在钓鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "box"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        -0.97,
+        511.49,
+        2319.56,
+        4281.92
+      ],
+      "dino_confidence": 0.7872,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "not_satisfied",
+          "evidence": "候选基础实例状态为 invalid：图像中仅可见一只伸出的手臂、部分袖口及躯干边缘的衣物，缺少头部、完整躯干等可独立识别人体的关键部分，属于明确的手臂/手部局部碎片，无法构成一个独立、完整的人体实例。；未执行该语义验证。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "候选基础实例状态为 invalid：图像中仅可见一只伸出的手臂、部分袖口及躯干边缘的衣物，缺少头部、完整躯干等可独立识别人体的关键部分，属于明确的手臂/手部局部碎片，无法构成一个独立、完整的人体实例。；未执行该语义验证。"
+    }
+  ],
+  "behavior_routing": {},
+  "relation_hand_fallback": {
+    "attempts": 0,
+    "detector_calls": 0,
+    "admitted_count": 0,
+    "hand_relation_calls": 0,
+    "max_per_subject": 1,
+    "subjects": {}
+  },
+  "verified_subjects": [],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [],
+  "targets": [],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            3440,
+            4300
+          ],
+          "original_payload_bytes": 3896460,
+          "normalized_dimensions": [
+            3440,
+            4300
+          ],
+          "normalized_payload_bytes": 3896460,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        }
+      }
+    },
+    "candidate_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 6.354,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 892.1
+    },
+    "grounding_dino_seconds": 0.844,
+    "subject_validity_seconds": 14.63,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 0.0,
+    "group_verification_seconds": 15.333,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "inference_seconds": 0.146,
+      "memory_after_load_mb": 1185.8,
+      "peak_memory_mb": 1605.8,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 3.989,
+    "total_seconds": 26.654
+  },
+  "action_result": {
+    "type": "box",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v3/artifacts/F1__fishing_028/result_001.jpg"
+  },
+  "agent_response": "图中没有找到正在钓鱼的人，因此未能进行框选操作。"
+}

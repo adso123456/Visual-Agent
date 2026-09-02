@@ -2,6 +2,15 @@
 
 本目录保存最终 Product Acceptance 的冻结合同、执行原始结果、人工评分与裁决。Architecture Research 的历史实验仍保存在 `evidence/architecture_research/`，不得替代最终 Production 验收。
 
+## Latest execution
+
+- `GENERAL_RGB_FINAL_ACCEPTANCE_V3/`
+  - 当前状态：`FAIL / SYSTEM GATE FAILED`；140/140 terminal，132 Pipeline success，8 SYSTEM FAILURE。
+  - Implementation：`aed1e3e6acb537480664b89531a9bc12a29d708f`。
+  - Agent 与 VLM 均锁定为 `qwen3.8:27b-mtp-q4_K_M`，endpoint 均为 `http://192.168.250.9:11434/v1`；执行前要求 `DEEPSEEK_API_KEY` 与 `DASHSCOPE_API_KEY` 不存在。
+  - 失败分类：Local Agent Planner HTTP 502×4、Local Agent Final Response 空内容×2、Local VLM HTTP 502×1、evidence 内存分配失败×1。
+  - 由于 System Gate 失败，不执行缺失完整 denominator 的视觉质量裁决；原始 140 terminal records 与 132 组成功 artifacts 保持不可变，不补跑、不覆盖。
+
 ## Stages
 
 - `GENERAL_RGB_FINAL_ACCEPTANCE_V1/`

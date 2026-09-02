@@ -1,0 +1,17 @@
+{
+  "stage": "GENERAL_RGB_FINAL_ACCEPTANCE_V3",
+  "contract_status": "CONTRACT_FROZEN",
+  "production_commit": "aed1e3e6acb537480664b89531a9bc12a29d708f",
+  "schedule_sha256": "0a5b7c5dabafe9b1c9a9a4be65693824dff79e3b71481ebe0cb93b610960f253",
+  "scheduled_units": 140,
+  "system_denominator": 140,
+  "real_world_visual_denominator": 113,
+  "pollution_units": 0,
+  "agent_model": "qwen3.8:27b-mtp-q4_K_M",
+  "agent_base_url": "http://192.168.250.9:11434/v1",
+  "agent_provider": "openai_compatible",
+  "vlm_model": "qwen3.8:27b-mtp-q4_K_M",
+  "vlm_base_url": "http://192.168.250.9:11434/v1",
+  "vlm_timeout_seconds": 120,
+  "concurrency": 1
+}
