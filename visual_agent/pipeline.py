@@ -53,6 +53,8 @@ HAND_CONDITIONED_THRESHOLD = 0.30
 HAND_MAX_CANDIDATES = 2
 HAND_VIEW_EXPANSION = 1.0
 HAND_ADMISSION_IOU = 0.80
+HAND_DETECTOR_SHORTEST_EDGE = 800
+HAND_DETECTOR_LONGEST_EDGE = 1333
 
 
 def _object_mediated_behavior_constraint_indices(plan: dict) -> tuple[int, ...]:
@@ -125,6 +127,31 @@ def _stable_hand_candidate_admission(
     return admitted
 
 
+def _hand_detector_size(image_size: tuple[int, int]) -> tuple[int, int]:
+    width, height = image_size
+    scale = min(
+        1.0,
+        HAND_DETECTOR_SHORTEST_EDGE / min(width, height),
+        HAND_DETECTOR_LONGEST_EDGE / max(width, height),
+    )
+    return (
+        max(1, round(width * scale)),
+        max(1, round(height * scale)),
+    )
+
+
+def _scaled_hand_detector_view(
+    view: Image.Image,
+) -> tuple[Image.Image, float, float]:
+    """按 GroundingDINO processor 的 800/1333 边界预缩小，仅供 hand Detector。"""
+    width, height = view.size
+    detector_size = _hand_detector_size(view.size)
+    if detector_size == view.size:
+        return view, 1.0, 1.0
+    detector_view = view.resize(detector_size, Image.Resampling.BILINEAR)
+    return detector_view, width / detector_size[0], height / detector_size[1]
+
+
 def _hand_conditioned_candidates(
     image_path: Path,
     subject: dict,
@@ -134,7 +161,11 @@ def _hand_conditioned_candidates(
 ) -> tuple[list[dict], dict]:
     """对单个 incomplete subject 执行一次 hand-conditioned related-object
     localization（合同 §1.5 步骤 1-10）。返回 (admitted, telemetry)。"""
-    telemetry = {"hand_detector_calls": 1, "admitted_count": 0, "new_candidate_ids": []}
+    telemetry = {
+        "hand_detector_calls": 1,
+        "admitted_count": 0,
+        "new_candidate_ids": [],
+    }
     view, crop_bbox = build_subject_conditioned_grounding_view(
         image_path,
         subject["bbox"],
@@ -147,15 +178,36 @@ def _hand_conditioned_candidates(
         subject_box[2] - crop_bbox[0],
         subject_box[3] - crop_bbox[1],
     ]
+    detector_view, scale_x, scale_y = _scaled_hand_detector_view(view)
+    telemetry["subject_view_dimensions"] = [view_width, view_height]
+    telemetry["hand_detector_dimensions"] = list(detector_view.size)
+    telemetry["hand_detector_resized"] = detector_view is not view
 
-    with tempfile.TemporaryDirectory(prefix="visual_agent_relation_") as temporary_dir:
-        subject_view_path = Path(temporary_dir) / "subject_context.png"
-        view.save(subject_view_path, format="PNG")
-        hand_detections = detector.detect(
-            subject_view_path,
-            "hand",
-            threshold=HAND_CONDITIONED_THRESHOLD,
-        )
+    try:
+        with tempfile.TemporaryDirectory(prefix="visual_agent_relation_") as temporary_dir:
+            subject_view_path = Path(temporary_dir) / "subject_context.png"
+            detector_view.save(subject_view_path, format="PNG")
+            detector_hand_detections = detector.detect(
+                subject_view_path,
+                "hand",
+                threshold=HAND_CONDITIONED_THRESHOLD,
+            )
+    finally:
+        if detector_view is not view:
+            detector_view.close()
+
+    hand_detections = [
+        {
+            **detection,
+            "bbox": [
+                detection["bbox"][0] * scale_x,
+                detection["bbox"][1] * scale_y,
+                detection["bbox"][2] * scale_x,
+                detection["bbox"][3] * scale_y,
+            ],
+        }
+        for detection in detector_hand_detections
+    ]
 
     filtered_hands = []
     for detection in hand_detections:
@@ -263,6 +315,9 @@ def _run_hand_conditioned_fallback(
             "admitted_count": 0,
             "new_candidate_ids": [],
             "hand_relation_calls": 0,
+            "subject_view_dimensions": None,
+            "hand_detector_dimensions": None,
+            "hand_detector_resized": False,
         }
     if not incomplete_subjects:
         return fallback
@@ -286,6 +341,15 @@ def _run_hand_conditioned_fallback(
         fallback["telemetry"]["subjects"][subject["id"]][
             "admitted_count"
         ] = telemetry["admitted_count"]
+        fallback["telemetry"]["subjects"][subject["id"]][
+            "subject_view_dimensions"
+        ] = telemetry["subject_view_dimensions"]
+        fallback["telemetry"]["subjects"][subject["id"]][
+            "hand_detector_dimensions"
+        ] = telemetry["hand_detector_dimensions"]
+        fallback["telemetry"]["subjects"][subject["id"]][
+            "hand_detector_resized"
+        ] = telemetry["hand_detector_resized"]
         if admitted:
             for candidate in admitted:
                 candidate["id"] = f"R{len(working_candidates) + 1}"

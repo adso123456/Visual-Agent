@@ -15,6 +15,7 @@ import numpy as np
 from PIL import Image
 
 from visual_agent.pipeline import (
+    _hand_detector_size,
     _hand_conditioned_candidates,
     _run_hand_conditioned_fallback,
     _stable_hand_candidate_admission,
@@ -60,6 +61,54 @@ class HandDetectorStub:
             {"bbox": list(box), "text_label": target_text, "confidence": 0.8}
             for box in self.related_boxes
         ]
+
+
+def test_full_resolution_failure_shape_is_bounded_without_allocating_image():
+    assert _hand_detector_size((4932, 7032)) == (800, 1141)
+
+
+def test_scaled_hand_detection_remaps_with_independent_axes(tmp_path):
+    image_path = tmp_path / "large_subject.png"
+    Image.new("RGB", (1701, 1001), "white").save(image_path)
+
+    class ScaledDetector:
+        def __init__(self):
+            self.hand_context_size = None
+
+        def detect(self, detection_path, target_text, threshold=0.3):
+            with Image.open(detection_path) as evidence:
+                if target_text == "hand":
+                    assert evidence.size == (1333, 784)
+                    return [
+                        {
+                            "bbox": [100.25, 150.5, 200.75, 250.25],
+                            "text_label": "hand",
+                            "confidence": 0.9,
+                        }
+                    ]
+                self.hand_context_size = evidence.size
+                return [
+                    {
+                        "bbox": [1.25, 2.5, 8.75, 9.5],
+                        "text_label": target_text,
+                        "confidence": 0.8,
+                    }
+                ]
+
+    detector = ScaledDetector()
+    admitted, telemetry = _hand_conditioned_candidates(
+        image_path,
+        _subject("A", [0.0, 0.0, 1701.0, 1001.0]),
+        "fish",
+        [],
+        detector,
+    )
+
+    assert detector.hand_context_size == (385, 383)
+    assert admitted[0]["bbox"] == [1.25, 66.5, 8.75, 73.5]
+    assert telemetry["subject_view_dimensions"] == [1701, 1001]
+    assert telemetry["hand_detector_dimensions"] == [1333, 784]
+    assert telemetry["hand_detector_resized"] is True
 
 
 def test_hand_crop_fractional_bbox_uses_floor_ceil_and_exact_remap(tmp_path):
