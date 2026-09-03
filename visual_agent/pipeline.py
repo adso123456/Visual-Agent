@@ -909,6 +909,12 @@ def run_pipeline(
                         and object_mediated_behavior_indices == (0,)
                         and checks[0]["status"] == "not_satisfied"
                     )
+                    single_uncertain_escalation = (
+                        len(runtime_candidates) == 1
+                        and len(route_items) == 1
+                        and object_mediated_behavior_indices == (0,)
+                        and checks[0]["status"] == "uncertain"
+                    )
                     contextual_positions = []
                     if len(runtime_candidates) >= 2:
                         if first_pass_satisfied:
@@ -956,6 +962,28 @@ def run_pipeline(
                             [protocol, fallback_protocol]
                         )
                     elif armed_escalation:
+                        fallback_items = [route_items[0]]
+                        full_scene = build_target_anchored_full_scene_evidence(
+                            image_path,
+                            candidate["mask"],
+                            _person_masks_for(
+                                candidate, runtime_candidates, mask_cache
+                            ),
+                        )
+                        fallback_checks, fallback_protocol = verify_candidate_constraints(
+                            {"id": candidate["id"], "bbox": candidate["bbox"]},
+                            fallback_items,
+                            [isolated, behavior_evidence, full_scene],
+                            route,
+                        )
+                        checks[0] = fallback_checks[0]
+                        write_back_positions = [0]
+                        fallback_arm = "C"
+                        fallback_attempted = True
+                        protocol = _merge_protocol_metadata(
+                            [protocol, fallback_protocol]
+                        )
+                    elif single_uncertain_escalation:
                         fallback_items = [route_items[0]]
                         full_scene = build_target_anchored_full_scene_evidence(
                             image_path,
