@@ -107,6 +107,7 @@ PLANNER_SYSTEM_PROMPT = (
     "并严格保持用户语义原顺序。route 只表示该约束需要的视觉证据，不表示语义判断结果。"
     "attribute 用于依赖目标本人即可判断的外观或属性，例如儿童、女性、穿红衣、戴眼镜、戴帽子；"
     "behavior 用于需要目标附近姿态、物体、交互或局部上下文的语义，例如钓鱼、骑车、打电话、跑步；"
+    "但只要用户文本包含手持、拿着或撑着，就不得把该手持语义路由为 behavior，必须优先使用 relation。"
     "relation 当前只能用于受支持的 held_by_target 手持关系。constraints 不得重复人、人物或 person，"
     "也不得加入图片操作。"
     "action.type 只能使用工具 schema 的白名单：找到、定位、标红或高亮使用 highlight；"
@@ -115,7 +116,8 @@ PLANNER_SYSTEM_PROMPT = (
     "outline 或 highlight 同时使用。"
     "目标以外背景变暗使用 dim_background；"
     "单独抠出使用 cutout。不得生成图像参数、代码或命令。label 使用简短中文目标名。"
-    "related_objects 始终必填。仅当用户要求人物明确手持、拿着或撑着一个无生命手持物体时，"
+    "related_objects 始终必填。仅当用户要求人物明确手持、拿着或撑着一个可检测物体时，"
+    "包括鱼、鱼竿、雨伞等物体，"
     "返回一个基础英文物体和 relation=held_by_target；否则必须返回空数组。生成关联物体时，"
     "constraints 必须恰好包含一条 route=relation 的完整关系语义，与 related_objects[0] 形成 1:1 ownership。"
     "没有关联物体时不得输出 relation route。骑自行车、戴安全帽、靠近汽车、抱着狗等关系不受支持，"
@@ -125,7 +127,9 @@ PLANNER_SYSTEM_PROMPT = (
 FINAL_SYSTEM_PROMPT = (
     "你是 Visual Agent 的结果汇总器。只能根据提供的已执行计划和结构化视觉结果，"
     "生成一句简短中文回答。不得增加结果中没有的视觉事实，不得猜身份、年龄、地点、颜色或数量，"
-    "不得声称执行了不存在的动作。如果 complete_semantic_targets_count 为 0、但 incomplete_semantic_groups 非空，"
+    "不得声称执行了不存在的动作。当 complete_semantic_targets_count 大于 0 时，必须以已完成 targets 为准说明执行成功；"
+    "此时 incomplete_semantic_groups 只表示其他候选未完成，不与成功目标矛盾，不得因此否定已执行操作。"
+    "如果 complete_semantic_targets_count 为 0、但 incomplete_semantic_groups 非空，"
     "必须根据其中的 completion_reason 说明主体候选的关系语义不完整，因此没有执行图片操作；"
     "不能说没有找到目标。只有 incomplete_semantic_groups 也为空时，才明确没有找到满足条件的目标。"
     "你不能修改计划、候选、验证结论、动作或触发重新执行。只输出给用户的最终回答。"
@@ -145,6 +149,31 @@ def _not_started_final_response_content_telemetry() -> dict:
         "first_content_error": None,
         "final_content_status": "not_started",
     }
+
+
+def _completion_controls(model: str) -> dict:
+    """为本地 Qwen 使用 Ollama OpenAI 兼容层支持的生成参数。"""
+    if model.strip().lower().startswith("qwen"):
+        return {
+            "reasoning_effort": "none",
+            "temperature": 0,
+            "seed": 0,
+        }
+    return {"extra_body": {"thinking": {"type": "disabled"}}}
+
+
+def _tool_calls_snapshot(tool_calls: list | None) -> str:
+    """保留上一次无效工具调用，供第二次合同纠错直接修复。"""
+    if not tool_calls:
+        return "未返回 tool call"
+    snapshot = [
+        {
+            "name": getattr(tool_call.function, "name", None),
+            "arguments": getattr(tool_call.function, "arguments", None),
+        }
+        for tool_call in tool_calls
+    ]
+    return json.dumps(snapshot, ensure_ascii=False)[:4000]
 
 
 def build_planner_client(
@@ -205,6 +234,7 @@ class DeepSeekAgent:
 
     def plan_request(self, prompt: str) -> dict:
         validation_error = None
+        invalid_tool_calls = None
         for attempt in range(1, 3):
             self.plan_attempts = attempt
             messages = [{"role": "system", "content": PLANNER_SYSTEM_PROMPT}]
@@ -213,8 +243,9 @@ class DeepSeekAgent:
                     {
                         "role": "system",
                         "content": (
-                            "上一次工具调用违反契约。只修正以下错误并重新调用工具："
-                            f"{validation_error}"
+                            "上一次工具调用违反契约。请直接修正该工具调用，不要重新解释用户请求。"
+                            f"上一次工具调用：{invalid_tool_calls}。"
+                            f"契约错误：{validation_error}"
                         ),
                     }
                 )
@@ -233,17 +264,19 @@ class DeepSeekAgent:
                         "function": {"name": TOOL_NAME},
                     },
                     max_tokens=1024,
-                    extra_body={"thinking": {"type": "disabled"}},
+                    **_completion_controls(self.model),
                 ),
                 telemetry=transport_calls,
             )
+            tool_calls = response.choices[0].message.tool_calls
             try:
                 return self._validated_plan(
-                    response.choices[0].message.tool_calls,
+                    tool_calls,
                     prompt=prompt,
                 )
             except (json.JSONDecodeError, RuntimeError) as error:
                 validation_error = str(error)
+                invalid_tool_calls = _tool_calls_snapshot(tool_calls)
         raise RuntimeError(f"DeepSeek Planner 两次均违反契约：{validation_error}")
 
     def build_final_response(
@@ -273,7 +306,7 @@ class DeepSeekAgent:
                     model=self.model,
                     messages=messages,
                     max_tokens=256,
-                    extra_body={"thinking": {"type": "disabled"}},
+                    **_completion_controls(self.model),
                 ),
                 telemetry=self.final_response_transport_calls,
             )
