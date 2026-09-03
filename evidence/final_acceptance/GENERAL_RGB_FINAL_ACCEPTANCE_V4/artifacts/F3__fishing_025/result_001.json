@@ -1,0 +1,101 @@
+{
+  "prompt": "框出桶",
+  "agent": {
+    "provider": "openai_compatible",
+    "model": "qwen3.8:27b-mtp-q4_K_M",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1,
+    "planner_transport": {
+      "transport_attempts": 1,
+      "transport_retry_count": 0,
+      "transport_recovered": false,
+      "first_transport_error": null,
+      "first_http_status": null,
+      "final_transport_status": "success"
+    },
+    "final_response_transport": {
+      "transport_attempts": 1,
+      "transport_retry_count": 0,
+      "transport_recovered": false,
+      "first_transport_error": null,
+      "first_http_status": null,
+      "final_transport_status": "success"
+    },
+    "final_response_content": {
+      "content_attempts": 1,
+      "content_retry_count": 0,
+      "content_recovered": false,
+      "first_content_error": null,
+      "final_content_status": "success"
+    }
+  },
+  "plan": {
+    "target_object": "barrel",
+    "label": "桶",
+    "constraints": [],
+    "action": {
+      "type": "box"
+    },
+    "related_objects": []
+  },
+  "candidates": [],
+  "behavior_routing": {},
+  "relation_hand_fallback": {
+    "attempts": 0,
+    "detector_calls": 0,
+    "admitted_count": 0,
+    "hand_relation_calls": 0,
+    "max_per_subject": 1,
+    "subjects": {}
+  },
+  "verified_subjects": [],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [],
+  "targets": [],
+  "qwen_protocol": {
+    "subject_validity": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "candidate_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 6.387,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 892.1
+    },
+    "grounding_dino_seconds": 0.781,
+    "subject_validity_seconds": 0.0,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 0.0,
+    "group_verification_seconds": 0.0,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": null,
+    "deepseek_final_response_seconds": 3.988,
+    "total_seconds": 11.209
+  },
+  "action_result": {
+    "type": "box",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v4/artifacts/F3__fishing_025/result_001.jpg"
+  },
+  "agent_response": "画面中未找到桶，无法执行框选操作。"
+}

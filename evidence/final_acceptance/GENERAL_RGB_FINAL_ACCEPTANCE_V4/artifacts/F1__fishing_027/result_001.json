@@ -1,0 +1,495 @@
+{
+  "prompt": "框出正在钓鱼的人",
+  "agent": {
+    "provider": "openai_compatible",
+    "model": "qwen3.8:27b-mtp-q4_K_M",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1,
+    "planner_transport": {
+      "transport_attempts": 1,
+      "transport_retry_count": 0,
+      "transport_recovered": false,
+      "first_transport_error": null,
+      "first_http_status": null,
+      "final_transport_status": "success"
+    },
+    "final_response_transport": {
+      "transport_attempts": 1,
+      "transport_retry_count": 0,
+      "transport_recovered": false,
+      "first_transport_error": null,
+      "first_http_status": null,
+      "final_transport_status": "success"
+    },
+    "final_response_content": {
+      "content_attempts": 1,
+      "content_retry_count": 0,
+      "content_recovered": false,
+      "first_content_error": null,
+      "final_content_status": "success"
+    }
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      {
+        "text": "正在钓鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "box"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        360.61,
+        791.13,
+        1015.49,
+        2423.81
+      ],
+      "dino_confidence": 0.6925,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "satisfied",
+          "evidence": "红色轮廓锚定的人物双手握持一根装有纺车卷线器的钓竿，钓竿斜向上伸向海面，人物站在水边混凝土结构上面向水面，符合钓鱼行为。"
+        }
+      ],
+      "verified": true,
+      "verification_reason": "红色轮廓锚定的人物双手握持一根装有纺车卷线器的钓竿，钓竿斜向上伸向海面，人物站在水边混凝土结构上面向水面，符合钓鱼行为。"
+    },
+    {
+      "id": "B",
+      "text_label": "person",
+      "bbox": [
+        43.57,
+        683.02,
+        453.82,
+        2415.21
+      ],
+      "dino_confidence": 0.682,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "uncertain",
+          "evidence": "完整场景中候选人物B站在海边钓位上，其左侧腰旁可见一只手握持鱼竿柄，但持竿手与B的归属关系不清晰，且B主体呈背对站立姿态，无法确证其双手正在操作鱼竿，故归属不清。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "完整场景中候选人物B站在海边钓位上，其左侧腰旁可见一只手握持鱼竿柄，但持竿手与B的归属关系不清晰，且B主体呈背对站立姿态，无法确证其双手正在操作鱼竿，故归属不清。"
+    }
+  ],
+  "behavior_routing": {
+    "A": {
+      "identity_risk": true,
+      "first_pass_arm": "B",
+      "route": "behavior",
+      "fallback_arm": "C",
+      "fallback_attempted": true,
+      "write_back_positions": [
+        0
+      ]
+    },
+    "B": {
+      "identity_risk": false,
+      "first_pass_arm": "A",
+      "route": "behavior",
+      "fallback_arm": "A",
+      "fallback_attempted": true,
+      "write_back_positions": [
+        0
+      ]
+    }
+  },
+  "relation_hand_fallback": {
+    "attempts": 0,
+    "detector_calls": 0,
+    "admitted_count": 0,
+    "hand_relation_calls": 0,
+    "max_per_subject": 1,
+    "subjects": {}
+  },
+  "verified_subjects": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        360.61,
+        791.13,
+        1015.49,
+        2423.81
+      ],
+      "confidence": 0.6925,
+      "reason": "红色轮廓锚定的人物双手握持一根装有纺车卷线器的钓竿，钓竿斜向上伸向海面，人物站在水边混凝土结构上面向水面，符合钓鱼行为。"
+    }
+  ],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "subject": {
+        "candidate_id": "A",
+        "object": "person",
+        "bbox": [
+          360.61,
+          791.13,
+          1015.49,
+          2423.81
+        ]
+      },
+      "related_members": [],
+      "composite_bbox": [
+        360.61,
+        791.13,
+        1015.49,
+        2423.81
+      ],
+      "composite_complete": true,
+      "completion_reason": null
+    }
+  ],
+  "targets": [
+    {
+      "id": "A",
+      "label": "钓鱼的人",
+      "text_label": "person",
+      "bbox": [
+        360.61,
+        791.13,
+        1015.49,
+        2423.81
+      ],
+      "confidence": 0.6925,
+      "reason": "红色轮廓锚定的人物双手握持一根装有纺车卷线器的钓竿，钓竿斜向上伸向海面，人物站在水边混凝土结构上面向水面，符合钓鱼行为。",
+      "composite_bbox": [
+        360.61,
+        791.13,
+        1015.49,
+        2423.81
+      ]
+    }
+  ],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            2819,
+            2898
+          ],
+          "original_payload_bytes": 524672,
+          "normalized_dimensions": [
+            2819,
+            2898
+          ],
+          "normalized_payload_bytes": 524672,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        },
+        "transport_attempts": 1,
+        "transport_retry_count": 0,
+        "transport_recovered": false,
+        "first_transport_error": null,
+        "first_http_status": null,
+        "final_transport_status": "success"
+      },
+      "B": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": false,
+          "original_dimensions": [
+            2819,
+            2898
+          ],
+          "original_payload_bytes": 530904,
+          "normalized_dimensions": [
+            2819,
+            2898
+          ],
+          "normalized_payload_bytes": 530904,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        },
+        "transport_attempts": 1,
+        "transport_retry_count": 0,
+        "transport_recovered": false,
+        "first_transport_error": null,
+        "first_http_status": null,
+        "final_transport_status": "success"
+      }
+    },
+    "candidate_verification": {
+      "A": {
+        "behavior": {
+          "attempts": 2,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "transport_attempts": 2,
+          "transport_retry_count": 0,
+          "transport_recovered": false,
+          "first_transport_error": null,
+          "first_http_status": null,
+          "final_transport_status": "success",
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              2819,
+              2898
+            ],
+            "original_payload_bytes": 14439592,
+            "normalized_dimensions": [
+              2819,
+              2898
+            ],
+            "normalized_payload_bytes": 14439592,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars",
+            "evidence_count": 5,
+            "items": [
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  2819,
+                  2898
+                ],
+                "original_payload_bytes": 524672,
+                "normalized_dimensions": [
+                  2819,
+                  2898
+                ],
+                "normalized_payload_bytes": 524672,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  1114,
+                  2679
+                ],
+                "original_payload_bytes": 2902304,
+                "normalized_dimensions": [
+                  1114,
+                  2679
+                ],
+                "normalized_payload_bytes": 2902304,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  2819,
+                  2898
+                ],
+                "original_payload_bytes": 524672,
+                "normalized_dimensions": [
+                  2819,
+                  2898
+                ],
+                "normalized_payload_bytes": 524672,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  1114,
+                  2679
+                ],
+                "original_payload_bytes": 2902304,
+                "normalized_dimensions": [
+                  1114,
+                  2679
+                ],
+                "normalized_payload_bytes": 2902304,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  2819,
+                  2898
+                ],
+                "original_payload_bytes": 7585640,
+                "normalized_dimensions": [
+                  2819,
+                  2898
+                ],
+                "normalized_payload_bytes": 7585640,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              }
+            ]
+          }
+        }
+      },
+      "B": {
+        "behavior": {
+          "attempts": 2,
+          "retry_count": 0,
+          "recovered": false,
+          "first_error_code": null,
+          "transport_attempts": 2,
+          "transport_retry_count": 0,
+          "transport_recovered": false,
+          "first_transport_error": null,
+          "first_http_status": null,
+          "final_transport_status": "success",
+          "evidence_payload": {
+            "normalization_triggered": false,
+            "original_dimensions": [
+              2819,
+              2898
+            ],
+            "original_payload_bytes": 11645996,
+            "normalized_dimensions": [
+              2819,
+              2898
+            ],
+            "normalized_payload_bytes": 11645996,
+            "target_pixels_first_pass": 4000000,
+            "unit": "base64_payload_chars",
+            "evidence_count": 5,
+            "items": [
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  2819,
+                  2898
+                ],
+                "original_payload_bytes": 530904,
+                "normalized_dimensions": [
+                  2819,
+                  2898
+                ],
+                "normalized_payload_bytes": 530904,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  598,
+                  2822
+                ],
+                "original_payload_bytes": 1544328,
+                "normalized_dimensions": [
+                  598,
+                  2822
+                ],
+                "normalized_payload_bytes": 1544328,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  2819,
+                  2898
+                ],
+                "original_payload_bytes": 530904,
+                "normalized_dimensions": [
+                  2819,
+                  2898
+                ],
+                "normalized_payload_bytes": 530904,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  598,
+                  2822
+                ],
+                "original_payload_bytes": 1544328,
+                "normalized_dimensions": [
+                  598,
+                  2822
+                ],
+                "normalized_payload_bytes": 1544328,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              },
+              {
+                "normalization_triggered": false,
+                "original_dimensions": [
+                  2819,
+                  2898
+                ],
+                "original_payload_bytes": 7495532,
+                "normalized_dimensions": [
+                  2819,
+                  2898
+                ],
+                "normalized_payload_bytes": 7495532,
+                "target_pixels_first_pass": 4000000,
+                "unit": "base64_payload_chars"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 6.25,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 892.1
+    },
+    "grounding_dino_seconds": 0.385,
+    "subject_validity_seconds": 27.457,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 113.188,
+    "group_verification_seconds": 141.538,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "inference_seconds": 0.15,
+      "memory_after_load_mb": 1185.8,
+      "peak_memory_mb": 1605.8,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 4.631,
+    "total_seconds": 152.92
+  },
+  "action_result": {
+    "type": "box",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_final_acceptance_v4/artifacts/F1__fishing_027/result_001.jpg"
+  },
+  "agent_response": "已为您框出图中正在钓鱼的人。"
+}

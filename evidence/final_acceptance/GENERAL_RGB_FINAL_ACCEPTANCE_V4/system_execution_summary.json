@@ -1,0 +1,140 @@
+{
+  "stage": "GENERAL_RGB_FINAL_ACCEPTANCE_V4",
+  "implementation_head": "362a1a3f8352619d3967efb98828db950346de01",
+  "final_decision": "FAIL",
+  "system_gate": "FAIL",
+  "visual_adjudication": "NOT_PERFORMED_SYSTEM_GATE_FAILED",
+  "execution": {
+    "submitted": 140,
+    "terminal": 140,
+    "system_success": 137,
+    "system_failure": 3,
+    "result_json_present": 139,
+    "result_image_present": 139,
+    "agent_final_response_failures": 2,
+    "planner_contract_final_failures": 1,
+    "transport_exhausted_final_failures": 0,
+    "vlm_protocol_final_failures": 0,
+    "vlm_validator_final_failures": 0,
+    "memory_errors": 0,
+    "other_failures": 0,
+    "error_classes": {
+      "agent_final_response_empty": 2,
+      "planner_contract_final_failure": 1
+    },
+    "by_bucket": {
+      "CORE_CHALLENGE": {
+        "submitted": 20,
+        "success": 20,
+        "system_failure": 0
+      },
+      "F1": {
+        "submitted": 30,
+        "success": 30,
+        "system_failure": 0
+      },
+      "F2": {
+        "submitted": 30,
+        "success": 29,
+        "system_failure": 1
+      },
+      "F3": {
+        "submitted": 30,
+        "success": 30,
+        "system_failure": 0
+      },
+      "F4": {
+        "submitted": 30,
+        "success": 28,
+        "system_failure": 2
+      }
+    },
+    "vlm_http_calls": 369,
+    "vlm_http_error_calls": 1,
+    "unexpected_vlm_models": 0,
+    "unexpected_vlm_endpoints": 0,
+    "protocol_attempts": 368,
+    "protocol_retries": 0,
+    "protocol_recovered": 0,
+    "transport_telemetry_nodes": 542,
+    "transport_attempts": 664,
+    "transport_retries": 1,
+    "transport_recovered": 1,
+    "non_success_transport_nodes": 0,
+    "prompt_tokens": 1716509,
+    "completion_tokens": 31034,
+    "total_tokens": 1747543,
+    "summed_end_to_end_seconds": 13176.668
+  },
+  "failed_units": [
+    {
+      "unit_id": "F2__fishing_027",
+      "error_type": "SystemGateFailure",
+      "error": "final_response_status=failed_empty_response; agent_response_empty",
+      "result_json": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v4\\artifacts\\F2__fishing_027\\result_001.json",
+      "result_image": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v4\\artifacts\\F2__fishing_027\\result_001.jpg"
+    },
+    {
+      "unit_id": "F4__fishing_007",
+      "error_type": "RuntimeError",
+      "error": "DeepSeek Planner 两次均违反契约：显式手持语义（手持/拿着/撑着）必须编译为 relation + held_by_target",
+      "result_json": null,
+      "result_image": null
+    },
+    {
+      "unit_id": "F4__fishing_021",
+      "error_type": "SystemGateFailure",
+      "error": "final_response_status=failed_empty_response; agent_response_empty",
+      "result_json": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v4\\artifacts\\F4__fishing_021\\result_001.json",
+      "result_image": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v4\\artifacts\\F4__fishing_021\\result_001.jpg"
+    }
+  ],
+  "final_response_failures": [
+    {
+      "unit_id": "F2__fishing_027",
+      "final_response_content": {
+        "content_attempts": 2,
+        "content_retry_count": 1,
+        "content_recovered": false,
+        "first_content_error": "empty_response",
+        "final_content_status": "failed_empty_response"
+      },
+      "agent_response_nonempty": false,
+      "artifacts_preserved": true
+    },
+    {
+      "unit_id": "F4__fishing_021",
+      "final_response_content": {
+        "content_attempts": 2,
+        "content_retry_count": 1,
+        "content_recovered": false,
+        "first_content_error": "empty_response",
+        "final_content_status": "failed_empty_response"
+      },
+      "agent_response_nonempty": false,
+      "artifacts_preserved": true
+    }
+  ],
+  "environment_pause": {
+    "observed": true,
+    "windows_event_provider": "Microsoft-Windows-Kernel-Power",
+    "standby_event_id": 506,
+    "standby_at": "2026-09-03T12:14:44+08:00",
+    "resume_event_id": 507,
+    "resumed_at": "2026-09-03T13:27:21+08:00",
+    "approximate_pause_seconds": 4357,
+    "runner_restarted": false,
+    "affected_terminal_unit": "F2__fishing_026",
+    "affected_unit_elapsed_seconds": 4551.729,
+    "observed_transport_error": "APITimeoutError",
+    "transport_retry_recovered": true
+  },
+  "audit_boundary": {
+    "v3_results_reused": false,
+    "eight_unit_replay_results_reused": false,
+    "failed_execution_replacement": false,
+    "terminal_results_overwritten": false,
+    "implementation_modified_during_execution": false,
+    "visual_adjudication_performed": false
+  }
+}
