@@ -1289,6 +1289,17 @@ def run_pipeline(
                 else merge_transport_telemetry([])
             ),
             "final_response_transport": merge_transport_telemetry([]),
+            "final_response_content": (
+                agent.final_response_content_telemetry()
+                if agent is not None
+                else {
+                    "content_attempts": 0,
+                    "content_retry_count": 0,
+                    "content_recovered": False,
+                    "first_content_error": None,
+                    "final_content_status": "not_started",
+                }
+            ),
         },
         "plan": plan,
         "candidates": candidates,
@@ -1373,6 +1384,9 @@ def run_pipeline(
         )
         saved_result["agent"]["final_response_transport"] = (
             agent.final_response_transport_telemetry()
+        )
+        saved_result["agent"]["final_response_content"] = (
+            agent.final_response_content_telemetry()
         )
         saved_result["timings"]["deepseek_final_response_seconds"] = round(
             time.perf_counter() - started_at,

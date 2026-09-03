@@ -22,6 +22,7 @@ TOOL_NAME = "execute_visual_task"
 ACTION_TYPES = {"highlight", "outline", "box", "blur_target", "dim_background", "cutout"}
 CONSTRAINT_ROUTES = {"attribute", "behavior", "relation"}
 HELD_BY_PROMPT_MARKERS = ("手持", "拿着", "撑着")
+FINAL_RESPONSE_MAX_CONTENT_ATTEMPTS = 2
 
 EXECUTE_VISUAL_TASK_TOOL = {
     "type": "function",
@@ -130,6 +131,21 @@ FINAL_SYSTEM_PROMPT = (
     "你不能修改计划、候选、验证结论、动作或触发重新执行。只输出给用户的最终回答。"
 )
 
+FINAL_RESPONSE_EMPTY_CORRECTION = (
+    "上一次最终回答为空。请基于完全相同的已执行计划和结构化视觉结果，"
+    "重新输出一句简短中文回答；不得修改或补充视觉事实。"
+)
+
+
+def _not_started_final_response_content_telemetry() -> dict:
+    return {
+        "content_attempts": 0,
+        "content_retry_count": 0,
+        "content_recovered": False,
+        "first_content_error": None,
+        "final_content_status": "not_started",
+    }
+
 
 def build_planner_client(
     environ: Mapping[str, str] | None = None,
@@ -183,6 +199,9 @@ class DeepSeekAgent:
         self.plan_attempts = 0
         self.plan_transport_calls: list[dict] = []
         self.final_response_transport_calls: list[dict] = []
+        self.final_response_content = (
+            _not_started_final_response_content_telemetry()
+        )
 
     def plan_request(self, prompt: str) -> dict:
         validation_error = None
@@ -227,33 +246,58 @@ class DeepSeekAgent:
                 validation_error = str(error)
         raise RuntimeError(f"DeepSeek Planner 两次均违反契约：{validation_error}")
 
-    def build_final_response(self, prompt: str, visual_result: dict) -> str:
-        transport_calls = getattr(self, "final_response_transport_calls", None)
-        if transport_calls is None:
-            transport_calls = []
-            self.final_response_transport_calls = transport_calls
-        response = request_with_transport_retry(
-            lambda: self.client.chat.completions.create(
-                model=self.model,
-                messages=[
-                    {"role": "system", "content": FINAL_SYSTEM_PROMPT},
-                    {
-                        "role": "user",
-                        "content": json.dumps(
-                            {"prompt": prompt, "tool_result": visual_result},
-                            ensure_ascii=False,
-                        ),
-                    },
-                ],
-                max_tokens=256,
-                extra_body={"thinking": {"type": "disabled"}},
-            ),
-            telemetry=transport_calls,
-        )
-        content = response.choices[0].message.content
-        if not isinstance(content, str) or not content.strip():
-            raise RuntimeError("DeepSeek Final Response 返回了空内容")
-        return content.strip()
+    def build_final_response(
+        self,
+        prompt: str,
+        visual_result: dict,
+    ) -> str | None:
+        self.final_response_transport_calls = []
+        first_content_error = None
+        for attempt in range(1, FINAL_RESPONSE_MAX_CONTENT_ATTEMPTS + 1):
+            messages = [{"role": "system", "content": FINAL_SYSTEM_PROMPT}]
+            if attempt > 1:
+                messages.append(
+                    {"role": "system", "content": FINAL_RESPONSE_EMPTY_CORRECTION}
+                )
+            messages.append(
+                {
+                    "role": "user",
+                    "content": json.dumps(
+                        {"prompt": prompt, "tool_result": visual_result},
+                        ensure_ascii=False,
+                    ),
+                }
+            )
+            response = request_with_transport_retry(
+                lambda: self.client.chat.completions.create(
+                    model=self.model,
+                    messages=messages,
+                    max_tokens=256,
+                    extra_body={"thinking": {"type": "disabled"}},
+                ),
+                telemetry=self.final_response_transport_calls,
+            )
+            content = response.choices[0].message.content
+            if isinstance(content, str) and content.strip():
+                self.final_response_content = {
+                    "content_attempts": attempt,
+                    "content_retry_count": attempt - 1,
+                    "content_recovered": attempt > 1,
+                    "first_content_error": first_content_error,
+                    "final_content_status": "success",
+                }
+                return content.strip()
+            if first_content_error is None:
+                first_content_error = "empty_response"
+
+        self.final_response_content = {
+            "content_attempts": FINAL_RESPONSE_MAX_CONTENT_ATTEMPTS,
+            "content_retry_count": FINAL_RESPONSE_MAX_CONTENT_ATTEMPTS - 1,
+            "content_recovered": False,
+            "first_content_error": first_content_error,
+            "final_content_status": "failed_empty_response",
+        }
+        return None
 
     def planner_transport_telemetry(self) -> dict:
         return merge_transport_telemetry(
@@ -263,6 +307,13 @@ class DeepSeekAgent:
     def final_response_transport_telemetry(self) -> dict:
         return merge_transport_telemetry(
             getattr(self, "final_response_transport_calls", [])
+        )
+
+    def final_response_content_telemetry(self) -> dict:
+        return getattr(
+            self,
+            "final_response_content",
+            _not_started_final_response_content_telemetry(),
         )
 
     @staticmethod
