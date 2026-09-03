@@ -1,0 +1,16 @@
+{
+  "stage": "GENERAL_RGB_EXECUTION_ROBUSTNESS_V1_8_UNIT_REPLAY",
+  "implementation_commit": "362a1a3f8352619d3967efb98828db950346de01",
+  "source_schedule": "E:\\3\\_visual_agent_real_world_acceptance\\v1\\_general_rgb_final_acceptance_v3\\frozen_schedule.json",
+  "source_schedule_sha256": "0a5b7c5dabafe9b1c9a9a4be65693824dff79e3b71481ebe0cb93b610960f253",
+  "scheduled_units": 8,
+  "single_attempt_per_unit": true,
+  "replacement_runs_allowed": false,
+  "agent_model": "qwen3.8:27b-mtp-q4_K_M",
+  "agent_base_url": "http://192.168.250.9:11434/v1",
+  "vlm_model": "qwen3.8:27b-mtp-q4_K_M",
+  "vlm_base_url": "http://192.168.250.9:11434/v1",
+  "vlm_timeout_seconds": 120,
+  "concurrency": 1,
+  "visual_quality_adjudication": false
+}

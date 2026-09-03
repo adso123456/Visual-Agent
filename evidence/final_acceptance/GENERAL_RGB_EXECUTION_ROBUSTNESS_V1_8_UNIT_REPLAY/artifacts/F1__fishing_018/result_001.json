@@ -1,0 +1,159 @@
+{
+  "prompt": "框出正在钓鱼的人",
+  "agent": {
+    "provider": "openai_compatible",
+    "model": "qwen3.8:27b-mtp-q4_K_M",
+    "planner_tool": "execute_visual_task",
+    "plan_attempts": 1,
+    "planner_transport": {
+      "transport_attempts": 1,
+      "transport_retry_count": 0,
+      "transport_recovered": false,
+      "first_transport_error": null,
+      "first_http_status": null,
+      "final_transport_status": "success"
+    },
+    "final_response_transport": {
+      "transport_attempts": 1,
+      "transport_retry_count": 0,
+      "transport_recovered": false,
+      "first_transport_error": null,
+      "first_http_status": null,
+      "final_transport_status": "success"
+    },
+    "final_response_content": {
+      "content_attempts": 1,
+      "content_retry_count": 0,
+      "content_recovered": false,
+      "first_content_error": null,
+      "final_content_status": "success"
+    }
+  },
+  "plan": {
+    "target_object": "person",
+    "label": "钓鱼的人",
+    "constraints": [
+      {
+        "text": "正在钓鱼",
+        "route": "behavior"
+      }
+    ],
+    "action": {
+      "type": "box"
+    },
+    "related_objects": []
+  },
+  "candidates": [
+    {
+      "id": "A",
+      "text_label": "person",
+      "bbox": [
+        1875.39,
+        20.42,
+        6703.91,
+        4509.52
+      ],
+      "dino_confidence": 0.3865,
+      "verification_checks": [
+        {
+          "constraint": "正在钓鱼",
+          "status": "not_satisfied",
+          "evidence": "候选基础实例状态为 invalid：掩码区域内为一条被网兜住的鱼，可见鱼头、鱼眼、鱼鳃及鱼鳍等鱼类特征，未出现任何人体或肢体部分，与目标对象person不符，属于明确非目标实例。；未执行该语义验证。"
+        }
+      ],
+      "verified": false,
+      "verification_reason": "候选基础实例状态为 invalid：掩码区域内为一条被网兜住的鱼，可见鱼头、鱼眼、鱼鳃及鱼鳍等鱼类特征，未出现任何人体或肢体部分，与目标对象person不符，属于明确非目标实例。；未执行该语义验证。"
+    }
+  ],
+  "behavior_routing": {},
+  "relation_hand_fallback": {
+    "attempts": 0,
+    "detector_calls": 0,
+    "admitted_count": 0,
+    "hand_relation_calls": 0,
+    "max_per_subject": 1,
+    "subjects": {}
+  },
+  "verified_subjects": [],
+  "relation_candidates": [],
+  "relation_bindings": [],
+  "semantic_groups": [],
+  "targets": [],
+  "qwen_protocol": {
+    "subject_validity": {
+      "A": {
+        "attempts": 1,
+        "retry_count": 0,
+        "recovered": false,
+        "first_error_code": null,
+        "evidence_payload": {
+          "normalization_triggered": true,
+          "original_dimensions": [
+            6784,
+            4525
+          ],
+          "original_payload_bytes": 19162132,
+          "normalized_dimensions": [
+            2449,
+            1633
+          ],
+          "normalized_payload_bytes": 3831124,
+          "target_pixels_first_pass": 4000000,
+          "unit": "base64_payload_chars"
+        },
+        "transport_attempts": 1,
+        "transport_retry_count": 0,
+        "transport_recovered": false,
+        "first_transport_error": null,
+        "first_http_status": null,
+        "final_transport_status": "success"
+      }
+    },
+    "candidate_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    },
+    "relation_verification": {
+      "attempts": 0,
+      "retry_count": 0,
+      "recovered": false,
+      "first_error_code": null
+    }
+  },
+  "timings": {
+    "deepseek_plan_seconds": 7.62,
+    "detector": {
+      "model": "IDEA-Research/grounding-dino-base",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "cached": true,
+      "memory_after_load_mb": 892.1
+    },
+    "grounding_dino_seconds": 0.807,
+    "subject_validity_seconds": 14.943,
+    "attribute_verification_seconds": 0.0,
+    "behavior_verification_seconds": 0.0,
+    "group_verification_seconds": 16.674,
+    "relation_grounding_seconds": 0.0,
+    "relation_verification_seconds": 0.0,
+    "sam2": {
+      "model": "facebook/sam2.1-hiera-base-plus",
+      "device": "cuda",
+      "load_seconds": 0.0,
+      "inference_seconds": 0.162,
+      "memory_after_load_mb": 1185.8,
+      "peak_memory_mb": 1605.8,
+      "cached": true,
+      "batch_calls": 1
+    },
+    "deepseek_final_response_seconds": 4.171,
+    "total_seconds": 29.479
+  },
+  "action_result": {
+    "type": "box",
+    "image_path": "E:/3/_visual_agent_real_world_acceptance/v1/_general_rgb_execution_robustness_v1_8_unit_replay/artifacts/F1__fishing_018/result_001.jpg"
+  },
+  "agent_response": "画面中没有找到正在钓鱼的人，因此未执行框选操作。"
+}

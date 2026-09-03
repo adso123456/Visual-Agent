@@ -1,0 +1,117 @@
+{
+  "stage": "GENERAL_RGB_EXECUTION_ROBUSTNESS_V1_8_UNIT_REPLAY",
+  "gate_status": "PASS",
+  "implementation_commit": "362a1a3f8352619d3967efb98828db950346de01",
+  "scheduled_units": 8,
+  "terminal_units": 8,
+  "unique_terminal_units": 8,
+  "terminal_success": 8,
+  "terminal_error": 0,
+  "transport_telemetry_nodes": 35,
+  "transport_attempts": 51,
+  "transport_retry_count": 0,
+  "transport_recovered_nodes": 0,
+  "transport_exhausted_nodes": 0,
+  "hand_conditioned_memory_gate": {
+    "unit_id": "F2__fishing_001",
+    "triggered": true,
+    "subject_view_dimensions": [
+      4932,
+      7032
+    ],
+    "hand_detector_dimensions": [
+      800,
+      1141
+    ],
+    "hand_detector_resized": true,
+    "memory_error": false,
+    "pass": true
+  },
+  "final_response_gates": {
+    "F2__fishing_002": {
+      "content_attempts": 2,
+      "content_retry_count": 1,
+      "content_recovered": true,
+      "first_content_error": "empty_response",
+      "final_content_status": "success",
+      "agent_response_nonempty": true,
+      "pass": true
+    },
+    "F4__fishing_007": {
+      "content_attempts": 1,
+      "content_retry_count": 0,
+      "content_recovered": false,
+      "first_content_error": null,
+      "final_content_status": "success",
+      "agent_response_nonempty": true,
+      "pass": true
+    }
+  },
+  "visual_quality_adjudication_performed": false,
+  "units": [
+    {
+      "unit_id": "F1__fishing_015",
+      "terminal_status": "success",
+      "elapsed_seconds": 161.204,
+      "target_count": 1,
+      "final_content_status": "success",
+      "agent_response_nonempty": true
+    },
+    {
+      "unit_id": "F1__fishing_016",
+      "terminal_status": "success",
+      "elapsed_seconds": 53.069,
+      "target_count": 1,
+      "final_content_status": "success",
+      "agent_response_nonempty": true
+    },
+    {
+      "unit_id": "F1__fishing_017",
+      "terminal_status": "success",
+      "elapsed_seconds": 50.336,
+      "target_count": 1,
+      "final_content_status": "success",
+      "agent_response_nonempty": true
+    },
+    {
+      "unit_id": "F1__fishing_018",
+      "terminal_status": "success",
+      "elapsed_seconds": 29.488,
+      "target_count": 0,
+      "final_content_status": "success",
+      "agent_response_nonempty": true
+    },
+    {
+      "unit_id": "F1__fishing_019",
+      "terminal_status": "success",
+      "elapsed_seconds": 25.644,
+      "target_count": 0,
+      "final_content_status": "success",
+      "agent_response_nonempty": true
+    },
+    {
+      "unit_id": "F2__fishing_001",
+      "terminal_status": "success",
+      "elapsed_seconds": 79.093,
+      "target_count": 0,
+      "final_content_status": "success",
+      "agent_response_nonempty": true
+    },
+    {
+      "unit_id": "F2__fishing_002",
+      "terminal_status": "success",
+      "elapsed_seconds": 140.518,
+      "target_count": 1,
+      "final_content_status": "success",
+      "agent_response_nonempty": true
+    },
+    {
+      "unit_id": "F4__fishing_007",
+      "terminal_status": "success",
+      "elapsed_seconds": 253.363,
+      "target_count": 1,
+      "final_content_status": "success",
+      "agent_response_nonempty": true
+    }
+  ]
+}
