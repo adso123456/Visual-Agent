@@ -5,6 +5,11 @@ from collections.abc import Mapping
 
 from openai import OpenAI
 
+from visual_agent.transport import (
+    merge_transport_telemetry,
+    request_with_transport_retry,
+)
+
 
 PLANNER_MODEL_ENV = "PLANNER_MODEL"
 PLANNER_BASE_URL_ENV = "PLANNER_BASE_URL"
@@ -162,7 +167,12 @@ def build_planner_client(
         if base_url.rstrip("/") == DEFAULT_PLANNER_BASE_URL.rstrip("/")
         else "openai_compatible"
     )
-    return OpenAI(api_key=api_key, base_url=base_url), model, base_url, provider
+    return (
+        OpenAI(api_key=api_key, base_url=base_url, max_retries=0),
+        model,
+        base_url,
+        provider,
+    )
 
 
 class DeepSeekAgent:
@@ -171,6 +181,8 @@ class DeepSeekAgent:
             build_planner_client()
         )
         self.plan_attempts = 0
+        self.plan_transport_calls: list[dict] = []
+        self.final_response_transport_calls: list[dict] = []
 
     def plan_request(self, prompt: str) -> dict:
         validation_error = None
@@ -188,13 +200,23 @@ class DeepSeekAgent:
                     }
                 )
             messages.append({"role": "user", "content": prompt})
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=messages,
-                tools=[EXECUTE_VISUAL_TASK_TOOL],
-                tool_choice={"type": "function", "function": {"name": TOOL_NAME}},
-                max_tokens=1024,
-                extra_body={"thinking": {"type": "disabled"}},
+            transport_calls = getattr(self, "plan_transport_calls", None)
+            if transport_calls is None:
+                transport_calls = []
+                self.plan_transport_calls = transport_calls
+            response = request_with_transport_retry(
+                lambda: self.client.chat.completions.create(
+                    model=self.model,
+                    messages=messages,
+                    tools=[EXECUTE_VISUAL_TASK_TOOL],
+                    tool_choice={
+                        "type": "function",
+                        "function": {"name": TOOL_NAME},
+                    },
+                    max_tokens=1024,
+                    extra_body={"thinking": {"type": "disabled"}},
+                ),
+                telemetry=transport_calls,
             )
             try:
                 return self._validated_plan(
@@ -206,25 +228,42 @@ class DeepSeekAgent:
         raise RuntimeError(f"DeepSeek Planner 两次均违反契约：{validation_error}")
 
     def build_final_response(self, prompt: str, visual_result: dict) -> str:
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=[
-                {"role": "system", "content": FINAL_SYSTEM_PROMPT},
-                {
-                    "role": "user",
-                    "content": json.dumps(
-                        {"prompt": prompt, "tool_result": visual_result},
-                        ensure_ascii=False,
-                    ),
-                },
-            ],
-            max_tokens=256,
-            extra_body={"thinking": {"type": "disabled"}},
+        transport_calls = getattr(self, "final_response_transport_calls", None)
+        if transport_calls is None:
+            transport_calls = []
+            self.final_response_transport_calls = transport_calls
+        response = request_with_transport_retry(
+            lambda: self.client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": FINAL_SYSTEM_PROMPT},
+                    {
+                        "role": "user",
+                        "content": json.dumps(
+                            {"prompt": prompt, "tool_result": visual_result},
+                            ensure_ascii=False,
+                        ),
+                    },
+                ],
+                max_tokens=256,
+                extra_body={"thinking": {"type": "disabled"}},
+            ),
+            telemetry=transport_calls,
         )
         content = response.choices[0].message.content
         if not isinstance(content, str) or not content.strip():
             raise RuntimeError("DeepSeek Final Response 返回了空内容")
         return content.strip()
+
+    def planner_transport_telemetry(self) -> dict:
+        return merge_transport_telemetry(
+            getattr(self, "plan_transport_calls", [])
+        )
+
+    def final_response_transport_telemetry(self) -> dict:
+        return merge_transport_telemetry(
+            getattr(self, "final_response_transport_calls", [])
+        )
 
     @staticmethod
     def _validated_plan(tool_calls: list | None, prompt: str | None = None) -> dict:

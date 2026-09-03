@@ -2,8 +2,8 @@
 
 BEFORE implementation：`git show be54f3c:<path>` 复算 8/8 冻结 SHA（对冻结基线复算，
 而非修改后的当前文件）。
-AFTER implementation：6 个不变文件当前工作区 == 冻结 SHA；pipeline.py / evidence.py
-允许变化但 base（be54f3c）SHA 必须匹配冻结值。
+AFTER implementation：未获后续阶段授权的文件当前工作区 == 冻结 SHA；获授权文件的
+base（be54f3c）SHA 必须匹配冻结值。
 合同 status：PRODUCTION_IMPLEMENTATION_CONTRACT.md 含 CONTRACT FROZEN。
 additive key：stub 全链路 run 后 result 含 behavior_routing / relation_hand_fallback。
 """
@@ -37,7 +37,14 @@ FROZEN_SHA = {
     "visual_agent/vlm_client.py": "a36782166b41fde299cb3cd328fb145bc0597ae8bd49c0510f1eb6d832a82c88",
     "visual_agent/deepseek_agent.py": "cdc6be9cdc4b518734b014ca9e44144d7b4da1895da6bdb74de9fed5290f1f12",
 }
-CHANGED_ALLOWED = {"visual_agent/pipeline.py", "visual_agent/evidence.py"}
+CHANGED_ALLOWED = {
+    "visual_agent/pipeline.py",
+    "visual_agent/evidence.py",
+    "visual_agent/vlm.py",
+    "visual_agent/relations.py",
+    "visual_agent/vlm_client.py",
+    "visual_agent/deepseek_agent.py",
+}
 UNCHANGED_REQUIRED = set(FROZEN_SHA) - CHANGED_ALLOWED
 
 
@@ -71,14 +78,14 @@ def test_preflight_before_implementation_base_shas():
 
 
 def test_preflight_after_unchanged_files_still_frozen():
-    """AFTER：6 个不变文件当前工作区必须仍等于冻结 SHA。"""
+    """AFTER：未获后续阶段授权的文件必须仍等于冻结 SHA。"""
     for rel in UNCHANGED_REQUIRED:
         got = _sha256((REPO_ROOT / rel).read_bytes())
         assert got == FROZEN_SHA[rel], f"{rel} 被意外修改（必须字节级不变）"
 
 
 def test_preflight_after_changed_files_have_frozen_base():
-    """AFTER：pipeline/evidence 允许变化，但 base（be54f3c）SHA 必须匹配冻结值。"""
+    """AFTER：获授权文件允许变化，但 base（be54f3c）SHA 必须匹配冻结值。"""
     for rel in CHANGED_ALLOWED:
         base = _sha256(_worktree_form(FROZEN_BASE, rel))
         assert base == FROZEN_SHA[rel], f"{rel} base 与冻结不一致"

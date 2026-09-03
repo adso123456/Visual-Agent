@@ -8,6 +8,10 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 from visual_agent.qwen_protocol import request_validated_json
+from visual_agent.transport import (
+    merge_transport_telemetry,
+    request_with_transport_retry,
+)
 from visual_agent.vlm_client import (
     DEFAULT_VLM_BASE_URL,
     DEFAULT_VLM_MODEL,
@@ -228,6 +232,7 @@ def verify_subject_instance(
     evidence_image: Image.Image,
 ) -> tuple[dict, dict]:
     """只判断候选是否为一个可独立评价的基础目标实例。"""
+    transport_calls = []
     messages = [
         {
             "role": "system",
@@ -264,11 +269,15 @@ def verify_subject_instance(
         request_messages = [*messages]
         if correction:
             request_messages.append({"role": "user", "content": correction})
-        response = _client().chat.completions.create(
-            model=get_vlm_model_name(),
-            messages=request_messages,
-            temperature=0,
-            response_format={"type": "json_object"},
+        client = _client()
+        response = request_with_transport_retry(
+            lambda: client.chat.completions.create(
+                model=get_vlm_model_name(),
+                messages=request_messages,
+                temperature=0,
+                response_format={"type": "json_object"},
+            ),
+            telemetry=transport_calls,
         )
         return response.choices[0].message.content
 
@@ -281,6 +290,7 @@ def verify_subject_instance(
     telemetry = _take_evidence_telemetry()
     if telemetry is not None:
         protocol["evidence_payload"] = telemetry
+    protocol.update(merge_transport_telemetry(transport_calls))
     return validated, protocol
 
 
@@ -333,6 +343,7 @@ def verify_candidate_constraints(
     route: str,
 ) -> tuple[list[dict], dict]:
     """使用单候选 evidence route 判断同 route 下的多条约束；多图顺序由调用方冻结。"""
+    transport_calls = []
     if route not in SEMANTIC_ROUTES:
         raise ValueError(f"不支持的 semantic route：{route}")
     route_instruction = {
@@ -393,11 +404,15 @@ def verify_candidate_constraints(
         request_messages = [*messages]
         if correction:
             request_messages.append({"role": "user", "content": correction})
-        response = _client().chat.completions.create(
-            model=get_vlm_model_name(),
-            messages=request_messages,
-            temperature=0,
-            response_format={"type": "json_object"},
+        client = _client()
+        response = request_with_transport_retry(
+            lambda: client.chat.completions.create(
+                model=get_vlm_model_name(),
+                messages=request_messages,
+                temperature=0,
+                response_format={"type": "json_object"},
+            ),
+            telemetry=transport_calls,
         )
         return response.choices[0].message.content
 
@@ -415,15 +430,19 @@ def verify_candidate_constraints(
     telemetry = _take_evidence_telemetry()
     if telemetry is not None:
         protocol["evidence_payload"] = telemetry
+    protocol.update(merge_transport_telemetry(transport_calls))
     return validated, protocol
 
 
 def _json_response(messages: list[dict]) -> dict:
-    response = _client().chat.completions.create(
-        model=get_vlm_model_name(),
-        messages=messages,
-        temperature=0,
-        response_format={"type": "json_object"},
+    client = _client()
+    response = request_with_transport_retry(
+        lambda: client.chat.completions.create(
+            model=get_vlm_model_name(),
+            messages=messages,
+            temperature=0,
+            response_format={"type": "json_object"},
+        )
     )
     content = response.choices[0].message.content
     if not content:
@@ -511,6 +530,7 @@ def verify_candidates(
     candidates: list[dict],
 ) -> tuple[list[dict], dict]:
     """在同一完整场景中对所有候选进行相对验证。"""
+    transport_calls = []
     messages = [
             {
                 "role": "system",
@@ -558,20 +578,26 @@ def verify_candidates(
         request_messages = [*messages]
         if correction:
             request_messages.append({"role": "user", "content": correction})
-        response = _client().chat.completions.create(
-            model=get_vlm_model_name(),
-            messages=request_messages,
-            temperature=0,
-            response_format={"type": "json_object"},
+        client = _client()
+        response = request_with_transport_retry(
+            lambda: client.chat.completions.create(
+                model=get_vlm_model_name(),
+                messages=request_messages,
+                temperature=0,
+                response_format={"type": "json_object"},
+            ),
+            telemetry=transport_calls,
         )
         return response.choices[0].message.content
 
-    return request_validated_json(
+    validated, protocol = request_validated_json(
         request_once,
         lambda result: validate_candidate_verification(result, candidates, plan["constraints"]),
         "candidate verification",
         '{"candidates":[{"id":"A","checks":[{"constraint":"<原始约束>","status":"<三态之一>","evidence":"<非空证据>"}]}]}',
     )
+    protocol.update(merge_transport_telemetry(transport_calls))
+    return validated, protocol
 
 
 def validate_candidate_verification(

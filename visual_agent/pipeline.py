@@ -22,6 +22,7 @@ from visual_agent.models import get_detector, get_segmenter
 from visual_agent.qwen_protocol import skipped_protocol_metadata
 from visual_agent.relations import verify_focused_ownership, verify_relations
 from visual_agent.renderer import save_results
+from visual_agent.transport import merge_transport_telemetry
 from visual_agent.vlm import (
     verify_candidate_constraints,
     verify_subject_instance,
@@ -379,6 +380,7 @@ def _merge_protocol_metadata(protocols: list[dict]) -> dict:
             None,
         ),
     }
+    merged.update(merge_transport_telemetry(protocols))
     payload_items = []
     for protocol in protocols:
         payload = protocol.get("evidence_payload")
@@ -1281,6 +1283,12 @@ def run_pipeline(
             "model": agent.model if agent is not None else MODEL_NAME,
             "planner_tool": TOOL_NAME,
             "plan_attempts": agent.plan_attempts if agent is not None else 0,
+            "planner_transport": (
+                agent.planner_transport_telemetry()
+                if agent is not None
+                else merge_transport_telemetry([])
+            ),
+            "final_response_transport": merge_transport_telemetry([]),
         },
         "plan": plan,
         "candidates": candidates,
@@ -1362,6 +1370,9 @@ def run_pipeline(
         saved_result["agent_response"] = agent.build_final_response(
             prompt,
             public_visual_result,
+        )
+        saved_result["agent"]["final_response_transport"] = (
+            agent.final_response_transport_telemetry()
         )
         saved_result["timings"]["deepseek_final_response_seconds"] = round(
             time.perf_counter() - started_at,

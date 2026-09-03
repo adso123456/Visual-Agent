@@ -6,6 +6,10 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 from visual_agent.qwen_protocol import request_validated_json
+from visual_agent.transport import (
+    merge_transport_telemetry,
+    request_with_transport_retry,
+)
 from visual_agent.vlm_client import (
     DEFAULT_VLM_BASE_URL,
     DEFAULT_VLM_MODEL,
@@ -127,6 +131,7 @@ def verify_relations(
         raise ValueError("Relation Verification 需要非空 subjects 和 related candidates")
     if relation != RELATION:
         raise ValueError(f"不支持的 relation：{relation}")
+    transport_calls = []
     messages = [
             {
                 "role": "system",
@@ -175,15 +180,19 @@ def verify_relations(
         request_messages = [*messages]
         if correction:
             request_messages.append({"role": "user", "content": correction})
-        response = _client().chat.completions.create(
-            model=get_vlm_model_name(),
-            messages=request_messages,
-            temperature=0,
-            response_format={"type": "json_object"},
+        client = _client()
+        response = request_with_transport_retry(
+            lambda: client.chat.completions.create(
+                model=get_vlm_model_name(),
+                messages=request_messages,
+                temperature=0,
+                response_format={"type": "json_object"},
+            ),
+            telemetry=transport_calls,
         )
         return response.choices[0].message.content
 
-    return request_validated_json(
+    validated, protocol = request_validated_json(
         request_once,
         lambda result: validate_relation_bindings(
             result,
@@ -194,6 +203,8 @@ def verify_relations(
         "relation verification",
         '{"bindings":[{"subject_id":"A","related_id":"R1","relation":"held_by_target","status":"<三态之一>","evidence":"<非空证据>"}]}',
     )
+    protocol.update(merge_transport_telemetry(transport_calls))
+    return validated, protocol
 
 
 def verify_focused_ownership(
@@ -210,6 +221,7 @@ def verify_focused_ownership(
         raise ValueError("Focused Ownership 每次只能裁决 1 个 related object")
     if relation != RELATION:
         raise ValueError(f"不支持的 relation：{relation}")
+    transport_calls = []
     related_id = related_candidates[0]["id"]
     subject_ids = json.dumps(
         [item["id"] for item in subjects], ensure_ascii=False
@@ -263,15 +275,19 @@ def verify_focused_ownership(
         request_messages = [*messages]
         if correction:
             request_messages.append({"role": "user", "content": correction})
-        response = _client().chat.completions.create(
-            model=get_vlm_model_name(),
-            messages=request_messages,
-            temperature=0,
-            response_format={"type": "json_object"},
+        client = _client()
+        response = request_with_transport_retry(
+            lambda: client.chat.completions.create(
+                model=get_vlm_model_name(),
+                messages=request_messages,
+                temperature=0,
+                response_format={"type": "json_object"},
+            ),
+            telemetry=transport_calls,
         )
         return response.choices[0].message.content
 
-    return request_validated_json(
+    validated, protocol = request_validated_json(
         request_once,
         lambda result: validate_relation_bindings(
             result,
@@ -282,3 +298,5 @@ def verify_focused_ownership(
         "focused ownership verification",
         '{"bindings":[{"subject_id":"B","related_id":"R2","relation":"held_by_target","status":"<三态之一>","evidence":"<非空证据>"}]}',
     )
+    protocol.update(merge_transport_telemetry(transport_calls))
+    return validated, protocol

@@ -58,6 +58,7 @@ def create_vlm_client(config: VlmConfig | None = None) -> OpenAI:
     kwargs = {
         "api_key": resolved.api_key,
         "base_url": resolved.base_url,
+        "max_retries": 0,
     }
     if resolved.timeout is not None:
         kwargs["timeout"] = resolved.timeout

@@ -76,8 +76,17 @@ def test_client_only_passes_timeout_when_configured(monkeypatch):
     vlm_client.create_vlm_client(local)
 
     assert calls == [
-        {"api_key": "key", "base_url": "https://cloud.example/v1"},
-        {"api_key": "ollama", "base_url": "http://local.example/v1", "timeout": 90.0},
+        {
+            "api_key": "key",
+            "base_url": "https://cloud.example/v1",
+            "max_retries": 0,
+        },
+        {
+            "api_key": "ollama",
+            "base_url": "http://local.example/v1",
+            "max_retries": 0,
+            "timeout": 90.0,
+        },
     ]
 
 
