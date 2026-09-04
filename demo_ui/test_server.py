@@ -50,19 +50,21 @@ def test_minimal_ui_static_contract():
     assert (STATIC_DIR / "app.js").is_file()
     html = (STATIC_DIR / "index.html").read_text(encoding="utf-8")
     script = (STATIC_DIR / "app.js").read_text(encoding="utf-8")
-    # 极简批量 UI：图片输入（多选）、指令、运行按钮与逐行结果输出
+    # 极简批量托盘 UI：图片输入（多选）、指令、运行按钮与逐行结果输出
     for element in (
-        'id="dropzone"', 'id="fileInput"', 'id="promptInput"',
+        'id="batchTray"', 'id="dropzone"', 'id="fileInput"',
+        'id="trayCount"', 'id="trayGrid"', 'id="addButton"',
+        'id="clearButton"', 'id="promptInput"',
         'id="runButton"', 'id="jobList"', 'id="runStatus"',
-        'id="clearButton"',
         'multiple', 'accept=".jpg,.jpeg,.png,.webp,.bmp"',
+        '最多 32 张',
     ):
         assert element in html
     for handler in (
-        "async function run", "function setFiles",
-        "function addFilesFromPicker", "function clearFiles",
-        "function renderJobEntry", "function startPolling",
-        "function setRunStatus",
+        "async function run", "function addFiles",
+        "function removeFileAt", "function clearFiles",
+        "function renderTray", "function renderJobEntry",
+        "function startPolling", "function setRunStatus",
     ):
         assert handler in script
     for endpoint in ("/api/run_batch", "/api/status/"):

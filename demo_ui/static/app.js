@@ -1,4 +1,5 @@
 const $ = (id) => document.getElementById(id);
+const MAX_IMAGES = 32;
 let selectedFiles = [];
 let activeJobs = [];
 let pollTimer = null;
@@ -13,61 +14,79 @@ function setRunStatus(state, label, message) {
   node.innerHTML = `<span class="status-dot"></span><strong>${escapeHtml(label)}</strong><span>${escapeHtml(message)}</span>`;
 }
 
-const dropzone = $("dropzone");
-dropzone.addEventListener("click", () => $("fileInput").click());
-dropzone.addEventListener("dragover", (event) => { event.preventDefault(); dropzone.classList.add("drag"); });
-dropzone.addEventListener("dragleave", () => dropzone.classList.remove("drag"));
-dropzone.addEventListener("drop", (event) => {
-  event.preventDefault();
-  dropzone.classList.remove("drag");
-  if (event.dataTransfer.files.length) setFiles(event.dataTransfer.files);
+$("addButton").addEventListener("click", () => $("fileInput").click());
+$("clearButton").addEventListener("click", clearFiles);
+$("batchTray").addEventListener("click", (event) => {
+  if (event.target.closest("button")) return;
+  $("fileInput").click();
 });
-$("fileInput").addEventListener("change", (event) => { if (event.target.files.length) addFilesFromPicker(); });
-$("clearButton").addEventListener("click", (event) => { event.stopPropagation(); clearFiles(); });
+$("batchTray").addEventListener("dragover", (event) => { event.preventDefault(); $("dropzone").classList.add("drag"); });
+$("batchTray").addEventListener("dragleave", () => $("dropzone").classList.remove("drag"));
+$("batchTray").addEventListener("drop", (event) => {
+  event.preventDefault();
+  $("dropzone").classList.remove("drag");
+  if (event.dataTransfer.files.length) addFiles(event.dataTransfer.files);
+});
+$("fileInput").addEventListener("change", (event) => {
+  if (event.target.files.length) addFiles(event.target.files);
+  event.target.value = "";
+});
+$("trayGrid").addEventListener("click", (event) => {
+  const remove = event.target.closest(".thumb-remove");
+  if (remove) {
+    removeFileAt(Number(remove.dataset.index));
+    return;
+  }
+  if (event.target.closest("img")) openViewer({
+    src: event.target.src,
+    alt: "上传图片预览",
+  });
+});
 
-function setFiles(files) {
-  // 追加模式：多次选择/拖拽都累积到列表，而不是替换上一张
+function addFiles(files) {
+  // 追加模式，去重（文件名+大小+修改时间），并限制 32 张上限
   const added = Array.from(files);
   const seen = new Set(selectedFiles.map((file) => `${file.name}|${file.size}|${file.lastModified}`));
+  let overflow = 0;
   for (const file of added) {
+    if (selectedFiles.length >= MAX_IMAGES) { overflow++; continue; }
     const key = `${file.name}|${file.size}|${file.lastModified}`;
     if (!seen.has(key)) {
       selectedFiles.push(file);
       seen.add(key);
     }
   }
-  updateDropzone();
+  renderTray();
+  if (overflow > 0 || selectedFiles.length === MAX_IMAGES) {
+    setRunStatus("queued", "提示", `一次最多上传 ${MAX_IMAGES} 张图片。`);
+  }
 }
 
-async function addFilesFromPicker() {
-  const input = $("fileInput");
-  const picked = input.files;
-  if (picked && picked.length) {
-    setFiles(picked);
-    input.value = "";
-  }
+function removeFileAt(index) {
+  selectedFiles.splice(index, 1);
+  renderTray();
 }
 
 function clearFiles() {
   selectedFiles = [];
-  updateDropzone();
+  renderTray();
 }
 
-function updateDropzone() {
+function renderTray() {
   const count = selectedFiles.length;
-  if (count === 0) {
-    $("preview").removeAttribute("src");
-    $("preview").hidden = true;
-    $("dropzoneText").textContent = "点击选择或将图片拖到此处";
-    $("clearButton").hidden = true;
-    return;
-  }
-  $("preview").src = URL.createObjectURL(selectedFiles[0]);
-  $("preview").hidden = false;
-  $("clearButton").hidden = false;
-  $("dropzoneText").textContent = count === 1
-    ? `${selectedFiles[0].name} · 点击继续添加`
-    : `已选择 ${count} 张图片 · 点击继续添加`;
+  $("trayCount").textContent = `已选择 ${count} / ${MAX_IMAGES} 张`;
+  $("clearButton").hidden = count === 0;
+  $("dropzone").hidden = count > 0;
+  $("trayGrid").hidden = count === 0;
+  $("trayGrid").innerHTML = selectedFiles.map((file, index) => {
+    const url = URL.createObjectURL(file);
+    return `
+      <div class="tray-thumb">
+        <img src="${url}" alt="缩略图 ${index + 1}" title="${escapeHtml(file.name)}">
+        <span class="thumb-index">${String(index + 1).padStart(2, "0")}</span>
+        <button type="button" class="thumb-remove" data-index="${index}" aria-label="移除第 ${index + 1} 张">×</button>
+      </div>`;
+  }).join("");
 }
 
 async function run() {
