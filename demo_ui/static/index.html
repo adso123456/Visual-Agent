@@ -40,6 +40,13 @@
       <div id="runStatus" class="run-status" data-state="idle">
         <span class="status-dot"></span><strong>就绪</strong><span>请上传图片并输入任务指令。</span>
       </div>
+
+      <div id="progressBlock" class="progress-block" hidden>
+        <div class="progress-head"><strong id="progressLabel">正在处理 0 / 0</strong><span id="progressPercent">0%</span></div>
+        <div class="progress-bar"><div id="progressFill" class="progress-fill" style="width:0%"></div></div>
+        <div class="progress-meta" id="progressMeta"></div>
+        <div class="progress-current" id="progressCurrent"></div>
+      </div>
     </section>
 
     <section id="results" class="results" hidden>

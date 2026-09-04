@@ -81,9 +81,10 @@ function renderTray() {
   $("trayGrid").innerHTML = selectedFiles.map((file, index) => {
     const url = URL.createObjectURL(file);
     return `
-      <div class="tray-thumb">
+      <div class="tray-thumb tray-queued">
         <img src="${url}" alt="缩略图 ${index + 1}" title="${escapeHtml(file.name)}">
         <span class="thumb-index">${String(index + 1).padStart(2, "0")}</span>
+        <span class="thumb-status">○</span>
         <button type="button" class="thumb-remove" data-index="${index}" aria-label="移除第 ${index + 1} 张">×</button>
       </div>`;
   }).join("");
@@ -105,14 +106,39 @@ async function run() {
     const response = await fetch("/api/run_batch", {method: "POST", body: form});
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || "请求失败");
-    activeJobs = data.jobs.filter((job) => job.job_id);
+    activeJobs = [];
+    data.jobs.forEach((job, index) => {
+      if (!job.job_id) return;
+      activeJobs.push({index, job_id: job.job_id, image: job.image, status: "queued"});
+    });
     if (!activeJobs.length) throw new Error("没有图片成功提交");
-    activeJobs.forEach((job) => renderJobEntry(job));
+    markTrayQueued();
+    renderJobEntries();
     startPolling();
   } catch (error) {
     $("runButton").disabled = false;
     setRunStatus("error", "错误", error.message);
   }
+}
+
+function markTrayQueued() {
+  // 把缩略图标记为等待（按上传顺序对应 job 序号）
+  const thumbs = document.querySelectorAll(".tray-thumb");
+  thumbs.forEach((thumb) => {
+    thumb.classList.remove("tray-running", "tray-done", "tray-failed");
+    thumb.classList.add("tray-queued");
+  });
+  const count = activeJobs.length;
+  if (count > 1) {
+    $("progressBlock").hidden = false;
+  } else {
+    $("progressBlock").hidden = true; // 单图保持简单状态机，不做百分比
+  }
+}
+
+function renderJobEntries() {
+  $("jobList").innerHTML = "";
+  activeJobs.forEach((job) => renderJobEntry(job));
 }
 
 function jobRowId(jobId) {
@@ -124,12 +150,21 @@ function renderJobEntry(job) {
   row.className = "job-row";
   row.id = jobRowId(job.job_id);
   row.innerHTML = `
-    <div class="job-row-head"><strong>${escapeHtml(job.image)}</strong><span class="job-status">排队中</span></div>
+    <div class="job-row-head"><strong>${String(job.index + 1).padStart(2, "0")} · ${escapeHtml(job.image)}</strong><span class="job-status">排队中</span></div>
     <div class="image-compare">
       <figure><figcaption>原始图片</figcaption><div class="image-frame"><img data-original="/api/job/${job.job_id}/original" class="interactive-image" alt="原始图片" title="点击放大"></div></figure>
       <figure><figcaption>结果图片</figcaption><div class="image-frame"><img data-result class="interactive-image" alt="结果图片" title="点击放大"></div></figure>
     </div>`;
   $("jobList").appendChild(row);
+}
+
+function updateTrayStatus(index, status) {
+  const thumb = document.querySelectorAll(".tray-thumb")[index];
+  if (!thumb) return;
+  thumb.classList.remove("tray-queued", "tray-running", "tray-done", "tray-failed");
+  thumb.classList.add(`tray-${status}`);
+  const badge = thumb.querySelector(".thumb-status");
+  if (badge) badge.textContent = status === "done" ? "✓" : (status === "failed" ? "✕" : (status === "running" ? "●" : "○"));
 }
 
 function renderJobResult(jobId, data) {
@@ -152,41 +187,66 @@ function renderJobResult(jobId, data) {
 function startPolling() {
   if (pollTimer) clearInterval(pollTimer);
   const poll = async () => {
-    let pending = 0;
     for (const job of activeJobs) {
       try {
         const response = await fetch(`/api/status/${job.job_id}`);
         const data = await response.json();
         if (!response.ok) throw new Error(data.error || "状态查询失败");
-        if (data.status === "queued") { pending++; continue; }
+        job.status = data.status;
+        if (data.status === "queued") { updateTrayStatus(job.index, "queued"); continue; }
         if (data.status === "running") {
-          pending++;
-          const row = $(jobRowId(job.job_id));
-          if (row) row.querySelector(".job-status").textContent = "运行中";
+          updateTrayStatus(job.index, "running");
+          $(jobRowId(job.job_id))?.querySelector(".job-status")?.replaceChildren(document.createTextNode("运行中"));
           continue;
         }
+        updateTrayStatus(job.index, data.status === "done" ? "done" : "failed");
         renderJobResult(job.job_id, data);
       } catch (error) {
-        pending++;
+        job.status = "failed";
+        updateTrayStatus(job.index, "failed");
         const row = $(jobRowId(job.job_id));
         if (row) row.querySelector(".job-status").textContent = `查询失败：${error.message}`;
       }
     }
-    if (pending === 0) {
+    updateProgress();
+    if (activeJobs.every((job) => job.status === "done" || job.status === "failed")) {
       clearInterval(pollTimer);
       pollTimer = null;
       $("runButton").disabled = false;
       $("results").hidden = false;
-      const failed = activeJobs.filter((job) => $(jobRowId(job.job_id))?.querySelector(".job-status-error"));
-      const summary = failed.length
-        ? `完成 ${activeJobs.length - failed.length} 张，失败 ${failed.length} 张。`
+      const failed = activeJobs.filter((job) => job.status === "failed").length;
+      const summary = failed
+        ? `完成 ${activeJobs.length - failed} 张，失败 ${failed} 张。`
         : `全部完成，共 ${activeJobs.length} 张。`;
       setRunStatus("completed", "已完成", summary);
       $("results").scrollIntoView({behavior: "smooth", block: "start"});
+      if (activeJobs.length > 1) {
+        $("progressLabel").textContent = `已完成 ${activeJobs.length} / ${activeJobs.length}`;
+        $("progressPercent").textContent = "100%";
+        $("progressFill").style.width = "100%";
+        $("progressMeta").textContent = `已完成 ${activeJobs.filter((j) => j.status === "done").length}    处理中 0    等待 0    失败 ${failed}`;
+      }
     }
   };
   poll();
   pollTimer = setInterval(poll, 1500);
+}
+
+function updateProgress() {
+  if (activeJobs.length <= 1 || $("progressBlock").hidden) return;
+  const total = activeJobs.length;
+  const failed = activeJobs.filter((job) => job.status === "failed").length;
+  const done = activeJobs.filter((job) => job.status === "done").length;
+  const running = activeJobs.filter((job) => job.status === "running").length;
+  const queued = activeJobs.filter((job) => job.status === "queued").length;
+  const completed = done + failed; // 已完成 = success + failed（都终止了）
+  const progress = Math.round((completed / total) * 100);
+  const current = activeJobs.find((job) => job.status === "running") || activeJobs.find((job) => job.status === "queued");
+  $("progressLabel").textContent = running ? `正在处理 ${completed + 1} / ${total}` : `已完成 ${completed} / ${total}`;
+  $("progressPercent").textContent = `${Math.min(progress, 99)}%`;
+  $("progressFill").style.width = `${Math.min(progress, 99)}%`;
+  $("progressMeta").textContent = `已完成 ${done}    处理中 ${running}    等待 ${queued}    失败 ${failed}`;
+  $("progressCurrent").textContent = current ? `当前：${current.image}` : "";
 }
 
 $("runButton").addEventListener("click", run);

@@ -56,6 +56,8 @@ def test_minimal_ui_static_contract():
         'id="trayCount"', 'id="trayGrid"', 'id="addButton"',
         'id="clearButton"', 'id="promptInput"',
         'id="runButton"', 'id="jobList"', 'id="runStatus"',
+        'id="progressBlock"', 'id="progressLabel"',
+        'id="progressFill"', 'id="progressMeta"',
         'multiple', 'accept=".jpg,.jpeg,.png,.webp,.bmp"',
         '最多 32 张',
     ):
@@ -64,7 +66,8 @@ def test_minimal_ui_static_contract():
         "async function run", "function addFiles",
         "function removeFileAt", "function clearFiles",
         "function renderTray", "function renderJobEntry",
-        "function startPolling", "function setRunStatus",
+        "function startPolling", "function updateProgress",
+        "function updateTrayStatus", "function setRunStatus",
     ):
         assert handler in script
     for endpoint in ("/api/run_batch", "/api/status/"):
