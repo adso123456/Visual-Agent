@@ -57,10 +57,10 @@ function setMode(nextMode) {
   banner.className = `mode-banner ${local ? "local-debug" : "full-chain"}`;
   banner.innerHTML = local
     ? "<strong>本地调试</strong><span>⚠ 预编译计划 · Detector → SAM2 → 动作执行</span><small>Agent：已跳过 · Qwen 语义验证：已跳过</small>"
-    : "<strong>完整链路</strong><span>自然语言 → Agent → Detector → Qwen → 关系验证 → SAM2 → 动作执行</span><small>需要配置 DEEPSEEK_API_KEY 和 DASHSCOPE_API_KEY</small>";
+    : "<strong>通用视觉链路</strong><span>自然语言 → Agent 规划 → 开放词汇定位 → 视觉证据路由 → 语义 / 关系验证 → 精确分割 → 动作执行</span>";
   $("modeHint").textContent = local
     ? "本地调试使用预编译计划，不代表完整的 Agent/VLM 链路。"
-    : "完整链路使用自然语言规划器和已冻结的 Qwen 语义验证。";
+    : "通用视觉链路使用 Agent 规划与视觉证据路由完成语义 / 关系验证。";
 }
 
 $("modeSwitch").querySelectorAll("button").forEach((button) => button.addEventListener("click", () => setMode(button.dataset.mode)));
@@ -170,7 +170,7 @@ function renderResult(data) {
 
   const localDebug = data.mode === "local_debug";
   $("semanticNotice").textContent = localDebug
-    ? "已跳过——本地调试不会调用 Qwen 语义验证。"
+    ? "已跳过——本地调试不执行语义 / 关系验证。"
     : "下方状态和证据直接读取自 Pipeline 结果。";
   const semanticRows = [];
   summary.candidates.forEach((candidate) => {

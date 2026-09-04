@@ -12,20 +12,19 @@
       <h1>Visual Agent 开发者演示</h1>
       <p>自然语言驱动的视觉任务执行</p>
     </div>
-    <div class="flow">自然语言 <b>→</b> Agent 计划 <b>→</b> Detector <b>→</b> 语义 / 关系验证 <b>→</b> SAM2 <b>→</b> 动作执行</div>
+    <div class="flow">通用视觉链路：自然语言 <b>→</b> Agent 规划 <b>→</b> 开放词汇定位 <b>→</b> 视觉证据路由 <b>→</b> 语义 / 关系验证 <b>→</b> 精确分割 <b>→</b> 动作执行</div>
   </header>
 
   <main>
     <section id="modeBanner" class="mode-banner full-chain">
-      <strong>完整链路</strong>
-      <span>自然语言 → Agent → Detector → Qwen → 关系验证 → SAM2 → 动作执行</span>
-      <small>需要配置 DEEPSEEK_API_KEY 和 DASHSCOPE_API_KEY</small>
+      <strong>通用视觉链路</strong>
+      <span>自然语言 → Agent 规划 → 开放词汇定位 → 视觉证据路由 → 语义 / 关系验证 → 精确分割 → 动作执行</span>
     </section>
 
     <section class="card input-card">
       <div class="section-title"><span>01</span><h2>任务输入</h2></div>
       <div class="mode-switch" id="modeSwitch">
-        <button type="button" data-mode="full_chain" class="active">完整链路</button>
+        <button type="button" data-mode="full_chain" class="active">通用视觉链路</button>
         <button type="button" data-mode="local_debug">本地调试</button>
       </div>
 
