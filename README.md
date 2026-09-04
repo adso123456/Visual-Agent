@@ -6,11 +6,70 @@ Visual Agent 是一个自然语言驱动的通用视觉执行 Demo。开发者�
 
 **Visual Agent v1 已正式关闭并验收，产品范围冻结为 General RGB static-image visual execution。** 水污染 RGB 图片识别已移出产品范围；历史 P1～P4 仅作为研究证据保留，不再作为后续优化 Gate。完整冻结口径见 [`docs/PROJECT_CLOSURE_V1.md`](docs/PROJECT_CLOSURE_V1.md)。
 
-当前架构：`deepseek-v4-pro` 通过受控 Tool Call 将指令拆成基础目标、语义约束和操作，Grounding DINO Base 定位候选，可配置的 OpenAI-compatible VLM（默认 `qwen3-vl-flash`，也可切换已验证的 Local VLM）验证完整视觉语义，SAM 2.1 Base Plus 根据验证通过的 bbox 生成像素级 mask，OpenCV 确定性执行操作，最后由 DeepSeek 汇总结构化结果。关系组合目标 v1 仅支持一个主体与最多一个 `held_by_target` 手持物体，组件 mask 使用 OR 合并，组合分数取组件最低 SAM score（不是重新预测的 composite IoU）。
+当前正式架构：本地 `qwen3.8:27b-mtp-q4_K_M` 同时承担 Planner、Final Response 和 VLM / Relation VLM；Grounding DINO Base 定位候选，SAM 2.1 Base Plus 根据验证通过的 bbox 生成像素级 mask，OpenCV 确定性执行操作。关系组合目标 v1 仅支持一个主体与最多一个 `held_by_target` 手持物体，组件 mask 使用 OR 合并，组合分数取组件最低 SAM score（不是重新预测的 composite IoU）。
 
 当前仅支持图片，操作白名单为：目标标红 `highlight`、目标描边 `outline`、模糊目标 `blur_target`、背景变暗 `dim_background`、透明背景抠图 `cutout`。输出按编号保存；抠图为透明 PNG，其余操作为 JPG，同时保留 JSON 和 binary mask PNG。
 
-Qwen结构化输出使用严格Python契约校验；仅空响应、非法JSON或schema错误允许一次format-only retry，不对合法视觉判断结果重试或宽容转换。
+Qwen 结构化输出使用严格 Python 契约校验。Transport retry 与 JSON / contract correction 使用独立预算；Final Response 连续空内容不会抹掉已经生成的图片和 JSON，但在正式 System Gate 中仍属于失败。Behavior 的单候选 fallback 只适用于单个 object-mediated behavior 在 first pass 为 `uncertain` 的情况。
+
+## 当前正式状态
+
+- Canonical branch：`master`
+- 当前 Production 实现基线：`e44abeeac18d6e1e009928b70383b58a4c58068e`（已进入 `master`）
+- Merge 前回归：`166 passed`
+- 正式双卡本地 Qwen 代表性 smoke：`5/5 PASS`
+- 历史 Final Acceptance V4：`FAIL / CLOSED`，不因上述 smoke 改写；证据由 `archive/local-vlm-quality-evidence-v1` 固定
+
+最新运行状态、已知限制和验收口径见 [`docs/DEMO_STATUS.md`](docs/DEMO_STATUS.md)。
+
+## 正式本地模型部署
+
+Ollama 服务部署在 `192.168.250.9:11434`，正式模型和资源配置为：
+
+```ini
+Model=qwen3.8:27b-mtp-q4_K_M
+CUDA_VISIBLE_DEVICES=1,2
+OLLAMA_NUM_PARALLEL=1
+OLLAMA_KEEP_ALIVE=-1
+```
+
+服务器 `/etc/systemd/system/ollama.service.d/override.conf` 至少包含：
+
+```ini
+[Service]
+Environment="OLLAMA_HOST=0.0.0.0:11434"
+Environment="OLLAMA_KEEP_ALIVE=-1"
+Environment="CUDA_VISIBLE_DEVICES=1,2"
+Environment="OLLAMA_NUM_PARALLEL=1"
+```
+
+修改配置后启动并检查服务：
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart ollama
+systemctl is-active ollama
+curl http://127.0.0.1:11434/api/version
+curl http://127.0.0.1:11434/v1/models
+```
+
+应用侧使用同一个 OpenAI-compatible endpoint。PowerShell 示例：
+
+```powershell
+$env:PLANNER_MODEL = "qwen3.8:27b-mtp-q4_K_M"
+$env:PLANNER_BASE_URL = "http://192.168.250.9:11434/v1"
+$env:PLANNER_API_KEY = "ollama"
+
+$env:VLM_MODEL = "qwen3.8:27b-mtp-q4_K_M"
+$env:VLM_BASE_URL = "http://192.168.250.9:11434/v1"
+$env:VLM_API_KEY = "ollama"
+$env:VLM_TIMEOUT = "180"
+
+Remove-Item Env:\DEEPSEEK_API_KEY -ErrorAction SilentlyContinue
+Remove-Item Env:\DASHSCOPE_API_KEY -ErrorAction SilentlyContinue
+```
+
+`PLANNER_API_KEY` 和 `VLM_API_KEY` 是 OpenAI-compatible client 要求的显式占位值；本地 Ollama 当前不校验该值。正式本地配置不依赖 `DEEPSEEK_API_KEY` 或 `DASHSCOPE_API_KEY`。代码仍保留 Cloud provider 的兼容默认值，因此每个正式应用进程都必须显式设置上述六个 `PLANNER_*` / `VLM_*` 变量；不能只清空 cloud key 后依赖默认配置。
 
 ## Production API（Batch V1）
 
@@ -19,10 +78,14 @@ Qwen结构化输出使用严格Python契约校验；仅空响应、非法JSON或
 V1 默认 `MAX_CONCURRENT_JOBS=1`，先保证接口、状态、失败隔离和产物正确。
 
 ```powershell
-$env:DEEPSEEK_API_KEY = "你的 DeepSeek API Key"
-$env:DASHSCOPE_API_KEY = "你的 DashScope API Key"
+$env:PLANNER_MODEL = "qwen3.8:27b-mtp-q4_K_M"
+$env:PLANNER_BASE_URL = "http://192.168.250.9:11434/v1"
+$env:PLANNER_API_KEY = "ollama"
+$env:VLM_MODEL = "qwen3.8:27b-mtp-q4_K_M"
+$env:VLM_BASE_URL = "http://192.168.250.9:11434/v1"
+$env:VLM_API_KEY = "ollama"
 $env:MAX_CONCURRENT_JOBS = "1"
-python -m api.server --host 0.0.0.0 --port 8000
+.venv\Scripts\python.exe -m api.server --host 0.0.0.0 --port 8000
 ```
 
 端点：
@@ -43,14 +106,12 @@ V1 上传边界：单图最大 64 MiB，单次 batch 最多 32 张；图片按�
 
 ### 1. 配置环境
 
-设置环境变量 `DEEPSEEK_API_KEY` 和 `DASHSCOPE_API_KEY`，安装依赖后执行：
+先确认正式 Ollama 服务可访问，再安装依赖并使用上一节的 Planner / VLM 环境变量：
 
 ```powershell
 python -m venv .venv
 .venv\Scripts\python -m pip install torch==2.11.0 torchvision==0.26.0 --index-url https://download.pytorch.org/whl/cu130
 .venv\Scripts\python -m pip install -r requirements.txt
-$env:DEEPSEEK_API_KEY = "你的 DeepSeek API Key"
-$env:DASHSCOPE_API_KEY = "你的 DashScope API Key"
 ```
 
 ### 2. 启动页面
@@ -61,9 +122,12 @@ $env:DASHSCOPE_API_KEY = "你的 DashScope API Key"
 
 浏览器打开 `http://127.0.0.1:8080`，选择 Full Chain，上传图片、输入 Prompt、点击 Run，等待 `Queued → Running → Completed`，即可查看 Original / Result、Agent Plan、Detector Candidates、Semantic Verification、Relation、Final Targets 和 Timing。
 
-Full Chain 必须同时配置 `DEEPSEEK_API_KEY` 和 VLM 凭据。默认 Cloud 配置可继续使用 `DASHSCOPE_API_KEY`；切换自定义 OpenAI-compatible endpoint 时必须显式配置：
+Full Chain 必须同时配置 Planner 与 VLM。当前正式配置使用上一节的同一个本地 Qwen endpoint；自定义 OpenAI-compatible endpoint 必须显式配置对应的 API Key：
 
 ```powershell
+$env:PLANNER_MODEL = "你的模型名"
+$env:PLANNER_BASE_URL = "http://你的服务地址/v1"
+$env:PLANNER_API_KEY = "显式凭据或本地服务占位值"
 $env:VLM_MODEL = "你的模型名"
 $env:VLM_BASE_URL = "http://你的服务地址/v1"
 $env:VLM_API_KEY = "显式凭据或本地服务占位值"
@@ -108,8 +172,10 @@ Local Debug 使用预编译 Plan，只运行 Detector → SAM2 → Action；Agen
     --json benchmark/latency_report.json
 ```
 
-全链路（含 DeepSeek/Qwen API）需设置 `DEEPSEEK_API_KEY` 与 `DASHSCOPE_API_KEY` 后，去掉 `--plan-map` 并传 `--prompt`。
+全链路需设置正式本地 Planner / VLM 环境变量后，去掉 `--plan-map` 并传 `--prompt`。
 `main.py --profile` 可输出单次运行各阶段耗时。
+
+当前全链路的主要延迟来自 candidate isolation 下串行执行的 27B VLM 请求。`OLLAMA_NUM_PARALLEL=1` 是当前单 Runner 的正式配置；不要通过合并多人 evidence、降低图片分辨率或缩短输出合同来换取少量延迟，因为这些方向已经出现身份污染、无收益或质量不足。
 ## Instance Quality Benchmark v1（Research / Diagnostic Artifact）
 
 24 张 Test + 5 张 Calibration，八类场景，GT 已冻结。
