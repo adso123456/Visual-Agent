@@ -11,9 +11,10 @@ API：
     GET  /api/job/<job_id>/<file>   获取任务产物（result.jpg / result.json / masks / candidates.png）
 
 模式：
-- 完整链路：未传 plan，需要 DEEPSEEK_API_KEY（规划）与 DASHSCOPE_API_KEY（验证）。
+- 完整链路：未传 plan，需要 Planner 与 VLM 配置（PLANNER_* / VLM_*，
+  默认本地 Ollama，无需云端 key）。
 - 本地调试：传 plan JSON（或示例计划），仅运行 Detector → SAM2 → Action，
-  不需要任何 API Key（verify=False）。UI 中明确标注，不改变生产语义。
+  不需要模型配置（verify=False）。UI 中明确标注，不改变生产语义。
 """
 
 import argparse
@@ -33,6 +34,8 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 from visual_agent.pipeline import run_pipeline
+from visual_agent.deepseek_agent import build_planner_client
+from visual_agent.vlm_client import load_vlm_config
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
@@ -87,6 +90,24 @@ EXAMPLE_PLANS = {
 
 def _now_iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _full_chain_config_errors() -> list[str]:
+    """完整链路是否可用的只读检查：Planner 与 VLM 配置必须都可解析。
+
+    与视觉 Agent 生产代码共用同一配置 seam（build_planner_client /
+    load_vlm_config），本地 Ollama 无需云端 key；缺配置时返回可读原因。
+    """
+    errors = []
+    try:
+        build_planner_client()
+    except RuntimeError as error:
+        errors.append(f"Planner：{error}")
+    try:
+        load_vlm_config()
+    except RuntimeError as error:
+        errors.append(f"VLM：{error}")
+    return errors
 
 
 def _remove_job_artifacts(
@@ -409,9 +430,7 @@ class Handler(BaseHTTPRequestHandler):
             self._send_json({
                 "ok": True,
                 "jobs": len(_jobs),
-                "full_chain_available": bool(
-                    os.getenv("DEEPSEEK_API_KEY") and os.getenv("DASHSCOPE_API_KEY")
-                ),
+                "full_chain_available": not _full_chain_config_errors(),
             })
             return
         if path.startswith("/static/"):
@@ -504,16 +523,15 @@ class Handler(BaseHTTPRequestHandler):
                 self._send_json({"error": f"plan 契约校验失败：{validation_error}"}, 400)
                 return
         else:
-            missing_keys = [
-                key for key in ("DEEPSEEK_API_KEY", "DASHSCOPE_API_KEY")
-                if not os.getenv(key)
-            ]
-            if missing_keys:
+            config_errors = _full_chain_config_errors()
+            if config_errors:
                 self._send_json(
                     {
                         "error": (
-                            f"缺少 {', '.join(missing_keys)}，无法使用自然语言完整链路。"
-                            "请配置 DeepSeek（规划）与 DashScope（语义验证）凭据，"
+                            "完整链路配置不完整："
+                            + "；".join(config_errors)
+                            + "。请按 README 设置 PLANNER_* 与 VLM_* 环境变量"
+                            "（本地 Ollama 无需云端 key），"
                             "或切换到「本地调试模式」并提供预编译计划 JSON。"
                         )
                     },
@@ -567,12 +585,13 @@ def main() -> None:
     worker = threading.Thread(target=_worker, daemon=True, name="visual-agent-worker")
     worker.start()
     server = ThreadingHTTPServer((args.host, args.port), Handler)
-    has_deepseek = bool(os.getenv("DEEPSEEK_API_KEY"))
-    has_dashscope = bool(os.getenv("DASHSCOPE_API_KEY"))
+    config_errors = _full_chain_config_errors()
     print("Visual Agent Demo UI 已启动：")
     print(f"  地址：http://{args.host}:{args.port}")
-    print(f"  DeepSeek API：{'已配置' if has_deepseek else '未配置（自然语言链路不可用，可用本地调试模式）'}")
-    print(f"  DashScope API：{'已配置' if has_dashscope else '未配置（语义验证不可用）'}")
+    if config_errors:
+        print("  完整链路：配置不完整（" + "；".join(config_errors) + "）")
+    else:
+        print("  完整链路：Planner / VLM 配置就绪")
     print(f"  产物保留：24 小时（启动时已清理 {len(removed)} 个过期任务）")
     print("  按 Ctrl+C 停止。")
     try:
