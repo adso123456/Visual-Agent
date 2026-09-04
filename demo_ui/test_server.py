@@ -82,6 +82,28 @@ def test_minimal_ui_static_contract():
         assert removed not in script
 
 
+def test_frontend_job_state_contract():
+    """前端业务状态必须完全遵守后端契约：queued / running / done / error。
+
+    历史上曾把失败状态写成 "failed"（后端真实值是 "error"），导致统计失效、
+    轮询不终止。这里用文本契约锁死状态枚举，防止再次漂移。
+    """
+    script = (STATIC_DIR / "app.js").read_text(encoding="utf-8")
+    # 业务状态赋值只应来自后端轮询响应
+    assert 'job.status = data.status;' in script
+    # 失败统计与终止条件必须使用 "error"
+    assert 'job.status === "error"' in script
+    assert 'job.status === "done" || job.status === "error"' in script
+    # 展示层可以保留 tray-failed CSS 类名，但业务状态不得出现字符串 "failed"
+    import re
+
+    assert not re.search(r'job\.status\s*===?\s*"failed"', script)
+    assert not re.search(r'activeJobs\.filter\(\(job\) => job\.status === "failed"', script)
+    # 四态在脚本中都有明确分支
+    for token in ('"queued"', '"running"', '"done"', '"error"'):
+        assert token in script
+
+
 def test_image_viewer_static_contract():
     html = (STATIC_DIR / "index.html").read_text(encoding="utf-8")
     script = (STATIC_DIR / "app.js").read_text(encoding="utf-8")

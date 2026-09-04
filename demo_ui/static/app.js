@@ -159,12 +159,15 @@ function renderJobEntry(job) {
 }
 
 function updateTrayStatus(index, status) {
+  // status 为后端契约值：queued / running / done / error
+  // 展示层 CSS 类名（tray-done / tray-failed / tray-running / tray-queued）与业务状态分离
   const thumb = document.querySelectorAll(".tray-thumb")[index];
   if (!thumb) return;
   thumb.classList.remove("tray-queued", "tray-running", "tray-done", "tray-failed");
-  thumb.classList.add(`tray-${status}`);
+  const cssClass = {done: "tray-done", error: "tray-failed", running: "tray-running", queued: "tray-queued"}[status] || "tray-queued";
+  thumb.classList.add(cssClass);
   const badge = thumb.querySelector(".thumb-status");
-  if (badge) badge.textContent = status === "done" ? "✓" : (status === "failed" ? "✕" : (status === "running" ? "●" : "○"));
+  if (badge) badge.textContent = {done: "✓", error: "✕", running: "●", queued: "○"}[status] || "○";
 }
 
 function renderJobResult(jobId, data) {
@@ -192,29 +195,34 @@ function startPolling() {
         const response = await fetch(`/api/status/${job.job_id}`);
         const data = await response.json();
         if (!response.ok) throw new Error(data.error || "状态查询失败");
-        job.status = data.status;
+        job.status = data.status; // 后端契约：queued / running / done / error
         if (data.status === "queued") { updateTrayStatus(job.index, "queued"); continue; }
         if (data.status === "running") {
           updateTrayStatus(job.index, "running");
           $(jobRowId(job.job_id))?.querySelector(".job-status")?.replaceChildren(document.createTextNode("运行中"));
           continue;
         }
-        updateTrayStatus(job.index, data.status === "done" ? "done" : "failed");
+        updateTrayStatus(job.index, data.status); // done / error
         renderJobResult(job.job_id, data);
       } catch (error) {
-        job.status = "failed";
-        updateTrayStatus(job.index, "failed");
+        // 查询失败 ≠ 任务失败：不篡改后端契约状态，下次轮询继续重试
         const row = $(jobRowId(job.job_id));
-        if (row) row.querySelector(".job-status").textContent = `查询失败：${error.message}`;
+        if (row && !row.dataset.queryError) {
+          row.dataset.queryError = "1";
+          row.querySelector(".job-status").textContent = `查询失败（将重试）：${error.message}`;
+        }
       }
     }
     updateProgress();
-    if (activeJobs.every((job) => job.status === "done" || job.status === "failed")) {
+    const allTerminated = activeJobs.every(
+      (job) => job.status === "done" || job.status === "error"
+    );
+    if (allTerminated) {
       clearInterval(pollTimer);
       pollTimer = null;
       $("runButton").disabled = false;
       $("results").hidden = false;
-      const failed = activeJobs.filter((job) => job.status === "failed").length;
+      const failed = activeJobs.filter((job) => job.status === "error").length;
       const summary = failed
         ? `完成 ${activeJobs.length - failed} 张，失败 ${failed} 张。`
         : `全部完成，共 ${activeJobs.length} 张。`;
@@ -235,11 +243,11 @@ function startPolling() {
 function updateProgress() {
   if (activeJobs.length <= 1 || $("progressBlock").hidden) return;
   const total = activeJobs.length;
-  const failed = activeJobs.filter((job) => job.status === "failed").length;
+  const failed = activeJobs.filter((job) => job.status === "error").length;
   const done = activeJobs.filter((job) => job.status === "done").length;
   const running = activeJobs.filter((job) => job.status === "running").length;
   const queued = activeJobs.filter((job) => job.status === "queued").length;
-  const completed = done + failed; // 已完成 = success + failed（都终止了）
+  const completed = done + failed; // 已完成 = done + error（都终止了）
   const progress = Math.round((completed / total) * 100);
   const current = activeJobs.find((job) => job.status === "running") || activeJobs.find((job) => job.status === "queued");
   $("progressLabel").textContent = running ? `正在处理 ${completed + 1} / ${total}` : `已完成 ${completed} / ${total}`;
