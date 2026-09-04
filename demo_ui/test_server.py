@@ -45,17 +45,31 @@ def _result_fixture():
     }
 
 
-def test_three_fixed_examples_and_static_split():
-    assert list(EXAMPLE_PLANS) == [
-        "只给穿红色衣服的人描边",
-        "把拿雨伞的人单独抠出来",
-        "把正在钓鱼的人高亮",
-    ]
+def test_minimal_ui_static_contract():
     assert (STATIC_DIR / "style.css").is_file()
     assert (STATIC_DIR / "app.js").is_file()
+    html = (STATIC_DIR / "index.html").read_text(encoding="utf-8")
     script = (STATIC_DIR / "app.js").read_text(encoding="utf-8")
-    assert script.count("prompt:") == 3
-    assert "最终目标为 0——这是有效的负向结果" in script
+    # 极简 UI：只保留图片输入、指令、运行按钮与结果输出
+    for element in (
+        'id="dropzone"', 'id="fileInput"', 'id="promptInput"',
+        'id="runButton"', 'id="originalImage"', 'id="resultImage"',
+        'id="runStatus"',
+    ):
+        assert element in html
+    for handler in (
+        "async function run", "function renderResult",
+        "function setFile", "function setRunStatus",
+    ):
+        assert handler in script
+    # 砍掉的展示/分析区块不应残留
+    for removed in (
+        "modeBanner", "modeSwitch", "planInput", "examples",
+        "planSummary", "candidateRows", "semanticRows", "relationBlock",
+        "targetRows", "timingGrid", "artifactLinks",
+    ):
+        assert removed not in html
+        assert removed not in script
 
 
 def test_image_viewer_static_contract():
@@ -91,7 +105,7 @@ def test_health_home_and_static_assets():
             health = json.load(response)
         assert health["ok"] is True
         with urllib.request.urlopen(base + "/") as response:
-            assert "Visual Agent 开发者演示" in response.read().decode("utf-8")
+            assert "Visual Agent" in response.read().decode("utf-8")
         with urllib.request.urlopen(base + "/static/app.js") as response:
             assert response.headers.get_content_type() == "application/javascript"
     finally:

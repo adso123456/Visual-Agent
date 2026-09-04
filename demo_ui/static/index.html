@@ -3,31 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Visual Agent 开发者演示</title>
+  <title>Visual Agent</title>
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <header class="site-header">
-    <div>
-      <h1>Visual Agent 开发者演示</h1>
-      <p>自然语言驱动的视觉任务执行</p>
-    </div>
-    <div class="flow">通用视觉链路：自然语言 <b>→</b> Agent 规划 <b>→</b> 开放词汇定位 <b>→</b> 视觉证据路由 <b>→</b> 语义 / 关系验证 <b>→</b> 精确分割 <b>→</b> 动作执行</div>
-  </header>
-
   <main>
-    <section id="modeBanner" class="mode-banner full-chain">
-      <strong>通用视觉链路</strong>
-      <span>自然语言 → Agent 规划 → 开放词汇定位 → 视觉证据路由 → 语义 / 关系验证 → 精确分割 → 动作执行</span>
-    </section>
-
     <section class="card input-card">
-      <div class="section-title"><span>01</span><h2>任务输入</h2></div>
-      <div class="mode-switch" id="modeSwitch">
-        <button type="button" data-mode="full_chain" class="active">通用视觉链路</button>
-        <button type="button" data-mode="local_debug">本地调试</button>
-      </div>
-
       <div class="input-grid">
         <div>
           <label>上传图片</label>
@@ -40,59 +21,23 @@
         <div class="prompt-column">
           <label for="promptInput">任务指令</label>
           <div class="prompt-row">
-            <textarea id="promptInput" rows="3" placeholder="只给穿红色衣服的人描边"></textarea>
+            <textarea id="promptInput" rows="3" placeholder="例如：只给穿红色衣服的人描边"></textarea>
             <button type="button" id="runButton" class="primary">运行</button>
           </div>
-          <div class="examples" id="examples"></div>
-          <textarea id="planInput" class="plan-input" rows="8" aria-label="预编译计划 JSON"></textarea>
-          <p id="modeHint" class="hint"></p>
         </div>
       </div>
 
       <div id="runStatus" class="run-status" data-state="idle">
-        <span class="status-dot"></span><strong>就绪</strong><span>请上传图片并运行任务。</span>
+        <span class="status-dot"></span><strong>就绪</strong><span>请上传图片并输入任务指令。</span>
       </div>
     </section>
 
     <section id="results" class="results" hidden>
       <section class="card">
-        <div class="section-title"><span>02</span><h2>原图 / 结果</h2></div>
         <div class="image-compare">
           <figure><figcaption>原始图片</figcaption><div class="image-frame"><img id="originalImage" class="interactive-image" alt="原始图片" title="点击放大"></div></figure>
           <figure><figcaption>结果图片</figcaption><div class="image-frame"><img id="resultImage" class="interactive-image" alt="结果图片" title="点击放大"></div></figure>
         </div>
-        <div id="artifactLinks" class="artifact-links"></div>
-      </section>
-
-      <section class="card">
-        <div class="section-title"><span>03</span><h2>Agent 计划</h2></div>
-        <div id="planSummary" class="plan-summary"></div>
-        <div id="agentResponse" class="agent-response" hidden></div>
-      </section>
-
-      <section class="card">
-        <div class="section-title"><span>04</span><h2>Detector 候选目标</h2><em id="candidateCount"></em></div>
-        <div class="candidate-layout">
-          <div class="image-frame overlay"><img id="candidateOverlay" alt="Detector 候选目标叠加图"></div>
-          <div class="table-wrap"><table class="candidate-table"><thead><tr><th>ID</th><th>标签</th><th>置信度</th><th>验证状态</th></tr></thead><tbody id="candidateRows"></tbody></table></div>
-        </div>
-      </section>
-
-      <section class="card">
-        <div class="section-title"><span>05</span><h2>语义验证</h2></div>
-        <p id="semanticNotice" class="hint"></p>
-        <div class="table-wrap"><table class="semantic-table"><thead><tr><th>候选目标</th><th>约束</th><th>状态</th><th>证据</th></tr></thead><tbody id="semanticRows"></tbody></table></div>
-        <div id="relationBlock"></div>
-      </section>
-
-      <section class="card">
-        <div class="section-title"><span>06</span><h2>最终目标</h2><em id="targetCount"></em></div>
-        <div class="table-wrap"><table class="target-table"><thead><tr><th>ID</th><th>标签</th><th>判定理由</th><th>关系</th><th>Mask 分数</th><th>Mask 面积</th></tr></thead><tbody id="targetRows"></tbody></table></div>
-      </section>
-
-      <section class="card">
-        <div class="section-title"><span>07</span><h2>耗时统计</h2></div>
-        <div id="timingGrid" class="timing-grid"></div>
       </section>
     </section>
   </main>
@@ -107,7 +52,6 @@
     </div>
   </div>
 
-  <footer>开发者演示 v1 · UI 仅展示 <code>run_pipeline</code> 的输出，不会改变视觉感知结果。</footer>
   <script src="/static/app.js"></script>
 </body>
 </html>
