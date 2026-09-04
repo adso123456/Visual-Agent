@@ -11,12 +11,12 @@
     <section class="card input-card">
       <div class="input-grid">
         <div>
-          <label>上传图片</label>
+          <label>上传图片（可多选）</label>
           <div class="dropzone" id="dropzone">
             <span id="dropzoneText">点击选择或将图片拖到此处</span>
             <img id="preview" alt="所选图片预览" hidden>
           </div>
-          <input type="file" id="fileInput" accept="image/*" hidden>
+          <input type="file" id="fileInput" accept="image/*" multiple hidden>
         </div>
         <div class="prompt-column">
           <label for="promptInput">任务指令</label>
@@ -33,12 +33,9 @@
     </section>
 
     <section id="results" class="results" hidden>
-      <section class="card">
-        <div class="image-compare">
-          <figure><figcaption>原始图片</figcaption><div class="image-frame"><img id="originalImage" class="interactive-image" alt="原始图片" title="点击放大"></div></figure>
-          <figure><figcaption>结果图片</figcaption><div class="image-frame"><img id="resultImage" class="interactive-image" alt="结果图片" title="点击放大"></div></figure>
-        </div>
-      </section>
+      <div class="card">
+        <div id="jobList"></div>
+      </div>
     </section>
   </main>
 

@@ -19,6 +19,13 @@ button, .viewer-stage { user-select: none; }
 main { max-width: 1020px; margin: 0 auto; padding: 28px 20px 40px; }
 .card { padding: 20px; border: 1px solid var(--border); border-radius: 12px; background: var(--panel); }
 .results { display: block; margin-top: 18px; }
+.job-row { padding: 18px 0; border-bottom: 1px solid var(--border); }
+.job-row:first-child { padding-top: 0; }
+.job-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.job-row-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.job-row-head strong { font-size: 13px; }
+.job-status { color: var(--muted); font-size: 12px; }
+.job-status-error { color: var(--red); }
 .input-grid { display: grid; grid-template-columns: minmax(280px, 410px) 1fr; gap: 20px; }
 label { display: block; margin-bottom: 7px; color: var(--muted); font-size: 12px; font-weight: 600; }
 .dropzone { display: grid; place-items: center; min-height: 172px; padding: 12px; overflow: hidden; color: var(--muted); border: 2px dashed var(--border); border-radius: 10px; background: var(--panel-2); cursor: pointer; }

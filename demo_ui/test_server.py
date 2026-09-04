@@ -50,18 +50,21 @@ def test_minimal_ui_static_contract():
     assert (STATIC_DIR / "app.js").is_file()
     html = (STATIC_DIR / "index.html").read_text(encoding="utf-8")
     script = (STATIC_DIR / "app.js").read_text(encoding="utf-8")
-    # 极简 UI：只保留图片输入、指令、运行按钮与结果输出
+    # 极简批量 UI：图片输入（多选）、指令、运行按钮与逐行结果输出
     for element in (
         'id="dropzone"', 'id="fileInput"', 'id="promptInput"',
-        'id="runButton"', 'id="originalImage"', 'id="resultImage"',
-        'id="runStatus"',
+        'id="runButton"', 'id="jobList"', 'id="runStatus"',
+        'multiple', 'accept="image/*"',
     ):
         assert element in html
     for handler in (
-        "async function run", "function renderResult",
-        "function setFile", "function setRunStatus",
+        "async function run", "function setFiles",
+        "function renderJobEntry", "function startPolling",
+        "function setRunStatus",
     ):
         assert handler in script
+    for endpoint in ("/api/run_batch", "/api/status/"):
+        assert endpoint in script
     # 砍掉的展示/分析区块不应残留
     for removed in (
         "modeBanner", "modeSwitch", "planInput", "examples",

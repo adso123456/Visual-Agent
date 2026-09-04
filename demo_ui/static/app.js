@@ -1,6 +1,6 @@
 const $ = (id) => document.getElementById(id);
-let selectedFile = null;
-let jobId = null;
+let selectedFiles = [];
+let activeJobs = [];
 let pollTimer = null;
 
 function escapeHtml(value) {
@@ -20,33 +20,46 @@ dropzone.addEventListener("dragleave", () => dropzone.classList.remove("drag"));
 dropzone.addEventListener("drop", (event) => {
   event.preventDefault();
   dropzone.classList.remove("drag");
-  if (event.dataTransfer.files.length) setFile(event.dataTransfer.files[0]);
+  if (event.dataTransfer.files.length) setFiles(event.dataTransfer.files);
 });
-$("fileInput").addEventListener("change", (event) => { if (event.target.files.length) setFile(event.target.files[0]); });
+$("fileInput").addEventListener("change", (event) => { if (event.target.files.length) setFiles(event.target.files); });
 
-function setFile(file) {
-  selectedFile = file;
-  $("preview").src = URL.createObjectURL(file);
+function setFiles(files) {
+  selectedFiles = Array.from(files);
+  $("preview").src = URL.createObjectURL(selectedFiles[0]);
   $("preview").hidden = false;
-  $("dropzoneText").textContent = `${file.name} · 点击替换`;
+  const count = selectedFiles.length;
+  $("dropzoneText").textContent = count === 1
+    ? `${selectedFiles[0].name} · 点击替换`
+    : `已选择 ${count} 张图片 · 点击替换`;
+}
+
+function dropzoneReset() {
+  selectedFiles = [];
+  $("preview").removeAttribute("src");
+  $("preview").hidden = true;
+  $("dropzoneText").textContent = "点击选择或将图片拖到此处";
 }
 
 async function run() {
   const prompt = $("promptInput").value.trim();
-  if (!selectedFile) return setRunStatus("error", "错误", "请选择一张图片。");
+  if (!selectedFiles.length) return setRunStatus("error", "错误", "请选择一张或多张图片。");
   if (!prompt) return setRunStatus("error", "错误", "请输入任务指令。");
 
   const form = new FormData();
-  form.append("image", selectedFile);
+  selectedFiles.forEach((file) => form.append("image", file));
   form.append("prompt", prompt);
   $("runButton").disabled = true;
   $("results").hidden = true;
-  setRunStatus("queued", "已排队", "正在等待 Visual Agent 执行进程。");
+  $("jobList").innerHTML = "";
+  setRunStatus("queued", "已排队", "正在提交任务……");
   try {
-    const response = await fetch("/api/run", {method: "POST", body: form});
+    const response = await fetch("/api/run_batch", {method: "POST", body: form});
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || "请求失败");
-    jobId = data.job_id;
+    activeJobs = data.jobs.filter((job) => job.job_id);
+    if (!activeJobs.length) throw new Error("没有图片成功提交");
+    activeJobs.forEach((job) => renderJobEntry(job));
     startPolling();
   } catch (error) {
     $("runButton").disabled = false;
@@ -54,40 +67,84 @@ async function run() {
   }
 }
 
+function jobRowId(jobId) {
+  return `job-${jobId}`;
+}
+
+function renderJobEntry(job) {
+  const row = document.createElement("div");
+  row.className = "job-row";
+  row.id = jobRowId(job.job_id);
+  row.innerHTML = `
+    <div class="job-row-head"><strong>${escapeHtml(job.image)}</strong><span class="job-status">排队中</span></div>
+    <div class="image-compare">
+      <figure><figcaption>原始图片</figcaption><div class="image-frame"><img data-original="/api/job/${job.job_id}/original" class="interactive-image" alt="原始图片" title="点击放大"></div></figure>
+      <figure><figcaption>结果图片</figcaption><div class="image-frame"><img data-result class="interactive-image" alt="结果图片" title="点击放大"></div></figure>
+    </div>`;
+  $("jobList").appendChild(row);
+}
+
+function renderJobResult(jobId, data) {
+  const row = $(jobRowId(jobId));
+  if (!row) return;
+  const original = row.querySelector("img[data-original]");
+  original.src = data.result_image
+    ? `/api/job/${jobId}/original`
+    : "";
+  const result = row.querySelector("img[data-result]");
+  if (data.status === "done") {
+    result.src = `/api/job/${jobId}/${data.result_image}`;
+    row.querySelector(".job-status").textContent = `已完成 · ${data.summary?.targets_count ?? 0} 个目标`;
+  } else if (data.status === "error") {
+    row.querySelector(".job-status").textContent = `失败：${data.error || "未知错误"}`;
+    row.querySelector(".job-status").classList.add("job-status-error");
+  }
+}
+
 function startPolling() {
   if (pollTimer) clearInterval(pollTimer);
   const poll = async () => {
-    try {
-      const response = await fetch(`/api/status/${jobId}`);
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error || "状态查询失败");
-      if (data.status === "queued") return setRunStatus("queued", "已排队", "正在等待 Visual Agent 执行进程。");
-      if (data.status === "running") return setRunStatus("running", "运行中", "Visual Agent 正在执行任务……");
-      clearInterval(pollTimer);
-      $("runButton").disabled = false;
-      if (data.status === "error") return setRunStatus("error", "错误", data.error || "未知错误");
-      if (data.status === "done") {
-        setRunStatus("completed", "已完成", `共得到 ${data.summary.targets_count} 个最终目标。`);
-        renderResult(data);
+    let pending = 0;
+    for (const job of activeJobs) {
+      try {
+        const response = await fetch(`/api/status/${job.job_id}`);
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || "状态查询失败");
+        if (data.status === "queued") { pending++; continue; }
+        if (data.status === "running") {
+          pending++;
+          const row = $(jobRowId(job.job_id));
+          if (row) row.querySelector(".job-status").textContent = "运行中";
+          continue;
+        }
+        renderJobResult(job.job_id, data);
+      } catch (error) {
+        pending++;
+        const row = $(jobRowId(job.job_id));
+        if (row) row.querySelector(".job-status").textContent = `查询失败：${error.message}`;
       }
-    } catch (error) {
+    }
+    if (pending === 0) {
       clearInterval(pollTimer);
+      pollTimer = null;
       $("runButton").disabled = false;
-      setRunStatus("error", "错误", error.message);
+      $("results").hidden = false;
+      const failed = activeJobs.filter((job) => $(jobRowId(job.job_id))?.querySelector(".job-status-error"));
+      const summary = failed.length
+        ? `完成 ${activeJobs.length - failed.length} 张，失败 ${failed.length} 张。`
+        : `全部完成，共 ${activeJobs.length} 张。`;
+      setRunStatus("completed", "已完成", summary);
+      $("results").scrollIntoView({behavior: "smooth", block: "start"});
     }
   };
   poll();
-  pollTimer = setInterval(poll, 1200);
-}
-
-function renderResult(data) {
-  $("results").hidden = false;
-  $("originalImage").src = `/api/job/${data.id}/original`;
-  $("resultImage").src = `/api/job/${data.id}/${data.result_image}`;
-  $("results").scrollIntoView({behavior: "smooth", block: "start"});
+  pollTimer = setInterval(poll, 1500);
 }
 
 $("runButton").addEventListener("click", run);
+$("promptInput").addEventListener("keydown", (event) => {
+  if (event.key === "Enter" && (event.ctrlKey || event.metaKey)) run();
+});
 
 const viewer = {
   scale: 1,
@@ -130,8 +187,10 @@ function closeViewer() {
   resetViewer();
 }
 
-document.querySelectorAll(".interactive-image").forEach((image) => {
-  image.addEventListener("click", () => openViewer(image));
+document.addEventListener("click", (event) => {
+  if (event.target.classList.contains("interactive-image") && event.target.src) {
+    openViewer(event.target);
+  }
 });
 
 $("viewerClose").addEventListener("click", closeViewer);

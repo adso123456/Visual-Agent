@@ -477,13 +477,19 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:  # noqa: N802
         path = self.path.split("?", 1)[0]
-        if path != "/api/run":
-            self._send_json({"error": "not found"}, 404)
+        if path == "/api/run":
+            try:
+                self._handle_run()
+            except Exception as error:  # noqa: BLE001
+                self._send_json({"error": f"请求处理失败：{error}"}, 400)
             return
-        try:
-            self._handle_run()
-        except Exception as error:  # noqa: BLE001
-            self._send_json({"error": f"请求处理失败：{error}"}, 400)
+        if path == "/api/run_batch":
+            try:
+                self._handle_run_batch()
+            except Exception as error:  # noqa: BLE001
+                self._send_json({"error": f"请求处理失败：{error}"}, 400)
+            return
+        self._send_json({"error": "not found"}, 404)
 
     def _handle_run(self) -> None:
         content_type = self.headers.get("Content-Type", "")
@@ -540,14 +546,89 @@ class Handler(BaseHTTPRequestHandler):
                 return
 
         _cleanup_expired_jobs()
+        try:
+            job_id = self._submit_job(image_field, prompt, plan, local_mode)
+        except ValueError as error:
+            self._send_json({"error": str(error)}, 400)
+            return
+        mode = "local_debug" if local_mode else "full_chain"
+        self._send_json({"job_id": job_id, "mode": mode}, 202)
+
+    def _handle_run_batch(self) -> None:
+        """批量任务：multipart 里一个 prompt + 多个 image 字段，逐个入队。
+
+        批量模式走完整链路（不接收 plan），每个 job 独立排队/独立失败隔离。
+        """
+        content_type = self.headers.get("Content-Type", "")
+        if "multipart/form-data" not in content_type:
+            self._send_json({"error": "需要 multipart/form-data"}, 400)
+            return
+        import cgi
+
+        form = cgi.FieldStorage(
+            fp=self.rfile,
+            headers=self.headers,
+            environ={
+                "REQUEST_METHOD": "POST",
+                "CONTENT_TYPE": content_type,
+            },
+        )
+        prompt = form.getvalue("prompt") or ""
+        prompt = prompt.strip()
+        if not prompt:
+            self._send_json({"error": "缺少自然语言指令"}, 400)
+            return
+        config_errors = _full_chain_config_errors()
+        if config_errors:
+            self._send_json(
+                {
+                    "error": (
+                        "完整链路配置不完整："
+                        + "；".join(config_errors)
+                        + "。请按 README 设置 PLANNER_* 与 VLM_* 环境变量"
+                        "（本地 Ollama 无需云端 key）。"
+                    )
+                },
+                400,
+            )
+            return
+
+        image_fields = form["image"]
+        if not isinstance(image_fields, list):
+            image_fields = [image_fields]
+        image_fields = [
+            field for field in image_fields if field is not None and getattr(field, "file", None)
+        ]
+        if not image_fields:
+            self._send_json({"error": "至少需要一张图片"}, 400)
+            return
+
+        _cleanup_expired_jobs()
+        jobs = []
+        for image_field in image_fields:
+            try:
+                job_id = self._submit_job(image_field, prompt, None, local_mode=False)
+            except ValueError as error:
+                jobs.append({"job_id": None, "image": image_field.filename or "", "error": str(error)})
+                continue
+            jobs.append({"job_id": job_id, "image": image_field.filename or ""})
+        self._send_json({"jobs": jobs, "mode": "full_chain"}, 202)
+
+    def _submit_job(
+        self,
+        image_field,
+        prompt: str,
+        plan: dict | None,
+        local_mode: bool,
+    ) -> str:
+        """把一个图片字段固化为任务并入队，返回 job_id；失败抛 ValueError。"""
         job_id = uuid.uuid4().hex[:12]
         job_dir = OUTPUT_DIR / job_id
         job_dir.mkdir(parents=True, exist_ok=True)
         raw_name = Path(image_field.filename or "upload.jpg").name
         suffix = Path(raw_name).suffix.lower() or ".jpg"
         if suffix not in {".jpg", ".jpeg", ".png", ".webp", ".bmp"}:
-            self._send_json({"error": f"不支持的图片格式：{suffix}"}, 400)
-            return
+            raise ValueError(f"不支持的图片格式：{suffix}")
         image_path = UPLOAD_DIR / f"{job_id}{suffix}"
         with open(image_path, "wb") as handle:
             handle.write(image_field.file.read())
@@ -572,7 +653,7 @@ class Handler(BaseHTTPRequestHandler):
             _jobs[job_id] = job
             _queue.append(job_id)
             _queue_cond.notify()
-        self._send_json({"job_id": job_id, "mode": job["mode"]}, 202)
+        return job_id
 
 
 def main() -> None:
