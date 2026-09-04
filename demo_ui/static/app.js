@@ -22,23 +22,52 @@ dropzone.addEventListener("drop", (event) => {
   dropzone.classList.remove("drag");
   if (event.dataTransfer.files.length) setFiles(event.dataTransfer.files);
 });
-$("fileInput").addEventListener("change", (event) => { if (event.target.files.length) setFiles(event.target.files); });
+$("fileInput").addEventListener("change", (event) => { if (event.target.files.length) addFilesFromPicker(); });
+$("clearButton").addEventListener("click", (event) => { event.stopPropagation(); clearFiles(); });
 
 function setFiles(files) {
-  selectedFiles = Array.from(files);
-  $("preview").src = URL.createObjectURL(selectedFiles[0]);
-  $("preview").hidden = false;
-  const count = selectedFiles.length;
-  $("dropzoneText").textContent = count === 1
-    ? `${selectedFiles[0].name} · 点击替换`
-    : `已选择 ${count} 张图片 · 点击替换`;
+  // 追加模式：多次选择/拖拽都累积到列表，而不是替换上一张
+  const added = Array.from(files);
+  const seen = new Set(selectedFiles.map((file) => `${file.name}|${file.size}|${file.lastModified}`));
+  for (const file of added) {
+    const key = `${file.name}|${file.size}|${file.lastModified}`;
+    if (!seen.has(key)) {
+      selectedFiles.push(file);
+      seen.add(key);
+    }
+  }
+  updateDropzone();
 }
 
-function dropzoneReset() {
+async function addFilesFromPicker() {
+  const input = $("fileInput");
+  const picked = input.files;
+  if (picked && picked.length) {
+    setFiles(picked);
+    input.value = "";
+  }
+}
+
+function clearFiles() {
   selectedFiles = [];
-  $("preview").removeAttribute("src");
-  $("preview").hidden = true;
-  $("dropzoneText").textContent = "点击选择或将图片拖到此处";
+  updateDropzone();
+}
+
+function updateDropzone() {
+  const count = selectedFiles.length;
+  if (count === 0) {
+    $("preview").removeAttribute("src");
+    $("preview").hidden = true;
+    $("dropzoneText").textContent = "点击选择或将图片拖到此处";
+    $("clearButton").hidden = true;
+    return;
+  }
+  $("preview").src = URL.createObjectURL(selectedFiles[0]);
+  $("preview").hidden = false;
+  $("clearButton").hidden = false;
+  $("dropzoneText").textContent = count === 1
+    ? `${selectedFiles[0].name} · 点击继续添加`
+    : `已选择 ${count} 张图片 · 点击继续添加`;
 }
 
 async function run() {

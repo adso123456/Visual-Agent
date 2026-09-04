@@ -31,6 +31,9 @@ label { display: block; margin-bottom: 7px; color: var(--muted); font-size: 12px
 .dropzone { display: grid; place-items: center; min-height: 172px; padding: 12px; overflow: hidden; color: var(--muted); border: 2px dashed var(--border); border-radius: 10px; background: var(--panel-2); cursor: pointer; }
 .dropzone:hover, .dropzone.drag { border-color: var(--blue); }
 .dropzone img { max-width: 100%; max-height: 230px; object-fit: contain; border-radius: 6px; }
+.upload-hint { margin: 8px 0 0; color: var(--muted); font-size: 12px; }
+.link-button { margin-left: 8px; padding: 0; color: var(--blue); border: 0; background: none; cursor: pointer; font-size: 12px; }
+.link-button:hover { text-decoration: underline; }
 .prompt-column { min-width: 0; }
 .prompt-row { display: grid; grid-template-columns: 1fr 105px; gap: 10px; }
 textarea { width: 100%; padding: 11px 12px; resize: vertical; color: var(--text); caret-color: var(--blue); border: 1px solid var(--border); border-radius: 8px; background: #fff; cursor: text; user-select: text; }

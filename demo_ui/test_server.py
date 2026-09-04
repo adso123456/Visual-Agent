@@ -54,11 +54,13 @@ def test_minimal_ui_static_contract():
     for element in (
         'id="dropzone"', 'id="fileInput"', 'id="promptInput"',
         'id="runButton"', 'id="jobList"', 'id="runStatus"',
-        'multiple', 'accept="image/*"',
+        'id="clearButton"',
+        'multiple', 'accept=".jpg,.jpeg,.png,.webp,.bmp"',
     ):
         assert element in html
     for handler in (
         "async function run", "function setFiles",
+        "function addFilesFromPicker", "function clearFiles",
         "function renderJobEntry", "function startPolling",
         "function setRunStatus",
     ):

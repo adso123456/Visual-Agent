@@ -16,7 +16,8 @@
             <span id="dropzoneText">点击选择或将图片拖到此处</span>
             <img id="preview" alt="所选图片预览" hidden>
           </div>
-          <input type="file" id="fileInput" accept="image/*" multiple hidden>
+          <p class="upload-hint">支持 .jpg / .jpeg / .png / .webp / .bmp；可按住 Ctrl 或 Shift 一次多选，也可多次添加 <button type="button" id="clearButton" class="link-button" hidden>清空</button></p>
+          <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.webp,.bmp" multiple hidden>
         </div>
         <div class="prompt-column">
           <label for="promptInput">任务指令</label>
