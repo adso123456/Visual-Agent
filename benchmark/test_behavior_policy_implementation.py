@@ -371,7 +371,7 @@ def test_behavior_satisfied_confirmation_reuses_first_pass_evidence_and_routes_a
         assert entry["fallback_attempted"] is True
 
 
-def test_behavior_routing_uncertain_single_candidate_immutable(
+def test_behavior_routing_uncertain_single_candidate_escalates_to_arm_c(
     tmp_path, monkeypatch
 ):
     calls = []
@@ -401,9 +401,10 @@ def test_behavior_routing_uncertain_single_candidate_immutable(
         output_dir=tmp_path / "out",
     )
     result = json.loads(result_path.read_text(encoding="utf-8"))
-    assert calls == [2]  # uncertain + 单候选 → 不 fallback（合同 §1.1 immutable）
+    assert calls == [2, 3]
     entry = result["behavior_routing"]["A"]
-    assert entry["fallback_attempted"] is False
+    assert entry["fallback_attempted"] is True
+    assert entry["fallback_arm"] == "C"
     assert result["candidates"][0]["verification_checks"][0]["status"] == "uncertain"
 
 
