@@ -102,6 +102,8 @@ Batch 异步执行，单张图片失败只标记该任务为 `failed`，不影�
 V1 上传边界：单图最大 64 MiB，单次 batch 最多 32 张；图片按张有界读取，
 不会先把整批图片同时读入内存。
 
+API 调用说明：见 [`docs/API_USAGE.md`](docs/API_USAGE.md)。
+
 ## Developer Demo
 
 ### 1. 配置环境
